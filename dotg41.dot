@@ -1,6 +1,6 @@
 
 digraph TestG1 {
-        node [shape=rect]
+        node [style=rounded]
         A [label="id | v2 v8|| n Sol
 ___________
   0|  0  0 ||    1  

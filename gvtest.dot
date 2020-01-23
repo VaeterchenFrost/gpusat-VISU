@@ -1,0 +1,12 @@
+digraph structs {
+	node [shape=plaintext]
+	struct1 [label=<<TABLE BORDER="1" CELLBORDER="0" CELLSPACING="2">
+                           <TR><TD BGCOLOR="gray">first</TD><TD PORT="f1"></TD><TD>second</TD></TR>
+                       </TABLE>>]
+	node [shape=record]
+	edge [arrowType=halfopen splines=line]
+	struct2 [label="{<f0> bag 2|{{id|0}|{v1|0}|{ v2|0}|{ nSol|0}}|sum: 4}" fontcolor=green]
+	struct3 [label="hello\nworld |{ b |{c|<here> d|e}| f}| g | h"]
+	struct1:f1 -> struct2:f0
+	struct1:f1 -> struct3:here
+}
