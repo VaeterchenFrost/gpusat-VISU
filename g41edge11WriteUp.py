@@ -9,15 +9,9 @@ import networkx as nx
 import matplotlib.pyplot as plt
 fig = plt.figure(dpi=100, figsize=(12,8))
 
-"""
-Adding one edge s->t to the dictionary d.
-e.g.
-if '2' in g41['edges'] : g41['edges']['2'].append('1000001')
-else : g41['edges']['2'] = ['1000001']
-"""
+
 def add_edge(d, s, t):
     d.append((s,t))
-    
     
     
 g41 = {}
@@ -49,6 +43,7 @@ add_edge(g41['edges'], '4', '1000002')
 add_edge(g41['edges'], '2', '4')
 
 result = json.dumps(g41, indent = 2, sort_keys=True)
+#from networkx.drawing.nx_agraph import write_dot
 
 with open("demofile.json", "w") as f:
     f.write(result)
@@ -64,7 +59,7 @@ G.add_edges_from(g41in['edges'])
 #G.add_nodes_from(g41in['nodes'])
 
 #print(result)
-
+nx.drawing.nx_agraph.write_dot(G, "dotg41.dot")
 print("edges=", G.edges())
 pos=nx.spring_layout(G, scale=0.2) # positions for all nodes
 
@@ -75,7 +70,7 @@ plt.axis('on')
 plt.margins(0.3, 0.3)
 plt.tick_params('both')
 plt.show()
-
+nx.labels
 #nx.draw(G)
 
 
