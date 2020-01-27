@@ -1,12 +1,23 @@
 digraph structs {
-	node [shape=plaintext]
-	struct1 [label=<<TABLE BORDER="1" CELLBORDER="0" CELLSPACING="2">
-                           <TR><TD BGCOLOR="gray">first</TD><TD PORT="f1"></TD><TD>second</TD></TR>
-                       </TABLE>>]
+	node [shape=rect]
+	bag4 [label=<<TABLE BORDER="0" CELLBORDER="0" CELLSPACING="0">
+              <TR><TD BGCOLOR="white">bag 4</TD><TD PORT="anchor"></TD><TD>[2 3 8]</TD></TR></TABLE>> fontsize=24]
+	bag3 [label=<<TABLE BORDER="0" CELLBORDER="0" CELLSPACING="0">
+              <TR><TD BGCOLOR="white">bag 3</TD><TD PORT="anchor"></TD><TD>[2 4 8]</TD></TR></TABLE>>]
+	join1 [label=<<TABLE BORDER="0" CELLBORDER="0" CELLSPACING="0">
+              <TR><TD BGCOLOR="white">Join</TD><TD PORT="anchor"></TD><TD>2~3</TD></TR></TABLE>>]
+	bag2 [label=<<TABLE BORDER="0" CELLBORDER="0" CELLSPACING="0">
+              <TR><TD BGCOLOR="white">bag 2</TD><TD PORT="anchor"></TD><TD>[1 2 5]</TD></TR></TABLE>>]
+	bag1 [label=<<TABLE BORDER="0" CELLBORDER="0" CELLSPACING="0">
+              <TR><TD BGCOLOR="white">bag 1</TD><TD PORT="anchor"></TD><TD>[1 2 4 6]</TD></TR></TABLE>>]
+	bag0 [label=<<TABLE BORDER="0" CELLBORDER="0" CELLSPACING="0">
+              <TR><TD BGCOLOR="white">bag 0</TD><TD PORT="anchor"></TD><TD>[1 4 7]</TD></TR></TABLE>>]
 	node [shape=record]
-	edge [arrowType=halfopen splines=line]
-	struct2 [label="{<f0> bag 2|{{id|0}|{v1|0}|{ v2|0}|{ nSol|0}}|sum: 4}" fontcolor=green]
-	struct3 [label="hello\nworld |{ b |{c|<here> d|e}| f}| g | h"]
-	struct1:f1 -> struct2:f0
-	struct1:f1 -> struct3:here
+	sol4 [label="{<f0> bag 2|{{id|0}|{v1|0}|{ v2|0}|{ nSol|0}}|sum: 4}" fontcolor=green]
+	hi [label="hello\nworld |{ b |{c|<here> d|e}| f}| g | h"]
+	bag4:anchor -> bag3:anchor
+	bag2:anchor -> join1:anchor
+	bag3:anchor -> join1:anchor
+	join1:anchor -> bag1:anchor
+	bag1:anchor -> bag0:anchor
 }
