@@ -10,6 +10,7 @@
 """
 
 from graphviz import Digraph
+import numpy as np
 
 s = Digraph('structs', filename='structs_revisited.gv',
             node_attr={'shape': 'rect'})
@@ -41,7 +42,7 @@ def bagNode(head, tail, anchor="anchor", headcolor="white",
     return result
 
 
-def solutionNode(solutionTable, toplabel="", bottomlabel=""):
+def solutionNode(solutionTable, toplabel="", bottomlabel="", transpose=False):
     """Fill the node from the 2D 'solutionTable' (columnbased!).
     Optionally add a line above and/or below the table.
 
@@ -63,6 +64,8 @@ def solutionNode(solutionTable, toplabel="", bottomlabel=""):
     if len(solutionTable) == 0:
         result += "empty"
     else:
+        if transpose:
+            solutionTable = np.transpose(solutionTable)
         result += "{"                                       # insert table
 
         for i, column in enumerate(solutionTable):
@@ -81,7 +84,7 @@ def solutionNode(solutionTable, toplabel="", bottomlabel=""):
     return "{" + result + "}"
 
 
-s.node('bag4', bagNode("bag 4", "[2 3 8]"), fontsize="24")
+s.node('bag4', bagNode("bag 4", "[2 3 8]"))
 s.node('bag3', bagNode("bag 3", "[2 4 8]"))
 s.node('join1', bagNode("Join", "2~3"))
 s.node('bag2', bagNode("bag 2", "[1 2 5]"))
@@ -91,18 +94,21 @@ s.node('bag0', bagNode("bag 0", "[1 4 7]"))
 s.attr('node', shape='record')
 s.node('etest', solutionNode([["id", "0"], ["v1", "1"],
                               ["v2", "2"], ["v3", "4"],
-                              ["nSol", "0"]], "top", "bottom"))
-s.node(
-    'sol4',
-    r'{<f0> bag 2|{{id|0}|{v1|0}|{ v2|0}|{ nSol|0}}|sum: 4}',
-    fontcolor='green')
-s.node('hi', r'hello\nworld |{ b |{c|<here> d|e}| f}| g | h')
+                              ["nSol", "0"]], "top", "bottom", True))
 
+s.node('sol4', solutionNode(["id"]))
 s.edges([('bag4:anchor', 'bag3:anchor'), ('bag2:anchor', 'join1:anchor'),
          ('bag3:anchor', 'join1:anchor'), ('join1:anchor', 'bag1:anchor'),
-         ('bag1:anchor', 'bag0:anchor'), ('bag1:anchor', 'etest:anchor')])
+         ('bag1:anchor', 'bag0:anchor'), ])
 
 with open("gvtest.dot", "w") as f:
     f.write(s.__str__())
 
 s.render(view=True, format='png')
+
+# s.node(
+#     'sol4',
+#     r'{<f0> bag 2|{{id|0}|{v1|0}|{ v2|0}|{ nSol|0}}|sum: 4}',
+#     fontcolor='green')
+# s.node('hi', r'hello\nworld |{ b |{c|<here> d|e}| f}| g | h')
+# ('bag1:anchor', 'etest:anchor')
