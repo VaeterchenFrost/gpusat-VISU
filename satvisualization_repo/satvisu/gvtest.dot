@@ -13,7 +13,7 @@ digraph structs {
 	bag0 [label=<<TABLE BORDER="0" CELLBORDER="0" CELLSPACING="0">
               <TR><TD BGCOLOR="white">bag 0</TD><TD PORT="anchor"></TD><TD>[1 4 7]</TD></TR></TABLE>>]
 	node [shape=record]
-	etest [label="{<anchor> top|{{id|0}|{v1|1}|{v2|2}|{v3|4}|{nSol|0}}|bottom}"]
+	etest [label="{<anchor> top|{{id|0}|{v1|1}|{v2|2}|{v3|4}|{nSol|0}}}"]
 	sol4 [label="{<f0> bag 2|{{id|0}|{v1|0}|{ v2|0}|{ nSol|0}}|sum: 4}" fontcolor=green]
 	hi [label="hello\nworld |{ b |{c|<here> d|e}| f}| g | h"]
 	bag4:anchor -> bag3:anchor
