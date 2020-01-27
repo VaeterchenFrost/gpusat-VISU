@@ -241,7 +241,7 @@ graph
 			fontSize	12
 			fontName	"Dialog"
 			model	"sandwich"
-			anchor	"s"
+			anchor	"n"
 		]
 	]
 	node

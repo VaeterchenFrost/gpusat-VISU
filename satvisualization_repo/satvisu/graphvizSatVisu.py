@@ -1,4 +1,6 @@
 # structs_revisited.py - http://www.graphviz.org/pdf/dotguide.pdf Figure 12
+"""building a graphoutput from satsolver runs.
+"""
 """<<TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0">
     <TR><TD PORT="f1" BGCOLOR="gray">first</TD></TR>
     <TR><TD PORT="f2">second</TD></TR>
@@ -9,14 +11,23 @@
 
 
 from graphviz import Digraph
+import numpy as np
 
 s = Digraph('structs', filename='structs_revisited.gv',
             node_attr={'shape': 'rect'})
 
 
+def texit():
+    """raises SystemExit(1)"""
+    raise SystemExit(1)
+    
+def trimR(string, len=1):
+    return string[:-1]
+
+
 def bagNode(head, tail, anchor="anchor", headcolor="white",
             tableborder=0, cellborder=0, cellspacing=0):
-    """ HTML format with 'head' as the first label, then appending further labels.
+    """HTML format with 'head' as the first label, then appending further labels.
     After the 'head' there is an (empty) anchor for edges with a name tag. e.g.
     <<TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0">
     <TR>
@@ -38,10 +49,41 @@ def bagNode(head, tail, anchor="anchor", headcolor="white",
     return result
 
 
-def solutionNode(solutionText):
-    result = ""
-    return result
+def solutionNode(solutionTable, toplabel="", bottomlabel=""):
+    """Fill the node from the 2D 'solutionTable' (columnbased!).
+    Optionally add a line above and/or below the table.
 
+    Example structure for four columns:
+    |----------|
+    | toplabel |
+    ------------
+    |v1|v2|v3|v4|
+    |0 |1 |0 |1 |
+    |1 |1 |0 |0 |
+    ...
+    ------------
+    | botlabel |
+    |----------|
+    """
+    result = "<anchor> " + toplabel
+    result += "|"
+
+    if len(solutionTable) == 0:
+        return result + "empty" + "|" + bottomlabel
+
+    result += "{"                                       # insert table
+
+    for i, column in enumerate(solutionTable):
+        result += "{"                                   # start column
+        for row in column[:-1]:
+            result += str(row) + "|"
+        for row in column[-1:]:
+            result += str(row) 
+        result += "}"
+        if i != len(solutionTable)-1:                   # sep. between columns 
+            result += "|"
+
+    return "{" + result + "}"
 
 s.node('bag4', bagNode("bag 4", "[2 3 8]"), fontsize="24")
 s.node('bag3', bagNode("bag 3", "[2 4 8]"))
@@ -66,3 +108,9 @@ with open("gvtest.dot", "w") as f:
     f.write(s.__str__())
 
 s.render(view=True, format='png')
+
+import pytest
+
+def test_solutionNode():
+    return 0
+    
