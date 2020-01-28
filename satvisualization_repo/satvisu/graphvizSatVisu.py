@@ -13,6 +13,7 @@ from graphviz import Digraph, Graph
 import numpy as np
 import seaborn as sns
 
+
 def bagNode(head, tail, anchor="anchor", headcolor="white",
             tableborder=0, cellborder=0, cellspacing=0):
     """HTML format with 'head' as the first label, then appending
@@ -158,40 +159,36 @@ def main():
 
 
 def incidence():
-    
-    r_bags = 5
+
+    r_clause = 10
     r_vars = 8
-    bagtag = "b%d"
+    clausetag = "c%d"
     vartag = "v%d"
-    
-    k=list(sns.xkcd_rgb)
-    g = Graph(graph_attr={'splines': 'false'})
 
-    g.attr('node', shape='rect')
-    with g.subgraph(name='cluster_ibags', edge_attr={'style': 'invis'}) as ibags:
-        ibags.attr(label='bags')
-        # for bag in ['b0', 'b1', 'b2', 'b3', 'b4']:
-        #     ibags.node(bag, bag)
-        
-        ibags.edges([('b0', 'b1'), ('b1', 'b2'), ('b2', 'b3'), ('b3', 'b4')])
+    k = list(sns.xkcd_rgb)
+    g_incid = Graph(graph_attr={'splines': 'false'})
 
-    with g.subgraph(name='cluster_ivar', edge_attr={'style': 'invis'}) as ivars:
-        ibags.attr(label='variables')
-        # for var in ['v5', 'v1', 'v2', 'v3', 'v4', 'v6', 'v7', 'v8']:
-        #     ivars.node(var, var)
-        ivars.edges([('v1', 'v2'), ('v2', 'v3'), ('v3', 'v4'), ('v4', 'v5'),
-                     ('v5', 'v6'), ('v6', 'v7'), ('v7', 'v8')])
-    
-    g.attr('edge', constraint="false")
-    EDGELIST = [('b0', 'v1'), ('b0', 'v4'), ('b0', 'v7'),
-             ('b1', 'v2'), ('b1', 'v4'), ('b1', 'v1'), ('b1', 'v6'),
-             ('b2', 'v1'), ('b2', 'v2'), ('b2', 'v5'),
-             ('b3', 'v2'), ('b3', 'v4'), ('b3', 'v8'),
-             ('b4', 'v2'), ('b4', 'v3'), ('b4', 'v8')]
-    for edge in EDGELIST:
-        g.edge(edge[0], edge[1],  color=sns.xkcd_rgb[k[1]])
-    
-    g.render(view=True, format='png', filename='incidenceGraph')
+    g_incid.attr('node', shape='rect')
+    with g_incid.subgraph(name='cluster_clause', edge_attr={'style': 'invis'}) as clauses:
+        clauses.attr(label='clauses')
+        clauses.edges([(clausetag % (i + 1), clausetag % (i + 2))
+                       for i in range(r_clause - 1)])
+
+    with g_incid.subgraph(name='cluster_ivar', edge_attr={'style': 'invis'}) as ivars:
+        ivars.attr(label='variables')
+        ivars.edges([(vartag % (i + 1), vartag % (i + 2))
+                     for i in range(r_vars - 1)])
+
+    g_incid.attr('edge', constraint="false")
+    EDGELIST = [[1, [1, 4, 6]], [2, [1, 5]], [3, [1, 7]], [4, [2, 3]], [
+        5, [2, 5]], [6, [2, 6]], [7, [3, 8]], [8, [4, 8]], [9, [4, 6]], [10, [4, 7]]]
+    for clause in EDGELIST:
+        for var in clause[1]:
+            g_incid.edge(clausetag %
+                         clause[0], vartag %
+                         var, color=sns.xkcd_rgb[k[1]])
+
+    g_incid.render(view=True, format='png', filename='incidenceGraph')
 
 
 if __name__ == "__main__":

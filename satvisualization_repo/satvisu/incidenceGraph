@@ -1,16 +1,22 @@
 graph {
 	graph [splines=false]
 	node [shape=rect]
-	subgraph cluster_ibags {
+	subgraph cluster_clause {
 		edge [style=invis]
-		label=bags
-		b0 -- b1
-		b1 -- b2
-		b2 -- b3
-		b3 -- b4
+		label=clauses
+		c1 -- c2
+		c2 -- c3
+		c3 -- c4
+		c4 -- c5
+		c5 -- c6
+		c6 -- c7
+		c7 -- c8
+		c8 -- c9
+		c9 -- c10
 	}
 	subgraph cluster_ivar {
 		edge [style=invis]
+		label=variables
 		v1 -- v2
 		v2 -- v3
 		v3 -- v4
@@ -20,20 +26,25 @@ graph {
 		v7 -- v8
 	}
 	edge [constraint=false]
-	b0 -- v1 [color="#bd6c48"]
-	b0 -- v4 [color="#bd6c48"]
-	b0 -- v7 [color="#bd6c48"]
-	b1 -- v2 [color="#bd6c48"]
-	b1 -- v4 [color="#bd6c48"]
-	b1 -- v1 [color="#bd6c48"]
-	b1 -- v6 [color="#bd6c48"]
-	b2 -- v1 [color="#bd6c48"]
-	b2 -- v2 [color="#bd6c48"]
-	b2 -- v5 [color="#bd6c48"]
-	b3 -- v2 [color="#bd6c48"]
-	b3 -- v4 [color="#bd6c48"]
-	b3 -- v8 [color="#bd6c48"]
-	b4 -- v2 [color="#bd6c48"]
-	b4 -- v3 [color="#bd6c48"]
-	b4 -- v8 [color="#bd6c48"]
+	c1 -- v1 [color="#bd6c48"]
+	c1 -- v4 [color="#bd6c48"]
+	c1 -- v6 [color="#bd6c48"]
+	c2 -- v1 [color="#bd6c48"]
+	c2 -- v5 [color="#bd6c48"]
+	c3 -- v1 [color="#bd6c48"]
+	c3 -- v7 [color="#bd6c48"]
+	c4 -- v2 [color="#bd6c48"]
+	c4 -- v3 [color="#bd6c48"]
+	c5 -- v2 [color="#bd6c48"]
+	c5 -- v5 [color="#bd6c48"]
+	c6 -- v2 [color="#bd6c48"]
+	c6 -- v6 [color="#bd6c48"]
+	c7 -- v3 [color="#bd6c48"]
+	c7 -- v8 [color="#bd6c48"]
+	c8 -- v4 [color="#bd6c48"]
+	c8 -- v8 [color="#bd6c48"]
+	c9 -- v4 [color="#bd6c48"]
+	c9 -- v6 [color="#bd6c48"]
+	c10 -- v4 [color="#bd6c48"]
+	c10 -- v7 [color="#bd6c48"]
 }
