@@ -1,7 +1,7 @@
 digraph structs {
-	node [shape=rect]
+	node [fillcolor=yellow shape=box style="rounded,filled"]
 	bag4 [label=<<TABLE BORDER="0" CELLBORDER="0" CELLSPACING="0">
-              <TR><TD BGCOLOR="white">bag 4</TD><TD PORT="anchor"></TD><TD>[2 3 8]</TD></TR></TABLE>>]
+              <TR><TD BGCOLOR="green">bag 4</TD><TD PORT="anchor"></TD><TD>[2 3 8]</TD></TR></TABLE>>]
 	bag3 [label=<<TABLE BORDER="0" CELLBORDER="0" CELLSPACING="0">
               <TR><TD BGCOLOR="white">bag 3</TD><TD PORT="anchor"></TD><TD>[2 4 8]</TD></TR></TABLE>>]
 	join1 [label=<<TABLE BORDER="0" CELLBORDER="0" CELLSPACING="0">

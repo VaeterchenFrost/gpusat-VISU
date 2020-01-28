@@ -94,9 +94,9 @@ def main():
     _filename = 'g41Digraph'
 
     s = Digraph('structs', filename=_filename,
-                node_attr={'shape': 'rect'})
+                node_attr={'shape': 'box', 'fillcolor':'yellow', 'style':"rounded,filled"})
 
-    s.node('bag4', bagNode("bag 4", "[2 3 8]"))
+    s.node('bag4', bagNode("bag 4", "[2 3 8]", headcolor='green'))
     s.node('bag3', bagNode("bag 3", "[2 4 8]"))
     s.node('join1', bagNode("Join", "2~3"))
     s.node('bag2', bagNode("bag 2", "[1 2 5]"))
