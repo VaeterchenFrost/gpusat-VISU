@@ -12,9 +12,6 @@
 from graphviz import Digraph
 import numpy as np
 
-s = Digraph('structs', filename='structs_revisited.gv',
-            node_attr={'shape': 'rect'})
-
 
 def bagNode(head, tail, anchor="anchor", headcolor="white",
             tableborder=0, cellborder=0, cellspacing=0):
@@ -45,6 +42,14 @@ def bagNode(head, tail, anchor="anchor", headcolor="white",
 def solutionNode(solutionTable, toplabel="", bottomlabel="", transpose=False):
     """Fill the node from the 2D 'solutionTable' (columnbased!).
     Optionally add a line above and/or below the table.
+
+    solutionTable : 2D-arraylike, entries get converted to str
+
+    toplabel : string, placed above the table
+
+    bottomlabel : string, placed below the table
+
+    transpose : bool, wether to transpose the solutionTable before processing
 
     Example structure for four columns:
     |----------|
@@ -84,27 +89,71 @@ def solutionNode(solutionTable, toplabel="", bottomlabel="", transpose=False):
     return "{" + result + "}"
 
 
-s.node('bag4', bagNode("bag 4", "[2 3 8]"))
-s.node('bag3', bagNode("bag 3", "[2 4 8]"))
-s.node('join1', bagNode("Join", "2~3"))
-s.node('bag2', bagNode("bag 2", "[1 2 5]"))
-s.node('bag1', bagNode("bag 1", "[1 2 4 6]"))
-s.node('bag0', bagNode("bag 0", "[1 4 7]"))
+def main():
+    _filename = 'g41Digraph'
+    
+    s = Digraph('structs', filename=_filename,
+                node_attr={'shape': 'rect'})
 
-s.attr('node', shape='record')
-s.node('etest', solutionNode([["id", "0"], ["v1", "1"],
-                              ["v2", "2"], ["v3", "4"],
-                              ["nSol", "0"]], "top", "bottom", True))
+    s.node('bag4', bagNode("bag 4", "[2 3 8]"))
+    s.node('bag3', bagNode("bag 3", "[2 4 8]"))
+    s.node('join1', bagNode("Join", "2~3"))
+    s.node('bag2', bagNode("bag 2", "[1 2 5]"))
+    s.node('bag1', bagNode("bag 1", "[1 2 4 6]"))
+    s.node('bag0', bagNode("bag 0", "[1 4 7]"))
 
-s.node('sol4', solutionNode(["id"]))
-s.edges([('bag4:anchor', 'bag3:anchor'), ('bag2:anchor', 'join1:anchor'),
+    s.attr('node', shape='record')
+    # s.node('etest', solutionNode([["id", "0"], ["v1", "1"],
+    #                               ["v2", "2"], ["v3", "4"],
+    #                               ["nSol", "0"]], "top", "bottom", True))
+
+    s.node('sol2', solutionNode([["id", "v1", "v2", "n Sol"],
+                                 [0, 0, 0, 0], [1, 1, 0, 1], [2, 0, 1, 1],
+                                 [3, 1, 1, 2]], "", "sum: 4", True))
+    s.node('sol4', solutionNode([["id", "v2", "v8", "n Sol"],
+                                 [0, 0, 0, 1], [1, 1, 0, 2], [2, 0, 1, 1],
+                                 [3, 1, 1, 1]], "", "sum: 5", True))
+    s.node('sol3', solutionNode([["id", "v2", "v4", "n Sol"],
+                                 [0, 0, 0, 1], [1, 1, 0, 2], [2, 0, 1, 2],
+                                 [3, 1, 1, 3]], "", "sum: 8", True))
+    s.node('solJoin1', solutionNode([["id", "v1", "v2", "v4", "n Sol"],
+                                     [0, 0, 0, 0, 0],
+                                     [1, 1, 0, 0, 1],
+                                     [2, 0, 1, 0, 2],
+                                     [3, 1, 1, 0, 4],
+                                     [4, 0, 0, 1, 0],
+                                     [5, 1, 0, 1, 2],
+                                     [6, 0, 1, 1, 3],
+                                     [7, 1, 1, 1, 6]], "", "sum: 18", True))
+    s.node('sol1', solutionNode([["id", "v1", "v4", "n Sol"],
+                                 [0, 0, 0, 2], [1, 1, 0, 9], [2, 0, 1, 3],
+                                 [3, 1, 1, 6]], "", "sum: 20", True))
+    s.node('sol0', solutionNode([["id", "v1", "v4", "v7", "n Sol"],
+                                 [0, 0, 0, 0, 2],
+                                 [1, 1, 0, 0, 0],
+                                 [2, 0, 1, 0, 0],
+                                 [3, 1, 1, 0, 0],
+                                 [4, 0, 0, 1, 2],
+                                 [5, 1, 0, 1, 9],
+                                 [6, 0, 1, 1, 3],
+                                 [7, 1, 1, 1, 6]], "", "sum: 22", True))
+
+    s.edges(
+        [('bag4:anchor', 'bag3:anchor'), ('bag2:anchor', 'join1:anchor'),
          ('bag3:anchor', 'join1:anchor'), ('join1:anchor', 'bag1:anchor'),
-         ('bag1:anchor', 'bag0:anchor'), ])
+         ('bag1:anchor', 'bag0:anchor'),
+         ('bag4:anchor', 'sol4:anchor'), ('bag3:anchor', 'sol3:anchor'),
+         ('bag2:anchor', 'sol2:anchor'), ('bag1:anchor', 'sol1:anchor'),
+         ('bag0:anchor', 'sol0:anchor'), ('join1:anchor', 'solJoin1:anchor')])
 
-with open("gvtest.dot", "w") as f:
-    f.write(s.__str__())
+    with open("example41.dot", "w") as f:
+        f.write(s.__str__())
 
-s.render(view=True, format='png')
+    s.render(view=True, format='png', filename=_filename)
+
+
+if __name__ == "__main__":
+    main()                                      # Rufe Mainroutine
 
 # s.node(
 #     'sol4',
