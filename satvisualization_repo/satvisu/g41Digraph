@@ -13,12 +13,12 @@ digraph structs {
 	bag0 [label=<<TABLE BORDER="0" CELLBORDER="0" CELLSPACING="0">
               <TR><TD BGCOLOR="white">bag 0</TD><TD PORT="anchor"></TD><TD>[1 4 7]</TD></TR></TABLE>>]
 	node [shape=record]
-	sol2 [label="{<anchor> |{{id|0|1|2|3}|{v1|0|1|0|1}|{v2|0|0|1|1}|{n Sol|0|1|1|2}}|sum: 4}"]
-	sol4 [label="{<anchor> |{{id|0|1|2|3}|{v2|0|1|0|1}|{v8|0|0|1|1}|{n Sol|1|2|1|1}}|sum: 5}"]
-	sol3 [label="{<anchor> |{{id|0|1|2|3}|{v2|0|1|0|1}|{v4|0|0|1|1}|{n Sol|1|2|2|3}}|sum: 8}"]
-	solJoin1 [label="{<anchor> |{{id|0|1|2|3|4|5|6|7}|{v1|0|1|0|1|0|1|0|1}|{v2|0|0|1|1|0|0|1|1}|{v4|0|0|0|0|1|1|1|1}|{n Sol|0|1|2|4|0|2|3|6}}|sum: 18}"]
-	sol1 [label="{<anchor> |{{id|0|1|2|3}|{v1|0|1|0|1}|{v4|0|0|1|1}|{n Sol|2|9|3|6}}|sum: 20}"]
-	sol0 [label="{<anchor> |{{id|0|1|2|3|4|5|6|7}|{v1|0|1|0|1|0|1|0|1}|{v4|0|0|1|1|0|0|1|1}|{v7|0|0|0|0|1|1|1|1}|{n Sol|2|0|0|0|2|9|3|6}}|sum: 22}"]
+	sol2 [label="{sol bag 2|{{id|0|1|2|3}|{v1|0|1|0|1}|{v2|0|0|1|1}|{n Sol|0|1|1|2}}|sum: 4}"]
+	sol4 [label="{sol bag 4|{{id|0|1|2|3}|{v2|0|1|0|1}|{v8|0|0|1|1}|{n Sol|1|2|1|1}}|sum: 5}"]
+	sol3 [label="{sol bag 3|{{id|0|1|2|3}|{v2|0|1|0|1}|{v4|0|0|1|1}|{n Sol|1|2|2|3}}|sum: 8}"]
+	solJoin1 [label="{sol Join 2~3|{{id|0|1|2|3|4|5|6|7}|{v1|0|1|0|1|0|1|0|1}|{v2|0|0|1|1|0|0|1|1}|{v4|0|0|0|0|1|1|1|1}|{n Sol|0|1|2|4|0|2|3|6}}|sum: 18}"]
+	sol1 [label="{sol bag 1|{{id|0|1|2|3}|{v1|0|1|0|1}|{v4|0|0|1|1}|{n Sol|2|9|3|6}}|sum: 20}"]
+	sol0 [label="{sol bag 0|{{id|0|1|2|3|4|5|6|7}|{v1|0|1|0|1|0|1|0|1}|{v4|0|0|1|1|0|0|1|1}|{v7|0|0|0|0|1|1|1|1}|{n Sol|2|0|0|0|2|9|3|6}}|sum: 22}"]
 	bag4:anchor -> bag3:anchor
 	bag2:anchor -> join1:anchor
 	bag3:anchor -> join1:anchor

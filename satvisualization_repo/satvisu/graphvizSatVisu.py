@@ -63,8 +63,9 @@ def solutionNode(solutionTable, toplabel="", bottomlabel="", transpose=False):
     | botlabel |
     |----------|
     """
-    result = "<anchor> " + toplabel
-    result += "|"
+    result = ""
+    if toplabel:
+        result += toplabel + "|"
 
     if len(solutionTable) == 0:
         result += "empty"
@@ -91,7 +92,7 @@ def solutionNode(solutionTable, toplabel="", bottomlabel="", transpose=False):
 
 def main():
     _filename = 'g41Digraph'
-    
+
     s = Digraph('structs', filename=_filename,
                 node_attr={'shape': 'rect'})
 
@@ -109,13 +110,13 @@ def main():
 
     s.node('sol2', solutionNode([["id", "v1", "v2", "n Sol"],
                                  [0, 0, 0, 0], [1, 1, 0, 1], [2, 0, 1, 1],
-                                 [3, 1, 1, 2]], "", "sum: 4", True))
+                                 [3, 1, 1, 2]], "sol bag 2", "sum: 4", True))
     s.node('sol4', solutionNode([["id", "v2", "v8", "n Sol"],
                                  [0, 0, 0, 1], [1, 1, 0, 2], [2, 0, 1, 1],
-                                 [3, 1, 1, 1]], "", "sum: 5", True))
+                                 [3, 1, 1, 1]], "sol bag 4", "sum: 5", True))
     s.node('sol3', solutionNode([["id", "v2", "v4", "n Sol"],
                                  [0, 0, 0, 1], [1, 1, 0, 2], [2, 0, 1, 2],
-                                 [3, 1, 1, 3]], "", "sum: 8", True))
+                                 [3, 1, 1, 3]], "sol bag 3", "sum: 8", True))
     s.node('solJoin1', solutionNode([["id", "v1", "v2", "v4", "n Sol"],
                                      [0, 0, 0, 0, 0],
                                      [1, 1, 0, 0, 1],
@@ -124,10 +125,11 @@ def main():
                                      [4, 0, 0, 1, 0],
                                      [5, 1, 0, 1, 2],
                                      [6, 0, 1, 1, 3],
-                                     [7, 1, 1, 1, 6]], "", "sum: 18", True))
+                                     [7, 1, 1, 1, 6]],
+                                    "sol Join 2~3", "sum: 18", True))
     s.node('sol1', solutionNode([["id", "v1", "v4", "n Sol"],
                                  [0, 0, 0, 2], [1, 1, 0, 9], [2, 0, 1, 3],
-                                 [3, 1, 1, 6]], "", "sum: 20", True))
+                                 [3, 1, 1, 6]], "sol bag 1", "sum: 20", True))
     s.node('sol0', solutionNode([["id", "v1", "v4", "v7", "n Sol"],
                                  [0, 0, 0, 0, 2],
                                  [1, 1, 0, 0, 0],
@@ -136,7 +138,8 @@ def main():
                                  [4, 0, 0, 1, 2],
                                  [5, 1, 0, 1, 9],
                                  [6, 0, 1, 1, 3],
-                                 [7, 1, 1, 1, 6]], "", "sum: 22", True))
+                                 [7, 1, 1, 1, 6]],
+                                "sol bag 0", "sum: 22", True))
 
     s.edges(
         [('bag4:anchor', 'bag3:anchor'), ('bag2:anchor', 'join1:anchor'),
@@ -153,7 +156,7 @@ def main():
 
 
 if __name__ == "__main__":
-    main()                                      # Rufe Mainroutine
+    main()                                      # Call Mainroutine
 
 # s.node(
 #     'sol4',
