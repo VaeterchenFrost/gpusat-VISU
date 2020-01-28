@@ -93,8 +93,8 @@ def solutionNode(solutionTable, toplabel="", bottomlabel="", transpose=False):
 def main():
     _filename = 'g41Digraph'
 
-    s = Digraph('structs', filename=_filename,
-                node_attr={'shape': 'box', 'fillcolor':'yellow', 'style':"rounded,filled"})
+    s = Digraph('structs', filename=_filename, strict=True,
+                node_attr={'shape': 'box', 'fillcolor': 'yellow', 'style': "rounded,filled"})
 
     s.node('bag4', bagNode("bag 4", "[2 3 8]", headcolor='green'))
     s.node('bag3', bagNode("bag 3", "[2 4 8]"))
@@ -149,8 +149,10 @@ def main():
          ('bag2:anchor', 'sol2:anchor'), ('bag1:anchor', 'sol1:anchor'),
          ('bag0:anchor', 'sol0:anchor'), ('join1:anchor', 'solJoin1:anchor')])
 
-    with open("example41.dot", "w") as f:
-        f.write(s.__str__())
+    s.edge('bag0:anchor', 'sol0:anchor', color="green:red;0.25:blue")
+
+    with open("example41.dot", "w") as file:
+        file.write(s.__str__())
 
     s.render(view=True, format='png', filename=_filename)
 

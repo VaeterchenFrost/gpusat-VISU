@@ -1,4 +1,4 @@
-digraph structs {
+strict digraph structs {
 	node [fillcolor=yellow shape=box style="rounded,filled"]
 	bag4 [label=<<TABLE BORDER="0" CELLBORDER="0" CELLSPACING="0">
               <TR><TD BGCOLOR="green">bag 4</TD><TD PORT="anchor"></TD><TD>[2 3 8]</TD></TR></TABLE>>]
@@ -30,4 +30,5 @@ digraph structs {
 	bag1:anchor -> sol1:anchor
 	bag0:anchor -> sol0:anchor
 	join1:anchor -> solJoin1:anchor
+	bag0:anchor -> sol0:anchor [color="green:red;0.25:blue"]
 }

@@ -3,14 +3,14 @@
 
 
 import satvisu.graphvizSatVisu as gv
-solutionTable1 = [["id", "0"], ["v1", "1"],
+SOLUTIONTABLE1 = [["id", "0"], ["v1", "1"],
                   ["v2", "2"], ["v3", "4"],
                   ["nSol", "0"]]
 
-solutionTableInt = [["id", 0], ["v1", 1],
+SOLUTIONTABLEINT = [["id", 0], ["v1", 1],
                     ["v2", 2], ["v3", 4],
                     ["nSol", 0]]
-solutionTableFloat = [["id", 0.1], ["v1", 1.],
+SOLUTIONTABLEFLOAT = [["id", 0.1], ["v1", 1.],
                       ["v2", 2.2222], ["v3", 4.4],
                       ["nSol", 0.1]]
 
@@ -31,14 +31,14 @@ def test_solutionNodeEmptyBottomLabel():
 
 
 def test_solutionNodeTranspose():
-    result = gv.solutionNode(solutionTable1, "top", "bottom", transpose=True)
+    result = gv.solutionNode(SOLUTIONTABLE1, "top", "bottom", transpose=True)
     assert result == "{top|{{id|v1|v2|v3|nSol}|{0|1|2|4|0}}|bottom}"
 
 
 def test_solutionNodeFullTable():
-    result = gv.solutionNode(solutionTable1)
+    result = gv.solutionNode(SOLUTIONTABLE1)
     assert result == "{{{id|0}|{v1|1}|{v2|2}|{v3|4}|{nSol|0}}}"
-    result = gv.solutionNode(solutionTable1, "top", "bottom")
+    result = gv.solutionNode(SOLUTIONTABLE1, "top", "bottom")
     assert result == "{top|{{id|0}|{v1|1}|{v2|2}|{v3|4}|{nSol|0}}|bottom}"
 
 
@@ -53,7 +53,7 @@ def test_solutionNodeLine():
 
 
 def test_solutionNodeNumbers():
-    result = gv.solutionNode(solutionTableInt)
+    result = gv.solutionNode(SOLUTIONTABLEINT)
     assert result == "{{{id|0}|{v1|1}|{v2|2}|{v3|4}|{nSol|0}}}"
-    result = gv.solutionNode(solutionTableFloat)
+    result = gv.solutionNode(SOLUTIONTABLEFLOAT)
     assert result == "{{{id|0.1}|{v1|1.0}|{v2|2.2222}|{v3|4.4}|{nSol|0.1}}}"
