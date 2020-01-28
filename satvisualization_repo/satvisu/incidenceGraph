@@ -1,0 +1,39 @@
+graph {
+	graph [splines=false]
+	node [shape=rect]
+	subgraph cluster_ibags {
+		edge [style=invis]
+		label=bags
+		b0 -- b1
+		b1 -- b2
+		b2 -- b3
+		b3 -- b4
+	}
+	subgraph cluster_ivar {
+		edge [style=invis]
+		v1 -- v2
+		v2 -- v3
+		v3 -- v4
+		v4 -- v5
+		v5 -- v6
+		v6 -- v7
+		v7 -- v8
+	}
+	edge [constraint=false]
+	b0 -- v1 [color="#bd6c48"]
+	b0 -- v4 [color="#bd6c48"]
+	b0 -- v7 [color="#bd6c48"]
+	b1 -- v2 [color="#bd6c48"]
+	b1 -- v4 [color="#bd6c48"]
+	b1 -- v1 [color="#bd6c48"]
+	b1 -- v6 [color="#bd6c48"]
+	b2 -- v1 [color="#bd6c48"]
+	b2 -- v2 [color="#bd6c48"]
+	b2 -- v5 [color="#bd6c48"]
+	b3 -- v2 [color="#bd6c48"]
+	b3 -- v4 [color="#bd6c48"]
+	b3 -- v8 [color="#bd6c48"]
+	b4 -- v2 [color="#bd6c48"]
+	b4 -- v3 [color="#bd6c48"]
+	b4 -- v8 [color="#bd6c48"]
+}

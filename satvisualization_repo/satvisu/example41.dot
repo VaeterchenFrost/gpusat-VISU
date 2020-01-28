@@ -24,11 +24,11 @@ strict digraph structs {
 	bag3:anchor -> join1:anchor
 	join1:anchor -> bag1:anchor
 	bag1:anchor -> bag0:anchor
-	bag4:anchor -> sol4:anchor
-	bag3:anchor -> sol3:anchor
-	bag2:anchor -> sol2:anchor
-	bag1:anchor -> sol1:anchor
-	bag0:anchor -> sol0:anchor
-	join1:anchor -> solJoin1:anchor
-	bag0:anchor -> sol0:anchor [color="green:red;0.25:blue"]
+	bag4:anchor -> sol4
+	bag3:anchor -> sol3
+	bag2:anchor -> sol2
+	bag1:anchor -> sol1
+	bag0:anchor -> sol0
+	join1:anchor -> solJoin1
+	bag0:anchor -> sol0 [color="green:red;0.55:blue"]
 }

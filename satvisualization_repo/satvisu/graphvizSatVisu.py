@@ -9,9 +9,9 @@
     fontcolor='green')
 """
 
-from graphviz import Digraph
+from graphviz import Digraph, Graph
 import numpy as np
-
+import seaborn as sns
 
 def bagNode(head, tail, anchor="anchor", headcolor="white",
             tableborder=0, cellborder=0, cellspacing=0):
@@ -92,7 +92,7 @@ def solutionNode(solutionTable, toplabel="", bottomlabel="", transpose=False):
 
 def main():
     _filename = 'g41Digraph'
-
+    # graph_attr={'size':'8,12!'} , graph_attr={'splines':'false'}
     s = Digraph('structs', filename=_filename, strict=True,
                 node_attr={'shape': 'box', 'fillcolor': 'yellow', 'style': "rounded,filled"})
 
@@ -145,11 +145,11 @@ def main():
         [('bag4:anchor', 'bag3:anchor'), ('bag2:anchor', 'join1:anchor'),
          ('bag3:anchor', 'join1:anchor'), ('join1:anchor', 'bag1:anchor'),
          ('bag1:anchor', 'bag0:anchor'),
-         ('bag4:anchor', 'sol4:anchor'), ('bag3:anchor', 'sol3:anchor'),
-         ('bag2:anchor', 'sol2:anchor'), ('bag1:anchor', 'sol1:anchor'),
-         ('bag0:anchor', 'sol0:anchor'), ('join1:anchor', 'solJoin1:anchor')])
+         ('bag4:anchor', 'sol4'), ('bag3:anchor', 'sol3'),
+         ('bag2:anchor', 'sol2'), ('bag1:anchor', 'sol1'),
+         ('bag0:anchor', 'sol0'), ('join1:anchor', 'solJoin1')])
 
-    s.edge('bag0:anchor', 'sol0:anchor', color="green:red;0.25:blue")
+    s.edge('bag0:anchor', 'sol0', color="green:red;0.55:blue")
 
     with open("example41.dot", "w") as file:
         file.write(s.__str__())
@@ -157,9 +157,46 @@ def main():
     s.render(view=True, format='png', filename=_filename)
 
 
+def incidence():
+    
+    r_bags = 5
+    r_vars = 8
+    bagtag = "b%d"
+    vartag = "v%d"
+    
+    k=list(sns.xkcd_rgb)
+    g = Graph(graph_attr={'splines': 'false'})
+
+    g.attr('node', shape='rect')
+    with g.subgraph(name='cluster_ibags', edge_attr={'style': 'invis'}) as ibags:
+        ibags.attr(label='bags')
+        # for bag in ['b0', 'b1', 'b2', 'b3', 'b4']:
+        #     ibags.node(bag, bag)
+        
+        ibags.edges([('b0', 'b1'), ('b1', 'b2'), ('b2', 'b3'), ('b3', 'b4')])
+
+    with g.subgraph(name='cluster_ivar', edge_attr={'style': 'invis'}) as ivars:
+        ibags.attr(label='variables')
+        # for var in ['v5', 'v1', 'v2', 'v3', 'v4', 'v6', 'v7', 'v8']:
+        #     ivars.node(var, var)
+        ivars.edges([('v1', 'v2'), ('v2', 'v3'), ('v3', 'v4'), ('v4', 'v5'),
+                     ('v5', 'v6'), ('v6', 'v7'), ('v7', 'v8')])
+    
+    g.attr('edge', constraint="false")
+    EDGELIST = [('b0', 'v1'), ('b0', 'v4'), ('b0', 'v7'),
+             ('b1', 'v2'), ('b1', 'v4'), ('b1', 'v1'), ('b1', 'v6'),
+             ('b2', 'v1'), ('b2', 'v2'), ('b2', 'v5'),
+             ('b3', 'v2'), ('b3', 'v4'), ('b3', 'v8'),
+             ('b4', 'v2'), ('b4', 'v3'), ('b4', 'v8')]
+    for edge in EDGELIST:
+        g.edge(edge[0], edge[1],  color=sns.xkcd_rgb[k[1]])
+    
+    g.render(view=True, format='png', filename='incidenceGraph')
+
+
 if __name__ == "__main__":
     main()                                      # Call Mainroutine
-
+    incidence()
 # s.node(
 #     'sol4',
 #     r'{<f0> bag 2|{{id|0}|{v1|0}|{ v2|0}|{ nSol|0}}|sum: 4}',

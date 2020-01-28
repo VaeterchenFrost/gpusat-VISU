@@ -1,0 +1,190 @@
+Platform - 1
+  1.1 CL_PLATFORM_NAME: NVIDIA CUDA
+  1.2 CL_PLATFORM_VENDOR: NVIDIA Corporation
+  1.3 CL_PLATFORM_VERSION: OpenCL 1.2 CUDA 10.1.120
+  1.4 CL_PLATFORM_PROFILE: FULL_PROFILE
+  1.5 CL_PLATFORM_EXTENSIONS: cl_khr_global_int32_base_atomics cl_khr_global_int32_extended_atomics cl_khr_local_int32_base_atomics cl_khr_local_int32_extended_atomics cl_khr_fp64 cl_khr_byte_addressable_store cl_khr_icd cl_khr_gl_sharing cl_nv_compiler_options cl_nv_device_attribute_query cl_nv_pragma_unroll cl_nv_copy_opts cl_nv_create_buffer
+  Device - 1:
+    CL_DEVICE_NAME: GeForce RTX 2080
+    CL_DEVICE_VENDOR: NVIDIA Corporation
+    CL_DRIVER_VERSION: 430.50
+    CL_DEVICE_VERSION: OpenCL 1.2 CUDA
+    CL_DEVICE_MAX_COMPUTE_UNITS: 46
+  Device - 2:
+    CL_DEVICE_NAME: GeForce RTX 2080
+    CL_DEVICE_VENDOR: NVIDIA Corporation
+    CL_DRIVER_VERSION: 430.50
+    CL_DEVICE_VERSION: OpenCL 1.2 CUDA
+    CL_DEVICE_MAX_COMPUTE_UNITS: 46
+
+-- Computed Decomposition: --
+s td 5 4 8
+b 1 1 4 7
+b 2 1 2 4 6
+b 3 1 2 5
+b 4 2 4 8
+b 5 2 3 8
+1 2
+2 3
+2 4
+4 5
+
+---End of decomposition---
+---Determining datastructure---
+input:
+treeDecomp.width : 4
+SOLUTIONTYPE : 1
+------
+-- Before preprocessing --
+bags: 5
+0 : [ 1, 4, 7 ]
+
+1 : [ 1, 2, 4, 6 ]
+
+2 : [ 1, 2, 5 ]
+
+3 : [ 2, 4, 8 ]
+
+4 : [ 2, 3, 8 ]
+
+==> Entering solveProblem on id 0 <==
+
+printing treedec with numb:5, numVars:8, width:4
+bags:
+  bag(0): bags= 0 , exp= 0 , correction= 0
+  var= [1, 4, 7, ]
+  edges to [1, ]
+  bag(1): bags= 0 , exp= 0 , correction= 0
+  var= [1, 2, 4, 6, ]
+  edges to [2, 3, ]
+  bag(2): bags= 0 , exp= 0 , correction= 0
+  var= [1, 2, 5, ]
+  bag(3): bags= 0 , exp= 0 , correction= 0
+  var= [2, 4, 8, ]
+  edges to [4, ]
+  bag(4): bags= 0 , exp= 0 , correction= 0
+  var= [2, 3, 8, ]
+^^^ treedec 5^^^
+==> Entering solveProblem on id 1 <==
+==> Entering solveProblem on id 2 <==
+solveIF 1 + 0 => 2
+  bag(2): bags= 0 , exp= 0 , correction= 0
+  var= [1, 2, 5, ]
+Solved IF-0 on node 2
+  bag(2): bags= 1 , exp= 1 , correction= 0
+  var= [1, 2, ]
+
+  solution: 
+  treeType ( 0 - 4): size=6 sol=5
+  elements: 
+  id: 0 # 0
+  id: 1 # 1
+  id: 2 # 1
+  id: 3 # 2
+==> Entering solveProblem on id 3 <==
+==> Entering solveProblem on id 4 <==
+solveIF 3 + 0 => 4
+  bag(4): bags= 0 , exp= 0 , correction= 0
+  var= [2, 3, 8, ]
+Solved IF-0 on node 4
+  bag(4): bags= 1 , exp= 1 , correction= 0
+  var= [2, 8, ]
+
+  solution: 
+  treeType ( 0 - 4): size=7 sol=6
+  elements: 
+  id: 0 # 1
+  id: 1 # 2
+  id: 2 # 1
+  id: 3 # 1
+solveIF 1 + 4 => 3
+  bag(3): bags= 0 , exp= 0 , correction= 0
+  var= [2, 4, 8, ]
+  edges to [4, ]
+Solved IF-1 on node 3
+  bag(3): bags= 1 , exp= 0 , correction= 1
+  var= [2, 4, ]
+  edges to [4, ]
+
+  solution: 
+  treeType ( 0 - 4): size=7 sol=6
+  elements: 
+  id: 0 # 0.5
+  id: 1 # 1
+  id: 2 # 1
+  id: 3 # 1.5
+Solved JOIN-1 on nodes 2~3
+  bag(0): bags= 1 , exp= 0 , correction= 2
+  var= [1, 2, 4, ]
+
+  solution: 
+  treeType ( 0 - 8): size=13 sol=12
+  elements: 
+  id: 0 # 0
+  id: 1 # 0.25
+  id: 2 # 0.5
+  id: 3 # 1
+  id: 4 # 0
+  id: 5 # 0.5
+  id: 6 # 0.75
+  id: 7 # 1.5
+solveIF 0 + 0 => 1
+  bag(1): bags= 0 , exp= 0 , correction= 0
+  var= [1, 2, 4, 6, ]
+  edges to [0, 3, ]
+Solved JOIN-IF on node 1
+  bag(1): bags= 1 , exp= 1 , correction= 2
+  var= [1, 4, ]
+  edges to [0, 3, ]
+
+  solution: 
+  treeType ( 0 - 4): size=7 sol=6
+  elements: 
+  id: 0 # 0.5
+  id: 1 # 2.25
+  id: 2 # 0.75
+  id: 3 # 1.5
+solveIF 0 + 1 => 0
+  bag(0): bags= 0 , exp= 0 , correction= 0
+  var= [1, 4, 7, ]
+  edges to [1, ]
+Solved IF-1 on node 0
+  bag(0): bags= 1 , exp= 0 , correction= 3
+  var= [1, 4, 7, ]
+  edges to [1, ]
+
+  solution: 
+  treeType ( 0 - 8): size=11 sol=10
+  elements: 
+  id: 0 # 0.25
+  id: 1 # 0
+  id: 2 # 0
+  id: 3 # 0
+  id: 4 # 0.25
+  id: 5 # 1.125
+  id: 6 # 0.375
+  id: 7 # 0.75
+
+--- Solutions: ---
+bag 0   (from 0 to 7)
+id: 0 count: 0.25
+id: 1 count: 0
+id: 2 count: 0
+id: 3 count: 0
+id: 4 count: 0.25
+id: 5 count: 1.125
+id: 6 count: 0.375
+id: 7 count: 0.75
+...
+
+{
+    "Num Join": 1
+    ,"Num Introduce Forget": 5
+    ,"max Table Size": 13
+    ,"Model Count": 22
+    ,"Time":{
+        "Decomposing": 0
+        ,"Solving": 0.003
+        ,"Total": 2.707
+    }
+}
