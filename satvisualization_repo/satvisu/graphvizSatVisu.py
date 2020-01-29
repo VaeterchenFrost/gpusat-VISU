@@ -103,7 +103,10 @@ def solutionNode(solutionTable, toplabel="", bottomlabel="", transpose=False):
 
 
 def main():
-    _filename = 'g41DigraphProgress%d'
+    bagpre = "bag %d"
+    joinpre = "Join %d~%d"
+
+    _filename = 'g41DigraphProgress%d.png'
     s = Digraph(
         'structs',
         filename=_filename,
@@ -119,29 +122,82 @@ def main():
             'style': "rounded,filled",
             'margin': '0.11,0.01'})
 
-    s.node('bag4', bagNode("bag 4", "[2 3 8]"))
-    s.node('bag3', bagNode("bag 3", "[2 4 8]"))
+    s.node(bagpre % 4, bagNode(bagpre % 4, "[2 3 8]"))
+    s.node(bagpre % 3, bagNode(bagpre % 3, "[2 4 8]"))
     # s.node('join1', bagNode("Join", "2~3"))
-    s.node('bag2', bagNode("bag 2", "[1 2 5]"))
-    s.node('bag1', bagNode("bag 1", "[1 2 4 6]"))
-    s.node('bag0', bagNode("bag 0", "[1 4 7]"))
+    s.node(bagpre % 2, bagNode(bagpre % 2, "[1 2 5]"))
+    s.node(bagpre % 1, bagNode(bagpre % 1, "[1 2 4 6]"))
+    s.node(bagpre % 0, bagNode(bagpre % 0, "[1 4 7]"))
 
     s.edges(
-        [('bag4', 'bag3'), ('bag2', 'bag1'),
-         ('bag3', 'bag1'), ('bag1', 'bag0')])
+        [(bagpre % 4, bagpre % 3), (bagpre % 2, bagpre % 1),
+         (bagpre % 3, bagpre % 1), (bagpre % 1, bagpre % 0)])
 
-    TIMELINE = ['bag0', 'bag1', 'bag2', 'bag3', 'bag4', 'bag3',
-                'Join2~3', 'bag1', 'bag0']
+    TIMELINE = [(0,), (1,),
+                (2, ([['id', 'v1', 'v2', 'n Sol'], [0, 0, 0, 0], [1, 1, 0, 1],
+                      [2, 0, 1, 1], [3, 1, 1, 2]], 'sol bag 2', 'sum: 4', True)),
+                (3,),
+                (4, ([["id", "v2", "v8", "n Sol"], [0, 0, 0, 1], [1, 1, 0, 2],
+                      [2, 0, 1, 1], [3, 1, 1, 1]], "sol bag 4", "sum: 5", True)),
+                (3, ([["id", "v2", "v4", "n Sol"],
+                      [0, 0, 0, 1], [1, 1, 0, 2], [2, 0, 1, 2],
+                      [3, 1, 1, 3]], "sol bag 3", "sum: 8", True)),
+                ((2, 3), ([["id", "v1", "v2", "v4", "n Sol"],
+                           [0, 0, 0, 0, 0],
+                           [1, 1, 0, 0, 1],
+                           [2, 0, 1, 0, 2],
+                           [3, 1, 1, 0, 4],
+                           [4, 0, 0, 1, 0],
+                           [5, 1, 0, 1, 2],
+                           [6, 0, 1, 1, 3],
+                           [7, 1, 1, 1, 6]],
+                          "sol Join 2~3", "sum: 18", True)),
+                (1, ([["id", "v1", "v4", "n Sol"],
+                      [0, 0, 0, 2], [1, 1, 0, 9], [2, 0, 1, 3],
+                      [3, 1, 1, 6]], "sol bag 1", "sum: 20", True)),
+                (0, ([["id", "v1", "v4", "v7", "n Sol"],
+                      [0, 0, 0, 0, 2],
+                      [1, 1, 0, 0, 0],
+                      [2, 0, 1, 0, 0],
+                      [3, 1, 1, 0, 0],
+                      [4, 0, 0, 1, 2],
+                      [5, 1, 0, 1, 9],
+                      [6, 0, 1, 1, 3],
+                      [7, 1, 1, 1, 6]],
+                     "sol bag 0", "sum: 22", True))
+                ]
 
     for i, node in enumerate(TIMELINE):
-        if i == 0:
-            emphasiseNode(s, node)
-            s.render(view=True, format='png', filename=_filename % i)
+        prev = None if i == 0 else TIMELINE[i - 1]
 
+        if len(node) == 1:  # only highlight
+            if prev:
+                prevhead = prev[0]
+                baseStyle(s, bagpre % prevhead
+                          if len(prevhead) == 1 else joinpre % prevhead)
         else:
-            baseStyle(s, TIMELINE[i - 1])
-            emphasiseNode(s, node)
-            s.render(view=True, format='png', filename=_filename % i)
+            
+            if node.startswith(joinpre):
+                baseStyle(s, TIMELINE[i - 1])
+                suc = TIMELINE[i + 1]
+                children = node[len(joinpre):].split("~")
+                print('joining ', children, ' to ', suc)  # get the joined bags
+                for child in children:                  # basically "remove" current
+                    s.edge(
+                        bagpre %
+                        int(child),
+                        suc,
+                        style='invis',
+                        constraint='false')
+                    s.edge(bagpre % int(child), node)
+                s.edge(node, suc)
+    
+            else:
+                if i > 0:
+                    baseStyle(s, TIMELINE[i - 1])
+
+        emphasiseNode(s, node)
+        s.render(view=True, format='png', filename=_filename % i)
 
 
 def endresult():
