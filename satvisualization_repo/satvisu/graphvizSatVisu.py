@@ -105,8 +105,11 @@ def solutionNode(solutionTable, toplabel="", bottomlabel="", transpose=False):
 def main():
     bagpre = "bag %d"
     joinpre = "Join %d~%d"
+    solpre = "sol%d"
+    soljoinpre = "solJoin%d~%d"
 
     _filename = 'g41DigraphProgress%d.png'
+
     s = Digraph(
         'structs',
         filename=_filename,
@@ -168,35 +171,46 @@ def main():
                 ]
 
     for i, node in enumerate(TIMELINE):
-        prev = None if i == 0 else TIMELINE[i - 1]
+        if i > 0:
+            prevhead = TIMELINE[i - 1][0]
+            baseStyle(s, bagpre % prevhead
+                      if isinstance(prevhead, int) else joinpre % prevhead)
 
-        if len(node) == 1:  # only highlight
-            if prev:
-                prevhead = prev[0]
-                baseStyle(s, bagpre % prevhead
-                          if len(prevhead) == 1 else joinpre % prevhead)
-        else:
-            
-            if node.startswith(joinpre):
-                baseStyle(s, TIMELINE[i - 1])
-                suc = TIMELINE[i + 1]
-                children = node[len(joinpre):].split("~")
-                print('joining ', children, ' to ', suc)  # get the joined bags
-                for child in children:                  # basically "remove" current
+        # if len(node) < 1: raise IndexError("Error within Timeline - found len=0")
+
+        if len(node) > 1:
+            # solution to be displayed
+            if isinstance(node[0], int):
+                s.node(solpre %
+                       node[0], solutionNode(*(node[1])), shape='record')
+                s.edge(bagpre % node[0], solpre % node[0])
+
+            else:  # joined node with 2 bags
+                suc = TIMELINE[i + 1][0]
+                print('joining ', node[0], ' to ', suc)  # get the joined bags
+                # solution
+                s.node(soljoinpre %
+                       node[0], solutionNode(*(node[1])), shape='record')
+                s.edge(joinpre % node[0], soljoinpre % node[0])
+                # edges
+                for child in node[0]:             # basically "remove" current
+                    # TODO check where 2 args are possibly occuring
                     s.edge(
-                        bagpre %
-                        int(child),
-                        suc,
+                        bagpre % child
+                        if isinstance(child, int) else joinpre % child,
+                        bagpre % suc
+                        if isinstance(suc, int) else joinpre % suc,
                         style='invis',
                         constraint='false')
-                    s.edge(bagpre % int(child), node)
-                s.edge(node, suc)
-    
-            else:
-                if i > 0:
-                    baseStyle(s, TIMELINE[i - 1])
+                    s.edge(bagpre % child if isinstance(child, int)
+                           else joinpre % child,
+                           joinpre % node[0])
+                s.edge(joinpre % node[0], bagpre % suc
+                       if isinstance(suc, int) else joinpre % suc)
 
-        emphasiseNode(s, node)
+        emphasiseNode(s, bagpre % node[0]
+                      if isinstance(node[0], int) else joinpre % node[0])
+
         s.render(view=True, format='png', filename=_filename % i)
 
 
