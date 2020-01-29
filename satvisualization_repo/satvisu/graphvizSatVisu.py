@@ -115,10 +115,10 @@ def main():
         filename=_filename,
         strict=True,
         graph_attr={
-            'dpi': '300',
+            'dpi': '250',
             'margin': '0,0.5'},
-        edge_attr={
-            'minlen': '5'},
+        # edge_attr={
+        #     'minlen': '5'},
         node_attr={
             'shape': 'box',
             'fillcolor': 'white',
@@ -135,7 +135,8 @@ def main():
     s.edges(
         [(bagpre % 4, bagpre % 3), (bagpre % 2, bagpre % 1),
          (bagpre % 3, bagpre % 1), (bagpre % 1, bagpre % 0)])
-
+    # s.attr('edge', minlen="1")
+    
     TIMELINE = [(0,), (1,),
                 (2, ([['id', 'v1', 'v2', 'n Sol'], [0, 0, 0, 0], [1, 1, 0, 1],
                       [2, 0, 1, 1], [3, 1, 1, 2]], 'sol bag 2', 'sum: 4', True)),
