@@ -11,7 +11,6 @@
 
 from graphviz import Digraph, Graph
 import numpy as np
-# import seaborn as sns
 
 
 def baseStyle(graph, node):
@@ -107,8 +106,8 @@ def main():
     joinpre = "Join %d~%d"
     solpre = "sol%d"
     soljoinpre = "solJoin%d~%d"
-
-    _filename = 'g41DigraphProgress%d.png'
+    lastSol = ""
+    _filename = 'g41DigraphProgress%d'
 
     s = Digraph(
         'structs',
@@ -136,7 +135,7 @@ def main():
         [(bagpre % 4, bagpre % 3), (bagpre % 2, bagpre % 1),
          (bagpre % 3, bagpre % 1), (bagpre % 1, bagpre % 0)])
     # s.attr('edge', minlen="1")
-    
+
     TIMELINE = [(0,), (1,),
                 (2, ([['id', 'v1', 'v2', 'n Sol'], [0, 0, 0, 0], [1, 1, 0, 1],
                       [2, 0, 1, 1], [3, 1, 1, 2]], 'sol bag 2', 'sum: 4', True)),
@@ -176,23 +175,27 @@ def main():
             prevhead = TIMELINE[i - 1][0]
             baseStyle(s, bagpre % prevhead
                       if isinstance(prevhead, int) else joinpre % prevhead)
+            if lastSol:
+                baseStyle(s, lastSol)
 
         # if len(node) < 1: raise IndexError("Error within Timeline - found len=0")
 
         if len(node) > 1:
             # solution to be displayed
             if isinstance(node[0], int):
-                s.node(solpre %
-                       node[0], solutionNode(*(node[1])), shape='record')
-                s.edge(bagpre % node[0], solpre % node[0])
+                lastSol = solpre % node[0]
+                s.node(lastSol, solutionNode(*(node[1])), shape='record')
+                emphasiseNode(s, lastSol)
+                s.edge(bagpre % node[0], lastSol)
 
             else:  # joined node with 2 bags
                 suc = TIMELINE[i + 1][0]
                 print('joining ', node[0], ' to ', suc)  # get the joined bags
                 # solution
-                s.node(soljoinpre %
-                       node[0], solutionNode(*(node[1])), shape='record')
-                s.edge(joinpre % node[0], soljoinpre % node[0])
+                lastSol = soljoinpre % node[0]
+                s.node(lastSol, solutionNode(*(node[1])), shape='record')
+                emphasiseNode(s, lastSol)
+                s.edge(joinpre % node[0], lastSol)
                 # edges
                 for child in node[0]:             # basically "remove" current
                     # TODO check where 2 args are possibly occuring
@@ -297,27 +300,10 @@ def incidence():
     clausetag = "c_%d"
     vartag = "v_%d"
 
-    k = [
-        "#0073a1",
-        "#b14923",
-        "#244320",
-        "#b1740f",
-        "#a682ff",
-        '#004066',
-        '#0d1321',
-        '#da1167',
-        # '#331e36',
-        '#604909',
-        '#0073a1',
-        '#b14923',
-        '#244320',
-        '#b1740f',
-        '#a682ff']
-    # print(['#%02x%02x%02x' % c for c in ((0, 64, 102),(13, 19, 33),(218, 65, 103), (51, 30, 54), (96, 73, 9),
-    #           (0, 115, 161),(177, 73, 35),(36, 67, 32),(177, 116, 15),(166, 130, 255))])
+    k = ["#0073a1", "#b14923", "#244320", "#b1740f", "#a682ff", '#004066',
+         '#0d1321', '#da1167', '#604909', '#0073a1', '#b14923', '#244320',
+         '#b1740f', '#a682ff']
 
-    # k = sns.hls_palette(8, .3, s=.8).as_hex()
-    # k = list(sns.xkcd_rgb) needs picking
     g_incid = Graph(graph_attr={'splines': 'false', 'dpi': '300',
                                 'nodesep': '0.5', 'fontsize': '20'},  # ortho
                     edge_attr={'penwidth': '2.2', 'dir': 'back', 'arrowtail': 'none'})
@@ -353,7 +339,8 @@ def incidence():
                              vartag % -var,
                              color=k[-var % len(k)],
                              arrowtail='odot',
-                             style='dotted')
+                             # style='dotted'
+                             )
             # color=sns.xkcd_rgb[k[(var * 100) % len(k)]]) # yellow
 
     g_incid.render(view=True, format='png', filename='incidenceGraph')
@@ -361,11 +348,4 @@ def incidence():
 
 if __name__ == "__main__":
     main()                                      # Call Mainroutine
-    # incidence()
-
-# s.node(
-#     'sol4',
-#     r'{<f0> bag 2|{{id|0}|{v1|0}|{ v2|0}|{ nSol|0}}|sum: 4}',
-#     fontcolor='green')
-# s.node('hi', r'hello\nworld |{ b |{c|<here> d|e}| f}| g | h')
-# ('bag1:anchor', 'etest:anchor')
+    incidence()
