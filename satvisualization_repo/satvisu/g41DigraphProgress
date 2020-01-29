@@ -1,5 +1,5 @@
 strict digraph structs {
-	graph [dpi=300]
+	graph [dpi=300 margin="0,0.5"]
 	node [fillcolor=white margin="0.11,0.01" shape=box style="rounded,filled"]
 	edge [minlen=5]
 	bag4 [label=<<TABLE BORDER="0" CELLBORDER="0" CELLSPACING="0">

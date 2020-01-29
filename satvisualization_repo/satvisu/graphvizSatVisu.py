@@ -14,6 +14,10 @@ import numpy as np
 # import seaborn as sns
 
 
+def baseStyle(graph, node):
+    graph.node(node, fillcolor='white', penwidth="1.0")
+
+
 def emphasiseNode(graph, node, _fillcolor="yellow", _penwidth="2.5"):
     if _fillcolor:
         graph.node(node, fillcolor=_fillcolor)
@@ -99,13 +103,14 @@ def solutionNode(solutionTable, toplabel="", bottomlabel="", transpose=False):
 
 
 def main():
-    _filename = 'g41DigraphProgress'
+    _filename = 'g41DigraphProgress%d'
     s = Digraph(
         'structs',
         filename=_filename,
         strict=True,
         graph_attr={
-            'dpi': '300'},
+            'dpi': '300',
+            'margin': '0,0.5'},
         edge_attr={
             'minlen': '5'},
         node_attr={
@@ -123,10 +128,20 @@ def main():
 
     s.edges(
         [('bag4', 'bag3'), ('bag2', 'bag1'),
-         ('bag3', 'bag1'),
-            ('bag1', 'bag0')])
+         ('bag3', 'bag1'), ('bag1', 'bag0')])
 
-    s.render(view=True, format='png', filename=_filename)
+    TIMELINE = ['bag0', 'bag1', 'bag2', 'bag3', 'bag4', 'bag3',
+                'Join2~3', 'bag1', 'bag0']
+
+    for i, node in enumerate(TIMELINE):
+        if i == 0:
+            emphasiseNode(s, node)
+            s.render(view=True, format='png', filename=_filename % i)
+
+        else:
+            baseStyle(s, TIMELINE[i - 1])
+            emphasiseNode(s, node)
+            s.render(view=True, format='png', filename=_filename % i)
 
 
 def endresult():
