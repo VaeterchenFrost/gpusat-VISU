@@ -99,6 +99,37 @@ def solutionNode(solutionTable, toplabel="", bottomlabel="", transpose=False):
 
 
 def main():
+    _filename = 'g41DigraphProgress'
+    s = Digraph(
+        'structs',
+        filename=_filename,
+        strict=True,
+        graph_attr={
+            'dpi': '300'},
+        edge_attr={
+            'minlen': '5'},
+        node_attr={
+            'shape': 'box',
+            'fillcolor': 'white',
+            'style': "rounded,filled",
+            'margin': '0.11,0.01'})
+
+    s.node('bag4', bagNode("bag 4", "[2 3 8]"))
+    s.node('bag3', bagNode("bag 3", "[2 4 8]"))
+    # s.node('join1', bagNode("Join", "2~3"))
+    s.node('bag2', bagNode("bag 2", "[1 2 5]"))
+    s.node('bag1', bagNode("bag 1", "[1 2 4 6]"))
+    s.node('bag0', bagNode("bag 0", "[1 4 7]"))
+
+    s.edges(
+        [('bag4', 'bag3'), ('bag2', 'bag1'),
+         ('bag3', 'bag1'),
+            ('bag1', 'bag0')])
+
+    s.render(view=True, format='png', filename=_filename)
+
+
+def endresult():
     _filename = 'g41Digraph'
     # graph_attr={'size':'8,12!'} , graph_attr={'splines':'false'}
     s = Digraph(
@@ -244,7 +275,7 @@ def incidence():
 
 if __name__ == "__main__":
     main()                                      # Call Mainroutine
-    incidence()
+    # incidence()
 
 # s.node(
 #     'sol4',
