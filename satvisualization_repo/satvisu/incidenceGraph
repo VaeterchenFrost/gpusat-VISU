@@ -1,50 +1,60 @@
 graph {
-	graph [splines=false]
-	node [shape=rect]
+	graph [dpi=300 fontsize=20 nodesep=0.5 splines=false]
+	edge [arrowtail=none dir=back penwidth=2.2]
 	subgraph cluster_clause {
+		node [style=rounded]
 		edge [style=invis]
 		label=clauses
-		c1 -- c2
-		c2 -- c3
-		c3 -- c4
-		c4 -- c5
-		c5 -- c6
-		c6 -- c7
-		c7 -- c8
-		c8 -- c9
-		c9 -- c10
+		c_1 -- c_2
+		c_2 -- c_3
+		c_3 -- c_4
+		c_4 -- c_5
+		c_5 -- c_6
+		c_6 -- c_7
+		c_7 -- c_8
+		c_8 -- c_9
+		c_9 -- c_10
 	}
+	node [fontcolor=black penwidth=2.2 shape=diamond]
+	v_1 [label=v_1 color="#b14923"]
+	v_2 [label=v_2 color="#244320"]
+	v_3 [label=v_3 color="#b1740f"]
+	v_4 [label=v_4 color="#a682ff"]
+	v_5 [label=v_5 color="#004066"]
+	v_6 [label=v_6 color="#0d1321"]
+	v_7 [label=v_7 color="#da1167"]
+	v_8 [label=v_8 color="#604909"]
 	subgraph cluster_ivar {
 		edge [style=invis]
 		label=variables
-		v1 -- v2
-		v2 -- v3
-		v3 -- v4
-		v4 -- v5
-		v5 -- v6
-		v6 -- v7
-		v7 -- v8
+		v_1 -- v_2
+		v_2 -- v_3
+		v_3 -- v_4
+		v_4 -- v_5
+		v_5 -- v_6
+		v_6 -- v_7
+		v_7 -- v_8
 	}
 	edge [constraint=false]
-	c1 -- v1 [color="#bd6c48"]
-	c1 -- v4 [color="#bd6c48"]
-	c1 -- v6 [color="#bd6c48"]
-	c2 -- v1 [color="#bd6c48"]
-	c2 -- v5 [color="#bd6c48"]
-	c3 -- v1 [color="#bd6c48"]
-	c3 -- v7 [color="#bd6c48"]
-	c4 -- v2 [color="#bd6c48"]
-	c4 -- v3 [color="#bd6c48"]
-	c5 -- v2 [color="#bd6c48"]
-	c5 -- v5 [color="#bd6c48"]
-	c6 -- v2 [color="#bd6c48"]
-	c6 -- v6 [color="#bd6c48"]
-	c7 -- v3 [color="#bd6c48"]
-	c7 -- v8 [color="#bd6c48"]
-	c8 -- v4 [color="#bd6c48"]
-	c8 -- v8 [color="#bd6c48"]
-	c9 -- v4 [color="#bd6c48"]
-	c9 -- v6 [color="#bd6c48"]
-	c10 -- v4 [color="#bd6c48"]
-	c10 -- v7 [color="#bd6c48"]
+	c_1 -- v_1 [color="#b14923"]
+	c_1 -- v_4 [color="#a682ff"]
+	c_1 -- v_6 [color="#0d1321"]
+	c_2 -- v_1 [color="#b14923"]
+	c_2 -- v_5 [arrowtail=odot color="#004066" style=dotted]
+	c_3 -- v_1 [arrowtail=odot color="#b14923" style=dotted]
+	c_3 -- v_7 [color="#da1167"]
+	c_4 -- v_2 [color="#244320"]
+	c_4 -- v_3 [color="#b1740f"]
+	c_5 -- v_2 [color="#244320"]
+	c_5 -- v_5 [color="#004066"]
+	c_6 -- v_2 [color="#244320"]
+	c_6 -- v_6 [arrowtail=odot color="#0d1321" style=dotted]
+	c_7 -- v_3 [color="#b1740f"]
+	c_7 -- v_8 [arrowtail=odot color="#604909" style=dotted]
+	c_8 -- v_4 [color="#a682ff"]
+	c_8 -- v_8 [arrowtail=odot color="#604909" style=dotted]
+	c_9 -- v_4 [arrowtail=odot color="#a682ff" style=dotted]
+	c_9 -- v_6 [color="#0d1321"]
+	c_10 -- v_4 [arrowtail=odot color="#a682ff" style=dotted]
+	c_10 -- v_7 [color="#da1167"]
 }

@@ -94,7 +94,7 @@ def solutionNode(solutionTable, toplabel="", bottomlabel="", transpose=False):
 def main():
     _filename = 'g41Digraph'
     # graph_attr={'size':'8,12!'} , graph_attr={'splines':'false'}
-    s = Digraph('structs', filename=_filename, strict=True,
+    s = Digraph('structs', filename=_filename, strict=True, graph_attr={'dpi': '300'},
                 node_attr={'shape': 'box', 'fillcolor': 'yellow', 'style': "rounded,filled"})
 
     s.node('bag4', bagNode("bag 4", "[2 3 8]", headcolor='green'))
@@ -162,31 +162,65 @@ def incidence():
 
     r_clause = 10
     r_vars = 8
-    clausetag = "c%d"
-    vartag = "v%d"
+    clausetag = "c_%d"
+    vartag = "v_%d"
 
-    k = list(sns.xkcd_rgb)
-    g_incid = Graph(graph_attr={'splines': 'false'})
+    k = [
+        "#0073a1",
+        "#b14923",
+        "#244320",
+        "#b1740f",
+        "#a682ff",
+        '#004066',
+        '#0d1321',
+        '#da1167',
+        #'#331e36',
+        '#604909',
+        '#0073a1',
+        '#b14923',
+        '#244320',
+        '#b1740f',
+        '#a682ff']
+    # print(['#%02x%02x%02x' % c for c in ((0, 64, 102),(13, 19, 33),(218, 65, 103), (51, 30, 54), (96, 73, 9),
+    #           (0, 115, 161),(177, 73, 35),(36, 67, 32),(177, 116, 15),(166, 130, 255))])
 
-    g_incid.attr('node', shape='rect')
-    with g_incid.subgraph(name='cluster_clause', edge_attr={'style': 'invis'}) as clauses:
+    # k = sns.hls_palette(8, .3, s=.8).as_hex()
+    # k = list(sns.xkcd_rgb) needs picking
+    g_incid = Graph(graph_attr={'splines': 'false', 'dpi': '300',
+                                'nodesep': '0.5', 'fontsize': '20'},  # ortho
+                    edge_attr={'penwidth': '2.2', 'dir': 'back', 'arrowtail': 'none'})
+
+    with g_incid.subgraph(name='cluster_clause', edge_attr={'style': 'invis'},
+                          node_attr={'style': 'rounded'}) as clauses:
         clauses.attr(label='clauses')
         clauses.edges([(clausetag % (i + 1), clausetag % (i + 2))
                        for i in range(r_clause - 1)])
 
+    g_incid.attr('node', shape='diamond', fontcolor='black', penwidth='2.2')
     with g_incid.subgraph(name='cluster_ivar', edge_attr={'style': 'invis'}) as ivars:
         ivars.attr(label='variables')
         ivars.edges([(vartag % (i + 1), vartag % (i + 2))
                      for i in range(r_vars - 1)])
+        for i in range(r_vars):
+            g_incid.node(vartag %
+                         (i + 1), vartag %
+                         (i + 1), color=k[(i + 1) %
+                                          len(k)])
 
     g_incid.attr('edge', constraint="false")
-    EDGELIST = [[1, [1, 4, 6]], [2, [1, 5]], [3, [1, 7]], [4, [2, 3]], [
-        5, [2, 5]], [6, [2, 6]], [7, [3, 8]], [8, [4, 8]], [9, [4, 6]], [10, [4, 7]]]
+    EDGELIST = [[1, [1, 4, 6]], [2, [1, -5]], [3, [-1, 7]], [4, [2, 3]], [
+        5, [2, 5]], [6, [2, -6]], [7, [3, -8]], [8, [4, -8]], [9, [-4, 6]], [10, [-4, 7]]]
     for clause in EDGELIST:
         for var in clause[1]:
-            g_incid.edge(clausetag %
-                         clause[0], vartag %
-                         var, color=sns.xkcd_rgb[k[1]])
+            if var >= 0:
+                g_incid.edge(clausetag % clause[0],
+                             vartag % var,
+                             color=k[var % len(k)])
+            else:
+                g_incid.edge(clausetag % clause[0],
+                             vartag % -var,
+                             color=k[-var % len(k)], arrowtail='odot', style='dotted')
+            # color=sns.xkcd_rgb[k[(var * 100) % len(k)]]) # yellow
 
     g_incid.render(view=True, format='png', filename='incidenceGraph')
 

@@ -1,4 +1,5 @@
 strict digraph structs {
+	graph [dpi=300]
 	node [fillcolor=yellow shape=box style="rounded,filled"]
 	bag4 [label=<<TABLE BORDER="0" CELLBORDER="0" CELLSPACING="0">
               <TR><TD BGCOLOR="green">bag 4</TD><TD PORT="anchor"></TD><TD>[2 3 8]</TD></TR></TABLE>>]
