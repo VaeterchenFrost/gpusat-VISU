@@ -1,6 +1,6 @@
 strict digraph structs {
 	graph [dpi=300]
-	node [fillcolor=yellow shape=box style="rounded,filled"]
+	node [fillcolor=white shape=box style="rounded,filled"]
 	bag4 [label=<<TABLE BORDER="0" CELLBORDER="0" CELLSPACING="0">
               <TR><TD BGCOLOR="green">bag 4</TD><TD PORT="anchor"></TD><TD>[2 3 8]</TD></TR></TABLE>>]
 	bag3 [label=<<TABLE BORDER="0" CELLBORDER="0" CELLSPACING="0">
@@ -32,4 +32,5 @@ strict digraph structs {
 	bag0:anchor -> sol0
 	join1:anchor -> solJoin1
 	bag0:anchor -> sol0 [color="green:red;0.55:blue"]
+	bag0 [fillcolor=yellow penwidth=2.5]
 }

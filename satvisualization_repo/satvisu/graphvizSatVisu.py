@@ -11,7 +11,14 @@
 
 from graphviz import Digraph, Graph
 import numpy as np
-import seaborn as sns
+# import seaborn as sns
+
+
+def emphasiseNode(graph, node, _fillcolor="yellow", _penwidth="2.5"):
+    if _fillcolor:
+        graph.node(node, fillcolor=_fillcolor)
+    if _penwidth:
+        graph.node(node, penwidth=_penwidth)
 
 
 def bagNode(head, tail, anchor="anchor", headcolor="white",
@@ -94,8 +101,16 @@ def solutionNode(solutionTable, toplabel="", bottomlabel="", transpose=False):
 def main():
     _filename = 'g41Digraph'
     # graph_attr={'size':'8,12!'} , graph_attr={'splines':'false'}
-    s = Digraph('structs', filename=_filename, strict=True, graph_attr={'dpi': '300'},
-                node_attr={'shape': 'box', 'fillcolor': 'yellow', 'style': "rounded,filled"})
+    s = Digraph(
+        'structs',
+        filename=_filename,
+        strict=True,
+        graph_attr={
+            'dpi': '300'},
+        node_attr={
+            'shape': 'box',
+            'fillcolor': 'white',
+            'style': "rounded,filled"})
 
     s.node('bag4', bagNode("bag 4", "[2 3 8]", headcolor='green'))
     s.node('bag3', bagNode("bag 3", "[2 4 8]"))
@@ -151,7 +166,7 @@ def main():
          ('bag0:anchor', 'sol0'), ('join1:anchor', 'solJoin1')])
 
     s.edge('bag0:anchor', 'sol0', color="green:red;0.55:blue")
-
+    emphasiseNode(s, 'bag0')
     with open("example41.dot", "w") as file:
         file.write(s.__str__())
 
@@ -174,7 +189,7 @@ def incidence():
         '#004066',
         '#0d1321',
         '#da1167',
-        #'#331e36',
+        # '#331e36',
         '#604909',
         '#0073a1',
         '#b14923',
@@ -208,8 +223,8 @@ def incidence():
                                           len(k)])
 
     g_incid.attr('edge', constraint="false")
-    EDGELIST = [[1, [1, 4, 6]], [2, [1, -5]], [3, [-1, 7]], [4, [2, 3]], [
-        5, [2, 5]], [6, [2, -6]], [7, [3, -8]], [8, [4, -8]], [9, [-4, 6]], [10, [-4, 7]]]
+    EDGELIST = [[1, [1, 4, 6]], [2, [1, -5]], [3, [-1, 7]], [4, [2, 3]], [5, [2, 5]],
+                [6, [2, -6]], [7, [3, -8]], [8, [4, -8]], [9, [-4, 6]], [10, [-4, 7]]]
     for clause in EDGELIST:
         for var in clause[1]:
             if var >= 0:
@@ -219,7 +234,9 @@ def incidence():
             else:
                 g_incid.edge(clausetag % clause[0],
                              vartag % -var,
-                             color=k[-var % len(k)], arrowtail='odot', style='dotted')
+                             color=k[-var % len(k)],
+                             arrowtail='odot',
+                             style='dotted')
             # color=sns.xkcd_rgb[k[(var * 100) % len(k)]]) # yellow
 
     g_incid.render(view=True, format='png', filename='incidenceGraph')
@@ -228,6 +245,7 @@ def incidence():
 if __name__ == "__main__":
     main()                                      # Call Mainroutine
     incidence()
+
 # s.node(
 #     'sol4',
 #     r'{<f0> bag 2|{{id|0}|{v1|0}|{ v2|0}|{ nSol|0}}|sum: 4}',

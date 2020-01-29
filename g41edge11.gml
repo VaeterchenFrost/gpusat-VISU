@@ -11,8 +11,8 @@ graph
 		label	"bag 2"
 		graphics
 		[
-			x	441.2126984126984
-			y	62.8505859375
+			x	441.5
+			y	62.5
 			w	15.0
 			h	15.0
 			type	"ellipse"
@@ -40,8 +40,8 @@ graph
 		label	"bag 2"
 		graphics
 		[
-			x	444.9626984126984
-			y	118.201171875
+			x	445.0
+			y	118.0
 			w	30.0
 			h	30.0
 			type	"star8"
@@ -77,7 +77,7 @@ graph
 		label	"bag 4"
 		graphics
 		[
-			x	117.64206349206349
+			x	117.5
 			y	7.5
 			w	15.0
 			h	15.0
@@ -106,8 +106,8 @@ graph
 		label	"bag 4"
 		graphics
 		[
-			x	53.362698412698414
-			y	62.8505859375
+			x	53.0
+			y	63.0
 			w	30.0
 			h	30.0
 			type	"star8"
@@ -143,8 +143,8 @@ graph
 		label	"bag 3"
 		graphics
 		[
-			x	181.92142857142858
-			y	62.8505859375
+			x	181.5
+			y	62.5
 			w	15.0
 			h	15.0
 			type	"ellipse"
@@ -172,8 +172,8 @@ graph
 		label	"bag 3"
 		graphics
 		[
-			x	178.17142857142858
-			y	118.201171875
+			x	178.0
+			y	118.0
 			w	30.0
 			h	30.0
 			type	"star8"
@@ -209,8 +209,8 @@ graph
 		label	"Join 2~3"
 		graphics
 		[
-			x	311.5670634920635
-			y	118.201171875
+			x	312.0
+			y	200.0
 			w	30.0
 			h	30.0
 			type	"star8"
@@ -250,8 +250,8 @@ graph
 		label	"bag 1"
 		graphics
 		[
-			x	311.5670634920635
-			y	341.9658203125
+			x	311.5
+			y	341.5
 			w	15.0
 			h	15.0
 			type	"ellipse"
@@ -279,8 +279,8 @@ graph
 		label	"bag 1"
 		graphics
 		[
-			x	247.2876984126984
-			y	397.31640625
+			x	247.0
+			y	397.0
 			w	30.0
 			h	30.0
 			type	"star8"
@@ -316,8 +316,8 @@ graph
 		label	"bag 0"
 		graphics
 		[
-			x	375.8464285714286
-			y	397.31640625
+			x	375.5
+			y	397.5
 			w	15.0
 			h	15.0
 			type	"ellipse"
@@ -345,8 +345,8 @@ graph
 		label	"bag 0"
 		graphics
 		[
-			x	375.8464285714286
-			y	439.81640625
+			x	376.0
+			y	440.0
 			w	30.0
 			h	30.0
 			type	"star8"
@@ -389,12 +389,6 @@ graph
 			fill	"#000000"
 			targetArrow	"standard"
 		]
-		edgeAnchor
-		[
-			xSource	0.5
-			ySource	0.8625
-			yTarget	-1.0
-		]
 	]
 	edge
 	[
@@ -404,35 +398,6 @@ graph
 		[
 			fill	"#000000"
 			targetArrow	"standard"
-			Line
-			[
-				point
-				[
-					x	117.64206349206349
-					y	7.5
-				]
-				point
-				[
-					x	113.89206349206349
-					y	32.3505859375
-				]
-				point
-				[
-					x	53.362698412698414
-					y	32.3505859375
-				]
-				point
-				[
-					x	53.362698412698414
-					y	62.8505859375
-				]
-			]
-		]
-		edgeAnchor
-		[
-			xSource	-0.5
-			ySource	0.8625
-			yTarget	-1.0
 		]
 	]
 	edge
@@ -444,12 +409,6 @@ graph
 			fill	"#000000"
 			targetArrow	"standard"
 		]
-		edgeAnchor
-		[
-			xSource	-0.5
-			ySource	0.8625
-			yTarget	-1.0
-		]
 	]
 	edge
 	[
@@ -459,36 +418,6 @@ graph
 		[
 			fill	"#000000"
 			targetArrow	"standard"
-			Line
-			[
-				point
-				[
-					x	441.2126984126984
-					y	62.8505859375
-				]
-				point
-				[
-					x	437.4626984126984
-					y	87.701171875
-				]
-				point
-				[
-					x	319.0670634920635
-					y	87.701171875
-				]
-				point
-				[
-					x	311.5670634920635
-					y	118.201171875
-				]
-			]
-		]
-		edgeAnchor
-		[
-			xSource	-0.5
-			ySource	0.8625
-			xTarget	0.5
-			yTarget	-0.6395833333333333
 		]
 	]
 	edge
@@ -499,36 +428,6 @@ graph
 		[
 			fill	"#000000"
 			targetArrow	"standard"
-			Line
-			[
-				point
-				[
-					x	181.92142857142858
-					y	62.8505859375
-				]
-				point
-				[
-					x	185.67142857142858
-					y	87.701171875
-				]
-				point
-				[
-					x	304.0670634920635
-					y	87.701171875
-				]
-				point
-				[
-					x	311.5670634920635
-					y	118.201171875
-				]
-			]
-		]
-		edgeAnchor
-		[
-			xSource	0.5
-			ySource	0.8625
-			xTarget	-0.5
-			yTarget	-0.6395833333333333
 		]
 	]
 	edge
@@ -539,35 +438,6 @@ graph
 		[
 			fill	"#000000"
 			targetArrow	"standard"
-			Line
-			[
-				point
-				[
-					x	311.5670634920635
-					y	341.9658203125
-				]
-				point
-				[
-					x	307.8170634920635
-					y	366.81640625
-				]
-				point
-				[
-					x	247.2876984126984
-					y	366.81640625
-				]
-				point
-				[
-					x	247.2876984126984
-					y	397.31640625
-				]
-			]
-		]
-		edgeAnchor
-		[
-			xSource	-0.5
-			ySource	0.8625
-			yTarget	-1.0
 		]
 	]
 	edge
@@ -579,11 +449,6 @@ graph
 			fill	"#000000"
 			targetArrow	"standard"
 		]
-		edgeAnchor
-		[
-			ySource	1.0
-			yTarget	-1.0
-		]
 	]
 	edge
 	[
@@ -593,35 +458,6 @@ graph
 		[
 			fill	"#000000"
 			targetArrow	"standard"
-			Line
-			[
-				point
-				[
-					x	311.5670634920635
-					y	341.9658203125
-				]
-				point
-				[
-					x	315.3170634920635
-					y	366.81640625
-				]
-				point
-				[
-					x	375.8464285714286
-					y	366.81640625
-				]
-				point
-				[
-					x	375.8464285714286
-					y	397.31640625
-				]
-			]
-		]
-		edgeAnchor
-		[
-			xSource	0.5
-			ySource	0.8625
-			yTarget	-1.0
 		]
 	]
 	edge
@@ -633,11 +469,6 @@ graph
 			fill	"#000000"
 			targetArrow	"standard"
 		]
-		edgeAnchor
-		[
-			ySource	1.0
-			yTarget	-1.0
-		]
 	]
 	edge
 	[
@@ -647,35 +478,6 @@ graph
 		[
 			fill	"#000000"
 			targetArrow	"standard"
-			Line
-			[
-				point
-				[
-					x	117.64206349206349
-					y	7.5
-				]
-				point
-				[
-					x	121.39206349206349
-					y	32.3505859375
-				]
-				point
-				[
-					x	181.92142857142858
-					y	32.3505859375
-				]
-				point
-				[
-					x	181.92142857142858
-					y	62.8505859375
-				]
-			]
-		]
-		edgeAnchor
-		[
-			xSource	0.5
-			ySource	0.8625
-			yTarget	-1.0
 		]
 	]
 ]
