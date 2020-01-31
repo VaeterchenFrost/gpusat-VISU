@@ -309,7 +309,7 @@ def incidence():
                     edge_attr={'penwidth': '2.2', 'dir': 'back', 'arrowtail': 'none'})
 
     with g_incid.subgraph(name='cluster_clause', edge_attr={'style': 'invis'},
-                          node_attr={'style': 'rounded'}) as clauses:
+                          node_attr={'style': 'rounded,filled', 'fillcolor': 'white'}) as clauses:
         clauses.attr(label='clauses')
         clauses.edges([(clausetag % (i + 1), clausetag % (i + 2))
                        for i in range(r_clause - 1)])
@@ -320,7 +320,7 @@ def incidence():
         fontcolor='black',
         penwidth='2.2',
         style='dotted')
-    with g_incid.subgraph(name='cluster_ivar', edge_attr={'style': 'invis'}) as ivars:
+    with g_incid.subgraph(name='cluster_ivar', edge_attr={'style': 'invis'}, node_attr={'style': 'dotted'}) as ivars:
         ivars.attr(label='variables')
         ivars.edges([(vartag % (i + 1), vartag % (i + 2))
                      for i in range(r_vars - 1)])
@@ -351,7 +351,22 @@ def incidence():
             # color=sns.xkcd_rgb[k[(var * 100) % len(k)]]) # yellow
 
     # timeline for incidence emphasis
-    TIMELINE = [(2, 3, 8), (2, 4, 8)]
+    # s.node('bag4', bagNode("bag 4", "[2 3 8]", headcolor='green'))
+    # s.node('bag3', bagNode("bag 3", "[2 4 8]"))
+    # s.node('join1', bagNode("Join", "2~3"))
+    # s.node('bag2', bagNode("bag 2", "[1 2 5]"))
+    # s.node('bag1', bagNode("bag 1", "[1 2 4 6]"))
+    # s.node('bag0', bagNode("bag 0", "[1 4 7]"))
+    TIMELINE = (None, None,
+                [1, 2, 5],
+                None,
+                [2, 3, 8],
+                [2, 4, 8],
+                None, # JOIN
+                
+                [1, 2, 4, 6],
+                [1, 4, 7]
+                )
 
     # make edgelist variable-based (varX, clauseY), ...
     import itertools
@@ -360,24 +375,50 @@ def incidence():
         map(lambda y: list(map(lambda x: (x, y[0]), y[1])), EDGELIST))
 
     var_cl_list = list(itertools.chain.from_iterable(tr))  # flatten
-    print('var_cl_list', var_cl_list)
+    # print('var_cl_list', var_cl_list)
 
+    bodybaselen = len(g_incid.body)
     for i, variables in enumerate(TIMELINE):    # all timesteps
+        
+        # reset highlighting
+        g_incid.body = g_incid.body[:bodybaselen]
+        if variables is None: 
+            g_incid.render(
+            view=True,
+            format='png',
+            filename='incidenceGraph%d' %
+            i)
+            continue
+        # print(len(g_incid.body))
 
-        emp_clause = [a[1] for a in list(filter(lambda var_cl:
-                                                abs(var_cl[0]) in variables,
-                                                var_cl_list))]
-        # print(edges)
+        emp_clause = list(set([a[1] for a in list(filter(lambda var_cl:
+                                                         abs(var_cl[0]
+                                                             ) in variables,
+                                                         var_cl_list))]))
+
+        emp_var = list(set([abs(a[0]) for a in list(filter(lambda var_cl:
+                                                           var_cl[1] in emp_clause,
+                                                           var_cl_list))]))
+        print(i, 'emp_clause ', emp_clause)
+        print(i, 'emp_var ', emp_var)
+        
+        for var in emp_var:
+            _vartag = vartag % abs(var)
+            _style = 'solid,filled' if var in variables else 'dotted,filled'
+            g_incid.node(_vartag, _vartag, style=_style, fillcolor='yellow')
+
+        for cl in emp_clause:
+            g_incid.node(clausetag % cl, clausetag % cl, fillcolor='yellow')
 
         for edge in var_cl_list:
             (var, clause) = edge
+
             _style = 'solid' if clause in emp_clause else 'dotted'
             _vartag = vartag % abs(var)
-            if i > 0 and (abs(var) not in variables) and (
-                    abs(var) in TIMELINE[i - 1]):
-                g_incid.node(_vartag, _vartag, style='dotted')
-            if abs(var) in variables:
-                g_incid.node(_vartag, _vartag, style='solid')
+
+            # if i > 0 and (abs(var) not in variables) and (
+            #         abs(var) in TIMELINE[i - 1]):
+            #     g_incid.node(_vartag, _vartag, style='dotted')
 
             if var >= 0:
 
