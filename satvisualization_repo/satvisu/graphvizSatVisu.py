@@ -300,12 +300,12 @@ def incidence():
     clausetag = "c_%d"
     vartag = "v_%d"
 
-    k = ["#0073a1", "#b14923", "#244320", "#b1740f", "#a682ff", '#004066',
-         '#0d1321', '#da1167', '#604909', '#0073a1', '#b14923', '#244320',
-         '#b1740f', '#a682ff']
+    colors = ["#0073a1", "#b14923", "#244320", "#b1740f", "#a682ff", '#004066',
+              '#0d1321', '#da1167', '#604909', '#0073a1', '#b14923', '#244320',
+              '#b1740f', '#a682ff']
 
-    g_incid = Graph(graph_attr={'splines': 'false', 'dpi': '300',
-                                'nodesep': '0.5', 'fontsize': '20'},  # ortho
+    g_incid = Graph(strict=True, graph_attr={'splines': 'false', 'dpi': '300',
+                                             'nodesep': '0.5', 'fontsize': '20'},  # ortho
                     edge_attr={'penwidth': '2.2', 'dir': 'back', 'arrowtail': 'none'})
 
     with g_incid.subgraph(name='cluster_clause', edge_attr={'style': 'invis'},
@@ -314,7 +314,12 @@ def incidence():
         clauses.edges([(clausetag % (i + 1), clausetag % (i + 2))
                        for i in range(r_clause - 1)])
 
-    g_incid.attr('node', shape='diamond', fontcolor='black', penwidth='2.2')
+    g_incid.attr(
+        'node',
+        shape='diamond',
+        fontcolor='black',
+        penwidth='2.2',
+        style='dotted')
     with g_incid.subgraph(name='cluster_ivar', edge_attr={'style': 'invis'}) as ivars:
         ivars.attr(label='variables')
         ivars.edges([(vartag % (i + 1), vartag % (i + 2))
@@ -322,30 +327,81 @@ def incidence():
         for i in range(r_vars):
             g_incid.node(vartag %
                          (i + 1), vartag %
-                         (i + 1), color=k[(i + 1) %
-                                          len(k)])
+                         (i + 1), color=colors[(i + 1) %
+                                               len(colors)])
 
     g_incid.attr('edge', constraint="false")
     EDGELIST = [[1, [1, 4, 6]], [2, [1, -5]], [3, [-1, 7]], [4, [2, 3]], [5, [2, 5]],
                 [6, [2, -6]], [7, [3, -8]], [8, [4, -8]], [9, [-4, 6]], [10, [-4, 7]]]
+    # (1,) for clause (2,) for variable
+
     for clause in EDGELIST:
         for var in clause[1]:
             if var >= 0:
                 g_incid.edge(clausetag % clause[0],
                              vartag % var,
-                             color=k[var % len(k)])
+                             color=colors[var % len(colors)])
             else:
                 g_incid.edge(clausetag % clause[0],
                              vartag % -var,
-                             color=k[-var % len(k)],
+                             color=colors[-var % len(colors)],
                              arrowtail='odot',
                              # style='dotted'
                              )
             # color=sns.xkcd_rgb[k[(var * 100) % len(k)]]) # yellow
 
-    g_incid.render(view=True, format='png', filename='incidenceGraph')
+    # timeline for incidence emphasis
+    TIMELINE = [(2, 3, 8), (2, 4, 8)]
+
+    # make edgelist variable-based (varX, clauseY), ...
+    import itertools
+
+    tr = list(
+        map(lambda y: list(map(lambda x: (x, y[0]), y[1])), EDGELIST))
+
+    var_cl_list = list(itertools.chain.from_iterable(tr))  # flatten
+    print('var_cl_list', var_cl_list)
+
+    for i, variables in enumerate(TIMELINE):    # all timesteps
+
+        emp_clause = [a[1] for a in list(filter(lambda var_cl:
+                                                abs(var_cl[0]) in variables,
+                                                var_cl_list))]
+        # print(edges)
+
+        for edge in var_cl_list:
+            (var, clause) = edge
+            _style = 'solid' if clause in emp_clause else 'dotted'
+            _vartag = vartag % abs(var)
+            if i > 0 and (abs(var) not in variables) and (
+                    abs(var) in TIMELINE[i - 1]):
+                g_incid.node(_vartag, _vartag, style='dotted')
+            if abs(var) in variables:
+                g_incid.node(_vartag, _vartag, style='solid')
+
+            if var >= 0:
+
+                g_incid.edge(clausetag % clause,
+                             _vartag,
+                             color=colors[var % len(colors)],
+                             style=_style)
+            else:
+                g_incid.edge(clausetag % clause,
+                             _vartag,
+                             color=colors[-var % len(colors)],
+                             arrowtail='odot',
+                             style=_style
+                             )
+        # print(g_incid.body)
+        # body – Iterable of verbatim lines to add to the graph body.
+
+        g_incid.render(
+            view=True,
+            format='png',
+            filename='incidenceGraph%d' %
+            i)
 
 
 if __name__ == "__main__":
-    main()                                      # Call Mainroutine
+    # main()                                      # Call Mainroutine
     incidence()

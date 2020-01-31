@@ -19,6 +19,6 @@ if __name__ == "__main__":
         elem.axes.get_yaxis().set_visible(False)
     print(fig.get_size_inches())
     ax1.imshow(img)
-    ax2.imshow(mpimg.imread("g41Digraph.png"))
+    ax2.imshow(mpimg.imread("g41DigraphProgress8.png"))
 
     plt.savefig("combined")
