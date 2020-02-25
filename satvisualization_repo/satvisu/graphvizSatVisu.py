@@ -102,7 +102,27 @@ def solutionNode(solutionTable, toplabel="", bottomlabel="", transpose=False):
 
 
 def main():
-    bagpre = "bag %d"
+    # example input:
+    tdGraph = {
+        "bagpre": "bag %s",
+        "edgearray":
+        [
+            [1, 0],
+            [2, 1],
+            [3, 1],
+            [4, 3]
+        ],
+        "labelarray":
+        {
+            "0": ["[1 4 7]"],
+            "1": ["[1 2 4 6]"],
+            "2": ["[1 2 5]"],
+            "3": ["[2 4 8]"],
+            "4": ["[2 3 8]"]
+        }
+    }
+
+    bagpre = tdGraph["bagpre"]
     joinpre = "Join %d~%d"
     solpre = "sol%d"
     soljoinpre = "solJoin%d~%d"
@@ -124,16 +144,12 @@ def main():
             'style': "rounded,filled",
             'margin': '0.11,0.01'})
 
-    s.node(bagpre % 4, bagNode(bagpre % 4, "[2 3 8]"))
-    s.node(bagpre % 3, bagNode(bagpre % 3, "[2 4 8]"))
-    # s.node('join1', bagNode("Join", "2~3"))
-    s.node(bagpre % 2, bagNode(bagpre % 2, "[1 2 5]"))
-    s.node(bagpre % 1, bagNode(bagpre % 1, "[1 2 4 6]"))
-    s.node(bagpre % 0, bagNode(bagpre % 0, "[1 4 7]"))
+    # -----------Iterate labelarray ---------------
+    for key in tdGraph["labelarray"]:
+        s.node(bagpre % key, bagNode(bagpre % key, tdGraph["labelarray"][key]))
 
     s.edges(
-        [(bagpre % 4, bagpre % 3), (bagpre % 2, bagpre % 1),
-         (bagpre % 3, bagpre % 1), (bagpre % 1, bagpre % 0)])
+        [(bagpre % first, bagpre % second) for (first, second) in tdGraph["edgearray"]])
     # s.attr('edge', minlen="1")
 
     TIMELINE = [(0,), (1,),
@@ -362,8 +378,8 @@ def incidence():
                 None,
                 [2, 3, 8],
                 [2, 4, 8],
-                [1, 2, 4], # JOIN
-                
+                [1, 2, 4],  # JOIN
+
                 [1, 2, 4, 6],
                 [1, 4, 7]
                 )
@@ -379,15 +395,15 @@ def incidence():
 
     bodybaselen = len(g_incid.body)
     for i, variables in enumerate(TIMELINE):    # all timesteps
-        
+
         # reset highlighting
         g_incid.body = g_incid.body[:bodybaselen]
-        if variables is None: 
+        if variables is None:
             g_incid.render(
-            view=True,
-            format='png',
-            filename='incidenceGraph%d' %
-            i)
+                view=True,
+                format='png',
+                filename='incidenceGraph%d' %
+                i)
             continue
         # print(len(g_incid.body))
 
@@ -401,7 +417,7 @@ def incidence():
                                                            var_cl_list))]))
         print(i, 'emp_clause ', emp_clause)
         print(i, 'emp_var ', emp_var)
-        
+
         for var in emp_var:
             _vartag = vartag % abs(var)
             _style = 'solid,filled' if var in variables else 'dotted,filled'
@@ -444,5 +460,5 @@ def incidence():
 
 
 if __name__ == "__main__":
-    # main()                                      # Call Mainroutine
-    incidence()
+    main()                                      # Call Mainroutine
+    # incidence()
