@@ -1,0 +1,75 @@
+\documentclass{article}
+\usepackage[x11names, svgnames, rgb]{xcolor}
+\usepackage[utf8]{inputenc}
+\usepackage{tikz}
+\usetikzlibrary{snakes,arrows,shapes}
+\usepackage{amsmath}
+%
+%
+
+%
+
+%
+
+\begin{document}
+	\pagestyle{empty}
+	%
+	%
+	%
+	
+	\enlargethispage{100cm}
+	% Start of code
+	% \begin{tikzpicture}[anchor=mid,>=latex',line join=bevel,]
+	\begin{tikzpicture}[>=latex',line join=bevel,]
+	\pgfsetlinewidth{1bp}
+	%%
+	\pgfsetcolor{black}
+	% Edge: FOL -> SOL
+	\draw [->] (940.0bp,73.313bp) .. controls (940.0bp,65.289bp) and (940.0bp,55.547bp)  .. (940.0bp,36.529bp);
+	% Edge: PropCal -> FOL
+	\draw [->] (940.0bp,151.25bp) .. controls (940.0bp,142.02bp) and (940.0bp,130.43bp)  .. (940.0bp,109.68bp);
+	% Node: MSOL
+	\begin{scope}
+	\definecolor{strokecol}{rgb}{0.0,0.0,0.0};
+	\pgfsetstrokecolor{strokecol}
+	\draw (0.0bp,151.5bp) -- (0.0bp,187.5bp) -- (56.0bp,187.5bp) -- (56.0bp,151.5bp) -- cycle;
+	\draw (28.0bp,169.5bp) node {MSOL};
+	\end{scope}
+	% Node: Courcelle
+	\begin{scope}
+	\definecolor{strokecol}{rgb}{0.0,0.0,0.0};
+	\pgfsetstrokecolor{strokecol}
+	\draw (74.5bp,146.5bp) -- (74.5bp,192.5bp) -- (851.5bp,192.5bp) -- (851.5bp,146.5bp) -- cycle;
+	\draw (74.5bp,169.5bp) -- (851.5bp,169.5bp);
+	\draw (463.0bp,177.3bp) node {Courcelle's theorem};
+	\draw (463.0bp,154.3bp) node { -every graph property definable in the monadic second-order logic of graphscan be decided in linear time on graphsof bounded 
+		treew};
+	\end{scope}
+	% Node: SOL
+	\begin{scope}
+	\definecolor{strokecol}{rgb}{0.0,0.0,0.0};
+	\pgfsetstrokecolor{strokecol}
+	\draw (877.5bp,0.5bp) -- (877.5bp,36.5bp) -- (1002.5bp,36.5bp) -- (1002.5bp,0.5bp) -- cycle;
+	\draw (940.0bp,18.5bp) node {Second-order logic};
+	\end{scope}
+	% Node: FOL
+	\begin{scope}
+	\definecolor{strokecol}{rgb}{0.0,0.0,0.0};
+	\pgfsetstrokecolor{strokecol}
+	\draw (886.5bp,73.5bp) -- (886.5bp,109.5bp) -- (993.5bp,109.5bp) -- (993.5bp,73.5bp) -- cycle;
+	\draw (940.0bp,91.5bp) node {First-order logic};
+	\end{scope}
+	% Node: PropCal
+	\begin{scope}
+	\definecolor{strokecol}{rgb}{0.0,0.0,0.0};
+	\pgfsetstrokecolor{strokecol}
+	\draw (870.0bp,151.5bp) -- (870.0bp,187.5bp) -- (1010.0bp,187.5bp) -- (1010.0bp,151.5bp) -- cycle;
+	\draw (940.0bp,169.5bp) node {Propositional calculus};
+	\end{scope}
+	%
+	\end{tikzpicture}
+	% End of code
+	
+	%
+\end{document}
+%

@@ -1,0 +1,26 @@
+\frametitle{Other Stuff}
+ \begin{itemize}
+
+\item Suppress naviation symbols \\
+\begin{verbatim}
+\setbeamertemplate{navigation symbols}{}
+\end{verbatim}
+  \item Suppress the headlines, footlines, and sidebars \\
+\begin{verbatim}
+ \begin{frame}[plain]
+\end{verbatim}
+\item Add ``handout'' parameter for slides without overlays (e.g. for printout) \\
+\begin{semiverbatim}
+\\documentclass[..., handout]\{beamer\}
+\end{semiverbatim}
+
+%\item semiverbatim to show latex code in the presentation (option
+\item Include blank black slide \\
+\begin{semiverbatim}
+\\bgroup
+\\setbeamercolor\{background canvas\}\{bg=black\}
+\\begin\{frame\}[plain]\{\}
+\\end\{frame\}
+\\egroup
+\end{semiverbatim}
+\end{itemize}

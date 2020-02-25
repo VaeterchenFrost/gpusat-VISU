@@ -1,0 +1,20 @@
+strict digraph "Theory around #SAT Solving" {
+	graph [rankdir=TB]
+	node [fontcolor=blue fontname=Arial fontsize=20]
+	edge [color="#e08e22"]
+	MSOL [label="Monadic second-order logic"]
+	Courcelle [label="Courcelle's theorem"]
+	CT [label="- every graph property 
+- definable in the monadic second-order logic of graphs
+- can be decided in linear time on graphs
+- of bounded treewidth" fontcolor=black fontsize=24 shape=box style=rounded]
+	SOL [label="Second-order logic"]
+	FOL [label="First-order logic"]
+	PropCal [label="Propositional logic"]
+	FOL -> SOL
+	PropCal -> FOL
+	FOL -> MSOL
+	MSOL -> SOL
+	Courcelle -> CT [color=red dirType=both penwidth=3.0 style=dashed]
+	MSOL -> Courcelle [minlen=2]
+}

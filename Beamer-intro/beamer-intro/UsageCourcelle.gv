@@ -1,0 +1,14 @@
+strict digraph UsageCourcelle {
+	graph [rankdir=LR splines=ortho]
+	node [fontcolor=black fontname=arial fontsize=20 shape=rect]
+	edge [minlen=2]
+	dev -> MSO [constraint=false minlen=1]
+	inst [label="input to problem"]
+	problem [label="problem-encoding"]
+	dev [label=developer style=rounded]
+	MSO [label="MSO Solver"]
+	sol [label=solution]
+	inst -> MSO
+	problem -> MSO
+	MSO -> sol
+}

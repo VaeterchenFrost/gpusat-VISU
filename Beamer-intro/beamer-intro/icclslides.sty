@@ -1,0 +1,154 @@
+\ProvidesPackage{icclslides}
+
+%% 
+%% This is a Beamer package that mimics approximately the style of
+%% Prof. Hölldobler's lecture slides (as of end 2010), which were based
+%% on the obsolete Foiltex style. 
+%%
+%% It has no special requirements, except that it expects the following
+%% three image files the directory icclslides/: logo_tud.png, logo_iccl.pdf,
+%% logo_iccl_cube.pdf.
+%%
+%% It can be used in the following way: 
+%%    \documentclass[c,8pt,xcolor=table,x11names]{beamer}
+%%    \usepackage{icclslides}
+%%    ...
+%%    \renewcommand{\Myauthor}{Example Author}
+%%    \renewcommand{\Mytitle}{Example Title}
+%%    \begin{document}
+%%
+%% Christoph.Wernhard@tu-dresden.de, Mon May  9 20:57:42 2011
+%%
+
+\usepackage{helvet}
+\usepackage[overlay,absolute]{textpos}
+
+\newcommand{\Myauthor}{Put here the author's name}
+\newcommand{\Mytitle}{Put here the title of the talk}
+
+% \definecolor{mdwblue}{rgb}{0.09,0.09,0.43}
+\definecolor{mdwblue}{HTML}{0b2a51}
+
+\setlength{\TPHorizModule}{1cm}
+\setlength{\TPVertModule}{1cm}
+
+\mode<presentation>
+{
+  \usetheme{default}
+
+  \setbeamercovered{again covered={\opaqueness<1->{0}}}
+  \setbeamertemplate{bibliography item}[text]
+
+  \setbeamersize{text margin left=0.8cm}
+  \setbeamersize{text margin right=0.8cm}
+
+  \setbeamerfont{frametitle}{size=\large,series=\bfseries}
+  \setbeamercolor{frametitle}{fg=OrangeRed1}
+  \addtobeamertemplate{frametitle}{\hspace*{0.2cm}}{}
+
+  \setbeamertemplate{itemize item}
+                    {\textcolor{OrangeRed1}{\normalsize $\blacktriangleright$}}
+  \setbeamertemplate{itemize subitem}
+                    {\textcolor{OrangeRed1}{\normalsize $\triangleright$}}
+  \setbeamertemplate{itemize subsubitem}
+                    {\textcolor{OrangeRed1}
+                    {\normalsize $\blacktriangleright\!\!\blacktriangleright$}}
+
+  \setbeamerfont{titlelike}{series=\bfseries}
+
+  \setbeamerfont{itemize/enumerate subsubbody}{series=\bfseries,size*={8}{10}}
+  \setbeamerfont{itemize/enumerate subbody}{series=\bfseries,size*={8}{10}}
+  \setbeamerfont{itemize/enumerate body}{series=\bfseries,size*={8}{10}}
+
+  \setbeamercolor{mdwblue}{bg=mdwblue,fg=white}
+
+  \setbeamertemplate{headline}{
+   \begin{beamercolorbox}[sep=0.08cm]{mdwblue}
+   \hspace{0.45cm}\includegraphics[width=0.13\hsize]{icclslides/logo_tud.png}
+   \end{beamercolorbox}}
+
+  \setbeamertemplate{footline}{
+   \begin{beamercolorbox}[sep=0.08cm]{mdwblue}
+   \hspace{0.45cm}
+   \raisebox{0.04cm}{
+   \begin{tabular}[b]{p{5.09cm}p{0.5cm}}
+   {\fontsize{4.8}{3ex} \selectfont \Myauthor , \today
+    \raisebox{-1.5pt}{\rule{0cm}{6pt}} }\\[-0.048cm]
+   {\fontsize{4.8}{3ex} \selectfont \Mytitle 
+    \raisebox{-1.5pt}{\rule{0cm}{6pt}}} &
+   {\fontsize{4.8}{3ex} \selectfont \insertpagenumber}
+   \end{tabular}} \hspace{\fill}
+   \includegraphics[width=0.28\hsize]{icclslides/logo_iccl.pdf} \hspace{0.45cm}
+  \end{beamercolorbox}}
+
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% 
+%% Custom Title Page
+%% 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newcommand{\customtitle}{
+  \begin{textblock}{10}(0.54,1.35)
+    {\bf \Large \textcolor{OrangeRed1}{\Mytitle}}
+  \end{textblock}
+  \begin{textblock}{10}(1.03,2.35)
+    {\bf {\normalsize \textcolor{mdwblue}{\Myauthor}}\\[0.3ex]
+      {\small \textcolor{mdwblue}
+        {International Center for Computational Logic}}\\
+      {\small \textcolor{mdwblue}{Technische Universit\"{a}t Dresden}}\\
+      {\small \textcolor{mdwblue}{Germany}}}
+  \end{textblock}
+  \begin{textblock}{5}(6.4,2.7)
+    \includegraphics[width=1.15\hsize]{icclslides/logo_iccl_cube.pdf}
+  \end{textblock}
+  \vspace{3.1cm}
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%
+%% Lists
+%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% 
+%% - Beamer only allows list nesting up to depth 3.
+%% 
+%% - It seems not possible to adjust the vertical itemized list spacing,
+%%   except by e.g. a \parskip command explicitly placed after
+%%   the \begin{itemize} command.
+%% 
+%% - The environments list1-list4 are identical. Their purpose is twofold:
+%%   1. Adjust vertical spacing by automatically inserting the \parskip
+%%      after itemize.
+%%   2. Provide some compatibility to the original style
+%% 
+\newcommand{\listspacing}{\setlength{\parskip}{0.75ex}}
+%%
+\newenvironment{list1}{\begin{itemize}\listspacing}{\end{itemize}}
+\newenvironment{list2}{\begin{itemize}\listspacing}{\end{itemize}}
+\newenvironment{list3}{\begin{itemize}\listspacing}{\end{itemize}}
+\newenvironment{list4}{\begin{itemize}\listspacing}{\end{itemize}}
+
+%% 
+%% Horizontal list indendation
+%% 
+\setlength{\leftmargini}{2em}
+\setlength{\leftmarginii}{1.1em}
+\setlength{\leftmarginiii}{1.5em}
+
+%% 
+%% Some custom commands for coloring
+%% 
+\newcommand{\TB}{\textcolor{mdwblue}}
+\newcommand{\TR}{\textcolor{OrangeRed1}}
+\newcommand{\TG}{\textcolor{lightgray}}
+\newcommand{\TGR}{\textcolor{DarkSlateGray4}}
+\newcommand{\TW}{\textcolor{white}}
+\newcommand{\TLSB}{\textcolor{LightSteelBlue3}}
+\newcommand{\TY}{\textcolor{gray}}
+\newcommand{\TGRE}{\textcolor{green}}
+
+\boldmath
+
+

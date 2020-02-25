@@ -1,0 +1,17 @@
+\babel@toc {british}{}
+\beamer@sectionintoc {1}{About me}{2}{0}{1}
+\beamer@sectionintoc {2}{Motivation}{3}{0}{2}
+\beamer@sectionintoc {3}{Background}{4}{0}{3}
+\beamer@subsectionintoc {3}{1}{Different extensions of logic}{4}{0}{3}
+\beamer@subsectionintoc {3}{2}{Example Vertex cover}{5}{0}{3}
+\beamer@subsectionintoc {3}{3}{Courcelle's theorem}{6}{0}{3}
+\beamer@subsectionintoc {3}{4}{\#SAT and WMC}{7}{0}{3}
+\beamer@subsectionintoc {3}{5}{Tree decomposition}{10}{0}{3}
+\beamer@sectionintoc {4}{implementations}{11}{0}{4}
+\beamer@subsectionintoc {4}{1}{gpusat1}{11}{0}{4}
+\beamer@subsectionintoc {4}{2}{gpusat2}{12}{0}{4}
+\beamer@subsectionintoc {4}{3}{dpdb}{13}{0}{4}
+\beamer@sectionintoc {5}{Visualization}{15}{0}{5}
+\beamer@subsectionintoc {5}{1}{Handcrafted}{15}{0}{5}
+\beamer@sectionintoc {6}{Further Visualization}{17}{0}{6}
+\beamer@sectionintoc {7}{Outlook}{18}{0}{7}

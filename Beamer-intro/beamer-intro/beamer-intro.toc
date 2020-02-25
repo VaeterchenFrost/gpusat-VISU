@@ -1,0 +1,13 @@
+\babel@toc {british}{}
+\beamer@sectionintoc {1}{Introduction}{2}{0}{1}
+\beamer@subsectionintoc {1}{1}{Structure}{4}{0}{1}
+\beamer@subsectionintoc {1}{2}{Titlepage}{10}{0}{1}
+\beamer@subsectionintoc {1}{3}{Sections}{11}{0}{1}
+\beamer@sectionintoc {2}{Alerts}{12}{0}{2}
+\beamer@sectionintoc {3}{Overlays}{13}{0}{3}
+\beamer@subsectionintoc {3}{1}{Pause}{14}{0}{3}
+\beamer@subsectionintoc {3}{2}{Lists}{18}{0}{3}
+\beamer@subsubsectionintoc {3}{2}{1}{\textbackslash only and \textbackslash uncover}{32}{0}{3}
+\beamer@subsubsectionintoc {3}{2}{2}{Example with Tikz}{40}{0}{3}
+\beamer@sectionintoc {4}{Further Information}{50}{0}{4}
+\beamer@sectionintoc {5}{References}{51}{0}{5}
