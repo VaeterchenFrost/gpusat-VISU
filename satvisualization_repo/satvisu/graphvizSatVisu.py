@@ -104,21 +104,21 @@ def solutionNode(solutionTable, toplabel="", bottomlabel="", transpose=False):
 def main():
     # example input:
     tdGraph = {
-        "bagpre": "bag %s",
-        "edgearray":
+        "bagpre" : "bag %s",
+        "edgearray" : 
         [
-            [1, 0],
-            [2, 1],
-            [3, 1],
-            [4, 3]
+            [ 1, 0 ],
+            [ 2, 1 ],
+            [ 3, 1 ],
+            [ 4, 3 ]
         ],
-        "labelarray":
+        "labeldict" : 
         {
-            "0": ["[1 4 7]"],
-            "1": ["[1 2 4 6]"],
-            "2": ["[1 2 5]"],
-            "3": ["[2 4 8]"],
-            "4": ["[2 3 8]"]
+            "0" : [ "[1 4 7]" ],
+            "1" : [ "[1 2 4 6]" ],
+            "2" : [ "[1 2 5]" ],
+            "3" : [ "[2 4 8]" ],
+            "4" : [ "[2 3 8]" ]
         }
     }
 
@@ -145,8 +145,8 @@ def main():
             'margin': '0.11,0.01'})
 
     # -----------Iterate labelarray ---------------
-    for key in tdGraph["labelarray"]:
-        s.node(bagpre % key, bagNode(bagpre % key, tdGraph["labelarray"][key]))
+    for key in tdGraph["labeldict"]:
+        s.node(bagpre % key, bagNode(bagpre % key, tdGraph["labeldict"][key]))
 
     s.edges(
         [(bagpre % first, bagpre % second) for (first, second) in tdGraph["edgearray"]])
