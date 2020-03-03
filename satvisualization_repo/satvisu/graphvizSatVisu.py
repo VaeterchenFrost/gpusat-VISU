@@ -102,23 +102,26 @@ def solutionNode(solutionTable, toplabel="", bottomlabel="", transpose=False):
 
 
 def main():
+
+
+def manual():
     # example input:
     tdGraph = {
-        "bagpre" : "bag %s",
-        "edgearray" : 
+        "bagpre": "bag %s",
+        "edgearray":
         [
-            [ 1, 0 ],
-            [ 2, 1 ],
-            [ 3, 1 ],
-            [ 4, 3 ]
+            [1, 0],
+            [2, 1],
+            [3, 1],
+            [4, 3]
         ],
-        "labeldict" : 
+        "labeldict":
         {
-            "0" : [ "[1 4 7]" ],
-            "1" : [ "[1 2 4 6]" ],
-            "2" : [ "[1 2 5]" ],
-            "3" : [ "[2 4 8]" ],
-            "4" : [ "[2 3 8]" ]
+            "0": ["[1 4 7]"],
+            "1": ["[1 2 4 6]"],
+            "2": ["[1 2 5]"],
+            "3": ["[2 4 8]"],
+            "4": ["[2 3 8]"]
         }
     }
 
@@ -148,8 +151,8 @@ def main():
     for key in tdGraph["labeldict"]:
         s.node(bagpre % key, bagNode(bagpre % key, tdGraph["labeldict"][key]))
 
-    s.edges(
-        [(bagpre % first, bagpre % second) for (first, second) in tdGraph["edgearray"]])
+    s.edges([(bagpre % first, bagpre % second)
+             for (first, second) in tdGraph["edgearray"]])
     # s.attr('edge', minlen="1")
 
     TIMELINE = [(0,), (1,),
@@ -194,7 +197,8 @@ def main():
             if lastSol:
                 baseStyle(s, lastSol)
 
-        # if len(node) < 1: raise IndexError("Error within Timeline - found len=0")
+        # if len(node) < 1: raise IndexError("Error within Timeline - found
+        # len=0")
 
         if len(node) > 1:
             # solution to be displayed
@@ -412,9 +416,8 @@ def incidence():
                                                              ) in variables,
                                                          var_cl_list))]))
 
-        emp_var = list(set([abs(a[0]) for a in list(filter(lambda var_cl:
-                                                           var_cl[1] in emp_clause,
-                                                           var_cl_list))]))
+        emp_var = list(set([abs(a[0]) for a in list(
+            filter(lambda var_cl: var_cl[1] in emp_clause, var_cl_list))]))
         print(i, 'emp_clause ', emp_clause)
         print(i, 'emp_var ', emp_var)
 
@@ -460,5 +463,14 @@ def incidence():
 
 
 if __name__ == "__main__":
-    main()                                      # Call Mainroutine
+    import argparse
+    parser = argparse.ArgumentParser(
+        prog='graphvizSatVisu.py',
+        description='Visualizing Dynamic Programming on Treedecompositions.')
+    parser.add_argument('file', nargs='?',
+                        type=argparse.FileType('r', encoding='UTF-8'),
+                        default=sys.stdin)
+
+    infile = parser.parse_args().file
+    main(infile)                                      # Call Mainroutine
     # incidence()
