@@ -134,28 +134,9 @@ def solutionNode(solutionTable, toplabel="", bottomlabel="", transpose=False):
 def main(infile):
     visudata=read_json(infile)
     # print("READS>>>\n", json.dumps(visudata))
-
-def manual():
-    # example input:
-    tdGraph = {
-        "bagpre": "bag %s",
-        "edgearray":
-        [
-            [1, 0],
-            [2, 1],
-            [3, 1],
-            [4, 3]
-        ],
-        "labeldict":
-        {
-            "0": ["[1 4 7]"],
-            "1": ["[1 2 4 6]"],
-            "2": ["[1 2 5]"],
-            "3": ["[2 4 8]"],
-            "4": ["[2 3 8]"]
-        }
-    }
-
+    tdGraph = visudata["treeDecJson"]
+    TIMELINE = visudata["tdTimeline"]
+    
     bagpre = tdGraph["bagpre"]
     joinpre = "Join %d~%d"
     solpre = "sol%d"
@@ -178,13 +159,91 @@ def manual():
             'style': "rounded,filled",
             'margin': '0.11,0.01'})
 
-    # -----------Iterate labelarray ---------------
-    for key in tdGraph["labeldict"]:
-        s.node(bagpre % key, bagNode(bagpre % key, tdGraph["labeldict"][key]))
+    # -----------Iterate labeldict ---------------
+    
+    for item in tdGraph["labeldict"]:
+        bagname = bagpre % str(item["id"])
+        s.node(bagname, bagNode(bagname, item["list"]))
 
-    s.edges([(bagpre % first, bagpre % second)
+    s.edges([(bagpre % str(first), bagpre % str(second))
              for (first, second) in tdGraph["edgearray"]])
     # s.attr('edge', minlen="1")
+
+    # -----------Iterate TIMELINE ---------------
+    
+    for i, node in enumerate(TIMELINE):
+        if i > 0:
+            prevhead = TIMELINE[i - 1][0]
+            baseStyle(s, bagpre % prevhead
+                      if isinstance(prevhead, int) else joinpre % tuple(prevhead))
+            if lastSol:
+                baseStyle(s, lastSol)
+
+        # if len(node) < 1: raise IndexError("Error within Timeline - found
+        # len=0")
+
+        if len(node) > 1:
+            # solution to be displayed
+            id_inv_bags = node[0]
+            if isinstance(id_inv_bags, int):
+                lastSol = solpre % id_inv_bags
+                s.node(lastSol, solutionNode(*(node[1])), shape='record')
+                emphasiseNode(s, lastSol)
+                s.edge(bagpre % id_inv_bags, lastSol)
+
+            else:  # joined node with 2 bags
+                suc = TIMELINE[i + 1][0]
+                print('joining ', node[0], ' to ', suc)  # get the joined bags
+                # solution
+                id_inv_bags = tuple(id_inv_bags)
+                lastSol = soljoinpre % id_inv_bags
+                s.node(lastSol, solutionNode(*(node[1])), shape='record')
+                emphasiseNode(s, lastSol)
+                s.edge(joinpre % id_inv_bags, lastSol)
+                # edges
+                for child in id_inv_bags:             # basically "remove" current
+                    # TODO check where 2 args are possibly occuring
+                    s.edge(
+                        bagpre % child
+                        if isinstance(child, int) else joinpre % child,
+                        bagpre % suc
+                        if isinstance(suc, int) else joinpre % suc,
+                        style='invis',
+                        constraint='false')
+                    s.edge(bagpre % child if isinstance(child, int)
+                           else joinpre % child,
+                           joinpre % id_inv_bags)
+                s.edge(joinpre % id_inv_bags, bagpre % suc
+                       if isinstance(suc, int) else joinpre % suc)
+
+        emphasiseNode(s, bagpre % node[0]
+                      if isinstance(node[0], int) else joinpre % tuple(node[0]))
+
+        s.render(view=True, format='png', filename=_filename % i)
+    
+    
+    
+def manual():
+    # example input:
+    tdGraph = {
+        "bagpre": "bag %s",
+        "edgearray":
+        [
+            [1, 0],
+            [2, 1],
+            [3, 1],
+            [4, 3]
+        ],
+        "labeldict":
+        {
+            "0": ["[1 4 7]"],
+            "1": ["[1 2 4 6]"],
+            "2": ["[1 2 5]"],
+            "3": ["[2 4 8]"],
+            "4": ["[2 3 8]"]
+        }
+    }
+
 
     TIMELINE = [(0,), (1,),
                 (2, ([['id', 'v1', 'v2', 'n Sol'], [0, 0, 0, 0], [1, 1, 0, 1],
@@ -220,53 +279,6 @@ def manual():
                      "sol bag 0", "sum: 22", True))
                 ]
 
-    for i, node in enumerate(TIMELINE):
-        if i > 0:
-            prevhead = TIMELINE[i - 1][0]
-            baseStyle(s, bagpre % prevhead
-                      if isinstance(prevhead, int) else joinpre % prevhead)
-            if lastSol:
-                baseStyle(s, lastSol)
-
-        # if len(node) < 1: raise IndexError("Error within Timeline - found
-        # len=0")
-
-        if len(node) > 1:
-            # solution to be displayed
-            if isinstance(node[0], int):
-                lastSol = solpre % node[0]
-                s.node(lastSol, solutionNode(*(node[1])), shape='record')
-                emphasiseNode(s, lastSol)
-                s.edge(bagpre % node[0], lastSol)
-
-            else:  # joined node with 2 bags
-                suc = TIMELINE[i + 1][0]
-                print('joining ', node[0], ' to ', suc)  # get the joined bags
-                # solution
-                lastSol = soljoinpre % node[0]
-                s.node(lastSol, solutionNode(*(node[1])), shape='record')
-                emphasiseNode(s, lastSol)
-                s.edge(joinpre % node[0], lastSol)
-                # edges
-                for child in node[0]:             # basically "remove" current
-                    # TODO check where 2 args are possibly occuring
-                    s.edge(
-                        bagpre % child
-                        if isinstance(child, int) else joinpre % child,
-                        bagpre % suc
-                        if isinstance(suc, int) else joinpre % suc,
-                        style='invis',
-                        constraint='false')
-                    s.edge(bagpre % child if isinstance(child, int)
-                           else joinpre % child,
-                           joinpre % node[0])
-                s.edge(joinpre % node[0], bagpre % suc
-                       if isinstance(suc, int) else joinpre % suc)
-
-        emphasiseNode(s, bagpre % node[0]
-                      if isinstance(node[0], int) else joinpre % node[0])
-
-        s.render(view=True, format='png', filename=_filename % i)
 
 
 def endresult():

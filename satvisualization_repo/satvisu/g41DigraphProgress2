@@ -21,10 +21,6 @@ strict digraph structs {
 	"bag 1" [fillcolor=yellow]
 	"bag 1" [penwidth=2.5]
 	"bag 1" [fillcolor=white penwidth=1.0]
-	sol2 [label="{sol bag 2|{{id|0|1|2|3}|{v1|0|1|0|1}|{v2|0|0|1|1}|{n Sol|0|1|1|2}}|sum: 4}" shape=record]
-	sol2 [fillcolor=yellow]
-	sol2 [penwidth=2.5]
-	"bag 2" -> sol2
 	"bag 2" [fillcolor=yellow]
 	"bag 2" [penwidth=2.5]
 }

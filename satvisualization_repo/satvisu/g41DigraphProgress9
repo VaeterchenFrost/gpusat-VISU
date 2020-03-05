@@ -67,4 +67,12 @@ strict digraph structs {
 	"Join 2~3" -> "bag 1"
 	"Join 2~3" [fillcolor=yellow]
 	"Join 2~3" [penwidth=2.5]
+	"Join 2~3" [fillcolor=white penwidth=1.0]
+	"solJoin2~3" [fillcolor=white penwidth=1.0]
+	sol1 [label="{sol bag 1|{{id|0|1|2|3}|{v1|0|1|0|1}|{v4|0|0|1|1}|{n Sol|2|9|3|6}}|sum: 20}" shape=record]
+	sol1 [fillcolor=yellow]
+	sol1 [penwidth=2.5]
+	"bag 1" -> sol1
+	"bag 1" [fillcolor=yellow]
+	"bag 1" [penwidth=2.5]
 }

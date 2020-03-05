@@ -21,6 +21,9 @@ strict digraph structs {
 	"bag 1" [fillcolor=yellow]
 	"bag 1" [penwidth=2.5]
 	"bag 1" [fillcolor=white penwidth=1.0]
+	"bag 2" [fillcolor=yellow]
+	"bag 2" [penwidth=2.5]
+	"bag 2" [fillcolor=white penwidth=1.0]
 	sol2 [label="{sol bag 2|{{id|0|1|2|3}|{v1|0|1|0|1}|{v2|0|0|1|1}|{n Sol|0|1|1|2}}|sum: 4}" shape=record]
 	sol2 [fillcolor=yellow]
 	sol2 [penwidth=2.5]
@@ -33,18 +36,6 @@ strict digraph structs {
 	"bag 3" [penwidth=2.5]
 	"bag 3" [fillcolor=white penwidth=1.0]
 	sol2 [fillcolor=white penwidth=1.0]
-	sol4 [label="{sol bag 4|{{id|0|1|2|3}|{v2|0|1|0|1}|{v8|0|0|1|1}|{n Sol|1|2|1|1}}|sum: 5}" shape=record]
-	sol4 [fillcolor=yellow]
-	sol4 [penwidth=2.5]
-	"bag 4" -> sol4
 	"bag 4" [fillcolor=yellow]
 	"bag 4" [penwidth=2.5]
-	"bag 4" [fillcolor=white penwidth=1.0]
-	sol4 [fillcolor=white penwidth=1.0]
-	sol3 [label="{sol bag 3|{{id|0|1|2|3}|{v2|0|1|0|1}|{v4|0|0|1|1}|{n Sol|1|2|2|3}}|sum: 8}" shape=record]
-	sol3 [fillcolor=yellow]
-	sol3 [penwidth=2.5]
-	"bag 3" -> sol3
-	"bag 3" [fillcolor=yellow]
-	"bag 3" [penwidth=2.5]
 }
