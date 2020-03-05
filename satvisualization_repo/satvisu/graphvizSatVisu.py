@@ -11,6 +11,36 @@
 
 from graphviz import Digraph, Graph
 import numpy as np
+import json
+import sys
+import io
+
+
+def read_json(json_data):
+    """
+    Read json data into a callable object.
+    Throws error if the parsed object has length 0.
+
+    Parameters
+    ----------
+    json_data : String or io.TextIOWrapper
+        The object to be read from.
+
+    Returns
+    -------
+    result : JSON
+        The parsed json.
+
+    """
+    if isinstance(json_data, str):
+        result = json.loads(json_data)
+    elif isinstance(json_data, io.TextIOWrapper):
+        result =  json.load(json_data)
+    else:
+        print("read_json called on ", type(json_data))
+        result = json_data
+    assert len(result)>0, "Please input a valid JSON resource!"
+    return result
 
 
 def baseStyle(graph, node):
@@ -101,8 +131,9 @@ def solutionNode(solutionTable, toplabel="", bottomlabel="", transpose=False):
     return "{" + result + "}"
 
 
-def main():
-
+def main(infile):
+    visudata=read_json(infile)
+    # print("READS>>>\n", json.dumps(visudata))
 
 def manual():
     # example input:
@@ -468,8 +499,7 @@ if __name__ == "__main__":
         prog='graphvizSatVisu.py',
         description='Visualizing Dynamic Programming on Treedecompositions.')
     parser.add_argument('file', nargs='?',
-                        type=argparse.FileType('r', encoding='UTF-8'),
-                        default=sys.stdin)
+                        type=argparse.FileType('r', encoding='UTF-8'))
 
     infile = parser.parse_args().file
     main(infile)                                      # Call Mainroutine
