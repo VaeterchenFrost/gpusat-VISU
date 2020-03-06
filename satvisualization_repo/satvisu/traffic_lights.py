@@ -32,5 +32,6 @@ t.attr(overlap='false')
 t.attr(label=r'PetriNet Model TrafficLights\n'
              r'Extracted from ConceptBase and layed out by Graphviz')
 t.attr(fontsize='12')
-
+t.pipe()
+print(t.source)
 t.view()

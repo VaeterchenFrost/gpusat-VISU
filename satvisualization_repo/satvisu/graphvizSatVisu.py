@@ -9,7 +9,7 @@
     fontcolor='green')
 """
 
-from graphviz import Digraph, Graph
+from graphviz import Digraph, Graph, RENDERERS
 import numpy as np
 import json
 import sys
@@ -132,8 +132,10 @@ def solutionNode(solutionTable, toplabel="", bottomlabel="", transpose=False):
 
 
 def main(infile):
+    print(RENDERERS)
     visudata=read_json(infile)
     # print("READS>>>\n", json.dumps(visudata))
+    
     tdGraph = visudata["treeDecJson"]
     TIMELINE = visudata["tdTimeline"]
     
@@ -219,8 +221,10 @@ def main(infile):
         emphasiseNode(s, bagpre % node[0]
                       if isinstance(node[0], int) else joinpre % tuple(node[0]))
 
-        s.render(view=True, format='png', filename=_filename % i)
-    
+        
+        s.pipe(format='dot')     
+        print(s.pipe(format='json').decode('utf-8'))   
+        s.render(view=False, format='dot', filename=_filename % i)
     
     
 def manual():
@@ -278,7 +282,6 @@ def manual():
                       [7, 1, 1, 1, 6]],
                      "sol bag 0", "sum: 22", True))
                 ]
-
 
 
 def endresult():
