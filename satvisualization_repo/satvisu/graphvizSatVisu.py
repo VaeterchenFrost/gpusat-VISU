@@ -35,11 +35,11 @@ def read_json(json_data):
     if isinstance(json_data, str):
         result = json.loads(json_data)
     elif isinstance(json_data, io.TextIOWrapper):
-        result =  json.load(json_data)
+        result = json.load(json_data)
     else:
         print("read_json called on ", type(json_data))
         result = json_data
-    assert len(result)>0, "Please input a valid JSON resource!"
+    assert len(result) > 0, "Please input a valid JSON resource!"
     return result
 
 
@@ -52,6 +52,10 @@ def emphasiseNode(graph, node, _fillcolor="yellow", _penwidth="2.5"):
         graph.node(node, fillcolor=_fillcolor)
     if _penwidth:
         graph.node(node, penwidth=_penwidth)
+
+
+def styleHideNode(graph, node):
+    graph.node(node, style="invis")
 
 
 def bagNode(head, tail, anchor="anchor", headcolor="white",
@@ -133,12 +137,12 @@ def solutionNode(solutionTable, toplabel="", bottomlabel="", transpose=False):
 
 def main(infile):
     print(RENDERERS)
-    visudata=read_json(infile)
+    visudata = read_json(infile)
     # print("READS>>>\n", json.dumps(visudata))
-    
+
     tdGraph = visudata["treeDecJson"]
     TIMELINE = visudata["tdTimeline"]
-    
+
     bagpre = tdGraph["bagpre"]
     joinpre = "Join %d~%d"
     solpre = "sol%d"
@@ -162,7 +166,7 @@ def main(infile):
             'margin': '0.11,0.01'})
 
     # -----------Iterate labeldict ---------------
-    
+
     for item in tdGraph["labeldict"]:
         bagname = bagpre % str(item["id"])
         s.node(bagname, bagNode(bagname, item["list"]))
@@ -171,8 +175,8 @@ def main(infile):
              for (first, second) in tdGraph["edgearray"]])
     # s.attr('edge', minlen="1")
 
-    # -----------Iterate TIMELINE ---------------
-    
+    # >>>>>>>>>>>>Iterate TIMELINE FORWARD>>>>>>>>>>>>>
+    """
     for i, node in enumerate(TIMELINE):
         if i > 0:
             prevhead = TIMELINE[i - 1][0]
@@ -221,12 +225,95 @@ def main(infile):
         emphasiseNode(s, bagpre % node[0]
                       if isinstance(node[0], int) else joinpre % tuple(node[0]))
 
-        
-        s.pipe(format='dot')     
-        print(s.pipe(format='json').decode('utf-8'))   
-        s.render(view=False, format='dot', filename=_filename % i)
+        # s.pipe(format='dot')
+        # print(s.pipe(format='json').decode('utf-8'))
+        # s.render(view=False, format='dot', filename=_filename % i)
+        """
+    for i, node in enumerate(TIMELINE):
+        if len(node) > 1:
+            # solution to be displayed
+            id_inv_bags = node[0]
+            if isinstance(id_inv_bags, int):
+                lastSol = solpre % id_inv_bags
+                s.node(lastSol, solutionNode(*(node[1])), shape='record')
+               
+                s.edge(bagpre % id_inv_bags, lastSol)
+
+            else:  # joined node with 2 bags
+                suc = TIMELINE[i + 1][0]
+                print('joining ', node[0], ' to ', suc)  # get the joined bags
+                # solution
+                id_inv_bags = tuple(id_inv_bags)
+                lastSol = soljoinpre % id_inv_bags
+                s.node(lastSol, solutionNode(*(node[1])), shape='record')
+                
+                s.edge(joinpre % id_inv_bags, lastSol)
+                # edges
+                for child in id_inv_bags:             # basically "remove" current
+                    # TODO check where 2 args are possibly occuring
+                    s.edge(
+                        bagpre % child
+                        if isinstance(child, int) else joinpre % child,
+                        bagpre % suc
+                        if isinstance(suc, int) else joinpre % suc,
+                        style='invis',
+                        constraint='false')
+                    s.edge(bagpre % child if isinstance(child, int)
+                           else joinpre % child,
+                           joinpre % id_inv_bags)
+                s.edge(joinpre % id_inv_bags, bagpre % suc
+                       if isinstance(suc, int) else joinpre % suc)
+        s.render(view=False, format='png', filename=_filename % i)
+
+    # <<<<<<<<<<<Iterate TIMELINE BACKWARDS<<<<<<<<<<<<<<<<<<<       
+    for i, node in enumerate(TIMELINE[-2::-1], start=1):
+        print("Reverse traversing on", node[0])
+        # Delete previous emphasis
+        if i > 0:
+            prevhead = TIMELINE[len(TIMELINE)-i][0]
+            baseStyle(s, bagpre % prevhead
+                      if isinstance(prevhead, int) else joinpre % tuple(prevhead))
+            if lastSol:
+                baseStyle(s, lastSol)
+                
+        if len(node) > 1:
+            # solution to be displayed
+            id_inv_bags = node[0]
+            if isinstance(id_inv_bags, int):
+                lastSol = solpre % id_inv_bags
+                styleHideNode(s, lastSol)
+                emphasiseNode(s, lastSol)
+                s.edge(bagpre % id_inv_bags, lastSol)
     
-    
+            else:  # joined node with 2 bags
+                suc = TIMELINE[i + 1][0]
+                print('joining ', node[0], ' to ', suc)  # get the joined bags
+                # solution
+                id_inv_bags = tuple(id_inv_bags)
+                lastSol = soljoinpre % id_inv_bags
+                s.node(lastSol, solutionNode(*(node[1])), shape='record')
+                emphasiseNode(s, lastSol)
+                s.edge(joinpre % id_inv_bags, lastSol)
+                # edges
+                for child in id_inv_bags:             # basically "remove" current
+                    # TODO check where 2 args are possibly occuring
+                    s.edge(
+                        bagpre % child
+                        if isinstance(child, int) else joinpre % child,
+                        bagpre % suc
+                        if isinstance(suc, int) else joinpre % suc,
+                        style='invis',
+                        constraint='false')
+                    s.edge(bagpre % child if isinstance(child, int)
+                           else joinpre % child,
+                           joinpre % id_inv_bags)
+                s.edge(joinpre % id_inv_bags, bagpre % suc
+                       if isinstance(suc, int) else joinpre % suc)
+
+        emphasiseNode(s, bagpre % node[0]
+                      if isinstance(node[0], int) else joinpre % tuple(node[0]))
+
+
 def manual():
     # example input:
     tdGraph = {
@@ -248,40 +335,111 @@ def manual():
         }
     }
 
-
-    TIMELINE = [(0,), (1,),
-                (2, ([['id', 'v1', 'v2', 'n Sol'], [0, 0, 0, 0], [1, 1, 0, 1],
-                      [2, 0, 1, 1], [3, 1, 1, 2]], 'sol bag 2', 'sum: 4', True)),
-                (3,),
-                (4, ([["id", "v2", "v8", "n Sol"], [0, 0, 0, 1], [1, 1, 0, 2],
-                      [2, 0, 1, 1], [3, 1, 1, 1]], "sol bag 4", "sum: 5", True)),
-                (3, ([["id", "v2", "v4", "n Sol"],
-                      [0, 0, 0, 1], [1, 1, 0, 2], [2, 0, 1, 2],
-                      [3, 1, 1, 3]], "sol bag 3", "sum: 8", True)),
-                ((2, 3), ([["id", "v1", "v2", "v4", "n Sol"],
-                           [0, 0, 0, 0, 0],
-                           [1, 1, 0, 0, 1],
-                           [2, 0, 1, 0, 2],
-                           [3, 1, 1, 0, 4],
-                           [4, 0, 0, 1, 0],
-                           [5, 1, 0, 1, 2],
-                           [6, 0, 1, 1, 3],
-                           [7, 1, 1, 1, 6]],
-                          "sol Join 2~3", "sum: 18", True)),
-                (1, ([["id", "v1", "v4", "n Sol"],
-                      [0, 0, 0, 2], [1, 1, 0, 9], [2, 0, 1, 3],
-                      [3, 1, 1, 6]], "sol bag 1", "sum: 20", True)),
-                (0, ([["id", "v1", "v4", "v7", "n Sol"],
-                      [0, 0, 0, 0, 2],
-                      [1, 1, 0, 0, 0],
-                      [2, 0, 1, 0, 0],
-                      [3, 1, 1, 0, 0],
-                      [4, 0, 0, 1, 2],
-                      [5, 1, 0, 1, 9],
-                      [6, 0, 1, 1, 3],
-                      [7, 1, 1, 1, 6]],
-                     "sol bag 0", "sum: 22", True))
-                ]
+    TIMELINE = [
+        [0],
+        [1],
+        [2],
+        [
+            2,
+            [
+                [
+                    ["id", "v1", "v2", "n Sol"],
+                    [0, 0, 0, 0],
+                    [1, 1, 0, 1],
+                    [2, 0, 1, 1],
+                    [3, 1, 1, 2]
+                ],
+                "sol bag 2",
+                "sum: 4",
+                True
+            ]
+        ],
+        [3],
+        [4],
+        [
+            4,
+            [
+                [
+                    ["id", "v2", "v8", "n Sol"],
+                    [0, 0, 0, 1],
+                    [1, 1, 0, 2],
+                    [2, 0, 1, 1],
+                    [3, 1, 1, 1]
+                ],
+                "sol bag 4",
+                "sum: 5",
+                True
+            ]
+        ],
+        [
+            3,
+            [
+                [
+                    ["id", "v2", "v4", "n Sol"],
+                    [0, 0, 0, 1],
+                    [1, 1, 0, 2],
+                    [2, 0, 1, 2],
+                    [3, 1, 1, 3]
+                ],
+                "sol bag 3",
+                "sum: 8",
+                True
+            ]
+        ],
+        [
+            [2, 3],
+            [
+                [
+                    ["id", "v1", "v2", "v4", "n Sol"],
+                    [0, 0, 0, 0, 0],
+                    [1, 1, 0, 0, 1],
+                    [2, 0, 1, 0, 2],
+                    [3, 1, 1, 0, 4],
+                    [4, 0, 0, 1, 0],
+                    [5, 1, 0, 1, 2],
+                    [6, 0, 1, 1, 3],
+                    [7, 1, 1, 1, 6]
+                ],
+                "sol Join 2~3",
+                "sum: 18",
+                True
+            ]
+        ],
+        [
+            1,
+            [
+                [
+                    ["id", "v1", "v4", "n Sol"],
+                    [0, 0, 0, 2],
+                    [1, 1, 0, 9],
+                    [2, 0, 1, 3],
+                    [3, 1, 1, 6]
+                ],
+                "sol bag 1",
+                "sum: 20",
+                True
+            ]
+        ],
+        [
+            0,
+            [
+                [
+                    ["id", "v1", "v4", "v7", "n Sol"],
+                    [0, 0, 0, 0, 2],
+                    [1, 1, 0, 0, 0],
+                    [2, 0, 1, 0, 0],
+                    [3, 1, 1, 0, 0],
+                    [4, 0, 0, 1, 2],
+                    [5, 1, 0, 1, 9],
+                    [6, 0, 1, 1, 3],
+                    [7, 1, 1, 1, 6]
+                ],
+                "sol bag 0",
+                "sum: 22",
+                True
+            ]
+        ]
+    ]
 
 
 def endresult():
