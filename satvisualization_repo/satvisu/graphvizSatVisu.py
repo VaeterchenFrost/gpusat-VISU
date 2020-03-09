@@ -302,6 +302,7 @@ def main(infile):
         s.render(
             view=True, format='png', filename=_filename %
             (len(TIMELINE) - i))
+        incidence(EDGELIST =list(map(lambda x: [x['id'],x['list']],visudata["clausesJson"])))
 
 
 def manual():
@@ -504,13 +505,27 @@ def endresult():
     with open("example41.dot", "w") as file:
         file.write(s.__str__())
 
-    s.render(view=True, format='png', filename=_filename)
+    # s.render(view=True, format='png', filename=_filename)
+    
 
 
-def incidence():
-
-    r_clause = 10
+def incidence(EDGELIST = [[1, [1, 4, 6]], [2, [1, -5]], [3, [-1, 7]], [4, [2, 3]], [5, [2, 5]],
+                [6, [2, -6]], [7, [3, -8]], [8, [4, -8]], [9, [-4, 6]], [10, [-4, 7]]],
+              TIMELINE = (None, None,
+                [1, 2, 5],
+                None,
+                [2, 3, 8],
+                [2, 4, 8],
+                [1, 2, 4],  # JOIN
+                [1, 2, 4, 6],
+                [1, 4, 7]
+                )):
+    r_clause = len(EDGELIST)
     r_vars = 8
+    
+    
+    
+
     clausetag = "c_%d"
     vartag = "v_%d"
 
@@ -528,12 +543,9 @@ def incidence():
         clauses.edges([(clausetag % (i + 1), clausetag % (i + 2))
                        for i in range(r_clause - 1)])
 
-    g_incid.attr(
-        'node',
-        shape='diamond',
-        fontcolor='black',
-        penwidth='2.2',
-        style='dotted')
+    g_incid.attr('node', shape='diamond', fontcolor='black',
+                 penwidth='2.2',
+                 style='dotted')
     with g_incid.subgraph(name='cluster_ivar', edge_attr={'style': 'invis'}, node_attr={'style': 'dotted'}) as ivars:
         ivars.attr(label='variables')
         ivars.edges([(vartag % (i + 1), vartag % (i + 2))
@@ -545,9 +557,7 @@ def incidence():
                                                len(colors)])
 
     g_incid.attr('edge', constraint="false")
-    EDGELIST = [[1, [1, 4, 6]], [2, [1, -5]], [3, [-1, 7]], [4, [2, 3]], [5, [2, 5]],
-                [6, [2, -6]], [7, [3, -8]], [8, [4, -8]], [9, [-4, 6]], [10, [-4, 7]]]
-    # (1,) for clause (2,) for variable
+
 
     for clause in EDGELIST:
         for var in clause[1]:
@@ -562,25 +572,7 @@ def incidence():
                              arrowtail='odot',
                              # style='dotted'
                              )
-            # color=sns.xkcd_rgb[k[(var * 100) % len(k)]]) # yellow
 
-    # timeline for incidence emphasis
-    # s.node('bag4', bagNode("bag 4", "[2 3 8]", headcolor='green'))
-    # s.node('bag3', bagNode("bag 3", "[2 4 8]"))
-    # s.node('join1', bagNode("Join", "2~3"))
-    # s.node('bag2', bagNode("bag 2", "[1 2 5]"))
-    # s.node('bag1', bagNode("bag 1", "[1 2 4 6]"))
-    # s.node('bag0', bagNode("bag 0", "[1 4 7]"))
-    TIMELINE = (None, None,
-                [1, 2, 5],
-                None,
-                [2, 3, 8],
-                [2, 4, 8],
-                [1, 2, 4],  # JOIN
-
-                [1, 2, 4, 6],
-                [1, 4, 7]
-                )
 
     # make edgelist variable-based (varX, clauseY), ...
     import itertools
@@ -589,7 +581,10 @@ def incidence():
         map(lambda y: list(map(lambda x: (x, y[0]), y[1])), EDGELIST))
 
     var_cl_list = list(itertools.chain.from_iterable(tr))  # flatten
-    # print('var_cl_list', var_cl_list)
+    print('var_cl_list', var_cl_list)
+    # var_cl_list [(1, 1), (4, 1), (6, 1), (1, 2), (-5, 2), (-1, 3), (7, 3), (2, 4), 
+    #              (3, 4), (2, 5), (5, 5), (2, 6), (-6, 6), (3, 7), (-8, 7), (4, 8), 
+    #              (-8, 8), (-4, 9), (6, 9), (-4, 10), (7, 10)]
 
     bodybaselen = len(g_incid.body)
     for i, variables in enumerate(TIMELINE):    # all timesteps
@@ -603,7 +598,6 @@ def incidence():
                 filename='incidenceGraph%d' %
                 i)
             continue
-        # print(len(g_incid.body))
 
         emp_clause = list(set([a[1] for a in list(filter(lambda var_cl:
                                                          abs(var_cl[0]
@@ -612,8 +606,8 @@ def incidence():
 
         emp_var = list(set([abs(a[0]) for a in list(
             filter(lambda var_cl: var_cl[1] in emp_clause, var_cl_list))]))
-        print(i, 'emp_clause ', emp_clause)
-        print(i, 'emp_var ', emp_var)
+        # print(i, 'emp_clause ', emp_clause)
+        # print(i, 'emp_var ', emp_var)
 
         for var in emp_var:
             _vartag = vartag % abs(var)
@@ -629,23 +623,17 @@ def incidence():
             _style = 'solid' if clause in emp_clause else 'dotted'
             _vartag = vartag % abs(var)
 
-            # if i > 0 and (abs(var) not in variables) and (
-            #         abs(var) in TIMELINE[i - 1]):
-            #     g_incid.node(_vartag, _vartag, style='dotted')
-
             if var >= 0:
-
                 g_incid.edge(clausetag % clause,
                              _vartag,
                              color=colors[var % len(colors)],
                              style=_style)
-            else:
+            else:                                       # negated variable
                 g_incid.edge(clausetag % clause,
                              _vartag,
                              color=colors[-var % len(colors)],
                              arrowtail='odot',
-                             style=_style
-                             )
+                             style=_style)
         # print(g_incid.body)
         # body – Iterable of verbatim lines to add to the graph body.
 
@@ -665,5 +653,5 @@ if __name__ == "__main__":
                         type=argparse.FileType('r', encoding='UTF-8'))
 
     infile = parser.parse_args().file
-    main(infile)                                      # Call Mainroutine
-    # incidence()
+    # main(infile)                                      # Call Mainroutine
+    incidence()
