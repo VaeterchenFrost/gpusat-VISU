@@ -30,4 +30,26 @@ strict digraph structs {
 	"Join 2~3" -> "bag 1"
 	sol1 [label="{sol bag 1|{{id|0|1|2|3}|{v1|0|1|0|1}|{v4|0|0|1|1}|{n Sol|2|9|3|6}}|sum: 20}" shape=record]
 	"bag 1" -> sol1
+	sol0 [label="{sol bag 0|{{id|0|1|2|3|4|5|6|7}|{v1|0|1|0|1|0|1|0|1}|{v4|0|0|1|1|0|0|1|1}|{v7|0|0|0|0|1|1|1|1}|{n Sol|2|0|0|0|2|9|3|6}}|sum: 22}" shape=record]
+	"bag 0" -> sol0
+	sol0 [fillcolor=yellow]
+	sol0 [penwidth=2.5]
+	"bag 0" -> sol0
+	"bag 0" [fillcolor=yellow]
+	"bag 0" [penwidth=2.5]
+	"bag 0" [fillcolor=white penwidth=1.0]
+	sol0 [style=invis]
+	"bag 0" -> sol0 [style=invis]
+	sol1 [fillcolor=yellow]
+	sol1 [penwidth=2.5]
+	"bag 1" -> sol1
+	"bag 1" [fillcolor=yellow]
+	"bag 1" [penwidth=2.5]
+	"bag 1" [fillcolor=white penwidth=1.0]
+	sol1 [style=invis]
+	"bag 1" -> sol1 [style=invis]
+	"solJoin2~3" [fillcolor=yellow]
+	"solJoin2~3" [penwidth=2.5]
+	"Join 2~3" [fillcolor=yellow]
+	"Join 2~3" [penwidth=2.5]
 }

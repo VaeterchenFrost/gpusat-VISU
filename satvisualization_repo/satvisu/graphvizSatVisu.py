@@ -58,6 +58,10 @@ def styleHideNode(graph, node):
     graph.node(node, style="invis")
 
 
+def styleHideEdge(graph, s, t):
+    graph.edge(s, t, style="invis")
+
+
 def bagNode(head, tail, anchor="anchor", headcolor="white",
             tableborder=0, cellborder=0, cellspacing=0):
     """HTML format with 'head' as the first label, then appending
@@ -229,14 +233,14 @@ def main(infile):
         # print(s.pipe(format='json').decode('utf-8'))
         # s.render(view=False, format='dot', filename=_filename % i)
         """
-    for i, node in enumerate(TIMELINE):
+    for i, node in enumerate(TIMELINE):                 # Create the positions
         if len(node) > 1:
             # solution to be displayed
             id_inv_bags = node[0]
             if isinstance(id_inv_bags, int):
                 lastSol = solpre % id_inv_bags
                 s.node(lastSol, solutionNode(*(node[1])), shape='record')
-               
+
                 s.edge(bagpre % id_inv_bags, lastSol)
 
             else:  # joined node with 2 bags
@@ -246,7 +250,7 @@ def main(infile):
                 id_inv_bags = tuple(id_inv_bags)
                 lastSol = soljoinpre % id_inv_bags
                 s.node(lastSol, solutionNode(*(node[1])), shape='record')
-                
+
                 s.edge(joinpre % id_inv_bags, lastSol)
                 # edges
                 for child in id_inv_bags:             # basically "remove" current
@@ -263,56 +267,41 @@ def main(infile):
                            joinpre % id_inv_bags)
                 s.edge(joinpre % id_inv_bags, bagpre % suc
                        if isinstance(suc, int) else joinpre % suc)
-        s.render(view=False, format='png', filename=_filename % i)
 
-    # <<<<<<<<<<<Iterate TIMELINE BACKWARDS<<<<<<<<<<<<<<<<<<<       
-    for i, node in enumerate(TIMELINE[::-1]):
+    # <<<<<<<<<<<Iterate TIMELINE BACKWARDS<<<<<<<<<<<<<<<<<<<
+    for i, node in enumerate(TIMELINE[::-1]):       # Cut and emphazise
         id_inv_bags = node[0]
         print(i, ":Reverse traversing on", id_inv_bags)
-        # Delete previous emphasis
-        if i > 0:
-            prevhead = TIMELINE[len(TIMELINE)-i][0]
-            baseStyle(s, bagpre % prevhead
-                      if isinstance(prevhead, int) else joinpre % tuple(prevhead))
+
+        if i > 0:                                   # Delete previous emphasis
+            prevhead = TIMELINE[len(TIMELINE) - i][0]
+            bag = (bagpre % prevhead
+                   if isinstance(prevhead, int) else joinpre % tuple(prevhead))
+            baseStyle(s, bag)
             if lastSol:
-                baseStyle(s, lastSol)
-                
+                styleHideNode(s, lastSol)
+                styleHideEdge(s, bag, lastSol)
+                lastSol = ""
+
         if len(node) > 1:
             # solution to be displayed
-            
+
             if isinstance(id_inv_bags, int):
                 lastSol = solpre % id_inv_bags
-                styleHideNode(s, lastSol)
                 emphasiseNode(s, lastSol)
                 s.edge(bagpre % id_inv_bags, lastSol)
-    
+
             else:  # joined node with 2 bags
-                suc = TIMELINE[i + 1][0]
-                print('joining ', node[0], ' to ', suc)  # get the joined bags
-                # solution
                 id_inv_bags = tuple(id_inv_bags)
                 lastSol = soljoinpre % id_inv_bags
-                s.node(lastSol, solutionNode(*(node[1])), shape='record')
+
                 emphasiseNode(s, lastSol)
-                s.edge(joinpre % id_inv_bags, lastSol)
-                # edges
-                for child in id_inv_bags:             # basically "remove" current
-                    # TODO check where 2 args are possibly occuring
-                    s.edge(
-                        bagpre % child
-                        if isinstance(child, int) else joinpre % child,
-                        bagpre % suc
-                        if isinstance(suc, int) else joinpre % suc,
-                        style='invis',
-                        constraint='false')
-                    s.edge(bagpre % child if isinstance(child, int)
-                           else joinpre % child,
-                           joinpre % id_inv_bags)
-                s.edge(joinpre % id_inv_bags, bagpre % suc
-                       if isinstance(suc, int) else joinpre % suc)
 
         emphasiseNode(s, bagpre % id_inv_bags
-                      if isinstance(id_inv_bags, int) else joinpre % tuple(id_inv_bags))
+                      if isinstance(id_inv_bags, int) else joinpre % id_inv_bags)
+        s.render(
+            view=True, format='png', filename=_filename %
+            (len(TIMELINE) - i))
 
 
 def manual():
