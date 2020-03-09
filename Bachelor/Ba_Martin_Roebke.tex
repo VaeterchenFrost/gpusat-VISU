@@ -1,0 +1,46 @@
+% Paperformat
+\documentclass[a4paper, 12pt]{scrartcl}
+\usepackage{cite}
+\usepackage{ragged2e}
+\usepackage{url}
+\usepackage{bm} % bold math
+\usepackage{nccmath} % medium fraction with mfrac 
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage{amsthm} % theorems
+
+\newtheorem{theorem}{Theorem}[section]
+\begin{document}
+
+\begin{titlepage}
+	\vspace*{\stretch{1}}
+	\begin{center}
+		
+	\end{center}
+	\vspace{\stretch{2}}
+\end{titlepage}
+
+%  table
+\tableofcontents
+
+% chapter on next page
+\newpage
+
+\section{Abstract}
+\vspace{4ex}
+
+\newpage
+
+
+\section{Introduction}
+
+\newpage.
+\section{Main section}
+
+
+\section{Summary}
+
+\bibliography{bibtex}{}
+\bibliographystyle{ieeetr}
+
+\end{document}
