@@ -266,8 +266,9 @@ def main(infile):
         s.render(view=False, format='png', filename=_filename % i)
 
     # <<<<<<<<<<<Iterate TIMELINE BACKWARDS<<<<<<<<<<<<<<<<<<<       
-    for i, node in enumerate(TIMELINE[-2::-1], start=1):
-        print("Reverse traversing on", node[0])
+    for i, node in enumerate(TIMELINE[::-1]):
+        id_inv_bags = node[0]
+        print(i, ":Reverse traversing on", id_inv_bags)
         # Delete previous emphasis
         if i > 0:
             prevhead = TIMELINE[len(TIMELINE)-i][0]
@@ -278,7 +279,7 @@ def main(infile):
                 
         if len(node) > 1:
             # solution to be displayed
-            id_inv_bags = node[0]
+            
             if isinstance(id_inv_bags, int):
                 lastSol = solpre % id_inv_bags
                 styleHideNode(s, lastSol)
@@ -310,8 +311,8 @@ def main(infile):
                 s.edge(joinpre % id_inv_bags, bagpre % suc
                        if isinstance(suc, int) else joinpre % suc)
 
-        emphasiseNode(s, bagpre % node[0]
-                      if isinstance(node[0], int) else joinpre % tuple(node[0]))
+        emphasiseNode(s, bagpre % id_inv_bags
+                      if isinstance(id_inv_bags, int) else joinpre % tuple(id_inv_bags))
 
 
 def manual():
