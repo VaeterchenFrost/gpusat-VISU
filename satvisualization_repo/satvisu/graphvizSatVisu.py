@@ -4,10 +4,9 @@
 @author: Martin Röbke
 """
 
-from graphviz import Digraph, Graph, RENDERERS
+from graphviz import Digraph, Graph
 import numpy as np
 import json
-import sys
 import io
 import itertools
 
@@ -246,9 +245,9 @@ def main(infile):
                 id_inv_bags,
                 int) else joinpre %
             id_inv_bags)
-        s.render(
-            view=False, format='png', filename=_filename %
-            (len(TIMELINE) - i - 1))
+        # s.render(
+        #     view=False, format='png', filename=_filename %
+        #     (len(TIMELINE) - i - 1))
 
     # Prepare Incidence graph Timeline
     _edgelist = list(
@@ -265,13 +264,27 @@ def main(infile):
             # Join operation - no clauses involved in computation
             _timeline.append(None)
 
-    incidence(
-        EDGELIST=_edgelist,
+    col = ["#0073a1", "#b14923", "#244320", "#b1740f", "#a682ff", '#004066',
+           '#0d1321', '#da1167', '#604909', '#0073a1', '#b14923', '#244320',
+           '#b1740f', '#a682ff']
+
+    # incidence(
+    #     EDGELIST=_edgelist,
+    #     TIMELINE=_timeline,
+    #     numVars=tdGraph['numVars'],
+    #     colors=col)
+
+    primalSet = set(itertools.chain.from_iterable(
+        map(lambda x: (itertools.combinations(map(abs, x[1]), 2)), _edgelist)))
+    
+    primal(
+        EDGELIST=primalSet,
         TIMELINE=_timeline,
-        numVars=tdGraph['numVars'])
+        numVars=tdGraph['numVars'],
+        colors=col)
 
 
-def primal(EDGELIST, TIMELINE):
+def primal(EDGELIST, TIMELINE, numVars, colors):
     """
 
     Parameters
@@ -285,11 +298,36 @@ def primal(EDGELIST, TIMELINE):
         in the bag(s) under consideration. This function computes all other
         variables that are involved in this timestep using the 'edgelist'.
 
+    numVars : int
+        Count of variables that are used in the clauses.
+
+    colors : Iterable of color
+        Colors to use for the graph parts.
+
     Returns
     -------
     None, but outputs the files with the graphs for each timestep.
 
     """
+    # print('primal using edgelist:\n', EDGELIST, "\ntimeline\n", TIMELINE)
+
+    vartag = "v_%d"
+
+    g_primal = Graph(strict=True,
+                     graph_attr={'dpi': '300',
+                                 'nodesep': '0.5', 'fontsize': '20'},
+                     node_attr={'fontcolor': 'black',
+                                'penwidth': '2.2'})
+
+    for (s,t) in EDGELIST:
+        
+                g_primal.edge(vartag % s,
+                             vartag % t)
+                
+    g_primal.render(
+        view=True,
+        format='png',
+        filename='primalGraphStart')
 
 
 def incidence(EDGELIST=[[1, [1, 4, 6]], [2, [1, -5]], [3, [-1, 7]], [4, [2, 3]], [5, [2, 5]],
@@ -300,18 +338,14 @@ def incidence(EDGELIST=[[1, [1, 4, 6]], [2, [1, -5]], [3, [-1, 7]], [4, [2, 3]],
                         [2, 3, 8], [2, 4, 8],
                         None,   # Join
                         [1, 2, 4, 6], [1, 4, 7]),
-              numVars=8):
+              numVars=8, colors=["#0073a1", "#b14923", "#244320"]):
 
     print('incidence using edgelist:\n', EDGELIST, "\ntimeline\n", TIMELINE)
     clausetag = "c_%d"
     vartag = "v_%d"
 
-    colors = ["#0073a1", "#b14923", "#244320", "#b1740f", "#a682ff", '#004066',
-              '#0d1321', '#da1167', '#604909', '#0073a1', '#b14923', '#244320',
-              '#b1740f', '#a682ff']
-
     g_incid = Graph(strict=True, graph_attr={'splines': 'false', 'dpi': '300',
-                                             'nodesep': '0.5', 'fontsize': '20'},  # ortho
+                                             'nodesep': '0.5', 'fontsize': '20'},
                     edge_attr={'penwidth': '2.2', 'dir': 'back', 'arrowtail': 'none'})
 
     with g_incid.subgraph(name='cluster_clause', edge_attr={'style': 'invis'},
@@ -356,9 +390,9 @@ def incidence(EDGELIST=[[1, [1, 4, 6]], [2, [1, -5]], [3, [-1, 7]], [4, [2, 3]],
 
     var_cl_list = list(itertools.chain.from_iterable(tr))  # flatten
     # print('var_cl_list', var_cl_list)
-    #~ var_cl_list [(1, 1), (4, 1), (6, 1), (1, 2), (-5, 2), (-1, 3), (7, 3), (2, 4),
+    # ~ var_cl_list [(1, 1), (4, 1), (6, 1), (1, 2), (-5, 2), (-1, 3), (7, 3), (2, 4),
     #~             (3, 4), (2, 5), (5, 5), (2, 6), (-6, 6), (3, 7), (-8, 7), (4, 8),
-    #~             (-8, 8), (-4, 9), (6, 9), (-4, 10), (7, 10)]
+    # ~             (-8, 8), (-4, 9), (6, 9), (-4, 10), (7, 10)]
 
     bodybaselen = len(g_incid.body)
     for i, variables in enumerate(TIMELINE):    # all timesteps
