@@ -9,6 +9,7 @@ import numpy as np
 import json
 import sys
 import io
+import itertools
 
 
 def read_json(json_data):
@@ -171,7 +172,6 @@ def main(infile):
 
     s.edges([(bagpre % str(first), bagpre % str(second))
              for (first, second) in tdGraph["edgearray"]])
-    # s.attr('edge', minlen="1")
 
     # >>>>>>>>>>>>Iterate TIMELINE FORWARD>>>>>>>>>>>>>
 
@@ -211,7 +211,8 @@ def main(infile):
                        if isinstance(suc, int) else joinpre % suc)
 
     # <<<<<<<<<<<Iterate TIMELINE BACKWARDS<<<<<<<<<<<<<<<<<<<
-    for i, node in enumerate(TIMELINE[::-1]):       # Cut and emphazise
+
+    for i, node in enumerate(TIMELINE[::-1]):       # Cut and hide emphasis
         id_inv_bags = node[0]
         print(i, ":Reverse traversing on", id_inv_bags)
 
@@ -236,14 +237,19 @@ def main(infile):
             else:  # joined node with 2 bags
                 id_inv_bags = tuple(id_inv_bags)
                 lastSol = soljoinpre % id_inv_bags
-
                 emphasiseNode(s, lastSol)
 
-        emphasiseNode(s, bagpre % id_inv_bags
-                      if isinstance(id_inv_bags, int) else joinpre % id_inv_bags)
+        emphasiseNode(
+            s,
+            bagpre %
+            id_inv_bags if isinstance(
+                id_inv_bags,
+                int) else joinpre %
+            id_inv_bags)
         s.render(
-            view=True, format='png', filename=_filename %
+            view=False, format='png', filename=_filename %
             (len(TIMELINE) - i - 1))
+
     # Prepare Incidence graph Timeline
     _edgelist = list(
         map(lambda x: [x['id'], x['list']], visudata["clausesJson"]))
@@ -258,25 +264,45 @@ def main(infile):
         else:
             # Join operation - no clauses involved in computation
             _timeline.append(None)
+
     incidence(
         EDGELIST=_edgelist,
         TIMELINE=_timeline,
         numVars=tdGraph['numVars'])
 
 
+def primal(EDGELIST, TIMELINE):
+    """
+
+    Parameters
+    ----------
+    EDGELIST : Iterable of: [int, int]
+        All edges between variables that occur in one or more clauses together.
+
+    TIMELINE : Iterable of: None | [int...]
+        None if no variables get highlighted in this step.
+        Else the 'timeline' provides the set of variables that are
+        in the bag(s) under consideration. This function computes all other
+        variables that are involved in this timestep using the 'edgelist'.
+
+    Returns
+    -------
+    None, but outputs the files with the graphs for each timestep.
+
+    """
+
+
 def incidence(EDGELIST=[[1, [1, 4, 6]], [2, [1, -5]], [3, [-1, 7]], [4, [2, 3]], [5, [2, 5]],
                         [6, [2, -6]], [7, [3, -8]], [8, [4, -8]], [9, [-4, 6]], [10, [-4, 7]]],
-              TIMELINE=(None, None,
+              TIMELINE=(None, None, None,
                         [1, 2, 5],
-                        None,
-                        [2, 3, 8],
-                        [2, 4, 8],
-                        [1, 2, 4],  # JOIN
-                        [1, 2, 4, 6],
-                        [1, 4, 7]
-                        ),
+                        None, None,
+                        [2, 3, 8], [2, 4, 8],
+                        None,   # Join
+                        [1, 2, 4, 6], [1, 4, 7]),
               numVars=8):
 
+    print('incidence using edgelist:\n', EDGELIST, "\ntimeline\n", TIMELINE)
     clausetag = "c_%d"
     vartag = "v_%d"
 
@@ -324,16 +350,15 @@ def incidence(EDGELIST=[[1, [1, 4, 6]], [2, [1, -5]], [3, [-1, 7]], [4, [2, 3]],
                              )
 
     # make edgelist variable-based (varX, clauseY), ...
-    import itertools
 
     tr = list(
         map(lambda y: list(map(lambda x: (x, y[0]), y[1])), EDGELIST))
 
     var_cl_list = list(itertools.chain.from_iterable(tr))  # flatten
-    print('var_cl_list', var_cl_list)
-    # var_cl_list [(1, 1), (4, 1), (6, 1), (1, 2), (-5, 2), (-1, 3), (7, 3), (2, 4),
-    #              (3, 4), (2, 5), (5, 5), (2, 6), (-6, 6), (3, 7), (-8, 7), (4, 8),
-    #              (-8, 8), (-4, 9), (6, 9), (-4, 10), (7, 10)]
+    # print('var_cl_list', var_cl_list)
+    #~ var_cl_list [(1, 1), (4, 1), (6, 1), (1, 2), (-5, 2), (-1, 3), (7, 3), (2, 4),
+    #~             (3, 4), (2, 5), (5, 5), (2, 6), (-6, 6), (3, 7), (-8, 7), (4, 8),
+    #~             (-8, 8), (-4, 9), (6, 9), (-4, 10), (7, 10)]
 
     bodybaselen = len(g_incid.body)
     for i, variables in enumerate(TIMELINE):    # all timesteps
@@ -342,7 +367,7 @@ def incidence(EDGELIST=[[1, [1, 4, 6]], [2, [1, -5]], [3, [-1, 7]], [4, [2, 3]],
         g_incid.body = g_incid.body[:bodybaselen]
         if variables is None:
             g_incid.render(
-                view=True,
+                view=False,
                 format='png',
                 filename='incidenceGraph%d' %
                 i)
@@ -383,7 +408,7 @@ def incidence(EDGELIST=[[1, [1, 4, 6]], [2, [1, -5]], [3, [-1, 7]], [4, [2, 3]],
                              style=_style)
 
         g_incid.render(
-            view=True,
+            view=False,
             format='png',
             filename='incidenceGraph%d' %
             i)
