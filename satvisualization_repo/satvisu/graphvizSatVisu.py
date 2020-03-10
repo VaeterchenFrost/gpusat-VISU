@@ -243,7 +243,7 @@ def main(infile):
                       if isinstance(id_inv_bags, int) else joinpre % id_inv_bags)
         s.render(
             view=True, format='png', filename=_filename %
-            (len(TIMELINE) - i))
+            (len(TIMELINE) - i - 1))
     # Prepare Incidence graph Timeline
     _edgelist = list(
         map(lambda x: [x['id'], x['list']], visudata["clausesJson"]))
