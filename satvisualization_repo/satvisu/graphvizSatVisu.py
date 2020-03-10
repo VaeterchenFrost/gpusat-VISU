@@ -276,7 +276,7 @@ def main(infile):
 
     primalSet = set(itertools.chain.from_iterable(
         map(lambda x: (itertools.combinations(map(abs, x[1]), 2)), _edgelist)))
-    
+
     primal(
         EDGELIST=primalSet,
         TIMELINE=_timeline,
@@ -319,26 +319,24 @@ def primal(EDGELIST, TIMELINE, numVars, colors):
                      node_attr={'fontcolor': 'black',
                                 'penwidth': '2.2'})
 
-    for (s,t) in EDGELIST:
-        
-                g_primal.edge(vartag % s,
-                             vartag % t)
-                
+    for (s, t) in EDGELIST:
+        g_primal.edge(vartag % s, vartag % t)
+
     g_primal.render(
         view=True,
         format='png',
         filename='primalGraphStart')
 
 
-def incidence(EDGELIST=[[1, [1, 4, 6]], [2, [1, -5]], [3, [-1, 7]], [4, [2, 3]], [5, [2, 5]],
-                        [6, [2, -6]], [7, [3, -8]], [8, [4, -8]], [9, [-4, 6]], [10, [-4, 7]]],
+def incidence(EDGELIST=([1, [1, 4, 6]], [2, [1, -5]], [3, [-1, 7]], [4, [2, 3]], [5, [2, 5]],
+                        [6, [2, -6]], [7, [3, -8]], [8, [4, -8]], [9, [-4, 6]], [10, [-4, 7]]),
               TIMELINE=(None, None, None,
                         [1, 2, 5],
                         None, None,
                         [2, 3, 8], [2, 4, 8],
                         None,   # Join
                         [1, 2, 4, 6], [1, 4, 7]),
-              numVars=8, colors=["#0073a1", "#b14923", "#244320"]):
+              numVars=8, colors=("#0073a1", "#b14923", "#244320")):
 
     print('incidence using edgelist:\n', EDGELIST, "\ntimeline\n", TIMELINE)
     clausetag = "c_%d"
@@ -407,13 +405,11 @@ def incidence(EDGELIST=[[1, [1, 4, 6]], [2, [1, -5]], [3, [-1, 7]], [4, [2, 3]],
                 i)
             continue
 
-        emp_clause = list(set([a[1] for a in list(filter(lambda var_cl:
-                                                         abs(var_cl[0]
-                                                             ) in variables,
-                                                         var_cl_list))]))
+        emp_clause = {var_cl[1] for var_cl in
+                      filter(lambda var_cl, s=variables: abs(var_cl[0]) in s, var_cl_list)}
 
-        emp_var = list(set([abs(a[0]) for a in list(
-            filter(lambda var_cl: var_cl[1] in emp_clause, var_cl_list))]))
+        emp_var = {abs(var_cl[0]) for var_cl in
+                   filter(lambda var_cl, s=emp_clause: var_cl[1] in s, var_cl_list)}
 
         for var in emp_var:
             _vartag = vartag % abs(var)
@@ -456,6 +452,6 @@ if __name__ == "__main__":
     parser.add_argument('file', nargs='?',
                         type=argparse.FileType('r', encoding='UTF-8'))
 
-    infile = parser.parse_args().file
-    main(infile)                                      # Call Mainroutine
+    _infile = parser.parse_args().file
+    main(_infile)                                      # Call Mainroutine
     # incidence()
