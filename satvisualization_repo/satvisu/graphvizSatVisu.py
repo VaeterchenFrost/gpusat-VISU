@@ -245,9 +245,9 @@ def main(infile):
                 id_inv_bags,
                 int) else joinpre %
             id_inv_bags)
-        # s.render(
-        #     view=False, format='png', filename=_filename %
-        #     (len(TIMELINE) - i - 1))
+        s.render(
+            view=False, format='png', filename=_filename %
+            (len(TIMELINE) - i))
 
     # Prepare Incidence graph Timeline
     _edgelist = list(
@@ -268,11 +268,11 @@ def main(infile):
            '#0d1321', '#da1167', '#604909', '#0073a1', '#b14923', '#244320',
            '#b1740f', '#a682ff']
 
-    # incidence(
-    #     EDGELIST=_edgelist,
-    #     TIMELINE=_timeline,
-    #     numVars=tdGraph['numVars'],
-    #     colors=col)
+    incidence(
+        EDGELIST=_edgelist,
+        TIMELINE=_timeline,
+        numVars=tdGraph['numVars'],
+        colors=col)
 
     primalSet = set(itertools.chain.from_iterable(
         map(lambda x: (itertools.combinations(map(abs, x[1]), 2)), _edgelist)))
@@ -383,17 +383,16 @@ def incidence(EDGELIST=([1, [1, 4, 6]], [2, [1, -5]], [3, [-1, 7]], [4, [2, 3]],
 
     # make edgelist variable-based (varX, clauseY), ...
 
-    tr = list(
-        map(lambda y: list(map(lambda x: (x, y[0]), y[1])), EDGELIST))
+    vcmapping = map(lambda y: map(lambda x: (x, y[0]), y[1]), EDGELIST)
 
-    var_cl_list = list(itertools.chain.from_iterable(tr))  # flatten
-    # print('var_cl_list', var_cl_list)
-    # ~ var_cl_list [(1, 1), (4, 1), (6, 1), (1, 2), (-5, 2), (-1, 3), (7, 3), (2, 4),
+    var_cl_iter = tuple(itertools.chain.from_iterable(vcmapping))  # flatten
+    # print('var_cl_iter', var_cl_iter)
+    #~ var_cl_iter [(1, 1), (4, 1), (6, 1), (1, 2), (-5, 2), (-1, 3), (7, 3), (2, 4),
     #~             (3, 4), (2, 5), (5, 5), (2, 6), (-6, 6), (3, 7), (-8, 7), (4, 8),
-    # ~             (-8, 8), (-4, 9), (6, 9), (-4, 10), (7, 10)]
+    #~             (-8, 8), (-4, 9), (6, 9), (-4, 10), (7, 10)]
 
     bodybaselen = len(g_incid.body)
-    for i, variables in enumerate(TIMELINE):    # all timesteps
+    for i, variables in enumerate(TIMELINE, start=1):    # all timesteps
 
         # reset highlighting
         g_incid.body = g_incid.body[:bodybaselen]
@@ -406,10 +405,10 @@ def incidence(EDGELIST=([1, [1, 4, 6]], [2, [1, -5]], [3, [-1, 7]], [4, [2, 3]],
             continue
 
         emp_clause = {var_cl[1] for var_cl in
-                      filter(lambda var_cl, s=variables: abs(var_cl[0]) in s, var_cl_list)}
+                      filter(lambda var_cl, s=variables: abs(var_cl[0]) in s, var_cl_iter)}
 
         emp_var = {abs(var_cl[0]) for var_cl in
-                   filter(lambda var_cl, s=emp_clause: var_cl[1] in s, var_cl_list)}
+                   filter(lambda var_cl, s=emp_clause: var_cl[1] in s, var_cl_iter)}
 
         for var in emp_var:
             _vartag = vartag % abs(var)
@@ -419,7 +418,7 @@ def incidence(EDGELIST=([1, [1, 4, 6]], [2, [1, -5]], [3, [-1, 7]], [4, [2, 3]],
         for cl in emp_clause:
             g_incid.node(clausetag % cl, clausetag % cl, fillcolor='yellow')
 
-        for edge in var_cl_list:
+        for edge in var_cl_iter:
             (var, clause) = edge
 
             _style = 'solid' if clause in emp_clause else 'dotted'
