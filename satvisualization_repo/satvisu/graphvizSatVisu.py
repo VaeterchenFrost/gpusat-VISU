@@ -232,26 +232,26 @@ def main(infile):
                 lastSol = solpre % id_inv_bags
                 emphasiseNode(s, lastSol)
                 s.edge(bagpre % id_inv_bags, lastSol)
-
             else:  # joined node with 2 bags
                 id_inv_bags = tuple(id_inv_bags)
                 lastSol = soljoinpre % id_inv_bags
                 emphasiseNode(s, lastSol)
 
-        emphasiseNode(
-            s,
-            bagpre %
-            id_inv_bags if isinstance(
-                id_inv_bags,
-                int) else joinpre %
-            id_inv_bags)
+        emphasiseNode(s,
+                      bagpre %
+                      id_inv_bags if isinstance(
+                          id_inv_bags,
+                          int) else joinpre %
+                      id_inv_bags)
         s.render(
             view=False, format='png', filename=_filename %
             (len(TIMELINE) - i))
 
     # Prepare Incidence graph Timeline
+
     _edgelist = list(
         map(lambda x: [x['id'], x['list']], visudata["clausesJson"]))
+
     _timeline = []
     for step in TIMELINE:
         if len(step) < 2:
@@ -323,7 +323,7 @@ def primal(EDGELIST, TIMELINE, numVars, colors):
         g_primal.edge(vartag % s, vartag % t)
 
     g_primal.render(
-        view=True,
+        view=False,
         format='png',
         filename='primalGraphStart')
 
@@ -387,9 +387,9 @@ def incidence(EDGELIST=([1, [1, 4, 6]], [2, [1, -5]], [3, [-1, 7]], [4, [2, 3]],
 
     var_cl_iter = tuple(itertools.chain.from_iterable(vcmapping))  # flatten
     # print('var_cl_iter', var_cl_iter)
-    #~ var_cl_iter [(1, 1), (4, 1), (6, 1), (1, 2), (-5, 2), (-1, 3), (7, 3), (2, 4),
+    # ~ var_cl_iter [(1, 1), (4, 1), (6, 1), (1, 2), (-5, 2), (-1, 3), (7, 3), (2, 4),
     #~             (3, 4), (2, 5), (5, 5), (2, 6), (-6, 6), (3, 7), (-8, 7), (4, 8),
-    #~             (-8, 8), (-4, 9), (6, 9), (-4, 10), (7, 10)]
+    # ~             (-8, 8), (-4, 9), (6, 9), (-4, 10), (7, 10)]
 
     bodybaselen = len(g_incid.body)
     for i, variables in enumerate(TIMELINE, start=1):    # all timesteps
