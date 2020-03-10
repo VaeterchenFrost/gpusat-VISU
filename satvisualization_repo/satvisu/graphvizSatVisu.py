@@ -147,7 +147,7 @@ def main(infile):
     solpre = "sol%d"
     soljoinpre = "solJoin%d~%d"
     lastSol = ""
-    _filename = 'g41DigraphProgress%d'
+    _filename = 'results\\g41DigraphProgress%d'
 
     s = Digraph(
         'structs',
@@ -291,6 +291,7 @@ def primal(EDGELIST, TIMELINE, numVars, colors):
     ----------
     EDGELIST : Iterable of: [int, int]
         All edges between variables that occur in one or more clauses together.
+        BOTH edges (x, y) and (y, x) could be in the EDGELIST.
 
     TIMELINE : Iterable of: None | [int...]
         None if no variables get highlighted in this step.
@@ -312,7 +313,7 @@ def primal(EDGELIST, TIMELINE, numVars, colors):
     # print('primal using edgelist:\n', EDGELIST, "\ntimeline\n", TIMELINE)
 
     vartag = "v_%d"
-
+    _filename = 'results\\primalGraph%d'
     g_primal = Graph(strict=True,
                      graph_attr={'dpi': '300',
                                  'nodesep': '0.5', 'fontsize': '20'},
@@ -326,6 +327,26 @@ def primal(EDGELIST, TIMELINE, numVars, colors):
         view=False,
         format='png',
         filename='primalGraphStart')
+    
+    bodybaselen = len(g_primal.body)
+    for i, variables in enumerate(TIMELINE, start=1):    # all timesteps
+        
+        # reset highlighting
+        g_primal.body = g_primal.body[:bodybaselen]
+        if variables is None:
+            g_primal.render(
+                view=False,
+                format='png',
+                filename=_filename % i)
+            continue
+
+         # TODO
+
+        g_primal.render(
+            view=False,
+            format='png',
+            filename= _filename % i)
+    
 
 
 def incidence(EDGELIST=([1, [1, 4, 6]], [2, [1, -5]], [3, [-1, 7]], [4, [2, 3]], [5, [2, 5]],
@@ -400,7 +421,7 @@ def incidence(EDGELIST=([1, [1, 4, 6]], [2, [1, -5]], [3, [-1, 7]], [4, [2, 3]],
             g_incid.render(
                 view=False,
                 format='png',
-                filename='incidenceGraph%d' %
+                filename='results\\incidenceGraph%d' %
                 i)
             continue
 
@@ -439,8 +460,7 @@ def incidence(EDGELIST=([1, [1, 4, 6]], [2, [1, -5]], [3, [-1, 7]], [4, [2, 3]],
         g_incid.render(
             view=False,
             format='png',
-            filename='incidenceGraph%d' %
-            i)
+            filename='results\\incidenceGraph%d' % i)
 
 
 if __name__ == "__main__":
