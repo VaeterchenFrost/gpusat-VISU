@@ -1,12 +1,7 @@
 # structs_revisited.py - http://www.graphviz.org/pdf/dotguide.pdf Figure 12
 """building a graphoutput from satsolver runs.
-<<TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0">
-    <TR><TD PORT="f1" BGCOLOR="gray">first</TD></TR>
-    <TR><TD PORT="f2">second</TD></TR>
-    <TR><TD PORT="e">third</TD></TR>
-    </TABLE>>
-    s.node('sol4',r'{<f0> bag 2|{{id|0}|{v1|0}|{ v2|0}|{ nSol|0}}|sum: 4}',
-    fontcolor='green')
+
+@author: Martin Röbke
 """
 
 from graphviz import Digraph, Graph, RENDERERS
@@ -140,7 +135,7 @@ def solutionNode(solutionTable, toplabel="", bottomlabel="", transpose=False):
 
 
 def main(infile):
-    print(RENDERERS)
+    # print(RENDERERS)
     visudata = read_json(infile)
     # print("READS>>>\n", json.dumps(visudata))
 
@@ -161,8 +156,7 @@ def main(infile):
         graph_attr={
             'dpi': '250',
             'margin': '0,0.5'},
-        # edge_attr={
-        #     'minlen': '5'},
+
         node_attr={
             'shape': 'box',
             'fillcolor': 'white',
@@ -173,66 +167,14 @@ def main(infile):
 
     for item in tdGraph["labeldict"]:
         bagname = bagpre % str(item["id"])
-        s.node(bagname, bagNode(bagname, item["list"]))
+        s.node(bagname, bagNode(bagname, item["labels"]))
 
     s.edges([(bagpre % str(first), bagpre % str(second))
              for (first, second) in tdGraph["edgearray"]])
     # s.attr('edge', minlen="1")
 
     # >>>>>>>>>>>>Iterate TIMELINE FORWARD>>>>>>>>>>>>>
-    """
-    for i, node in enumerate(TIMELINE):
-        if i > 0:
-            prevhead = TIMELINE[i - 1][0]
-            baseStyle(s, bagpre % prevhead
-                      if isinstance(prevhead, int) else joinpre % tuple(prevhead))
-            if lastSol:
-                baseStyle(s, lastSol)
 
-        # if len(node) < 1: raise IndexError("Error within Timeline - found
-        # len=0")
-
-        if len(node) > 1:
-            # solution to be displayed
-            id_inv_bags = node[0]
-            if isinstance(id_inv_bags, int):
-                lastSol = solpre % id_inv_bags
-                s.node(lastSol, solutionNode(*(node[1])), shape='record')
-                emphasiseNode(s, lastSol)
-                s.edge(bagpre % id_inv_bags, lastSol)
-
-            else:  # joined node with 2 bags
-                suc = TIMELINE[i + 1][0]
-                print('joining ', node[0], ' to ', suc)  # get the joined bags
-                # solution
-                id_inv_bags = tuple(id_inv_bags)
-                lastSol = soljoinpre % id_inv_bags
-                s.node(lastSol, solutionNode(*(node[1])), shape='record')
-                emphasiseNode(s, lastSol)
-                s.edge(joinpre % id_inv_bags, lastSol)
-                # edges
-                for child in id_inv_bags:             # basically "remove" current
-                    # TODO check where 2 args are possibly occuring
-                    s.edge(
-                        bagpre % child
-                        if isinstance(child, int) else joinpre % child,
-                        bagpre % suc
-                        if isinstance(suc, int) else joinpre % suc,
-                        style='invis',
-                        constraint='false')
-                    s.edge(bagpre % child if isinstance(child, int)
-                           else joinpre % child,
-                           joinpre % id_inv_bags)
-                s.edge(joinpre % id_inv_bags, bagpre % suc
-                       if isinstance(suc, int) else joinpre % suc)
-
-        emphasiseNode(s, bagpre % node[0]
-                      if isinstance(node[0], int) else joinpre % tuple(node[0]))
-
-        # s.pipe(format='dot')
-        # print(s.pipe(format='json').decode('utf-8'))
-        # s.render(view=False, format='dot', filename=_filename % i)
-        """
     for i, node in enumerate(TIMELINE):                 # Create the positions
         if len(node) > 1:
             # solution to be displayed
@@ -302,229 +244,38 @@ def main(infile):
         s.render(
             view=True, format='png', filename=_filename %
             (len(TIMELINE) - i))
-        incidence(EDGELIST =list(map(lambda x: [x['id'],x['list']],visudata["clausesJson"])))
+    # Prepare Incidence graph Timeline
+    _edgelist = list(
+        map(lambda x: [x['id'], x['list']], visudata["clausesJson"]))
+    _timeline = []
+    for step in TIMELINE:
+        if len(step) < 2:
+            _timeline.append(None)
+        elif isinstance(step[0], int):
+            _timeline.append(
+                next(
+                    (item.get('items') for item in tdGraph['labeldict'] if item['id'] == step[0])))
+        else:
+            # Join operation - no clauses involved in computation
+            _timeline.append(None)
+    incidence(
+        EDGELIST=_edgelist,
+        TIMELINE=_timeline,
+        numVars=tdGraph['numVars'])
 
 
-def manual():
-    # example input:
-    tdGraph = {
-        "bagpre": "bag %s",
-        "edgearray":
-        [
-            [1, 0],
-            [2, 1],
-            [3, 1],
-            [4, 3]
-        ],
-        "labeldict":
-        {
-            "0": ["[1 4 7]"],
-            "1": ["[1 2 4 6]"],
-            "2": ["[1 2 5]"],
-            "3": ["[2 4 8]"],
-            "4": ["[2 3 8]"]
-        }
-    }
-
-    TIMELINE = [
-        [0],
-        [1],
-        [2],
-        [
-            2,
-            [
-                [
-                    ["id", "v1", "v2", "n Sol"],
-                    [0, 0, 0, 0],
-                    [1, 1, 0, 1],
-                    [2, 0, 1, 1],
-                    [3, 1, 1, 2]
-                ],
-                "sol bag 2",
-                "sum: 4",
-                True
-            ]
-        ],
-        [3],
-        [4],
-        [
-            4,
-            [
-                [
-                    ["id", "v2", "v8", "n Sol"],
-                    [0, 0, 0, 1],
-                    [1, 1, 0, 2],
-                    [2, 0, 1, 1],
-                    [3, 1, 1, 1]
-                ],
-                "sol bag 4",
-                "sum: 5",
-                True
-            ]
-        ],
-        [
-            3,
-            [
-                [
-                    ["id", "v2", "v4", "n Sol"],
-                    [0, 0, 0, 1],
-                    [1, 1, 0, 2],
-                    [2, 0, 1, 2],
-                    [3, 1, 1, 3]
-                ],
-                "sol bag 3",
-                "sum: 8",
-                True
-            ]
-        ],
-        [
-            [2, 3],
-            [
-                [
-                    ["id", "v1", "v2", "v4", "n Sol"],
-                    [0, 0, 0, 0, 0],
-                    [1, 1, 0, 0, 1],
-                    [2, 0, 1, 0, 2],
-                    [3, 1, 1, 0, 4],
-                    [4, 0, 0, 1, 0],
-                    [5, 1, 0, 1, 2],
-                    [6, 0, 1, 1, 3],
-                    [7, 1, 1, 1, 6]
-                ],
-                "sol Join 2~3",
-                "sum: 18",
-                True
-            ]
-        ],
-        [
-            1,
-            [
-                [
-                    ["id", "v1", "v4", "n Sol"],
-                    [0, 0, 0, 2],
-                    [1, 1, 0, 9],
-                    [2, 0, 1, 3],
-                    [3, 1, 1, 6]
-                ],
-                "sol bag 1",
-                "sum: 20",
-                True
-            ]
-        ],
-        [
-            0,
-            [
-                [
-                    ["id", "v1", "v4", "v7", "n Sol"],
-                    [0, 0, 0, 0, 2],
-                    [1, 1, 0, 0, 0],
-                    [2, 0, 1, 0, 0],
-                    [3, 1, 1, 0, 0],
-                    [4, 0, 0, 1, 2],
-                    [5, 1, 0, 1, 9],
-                    [6, 0, 1, 1, 3],
-                    [7, 1, 1, 1, 6]
-                ],
-                "sol bag 0",
-                "sum: 22",
-                True
-            ]
-        ]
-    ]
-
-
-def endresult():
-    _filename = 'g41Digraph'
-    # graph_attr={'size':'8,12!'} , graph_attr={'splines':'false'}
-    s = Digraph(
-        'structs',
-        filename=_filename,
-        strict=True,
-        graph_attr={
-            'dpi': '300'},
-        node_attr={
-            'shape': 'box',
-            'fillcolor': 'white',
-            'style': "rounded,filled"})
-
-    s.node('bag4', bagNode("bag 4", "[2 3 8]", headcolor='green'))
-    s.node('bag3', bagNode("bag 3", "[2 4 8]"))
-    s.node('join1', bagNode("Join", "2~3"))
-    s.node('bag2', bagNode("bag 2", "[1 2 5]"))
-    s.node('bag1', bagNode("bag 1", "[1 2 4 6]"))
-    s.node('bag0', bagNode("bag 0", "[1 4 7]"))
-
-    s.attr('node', shape='record')
-    # s.node('etest', solutionNode([["id", "0"], ["v1", "1"],
-    #                               ["v2", "2"], ["v3", "4"],
-    #                               ["nSol", "0"]], "top", "bottom", True))
-
-    s.node('sol2', solutionNode([["id", "v1", "v2", "n Sol"],
-                                 [0, 0, 0, 0], [1, 1, 0, 1], [2, 0, 1, 1],
-                                 [3, 1, 1, 2]], "sol bag 2", "sum: 4", True))
-    s.node('sol4', solutionNode([["id", "v2", "v8", "n Sol"],
-                                 [0, 0, 0, 1], [1, 1, 0, 2], [2, 0, 1, 1],
-                                 [3, 1, 1, 1]], "sol bag 4", "sum: 5", True))
-    s.node('sol3', solutionNode([["id", "v2", "v4", "n Sol"],
-                                 [0, 0, 0, 1], [1, 1, 0, 2], [2, 0, 1, 2],
-                                 [3, 1, 1, 3]], "sol bag 3", "sum: 8", True))
-    s.node('solJoin1', solutionNode([["id", "v1", "v2", "v4", "n Sol"],
-                                     [0, 0, 0, 0, 0],
-                                     [1, 1, 0, 0, 1],
-                                     [2, 0, 1, 0, 2],
-                                     [3, 1, 1, 0, 4],
-                                     [4, 0, 0, 1, 0],
-                                     [5, 1, 0, 1, 2],
-                                     [6, 0, 1, 1, 3],
-                                     [7, 1, 1, 1, 6]],
-                                    "sol Join 2~3", "sum: 18", True))
-    s.node('sol1', solutionNode([["id", "v1", "v4", "n Sol"],
-                                 [0, 0, 0, 2], [1, 1, 0, 9], [2, 0, 1, 3],
-                                 [3, 1, 1, 6]], "sol bag 1", "sum: 20", True))
-    s.node('sol0', solutionNode([["id", "v1", "v4", "v7", "n Sol"],
-                                 [0, 0, 0, 0, 2],
-                                 [1, 1, 0, 0, 0],
-                                 [2, 0, 1, 0, 0],
-                                 [3, 1, 1, 0, 0],
-                                 [4, 0, 0, 1, 2],
-                                 [5, 1, 0, 1, 9],
-                                 [6, 0, 1, 1, 3],
-                                 [7, 1, 1, 1, 6]],
-                                "sol bag 0", "sum: 22", True))
-
-    s.edges(
-        [('bag4:anchor', 'bag3:anchor'), ('bag2:anchor', 'join1:anchor'),
-         ('bag3:anchor', 'join1:anchor'), ('join1:anchor', 'bag1:anchor'),
-         ('bag1:anchor', 'bag0:anchor'),
-         ('bag4:anchor', 'sol4'), ('bag3:anchor', 'sol3'),
-         ('bag2:anchor', 'sol2'), ('bag1:anchor', 'sol1'),
-         ('bag0:anchor', 'sol0'), ('join1:anchor', 'solJoin1')])
-
-    s.edge('bag0:anchor', 'sol0', color="green:red;0.55:blue")
-    emphasiseNode(s, 'bag0')
-    with open("example41.dot", "w") as file:
-        file.write(s.__str__())
-
-    # s.render(view=True, format='png', filename=_filename)
-    
-
-
-def incidence(EDGELIST = [[1, [1, 4, 6]], [2, [1, -5]], [3, [-1, 7]], [4, [2, 3]], [5, [2, 5]],
-                [6, [2, -6]], [7, [3, -8]], [8, [4, -8]], [9, [-4, 6]], [10, [-4, 7]]],
-              TIMELINE = (None, None,
-                [1, 2, 5],
-                None,
-                [2, 3, 8],
-                [2, 4, 8],
-                [1, 2, 4],  # JOIN
-                [1, 2, 4, 6],
-                [1, 4, 7]
-                )):
-    r_clause = len(EDGELIST)
-    r_vars = 8
-    
-    
-    
+def incidence(EDGELIST=[[1, [1, 4, 6]], [2, [1, -5]], [3, [-1, 7]], [4, [2, 3]], [5, [2, 5]],
+                        [6, [2, -6]], [7, [3, -8]], [8, [4, -8]], [9, [-4, 6]], [10, [-4, 7]]],
+              TIMELINE=(None, None,
+                        [1, 2, 5],
+                        None,
+                        [2, 3, 8],
+                        [2, 4, 8],
+                        [1, 2, 4],  # JOIN
+                        [1, 2, 4, 6],
+                        [1, 4, 7]
+                        ),
+              numVars=8):
 
     clausetag = "c_%d"
     vartag = "v_%d"
@@ -541,7 +292,7 @@ def incidence(EDGELIST = [[1, [1, 4, 6]], [2, [1, -5]], [3, [-1, 7]], [4, [2, 3]
                           node_attr={'style': 'rounded,filled', 'fillcolor': 'white'}) as clauses:
         clauses.attr(label='clauses')
         clauses.edges([(clausetag % (i + 1), clausetag % (i + 2))
-                       for i in range(r_clause - 1)])
+                       for i in range(len(EDGELIST) - 1)])
 
     g_incid.attr('node', shape='diamond', fontcolor='black',
                  penwidth='2.2',
@@ -549,15 +300,14 @@ def incidence(EDGELIST = [[1, [1, 4, 6]], [2, [1, -5]], [3, [-1, 7]], [4, [2, 3]
     with g_incid.subgraph(name='cluster_ivar', edge_attr={'style': 'invis'}, node_attr={'style': 'dotted'}) as ivars:
         ivars.attr(label='variables')
         ivars.edges([(vartag % (i + 1), vartag % (i + 2))
-                     for i in range(r_vars - 1)])
-        for i in range(r_vars):
+                     for i in range(numVars - 1)])
+        for i in range(numVars):
             g_incid.node(vartag %
                          (i + 1), vartag %
                          (i + 1), color=colors[(i + 1) %
                                                len(colors)])
 
     g_incid.attr('edge', constraint="false")
-
 
     for clause in EDGELIST:
         for var in clause[1]:
@@ -573,7 +323,6 @@ def incidence(EDGELIST = [[1, [1, 4, 6]], [2, [1, -5]], [3, [-1, 7]], [4, [2, 3]
                              # style='dotted'
                              )
 
-
     # make edgelist variable-based (varX, clauseY), ...
     import itertools
 
@@ -582,8 +331,8 @@ def incidence(EDGELIST = [[1, [1, 4, 6]], [2, [1, -5]], [3, [-1, 7]], [4, [2, 3]
 
     var_cl_list = list(itertools.chain.from_iterable(tr))  # flatten
     print('var_cl_list', var_cl_list)
-    # var_cl_list [(1, 1), (4, 1), (6, 1), (1, 2), (-5, 2), (-1, 3), (7, 3), (2, 4), 
-    #              (3, 4), (2, 5), (5, 5), (2, 6), (-6, 6), (3, 7), (-8, 7), (4, 8), 
+    # var_cl_list [(1, 1), (4, 1), (6, 1), (1, 2), (-5, 2), (-1, 3), (7, 3), (2, 4),
+    #              (3, 4), (2, 5), (5, 5), (2, 6), (-6, 6), (3, 7), (-8, 7), (4, 8),
     #              (-8, 8), (-4, 9), (6, 9), (-4, 10), (7, 10)]
 
     bodybaselen = len(g_incid.body)
@@ -606,8 +355,6 @@ def incidence(EDGELIST = [[1, [1, 4, 6]], [2, [1, -5]], [3, [-1, 7]], [4, [2, 3]
 
         emp_var = list(set([abs(a[0]) for a in list(
             filter(lambda var_cl: var_cl[1] in emp_clause, var_cl_list))]))
-        # print(i, 'emp_clause ', emp_clause)
-        # print(i, 'emp_var ', emp_var)
 
         for var in emp_var:
             _vartag = vartag % abs(var)
@@ -634,8 +381,6 @@ def incidence(EDGELIST = [[1, [1, 4, 6]], [2, [1, -5]], [3, [-1, 7]], [4, [2, 3]
                              color=colors[-var % len(colors)],
                              arrowtail='odot',
                              style=_style)
-        # print(g_incid.body)
-        # body – Iterable of verbatim lines to add to the graph body.
 
         g_incid.render(
             view=True,
@@ -653,5 +398,5 @@ if __name__ == "__main__":
                         type=argparse.FileType('r', encoding='UTF-8'))
 
     infile = parser.parse_args().file
-    # main(infile)                                      # Call Mainroutine
-    incidence()
+    main(infile)                                      # Call Mainroutine
+    # incidence()
