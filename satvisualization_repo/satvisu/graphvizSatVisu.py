@@ -147,7 +147,7 @@ def main(infile):
     solpre = "sol%d"
     soljoinpre = "solJoin%d~%d"
     lastSol = ""
-    _filename = 'results\\g41DigraphProgress%d'
+    _filename = r'results\g41DigraphProgress%d'
 
     s = Digraph(
         'structs',
@@ -268,13 +268,13 @@ def main(infile):
            '#0d1321', '#da1167', '#604909', '#0073a1', '#b14923', '#244320',
            '#b1740f', '#a682ff']
 
-    incidence(
-        EDGELIST=_edgelist,
-        TIMELINE=_timeline,
-        numVars=tdGraph['numVars'],
-        colors=col)
+    # incidence(
+    #     EDGELIST=_edgelist,
+    #     TIMELINE=_timeline,
+    #     numVars=tdGraph['numVars'],
+    #     colors=col)
 
-    primalSet = set(itertools.chain.from_iterable(
+    primalSet = tuple(set(elem) for elem in itertools.chain.from_iterable(
         map(lambda x: (itertools.combinations(map(abs, x[1]), 2)), _edgelist)))
 
     primal(
@@ -289,7 +289,7 @@ def primal(EDGELIST, TIMELINE, numVars, colors):
 
     Parameters
     ----------
-    EDGELIST : Iterable of: [int, int]
+    EDGELIST : Iterable of: {int, int}
         All edges between variables that occur in one or more clauses together.
         BOTH edges (x, y) and (y, x) could be in the EDGELIST.
 
@@ -313,7 +313,7 @@ def primal(EDGELIST, TIMELINE, numVars, colors):
     # print('primal using edgelist:\n', EDGELIST, "\ntimeline\n", TIMELINE)
 
     vartag = "v_%d"
-    _filename = 'results\\primalGraph%d'
+    _filename = r'results\primalGraph%d'
     g_primal = Graph(strict=True,
                      graph_attr={'dpi': '300',
                                  'nodesep': '0.5', 'fontsize': '20'},
@@ -330,9 +330,10 @@ def primal(EDGELIST, TIMELINE, numVars, colors):
     
     bodybaselen = len(g_primal.body)
     for i, variables in enumerate(TIMELINE, start=1):    # all timesteps
-        
+        # print(i, variables)
         # reset highlighting
         g_primal.body = g_primal.body[:bodybaselen]
+        
         if variables is None:
             g_primal.render(
                 view=False,
@@ -340,14 +341,19 @@ def primal(EDGELIST, TIMELINE, numVars, colors):
                 filename=_filename % i)
             continue
 
-         # TODO
+        for var in variables:
+            g_primal.node(vartag % var, fillcolor='yellow', style='filled')
+        
+        # https://www.geeksforgeeks.org/python-intersection-two-lists/
+        adjacent = map(lambda sublist: filter(lambda x: x in variables, sublist), EDGELIST)
 
+        var_cl_iter = tuple(itertools.chain.from_iterable(vcmapping))  # flatten
+            
         g_primal.render(
             view=False,
             format='png',
             filename= _filename % i)
     
-
 
 def incidence(EDGELIST=([1, [1, 4, 6]], [2, [1, -5]], [3, [-1, 7]], [4, [2, 3]], [5, [2, 5]],
                         [6, [2, -6]], [7, [3, -8]], [8, [4, -8]], [9, [-4, 6]], [10, [-4, 7]]),
@@ -358,7 +364,7 @@ def incidence(EDGELIST=([1, [1, 4, 6]], [2, [1, -5]], [3, [-1, 7]], [4, [2, 3]],
                         None,   # Join
                         [1, 2, 4, 6], [1, 4, 7]),
               numVars=8, colors=("#0073a1", "#b14923", "#244320")):
-
+    _filename = r'results\incidenceGraph%d'
     print('incidence using edgelist:\n', EDGELIST, "\ntimeline\n", TIMELINE)
     clausetag = "c_%d"
     vartag = "v_%d"
@@ -460,7 +466,7 @@ def incidence(EDGELIST=([1, [1, 4, 6]], [2, [1, -5]], [3, [-1, 7]], [4, [2, 3]],
         g_incid.render(
             view=False,
             format='png',
-            filename='results\\incidenceGraph%d' % i)
+            filename= _filename % i)
 
 
 if __name__ == "__main__":
