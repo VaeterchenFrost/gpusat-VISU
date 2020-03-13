@@ -10,4 +10,9 @@ strict graph {
 	v_2 -- v_4
 	v_2 -- v_5
 	v_3 -- v_5
+	v_1 [fillcolor=yellow style=filled]
+	v_2 [fillcolor=yellow style=filled]
+	v_4 [fillcolor=yellow style=filled]
+	v_3 [color=green style="dotted,filled"]
+	v_5 [color=green style="dotted,filled"]
 }

@@ -1,0 +1,31 @@
+strict digraph structs {
+	graph [dpi=250 margin="0,0.5"]
+	node [fillcolor=white margin="0.11,0.01" shape=box style="rounded,filled"]
+	"bag 0" [label=<<TABLE BORDER="0" CELLBORDER="0" CELLSPACING="0">
+              <TR><TD BGCOLOR="white">bag 0</TD><TD PORT="anchor"></TD><TD>[1 3 5]</TD></TR></TABLE>>]
+	"bag 1" [label=<<TABLE BORDER="0" CELLBORDER="0" CELLSPACING="0">
+              <TR><TD BGCOLOR="white">bag 1</TD><TD PORT="anchor"></TD><TD>[1 2 5]</TD></TR></TABLE>>]
+	"bag 2" [label=<<TABLE BORDER="0" CELLBORDER="0" CELLSPACING="0">
+              <TR><TD BGCOLOR="white">bag 2</TD><TD PORT="anchor"></TD><TD>[1 2 4]</TD></TR></TABLE>>]
+	"bag 1" -> "bag 0"
+	"bag 2" -> "bag 1"
+	sol2 [label="{sol bag 2|{{id|0|1|2|3}|{v1|0|1|0|1}|{v2|0|0|1|1}|{n Sol|1|0|2|2}}|sum: 5}" shape=record]
+	"bag 2" -> sol2
+	sol1 [label="{sol bag 1|{{id|0|1|2|3}|{v1|0|1|0|1}|{v5|0|0|1|1}|{n Sol|3|2|2|2}}|sum: 9}" shape=record]
+	"bag 1" -> sol1
+	sol0 [label="{sol bag 0|{{id|0|1|2|3|4|5|6|7}|{v1|0|1|0|1|0|1|0|1}|{v3|0|0|1|1|0|0|1|1}|{v5|0|0|0|0|1|1|1|1}|{n Sol|3|2|0|2|0|0|2|2}}|sum: 11}" shape=record]
+	"bag 0" -> sol0
+	sol0 [fillcolor=yellow]
+	sol0 [penwidth=2.5]
+	"bag 0" -> sol0
+	"bag 0" [fillcolor=yellow]
+	"bag 0" [penwidth=2.5]
+	"bag 0" [fillcolor=white penwidth=1.0]
+	sol0 [style=invis]
+	"bag 0" -> sol0 [style=invis]
+	sol1 [fillcolor=yellow]
+	sol1 [penwidth=2.5]
+	"bag 1" -> sol1
+	"bag 1" [fillcolor=yellow]
+	"bag 1" [penwidth=2.5]
+}

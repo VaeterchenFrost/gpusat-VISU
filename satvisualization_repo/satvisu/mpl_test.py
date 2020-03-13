@@ -9,13 +9,12 @@ import matplotlib.image as mpimg
 import matplotlib.pyplot as plt
 
 if __name__ == "__main__":
-    num = 11  # 0-8
+    num = 11
     img1 = mpimg.imread(r"results/g41DigraphProgress%d.png" % num)
     img2 = mpimg.imread(r"results/incidenceGraph%d.png" % num)
     img3 = mpimg.imread(r"results/primalGraph%d.png" % num)
-    _figsize = ((img1.shape[1]+ img2.shape[1]+ img3.shape[1]) /
-                300*2.54, max(img1.shape[0], img2.shape[0], img3.shape[0]) /
-                300*2.54)
+    _figsize = ((img1.shape[1] + img2.shape[1] + img3.shape[1]) / 300 * 2.54,
+                max(img1.shape[0], img2.shape[0], img3.shape[0]) / 300 * 2.54)
 
     for i in range(num, 0, -1):
         img1 = mpimg.imread(r"results/g41DigraphProgress%d.png" % i)
@@ -24,7 +23,7 @@ if __name__ == "__main__":
 
         plt.axis("off")
         fig, (ax1, ax2, ax3) = plt.subplots(1, 3, figsize=_figsize,
-                                       dpi=300, frameon=False, tight_layout=False)
+                                            dpi=300, frameon=False, tight_layout=False)
         for elem in (ax1, ax2, ax3):
             elem.axis('off')
         fig.patch.set_visible(False)

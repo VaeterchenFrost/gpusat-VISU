@@ -10,6 +10,7 @@ import json
 import io
 import itertools
 
+graphvizSatVisuOUTPUT = "results31\\"
 
 def read_json(json_data):
     """
@@ -151,7 +152,7 @@ def main(infile):
     solpre = "sol%d"
     soljoinpre = "solJoin%d~%d"
     lastSol = ""
-    _filename = r'results\g41DigraphProgress%d'
+    _filename = graphvizSatVisuOUTPUT+'g41DigraphProgress%d'
 
     s = Digraph(
         'structs',
@@ -316,7 +317,7 @@ def primal(primalSet, TIMELINE, numVars, colors):
     """
 
     vartag = "v_%d"
-    _filename = r'results\primalGraph%d'
+    _filename = graphvizSatVisuOUTPUT+'primalGraph%d'
     g_primal = Graph(strict=True,
                      graph_attr={'dpi': '300',
                                  'nodesep': '0.5', 'fontsize': '20'},
@@ -369,7 +370,7 @@ def incidence(EDGELIST=([1, [1, 4, 6]], [2, [1, -5]], [3, [-1, 7]], [4, [2, 3]],
                         None,   # Join
                         [1, 2, 4, 6], [1, 4, 7]),
               numVars=8, colors=("#0073a1", "#b14923", "#244320")):
-    _filename = r'results\incidenceGraph%d'
+    _filename = graphvizSatVisuOUTPUT+'incidenceGraph%d'
     print('incidence using edgelist:\n', EDGELIST, "\ntimeline\n", TIMELINE)
     clausetag = "c_%d"
     vartag = "v_%d"
@@ -432,7 +433,7 @@ def incidence(EDGELIST=([1, [1, 4, 6]], [2, [1, -5]], [3, [-1, 7]], [4, [2, 3]],
             g_incid.render(
                 view=False,
                 format='png',
-                filename='results\\incidenceGraph%d' %
+                filename=graphvizSatVisuOUTPUT+'incidenceGraph%d' %
                 i)
             continue
 
