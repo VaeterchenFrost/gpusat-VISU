@@ -18,8 +18,6 @@ import json
 import io
 import itertools
 
-graphvizSatVisuOUTPUT = "results31\\"
-
 
 def read_json(json_data):
     """
@@ -72,8 +70,17 @@ class Visualization(object):
         self.tdFile = tdFile
         self.primalFile = primalFile
         self.incFile = incFile
+        self.dpi = 150
+        self.colors = ['#0073a1', '#b14923', '#244320', '#b1740f', '#a682ff', 
+                       '#004066', '#0d1321', '#da1167', '#604909', '#0073a1', 
+                       '#b14923', '#244320', '#b1740f', '#a682ff']
+        
         print(self)
 
+    @staticmethod
+    def getVisuOutputFolder():
+        return "results31Test\\"
+    
     @staticmethod
     def baseStyle(graph, node):
         graph.node(node, fillcolor='white', penwidth="1.0")
@@ -171,118 +178,125 @@ class Visualization(object):
 
         return "{" + result + "}"
 
-    # def main(infile):
-    #     # print(RENDERERS)
-    #     visudata = read_json(infile)
-    #     # print("READS>>>\n", json.dumps(visudata))
 
-    #     tdGraph = visudata["treeDecJson"]
-    #     TIMELINE = visudata["tdTimeline"]
+    def inspectJson(self, infile):
+        visudata = read_json(infile)
+        print("Reading from ", infile)
+        
+        print("Found keys ", visudata.keys())
+        
+        self.treeDec = visudata["treeDecJson"]
+        self.timeline = visudata["tdTimeline"]
+        self.bagpre = self.tdGraph["bagpre"]
+        self.edgelist = list(
+            map(lambda x: [x['id'], x['list']], visudata["clausesJson"]))
+    
+    
+    def treeDecTimeline(self, render):
+        
+        joinpre = "Join %d~%d"
+        solpre = "sol%d"
+        soljoinpre = "solJoin%d~%d"
+        lastSol = ""
+        _filename = self.graphvizSatVisuOUTPUT+'g41DigraphProgress%d'
 
-    #     bagpre = tdGraph["bagpre"]
-    #     joinpre = "Join %d~%d"
-    #     solpre = "sol%d"
-    #     soljoinpre = "solJoin%d~%d"
-    #     lastSol = ""
-    #     _filename = graphvizSatVisuOUTPUT+'g41DigraphProgress%d'
+        s = Digraph(
+            'structs',
+            filename=_filename,
+            strict=True,
+            graph_attr={
+                'dpi': str(self.dpi),
+                'margin': '0,0.5'},
 
-    #     s = Digraph(
-    #         'structs',
-    #         filename=_filename,
-    #         strict=True,
-    #         graph_attr={
-    #             'dpi': '250',
-    #             'margin': '0,0.5'},
+            node_attr={
+                'shape': 'box',
+                'fillcolor': 'white',
+                'style': "rounded,filled",
+                'margin': '0.11,0.01'})
 
-    #         node_attr={
-    #             'shape': 'box',
-    #             'fillcolor': 'white',
-    #             'style': "rounded,filled",
-    #             'margin': '0.11,0.01'})
+        # -----------Iterate labeldict ---------------
 
-    #     # -----------Iterate labeldict ---------------
+        for item in tdGraph["labeldict"]:
+            bagname = bagpre % str(item["id"])
+            s.node(bagname, bagNode(bagname, item["labels"]))
 
-    #     for item in tdGraph["labeldict"]:
-    #         bagname = bagpre % str(item["id"])
-    #         s.node(bagname, bagNode(bagname, item["labels"]))
+        s.edges([(bagpre % str(first), bagpre % str(second))
+                  for (first, second) in tdGraph["edgearray"]])
 
-    #     s.edges([(bagpre % str(first), bagpre % str(second))
-    #              for (first, second) in tdGraph["edgearray"]])
+        # >>>>>>>>>>>>Iterate TIMELINE FORWARD>>>>>>>>>>>>>
 
-    #     # >>>>>>>>>>>>Iterate TIMELINE FORWARD>>>>>>>>>>>>>
+        for i, node in enumerate(TIMELINE):                 # Create the positions
+            if len(node) > 1:
+                # solution to be displayed
+                id_inv_bags = node[0]
+                if isinstance(id_inv_bags, int):
+                    lastSol = solpre % id_inv_bags
+                    s.node(lastSol, solutionNode(*(node[1])), shape='record')
 
-    #     for i, node in enumerate(TIMELINE):                 # Create the positions
-    #         if len(node) > 1:
-    #             # solution to be displayed
-    #             id_inv_bags = node[0]
-    #             if isinstance(id_inv_bags, int):
-    #                 lastSol = solpre % id_inv_bags
-    #                 s.node(lastSol, solutionNode(*(node[1])), shape='record')
+                    s.edge(bagpre % id_inv_bags, lastSol)
 
-    #                 s.edge(bagpre % id_inv_bags, lastSol)
+                else:  # joined node with 2 bags
+                    suc = TIMELINE[i + 1][0]
+                    print('joining ', node[0], ' to ', suc)  # get the joined bags
+                    # solution
+                    id_inv_bags = tuple(id_inv_bags)
+                    lastSol = soljoinpre % id_inv_bags
+                    s.node(lastSol, solutionNode(*(node[1])), shape='record')
 
-    #             else:  # joined node with 2 bags
-    #                 suc = TIMELINE[i + 1][0]
-    #                 print('joining ', node[0], ' to ', suc)  # get the joined bags
-    #                 # solution
-    #                 id_inv_bags = tuple(id_inv_bags)
-    #                 lastSol = soljoinpre % id_inv_bags
-    #                 s.node(lastSol, solutionNode(*(node[1])), shape='record')
+                    s.edge(joinpre % id_inv_bags, lastSol)
+                    # edges
+                    for child in id_inv_bags:             # basically "remove" current
+                        # TODO check where 2 args are possibly occuring
+                        s.edge(
+                            bagpre % child
+                            if isinstance(child, int) else joinpre % child,
+                            bagpre % suc
+                            if isinstance(suc, int) else joinpre % suc,
+                            style='invis',
+                            constraint='false')
+                        s.edge(bagpre % child if isinstance(child, int)
+                                else joinpre % child,
+                                joinpre % id_inv_bags)
+                    s.edge(joinpre % id_inv_bags, bagpre % suc
+                            if isinstance(suc, int) else joinpre % suc)
 
-    #                 s.edge(joinpre % id_inv_bags, lastSol)
-    #                 # edges
-    #                 for child in id_inv_bags:             # basically "remove" current
-    #                     # TODO check where 2 args are possibly occuring
-    #                     s.edge(
-    #                         bagpre % child
-    #                         if isinstance(child, int) else joinpre % child,
-    #                         bagpre % suc
-    #                         if isinstance(suc, int) else joinpre % suc,
-    #                         style='invis',
-    #                         constraint='false')
-    #                     s.edge(bagpre % child if isinstance(child, int)
-    #                            else joinpre % child,
-    #                            joinpre % id_inv_bags)
-    #                 s.edge(joinpre % id_inv_bags, bagpre % suc
-    #                        if isinstance(suc, int) else joinpre % suc)
+        # <<<<<<<<<<<Iterate TIMELINE BACKWARDS<<<<<<<<<<<<<<<<<<<
 
-    #     # <<<<<<<<<<<Iterate TIMELINE BACKWARDS<<<<<<<<<<<<<<<<<<<
+        for i, node in enumerate(TIMELINE[::-1]):       # Cut and hide emphasis
+            id_inv_bags = node[0]
+            print(i, ":Reverse traversing on", id_inv_bags)
 
-    #     for i, node in enumerate(TIMELINE[::-1]):       # Cut and hide emphasis
-    #         id_inv_bags = node[0]
-    #         print(i, ":Reverse traversing on", id_inv_bags)
+            if i > 0:                                   # Delete previous emphasis
+                prevhead = TIMELINE[len(TIMELINE) - i][0]
+                bag = (bagpre % prevhead
+                        if isinstance(prevhead, int) else joinpre % tuple(prevhead))
+                baseStyle(s, bag)
+                if lastSol:
+                    styleHideNode(s, lastSol)
+                    styleHideEdge(s, bag, lastSol)
+                    lastSol = ""
 
-    #         if i > 0:                                   # Delete previous emphasis
-    #             prevhead = TIMELINE[len(TIMELINE) - i][0]
-    #             bag = (bagpre % prevhead
-    #                    if isinstance(prevhead, int) else joinpre % tuple(prevhead))
-    #             baseStyle(s, bag)
-    #             if lastSol:
-    #                 styleHideNode(s, lastSol)
-    #                 styleHideEdge(s, bag, lastSol)
-    #                 lastSol = ""
+            if len(node) > 1:
+                # solution to be displayed
 
-    #         if len(node) > 1:
-    #             # solution to be displayed
+                if isinstance(id_inv_bags, int):
+                    lastSol = solpre % id_inv_bags
+                    emphasiseNode(s, lastSol)
+                    s.edge(bagpre % id_inv_bags, lastSol)
+                else:  # joined node with 2 bags
+                    id_inv_bags = tuple(id_inv_bags)
+                    lastSol = soljoinpre % id_inv_bags
+                    emphasiseNode(s, lastSol)
 
-    #             if isinstance(id_inv_bags, int):
-    #                 lastSol = solpre % id_inv_bags
-    #                 emphasiseNode(s, lastSol)
-    #                 s.edge(bagpre % id_inv_bags, lastSol)
-    #             else:  # joined node with 2 bags
-    #                 id_inv_bags = tuple(id_inv_bags)
-    #                 lastSol = soljoinpre % id_inv_bags
-    #                 emphasiseNode(s, lastSol)
-
-    #         emphasiseNode(s,
-    #                       bagpre %
-    #                       id_inv_bags if isinstance(
-    #                           id_inv_bags,
-    #                           int) else joinpre %
-    #                       id_inv_bags)
-    #         s.render(
-    #             view=False, format='png', filename=_filename %
-    #             (len(TIMELINE) - i))
+            emphasiseNode(s,
+                          bagpre %
+                          id_inv_bags if isinstance(
+                              id_inv_bags,
+                              int) else joinpre %
+                          id_inv_bags)
+            s.render(
+                view=False, format='png', filename=_filename %
+                (len(TIMELINE) - i))
 
     #     # Prepare Incidence graph Timeline
 
