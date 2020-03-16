@@ -276,7 +276,7 @@ class Visualization(object):
 
     def backwardsIterateTDG(self, joinpre=None, solpre=None, soljoinpre=None):
         tdg = self.treeDecGraph     # shorten name
-
+        lastSol = ""
         if joinpre is None:
             joinpre = self.joinpre
         if solpre is None:
@@ -298,8 +298,8 @@ class Visualization(object):
                     tuple(prevhead))
                 self.baseStyle(tdg, bag)
                 if lastSol:
-                    styleHideNode(tdg, lastSol)
-                    styleHideEdge(tdg, bag, lastSol)
+                    self.styleHideNode(tdg, lastSol)
+                    self.styleHideEdge(tdg, bag, lastSol)
                     lastSol = ""
 
             if len(node) > 1:
@@ -307,22 +307,23 @@ class Visualization(object):
 
                 if isinstance(id_inv_bags, int):
                     lastSol = solpre % id_inv_bags
-                    emphasiseNode(treeDecGraph, lastSol)
-                    treeDecGraph.edge(bagpre % id_inv_bags, lastSol)
+                    self.emphasiseNode(tdg, lastSol)
+                    tdg.edge(self.bagpre % id_inv_bags, lastSol)
                 else:  # joined node with 2 bags
                     id_inv_bags = tuple(id_inv_bags)
                     lastSol = soljoinpre % id_inv_bags
-                    emphasiseNode(treeDecGraph, lastSol)
+                    self.emphasiseNode(tdg, lastSol)
 
-            emphasiseNode(treeDecGraph,
-                          bagpre %
-                          id_inv_bags if isinstance(
-                              id_inv_bags,
-                              int) else joinpre %
-                          id_inv_bags)
-            treeDecGraph.render(
+            self.emphasiseNode(tdg,
+                               self.bagpre %
+                               id_inv_bags if isinstance(
+                                   id_inv_bags,
+                                   int) else joinpre %
+                               id_inv_bags)
+            _filename = self.graphvizSatVisuOUTPUT + 'g41DigraphProgress%d'
+            tdg.render(
                 view=False, format='png', filename=_filename %
-                (len(TIMELINE) - i))
+                (len(self.timeline) - i))
 
     def treeDecTimeline(self, render):
 
@@ -338,31 +339,25 @@ class Visualization(object):
         # Prepare Incidence graph Timeline
 
         _timeline = []
-        for step in TIMELINE:
+        for step in self.timeline:
             if len(step) < 2:
                 _timeline.append(None)
             elif isinstance(step[0], int):
                 _timeline.append(
                     next(
-                        (item.get('items') for item in tdGraph['labeldict'] if item['id'] == step[0])))
+                        (item.get('items') for item in self.treeDec['labeldict'] if item['id'] == step[0])))
             else:
                 # Join operation - no clauses involved in computation
                 _timeline.append(None)
 
-        incidence(
-            EDGELIST=_edgelist,
-            TIMELINE=_timeline,
-            numVars=tdGraph['numVars'],
-            colors=col)
-
         _primalSet = tuple(set(elem) for elem in flatten(
-            map(lambda x: (itertools.combinations(map(abs, x[1]), 2)), _edgelist)))
+            map(lambda x: (itertools.combinations(map(abs, x[1]), 2)), self.edgelist)))
 
-        primal(
+        self.primal(
             primalSet=_primalSet,
             TIMELINE=_timeline,
-            numVars=tdGraph['numVars'],
-            colors=col)
+            numVars=self.treeDec['numVars'],
+            colors=self.colors)
 
     # def primal(primalSet, TIMELINE, numVars, colors):
     #     """
@@ -435,7 +430,12 @@ class Visualization(object):
     #             format='png',
     #             filename=_filename % i)
 
-    def incidence(self):
+    def incidence(
+            self,
+            EDGELIST=None,
+            TIMELINE=None,
+            numVars=None,
+            colors=None):
         _filename = self.folder + self.incFile
 
         print(
