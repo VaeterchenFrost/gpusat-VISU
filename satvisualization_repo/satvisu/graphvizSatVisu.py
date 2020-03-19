@@ -159,6 +159,7 @@ def main(infile):
         filename=_filename,
         strict=True,
         graph_attr={
+            'rankdir': 'BT',
             'dpi': '250',
             'margin': '0,0.5'},
 
