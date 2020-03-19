@@ -10,7 +10,7 @@ import json
 import io
 import itertools
 
-graphvizSatVisuOUTPUT = "results31Test\\"
+graphvizSatVisuOUTPUT = "results41RootTop\\"
 
 def read_json(json_data):
     """
