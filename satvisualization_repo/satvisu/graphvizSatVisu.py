@@ -10,7 +10,7 @@ import json
 import io
 import itertools
 
-graphvizSatVisuOUTPUT = "results31Test\\"
+graphvizSatVisuOUTPUT = "results10Test\\"
 
 def read_json(json_data):
     """
@@ -159,8 +159,7 @@ def main(infile):
         filename=_filename,
         strict=True,
         graph_attr={
-            'dpi': '250',
-            'margin': '0,0.5'},
+            'dpi': '250'},
 
         node_attr={
             'shape': 'box',
@@ -375,8 +374,8 @@ def incidence(EDGELIST=([1, [1, 4, 6]], [2, [1, -5]], [3, [-1, 7]], [4, [2, 3]],
     clausetag = "c_%d"
     vartag = "v_%d"
 
-    g_incid = Graph(strict=True, graph_attr={'splines': 'false', 'dpi': '300',
-                                             'nodesep': '0.5', 'fontsize': '20'},
+    g_incid = Graph(strict=True, graph_attr={'splines': 'false', 'dpi': '300', 'ranksep':'0.2',
+                                             'nodesep': '0.5', 'fontsize': '20', 'compound':'true'},
                     edge_attr={'penwidth': '2.2', 'dir': 'back', 'arrowtail': 'none'})
 
     with g_incid.subgraph(name='cluster_clause', edge_attr={'style': 'invis'},
@@ -388,6 +387,7 @@ def incidence(EDGELIST=([1, [1, 4, 6]], [2, [1, -5]], [3, [-1, 7]], [4, [2, 3]],
     g_incid.attr('node', shape='diamond', fontcolor='black',
                  penwidth='2.2',
                  style='dotted')
+    
     with g_incid.subgraph(name='cluster_ivar', edge_attr={'style': 'invis'}, node_attr={'style': 'dotted'}) as ivars:
         ivars.attr(label='variables')
         ivars.edges([(vartag % (i + 1), vartag % (i + 2))
@@ -397,9 +397,9 @@ def incidence(EDGELIST=([1, [1, 4, 6]], [2, [1, -5]], [3, [-1, 7]], [4, [2, 3]],
                          (i + 1), vartag %
                          (i + 1), color=colors[(i + 1) %
                                                len(colors)])
-
+    
     g_incid.attr('edge', constraint="false")
-
+    g_incid.edge(clausetag%1, vartag%1, ltail='cluster_clause', lhead='cluster_ivar', minlen='3', style='invis')
     for clause in EDGELIST:
         for var in clause[1]:
             if var >= 0:
