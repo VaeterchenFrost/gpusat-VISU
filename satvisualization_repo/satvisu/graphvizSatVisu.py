@@ -10,6 +10,7 @@ import json
 import io
 import itertools
 
+
 graphvizSatVisuOUTPUT = "results10Test\\"
 
 def read_json(json_data):
@@ -159,7 +160,8 @@ def main(infile):
         filename=_filename,
         strict=True,
         graph_attr={
-            'dpi': '250'},
+            'dpi': '250',
+            'rankdir': 'BT'}
 
         node_attr={
             'shape': 'box',
