@@ -1,5 +1,5 @@
 strict graph {
-	graph [dpi=300 fontsize=20 nodesep=0.5 splines=false]
+	graph [compound=true dpi=300 fontsize=20 nodesep=0.5 ranksep=0.2 splines=false]
 	edge [arrowtail=none dir=back penwidth=2.2]
 	subgraph cluster_clause {
 		node [fillcolor=white style="rounded,filled"]
@@ -37,6 +37,7 @@ strict graph {
 		v_7 -- v_8
 	}
 	edge [constraint=false]
+	c_1 -- v_1 [lhead=cluster_ivar ltail=cluster_clause minlen=3 style=invis]
 	c_1 -- v_1 [color="#b14923"]
 	c_1 -- v_4 [color="#a682ff"]
 	c_1 -- v_6 [color="#0d1321"]
