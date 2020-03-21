@@ -207,7 +207,7 @@ class Visualization(object):
             strict=True,
             graph_attr={
                 'dpi': str(self.dpi),
-                'margin': '0,0.5'},
+                'rankdir': 'BT'},
             node_attr={
                 'shape': 'box',
                 'fillcolor': 'white',
@@ -446,17 +446,9 @@ class Visualization(object):
         clausetag = "c_%d"
         vartag = "v_%d"
 
-        g_incid = Graph(
-            strict=True,
-            graph_attr={
-                'splines': 'false',
-                'dpi': '300',
-                'nodesep': '0.5',
-                'fontsize': '20'},
-            edge_attr={
-                'penwidth': '2.2',
-                'dir': 'back',
-                'arrowtail': 'none'})
+        g_incid = Graph(strict=True, graph_attr={'splines': 'false', 'dpi': '300', 'ranksep':'0.2',
+                                             'nodesep': '0.5', 'fontsize': '20', 'compound':'true'},
+                    edge_attr={'penwidth': '2.2', 'dir': 'back', 'arrowtail': 'none'})
 
         with g_incid.subgraph(name='cluster_clause', edge_attr={'style': 'invis'},
                               node_attr={'style': 'rounded,filled', 'fillcolor': 'white'}) as clauses:
@@ -478,7 +470,8 @@ class Visualization(object):
                                                    len(colors)])
 
         g_incid.attr('edge', constraint="false")
-
+        # invis distance between clusters: minlen
+        g_incid.edge(clausetag%1, vartag%1, ltail='cluster_clause', lhead='cluster_ivar', minlen='3', style='invis')
         for clause in self.EDGELIST:
             for var in clause[1]:
                 if var >= 0:

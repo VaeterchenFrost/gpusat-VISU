@@ -161,7 +161,7 @@ def main(infile):
         strict=True,
         graph_attr={
             'dpi': '250',
-            'rankdir': 'BT'}
+            'rankdir': 'BT'},
 
         node_attr={
             'shape': 'box',
