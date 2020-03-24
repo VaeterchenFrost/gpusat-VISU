@@ -16,6 +16,7 @@ import itertools
 
 graphvizSatVisuOUTPUT = "outfolder"
 
+
 def read_json(json_data):
     """
     Read json data into a callable object.
@@ -156,15 +157,13 @@ def main(infile):
     solpre = "sol%d"
     soljoinpre = "solJoin%d~%d"
     lastSol = ""
-    _filename = graphvizSatVisuOUTPUT+'DigraphProgress%d'
+    _filename = graphvizSatVisuOUTPUT + 'DigraphProgress%d'
 
     s = Digraph(
         'structs',
         filename=_filename,
         strict=True,
-        graph_attr={
-            'dpi': '250',
-            'rankdir': 'BT'},
+        graph_attr={'rankdir': 'BT'},
 
         node_attr={
             'shape': 'box',
@@ -253,7 +252,7 @@ def main(infile):
                           int) else joinpre %
                       id_inv_bags)
         s.render(
-            view=False, format='png', filename=_filename %
+            view=False, format='svg', filename=_filename %
             (len(TIMELINE) - i))
 
     # Prepare Incidence graph Timeline
@@ -321,10 +320,10 @@ def primal(primalSet, TIMELINE, numVars, colors):
     """
 
     vartag = "v_%d"
-    _filename = graphvizSatVisuOUTPUT+'primalGraph%d'
+    _filename = graphvizSatVisuOUTPUT + 'primalGraph%d'
     splines = 'ortho'
     g_primal = Graph(strict=True,
-                     graph_attr={'splines': splines,'dpi': '250',
+                     graph_attr={'splines': splines,
                                  'fontsize': '20'},
                      node_attr={'fontcolor': 'black',
                                 'penwidth': '2.2'})
@@ -334,7 +333,7 @@ def primal(primalSet, TIMELINE, numVars, colors):
 
     g_primal.render(
         view=False,
-        format='png',
+        format='svg',
         filename='primalGraphStart')
 
     bodybaselen = len(g_primal.body)
@@ -346,7 +345,7 @@ def primal(primalSet, TIMELINE, numVars, colors):
         if variables is None:
             g_primal.render(
                 view=False,
-                format='png',
+                format='svg',
                 filename=_filename % i)
             continue
 
@@ -362,7 +361,7 @@ def primal(primalSet, TIMELINE, numVars, colors):
 
         g_primal.render(
             view=False,
-            format='png',
+            format='svg',
             filename=_filename % i)
 
 
@@ -375,14 +374,23 @@ def incidence(EDGELIST=([1, [1, 4, 6]], [2, [1, -5]], [3, [-1, 7]], [4, [2, 3]],
                         None,   # Join
                         [1, 2, 4, 6], [1, 4, 7]),
               numVars=8, colors=("#0073a1", "#b14923", "#244320")):
-    _filename = graphvizSatVisuOUTPUT+'incidenceGraph%d'
+    _filename = graphvizSatVisuOUTPUT + 'incidenceGraph%d'
     print('incidence using edgelist:\n', EDGELIST, "\ntimeline\n", TIMELINE)
     clausetag = "c_%d"
     vartag = "v_%d"
 
-    g_incid = Graph(strict=True, graph_attr={'splines': 'false', 'dpi': '300', 'ranksep':'0.2',
-                                             'nodesep': '0.5', 'fontsize': '20', 'compound':'true'},
-                    edge_attr={'penwidth': '2.2', 'dir': 'back', 'arrowtail': 'none'})
+    g_incid = Graph(
+        strict=True,
+        graph_attr={
+            'splines': 'false',
+            'ranksep': '0.2',
+            'nodesep': '0.5',
+            'fontsize': '16',
+            'compound': 'true'},
+        edge_attr={
+            'penwidth': '2.2',
+            'dir': 'back',
+            'arrowtail': 'none'})
 
     with g_incid.subgraph(name='cluster_clause', edge_attr={'style': 'invis'},
                           node_attr={'style': 'rounded,filled', 'fillcolor': 'white'}) as clauses:
@@ -393,7 +401,7 @@ def incidence(EDGELIST=([1, [1, 4, 6]], [2, [1, -5]], [3, [-1, 7]], [4, [2, 3]],
     g_incid.attr('node', shape='diamond', fontcolor='black',
                  penwidth='2.2',
                  style='dotted')
-    
+
     with g_incid.subgraph(name='cluster_ivar', edge_attr={'style': 'invis'}, node_attr={'style': 'dotted'}) as ivars:
         ivars.attr(label='variables')
         ivars.edges([(vartag % (i + 1), vartag % (i + 2))
@@ -403,9 +411,17 @@ def incidence(EDGELIST=([1, [1, 4, 6]], [2, [1, -5]], [3, [-1, 7]], [4, [2, 3]],
                          (i + 1), vartag %
                          (i + 1), color=colors[(i + 1) %
                                                len(colors)])
-    
+
     g_incid.attr('edge', constraint="false")
-    g_incid.edge(clausetag%1, vartag%1, ltail='cluster_clause', lhead='cluster_ivar', minlen='3', style='invis')
+    g_incid.edge(
+        clausetag %
+        1,
+        vartag %
+        1,
+        ltail='cluster_clause',
+        lhead='cluster_ivar',
+        minlen='3',
+        style='invis')
     for clause in EDGELIST:
         for var in clause[1]:
             if var >= 0:
@@ -438,16 +454,20 @@ def incidence(EDGELIST=([1, [1, 4, 6]], [2, [1, -5]], [3, [-1, 7]], [4, [2, 3]],
         if variables is None:
             g_incid.render(
                 view=False,
-                format='png',
-                filename=graphvizSatVisuOUTPUT+'incidenceGraph%d' %
+                format='svg',
+                filename=graphvizSatVisuOUTPUT + 'incidenceGraph%d' %
                 i)
             continue
 
-        emp_clause = {var_cl[1] for var_cl in
-                      filter(lambda var_cl, s=variables: abs(var_cl[0]) in s, var_cl_iter)}
+        emp_clause = {
+            var_cl[1] for var_cl in filter(
+                lambda var_cl,
+                s=variables: abs(
+                    var_cl[0]) in s,
+                var_cl_iter)}
 
-        emp_var = {abs(var_cl[0]) for var_cl in
-                   filter(lambda var_cl, s=emp_clause: var_cl[1] in s, var_cl_iter)}
+        emp_var = {abs(var_cl[0]) for var_cl in filter(
+            lambda var_cl, s=emp_clause: var_cl[1] in s, var_cl_iter)}
 
         for var in emp_var:
             _vartag = vartag % abs(var)
@@ -477,7 +497,7 @@ def incidence(EDGELIST=([1, [1, 4, 6]], [2, [1, -5]], [3, [-1, 7]], [4, [2, 3]],
 
         g_incid.render(
             view=False,
-            format='png',
+            format='svg',
             filename=_filename % i)
 
 
@@ -492,7 +512,8 @@ if __name__ == "__main__":
 
     args = parser.parse_args()
     _infile = args.infile
-    if args.outfolder: graphvizSatVisuOUTPUT = args.outfolder
-    graphvizSatVisuOUTPUT+="\\"
+    if args.outfolder:
+        graphvizSatVisuOUTPUT = args.outfolder
+    graphvizSatVisuOUTPUT += "\\"
     main(_infile)                                      # Call Mainroutine
     # incidence()
