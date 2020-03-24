@@ -1,5 +1,5 @@
 strict graph {
-	graph [dpi=250 fontsize=20 splines=ortho]
+	graph [fontsize=20 splines=ortho]
 	node [fontcolor=black penwidth=2.2]
 	v_1 -- v_4
 	v_1 -- v_6

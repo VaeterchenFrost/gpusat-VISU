@@ -1,5 +1,5 @@
 strict graph {
-	graph [compound=true dpi=300 fontsize=20 nodesep=0.5 ranksep=0.2 splines=false]
+	graph [compound=true fontsize=16 nodesep=0.5 ranksep=0.2 splines=false]
 	edge [arrowtail=none dir=back penwidth=2.2]
 	subgraph cluster_clause {
 		node [fillcolor=white style="rounded,filled"]
