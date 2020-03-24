@@ -10,8 +10,11 @@ import json
 import io
 import itertools
 
+# arguments:
+# visu1060.json example106
+# visugpusat.json example41
 
-graphvizSatVisuOUTPUT = "results10Test\\"
+graphvizSatVisuOUTPUT = "outfolder"
 
 def read_json(json_data):
     """
@@ -319,9 +322,10 @@ def primal(primalSet, TIMELINE, numVars, colors):
 
     vartag = "v_%d"
     _filename = graphvizSatVisuOUTPUT+'primalGraph%d'
+    splines = 'ortho'
     g_primal = Graph(strict=True,
-                     graph_attr={'dpi': '300',
-                                 'nodesep': '0.5', 'fontsize': '20'},
+                     graph_attr={'splines': splines,'dpi': '250',
+                                 'fontsize': '20'},
                      node_attr={'fontcolor': 'black',
                                 'penwidth': '2.2'})
 
@@ -482,9 +486,13 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(
         prog='graphvizSatVisu.py',
         description='Visualizing Dynamic Programming on Treedecompositions.')
-    parser.add_argument('file', nargs='?',
+    parser.add_argument('infile', nargs='?',
                         type=argparse.FileType('r', encoding='UTF-8'))
+    parser.add_argument('outfolder')
 
-    _infile = parser.parse_args().file
+    args = parser.parse_args()
+    _infile = args.infile
+    if args.outfolder: graphvizSatVisuOUTPUT = args.outfolder
+    graphvizSatVisuOUTPUT+="\\"
     main(_infile)                                      # Call Mainroutine
     # incidence()
