@@ -129,4 +129,4 @@ dmypy.json
 .pyre/
 *.stats
 *.png
-*.png
+!satvisualization_repo\satvisu\results106Z\**
