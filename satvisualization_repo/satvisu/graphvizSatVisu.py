@@ -156,7 +156,7 @@ def main(infile):
     solpre = "sol%d"
     soljoinpre = "solJoin%d~%d"
     lastSol = ""
-    _filename = graphvizSatVisuOUTPUT+'g41DigraphProgress%d'
+    _filename = graphvizSatVisuOUTPUT+'DigraphProgress%d'
 
     s = Digraph(
         'structs',
