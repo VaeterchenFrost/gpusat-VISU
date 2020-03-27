@@ -77,11 +77,12 @@ class Visualization(object):
             self.incFile +
             "')")
 
-    def __init__(self, folder, tdFile="TDStep",
+    def __init__(self, infile, outfolder, tdFile="TDStep",
                  primalFile="PrimalGraphStep",
                  incFile="IncidenceGraphStep"):
         """Copy needed fields from arguments and create additional constants"""
-        self.folder = folder
+        self.inspectJson(infile)
+        self.folder = outfolder
         self.tdFile = tdFile
         self.primalFile = primalFile
         self.incFile = incFile
@@ -229,13 +230,13 @@ class Visualization(object):
 
     def basicTDG(self):
         """Create first structure in treeDecGraph."""
-        for item in self.tdGraph["labeldict"]:
+        for item in self.treeDec["labeldict"]:
             bagname = self.bagpre % str(item["id"])
             self.treeDecGraph.node(bagname,
                                    self.bagNode(bagname, item["labels"]))
 
         self.treeDecGraph.edges([(self.bagpre % str(first), self.bagpre % str(
-            second)) for (first, second) in self.tdGraph["edgearray"]])
+            second)) for (first, second) in self.treeDec["edgearray"]])
 
     def forwardIterateTDG(self, joinpre=None, solpre=None, soljoinpre=None):
         """Create the final positions of all nodes with solutions.
@@ -288,7 +289,7 @@ class Visualization(object):
                     tdg.edge(joinpre % id_inv_bags, self.bagpre % suc
                              if isinstance(suc, int) else joinpre % suc)
 
-    def backwardsIterateTDG(self, joinpre=None, solpre=None, soljoinpre=None):
+    def backwardsIterateTDG(self, view=False, joinpre=None, solpre=None, soljoinpre=None):
         """Cut the single steps back and update emphasis acordingly."""
         tdg = self.treeDecGraph     # shorten name
         lastSol = ""
@@ -336,12 +337,12 @@ class Visualization(object):
                                    id_inv_bags,
                                    int) else joinpre %
                                id_inv_bags)
-            _filename = self.graphvizSatVisuOUTPUT + 'g41DigraphProgress%d'
+            _filename = self.folder + self.tdFile + '%d'
             tdg.render(
-                view=False, format='svg', filename=_filename %
+                view=view, format='svg', filename=_filename %
                 (len(self.timeline) - i))
 
-    def treeDecTimeline(self, render):
+    def treeDecTimeline(self, view=False):
 
         self.setupTreeDecGraph()
 
@@ -350,7 +351,7 @@ class Visualization(object):
         # >>>>>>>>>>>>Iterate TIMELINE FORWARD>>>>>>>>>>>>>
         self.forwardIterateTDG()
         # <<<<<<<<<<<Iterate TIMELINE BACKWARDS<<<<<<<<<<<<<<<<<<<
-        self.backwardsIterateTDG()
+        self.backwardsIterateTDG(view=view)
 
         # Prepare Incidence graph Timeline
 
@@ -373,15 +374,15 @@ class Visualization(object):
             TIMELINE=_timeline,
             primalSet=_primalSet,
             numVars=self.treeDec['numVars'],
-            colors=self.colors)
+            colors=self.colors, view=view)
 
         self.incidence(
             TIMELINE=_timeline,
             EDGELIST=self.edgelist,
             numVars=self.treeDec['numVars'],
-            colors=self.colors)
+            colors=self.colors, view=view)
 
-    def primal(self, TIMELINE, primalSet, numVars, colors):
+    def primal(self, TIMELINE, primalSet, numVars, colors, view=False):
         """
         Creates the primal graph emphasized for the given timeline.
 
@@ -408,7 +409,7 @@ class Visualization(object):
         None, but outputs the files with the graph for each timestep.
 
         """
-        _filename = self.folder + self.primalFile
+        _filename = self.folder + self.primalFile + '%d'
 
         vartagN = self.vartag + '%d'    # "v_%d"
 
@@ -429,7 +430,7 @@ class Visualization(object):
 
             if variables is None:
                 g_primal.render(
-                    view=False,
+                    view=view,
                     format='svg',
                     filename=_filename % i)
                 continue
@@ -453,11 +454,11 @@ class Visualization(object):
                     style='dotted,filled')
 
             g_primal.render(
-                view=False,
+                view=view,
                 format='svg',
                 filename=_filename % i)
 
-    def incidence(self, TIMELINE, EDGELIST, numVars, colors):
+    def incidence(self, TIMELINE, EDGELIST, numVars, colors, view=False):
         """
         Creates the incidence graph emphasized for the given timeline.
 
@@ -480,7 +481,7 @@ class Visualization(object):
         None, but outputs the files with the graph for each timestep.
 
         """
-        _filename = self.folder + self.incFile
+        _filename = self.folder + self.incFile + '%d'
 
         clausetagN = self.clausetag + '%d'
         vartagN = self.vartag + '%d'
@@ -493,7 +494,7 @@ class Visualization(object):
                               node_attr={'style': 'rounded,filled', 'fillcolor': 'white'}) as clauses:
             clauses.attr(label='clauses')
             clauses.edges([(clausetagN % (i + 1), clausetagN % (i + 2))
-                           for i in range(len(self.EDGELIST) - 1)])
+                           for i in range(len(self.edgelist) - 1)])
 
         g_incid.attr('node', shape='diamond', fontcolor='black',
                      penwidth='2.2',
@@ -512,7 +513,7 @@ class Visualization(object):
         # invis distance between clusters: minlen
         g_incid.edge(clausetagN % 1, vartagN % 1, ltail='cluster_clause',
                      lhead='cluster_ivar', minlen='3', style='invis')
-        for clause in self.EDGELIST:
+        for clause in self.edgelist:
             for var in clause[1]:
                 if var >= 0:
                     g_incid.edge(clausetagN % clause[0],
@@ -532,7 +533,7 @@ class Visualization(object):
                     x,
                     y[0]),
                 y[1]),
-            self.EDGELIST)
+            self.edgelist)
 
         var_cl_iter = tuple(flatten(vcmapping))  # flatten
         #  var_cl_iter [(1, 1), (4, 1), (6, 1), (1, 2), (-5, 2), (-1, 3), (7, 3), (2, 4),
@@ -540,14 +541,13 @@ class Visualization(object):
         #             (-8, 8), (-4, 9), (6, 9), (-4, 10), (7, 10)]
 
         bodybaselen = len(g_incid.body)
-        for i, variables in enumerate(
-                self.TIMELINE, start=1):    # all timesteps
+        for i, variables in enumerate(TIMELINE, start=1):    # all timesteps
 
             # reset highlighting
             g_incid.body = g_incid.body[:bodybaselen]
             if variables is None:
                 g_incid.render(
-                    view=False,
+                    view=view,
                     format='svg',
                     filename=_filename % i)
                 continue
@@ -598,7 +598,7 @@ class Visualization(object):
                                  style=_style)
 
             g_incid.render(
-                view=False,
+                view=view,
                 format='svg',
                 filename=_filename % i)
 
@@ -619,9 +619,9 @@ if __name__ == "__main__":
         _outfolder = "outfolder"
     _outfolder = _outfolder.replace("\\", "/")
     if not _outfolder.endswith('/'):
-        _outfolder
-    # TODO: call with correct folder/Json file!
-    visu = Visualization(folder, tdFile="TDStep",
-                 primalFile="PrimalGraphStep",
-                 incFile="IncidenceGraphStep"):
+        _outfolder += '/'
 
+    visu = Visualization(_infile, _outfolder, tdFile="TDStep",
+                         primalFile="PrimalGraphStep",
+                         incFile="IncidenceGraphStep")
+    visu.treeDecTimeline()
