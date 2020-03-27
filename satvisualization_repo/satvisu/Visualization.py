@@ -468,8 +468,8 @@ class Visualization(object):
         clausetag = "c_%d"
         vartag = "v_%d"
 
-        g_incid = Graph(strict=True, graph_attr={'splines': 'false', 'dpi': '300', 'ranksep':'0.2',
-                                             'nodesep': '0.5', 'fontsize': '20', 'compound':'true'},
+        g_incid = Graph(strict=True, graph_attr={'splines':'false', 'ranksep':'0.2',
+                                             'nodesep': '0.5', 'fontsize': '16', 'compound':'true'},
                     edge_attr={'penwidth': '2.2', 'dir': 'back', 'arrowtail': 'none'})
 
         with g_incid.subgraph(name='cluster_clause', edge_attr={'style': 'invis'},
