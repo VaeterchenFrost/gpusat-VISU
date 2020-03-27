@@ -48,7 +48,7 @@ def read_json(json_data):
 
 def flatten(iterable):
     """ Flatten at first level.
-    
+
     Turn ex=[[1,2],[3,4]] into
     [1, 2, 3, 4]
     and [ex,ex] into
@@ -59,9 +59,10 @@ def flatten(iterable):
 
 class Visualization(object):
     """Holds and processes the information needed to provide dot-format
-    and image output for the visualization 
+    and image output for the visualization
     of dynamic programming on tree decomposition.
     """
+
     def __str__(self):
         """String representation"""
         return (
@@ -76,7 +77,9 @@ class Visualization(object):
             self.incFile +
             "')")
 
-    def __init__(self, folder, tdFile, primalFile, incFile):
+    def __init__(self, folder, tdFile="TDStep",
+                 primalFile="PrimalGraphStep",
+                 incFile="IncidenceGraphStep"):
         """Copy needed fields from arguments and create additional constants"""
         self.folder = folder
         self.tdFile = tdFile
@@ -92,9 +95,8 @@ class Visualization(object):
 
         print(self)
 
-    @staticmethod
-    def getVisuOutputFolder():
-        return "outfolder"
+    def getVisuOutputFolder(self):
+        return self.folder
 
     @staticmethod
     def baseStyle(graph, node):
@@ -197,7 +199,6 @@ class Visualization(object):
 
         return "{" + result + "}"
 
-
     def inspectJson(self, infile):
         """Readout and preprocess the needed data from the input.
         """
@@ -212,13 +213,10 @@ class Visualization(object):
         self.edgelist = list(
             map(lambda x: [x['id'], x['list']], visudata["clausesJson"]))
 
-
     def setupTreeDecGraph(self):
-        _filename = self.graphvizSatVisuOUTPUT + 'DigraphProgress%d'
-
+        """Create self.treeDecGraph"""
         self.treeDecGraph = Digraph(
             'structs',
-            filename=_filename,
             strict=True,
             graph_attr={'rankdir': 'BT'},
             node_attr={
@@ -226,7 +224,6 @@ class Visualization(object):
                 'fillcolor': 'white',
                 'style': "rounded,filled",
                 'margin': '0.11,0.01'})
-
 
     def basicTDG(self):
         """Create first structure in treeDecGraph."""
@@ -238,9 +235,8 @@ class Visualization(object):
         self.treeDecGraph.edges([(self.bagpre % str(first), self.bagpre % str(
             second)) for (first, second) in self.tdGraph["edgearray"]])
 
-
     def forwardIterateTDG(self, joinpre=None, solpre=None, soljoinpre=None):
-        """Create the final positions of all nodes with solutions. 
+        """Create the final positions of all nodes with solutions.
         The arguments are optional"""
         tdg = self.treeDecGraph                 # shorten name
 
@@ -290,12 +286,11 @@ class Visualization(object):
                     tdg.edge(joinpre % id_inv_bags, self.bagpre % suc
                              if isinstance(suc, int) else joinpre % suc)
 
-
     def backwardsIterateTDG(self, joinpre=None, solpre=None, soljoinpre=None):
         """Cut the single steps back and update emphasis acordingly."""
         tdg = self.treeDecGraph     # shorten name
         lastSol = ""
-        
+
         if joinpre is None:
             joinpre = self.joinpre
         if solpre is None:
@@ -377,12 +372,12 @@ class Visualization(object):
             TIMELINE=_timeline,
             numVars=self.treeDec['numVars'],
             colors=self.colors)
-        
+
         self.incidence(
-        EDGELIST=_edgelist,
-        TIMELINE=_timeline,
-        numVars=tdGraph['numVars'],
-        colors=col)
+            EDGELIST=_edgelist,
+            TIMELINE=_timeline,
+            numVars=self.treeDec['numVars'],
+            colors=self.colors)
 
     def primal(primalSet, TIMELINE, numVars, colors):
         """
@@ -412,17 +407,16 @@ class Visualization(object):
         """
 
         vartag = "v_%d"
-        _filename = self.outfolder +'primalGraph%d'
+        _filename = self.outfolder + 'primalGraph%d'
         splines = 'ortho'
         g_primal = Graph(strict=True,
-                     graph_attr={'splines': splines,
-                                 'fontsize': '20'},
-                     node_attr={'fontcolor': 'black',
-                                'penwidth': '2.2'})
+                         graph_attr={'splines': splines,
+                                     'fontsize': '20'},
+                         node_attr={'fontcolor': 'black',
+                                    'penwidth': '2.2'})
 
         for (s, t) in primalSet:
             g_primal.edge(vartag % s, vartag % t)
-
 
         bodybaselen = len(g_primal.body)
         for i, variables in enumerate(TIMELINE, start=1):    # all timesteps
@@ -445,7 +439,11 @@ class Visualization(object):
                     edge.difference(variables)) == 1}
 
             for var in adjacent:
-                g_primal.node(vartag % var, color='green', style='dotted,filled')
+                g_primal.node(
+                    vartag %
+                    var,
+                    color='green',
+                    style='dotted,filled')
 
             g_primal.render(
                 view=False,
@@ -468,9 +466,9 @@ class Visualization(object):
         clausetag = "c_%d"
         vartag = "v_%d"
 
-        g_incid = Graph(strict=True, graph_attr={'splines':'false', 'ranksep':'0.2',
-                                             'nodesep': '0.5', 'fontsize': '16', 'compound':'true'},
-                    edge_attr={'penwidth': '2.2', 'dir': 'back', 'arrowtail': 'none'})
+        g_incid = Graph(strict=True, graph_attr={'splines': 'false', 'ranksep': '0.2',
+                                                 'nodesep': '0.5', 'fontsize': '16', 'compound': 'true'},
+                        edge_attr={'penwidth': '2.2', 'dir': 'back', 'arrowtail': 'none'})
 
         with g_incid.subgraph(name='cluster_clause', edge_attr={'style': 'invis'},
                               node_attr={'style': 'rounded,filled', 'fillcolor': 'white'}) as clauses:
@@ -493,7 +491,15 @@ class Visualization(object):
 
         g_incid.attr('edge', constraint="false")
         # invis distance between clusters: minlen
-        g_incid.edge(clausetag%1, vartag%1, ltail='cluster_clause', lhead='cluster_ivar', minlen='3', style='invis')
+        g_incid.edge(
+            clausetag %
+            1,
+            vartag %
+            1,
+            ltail='cluster_clause',
+            lhead='cluster_ivar',
+            minlen='3',
+            style='invis')
         for clause in self.EDGELIST:
             for var in clause[1]:
                 if var >= 0:
@@ -534,7 +540,7 @@ class Visualization(object):
                 g_incid.render(
                     view=False,
                     format='svg',
-                    filename=graphvizSatVisuOUTPUT + 'incidenceGraph%d' %
+                    filename=self.folder + 'incidenceGraph%d' %
                     i)
                 continue
 
@@ -599,8 +605,8 @@ if __name__ == "__main__":
 
     _infile = parser.parse_args().file
     visu = Visualization(folder="results31\\",
-                         tdFile="TreeDecompositionSol%d",
-                         primalFile="primalGraphStep%d",
-                         incFile="incidenceGraphStep%d")
+                         tdFile="TreeDecompositionSol",
+                         primalFile="primalGraphStep",
+                         incFile="incidenceGraphStep")
     # main(_infile)                                      # Call Mainroutine
     # incidence()
