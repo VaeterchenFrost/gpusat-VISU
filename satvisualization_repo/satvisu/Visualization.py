@@ -92,7 +92,9 @@ class Visualization(object):
         self.joinpre = "Join %d~%d"
         self.solpre = "sol%d"
         self.soljoinpre = "solJoin%d~%d"
-
+        self.clausetag = "c_"
+        self.vartag = "v_"
+        self.primalSplines = 'ortho'
         print(self)
 
     def getVisuOutputFolder(self):
@@ -368,19 +370,20 @@ class Visualization(object):
             map(lambda x: (itertools.combinations(map(abs, x[1]), 2)), self.edgelist)))
 
         self.primal(
-            primalSet=_primalSet,
             TIMELINE=_timeline,
+            primalSet=_primalSet,
             numVars=self.treeDec['numVars'],
             colors=self.colors)
 
         self.incidence(
-            EDGELIST=_edgelist,
             TIMELINE=_timeline,
+            EDGELIST=self.edgelist,
             numVars=self.treeDec['numVars'],
             colors=self.colors)
 
-    def primal(primalSet, TIMELINE, numVars, colors):
+    def primal(self, TIMELINE, primalSet, numVars, colors):
         """
+        Creates the primal graph emphasized for the given timeline.
 
         Parameters
         ----------
@@ -402,21 +405,21 @@ class Visualization(object):
 
         Returns
         -------
-        None, but outputs the files with the graphs for each timestep.
+        None, but outputs the files with the graph for each timestep.
 
         """
+        _filename = self.folder + self.primalFile
 
-        vartag = "v_%d"
-        _filename = self.outfolder + 'primalGraph%d'
-        splines = 'ortho'
+        vartagN = self.vartag + '%d'    # "v_%d"
+
         g_primal = Graph(strict=True,
-                         graph_attr={'splines': splines,
+                         graph_attr={'splines': self.primalSplines,
                                      'fontsize': '20'},
                          node_attr={'fontcolor': 'black',
                                     'penwidth': '2.2'})
 
         for (s, t) in primalSet:
-            g_primal.edge(vartag % s, vartag % t)
+            g_primal.edge(vartagN % s, vartagN % t)
 
         bodybaselen = len(g_primal.body)
         for i, variables in enumerate(TIMELINE, start=1):    # all timesteps
@@ -432,7 +435,11 @@ class Visualization(object):
                 continue
 
             for var in variables:
-                g_primal.node(vartag % var, fillcolor='yellow', style='filled')
+                g_primal.node(
+                    vartagN %
+                    var,
+                    fillcolor='yellow',
+                    style='filled')
 
             adjacent = {
                 edge.difference(variables).pop() for edge in primalSet if len(
@@ -440,7 +447,7 @@ class Visualization(object):
 
             for var in adjacent:
                 g_primal.node(
-                    vartag %
+                    vartagN %
                     var,
                     color='green',
                     style='dotted,filled')
@@ -450,21 +457,33 @@ class Visualization(object):
                 format='svg',
                 filename=_filename % i)
 
-    def incidence(
-            self,
-            EDGELIST=None,
-            TIMELINE=None,
-            numVars=None,
-            colors=None):
+    def incidence(self, TIMELINE, EDGELIST, numVars, colors):
+        """
+        Creates the incidence graph emphasized for the given timeline.
+
+        Parameters
+        ----------
+        TIMELINE : Iterable of: None | [int...]
+            None if no variables get highlighted in this step.
+            Else the 'timeline' provides the set of variables that are
+            in the bag(s) under consideration. This function computes all other
+            variables that are involved in this timestep using the 'edgelist'.
+        EDGELIST : TYPE
+            DESCRIPTION.
+        numVars : int
+            Count of variables that are used in the clauses.
+        colors : Iterable of color
+            Colors to use for the graph parts.
+
+        Returns
+        -------
+        None, but outputs the files with the graph for each timestep.
+
+        """
         _filename = self.folder + self.incFile
 
-        print(
-            'incidence using edgelist:\n',
-            self.EDGELIST,
-            "\ntimeline\n",
-            self.TIMELINE)
-        clausetag = "c_%d"
-        vartag = "v_%d"
+        clausetagN = self.clausetag + '%d'
+        vartagN = self.vartag + '%d'
 
         g_incid = Graph(strict=True, graph_attr={'splines': 'false', 'ranksep': '0.2',
                                                  'nodesep': '0.5', 'fontsize': '16', 'compound': 'true'},
@@ -473,7 +492,7 @@ class Visualization(object):
         with g_incid.subgraph(name='cluster_clause', edge_attr={'style': 'invis'},
                               node_attr={'style': 'rounded,filled', 'fillcolor': 'white'}) as clauses:
             clauses.attr(label='clauses')
-            clauses.edges([(clausetag % (i + 1), clausetag % (i + 2))
+            clauses.edges([(clausetagN % (i + 1), clausetagN % (i + 2))
                            for i in range(len(self.EDGELIST) - 1)])
 
         g_incid.attr('node', shape='diamond', fontcolor='black',
@@ -481,38 +500,29 @@ class Visualization(object):
                      style='dotted')
         with g_incid.subgraph(name='cluster_ivar', edge_attr={'style': 'invis'}, node_attr={'style': 'dotted'}) as ivars:
             ivars.attr(label='variables')
-            ivars.edges([(vartag % (i + 1), vartag % (i + 2))
+            ivars.edges([(vartagN % (i + 1), vartagN % (i + 2))
                          for i in range(numVars - 1)])
             for i in range(numVars):
-                g_incid.node(vartag %
-                             (i + 1), vartag %
+                g_incid.node(vartagN %
+                             (i + 1), vartagN %
                              (i + 1), color=colors[(i + 1) %
                                                    len(colors)])
 
         g_incid.attr('edge', constraint="false")
         # invis distance between clusters: minlen
-        g_incid.edge(
-            clausetag %
-            1,
-            vartag %
-            1,
-            ltail='cluster_clause',
-            lhead='cluster_ivar',
-            minlen='3',
-            style='invis')
+        g_incid.edge(clausetagN % 1, vartagN % 1, ltail='cluster_clause',
+                     lhead='cluster_ivar', minlen='3', style='invis')
         for clause in self.EDGELIST:
             for var in clause[1]:
                 if var >= 0:
-                    g_incid.edge(clausetag % clause[0],
-                                 vartag % var,
+                    g_incid.edge(clausetagN % clause[0],
+                                 vartagN % var,
                                  color=colors[var % len(colors)])
                 else:
-                    g_incid.edge(clausetag % clause[0],
-                                 vartag % -var,
+                    g_incid.edge(clausetagN % clause[0],
+                                 vartagN % -var,
                                  color=colors[-var % len(colors)],
-                                 arrowtail='odot',
-                                 # style='dotted'
-                                 )
+                                 arrowtail='odot')  # style='dotted'
 
         # make edgelist variable-based (varX, clauseY), ...
 
@@ -525,10 +535,9 @@ class Visualization(object):
             self.EDGELIST)
 
         var_cl_iter = tuple(flatten(vcmapping))  # flatten
-        # print('var_cl_iter', var_cl_iter)
-        # ~ var_cl_iter [(1, 1), (4, 1), (6, 1), (1, 2), (-5, 2), (-1, 3), (7, 3), (2, 4),
-        #~             (3, 4), (2, 5), (5, 5), (2, 6), (-6, 6), (3, 7), (-8, 7), (4, 8),
-        # ~             (-8, 8), (-4, 9), (6, 9), (-4, 10), (7, 10)]
+        #  var_cl_iter [(1, 1), (4, 1), (6, 1), (1, 2), (-5, 2), (-1, 3), (7, 3), (2, 4),
+        #             (3, 4), (2, 5), (5, 5), (2, 6), (-6, 6), (3, 7), (-8, 7), (4, 8),
+        #             (-8, 8), (-4, 9), (6, 9), (-4, 10), (7, 10)]
 
         bodybaselen = len(g_incid.body)
         for i, variables in enumerate(
@@ -540,8 +549,7 @@ class Visualization(object):
                 g_incid.render(
                     view=False,
                     format='svg',
-                    filename=self.folder + 'incidenceGraph%d' %
-                    i)
+                    filename=_filename % i)
                 continue
 
             emp_clause = {
@@ -555,7 +563,7 @@ class Visualization(object):
                 lambda var_cl, s=emp_clause: var_cl[1] in s, var_cl_iter)}
 
             for var in emp_var:
-                _vartag = vartag % abs(var)
+                _vartag = vartagN % abs(var)
                 _style = 'solid,filled' if var in variables else 'dotted,filled'
                 g_incid.node(
                     _vartag,
@@ -565,9 +573,9 @@ class Visualization(object):
 
             for cl in emp_clause:
                 g_incid.node(
-                    clausetag %
+                    clausetagN %
                     cl,
-                    clausetag %
+                    clausetagN %
                     cl,
                     fillcolor='yellow')
 
@@ -575,15 +583,15 @@ class Visualization(object):
                 (var, clause) = edge
 
                 _style = 'solid' if clause in emp_clause else 'dotted'
-                _vartag = vartag % abs(var)
+                _vartag = vartagN % abs(var)
 
                 if var >= 0:
-                    g_incid.edge(clausetag % clause,
+                    g_incid.edge(clausetagN % clause,
                                  _vartag,
                                  color=colors[var % len(colors)],
                                  style=_style)
                 else:                                       # negated variable
-                    g_incid.edge(clausetag % clause,
+                    g_incid.edge(clausetagN % clause,
                                  _vartag,
                                  color=colors[-var % len(colors)],
                                  arrowtail='odot',
@@ -600,13 +608,20 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(
         prog='graphvizSatVisu.py',
         description='Visualizing Dynamic Programming on Treedecompositions.')
-    parser.add_argument('file', nargs='?',
+    parser.add_argument('infile', nargs='?',
                         type=argparse.FileType('r', encoding='UTF-8'))
+    parser.add_argument('outfolder')
 
-    _infile = parser.parse_args().file
-    visu = Visualization(folder="results31\\",
-                         tdFile="TreeDecompositionSol",
-                         primalFile="primalGraphStep",
-                         incFile="incidenceGraphStep")
-    # main(_infile)                                      # Call Mainroutine
-    # incidence()
+    args = parser.parse_args()
+    _infile = args.infile
+    _outfolder = args.outfolder
+    if not _outfolder:
+        _outfolder = "outfolder"
+    _outfolder = _outfolder.replace("\\", "/")
+    if not _outfolder.endswith('/'):
+        _outfolder
+    # TODO: call with correct folder/Json file!
+    visu = Visualization(folder, tdFile="TDStep",
+                 primalFile="PrimalGraphStep",
+                 incFile="IncidenceGraphStep"):
+
