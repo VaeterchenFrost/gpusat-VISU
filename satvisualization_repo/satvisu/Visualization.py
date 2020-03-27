@@ -47,12 +47,23 @@ def read_json(json_data):
 
 
 def flatten(iterable):
+    """ Flatten at first level.
+    
+    Turn ex=[[1,2],[3,4]] into
+    [1, 2, 3, 4]
+    and [ex,ex] into
+    [[1, 2], [3, 4], [1, 2], [3, 4]]
+    """
     return itertools.chain.from_iterable(iterable)
 
 
 class Visualization(object):
-
+    """Holds and processes the information needed to provide dot-format
+    and image output for the visualization 
+    of dynamic programming on tree decomposition.
+    """
     def __str__(self):
+        """String representation"""
         return (
             self.__class__.__name__ +
             "(folder='" +
@@ -66,11 +77,11 @@ class Visualization(object):
             "')")
 
     def __init__(self, folder, tdFile, primalFile, incFile):
+        """Copy needed fields from arguments and create additional constants"""
         self.folder = folder
         self.tdFile = tdFile
         self.primalFile = primalFile
         self.incFile = incFile
-        self.dpi = 150
         self.colors = ['#0073a1', '#b14923', '#244320', '#b1740f', '#a682ff',
                        '#004066', '#0d1321', '#da1167', '#604909', '#0073a1',
                        '#b14923', '#244320', '#b1740f', '#a682ff']
@@ -83,7 +94,7 @@ class Visualization(object):
 
     @staticmethod
     def getVisuOutputFolder():
-        return "results31Test\\"
+        return "outfolder"
 
     @staticmethod
     def baseStyle(graph, node):
@@ -186,7 +197,10 @@ class Visualization(object):
 
         return "{" + result + "}"
 
+
     def inspectJson(self, infile):
+        """Readout and preprocess the needed data from the input.
+        """
         visudata = read_json(infile)
         print("Reading from ", infile)
 
@@ -198,24 +212,24 @@ class Visualization(object):
         self.edgelist = list(
             map(lambda x: [x['id'], x['list']], visudata["clausesJson"]))
 
+
     def setupTreeDecGraph(self):
-        _filename = self.graphvizSatVisuOUTPUT + 'g41DigraphProgress%d'
+        _filename = self.graphvizSatVisuOUTPUT + 'DigraphProgress%d'
 
         self.treeDecGraph = Digraph(
             'structs',
             filename=_filename,
             strict=True,
-            graph_attr={
-                'dpi': str(self.dpi),
-                'rankdir': 'BT'},
+            graph_attr={'rankdir': 'BT'},
             node_attr={
                 'shape': 'box',
                 'fillcolor': 'white',
                 'style': "rounded,filled",
                 'margin': '0.11,0.01'})
 
-    def basicTDG(self):
 
+    def basicTDG(self):
+        """Create first structure in treeDecGraph."""
         for item in self.tdGraph["labeldict"]:
             bagname = self.bagpre % str(item["id"])
             self.treeDecGraph.node(bagname,
@@ -224,9 +238,11 @@ class Visualization(object):
         self.treeDecGraph.edges([(self.bagpre % str(first), self.bagpre % str(
             second)) for (first, second) in self.tdGraph["edgearray"]])
 
-    def forwardIterateTDG(self, joinpre=None, solpre=None, soljoinpre=None):
 
-        tdg = self.treeDecGraph     # shorten name
+    def forwardIterateTDG(self, joinpre=None, solpre=None, soljoinpre=None):
+        """Create the final positions of all nodes with solutions. 
+        The arguments are optional"""
+        tdg = self.treeDecGraph                 # shorten name
 
         if joinpre is None:
             joinpre = self.joinpre
@@ -274,9 +290,12 @@ class Visualization(object):
                     tdg.edge(joinpre % id_inv_bags, self.bagpre % suc
                              if isinstance(suc, int) else joinpre % suc)
 
+
     def backwardsIterateTDG(self, joinpre=None, solpre=None, soljoinpre=None):
+        """Cut the single steps back and update emphasis acordingly."""
         tdg = self.treeDecGraph     # shorten name
         lastSol = ""
+        
         if joinpre is None:
             joinpre = self.joinpre
         if solpre is None:
@@ -284,7 +303,7 @@ class Visualization(object):
         if soljoinpre is None:
             soljoinpre = self.soljoinpre
 
-        for i, node in enumerate(self.timeline[::-1]):
+        for i, node in enumerate(reversed(self.timeline)):
             id_inv_bags = node[0]
             print(i, ":Reverse traversing on", id_inv_bags)
 
@@ -322,7 +341,7 @@ class Visualization(object):
                                id_inv_bags)
             _filename = self.graphvizSatVisuOUTPUT + 'g41DigraphProgress%d'
             tdg.render(
-                view=False, format='png', filename=_filename %
+                view=False, format='svg', filename=_filename %
                 (len(self.timeline) - i))
 
     def treeDecTimeline(self, render):
@@ -358,77 +377,80 @@ class Visualization(object):
             TIMELINE=_timeline,
             numVars=self.treeDec['numVars'],
             colors=self.colors)
+        
+        self.incidence(
+        EDGELIST=_edgelist,
+        TIMELINE=_timeline,
+        numVars=tdGraph['numVars'],
+        colors=col)
 
-    # def primal(primalSet, TIMELINE, numVars, colors):
-    #     """
+    def primal(primalSet, TIMELINE, numVars, colors):
+        """
 
-    #     Parameters
-    #     ----------
-    #     primalSet : Iterable of: {int, int}
-    #         All edges between variables that occur in one or more clauses together.
-    #         BOTH edges (x, y) and (y, x) could be in the EDGELIST.
+        Parameters
+        ----------
+        primalSet : Iterable of: {int, int}
+            All edges between variables that occur in one or more clauses together.
+            BOTH edges (x, y) and (y, x) could be in the EDGELIST.
 
-    #     TIMELINE : Iterable of: None | [int...]
-    #         None if no variables get highlighted in this step.
-    #         Else the 'timeline' provides the set of variables that are
-    #         in the bag(s) under consideration. This function computes all other
-    # variables that are involved in this timestep using the 'edgelist'.
+        TIMELINE : Iterable of: None | [int...]
+            None if no variables get highlighted in this step.
+            Else the 'timeline' provides the set of variables that are
+            in the bag(s) under consideration. This function computes all other
+    variables that are involved in this timestep using the 'edgelist'.
 
-    #     numVars : int
-    #         Count of variables that are used in the clauses.
+        numVars : int
+            Count of variables that are used in the clauses.
 
-    #     colors : Iterable of color
-    #         Colors to use for the graph parts.
+        colors : Iterable of color
+            Colors to use for the graph parts.
 
-    #     Returns
-    #     -------
-    #     None, but outputs the files with the graphs for each timestep.
+        Returns
+        -------
+        None, but outputs the files with the graphs for each timestep.
 
-    #     """
+        """
 
-    #     vartag = "v_%d"
-    #     _filename = graphvizSatVisuOUTPUT+'primalGraph%d'
-    #     g_primal = Graph(strict=True,
-    #                      graph_attr={'dpi': '300',
-    #                                  'nodesep': '0.5', 'fontsize': '20'},
-    #                      node_attr={'fontcolor': 'black',
-    #                                 'penwidth': '2.2'})
+        vartag = "v_%d"
+        _filename = self.outfolder +'primalGraph%d'
+        splines = 'ortho'
+        g_primal = Graph(strict=True,
+                     graph_attr={'splines': splines,
+                                 'fontsize': '20'},
+                     node_attr={'fontcolor': 'black',
+                                'penwidth': '2.2'})
 
-    #     for (s, t) in primalSet:
-    #         g_primal.edge(vartag % s, vartag % t)
+        for (s, t) in primalSet:
+            g_primal.edge(vartag % s, vartag % t)
 
-    #     g_primal.render(
-    #         view=False,
-    #         format='png',
-    #         filename='primalGraphStart')
 
-    #     bodybaselen = len(g_primal.body)
-    #     for i, variables in enumerate(TIMELINE, start=1):    # all timesteps
+        bodybaselen = len(g_primal.body)
+        for i, variables in enumerate(TIMELINE, start=1):    # all timesteps
 
-    #         # reset highlighting
-    #         g_primal.body = g_primal.body[:bodybaselen]
+            # reset highlighting
+            g_primal.body = g_primal.body[:bodybaselen]
 
-    #         if variables is None:
-    #             g_primal.render(
-    #                 view=False,
-    #                 format='png',
-    #                 filename=_filename % i)
-    #             continue
+            if variables is None:
+                g_primal.render(
+                    view=False,
+                    format='svg',
+                    filename=_filename % i)
+                continue
 
-    #         for var in variables:
-    #             g_primal.node(vartag % var, fillcolor='yellow', style='filled')
+            for var in variables:
+                g_primal.node(vartag % var, fillcolor='yellow', style='filled')
 
-    #         adjacent = {
-    #             edge.difference(variables).pop() for edge in primalSet if len(
-    #                 edge.difference(variables)) == 1}
+            adjacent = {
+                edge.difference(variables).pop() for edge in primalSet if len(
+                    edge.difference(variables)) == 1}
 
-    #         for var in adjacent:
-    #             g_primal.node(vartag % var, color='green', style='dotted,filled')
+            for var in adjacent:
+                g_primal.node(vartag % var, color='green', style='dotted,filled')
 
-    #         g_primal.render(
-    #             view=False,
-    #             format='png',
-    #             filename=_filename % i)
+            g_primal.render(
+                view=False,
+                format='svg',
+                filename=_filename % i)
 
     def incidence(
             self,
@@ -511,7 +533,7 @@ class Visualization(object):
             if variables is None:
                 g_incid.render(
                     view=False,
-                    format='png',
+                    format='svg',
                     filename=graphvizSatVisuOUTPUT + 'incidenceGraph%d' %
                     i)
                 continue
@@ -563,7 +585,7 @@ class Visualization(object):
 
             g_incid.render(
                 view=False,
-                format='png',
+                format='svg',
                 filename=_filename % i)
 
 
