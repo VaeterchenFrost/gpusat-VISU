@@ -606,7 +606,7 @@ class Visualization:
                 format='svg',
                 filename=_filename % i)
 
- 
+
 if __name__ == "__main__":
     import argparse
     PARSER = argparse.ArgumentParser(
