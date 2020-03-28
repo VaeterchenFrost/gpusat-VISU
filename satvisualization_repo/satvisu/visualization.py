@@ -607,7 +607,7 @@ class Visualization:
                 filename=_filename % i)
 
 
-if __name__ == "__main__":
+if __name__ == "__main__": 
     import argparse
     PARSER = argparse.ArgumentParser(
         prog='graphvizSatVisu.py',
