@@ -154,7 +154,7 @@ class Visualization:
             solution_table,
             toplabel="",
             bottomlabel="",
-            transpose=False):
+            transpose=False, linesmax=12, columnmax=10):
         """Fill the node from the 2D 'solution_table' (columnbased!).
         Optionally add a line above and/or below the table.
 
@@ -164,9 +164,11 @@ class Visualization:
 
         bottomlabel : string, placed below the table
 
-        transpose : bool, wether to transpose the solution_table before
+        transpose : bool, whether to transpose the solution_table before
         processing
 
+        linesmax : int, maximum of lines in the table to display.
+        
         Example structure for four columns:
         |----------|
         | toplabel |
