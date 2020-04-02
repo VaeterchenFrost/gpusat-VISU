@@ -167,7 +167,7 @@ class Visualization:
         transpose : bool, whether to transpose the solution_table before
         processing
 
-        linesmax : int, maximum of lines in the table to display.
+        linesmax : int, maximum lines in the table to display.
         
         Example structure for four columns:
         |----------|
