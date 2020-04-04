@@ -63,6 +63,16 @@ def read_problem(cursor, problem):
 
 
 def read_clauses(cursor, problem):
+    """Return the clauses used for satiyfiability.
+    Variables are counted from 1 and negative if negated in the clause.
+    For example:
+        "clausesJson" :
+        [
+        {
+            "id" : 1,
+            "list" : [ 1, -4, 6 ]
+        },...]
+    """
     cursor.execute("SELECT * FROM public.p{}_sat_clause".format(problem))
     result = cursor.fetchall()
     result_cleaned = list(map(lambda x: [i + 1 if x[i] else -(i + 1) for i in
@@ -75,13 +85,25 @@ def read_clauses(cursor, problem):
 
 def read_labeldict(cursor, problem, num_bags=1):
     labeldict = []
-    for bag in range(num_bags):
+    # check bag numbering:
+    cursor.execute("SELECT bag FROM public.p{}_td_bag group by bag".format(problem))
+    bags = sorted(list(flatten(cursor.fetchall())))
+    print("bags:", bags)
+    for bag in bags:
         cursor.execute(
             "SELECT node FROM public.p{}_td_bag WHERE bag={}".format(
-                problem, bag + 1))                  # one based in db
+                problem, bag))                  
         result = list(flatten(cursor.fetchall()))
+        cursor.execute(
+            "SELECT start_time,end_time-start_time "
+            "FROM public.p{}_td_node_status WHERE node={}".format(
+                problem, bag))
+        start_time, dtime = cursor.fetchone()
         labeldict.append(
-            {"id": bag, "items": result, "labels": str(result)})
+            {"id": bag, "items": result, "labels": 
+             [str(result),
+              start_time.strftime("%D %T"),
+              "dtime=%.4fs"%dtime.total_seconds()]})
     return labeldict
 
 
@@ -89,7 +111,6 @@ def read_edgearray(cursor, problem):
     cursor.execute(
         "SELECT node,parent FROM public.p{}_td_edge".format(problem))
     result = cursor.fetchall()
-    result = [[x - 1 for x in l] for l in result]     # zero based
     return result
 
 
@@ -106,6 +127,7 @@ def create_json(db, problem=1):
             setup_start_time, calc_start_time, end_time) = read_problem(cur, problem)
         # create treeDecJson
         labeldict = read_labeldict(cur, problem, num_bags)
+        print(labeldict)
         edgearray = read_edgearray(cur, problem)
         treeDecJson = {
             "bagpre": "bag %s",
