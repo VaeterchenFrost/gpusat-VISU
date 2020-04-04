@@ -8,6 +8,18 @@ https://github.com/VaeterchenFrost/dp_on_dbs.git
 """
 import psycopg2 as pg
 from more_itertools import locate
+import itertools
+
+
+def flatten(iterable):
+    """ Flatten at first level.
+
+    Turn ex=[[1,2],[3,4]] into
+    [1, 2, 3, 4]
+    and [ex,ex] into
+    [[1, 2], [3, 4], [1, 2], [3, 4]]
+    """
+    return itertools.chain.from_iterable(iterable)
 
 
 def read_cfg(cfg_file):
@@ -61,10 +73,16 @@ def read_clauses(cursor, problem):
     return clausesJson
 
 
-def read_labeldict(cursor, problem):
-    cursor.execute("SELECT * FROM public.p{}_td_bag".format(problem))
-    result = cursor.fetchall()
-    print(result)
+def read_labeldict(cursor, problem, num_bags=1):
+    labeldict = []
+    for bag in range(num_bags):
+        cursor.execute(
+            "SELECT node FROM public.p{}_td_bag WHERE bag={}".format(
+                problem, bag + 1))
+        result = list(flatten(cursor.fetchall()))
+        labeldict.append(
+            {"id": bag, "items": result, "labels": str(result)})
+    return labeldict
 
 
 def create_json(db, problem=1):
@@ -73,9 +91,10 @@ def create_json(db, problem=1):
     try:
         # create a cursor
         cur = db.cursor()
-        (num_vars, num_clauses, model_count) = read_problem(cur, problem)
+        (num_vars, num_clauses, model_count, name, ptype, num_bags, tree_width,
+            setup_start_time, calc_start_time, end_time) = read_problem(cur, problem)
         clausesJson = read_clauses(cur, problem)
-        read_labeldict(cur, problem)
+        read_labeldict(cur, problem, num_bags)
 
     except (Exception, pg.DatabaseError) as error:
         print(error)
