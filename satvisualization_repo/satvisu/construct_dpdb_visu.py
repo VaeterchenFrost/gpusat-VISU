@@ -78,11 +78,19 @@ def read_labeldict(cursor, problem, num_bags=1):
     for bag in range(num_bags):
         cursor.execute(
             "SELECT node FROM public.p{}_td_bag WHERE bag={}".format(
-                problem, bag + 1))
+                problem, bag + 1))                  # one based in db
         result = list(flatten(cursor.fetchall()))
         labeldict.append(
             {"id": bag, "items": result, "labels": str(result)})
     return labeldict
+
+
+def read_edgearray(cursor, problem):
+    cursor.execute(
+        "SELECT node,parent FROM public.p{}_td_edge".format(problem))
+    result = cursor.fetchall()
+    result = [[x - 1 for x in l] for l in result]     # zero based
+    return result
 
 
 def create_json(db, problem=1):
@@ -91,11 +99,19 @@ def create_json(db, problem=1):
     try:
         # create a cursor
         cur = db.cursor()
+        # create clausesJson
+        clausesJson = read_clauses(cur, problem)
+
         (num_vars, num_clauses, model_count, name, ptype, num_bags, tree_width,
             setup_start_time, calc_start_time, end_time) = read_problem(cur, problem)
-        clausesJson = read_clauses(cur, problem)
-        read_labeldict(cur, problem, num_bags)
-
+        # create treeDecJson
+        labeldict = read_labeldict(cur, problem, num_bags)
+        edgearray = read_edgearray(cur, problem)
+        treeDecJson = {
+            "bagpre": "bag %s",
+            "edgearray": edgearray,
+            "labeldict": labeldict,
+            "numVars": num_vars}
     except (Exception, pg.DatabaseError) as error:
         print(error)
 
