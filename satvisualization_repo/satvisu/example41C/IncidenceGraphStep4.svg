@@ -9,15 +9,15 @@
 <g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 550)">
 <title>%3</title>
 <polygon fill="white" stroke="transparent" points="-4,4 -4,-550 346,-550 346,4 -4,4"/>
-<g id="clust2" class="cluster">
-<title>cluster_ivar</title>
-<polygon fill="none" stroke="black" points="248,-110 248,-538 334,-538 334,-110 248,-110"/>
-<text text-anchor="middle" x="291" y="-521.2" font-family="Times New Roman,serif" font-size="16.00">variables</text>
-</g>
 <g id="clust1" class="cluster">
 <title>cluster_clause</title>
 <polygon fill="none" stroke="black" points="8,-8 8,-538 82,-538 82,-8 8,-8"/>
 <text text-anchor="middle" x="45" y="-521.2" font-family="Times New Roman,serif" font-size="16.00">clauses</text>
+</g>
+<g id="clust2" class="cluster">
+<title>cluster_ivar</title>
+<polygon fill="none" stroke="black" points="248,-110 248,-538 334,-538 334,-110 248,-110"/>
+<text text-anchor="middle" x="291" y="-521.2" font-family="Times New Roman,serif" font-size="16.00">variables</text>
 </g>
 <!-- c_1 -->
 <g id="node1" class="node">

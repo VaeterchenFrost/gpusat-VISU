@@ -97,7 +97,6 @@ class Visualization:
         self.soljoinpre = "solJoin%d~%d"
         self.clausetag = "c_"
         self.vartag = "v_"
-        self.primal_splines = 'ortho'
         self.tree_dec_digraph = None
         print(self)
 
@@ -416,8 +415,8 @@ class Visualization:
         vartagN = self.vartag + '%d'    # "v_%d"
 
         g_primal = Graph(strict=True,
-                         graph_attr={'splines': self.primal_splines,
-                                     'fontsize': '20'},
+                         engine= 'circo',
+                         graph_attr={'fontsize': '20'},
                          node_attr={'fontcolor': 'black',
                                     'penwidth': '2.2'})
 
