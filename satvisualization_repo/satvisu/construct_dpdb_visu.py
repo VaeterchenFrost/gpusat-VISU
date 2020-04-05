@@ -106,6 +106,35 @@ def read_labeldict(cursor, problem, num_bags=1):
               "dtime=%.4fs"%dtime.total_seconds()]})
     return labeldict
 
+def readTimeline(cursor, problem, edgearray):
+    """
+    Read from td_node_status and the edearray to:
+    Create the timeline of the solving process.
+    Construct the path and solution-tables used during solving.
+
+    Parameters
+    ----------
+    cursor : psycopg2.cusror
+        database cursor
+    problem : int
+        index of the problem.
+    edgearray : array of pairs of bagids
+        Representing the tree-like structure between all bag-ids.
+        It is assumed that all ids are included in this array.
+        Example: [(2, 1), (3, 2), (4, 2), (5, 4)]
+
+    Returns
+    -------
+    result : array
+        array of bagids and eventually solution-tables.
+
+    """
+    cursor.execute(
+        "SELECT node FROM public.p{}_td_node_status".format(problem))
+    result = list(flatten(cursor.fetchall()))
+    sol = result[-1] # tour sol -> through result nodes along the edges
+    
+    return result
 
 def read_edgearray(cursor, problem):
     cursor.execute(
@@ -127,13 +156,14 @@ def create_json(db, problem=1):
             setup_start_time, calc_start_time, end_time) = read_problem(cur, problem)
         # create treeDecJson
         labeldict = read_labeldict(cur, problem, num_bags)
-        print(labeldict)
         edgearray = read_edgearray(cur, problem)
         treeDecJson = {
             "bagpre": "bag %s",
             "edgearray": edgearray,
             "labeldict": labeldict,
             "numVars": num_vars}
+        print(treeDecJson)
+        print(readTimeline(cur,problem, edgearray))
     except (Exception, pg.DatabaseError) as error:
         print(error)
 
