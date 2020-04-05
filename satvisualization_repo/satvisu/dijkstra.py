@@ -1,4 +1,9 @@
+# -*- coding: utf-8 -*-
 """
+Created on Sun Apr 5 16:14:22 2020
+
+@author: Martin Röbke <martin.roebke@tu-dresden.de>
+Modificated sourcecode from NetworkX.
 
 Copyright (C) 2004-2020, NetworkX Developers
 Aric Hagberg <hagberg@lanl.gov>
@@ -33,6 +38,8 @@ DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
 THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
 (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE."""
+
+
 from heapq import heappush, heappop
 from itertools import count
 
@@ -54,7 +61,7 @@ def bidirectional_dijkstra(edges, source, target, weight='weight'):
     target : node
        Ending node.
 
-    weight : string or function
+    weight : string or function,
        If this is a string, then edge weights will be accessed via the
        edge attribute with this key (that is, the weight of the edge
        joining `u` to `v` will be ``G.edges[u, v][weight]``). If no
@@ -106,7 +113,7 @@ def bidirectional_dijkstra(edges, source, target, weight='weight'):
 
     """
     if source not in edges or target not in edges:
-        msg = f"Either source {source} or target {target} is not in G"
+        msg = "Either source {} or target {} is not in edges".format(source, target)
         raise ValueError(msg)
 
     if source == target:
@@ -120,14 +127,14 @@ def bidirectional_dijkstra(edges, source, target, weight='weight'):
     paths = [{source: [source]}, {target: [target]}]  # dictionary of paths
     fringe = [[], []]  # heap of (distance, node) for choosing node to expand
     seen = [{source: 0}, {target: 0}]  # dict of distances to seen nodes
-    c = count()
+
     # initialize fringe heap
-    push(fringe[0], (0, next(c), source))
-    push(fringe[1], (0, next(c), target))
+    push(fringe[0], (0, next(count()), source))
+    push(fringe[1], (0, next(count()), target))
     # neighs for extracting correct neighbor information
     neighs = [edges, edges]
     # variables to hold shortest discovered path
-    finaldist = 10e8  # float("inf")
+    finaldist = float("inf")
     finalpath = []
     direction = 1
     while fringe[0] and fringe[1]:
@@ -158,7 +165,7 @@ def bidirectional_dijkstra(edges, source, target, weight='weight'):
             elif w not in seen[direction] or vw_length < seen[direction][w]:
                 # relaxing
                 seen[direction][w] = vw_length
-                push(fringe[direction], (vw_length, next(c), w))
+                push(fringe[direction], (vw_length, next(count()), w))
                 paths[direction][w] = paths[direction][v] + [w]
                 if w in seen[0] and w in seen[1]:
                     # see if this path is better than than the already
@@ -192,17 +199,17 @@ def _weight_function(weight, multigraph=False):
 
     multigraph : bool
         Whether the edges represent a multigraph.
-        Default : False
+        The default is False.
 
     Returns
     -------
     function
         This function returns a callable that accepts exactly three inputs:
         a node, an node adjacent to the first one, and the edge attribute
-        dictionary for the eedge joining those nodes. That function returns
+        dictionary for the edge joining those nodes. That function returns
         a number representing the weight of an edge.
 
-    If `G` is a multigraph, and `weight` is not callable, the
+    If multigraph is true, and `weight` is not callable, the
     minimum edge weight over all parallel edges is returned. If any edge
     does not have an attribute with key `weight`, it is assumed to
     have weight one.
@@ -218,7 +225,7 @@ def _weight_function(weight, multigraph=False):
     return lambda u, v, data: data.get(weight, 1)
 
 
-def convert_to_adjX(_edgelist, directed=False):
+def convert_to_adj(_edgelist, directed=False):
     """
     Helper function to convert the _edgelist into the adj-format from NetworkX.
 
@@ -252,15 +259,7 @@ def convert_to_adjX(_edgelist, directed=False):
 
 
 if __name__ == "__main__":
-    EDGELIST1 = {2: {1: {'color': 'blue'}, 3: {'weight': 8}},
-                 3: {1: {}, 2: {'weight': 8}},
-                 1: {2: {'color': 'blue'}, 3: {}}}
-    EDGELIST2 = {2: {1: {}, 3: {}, 4: {}},
-                 1: {2: {}},
-                 3: {2: {}},
-                 4: {2: {}, 5: {}},
-                 5: {4: {}}}
-    raw_edgelist = [(2, 1), (3, 2), (4, 2), (5, 4)]
-    EDGELIST = convert_to_adjX(raw_edgelist)
-    result = bidirectional_dijkstra(EDGELIST, 3, 5)
-    print(result)
+    # Show one example and print to console
+    EDGELIST = [(2, 1), (3, 2), (4, 2), (5, 4)]
+    RESULT = bidirectional_dijkstra(convert_to_adj(EDGELIST), 3, 5)
+    print(RESULT)
