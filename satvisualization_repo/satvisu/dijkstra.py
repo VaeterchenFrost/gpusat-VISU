@@ -225,13 +225,13 @@ def _weight_function(weight, multigraph=False):
     return lambda u, v, data: data.get(weight, 1)
 
 
-def convert_to_adj(_edgelist, directed=False):
+def convert_to_adj(edgelist, directed=False):
     """
-    Helper function to convert the _edgelist into the adj-format from NetworkX.
+    Helper function to convert the edgelist into the adj-format from NetworkX.
 
     Parameters
     ----------
-    _edgelist : array-like of pairs of vertices.
+    edgelist : array-like of pairs of vertices.
         Simple edgelist. Example:
             [(2, 1), (3, 2), (4, 2), (5, 4)]
     directed : bool, optional
@@ -246,7 +246,7 @@ def convert_to_adj(_edgelist, directed=False):
         https://networkx.github.io/documentation/networkx-2.1/_modules/networkx/classes/graph.html
     """
     adj = dict()
-    for (u, v) in _edgelist:
+    for (u, v) in edgelist:
         if u not in adj:
             adj[u] = {}
         adj[u][v] = {}
