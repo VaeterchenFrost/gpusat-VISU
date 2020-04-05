@@ -12,6 +12,7 @@ from more_itertools import locate
 
 from dijkstra import bidirectional_dijkstra as find_path, convert_to_adj
 
+
 def flatten(iterable):
     """ Flatten at first level.
 
@@ -87,13 +88,14 @@ def read_clauses(cursor, problem):
 def read_labeldict(cursor, problem, num_bags=1):
     labeldict = []
     # check bag numbering:
-    cursor.execute("SELECT bag FROM public.p{}_td_bag group by bag".format(problem))
+    cursor.execute(
+        "SELECT bag FROM public.p{}_td_bag group by bag".format(problem))
     bags = sorted(list(flatten(cursor.fetchall())))
     print("bags:", bags)
     for bag in bags:
         cursor.execute(
             "SELECT node FROM public.p{}_td_bag WHERE bag={}".format(
-                problem, bag))                  
+                problem, bag))
         result = list(flatten(cursor.fetchall()))
         cursor.execute(
             "SELECT start_time,end_time-start_time "
@@ -101,21 +103,22 @@ def read_labeldict(cursor, problem, num_bags=1):
                 problem, bag))
         start_time, dtime = cursor.fetchone()
         labeldict.append(
-            {"id": bag, "items": result, "labels": 
+            {"id": bag, "items": result, "labels":
              [str(result),
               start_time.strftime("%D %T"),
-              "dtime=%.4fs"%dtime.total_seconds()]})
+              "dtime=%.4fs" % dtime.total_seconds()]})
     return labeldict
+
 
 def readTimeline(cursor, problem, edgearray):
     """
-    Read from td_node_status and the edearray to:
-    Create the timeline of the solving process.
-    Construct the path and solution-tables used during solving.
+    Read from td_node_status and the edearray to
+    - create the timeline of the solving process
+    - construct the path and solution-tables used during solving.
 
     Parameters
     ----------
-    cursor : psycopg2.cusror
+    cursor : psycopg2.cursor
         database cursor
     problem : int
         index of the problem.
@@ -130,12 +133,34 @@ def readTimeline(cursor, problem, edgearray):
         array of bagids and eventually solution-tables.
 
     """
+    result = list()
+    adj = convert_to_adj(edgearray)
     cursor.execute(
         "SELECT node FROM public.p{}_td_node_status".format(problem))
-    result = list(flatten(cursor.fetchall()))
-    sol = result[-1] # tour sol -> through result nodes along the edges
-    print(find_path(convert_to_adj(edgearray), 1, 3))
+    order_solved = list(flatten(cursor.fetchall()))
+    last = order_solved[-1]  # tour sol -> through result nodes along the edges
+    startpath = find_path(adj, last, order_solved[0])
+    result = [[bag] for bag in startpath[1]]
+    # add the other bags in order_solved to the result
+    last = order_solved[0]
+    for bag in order_solved:
+        path = find_path(adj, last, bag)
+        for intermed in path[1][1:]: 
+            result.append([intermed])
+        # query column names
+        cursor.execute(                         
+        "SELECT column_name FROM INFORMATION_SCHEMA.COLUMNS "
+        "WHERE TABLE_NAME = 'p{}_td_node_{}'".format(problem, bag))
+        column_names = list(flatten(cursor.fetchall()))
+        # get solutions
+        cursor.execute(                         
+        "SELECT * FROM public.p{}_td_node_{}".format(problem, bag))    
+        solution_raw = cursor.fetchall()
+        
+        solution = [bag, []]
+        last = bag
     return result
+
 
 def read_edgearray(cursor, problem):
     cursor.execute(
@@ -164,7 +189,7 @@ def create_json(db, problem=1):
             "labeldict": labeldict,
             "numVars": num_vars}
         print(treeDecJson)
-        print(readTimeline(cur,problem, edgearray))
+        print(readTimeline(cur, problem, edgearray))
     except (Exception, pg.DatabaseError) as error:
         print(error)
 
