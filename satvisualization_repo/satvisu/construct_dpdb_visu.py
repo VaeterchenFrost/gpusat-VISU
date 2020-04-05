@@ -7,9 +7,10 @@ and reference
 https://github.com/VaeterchenFrost/dp_on_dbs.git
 """
 import psycopg2 as pg
-from more_itertools import locate
 import itertools
+from more_itertools import locate
 
+from dijkstra import bidirectional_dijkstra as find_path, convert_to_adj
 
 def flatten(iterable):
     """ Flatten at first level.
@@ -133,7 +134,7 @@ def readTimeline(cursor, problem, edgearray):
         "SELECT node FROM public.p{}_td_node_status".format(problem))
     result = list(flatten(cursor.fetchall()))
     sol = result[-1] # tour sol -> through result nodes along the edges
-    
+    print(find_path(convert_to_adj(edgearray), 1, 3))
     return result
 
 def read_edgearray(cursor, problem):
