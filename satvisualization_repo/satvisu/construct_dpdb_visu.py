@@ -8,6 +8,7 @@ https://github.com/VaeterchenFrost/dp_on_dbs.git
 """
 import psycopg2 as pg
 import itertools
+import json
 from more_itertools import locate
 
 from dijkstra import bidirectional_dijkstra as find_path, convert_to_adj
@@ -60,8 +61,17 @@ def read_problem(cursor, problem):
                    "public.problem WHERE id={}".format(problem))
     (name, ptype, num_bags, tree_width,
      setup_start_time, calc_start_time, end_time) = cursor.fetchone()
-    return (num_vars, num_clauses, model_count, name, ptype, num_bags, tree_width,
-            setup_start_time, calc_start_time, end_time)
+    return (
+        num_vars,
+        num_clauses,
+        model_count,
+        name,
+        ptype,
+        num_bags,
+        tree_width,
+        setup_start_time,
+        calc_start_time,
+        end_time)
 
 
 def read_clauses(cursor, problem):
@@ -133,33 +143,45 @@ def readTimeline(cursor, problem, edgearray):
         array of bagids and eventually solution-tables.
 
     """
-    result = list()
+    timeline = list()
     adj = convert_to_adj(edgearray)
     cursor.execute(
         "SELECT node FROM public.p{}_td_node_status".format(problem))
     order_solved = list(flatten(cursor.fetchall()))
     last = order_solved[-1]  # tour sol -> through result nodes along the edges
     startpath = find_path(adj, last, order_solved[0])
-    result = [[bag] for bag in startpath[1]]
-    # add the other bags in order_solved to the result
+    timeline = [[bag] for bag in startpath[1]]
+    # add the other bags in order_solved to the timeline
     last = order_solved[0]
     for bag in order_solved:
         path = find_path(adj, last, bag)
-        for intermed in path[1][1:]: 
-            result.append([intermed])
+        for intermed in path[1][1:]:
+            timeline.append([intermed])
         # query column names
-        cursor.execute(                         
-        "SELECT column_name FROM INFORMATION_SCHEMA.COLUMNS "
-        "WHERE TABLE_NAME = 'p{}_td_node_{}'".format(problem, bag))
+        cursor.execute(
+            "SELECT column_name FROM INFORMATION_SCHEMA.COLUMNS "
+            "WHERE TABLE_NAME = 'p{}_td_node_{}'".format(problem, bag))
         column_names = list(flatten(cursor.fetchall()))
+        print('column_names', column_names)
         # get solutions
-        cursor.execute(                         
-        "SELECT * FROM public.p{}_td_node_{}".format(problem, bag))    
+        cursor.execute(
+            "SELECT * FROM public.p{}_td_node_{}".format(problem, bag))
         solution_raw = cursor.fetchall()
-        
-        solution = [bag, []]
+        print('solution_raw', solution_raw)
+        # check for nulled variables - assuming whole columns are nulled:
+        columns_notnull = [column_names[i] for i, x in
+                           enumerate(solution_raw[0]) if x is not None]
+        solution = [bag,
+                    [[columns_notnull,
+                     *list(map(lambda row: [int(v) for v in row if v is not None],
+                               solution_raw))],
+                        "sol bag " + str(bag),
+                        "sum: " + str(sum([li[-1] for li in solution_raw])),
+                        True]]
+        timeline.append(solution)
         last = bag
-    return result
+
+    return timeline
 
 
 def read_edgearray(cursor, problem):
@@ -188,8 +210,11 @@ def create_json(db, problem=1):
             "edgearray": edgearray,
             "labeldict": labeldict,
             "numVars": num_vars}
-        print(treeDecJson)
-        print(readTimeline(cur, problem, edgearray))
+
+        timeline = readTimeline(cur, problem, edgearray)
+        return {"clausesJson": clausesJson,
+                "tdTimeline": timeline,
+                "treeDecJson": treeDecJson}
     except (Exception, pg.DatabaseError) as error:
         print(error)
 
@@ -220,16 +245,16 @@ def connect():
 
         # close the communication with the PostgreSQL
         cur.close()
-        create_json(conn, 5)
 
     except (Exception, pg.DatabaseError) as error:
         print(error)
 
-    finally:
-        if conn is not None:
-            conn.close()
-            print('Database connection closed.')
+    return conn
 
 
 if __name__ == "__main__":
-    connect()
+    db = connect()
+    resultjson = create_json(db, problem=5)
+    with open('dbjson.json', 'w') as outfile:
+        json.dump(resultjson, outfile,sort_keys = True, indent = 2,
+               ensure_ascii = False)
