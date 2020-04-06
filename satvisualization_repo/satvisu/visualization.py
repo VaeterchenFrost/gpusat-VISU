@@ -128,24 +128,23 @@ class Visualization:
         """HTML format with 'head' as the first label, then appending
         further labels.
         After the 'head' there is an (empty) anchor for edges with a name tag. e.g.
-        <<TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0">
-        <TR>
-        <TD BGCOLOR="gray">first</TD><TD PORT="f1"></TD><TD>second</TD>
-        </TR>
-        </TABLE>>
+        <<TABLE BORDER="0" CELLBORDER="0" CELLSPACING="0">
+                  <TR><TD BGCOLOR="white">bag 3</TD></TR><TR><TD PORT="anchor"></TD></TR>
+                  <TR><TD>[1, 2, 5]</TD></TR><TR><TD>03/31/20 09:29:51</TD></TR>
+                  <TR><TD>dtime=0.0051s</TD></TR></TABLE>>
         """
         result = """<<TABLE BORDER=\"{}\" CELLBORDER=\"{}\" CELLSPACING=\"{}\">
-                  <TR><TD BGCOLOR=\"{}\">{}</TD>""".format(
+                  <TR><TD BGCOLOR=\"{}\">{}</TD></TR>""".format(
             tableborder, cellborder, cellspacing, headcolor, head)
-        result += "<TD PORT=\"" + anchor + "\"></TD>"""
+        result += "<TR><TD PORT=\"" + anchor + "\"></TD></TR>"""
 
         if isinstance(tail, str):
-            result += "<TD>" + tail + "</TD>"
+            result += "<TR><TD>" + tail + "</TD></TR>"
         else:
             for label in tail:
-                result += "<TD>" + label + "</TD>"
+                result += "<TR><TD>" + label + "</TD></TR>"
 
-        result += "</TR></TABLE>>"
+        result += "</TABLE>>"
         return result
 
     @staticmethod
@@ -167,7 +166,7 @@ class Visualization:
         processing
 
         linesmax : int, maximum lines in the table to display.
-        
+
         Example structure for four columns:
         |----------|
         | toplabel |
@@ -415,7 +414,7 @@ class Visualization:
         vartagN = self.vartag + '%d'    # "v_%d"
 
         g_primal = Graph(strict=True,
-                         engine= 'circo',
+                         engine='circo',
                          graph_attr={'fontsize': '20'},
                          node_attr={'fontcolor': 'black',
                                     'penwidth': '2.2'})
@@ -608,7 +607,7 @@ class Visualization:
                 filename=_filename % i)
 
 
-if __name__ == "__main__": 
+if __name__ == "__main__":
     import argparse
     PARSER = argparse.ArgumentParser(
         prog='graphvizSatVisu.py',

@@ -2,15 +2,15 @@ strict digraph structs {
 	graph [rankdir=BT]
 	node [fillcolor=white margin="0.11,0.01" shape=box style="rounded,filled"]
 	"bag 1" [label=<<TABLE BORDER="0" CELLBORDER="0" CELLSPACING="0">
-                  <TR><TD BGCOLOR="white">bag 1</TD><TD PORT="anchor"></TD><TD>[1, 4, 7]</TD><TD>03/31/20 09:29:51</TD><TD>dtime=0.0011s</TD></TR></TABLE>>]
+                  <TR><TD BGCOLOR="white">bag 1</TD></TR><TR><TD PORT="anchor"></TD></TR><TR><TD>[1, 4, 7]</TD></TR><TR><TD>03/31/20 09:29:51</TD></TR><TR><TD>dtime=0.0011s</TD></TR></TABLE>>]
 	"bag 2" [label=<<TABLE BORDER="0" CELLBORDER="0" CELLSPACING="0">
-                  <TR><TD BGCOLOR="white">bag 2</TD><TD PORT="anchor"></TD><TD>[1, 2, 4, 6]</TD><TD>03/31/20 09:29:51</TD><TD>dtime=0.0013s</TD></TR></TABLE>>]
+                  <TR><TD BGCOLOR="white">bag 2</TD></TR><TR><TD PORT="anchor"></TD></TR><TR><TD>[1, 2, 4, 6]</TD></TR><TR><TD>03/31/20 09:29:51</TD></TR><TR><TD>dtime=0.0013s</TD></TR></TABLE>>]
 	"bag 3" [label=<<TABLE BORDER="0" CELLBORDER="0" CELLSPACING="0">
-                  <TR><TD BGCOLOR="white">bag 3</TD><TD PORT="anchor"></TD><TD>[1, 2, 5]</TD><TD>03/31/20 09:29:51</TD><TD>dtime=0.0051s</TD></TR></TABLE>>]
+                  <TR><TD BGCOLOR="white">bag 3</TD></TR><TR><TD PORT="anchor"></TD></TR><TR><TD>[1, 2, 5]</TD></TR><TR><TD>03/31/20 09:29:51</TD></TR><TR><TD>dtime=0.0051s</TD></TR></TABLE>>]
 	"bag 4" [label=<<TABLE BORDER="0" CELLBORDER="0" CELLSPACING="0">
-                  <TR><TD BGCOLOR="white">bag 4</TD><TD PORT="anchor"></TD><TD>[2, 4, 8]</TD><TD>03/31/20 09:29:51</TD><TD>dtime=0.0029s</TD></TR></TABLE>>]
+                  <TR><TD BGCOLOR="white">bag 4</TD></TR><TR><TD PORT="anchor"></TD></TR><TR><TD>[2, 4, 8]</TD></TR><TR><TD>03/31/20 09:29:51</TD></TR><TR><TD>dtime=0.0029s</TD></TR></TABLE>>]
 	"bag 5" [label=<<TABLE BORDER="0" CELLBORDER="0" CELLSPACING="0">
-                  <TR><TD BGCOLOR="white">bag 5</TD><TD PORT="anchor"></TD><TD>[2, 3, 8]</TD><TD>03/31/20 09:29:51</TD><TD>dtime=0.0025s</TD></TR></TABLE>>]
+                  <TR><TD BGCOLOR="white">bag 5</TD></TR><TR><TD PORT="anchor"></TD></TR><TR><TD>[2, 3, 8]</TD></TR><TR><TD>03/31/20 09:29:51</TD></TR><TR><TD>dtime=0.0025s</TD></TR></TABLE>>]
 	"bag 2" -> "bag 1"
 	"bag 3" -> "bag 2"
 	"bag 4" -> "bag 2"
