@@ -5,13 +5,28 @@ Created on Tue Mar 31 18:49:00 2020
 See https://www.postgresqltutorial.com/postgresql-python/connect/
 and reference
 https://github.com/VaeterchenFrost/dp_on_dbs.git
+
+IPython adds it's own handler to the root logger, see
+https://stackoverflow.com/questions/24259952/logging-module-does-not-print-in-ipython
+
+Calling python directly prints the logging as per logging.basicConfig!
 """
 import psycopg2 as pg
 import itertools
 import json
+import logging
+import pathlib
 from more_itertools import locate
+from configparser import ConfigParser
 
-from dijkstra import bidirectional_dijkstra as find_path, convert_to_adj
+from dijkstra import bidirectional_dijkstra as find_path
+from dijkstra import convert_to_adj
+
+logging.basicConfig(format='%(asctime)s,%(msecs)d %(levelname)-8s[%(filename)s:%(lineno)d] %(message)s',
+                        datefmt='%Y-%m-%d:%H:%M:%S',
+                        level=logging.DEBUG)
+
+logger = logging.getLogger("construct_dpdb_visu")
 
 
 def flatten(iterable):
@@ -26,30 +41,31 @@ def flatten(iterable):
 
 
 def read_cfg(cfg_file):
-    """TODO: Read file"""
+    """Read the config file and return the result.
 
-    cfg = {'postgresql': {
-        "host": "localhost",
-        "port": 5432,
-        "database": "logicsem",
-        "user": "postgres",
-        "password": "pr|fd=/`66{+s`Bp",
-        "application_name": "dpdb-admin"
-    }}
-    return cfg
+    Works for both .ini and .json files but
+    assumes json-format if the ending is NOT .ini
+    """
+    if pathlib.Path(cfg_file).suffix.lower() == ".ini":
+        config = ConfigParser()
+        config.read(cfg_file)
+    
+    # default behaviour
+    with open(cfg_file) as jsonfile:
+        return json.load(jsonfile)
 
 
 def config(filename='database.ini', section='postgresql'):
     """Return the database config as JSON"""
     cfg = read_cfg(filename)
     if section in cfg:
-        db = cfg[section]
+        db_config = cfg[section]
     else:
         raise Exception(
             'Section {0} not found in the {1} file'.format(
                 section, filename))
 
-    return db
+    return db_config
 
 
 def read_problem(cursor, problem):
@@ -79,8 +95,7 @@ def read_clauses(cursor, problem):
     Variables are counted from 1 and negative if negated in the clause.
     For example:
         "clausesJson" :
-        [
-        {
+        [{
             "id" : 1,
             "list" : [ 1, -4, 6 ]
         },...]
@@ -101,7 +116,7 @@ def read_labeldict(cursor, problem, num_bags=1):
     cursor.execute(
         "SELECT bag FROM public.p{}_td_bag group by bag".format(problem))
     bags = sorted(list(flatten(cursor.fetchall())))
-    print("bags:", bags)
+    logger.debug(f"bags: {bags}")
     for bag in bags:
         cursor.execute(
             "SELECT node FROM public.p{}_td_bag WHERE bag={}".format(
@@ -162,19 +177,19 @@ def readTimeline(cursor, problem, edgearray):
             "SELECT column_name FROM INFORMATION_SCHEMA.COLUMNS "
             "WHERE TABLE_NAME = 'p{}_td_node_{}'".format(problem, bag))
         column_names = list(flatten(cursor.fetchall()))
-        print('column_names', column_names)
+        logger.debug(f"column_names {column_names}")
         # get solutions
         cursor.execute(
             "SELECT * FROM public.p{}_td_node_{}".format(problem, bag))
         solution_raw = cursor.fetchall()
-        print('solution_raw', solution_raw)
+        logger.debug(f"solution_raw {solution_raw}")
         # check for nulled variables - assuming whole columns are nulled:
         columns_notnull = [column_names[i] for i, x in
                            enumerate(solution_raw[0]) if x is not None]
         solution = [bag,
                     [[columns_notnull,
-                     *list(map(lambda row: [int(v) for v in row if v is not None],
-                               solution_raw))],
+                      *list(map(lambda row: [int(v) for v in row if v is not None],
+                                solution_raw))],
                         "sol bag " + str(bag),
                         "sum: " + str(sum([li[-1] for li in solution_raw])),
                         True]]
@@ -193,7 +208,7 @@ def read_edgearray(cursor, problem):
 
 def create_json(db, problem=1):
     result = {}
-
+    logger.info(f"creating JSON for problem {problem}.")
     try:
         # create a cursor
         cur = db.cursor()
@@ -216,45 +231,46 @@ def create_json(db, problem=1):
                 "tdTimeline": timeline,
                 "treeDecJson": treeDecJson}
     except (Exception, pg.DatabaseError) as error:
-        print(error)
+        logger.error(error)
+        raise error
 
 
 def connect():
-    """ Connect to the PostgreSQL database server using the params from config"""
+    """Connect to the PostgreSQL database server using the params from config
+    """
     conn = None
     try:
         # read connection parameters
         params = config()
         db_name = params["database"]
 
-        print(
-            "Connecting to the PostgreSQL database",
-            "'" + db_name + "'",
-            "...")
+        logger.info(f"Connecting to the PostgreSQL database '{db_name}'...")
         conn = pg.connect(**params)
 
         # create a cursor
         cur = conn.cursor()
 
         # display the PostgreSQL database server version
-        print('PostgreSQL database version:')
+        logger.info('PostgreSQL database version:')
         cur.execute('SELECT version()')
 
         db_version = cur.fetchone()
-        print(db_version)
+        logger.info(db_version)
 
-        # close the communication with the PostgreSQL
+        # close the communication with the PostgreSQLbhv,
         cur.close()
 
     except (Exception, pg.DatabaseError) as error:
-        print(error)
-
+        logger.error(error)
+        raise error
     return conn
 
 
 if __name__ == "__main__":
+    
     db = connect()
-    resultjson = create_json(db, problem=5)
+    resultjson = create_json(db, problem=10)
     with open('dbjson.json', 'w') as outfile:
-        json.dump(resultjson, outfile,sort_keys = True, indent = 2,
-               ensure_ascii = False)
+        json.dump(resultjson, outfile, sort_keys=True, indent=2,
+                  ensure_ascii=False)
+        logger.info(f"Wrote to {outfile}")
