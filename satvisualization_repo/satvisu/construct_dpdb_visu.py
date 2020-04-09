@@ -22,9 +22,10 @@ from configparser import ConfigParser
 from dijkstra import bidirectional_dijkstra as find_path
 from dijkstra import convert_to_adj
 
-logging.basicConfig(format='%(asctime)s,%(msecs)d %(levelname)-8s[%(filename)s:%(lineno)d] %(message)s',
-                        datefmt='%Y-%m-%d:%H:%M:%S',
-                        level=logging.DEBUG)
+logging.basicConfig(
+    format='%(asctime)s,%(msecs)d %(levelname)-8s[%(filename)s:%(lineno)d] %(message)s',
+    datefmt='%Y-%m-%d:%H:%M:%S',
+    level=logging.WARNING)
 
 logger = logging.getLogger("construct_dpdb_visu")
 
@@ -40,7 +41,7 @@ def flatten(iterable):
     return itertools.chain.from_iterable(iterable)
 
 
-def read_cfg(cfg_file):
+def read_cfg(cfg_file, section):
     """Read the config file and return the result.
 
     Works for both .ini and .json files but
@@ -49,7 +50,17 @@ def read_cfg(cfg_file):
     if pathlib.Path(cfg_file).suffix.lower() == ".ini":
         config = ConfigParser()
         config.read(cfg_file)
-    
+        result = dict()
+        result["host"] = config.get(section, "host", fallback="localhost")
+        result["port"] = config.getint(section, "port", fallback=5432)
+        result["database"] = config.get(
+            section, "database", fallback="logicsem")
+        result["user"] = config.get(section, "user", fallback="postgres")
+        result["password"] = config.get(section, "password")
+        result["application_name"] = config.get(
+            section, "application_name", fallback="dpdb-admin")
+        return {section: result}
+
     # default behaviour
     with open(cfg_file) as jsonfile:
         return json.load(jsonfile)
@@ -57,14 +68,12 @@ def read_cfg(cfg_file):
 
 def config(filename='database.ini', section='postgresql'):
     """Return the database config as JSON"""
-    cfg = read_cfg(filename)
+    cfg = read_cfg(filename, section)
     if section in cfg:
         db_config = cfg[section]
     else:
-        raise Exception(
-            'Section {0} not found in the {1} file'.format(
-                section, filename))
-
+        raise Exception(f'Section {section} not found in the {filename} file')
+    logger.info("Read db_config['%s'] from '%s'", section, filename)
     return db_config
 
 
@@ -267,7 +276,7 @@ def connect():
 
 
 if __name__ == "__main__":
-    
+    logger.setLevel(logging.INFO)
     db = connect()
     resultjson = create_json(db, problem=10)
     with open('dbjson.json', 'w') as outfile:
