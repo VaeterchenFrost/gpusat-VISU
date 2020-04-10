@@ -1,5 +1,6 @@
+# -*- coding: utf-8 -*-
 """
-@author Martin RÃ¶bke
+@author Martin Röbke
 Created on Tue Mar 31 18:49:00 2020
 
 See https://www.postgresqltutorial.com/postgresql-python/connect/
@@ -14,6 +15,7 @@ Calling python directly prints the logging as per logging.basicConfig!
 import psycopg2 as pg
 import itertools
 import json
+import abc
 import logging
 import pathlib
 from more_itertools import locate
@@ -28,6 +30,30 @@ logging.basicConfig(
     level=logging.WARNING)
 
 logger = logging.getLogger("construct_dpdb_visu")
+
+
+class IDpdbVisuConstruct(metaclass=abc.ABCMeta):
+    """Interface for parsing database results from dynamic programming
+    into the JSON used for visualizing the solution steps
+    on the tree decomposition.
+    """
+    @classmethod
+    def __subclasshook__(cls, subclass):
+        return (hasattr(subclass, 'load_data_source') and 
+                callable(subclass.load_data_source) and 
+                hasattr(subclass, 'extract_text') and 
+                callable(subclass.extract_text) or 
+                NotImplemented)
+    
+    @abc.abstractmethod
+    def read_problem(self, cursor, problem: int) -> tuple:
+        """Read the basic problem parameters from the database."""
+        raise NotImplementedError
+
+    @abc.abstractmethod
+    def read_labeldict(self, cursor, problem: int, num_bags: str) -> list:
+        """Construct the corresponding labels for each bag."""
+        raise NotImplementedError
 
 
 def flatten(iterable):
@@ -66,7 +92,7 @@ def read_cfg(cfg_file, section):
         return json.load(jsonfile)
 
 
-def config(filename='database.ini', section='postgresql'):
+def config(filename='database.ini', section='postgresql') -> dict:
     """Return the database config as JSON"""
     cfg = read_cfg(filename, section)
     if section in cfg:
@@ -144,7 +170,7 @@ def read_labeldict(cursor, problem, num_bags=1):
     return labeldict
 
 
-def readTimeline(cursor, problem, edgearray):
+def read_timeline(cursor, problem, edgearray):
     """
     Read from td_node_status and the edearray to
     - create the timeline of the solving process
@@ -235,7 +261,7 @@ def create_json(db, problem=1):
             "labeldict": labeldict,
             "numVars": num_vars}
 
-        timeline = readTimeline(cur, problem, edgearray)
+        timeline = read_timeline(cur, problem, edgearray)
         return {"clausesJson": clausesJson,
                 "tdTimeline": timeline,
                 "treeDecJson": treeDecJson}
