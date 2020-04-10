@@ -69,7 +69,9 @@ class Visualization:
         """String representation"""
         return (
             self.__class__.__name__ +
-            "(folder='" +
+            "(infile='" +
+            self.infile +
+            "', folder='" +
             self.outfolder +
             "', tdFile='" +
             self.td_file +

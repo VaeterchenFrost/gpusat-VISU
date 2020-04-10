@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-@author Martin Röbke
+@author Martin RÃ¶bke
 Created on Tue Mar 31 18:49:00 2020
 
 See https://www.postgresqltutorial.com/postgresql-python/connect/
@@ -25,7 +25,8 @@ from dijkstra import bidirectional_dijkstra as find_path
 from dijkstra import convert_to_adj
 
 logging.basicConfig(
-    format='%(asctime)s,%(msecs)d %(levelname)-8s[%(filename)s:%(lineno)d] %(message)s',
+    format="%(asctime)s,%(msecs)d %(levelname)-8s"
+    "[%(filename)s:%(lineno)d] %(message)s",
     datefmt='%Y-%m-%d:%H:%M:%S',
     level=logging.WARNING)
 
@@ -39,12 +40,18 @@ class IDpdbVisuConstruct(metaclass=abc.ABCMeta):
     """
     @classmethod
     def __subclasshook__(cls, subclass):
-        return (hasattr(subclass, 'load_data_source') and 
-                callable(subclass.load_data_source) and 
-                hasattr(subclass, 'extract_text') and 
-                callable(subclass.extract_text) or 
+        return (hasattr(subclass, 'read_problem') and
+                callable(subclass.read_problem) and
+                hasattr(subclass, 'read_labeldict') and
+                callable(subclass.read_labeldict) and
+                hasattr(subclass, 'read_timeline') and
+                callable(subclass.read_timeline) and
+                hasattr(subclass, 'read_edgearray') and
+                callable(subclass.read_edgearray) and
+                hasattr(subclass, 'create_json') and
+                callable(subclass.create_json) or
                 NotImplemented)
-    
+
     @abc.abstractmethod
     def read_problem(self, cursor, problem: int) -> tuple:
         """Read the basic problem parameters from the database."""
@@ -52,6 +59,24 @@ class IDpdbVisuConstruct(metaclass=abc.ABCMeta):
 
     @abc.abstractmethod
     def read_labeldict(self, cursor, problem: int, num_bags: str) -> list:
+        """Construct the corresponding labels for each bag."""
+        raise NotImplementedError
+
+    @abc.abstractmethod
+    def read_timeline(self, cursor, problem: int, edgearray) -> list:
+        """Read from td_node_status and the edearray to
+            - create the timeline of the solving process
+            - construct the path and solution-tables used during solving.
+        """
+        raise NotImplementedError
+
+    @abc.abstractmethod
+    def read_edgearray(self, cursor, problem: int) -> list:
+        """Return the edges between the bags."""
+        raise NotImplementedError
+
+    @abc.abstractmethod
+    def create_json(self, database, problem: int) -> dict:
         """Construct the corresponding labels for each bag."""
         raise NotImplementedError
 
@@ -242,7 +267,7 @@ def read_edgearray(cursor, problem):
 
 
 def create_json(db, problem=1):
-    result = {}
+    result = dict()
     logger.info(f"creating JSON for problem {problem}.")
     try:
         # create a cursor
