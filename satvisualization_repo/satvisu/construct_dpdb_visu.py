@@ -12,14 +12,16 @@ https://stackoverflow.com/questions/24259952/logging-module-does-not-print-in-ip
 
 Calling python directly prints the logging as per logging.basicConfig!
 """
-import psycopg2 as pg
 import itertools
 import json
 import abc
 import logging
 import pathlib
-from more_itertools import locate
+
 from configparser import ConfigParser
+from time import sleep
+from more_itertools import locate
+import psycopg2 as pg
 
 from dijkstra import bidirectional_dijkstra as find_path
 from dijkstra import convert_to_adj
@@ -30,7 +32,7 @@ logging.basicConfig(
     datefmt='%Y-%m-%d:%H:%M:%S',
     level=logging.WARNING)
 
-logger = logging.getLogger("construct_dpdb_visu")
+LOGGER = logging.getLogger("construct_dpdb_visu")
 
 
 def flatten(iterable):
@@ -44,6 +46,12 @@ def flatten(iterable):
     return itertools.chain.from_iterable(iterable)
 
 
+def good_db_status():
+    """Indicating a good db status to proceed."""
+    return (pg.extensions.TRANSACTION_STATUS_IDLE,
+            pg.extensions.TRANSACTION_STATUS_INTRANS)
+
+
 def read_cfg(cfg_file, section):
     """Read the config file and return the result.
 
@@ -51,16 +59,16 @@ def read_cfg(cfg_file, section):
     assumes json-format if the ending is NOT .ini
     """
     if pathlib.Path(cfg_file).suffix.lower() == ".ini":
-        config = ConfigParser()
-        config.read(cfg_file)
+        iniconfig = ConfigParser()
+        iniconfig.read(cfg_file)
         result = dict()
-        result["host"] = config.get(section, "host", fallback="localhost")
-        result["port"] = config.getint(section, "port", fallback=5432)
-        result["database"] = config.get(
+        result["host"] = iniconfig.get(section, "host", fallback="localhost")
+        result["port"] = iniconfig.getint(section, "port", fallback=5432)
+        result["database"] = iniconfig.get(
             section, "database", fallback="logicsem")
-        result["user"] = config.get(section, "user", fallback="postgres")
-        result["password"] = config.get(section, "password")
-        result["application_name"] = config.get(
+        result["user"] = iniconfig.get(section, "user", fallback="postgres")
+        result["password"] = iniconfig.get(section, "password")
+        result["application_name"] = iniconfig.get(
             section, "application_name", fallback="dpdb-admin")
         return {section: result}
 
@@ -76,7 +84,7 @@ def config(filename='database.ini', section='postgresql') -> dict:
         db_config = cfg[section]
     else:
         raise Exception(f'Section {section} not found in the {filename} file')
-    logger.info("Read db_config['%s'] from '%s'", section, filename)
+    LOGGER.info("Read db_config['%s'] from '%s'", section, filename)
     return db_config
 
 
@@ -101,17 +109,17 @@ class IDpdbVisuConstruct(metaclass=abc.ABCMeta):
                 NotImplemented)
 
     @abc.abstractmethod
-    def read_problem(self, cursor, problem: int) -> tuple:
+    def read_problem(self) -> tuple:
         """Read the basic problem parameters from the database."""
         raise NotImplementedError
 
     @abc.abstractmethod
-    def read_labeldict(self, cursor, problem: int, num_bags: str) -> list:
+    def read_labeldict(self, num_bags: str) -> list:
         """Construct the corresponding labels for each bag."""
         raise NotImplementedError
 
     @abc.abstractmethod
-    def read_timeline(self, cursor, problem: int, edgearray) -> list:
+    def read_timeline(self, edgearray) -> list:
         """Read from td_node_status and the edearray to
             - create the timeline of the solving process
             - construct the path and solution-tables used during solving.
@@ -119,14 +127,37 @@ class IDpdbVisuConstruct(metaclass=abc.ABCMeta):
         raise NotImplementedError
 
     @abc.abstractmethod
-    def read_edgearray(self, cursor, problem: int) -> list:
+    def read_edgearray(self) -> list:
         """Return the edges between the bags."""
         raise NotImplementedError
 
     @abc.abstractmethod
-    def create_json(self, database, problem: int) -> dict:
+    def create_json(self) -> dict:
         """Construct the corresponding labels for each bag."""
         raise NotImplementedError
+
+
+PSYCOPG2_8_5_TASTATUS = {
+    pg.extensions.TRANSACTION_STATUS_IDLE:
+        ('TRANSACTION_STATUS_IDLE ',
+         '(The session is idle and there is no current transaction.)'),
+
+        pg.extensions.TRANSACTION_STATUS_ACTIVE:
+        ('TRANSACTION_STATUS_ACTIVE ',
+         '(A command is currently in progress.)'),
+
+        pg.extensions.TRANSACTION_STATUS_INTRANS:
+        ('TRANSACTION_STATUS_INTRANS ',
+         '(The session is idle in a valid transaction block.)'),
+
+        pg.extensions.TRANSACTION_STATUS_INERROR:
+        ('TRANSACTION_STATUS_INERROR ',
+         '(The session is idle in a failed transaction block.)'),
+
+        pg.extensions.TRANSACTION_STATUS_UNKNOWN:
+        ('TRANSACTION_STATUS_UNKNOWN ',
+         '(Reported if the connection with the server is bad.)')
+}
 
 
 class DpdbSharpSatVisu(IDpdbVisuConstruct):
@@ -138,17 +169,28 @@ class DpdbSharpSatVisu(IDpdbVisuConstruct):
         problem : int
             index of the problem.
         """
-        self.connection = db
+        LOGGER.debug("Creating %s for problem %d.",
+                     self.__class__.__name__, problem)
         self.problem = problem
+        status = db.get_transaction_status()
+        sleeptimer = 0.5
+        while status not in good_db_status():
+            logging.warning("Waiting %fs for DB connection in status %s",
+                            sleeptimer, PSYCOPG2_8_5_TASTATUS[status])
+            sleep(sleeptimer)
+            status = db.get_transaction_status()
+
+        self.connection = db
+        self.connection.readonly(True)
+        self.connection.autocommit(True)
 
     def create_json(self):
-        result = dict()
-        logger.info(f"creating JSON for problem {self.problem}.")
+
+        LOGGER.info("creating JSON for problem %s.", self.problem)
         try:
-            # create a cursor
-            cur = self.connection.cursor()
+
             # create clausesJson
-            clausesJson = self.read_clauses(cur)
+            clausesJson = self.read_clauses()
 
             (num_vars,
              num_clauses,
@@ -159,44 +201,48 @@ class DpdbSharpSatVisu(IDpdbVisuConstruct):
              tree_width,
              setup_start_time,
              calc_start_time,
-             end_time) = self.read_problem(cur)
+             end_time) = self.read_problem()
             # create treeDecJson
-            labeldict = self.read_labeldict(cur, num_bags)
-            edgearray = self.read_edgearray(cur)
+            labeldict = self.read_labeldict(num_bags)
+            edgearray = self.read_edgearray()
             treeDecJson = {
                 "bagpre": "bag %s",
                 "edgearray": edgearray,
                 "labeldict": labeldict,
                 "numVars": num_vars}
 
-            timeline = self.read_timeline(cur, edgearray)
+            timeline = self.read_timeline(edgearray)
+
             return {"clausesJson": clausesJson,
                     "tdTimeline": timeline,
                     "treeDecJson": treeDecJson}
         except (Exception, pg.DatabaseError) as error:
-            logger.error(error)
+            LOGGER.error(error)
             raise error
 
     def read_problem(self):
-        self.cursor.execute("SELECT num_vars,num_clauses,model_count FROM "
-                       "public.problem_sharpsat WHERE id={}".format(self.problem))
-        num_vars, num_clauses, model_count = self.cursor.fetchone()
-        self.cursor.execute("SELECT name,type,num_bags,tree_width,"
-                       "setup_start_time,calc_start_time,end_time FROM "
-                       "public.problem WHERE id={}".format(problem))
-        (name, ptype, num_bags, tree_width,
-         setup_start_time, calc_start_time, end_time) = self.cursor.fetchone()
-        return (
-            num_vars,
-            num_clauses,
-            model_count,
-            name,
-            ptype,
-            num_bags,
-            tree_width,
-            setup_start_time,
-            calc_start_time,
-            end_time)
+        with self.connection.cursor() as cur:  # create a cursor
+            cur.execute(
+                "SELECT num_vars,num_clauses,model_count FROM "
+                "public.problem_sharpsat WHERE id={}".format(
+                    self.problem))
+            num_vars, num_clauses, model_count = cur.fetchone()
+            cur.execute("SELECT name,type,num_bags,tree_width,"
+                        "setup_start_time,calc_start_time,end_time FROM "
+                        "public.problem WHERE id={}".format(self.problem))
+            (name, ptype, num_bags, tree_width,
+             setup_start_time, calc_start_time, end_time) = cur.fetchone()
+            return (
+                num_vars,
+                num_clauses,
+                model_count,
+                name,
+                ptype,
+                num_bags,
+                tree_width,
+                setup_start_time,
+                calc_start_time,
+                end_time)
 
     def read_clauses(self) -> list:
         """Return the clauses used for satiyfiability.
@@ -208,38 +254,42 @@ class DpdbSharpSatVisu(IDpdbVisuConstruct):
                 "list" : [ 1, -4, 6 ]
             },...]
         """
-        self.cursor.execute("SELECT * FROM public.p{}_sat_clause".format(self.problem))
-        result = self.cursor.fetchall()
-        result_cleaned = list(map(lambda x: [i + 1 if x[i] else -(i + 1) for i in
-                                             locate(x, lambda p:p is not None)],
-                                  result))
-        clausesJson = [{"id": i, "list": item}
-                       for (i, item) in enumerate(result_cleaned, 1)]
-        return clausesJson
+        with self.connection.cursor() as cur:  # create a cursor
+            cur.execute(
+                "SELECT * FROM public.p{}_sat_clause".format(self.problem))
+            result = cur.fetchall()
+            result_cleaned = list(map(lambda x: [i + 1 if x[i] else -(i + 1) for i in
+                                                 locate(x, lambda p: p is not None)],
+                                      result))
+            clausesJson = [{"id": i, "list": item}
+                           for (i, item) in enumerate(result_cleaned, 1)]
+            return clausesJson
 
     def read_labeldict(self, num_bags=1):
-        labeldict = []
-        # check bag numbering:
-        self.cursor.execute(
-            "SELECT bag FROM public.p{}_td_bag group by bag".format(self.problem))
-        bags = sorted(list(flatten(self.cursor.fetchall())))
-        logger.debug(f"bags: {bags}")
-        for bag in bags:
-            self.cursor.execute(
-                "SELECT node FROM public.p{}_td_bag WHERE bag={}".format(
-                    self.problem, bag))
-            result = list(flatten(self.cursor.fetchall()))
-            self.cursor.execute(
-                "SELECT start_time,end_time-start_time "
-                "FROM public.p{}_td_node_status WHERE node={}".format(
-                    self.problem, bag))
-            start_time, dtime = self.cursor.fetchone()
-            labeldict.append(
-                {"id": bag, "items": result, "labels":
-                 [str(result),
-                  start_time.strftime("%D %T"),
-                  "dtime=%.4fs" % dtime.total_seconds()]})
-        return labeldict
+        with self.connection.cursor() as cur:  # create a cursor
+            labeldict = []
+            # check bag numbering:
+            cur.execute(
+                "SELECT bag FROM public.p{}_td_bag group by bag".format(
+                    self.problem))
+            bags = sorted(list(flatten(cur.fetchall())))
+            LOGGER.debug("bags: %s", bags)
+            for bag in bags:
+                cur.execute(
+                    "SELECT node FROM public.p{}_td_bag WHERE bag={}".format(
+                        self.problem, bag))
+                result = list(flatten(cur.fetchall()))
+                cur.execute(
+                    "SELECT start_time,end_time-start_time "
+                    "FROM public.p{}_td_node_status WHERE node={}".format(
+                        self.problem, bag))
+                start_time, dtime = cur.fetchone()
+                labeldict.append(
+                    {"id": bag, "items": result, "labels":
+                     [str(result),
+                      start_time.strftime("%D %T"),
+                      "dtime=%.4fs" % dtime.total_seconds()]})
+            return labeldict
 
     def read_timeline(self, edgearray):
         """
@@ -260,53 +310,58 @@ class DpdbSharpSatVisu(IDpdbVisuConstruct):
             array of bagids and eventually solution-tables.
 
         """
-        timeline = list()
-        adj = convert_to_adj(edgearray)
-        self.cursor.execute(
-            "SELECT node FROM public.p{}_td_node_status".format(self.problem))
-        order_solved = list(flatten(self.cursor.fetchall()))
-        # tour sol -> through result nodes along the edges
-        last = order_solved[-1]
-        startpath = find_path(adj, last, order_solved[0])
-        timeline = [[bag] for bag in startpath[1]]
-        # add the other bags in order_solved to the timeline
-        last = order_solved[0]
-        for bag in order_solved:
-            path = find_path(adj, last, bag)
-            for intermed in path[1][1:]:
-                timeline.append([intermed])
-            # query column names
-            self.cursor.execute(
-                "SELECT column_name FROM INFORMATION_SCHEMA.COLUMNS "
-                "WHERE TABLE_NAME = 'p{}_td_node_{}'".format(self.problem, bag))
-            column_names = list(flatten(self.cursor.fetchall()))
-            logger.debug(f"column_names {column_names}")
-            # get solutions
-            self.cursor.execute(
-                "SELECT * FROM public.p{}_td_node_{}".format(self.problem, bag))
-            solution_raw = self.cursor.fetchall()
-            logger.debug(f"solution_raw {solution_raw}")
-            # check for nulled variables - assuming whole columns are nulled:
-            columns_notnull = [column_names[i] for i, x in
-                               enumerate(solution_raw[0]) if x is not None]
-            solution = [bag,
-                        [[columns_notnull,
-                          *list(map(lambda row: [int(v) for v in row if v is not None],
-                                    solution_raw))],
-                            "sol bag " + str(bag),
-                            "sum: " + str(sum([li[-1] for li in solution_raw])),
-                            True]]
-            timeline.append(solution)
-            last = bag
+        with self.connection.cursor() as cur:  # create a cursor
+            timeline = list()
+            adj = convert_to_adj(edgearray)
+            cur.execute(
+                "SELECT node FROM public.p{}_td_node_status".format(
+                    self.problem))
+            order_solved = list(flatten(cur.fetchall()))
+            # tour sol -> through result nodes along the edges
+            last = order_solved[-1]
+            startpath = find_path(adj, last, order_solved[0])
+            timeline = [[bag] for bag in startpath[1]]
+            # add the other bags in order_solved to the timeline
+            last = order_solved[0]
+            for bag in order_solved:
+                path = find_path(adj, last, bag)
+                for intermed in path[1][1:]:
+                    timeline.append([intermed])
+                # query column names
+                cur.execute(
+                    "SELECT column_name FROM INFORMATION_SCHEMA.COLUMNS "
+                    "WHERE TABLE_NAME = 'p{}_td_node_{}'".format(
+                        self.problem, bag))
+                column_names = list(flatten(cur.fetchall()))
+                LOGGER.debug("column_names %s", column_names)
+                # get solutions
+                cur.execute(
+                    "SELECT * FROM public.p{}_td_node_{}".format(self.problem, bag))
+                solution_raw = cur.fetchall()
+                LOGGER.debug("solution_raw %s", solution_raw)
+                # check for nulled variables - assuming whole columns are
+                # nulled:
+                columns_notnull = [column_names[i] for i, x in
+                                   enumerate(solution_raw[0]) if x is not None]
+                solution = [bag,
+                            [[columns_notnull,
+                              *list(map(lambda row: [int(v) for v in row if v is not None],
+                                        solution_raw))],
+                             "sol bag " + str(bag),
+                             "sum: " + str(sum([li[-1] for li in solution_raw])),
+                             True]]
+                timeline.append(solution)
+                last = bag
 
-        return timeline
+            return timeline
 
     def read_edgearray(self):
-        self.cursor.execute(
-            "SELECT node,parent FROM public.p{}_td_edge".format(self.problem))
-        result = self.cursor.fetchall()
-        return result
-
+        with self.connection.cursor() as cur:  # create a cursor
+            cur.execute(
+                "SELECT node,parent FROM public.p{}_td_edge".format(
+                    self.problem))
+            result = cur.fetchall()
+            return result
 
 
 def connect() -> pg.extensions.connection:
@@ -318,34 +373,30 @@ def connect() -> pg.extensions.connection:
         params = config()
         db_name = params["database"]
 
-        logger.info(f"Connecting to the PostgreSQL database '{db_name}'...")
+        LOGGER.info("Connecting to the PostgreSQL database '%s'...", db_name)
         conn = pg.connect(**params)
 
-        # create a cursor
-        cur = conn.cursor()
+        with conn.cursor() as cur:  # create a cursor
 
-        # display the PostgreSQL database server version
-        logger.info('PostgreSQL database version:')
-        cur.execute('SELECT version()')
+            # display the PostgreSQL database server version
+            LOGGER.info('PostgreSQL database version:')
+            cur.execute('SELECT version()')
 
-        db_version = cur.fetchone()
-        logger.info(db_version)
-
-        # close the communication with the PostgreSQLbhv,
-        cur.close()
+            db_version = cur.fetchone()
+            LOGGER.info(db_version)
 
     except (Exception, pg.DatabaseError) as error:
-        logger.error(error)
+        LOGGER.error(error)
         raise error
     return conn
 
 
 if __name__ == "__main__":
-    logger.setLevel(logging.INFO)
-    db = connect()
-    satvisu = DpdbSharpSatVisu(db, problem=10)
-    resultjson = satvisu.create_json()
+    LOGGER.setLevel(logging.DEBUG)
+    CONNECTION = connect()
+    SATVISU = DpdbSharpSatVisu(CONNECTION, problem=10)
+    RESULTJSON = SATVISU.create_json()
     with open('dbjson.json', 'w') as outfile:
-        json.dump(resultjson, outfile, sort_keys=True, indent=2,
+        json.dump(RESULTJSON, outfile, sort_keys=True, indent=2,
                   ensure_ascii=False)
-        logger.info(f"Wrote to {outfile}")
+        LOGGER.info("Wrote to %s", outfile)
