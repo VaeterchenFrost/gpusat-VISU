@@ -212,7 +212,7 @@ class DpdbSharpSatVisu(IDpdbVisuConstruct):
                 result = list(flatten(cur.fetchall()))
                 cur.execute(
                     "SELECT start_time,end_time-start_time "
-                    "FROM public.p{:d}_td_node_status WHERE node={}".format(
+                    "FROM public.p{:d}_td_node_status WHERE node=%s".format(
                         self.problem, (bag,)))
                 start_time, dtime = cur.fetchone()
                 labeldict.append(
@@ -259,6 +259,7 @@ class DpdbSharpSatVisu(IDpdbVisuConstruct):
                 for intermed in path[1][1:]:
                     timeline.append([intermed])
                 # query column names
+                #  deepcode ignore Sqli: general query, inserting integers
                 cur.execute(
                     "SELECT column_name FROM INFORMATION_SCHEMA.COLUMNS "
                     "WHERE TABLE_NAME = 'p{:d}_td_node_{:d}'".format(
@@ -266,6 +267,7 @@ class DpdbSharpSatVisu(IDpdbVisuConstruct):
                 column_names = list(flatten(cur.fetchall()))
                 LOGGER.debug("column_names %s", column_names)
                 # get solutions
+                #  deepcode ignore Sqli: general query, inserting integers
                 cur.execute(
                     "SELECT * FROM public.p{:d}_td_node_{:d}".format(self.problem, bag))
                 solution_raw = cur.fetchall()
