@@ -1,4 +1,5 @@
 # structs_revisited.py - http://www.graphviz.org/pdf/dotguide.pdf Figure 12
+# file deepcode ignore useCompehensions: <Deprecated File, see visualization.py>
 """building a graphoutput from satsolver runs.
 
 @author: Martin Röbke
