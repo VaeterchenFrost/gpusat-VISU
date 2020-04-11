@@ -185,9 +185,10 @@ class DpdbSharpSatVisu(IDpdbVisuConstruct):
             cur.execute(
                 "SELECT * FROM public.p{}_sat_clause".format(self.problem))
             result = cur.fetchall()
-            result_cleaned = list(map(lambda x: [i + 1 if x[i] else -(i + 1) for i in
-                                                 locate(x, lambda p: p is not None)],
-                                      result))
+            result_cleaned = [
+                [i + 1 if x[i] else -(i + 1) for i in
+                 locate(x, lambda p: p is not None)] for x in result
+            ]
             clausesJson = [{"id": i, "list": item}
                            for (i, item) in enumerate(result_cleaned, 1)]
             return clausesJson
@@ -272,8 +273,8 @@ class DpdbSharpSatVisu(IDpdbVisuConstruct):
                                    enumerate(solution_raw[0]) if x is not None]
                 solution = [bag,
                             [[columns_notnull,
-                              *list(map(lambda row: [int(v) for v in row if v is not None],
-                                        solution_raw))],
+                              *[[int(v) for v in row if v is not None]
+                                for row in solution_raw]],
                              "sol bag " + str(bag),
                              "sum: " + str(sum([li[-1] for li in solution_raw])),
                              True]]
@@ -365,29 +366,33 @@ def create_json(problem: int):
     """Create the JSON for the specified Problem instance."""
 
     LOGGER.info("creating JSON for problem %s.", problem)
-    CONNECTION = connect()
+
     try:
-        # get type of problem
-        (num_vars, num_clauses, model_count, ptype,
-         num_bags) = read_problem(problem, CONNECTION)
+        with connect() as CONNECTION:
+            # get type of problem
+            (num_vars, num_clauses, model_count, ptype,
+             num_bags) = read_problem(problem, CONNECTION)
 
-        # # create clausesJson
-        # clausesJson = read_clauses()
+            if ptype == "SharpSat":
+                CONSTRUCTOR = DpdbSharpSatVisu(CONNECTION, problem)
 
-        # # create treeDecJson
-        # labeldict = read_labeldict(num_bags)
-        # edgearray = read_edgearray()
-        # treeDecJson = {
-        #     "bagpre": "bag %s",
-        #     "edgearray": edgearray,
-        #     "labeldict": labeldict,
-        #     "numVars": num_vars}
+                clausesJson = CONSTRUCTOR.read_clauses()
 
-        # timeline = read_timeline(edgearray)
+                # create treeDecJson
+                labeldict = CONSTRUCTOR.read_labeldict(num_bags)
+                edgearray = CONSTRUCTOR.read_edgearray()
+                treeDecJson = {
+                    "bagpre": "bag %s",
+                    "edgearray": edgearray,
+                    "labeldict": labeldict,
+                    "numVars": num_vars}
 
-        # return {"clausesJson": clausesJson,
-        #         "tdTimeline": timeline,
-        #         "treeDecJson": treeDecJson}
+                timeline = CONSTRUCTOR.read_timeline(edgearray)
+
+                return {"clausesJson": clausesJson,
+                        "tdTimeline": timeline,
+                        "treeDecJson": treeDecJson}
+
     except (Exception, pg.DatabaseError) as error:
         LOGGER.error(error)
         raise error
