@@ -24,8 +24,8 @@ from typing import Optional, Iterable, Iterator, TypeVar
 from more_itertools import locate
 import psycopg2 as pg
 
-from .dijkstra import bidirectional_dijkstra as find_path
-from .dijkstra import convert_to_adj
+from dijkstra import bidirectional_dijkstra as find_path
+from dijkstra import convert_to_adj
 
 logging.basicConfig(
     format="%(asctime)s,%(msecs)d %(levelname)-8s"
@@ -171,8 +171,7 @@ class DpdbSharpSatVisu(IDpdbVisuConstruct):
             status = db.get_transaction_status()
 
         self.connection = db
-        self.connection.readonly(True)
-        self.connection.autocommit(True)
+
 
     def read_clauses(self) -> list:
         """Return the clauses used for satiyfiability.
