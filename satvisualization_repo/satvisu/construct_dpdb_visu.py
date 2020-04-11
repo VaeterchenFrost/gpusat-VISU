@@ -35,6 +35,29 @@ logging.basicConfig(
 LOGGER = logging.getLogger("construct_dpdb_visu")
 
 
+PSYCOPG2_8_5_TASTATUS = {
+    pg.extensions.TRANSACTION_STATUS_IDLE:
+        ('TRANSACTION_STATUS_IDLE ',
+         '(The session is idle and there is no current transaction.)'),
+
+        pg.extensions.TRANSACTION_STATUS_ACTIVE:
+        ('TRANSACTION_STATUS_ACTIVE ',
+         '(A command is currently in progress.)'),
+
+        pg.extensions.TRANSACTION_STATUS_INTRANS:
+        ('TRANSACTION_STATUS_INTRANS ',
+         '(The session is idle in a valid transaction block.)'),
+
+        pg.extensions.TRANSACTION_STATUS_INERROR:
+        ('TRANSACTION_STATUS_INERROR ',
+         '(The session is idle in a failed transaction block.)'),
+
+        pg.extensions.TRANSACTION_STATUS_UNKNOWN:
+        ('TRANSACTION_STATUS_UNKNOWN ',
+         '(Reported if the connection with the server is bad.)')
+}
+
+
 def flatten(iterable):
     """ Flatten at first level.
 
@@ -96,25 +119,21 @@ class IDpdbVisuConstruct(metaclass=abc.ABCMeta):
     """
     @classmethod
     def __subclasshook__(cls, subclass):
-        return (hasattr(subclass, 'read_problem') and
-                callable(subclass.read_problem) and
-                hasattr(subclass, 'read_labeldict') and
+        return (hasattr(subclass, 'read_labeldict') and
                 callable(subclass.read_labeldict) and
                 hasattr(subclass, 'read_timeline') and
                 callable(subclass.read_timeline) and
                 hasattr(subclass, 'read_edgearray') and
-                callable(subclass.read_edgearray) and
-                hasattr(subclass, 'create_json') and
-                callable(subclass.create_json) or
+                callable(subclass.read_edgearray) or
                 NotImplemented)
 
     @abc.abstractmethod
-    def read_problem(self) -> tuple:
-        """Read the basic problem parameters from the database."""
+    def read_edgearray(self) -> list:
+        """Return the edges between the bags."""
         raise NotImplementedError
 
     @abc.abstractmethod
-    def read_labeldict(self, num_bags: str) -> list:
+    def read_labeldict(self, num_bags: int) -> list:
         """Construct the corresponding labels for each bag."""
         raise NotImplementedError
 
@@ -125,39 +144,6 @@ class IDpdbVisuConstruct(metaclass=abc.ABCMeta):
             - construct the path and solution-tables used during solving.
         """
         raise NotImplementedError
-
-    @abc.abstractmethod
-    def read_edgearray(self) -> list:
-        """Return the edges between the bags."""
-        raise NotImplementedError
-
-    @abc.abstractmethod
-    def create_json(self) -> dict:
-        """Construct the corresponding labels for each bag."""
-        raise NotImplementedError
-
-
-PSYCOPG2_8_5_TASTATUS = {
-    pg.extensions.TRANSACTION_STATUS_IDLE:
-        ('TRANSACTION_STATUS_IDLE ',
-         '(The session is idle and there is no current transaction.)'),
-
-        pg.extensions.TRANSACTION_STATUS_ACTIVE:
-        ('TRANSACTION_STATUS_ACTIVE ',
-         '(A command is currently in progress.)'),
-
-        pg.extensions.TRANSACTION_STATUS_INTRANS:
-        ('TRANSACTION_STATUS_INTRANS ',
-         '(The session is idle in a valid transaction block.)'),
-
-        pg.extensions.TRANSACTION_STATUS_INERROR:
-        ('TRANSACTION_STATUS_INERROR ',
-         '(The session is idle in a failed transaction block.)'),
-
-        pg.extensions.TRANSACTION_STATUS_UNKNOWN:
-        ('TRANSACTION_STATUS_UNKNOWN ',
-         '(Reported if the connection with the server is bad.)')
-}
 
 
 class DpdbSharpSatVisu(IDpdbVisuConstruct):
@@ -172,6 +158,7 @@ class DpdbSharpSatVisu(IDpdbVisuConstruct):
         LOGGER.debug("Creating %s for problem %d.",
                      self.__class__.__name__, problem)
         self.problem = problem
+        # wait for good connection
         status = db.get_transaction_status()
         sleeptimer = 0.5
         while status not in good_db_status():
@@ -183,66 +170,6 @@ class DpdbSharpSatVisu(IDpdbVisuConstruct):
         self.connection = db
         self.connection.readonly(True)
         self.connection.autocommit(True)
-
-    def create_json(self):
-
-        LOGGER.info("creating JSON for problem %s.", self.problem)
-        try:
-
-            # create clausesJson
-            clausesJson = self.read_clauses()
-
-            (num_vars,
-             num_clauses,
-             model_count,
-             name,
-             ptype,
-             num_bags,
-             tree_width,
-             setup_start_time,
-             calc_start_time,
-             end_time) = self.read_problem()
-            # create treeDecJson
-            labeldict = self.read_labeldict(num_bags)
-            edgearray = self.read_edgearray()
-            treeDecJson = {
-                "bagpre": "bag %s",
-                "edgearray": edgearray,
-                "labeldict": labeldict,
-                "numVars": num_vars}
-
-            timeline = self.read_timeline(edgearray)
-
-            return {"clausesJson": clausesJson,
-                    "tdTimeline": timeline,
-                    "treeDecJson": treeDecJson}
-        except (Exception, pg.DatabaseError) as error:
-            LOGGER.error(error)
-            raise error
-
-    def read_problem(self):
-        with self.connection.cursor() as cur:  # create a cursor
-            cur.execute(
-                "SELECT num_vars,num_clauses,model_count FROM "
-                "public.problem_sharpsat WHERE id={}".format(
-                    self.problem))
-            num_vars, num_clauses, model_count = cur.fetchone()
-            cur.execute("SELECT name,type,num_bags,tree_width,"
-                        "setup_start_time,calc_start_time,end_time FROM "
-                        "public.problem WHERE id={}".format(self.problem))
-            (name, ptype, num_bags, tree_width,
-             setup_start_time, calc_start_time, end_time) = cur.fetchone()
-            return (
-                num_vars,
-                num_clauses,
-                model_count,
-                name,
-                ptype,
-                num_bags,
-                tree_width,
-                setup_start_time,
-                calc_start_time,
-                end_time)
 
     def read_clauses(self) -> list:
         """Return the clauses used for satiyfiability.
@@ -364,6 +291,24 @@ class DpdbSharpSatVisu(IDpdbVisuConstruct):
             return result
 
 
+class DpdbMinVcVisu(DpdbSharpSatVisu):
+
+    def read_labeldict(self, num_bags) -> list:
+        """Construct the corresponding labels for each bag."""
+        raise NotImplementedError
+
+    def read_timeline(self, edgearray) -> list:
+        """Read from td_node_status and the edearray to
+            - create the timeline of the solving process
+            - construct the path and solution-tables used during solving.
+        """
+        raise NotImplementedError
+
+    def read_edgearray(self) -> list:
+        """Return the edges between the bags."""
+        raise NotImplementedError
+
+
 def connect() -> pg.extensions.connection:
     """Connect to the PostgreSQL database server using the params from config
     """
@@ -391,11 +336,67 @@ def connect() -> pg.extensions.connection:
     return conn
 
 
+def read_problem(problem: int, connection):
+    with connection.cursor() as cur:  # create a cursor
+        cur.execute(
+            "SELECT num_vars,num_clauses,model_count FROM "
+            "public.problem_sharpsat WHERE id={}".format(problem))
+        num_vars, num_clauses, model_count = cur.fetchone()
+        cur.execute("SELECT name,type,num_bags,tree_width,num_vertices,"
+                    "setup_start_time,calc_start_time,end_time FROM "
+                    "public.problem WHERE id={}".format(problem))
+        (name, ptype, num_bags, tree_width, num_vertices,
+         setup_start_time, calc_start_time, end_time) = cur.fetchone()
+        return (
+            num_vars,
+            num_clauses,
+            model_count,
+            name,
+            ptype,
+            num_bags,
+            tree_width,
+            num_vertices,
+            setup_start_time,
+            calc_start_time,
+            end_time)
+
+
+def create_json(problem: int):
+    """Create the JSON for the specified Problem instance."""
+
+    LOGGER.info("creating JSON for problem %s.", problem)
+    CONNECTION = connect()
+    try:
+        # get type of problem
+        (num_vars, num_clauses, model_count, ptype,
+         num_bags) = read_problem(problem, CONNECTION)
+
+        # # create clausesJson
+        # clausesJson = read_clauses()
+
+        # # create treeDecJson
+        # labeldict = read_labeldict(num_bags)
+        # edgearray = read_edgearray()
+        # treeDecJson = {
+        #     "bagpre": "bag %s",
+        #     "edgearray": edgearray,
+        #     "labeldict": labeldict,
+        #     "numVars": num_vars}
+
+        # timeline = read_timeline(edgearray)
+
+        # return {"clausesJson": clausesJson,
+        #         "tdTimeline": timeline,
+        #         "treeDecJson": treeDecJson}
+    except (Exception, pg.DatabaseError) as error:
+        LOGGER.error(error)
+        raise error
+
+
 if __name__ == "__main__":
     LOGGER.setLevel(logging.DEBUG)
-    CONNECTION = connect()
-    SATVISU = DpdbSharpSatVisu(CONNECTION, problem=10)
-    RESULTJSON = SATVISU.create_json()
+
+    RESULTJSON = create_json(problem=10)
     with open('dbjson.json', 'w') as outfile:
         json.dump(RESULTJSON, outfile, sort_keys=True, indent=2,
                   ensure_ascii=False)
