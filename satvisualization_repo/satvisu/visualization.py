@@ -22,7 +22,14 @@ from typing import Iterable, Iterator, TypeVar
 
 from graphviz import Digraph, Graph
 
+logging.basicConfig(
+    format="%(asctime)s,%(msecs)d %(levelname)-8s"
+    "[%(filename)s:%(lineno)d] %(message)s",
+    datefmt='%Y-%m-%d:%H:%M:%S',
+    level=logging.WARNING)
+
 LOGGER = logging.getLogger(__name__)
+
 
 def read_json(json_data):
     """
@@ -45,7 +52,7 @@ def read_json(json_data):
     elif isinstance(json_data, io.TextIOWrapper):
         result = json.load(json_data)
     else:
-        print("read_json called on ", type(json_data))
+        LOGGER.warning("read_json called on %s", type(json_data))
         result = json_data
     assert len(result) > 0, "Please input a valid JSON resource!"
     return result
@@ -75,9 +82,7 @@ class Visualization:
         """String representation"""
         return (
             self.__class__.__name__ +
-            "(infile='" +
-            self.infile +
-            "', folder='" +
+            "(folder='" +
             self.outfolder +
             "', tdFile='" +
             self.td_file +
@@ -106,7 +111,7 @@ class Visualization:
         self.clausetag = "c_"
         self.vartag = "v_"
         self.tree_dec_digraph = None
-        print(self)
+        LOGGER.info("Running %s", self)
 
     def getVisuOutputFolder(self) -> str:
         return self.outfolder
@@ -217,9 +222,9 @@ class Visualization:
     def inspectJson(self, infile) -> None:
         """Read and preprocess the needed data from the input."""
         visudata = read_json(infile)
-        print("Reading from ", infile)
+        LOGGER.info("Reading from %s", infile)
 
-        print("Found keys ", visudata.keys())
+        LOGGER.info("Found keys %s", visudata.keys())
 
         self.tree_dec = visudata["treeDecJson"]
         self.timeline = visudata["tdTimeline"]
@@ -276,7 +281,8 @@ class Visualization:
                 else:  # joined node with 2 bags
                     suc = self.timeline[i + 1][0]
                     # get the joined bags
-                    print('joining ', node[0], ' to ', suc)
+                    LOGGER.debug('joining %s to %s ', node[0], suc)
+
                     # solution
                     id_inv_bags = tuple(id_inv_bags)
                     last_sol = soljoinpre % id_inv_bags
@@ -315,7 +321,7 @@ class Visualization:
 
         for i, node in enumerate(reversed(self.timeline)):
             id_inv_bags = node[0]
-            print(i, ":Reverse traversing on", id_inv_bags)
+            LOGGER.debug("%s: Reverse traversing on %s", i, id_inv_bags)
 
             if i > 0:                              # Delete previous emphasis
                 prevhead = self.timeline[len(self.timeline) - i][0]
@@ -605,6 +611,8 @@ class Visualization:
 
 
 if __name__ == "__main__":
+    LOGGER.setLevel(logging.DEBUG)
+
     import argparse
     PARSER = argparse.ArgumentParser(
         prog='graphvizSatVisu.py',
