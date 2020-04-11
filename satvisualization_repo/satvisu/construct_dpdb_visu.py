@@ -19,12 +19,13 @@ import logging
 import pathlib
 
 from configparser import ConfigParser
-from time import sleep
 from more_itertools import locate
+from time import sleep
+from typing import Optional, Iterable, Iterator, TypeVar
 import psycopg2 as pg
 
-from dijkstra import bidirectional_dijkstra as find_path
-from dijkstra import convert_to_adj
+from .dijkstra import bidirectional_dijkstra as find_path
+from .dijkstra import convert_to_adj
 
 logging.basicConfig(
     format="%(asctime)s,%(msecs)d %(levelname)-8s"
@@ -32,7 +33,7 @@ logging.basicConfig(
     datefmt='%Y-%m-%d:%H:%M:%S',
     level=logging.WARNING)
 
-LOGGER = logging.getLogger("construct_dpdb_visu")
+LOGGER = logging.getLogger(__name__)
 
 
 PSYCOPG2_8_5_TASTATUS = {
@@ -57,8 +58,9 @@ PSYCOPG2_8_5_TASTATUS = {
          '(Reported if the connection with the server is bad.)')
 }
 
+_T = TypeVar('_T')
 
-def flatten(iterable):
+def flatten(iterable:Iterable[Iterable[_T]])->Iterator[_T]:
     """ Flatten at first level.
 
     Turn ex=[[1,2],[3,4]] into
@@ -69,7 +71,7 @@ def flatten(iterable):
     return itertools.chain.from_iterable(iterable)
 
 
-def good_db_status():
+def good_db_status()->tuple:
     """Indicating a good db status to proceed."""
     return (pg.extensions.TRANSACTION_STATUS_IDLE,
             pg.extensions.TRANSACTION_STATUS_INTRANS)
@@ -294,20 +296,7 @@ class DpdbSharpSatVisu(IDpdbVisuConstruct):
 
 class DpdbMinVcVisu(DpdbSharpSatVisu):
 
-    def read_labeldict(self, num_bags) -> list:
-        """Construct the corresponding labels for each bag."""
-        raise NotImplementedError
-
-    def read_timeline(self, edgearray) -> list:
-        """Read from td_node_status and the edearray to
-            - create the timeline of the solving process
-            - construct the path and solution-tables used during solving.
-        """
-        raise NotImplementedError
-
-    def read_edgearray(self) -> list:
-        """Return the edges between the bags."""
-        raise NotImplementedError
+    pass
 
 
 def connect() -> pg.extensions.connection:
@@ -337,7 +326,7 @@ def connect() -> pg.extensions.connection:
     return conn
 
 
-def read_problem(problem: int, connection):
+def read_problem(problem: int, connection : pg.extensions.connection) -> tuple:
     with connection.cursor() as cur:  # create a cursor
         cur.execute(
             "SELECT num_vars,num_clauses,model_count FROM "
@@ -360,9 +349,10 @@ def read_problem(problem: int, connection):
             setup_start_time,
             calc_start_time,
             end_time)
+    raise pg.DatabaseError("Could not get a cursor for read_problem.")
 
 
-def create_json(problem: int):
+def create_json(problem: int)-> Optional[dict]:
     """Create the JSON for the specified Problem instance."""
 
     LOGGER.info("creating JSON for problem %s.", problem)
@@ -372,9 +362,10 @@ def create_json(problem: int):
             # get type of problem
             (num_vars, num_clauses, model_count, ptype,
              num_bags) = read_problem(problem, CONNECTION)
-
+            # select the valid constructor for the problem
+            CONSTRUCTOR: IDpdbVisuConstruct
             if ptype == "SharpSat":
-                CONSTRUCTOR = DpdbSharpSatVisu(CONNECTION, problem)
+                CONSTRUCTOR: DpdbSharpSatVisu = DpdbSharpSatVisu(CONNECTION, problem)
 
                 clausesJson = CONSTRUCTOR.read_clauses()
 

@@ -17,9 +17,12 @@ https://github.com/hmarkus/dp_on_dbs
 import json
 import io
 import itertools
+import logging
+from typing import Iterable, Iterator, TypeVar
 
 from graphviz import Digraph, Graph
 
+LOGGER = logging.getLogger(__name__)
 
 def read_json(json_data):
     """
@@ -48,7 +51,10 @@ def read_json(json_data):
     return result
 
 
-def flatten(iterable):
+_T = TypeVar('_T')
+
+
+def flatten(iterable: Iterable[Iterable[_T]]) -> Iterator[_T]:
     """ Flatten at first level.
 
     Turn ex=[[1,2],[3,4]] into
@@ -65,7 +71,7 @@ class Visualization:
     of dynamic programming on tree decomposition.
     """
 
-    def __str__(self):
+    def __str__(self) -> str:
         """String representation"""
         return (
             self.__class__.__name__ +
@@ -83,7 +89,7 @@ class Visualization:
 
     def __init__(self, infile, outfolder, tdFile="TDStep",
                  primalFile="PrimalGraphStep",
-                 incFile="IncidenceGraphStep"):
+                 incFile="IncidenceGraphStep") -> None:
         """Copy needed fields from arguments and create additional constants"""
         self.inspectJson(infile)
         self.outfolder = outfolder
@@ -102,31 +108,32 @@ class Visualization:
         self.tree_dec_digraph = None
         print(self)
 
-    def getVisuOutputFolder(self):
+    def getVisuOutputFolder(self) -> str:
         return self.outfolder
 
     @staticmethod
-    def baseStyle(graph, node):
+    def baseStyle(graph, node) -> None:
         graph.node(node, fillcolor='white', penwidth="1.0")
 
     @staticmethod
-    def emphasiseNode(graph, node, _fillcolor="yellow", _penwidth="2.5"):
+    def emphasiseNode(graph, node, _fillcolor="yellow",
+                      _penwidth="2.5") -> None:
         if _fillcolor:
             graph.node(node, fillcolor=_fillcolor)
         if _penwidth:
             graph.node(node, penwidth=_penwidth)
 
     @staticmethod
-    def styleHideNode(graph, node):
+    def styleHideNode(graph, node) -> None:
         graph.node(node, style="invis")
 
     @staticmethod
-    def styleHideEdge(graph, s, t):
+    def styleHideEdge(graph, s, t) -> None:
         graph.edge(s, t, style="invis")
 
     @staticmethod
     def bagNode(head, tail, anchor="anchor", headcolor="white",
-                tableborder=0, cellborder=0, cellspacing=0):
+                tableborder=0, cellborder=0, cellspacing=0) -> str:
         """HTML format with 'head' as the first label, then appending
         further labels.
         After the 'head' there is an (empty) anchor for edges with a name tag. e.g.
@@ -154,7 +161,7 @@ class Visualization:
             solution_table,
             toplabel="",
             bottomlabel="",
-            transpose=False, linesmax=12, columnmax=10):
+            transpose=False, linesmax=12, columnmax=10) -> str:
         """Fill the node from the 2D 'solution_table' (columnbased!).
         Optionally add a line above and/or below the table.
 
@@ -207,9 +214,8 @@ class Visualization:
 
         return "{" + result + "}"
 
-    def inspectJson(self, infile):
-        """Readout and preprocess the needed data from the input.
-        """
+    def inspectJson(self, infile) -> None:
+        """Read and preprocess the needed data from the input."""
         visudata = read_json(infile)
         print("Reading from ", infile)
 
@@ -218,10 +224,9 @@ class Visualization:
         self.tree_dec = visudata["treeDecJson"]
         self.timeline = visudata["tdTimeline"]
         self.bagpre = self.tree_dec["bagpre"]
-        self.edgelist = list(
-            map(lambda x: [x['id'], x['list']], visudata["clausesJson"]))
+        self.edgelist = [[x['id'], x['list']] for x in visudata["clausesJson"]]
 
-    def setupTreeDecGraph(self):
+    def setupTreeDecGraph(self) -> None:
         """Create self.tree_dec_digraph"""
         self.tree_dec_digraph = Digraph(
             'structs',
@@ -233,7 +238,7 @@ class Visualization:
                 'style': "rounded,filled",
                 'margin': '0.11,0.01'})
 
-    def basicTDG(self):
+    def basicTDG(self) -> None:
         """Create first structure in treeDecGraph."""
         for item in self.tree_dec["labeldict"]:
             bagname = self.bagpre % str(item["id"])
@@ -243,7 +248,8 @@ class Visualization:
         self.tree_dec_digraph.edges([(self.bagpre % str(first), self.bagpre % str(
             second)) for (first, second) in self.tree_dec["edgearray"]])
 
-    def forwardIterateTDG(self, joinpre=None, solpre=None, soljoinpre=None):
+    def forwardIterateTDG(self, joinpre=None, solpre=None,
+                          soljoinpre=None) -> None:
         """Create the final positions of all nodes with solutions.
         The arguments are optional"""
         tdg = self.tree_dec_digraph                 # shorten name
@@ -295,7 +301,7 @@ class Visualization:
                              if isinstance(suc, int) else joinpre % suc)
 
     def backwardsIterateTDG(self, view=False, joinpre=None,
-                            solpre=None, soljoinpre=None):
+                            solpre=None, soljoinpre=None) -> None:
         """Cut the single steps back and update emphasis acordingly."""
         tdg = self.tree_dec_digraph     # shorten name
         last_sol = ""
@@ -348,15 +354,14 @@ class Visualization:
                 view=view, format='svg', filename=_filename %
                 (len(self.timeline) - i))
 
-    def treeDecTimeline(self, view=False):
+    def treeDecTimeline(self, view=False) -> None:
 
         self.setupTreeDecGraph()
 
         # -----------Iterate labeldict ---------------
         self.basicTDG()
-        # >>>>>>>>>>>>Iterate TIMELINE FORWARD>>>>>>>>>>>>>
+
         self.forwardIterateTDG()
-        # <<<<<<<<<<<Iterate TIMELINE BACKWARDS<<<<<<<<<<<<<<<<<<<
         self.backwardsIterateTDG(view=view)
 
         # Prepare Incidence graph Timeline
@@ -387,7 +392,7 @@ class Visualization:
             numVars=self.tree_dec['numVars'],
             colors=self.colors, view=view)
 
-    def primal(self, TIMELINE, primalSet, view=False):
+    def primal(self, TIMELINE, primalSet, view=False) -> None:
         """
         Creates the primal graph emphasized for the given timeline.
 
@@ -434,7 +439,8 @@ class Visualization:
                 g_primal.render(
                     view=view,
                     format='svg',
-                    filename=_filename % i)
+                    filename=_filename %
+                    i)
                 continue
 
             for var in variables:
@@ -455,12 +461,9 @@ class Visualization:
                     color='green',
                     style='dotted,filled')
 
-            g_primal.render(
-                view=view,
-                format='svg',
-                filename=_filename % i)
+            g_primal.render(view=view, format='svg', filename=_filename % i)
 
-    def incidence(self, TIMELINE, numVars, colors, view=False):
+    def incidence(self, TIMELINE, numVars, colors, view=False) -> None:
         """
         Creates the incidence graph emphasized for the given timeline.
 
@@ -537,9 +540,7 @@ class Visualization:
 
         vcmapping = map(
             lambda y: map(
-                lambda x: (
-                    x,
-                    y[0]),
+                lambda x: (x, y[0]),
                 y[1]),
             self.edgelist)
 
@@ -554,10 +555,7 @@ class Visualization:
             # reset highlighting
             g_incid.body = g_incid.body[:bodybaselen]
             if variables is None:
-                g_incid.render(
-                    view=view,
-                    format='svg',
-                    filename=_filename % i)
+                g_incid.render(view=view, format='svg', filename=_filename % i)
                 continue
 
             emp_clause = {
@@ -603,10 +601,7 @@ class Visualization:
                                  arrowtail='odot',
                                  style=_style)
 
-            g_incid.render(
-                view=view,
-                format='svg',
-                filename=_filename % i)
+            g_incid.render(view=view, format='svg', filename=_filename % i)
 
 
 if __name__ == "__main__":
