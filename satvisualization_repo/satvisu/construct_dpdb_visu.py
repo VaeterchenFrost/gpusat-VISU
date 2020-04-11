@@ -18,10 +18,10 @@ import abc
 import logging
 import pathlib
 
-from configparser import ConfigParser
-from more_itertools import locate
 from time import sleep
+from configparser import ConfigParser
 from typing import Optional, Iterable, Iterator, TypeVar
+from more_itertools import locate
 import psycopg2 as pg
 
 from .dijkstra import bidirectional_dijkstra as find_path
@@ -60,7 +60,8 @@ PSYCOPG2_8_5_TASTATUS = {
 
 _T = TypeVar('_T')
 
-def flatten(iterable:Iterable[Iterable[_T]])->Iterator[_T]:
+
+def flatten(iterable: Iterable[Iterable[_T]]) -> Iterator[_T]:
     """ Flatten at first level.
 
     Turn ex=[[1,2],[3,4]] into
@@ -71,7 +72,7 @@ def flatten(iterable:Iterable[Iterable[_T]])->Iterator[_T]:
     return itertools.chain.from_iterable(iterable)
 
 
-def good_db_status()->tuple:
+def good_db_status() -> tuple:
     """Indicating a good db status to proceed."""
     return (pg.extensions.TRANSACTION_STATUS_IDLE,
             pg.extensions.TRANSACTION_STATUS_INTRANS)
@@ -185,7 +186,7 @@ class DpdbSharpSatVisu(IDpdbVisuConstruct):
         """
         with self.connection.cursor() as cur:  # create a cursor
             cur.execute(
-                "SELECT * FROM public.p{}_sat_clause".format(self.problem))
+                "SELECT * FROM public.p{:d}_sat_clause".format(self.problem))
             result = cur.fetchall()
             result_cleaned = [
                 [i + 1 if x[i] else -(i + 1) for i in
@@ -200,19 +201,19 @@ class DpdbSharpSatVisu(IDpdbVisuConstruct):
             labeldict = []
             # check bag numbering:
             cur.execute(
-                "SELECT bag FROM public.p{}_td_bag group by bag".format(
+                "SELECT bag FROM public.p{:d}_td_bag group by bag".format(
                     self.problem))
             bags = sorted(list(flatten(cur.fetchall())))
             LOGGER.debug("bags: %s", bags)
             for bag in bags:
                 cur.execute(
-                    "SELECT node FROM public.p{}_td_bag WHERE bag={}".format(
-                        self.problem, bag))
+                    "SELECT node FROM public.p{:d}_td_bag WHERE bag=%s".format(
+                        self.problem), (bag,))
                 result = list(flatten(cur.fetchall()))
                 cur.execute(
                     "SELECT start_time,end_time-start_time "
-                    "FROM public.p{}_td_node_status WHERE node={}".format(
-                        self.problem, bag))
+                    "FROM public.p{:d}_td_node_status WHERE node={}".format(
+                        self.problem, (bag,)))
                 start_time, dtime = cur.fetchone()
                 labeldict.append(
                     {"id": bag, "items": result, "labels":
@@ -260,13 +261,13 @@ class DpdbSharpSatVisu(IDpdbVisuConstruct):
                 # query column names
                 cur.execute(
                     "SELECT column_name FROM INFORMATION_SCHEMA.COLUMNS "
-                    "WHERE TABLE_NAME = 'p{}_td_node_{}'".format(
+                    "WHERE TABLE_NAME = 'p{:d}_td_node_{:d}'".format(
                         self.problem, bag))
                 column_names = list(flatten(cur.fetchall()))
                 LOGGER.debug("column_names %s", column_names)
                 # get solutions
                 cur.execute(
-                    "SELECT * FROM public.p{}_td_node_{}".format(self.problem, bag))
+                    "SELECT * FROM public.p{:d}_td_node_{:d}".format(self.problem, bag))
                 solution_raw = cur.fetchall()
                 LOGGER.debug("solution_raw %s", solution_raw)
                 # check for nulled variables - assuming whole columns are
@@ -295,7 +296,8 @@ class DpdbSharpSatVisu(IDpdbVisuConstruct):
 
 
 class DpdbMinVcVisu(DpdbSharpSatVisu):
-
+    """TODO
+    """
     pass
 
 
@@ -326,59 +328,51 @@ def connect() -> pg.extensions.connection:
     return conn
 
 
-def read_problem(problem: int, connection : pg.extensions.connection) -> tuple:
+def read_problem(problem: int, connection: pg.extensions.connection) -> tuple:
+    """TODO
+    """
     with connection.cursor() as cur:  # create a cursor
         cur.execute(
             "SELECT num_vars,num_clauses,model_count FROM "
-            "public.problem_sharpsat WHERE id={}".format(problem))
+            "public.problem_sharpsat WHERE id=%s", (problem,))
         num_vars, num_clauses, model_count = cur.fetchone()
         cur.execute("SELECT name,type,num_bags,tree_width,num_vertices,"
                     "setup_start_time,calc_start_time,end_time FROM "
-                    "public.problem WHERE id={}".format(problem))
+                    "public.problem WHERE id=%s", (problem,))
         (name, ptype, num_bags, tree_width, num_vertices,
          setup_start_time, calc_start_time, end_time) = cur.fetchone()
-        return (
-            num_vars,
-            num_clauses,
-            model_count,
-            name,
-            ptype,
-            num_bags,
-            tree_width,
-            num_vertices,
-            setup_start_time,
-            calc_start_time,
-            end_time)
+        return (num_vars, num_clauses, model_count, ptype, num_bags)
     raise pg.DatabaseError("Could not get a cursor for read_problem.")
 
 
-def create_json(problem: int)-> Optional[dict]:
+def create_json(problem: int) -> Optional[dict]:
     """Create the JSON for the specified Problem instance."""
 
     LOGGER.info("creating JSON for problem %s.", problem)
 
     try:
-        with connect() as CONNECTION:
+        with connect() as connection:
             # get type of problem
             (num_vars, num_clauses, model_count, ptype,
-             num_bags) = read_problem(problem, CONNECTION)
+             num_bags) = read_problem(problem, connection)
             # select the valid constructor for the problem
-            CONSTRUCTOR: IDpdbVisuConstruct
+            constructor: IDpdbVisuConstruct
             if ptype == "SharpSat":
-                CONSTRUCTOR: DpdbSharpSatVisu = DpdbSharpSatVisu(CONNECTION, problem)
+                constructor: DpdbSharpSatVisu = DpdbSharpSatVisu(
+                    connection, problem)
 
-                clausesJson = CONSTRUCTOR.read_clauses()
+                clausesJson = constructor.read_clauses()
 
                 # create treeDecJson
-                labeldict = CONSTRUCTOR.read_labeldict(num_bags)
-                edgearray = CONSTRUCTOR.read_edgearray()
+                labeldict = constructor.read_labeldict(num_bags)
+                edgearray = constructor.read_edgearray()
                 treeDecJson = {
                     "bagpre": "bag %s",
                     "edgearray": edgearray,
                     "labeldict": labeldict,
                     "numVars": num_vars}
 
-                timeline = CONSTRUCTOR.read_timeline(edgearray)
+                timeline = constructor.read_timeline(edgearray)
 
                 return {"clausesJson": clausesJson,
                         "tdTimeline": timeline,
