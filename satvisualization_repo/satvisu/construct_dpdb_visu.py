@@ -213,7 +213,7 @@ class DpdbSharpSatVisu(IDpdbVisuConstruct):
                 cur.execute(
                     "SELECT start_time,end_time-start_time "
                     "FROM public.p{:d}_td_node_status WHERE node=%s".format(
-                        self.problem, (bag,)))
+                        self.problem), (bag,))
                 start_time, dtime = cur.fetchone()
                 labeldict.append(
                     {"id": bag, "items": result, "labels":
