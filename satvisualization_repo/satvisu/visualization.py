@@ -114,15 +114,20 @@ class Visualization:
         LOGGER.info("Running %s", self)
 
     def getVisuOutputFolder(self) -> str:
+        """Return the folder for storing the result-files."""
         return self.outfolder
 
     @staticmethod
     def baseStyle(graph, node) -> None:
+        """Style the node white and with penwidth 1."""
         graph.node(node, fillcolor='white', penwidth="1.0")
 
     @staticmethod
     def emphasiseNode(graph, node, _fillcolor="yellow",
                       _penwidth="2.5") -> None:
+        """Emphasise node with a different fillcolor (default:'yellow')
+        and penwidth (default:2.5).
+        """
         if _fillcolor:
             graph.node(node, fillcolor=_fillcolor)
         if _penwidth:
@@ -130,11 +135,13 @@ class Visualization:
 
     @staticmethod
     def styleHideNode(graph, node) -> None:
+        """Make the node invisible during drawing."""
         graph.node(node, style="invis")
 
     @staticmethod
-    def styleHideEdge(graph, s, t) -> None:
-        graph.edge(s, t, style="invis")
+    def styleHideEdge(graph, source, target) -> None:
+        """Make the edge source->target invisible during drawing."""
+        graph.edge(source, target, style="invis")
 
     @staticmethod
     def bagNode(head, tail, anchor="anchor", headcolor="white",
@@ -361,7 +368,7 @@ class Visualization:
                 (len(self.timeline) - i))
 
     def treeDecTimeline(self, view=False) -> None:
-
+        """Main-method for handling all construction of the timeline."""
         self.setupTreeDecGraph()
 
         # -----------Iterate labeldict ---------------
@@ -385,12 +392,12 @@ class Visualization:
                 # Join operation - no clauses involved in computation
                 _timeline.append(None)
 
-        _primalSet = tuple(set(elem) for elem in flatten(
+        primal_edges = tuple(set(elem) for elem in flatten(
             map(lambda x: (itertools.combinations(map(abs, x[1]), 2)), self.edgelist)))
 
         self.primal(
             TIMELINE=_timeline,
-            primalSet=_primalSet
+            primal_edges=primal_edges
         )
 
         self.incidence(
@@ -398,13 +405,13 @@ class Visualization:
             numVars=self.tree_dec['numVars'],
             colors=self.colors, view=view)
 
-    def primal(self, TIMELINE, primalSet, view=False) -> None:
+    def primal(self, TIMELINE, primal_edges, view=False) -> None:
         """
         Creates the primal graph emphasized for the given timeline.
 
         Parameters
         ----------
-        primalSet : Iterable of: {int, int}
+        primal_edges : Iterable of: {int, int}
             All edges between variables that occur in one or more clauses together.
             BOTH edges (x, y) and (y, x) could be in the EDGELIST.
 
@@ -423,6 +430,7 @@ class Visualization:
 
         """
         _filename = self.outfolder + self.primal_file + '%d'
+        do_sort_nodes = True  # sort nodes on the circle?
 
         vartagN = self.vartag + '%d'    # "v_%d"
 
@@ -432,8 +440,15 @@ class Visualization:
                          node_attr={'fontcolor': 'black',
                                     'penwidth': '2.2'})
 
-        for (s, t) in primalSet:
+        for (s, t) in primal_edges:
             g_primal.edge(vartagN % s, vartagN % t)
+
+        if do_sort_nodes:
+            # 1. get current layout code
+            # 2. read positions per node
+            # 3. sort nodes
+            # 4. place back into the (sorted) positions
+            pass
 
         bodybaselen = len(g_primal.body)
         for i, variables in enumerate(TIMELINE, start=1):    # all timesteps
@@ -457,7 +472,7 @@ class Visualization:
                     style='filled')
 
             adjacent = {
-                edge.difference(variables).pop() for edge in primalSet if len(
+                edge.difference(variables).pop() for edge in primal_edges if len(
                     edge.difference(variables)) == 1}
 
             for var in adjacent:
