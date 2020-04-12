@@ -430,6 +430,7 @@ class Visualization:
 
         """
         _filename = self.outfolder + self.primal_file + '%d'
+
         do_sort_nodes = True  # sort nodes on the circle?
 
         vartagN = self.vartag + '%d'    # "v_%d"
@@ -439,17 +440,45 @@ class Visualization:
                          graph_attr={'fontsize': '20'},
                          node_attr={'fontcolor': 'black',
                                     'penwidth': '2.2'})
-
-        for (s, t) in primal_edges:
+        for (s, t) in primal_edges:     # do this before calculating layout!
             g_primal.edge(vartagN % s, vartagN % t)
 
         if do_sort_nodes:
+            # The output consists of one graph line, a sequence of node lines,
+            # one per node, a sequence of edge lines, one per edge,
+            # and a final stop line.
             # 1. get current layout code
+            # reads in bytes!
+            code_lines = g_primal.pipe('plain').splitlines()
             # 2. read positions per node
-            # 3. sort nodes
-            # 4. place back into the (sorted) positions
-            pass
+            assert code_lines[0].startswith(b'graph')
+            node_positions = [line.split()[1:4] for line in code_lines[1:]
+                              if line.startswith(b'node')]
 
+            node_names_s = sorted([n[0].decode() for n in node_positions])
+            node_x_list = [float(n[1]) for n in node_positions]
+            node_y_list = [float(n[2]) for n in node_positions]
+            LOGGER.debug("Calculating with primal node positions"
+                         " %s\nnode_names_s=%s", node_positions, node_names_s)
+            # 3. sort nodes in circular order
+            # 3.1 get center (x, y)
+            center = (sum(node_x_list) / len(node_positions),
+                      sum(node_y_list) / len(node_positions))
+            # 3.2 get order respective to center, starting at middle-left:
+            from cmath import phase
+            position_circle = sorted(zip(node_x_list, node_y_list),
+                                     key=lambda x: phase(
+                                         complex(*x) - complex(*center)),
+                                     reverse=True)
+            # 4. place back into the (sorted) positions
+            # safe_body = list(g_primal.body)
+            # g_primal.body.clear()
+            for node, position in zip(node_names_s, position_circle):
+                g_primal.node(node, pos="%f,%f!" % position)
+            # 5. edges back
+            # g_primal.body += safe_body
+
+        g_primal.engine = 'neato'                 # Use previous positions
         bodybaselen = len(g_primal.body)
         for i, variables in enumerate(TIMELINE, start=1):    # all timesteps
 
@@ -466,8 +495,7 @@ class Visualization:
 
             for var in variables:
                 g_primal.node(
-                    vartagN %
-                    var,
+                    vartagN % var,
                     fillcolor='yellow',
                     style='filled')
 
@@ -476,13 +504,13 @@ class Visualization:
                     edge.difference(variables)) == 1}
 
             for var in adjacent:
-                g_primal.node(
-                    vartagN %
-                    var,
-                    color='green',
-                    style='dotted,filled')
+                g_primal.node(vartagN % var,
+                              color='green',
+                              style='dotted,filled')
 
-            g_primal.render(view=view, format='svg', filename=_filename % i)
+            # print(g_primal)
+            g_primal.render(view=view, format='svg',
+                            filename=_filename % i)
 
     def incidence(self, TIMELINE, numVars, colors, view=False) -> None:
         """

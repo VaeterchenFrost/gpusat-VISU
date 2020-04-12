@@ -13,4 +13,4 @@ G = Graph(strict=True,
                          node_attr={'fontcolor': 'black',
                                     'penwidth': '2.2'})
 G.edges(({'1', '4'}, {'1', '6'}, {'4', '6'}))
-print(G.pipe('plain').decode('ascii'))
+print(G.pipe('plain'))
