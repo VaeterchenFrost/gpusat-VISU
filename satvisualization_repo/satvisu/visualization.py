@@ -173,7 +173,7 @@ class Visualization:
             solution_table,
             toplabel="",
             bottomlabel="",
-            transpose=False, linesmax=12, columnmax=10) -> str:
+            transpose=False, linesmax=10, columnsmax=5) -> str:
         """Fill the node from the 2D 'solution_table' (columnbased!).
         Optionally add a line above and/or below the table.
 
@@ -186,8 +186,12 @@ class Visualization:
         transpose : bool, whether to transpose the solution_table before
         processing
 
-        linesmax : int, maximum lines in the table to display.
+        linesmax : int, if positive it indicates the
+                maximum number of lines in the table to display.
 
+        columnsmax : int, if positive it indicates the 
+                maximum number of columns to display + the last.
+                
         Example structure for four columns:
         |----------|
         | toplabel |
@@ -209,23 +213,46 @@ class Visualization:
         else:
             if transpose:
                 solution_table = list(zip(*solution_table))
-            if linesmax > 0:
-                # limit lines backwards from length of column
-                vslice = min(-1, len(solution_table[0]) - linesmax)
-            result += "{"                                       # insert table
 
-            for i, column in enumerate(solution_table):
+            # limit lines backwards from length of column
+            vslice = (min(-1, linesmax - len(solution_table[0]))
+                      if linesmax > 0 else -1)
+            # limit columns forwards minus one
+            hslice = (min(len(solution_table), columnsmax)
+                      if columnsmax > 0 else len(solution_table)) - 1
+
+            result += "{"                                       # insert table
+            for column in solution_table[:hslice]:
                 result += "{"                                   # start column
                 for row in column[:vslice]:
                     result += str(row) + "|"
-                if vslice < -1:  # add one indicator of shortening
+                if vslice < -1:     # add one indicator of shortening
                     result += "..." + "|"
                 for row in column[-1:]:
                     result += str(row)
-                result += "}"
-                if i < len(solution_table) - 1:          # sep. between columns
-                    result += "|"
+                result += "}|"      # sep. between columns
+            # adding one column-skipping indicator
+            if hslice < len(solution_table) - 1:
+                result += "{"                                   # start column
+                for row in column[:vslice]:
+                    result += "..." + "|"
+                if vslice < -1:     # add one indicator of shortening
+                    result += "..." + "|"
+                for row in column[-1:]:
+                    result += "..."
+                result += "}|"      # sep. between columns
+            # last column (usually a summary of the previous cols)
+            for i, column in enumerate(solution_table[-1:]):
+                result += "{"                                   # start column
+                for row in column[:vslice]:
+                    result += str(row) + "|"
+                if vslice < -1:     # add one indicator of shortening
+                    result += "..." + "|"
+                for row in column[-1:]:
+                    result += str(row)
+                result += "}"      # sep. between columns
             result += "}"                                       # close table
+
         if len(bottomlabel) > 0:
             result += "|" + bottomlabel
 

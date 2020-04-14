@@ -1,0 +1,55 @@
+strict graph {
+	graph [fontsize=20]
+	node [fontcolor=black penwidth=2.2]
+	v_1 -- v_2
+	v_1 -- v_4
+	v_1 -- v_9
+	v_1 -- v_10
+	v_2 -- v_4
+	v_9 -- v_2
+	v_2 -- v_10
+	v_9 -- v_4
+	v_10 -- v_4
+	v_9 -- v_10
+	v_10 -- v_7
+	v_9 -- v_3
+	v_10 -- v_3
+	v_9 -- v_10
+	v_1 -- v_5
+	v_1 -- v_7
+	v_5 -- v_7
+	v_1 -- v_4
+	v_1 -- v_5
+	v_1 -- v_9
+	v_4 -- v_5
+	v_9 -- v_4
+	v_9 -- v_5
+	v_2 -- v_3
+	v_8 -- v_2
+	v_9 -- v_2
+	v_2 -- v_10
+	v_8 -- v_3
+	v_9 -- v_3
+	v_10 -- v_3
+	v_8 -- v_9
+	v_8 -- v_10
+	v_9 -- v_10
+	v_1 [pos="0.397190,3.660300!"]
+	v_10 [pos="1.527300,5.007100!"]
+	v_2 [pos="3.258800,5.312400!"]
+	v_3 [pos="4.781400,4.433300!"]
+	v_4 [pos="5.382700,2.781200!"]
+	v_5 [pos="4.781400,1.129100!"]
+	v_7 [pos="3.258800,0.250000!"]
+	v_8 [pos="1.527300,0.555300!"]
+	v_9 [pos="0.397190,1.902100!"]
+	v_1 [fillcolor=yellow style=filled]
+	v_2 [fillcolor=yellow style=filled]
+	v_4 [fillcolor=yellow style=filled]
+	v_9 [fillcolor=yellow style=filled]
+	v_10 [fillcolor=yellow style=filled]
+	v_8 [color=green style="dotted,filled"]
+	v_3 [color=green style="dotted,filled"]
+	v_5 [color=green style="dotted,filled"]
+	v_7 [color=green style="dotted,filled"]
+}
