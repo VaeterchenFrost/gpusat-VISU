@@ -23,7 +23,7 @@ from typing import Iterable, Iterator, TypeVar
 from graphviz import Digraph, Graph
 
 logging.basicConfig(
-    format="%(asctime)s,%(msecs)d %(levelname)-8s"
+    format="%(asctime)s,%(msecs)d %(levelname)s"
     "[%(filename)s:%(lineno)d] %(message)s",
     datefmt='%Y-%m-%d:%H:%M:%S',
     level=logging.WARNING)
@@ -209,12 +209,17 @@ class Visualization:
         else:
             if transpose:
                 solution_table = list(zip(*solution_table))
+            if linesmax > 0:
+                # limit lines backwards from length of column
+                vslice = min(-1, len(solution_table[0]) - linesmax)
             result += "{"                                       # insert table
 
             for i, column in enumerate(solution_table):
                 result += "{"                                   # start column
-                for row in column[:-1]:
+                for row in column[:vslice]:
                     result += str(row) + "|"
+                if vslice < -1:  # add one indicator of shortening
+                    result += "..." + "|"
                 for row in column[-1:]:
                     result += str(row)
                 result += "}"
@@ -508,7 +513,7 @@ class Visualization:
                               color='green',
                               style='dotted,filled')
 
-            # print(g_primal)
+            # LOGGER.debug('g_primal %s', g_primal)
             g_primal.render(view=view, format='svg',
                             filename=_filename % i)
 
