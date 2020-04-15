@@ -1,3 +1,5 @@
+# First version of the JSON format used to describe SharpSat visualization on tree decompositions
+
 ```perl
 {
     "clausesJson" : 
