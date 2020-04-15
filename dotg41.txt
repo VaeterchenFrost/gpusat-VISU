@@ -1,6 +1,0 @@
-strict digraph "" {
-	graph [directed=True];
-	2 -> 1000001;
-	2 -> 4;
-	4 -> 1000002;
-}
