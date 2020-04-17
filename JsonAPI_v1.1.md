@@ -16,7 +16,7 @@ Changelog: 16.04.
 
 ```perl
 {
-    "incidenceGraph" : false OR
+    "incidenceGraph" : false or
     {
     	Optional("subgraphNameOne" : STR, default='clauses'),
     	Optional("subgraphNameOne" : STR, default='variables'),
@@ -35,7 +35,7 @@ Changelog: 16.04.
         ]
     },
 
-    "generalGraph" : false OR
+    "generalGraph" : false or
     {
         "graphName" : STR,
 
@@ -49,8 +49,8 @@ Changelog: 16.04.
 
     "tdTimeline" : 
     [
-        [INT (bagId)] OR 
-        [INT (bagId) OR [INT(bagId), INT(bagId)], 
+        [INT (bagId)] or 
+        [INT (bagId) or [INT(bagId), INT(bagId)], 
             [[
                 [(firstrow)...],
                 [(secondrow)...],
