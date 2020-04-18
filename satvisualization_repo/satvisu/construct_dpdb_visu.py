@@ -103,7 +103,7 @@ def read_cfg(cfg_file, section):
         return json.load(jsonfile)
 
 
-def config(filename='database.ini', section='postgresql') -> dict:
+def config(filename='database.json', section='postgresql') -> dict:
     """Return the database config as JSON"""
     cfg = read_cfg(filename, section)
     if section in cfg:
@@ -177,7 +177,7 @@ class DpdbSharpSatVisu(IDpdbVisuConstruct):
         """Return the clauses used for satiyfiability.
         Variables are counted from 1 and negative if negated in the clause.
         For example:
-            "clausesJson" :
+            
             [{
                 "id" : 1,
                 "list" : [ 1, -4, 6 ]
@@ -191,9 +191,9 @@ class DpdbSharpSatVisu(IDpdbVisuConstruct):
                 [i + 1 if x[i] else -(i + 1) for i in
                  locate(x, lambda p: p is not None)] for x in result
             ]
-            clausesJson = [{"id": i, "list": item}
+            clauses_edges = [{"id": i, "list": item}
                            for (i, item) in enumerate(result_cleaned, 1)]
-            return clausesJson
+            return clauses_edges
 
     def read_labeldict(self, num_bags=1):
         with self.connection.cursor() as cur:  # create a cursor
@@ -358,11 +358,16 @@ def create_json(problem: int) -> Optional[dict]:
              num_bags) = read_problem(problem, connection)
             # select the valid constructor for the problem
             constructor: IDpdbVisuConstruct
-            if ptype == "SharpSat":
-                constructor: DpdbSharpSatVisu = DpdbSharpSatVisu(
-                    connection, problem)
 
-                clausesJson = constructor.read_clauses()
+            if ptype == "SharpSat":
+                constructor= DpdbSharpSatVisu(connection, problem)
+
+                clauses_edges = constructor.read_clauses()
+                incidenceGraph = {
+                    "varNameOne": "c_%d",
+                    "varNameOne": "v_%d",
+                    "inferPrimal": True,
+                    "edges" : clauses_edges}
 
                 # create treeDecJson
                 labeldict = constructor.read_labeldict(num_bags)
@@ -375,7 +380,7 @@ def create_json(problem: int) -> Optional[dict]:
 
                 timeline = constructor.read_timeline(edgearray)
 
-                return {"clausesJson": clausesJson,
+                return {"incidenceGraph": incidenceGraph,
                         "tdTimeline": timeline,
                         "treeDecJson": treeDecJson}
 
