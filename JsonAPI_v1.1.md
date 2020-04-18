@@ -19,7 +19,7 @@ Changelog: 16.04.
     "incidenceGraph" : false or
     {
     	Optional("subgraphNameOne" : STR, default='clauses'),
-    	Optional("subgraphNameOne" : STR, default='variables'),
+    	Optional("subgraphNameTwo" : STR, default='variables'),
 
     	Optional("varNameOne" : STR, default='%d'),
     	Optional("varNameTwo" : STR, default='%d'),
