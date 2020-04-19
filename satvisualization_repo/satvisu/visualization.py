@@ -189,9 +189,9 @@ class Visualization:
         linesmax : int, if positive it indicates the
                 maximum number of lines in the table to display.
 
-        columnsmax : int, if positive it indicates the 
+        columnsmax : int, if positive it indicates the
                 maximum number of columns to display + the last.
-                
+
         Example structure for four columns:
         |----------|
         | toplabel |
@@ -263,12 +263,40 @@ class Visualization:
         visudata = read_json(infile)
         LOGGER.info("Reading from %s", infile)
 
-        LOGGER.info("Found keys %s", visudata.keys())
+        LOGGER.debug("Found keys %s", visudata.keys())
 
-        self.tree_dec = visudata["treeDecJson"]
-        self.timeline = visudata["tdTimeline"]
-        self.bagpre = self.tree_dec["bagpre"]
-        self.edgelist = [[x['id'], x['list']] for x in visudata["clausesJson"]]
+        try:
+            incid = visudata["incidenceGraph"]
+            general_graph = visudata["generalGraph"]
+
+            if incid is not False:
+                self.subgraphNameOne = incid.get("subgraphNameOne", 'clauses')
+                self.subgraphNameTwo = incid.get(
+                    "subgraphNameTwo", 'variables')
+                self.varNameOne = incid.get("varNameOne", '%')
+                self.varNameTwo = incid.get("varNameTwo", '%')
+                self.inferPrimal = incid.get("inferPrimal", False)
+                self.inferDual = incid.get("inferDual", False)
+
+                self.incidence_edges = [[x['id'], x['list']]
+                                        for x in incid["edges"]]
+                self.incid = True
+            else:
+                self.incid = False
+
+            if general_graph is not False:
+                self.graphName = general_graph["generalGraph"]
+                self.generalVarName = general_graph.get("varName", '%d')
+                self.general_edges = general_graph["edges"]
+                self.general_graph = True
+            else:
+                self.general_graph = False
+
+            self.timeline = visudata["tdTimeline"]
+            self.tree_dec = visudata["treeDecJson"]
+            self.bagpre = self.tree_dec["bagpre"]
+        except KeyError as e:
+            raise KeyError("Key {} not found in the input Json.".format(e))
 
     def setupTreeDecGraph(self) -> None:
         """Create self.tree_dec_digraph"""
