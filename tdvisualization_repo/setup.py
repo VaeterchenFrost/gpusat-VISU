@@ -7,4 +7,4 @@ Created on Mon Jan 27 12:31:12 2020
 
 from setuptools import setup, find_packages
 
-setup(name="satvisu", packages=find_packages())
+setup(name="tdvisu", packages=find_packages())

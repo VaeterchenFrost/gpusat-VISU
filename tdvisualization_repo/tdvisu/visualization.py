@@ -298,16 +298,20 @@ class Visualization:
         except KeyError as e:
             raise KeyError("Key {} not found in the input Json.".format(e))
 
-    def setupTreeDecGraph(self) -> None:
-        """Create self.tree_dec_digraph"""
+    def setupTreeDecGraph(self, rankdir='BT') -> None:
+        """Create self.tree_dec_digraph
+        strict means not a multigraph - equal edges get merged.
+        rankdir sets the direction in which the nodes are built up.
+            - normally Bottom-Top or Top-Bottom.
+        """
         self.tree_dec_digraph = Digraph(
             'structs',
             strict=True,
-            graph_attr={'rankdir': 'BT'},
+            graph_attr={'rankdir': rankdir},
             node_attr={
                 'shape': 'box',
                 'fillcolor': 'white',
-                'style': "rounded,filled",
+                'style': 'rounded,filled',
                 'margin': '0.11,0.01'})
 
     def basicTDG(self) -> None:
