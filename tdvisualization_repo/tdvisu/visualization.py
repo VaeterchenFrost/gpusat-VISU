@@ -108,8 +108,7 @@ class Visualization:
         self.joinpre = "Join %d~%d"
         self.solpre = "sol%d"
         self.soljoinpre = "solJoin%d~%d"
-        self.clausetag = "c_"
-        self.vartag = "v_"
+
         self.tree_dec_digraph = None
         LOGGER.info("Running %s", self)
 
@@ -273,8 +272,8 @@ class Visualization:
                 self.subgraphNameOne = incid.get("subgraphNameOne", 'clauses')
                 self.subgraphNameTwo = incid.get(
                     "subgraphNameTwo", 'variables')
-                self.varNameOne = incid.get("varNameOne", '%')
-                self.varNameTwo = incid.get("varNameTwo", '%')
+                self.varNameOne = incid.get("varNameOne", '')
+                self.varNameTwo = incid.get("varNameTwo", '')
                 self.inferPrimal = incid.get("inferPrimal", False)
                 self.inferDual = incid.get("inferDual", False)
 
@@ -301,6 +300,7 @@ class Visualization:
     def setupTreeDecGraph(self, rankdir='BT') -> None:
         """Create self.tree_dec_digraph
         strict means not a multigraph - equal edges get merged.
+
         rankdir sets the direction in which the nodes are built up.
             - normally Bottom-Top or Top-Bottom.
         """
@@ -315,7 +315,7 @@ class Visualization:
                 'margin': '0.11,0.01'})
 
     def basicTDG(self) -> None:
-        """Create first structure in treeDecGraph."""
+        """Create basic bag structure in tree_dec_digraph."""
         for item in self.tree_dec["labeldict"]:
             bagname = self.bagpre % str(item["id"])
             self.tree_dec_digraph.node(bagname,
@@ -362,7 +362,7 @@ class Visualization:
 
                     tdg.edge(joinpre % id_inv_bags, last_sol)
                     # edges
-                    for child in id_inv_bags:             # basically "remove" current
+                    for child in id_inv_bags:  # basically "remove" current
                         # TODO check where 2 args are possibly occuring
                         tdg.edge(
                             self.bagpre % child
@@ -394,7 +394,8 @@ class Visualization:
             id_inv_bags = node[0]
             LOGGER.debug("%s: Reverse traversing on %s", i, id_inv_bags)
 
-            if i > 0:                              # Delete previous emphasis
+            if i > 0:
+                # Delete previous emphasis
                 prevhead = self.timeline[len(self.timeline) - i][0]
                 bag = (
                     self.bagpre %
@@ -410,7 +411,6 @@ class Visualization:
 
             if len(node) > 1:
                 # solution to be displayed
-
                 if isinstance(id_inv_bags, int):
                     last_sol = solpre % id_inv_bags
                     self.emphasiseNode(tdg, last_sol)
@@ -433,11 +433,12 @@ class Visualization:
 
     def treeDecTimeline(self, view=False) -> None:
         """Main-method for handling all construction of the timeline."""
+
         self.setupTreeDecGraph()
 
-        # -----------Iterate labeldict ---------------
-        self.basicTDG()
+        # Iterate labeldict
 
+        self.basicTDG()
         self.forwardIterateTDG()
         self.backwardsIterateTDG(view=view)
 
@@ -457,7 +458,8 @@ class Visualization:
                 _timeline.append(None)
 
         primal_edges = tuple(set(elem) for elem in flatten(
-            map(lambda x: (itertools.combinations(map(abs, x[1]), 2)), self.edgelist)))
+            map(lambda x: (itertools.combinations(map(abs, x[1]), 2)),
+                self.incidence_edges)))
 
         self.primal(
             TIMELINE=_timeline,
@@ -497,7 +499,7 @@ class Visualization:
 
         do_sort_nodes = True  # sort nodes on the circle?
 
-        vartagN = self.vartag + '%d'    # "v_%d"
+        vartagN = self.varNameTwo + '%d'
 
         g_primal = Graph(strict=True,
                          engine='circo',
@@ -535,12 +537,8 @@ class Visualization:
                                          complex(*x) - complex(*center)),
                                      reverse=True)
             # 4. place back into the (sorted) positions
-            # safe_body = list(g_primal.body)
-            # g_primal.body.clear()
             for node, position in zip(node_names_s, position_circle):
                 g_primal.node(node, pos="%f,%f!" % position)
-            # 5. edges back
-            # g_primal.body += safe_body
 
         g_primal.engine = 'neato'                 # Use previous positions
         bodybaselen = len(g_primal.body)
@@ -600,8 +598,8 @@ class Visualization:
         """
         _filename = self.outfolder + self.inc_file + '%d'
 
-        clausetagN = self.clausetag + '%d'
-        vartagN = self.vartag + '%d'
+        clausetagN = self.varNameOne + '%d'
+        vartagN = self.varNameTwo + '%d'
 
         g_incid = Graph(strict=True,
                         graph_attr={'splines': 'false', 'ranksep': '0.2',
@@ -616,7 +614,7 @@ class Visualization:
                                          'fillcolor': 'white'}) as clauses:
             clauses.attr(label='clauses')
             clauses.edges([(clausetagN % (i + 1), clausetagN % (i + 2))
-                           for i in range(len(self.edgelist) - 1)])
+                           for i in range(len(self.incidence_edges) - 1)])
 
         g_incid.attr('node', shape='diamond', fontcolor='black',
                      penwidth='2.2',
@@ -637,7 +635,7 @@ class Visualization:
         # invis distance between clusters: minlen
         g_incid.edge(clausetagN % 1, vartagN % 1, ltail='cluster_clause',
                      lhead='cluster_ivar', minlen='3', style='invis')
-        for clause in self.edgelist:
+        for clause in self.incidence_edges:
             for var in clause[1]:
                 if var >= 0:
                     g_incid.edge(clausetagN % clause[0],
@@ -655,7 +653,7 @@ class Visualization:
             lambda y: map(
                 lambda x: (x, y[0]),
                 y[1]),
-            self.edgelist)
+            self.incidence_edges)
 
         var_cl_iter = tuple(flatten(vcmapping))  # flatten
         #  var_cl_iter [(1, 1), (4, 1), (6, 1), (1, 2), (-5, 2), (-1, 3), (7, 3), (2, 4),
