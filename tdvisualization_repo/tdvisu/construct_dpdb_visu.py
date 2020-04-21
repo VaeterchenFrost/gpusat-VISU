@@ -216,8 +216,9 @@ class DpdbSharpSatVisu(IDpdbVisuConstruct):
                 labeldict.append(
                     {"id": bag, "items": result, "labels":
                      [str(result),
-                      start_time.strftime("%D %T"),
-                      "dtime=%.4fs" % dtime.total_seconds()]})
+                      "dtime=%.4fs" % dtime.total_seconds(),
+                      start_time.strftime("%D %T")
+                      ]})
             return labeldict
 
     def read_timeline(self, edgearray):
@@ -364,8 +365,8 @@ def create_json(problem: int) -> Optional[dict]:
 
                 clauses_edges = constructor.read_clauses()
                 incidenceGraph = {
-                    "varNameOne": "c_%d",
-                    "varNameTwo": "v_%d",
+                    "varNameOne": "c_",
+                    "varNameTwo": "v_",
                     "inferPrimal": True,
                     "edges": clauses_edges}
 
@@ -381,6 +382,7 @@ def create_json(problem: int) -> Optional[dict]:
                 timeline = constructor.read_timeline(edgearray)
 
                 return {"incidenceGraph": incidenceGraph,
+                        "generalGraph": False,
                         "tdTimeline": timeline,
                         "treeDecJson": treeDecJson}
 
