@@ -18,6 +18,7 @@ import json
 import io
 import itertools
 import logging
+from sys import stdin
 from typing import Iterable, Iterator, TypeVar
 
 from graphviz import Digraph, Graph
@@ -715,20 +716,18 @@ class Visualization:
             g_incid.render(view=view, format='svg', filename=_filename % i)
 
 
-if __name__ == "__main__":
-    LOGGER.setLevel(logging.DEBUG)
+def main(args):
+    """Main Function. Calling Visualization for arguments in 'args'."""
 
-    import argparse
-    PARSER = argparse.ArgumentParser(
-        prog='graphvizSatVisu.py',
-        description='Visualizing Dynamic Programming on Treedecompositions.')
-    PARSER.add_argument('infile', nargs='?',
-                        type=argparse.FileType('r', encoding='UTF-8'))
-    PARSER.add_argument('outfolder')
+    # get loglevel
+    try:
+        LOGLEVEL = int(float(args.loglevel))
+    except ValueError:
+        LOGLEVEL = args.loglevel
+    LOGGER.setLevel(LOGLEVEL)
 
-    ARGS = PARSER.parse_args()
-    INFILE = ARGS.infile
-    OUTFOLDER = ARGS.outfolder
+    INFILE = args.infile
+    OUTFOLDER = args.outfolder
     if not OUTFOLDER:
         OUTFOLDER = "outfolder"
     OUTFOLDER = OUTFOLDER.replace("\\", "/")
@@ -739,3 +738,31 @@ if __name__ == "__main__":
                          primalFile="PrimalGraphStep",
                          incFile="IncidenceGraphStep")
     VISU.treeDecTimeline()
+
+
+if __name__ == "__main__":
+
+    import argparse
+
+    PARSER = argparse.ArgumentParser(
+        prog='visualization.py',
+        description='Visualizing Dynamic Programming on Tree-Decompositions.',
+        epilog="""Logging levels for python 3.8.2:
+            CRITICAL: 50
+            ERROR:    40
+            WARNING:  30
+            INFO:     20
+            DEBUG:    10
+            NOTSET:    0
+            """)
+
+    # possible to use stdin for the file.
+    PARSER.add_argument('infile', nargs='?',
+                        type=argparse.FileType('r', encoding='UTF-8'),
+                        default=stdin)
+
+    PARSER.add_argument('outfolder')
+    PARSER.add_argument('loglevel', default='NOTSET')
+
+    args = PARSER.parse_args()                      # get cmd-arguments
+    main(args)                                      # call main()
