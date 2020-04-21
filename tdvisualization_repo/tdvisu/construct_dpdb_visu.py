@@ -172,12 +172,11 @@ class DpdbSharpSatVisu(IDpdbVisuConstruct):
 
         self.connection = db
 
-
     def read_clauses(self) -> list:
         """Return the clauses used for satiyfiability.
         Variables are counted from 1 and negative if negated in the clause.
         For example:
-            
+
             [{
                 "id" : 1,
                 "list" : [ 1, -4, 6 ]
@@ -192,7 +191,7 @@ class DpdbSharpSatVisu(IDpdbVisuConstruct):
                  locate(x, lambda p: p is not None)] for x in result
             ]
             clauses_edges = [{"id": i, "list": item}
-                           for (i, item) in enumerate(result_cleaned, 1)]
+                             for (i, item) in enumerate(result_cleaned, 1)]
             return clauses_edges
 
     def read_labeldict(self, num_bags=1):
@@ -280,7 +279,8 @@ class DpdbSharpSatVisu(IDpdbVisuConstruct):
                               *[[int(v) for v in row if v is not None]
                                 for row in solution_raw]],
                              "sol bag " + str(bag),
-                             "sum: " + str(sum([li[-1] for li in solution_raw])),
+                             "sum: " + str(sum([li[-1]
+                                                for li in solution_raw])),
                              True]]
                 timeline.append(solution)
                 last = bag
@@ -360,14 +360,14 @@ def create_json(problem: int) -> Optional[dict]:
             constructor: IDpdbVisuConstruct
 
             if ptype == "SharpSat":
-                constructor= DpdbSharpSatVisu(connection, problem)
+                constructor = DpdbSharpSatVisu(connection, problem)
 
                 clauses_edges = constructor.read_clauses()
                 incidenceGraph = {
                     "varNameOne": "c_%d",
-                    "varNameOne": "v_%d",
+                    "varNameTwo": "v_%d",
                     "inferPrimal": True,
-                    "edges" : clauses_edges}
+                    "edges": clauses_edges}
 
                 # create treeDecJson
                 labeldict = constructor.read_labeldict(num_bags)
