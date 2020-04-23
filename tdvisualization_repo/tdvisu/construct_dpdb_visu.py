@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-@author Martin Röbke
-Created on Tue Mar 31 18:49:00 2020
+Construct visualization-JSON from dpdb-database results.
 
 See https://www.postgresqltutorial.com/postgresql-python/connect/
 and reference
@@ -11,7 +10,25 @@ IPython adds it's own handler to the root logger, see
 https://stackoverflow.com/questions/24259952/logging-module-does-not-print-in-ipython
 
 Calling python directly prints the logging as per logging.basicConfig!
+
+
+Copyright (C) 2020  Martin Röbke
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see <https://www.gnu.org/licenses/>.
+
 """
+
 import itertools
 import json
 import abc
@@ -26,6 +43,11 @@ import psycopg2 as pg
 
 from dijkstra import bidirectional_dijkstra as find_path
 from dijkstra import convert_to_adj
+
+__author__ = "Martin Röbke <martin.roebke@tu-dresden.de>"
+__status__ = "development"
+__version__ = "0.2"
+__date__ = "20 April 2020"
 
 logging.basicConfig(
     format="%(asctime)s,%(msecs)d %(levelname)-8s"
@@ -364,16 +386,16 @@ def create_json(problem: int) -> Optional[dict]:
                 constructor = DpdbSharpSatVisu(connection, problem)
 
                 clauses_edges = constructor.read_clauses()
-                incidenceGraph = {
+                incidence_graph = {
                     "varNameOne": "c_",
                     "varNameTwo": "v_",
                     "inferPrimal": True,
                     "edges": clauses_edges}
 
-                # create treeDecJson
+                # create tree_dec_json
                 labeldict = constructor.read_labeldict(num_bags)
                 edgearray = constructor.read_edgearray()
-                treeDecJson = {
+                tree_dec_json = {
                     "bagpre": "bag %s",
                     "edgearray": edgearray,
                     "labeldict": labeldict,
@@ -381,10 +403,10 @@ def create_json(problem: int) -> Optional[dict]:
 
                 timeline = constructor.read_timeline(edgearray)
 
-                return {"incidenceGraph": incidenceGraph,
+                return {"incidenceGraph": incidence_graph,
                         "generalGraph": False,
                         "tdTimeline": timeline,
-                        "treeDecJson": treeDecJson}
+                        "treeDecJson": tree_dec_json}
 
     except (Exception, pg.DatabaseError) as error:
         LOGGER.error(error)

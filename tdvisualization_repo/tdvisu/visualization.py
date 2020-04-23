@@ -1,9 +1,5 @@
 # -*- coding: utf-8 -*-
 """
-Created on Thu Mar 12 22:49:00 2020
-
-@author: Martin Röbke
-
 Visualization for dynamic programming on tree decompositions.
 
 See also
@@ -11,6 +7,21 @@ https://github.com/daajoe/GPUSAT
 and
 https://github.com/hmarkus/dp_on_dbs
 
+
+Copyright (C) 2020  Martin Röbke
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 """
 
@@ -20,8 +31,14 @@ import itertools
 import logging
 from sys import stdin
 from typing import Iterable, Iterator, TypeVar
+from cmath import phase
 
 from graphviz import Digraph, Graph
+
+__author__ = "Martin Röbke <martin.roebke@tu-dresden.de>"
+__status__ = "development"
+__version__ = "0.2"
+__date__ = "12 March 2020"
 
 logging.basicConfig(
     format="%(asctime)s,%(msecs)d %(levelname)s"
@@ -97,7 +114,7 @@ class Visualization:
                  primalFile="PrimalGraphStep",
                  incFile="IncidenceGraphStep") -> None:
         """Copy needed fields from arguments and create additional constants"""
-        self.inspectJson(infile)
+        self.inspect_json(infile)
         self.outfolder = outfolder
         self.td_file = tdFile
         self.primal_file = primalFile
@@ -113,18 +130,14 @@ class Visualization:
         self.tree_dec_digraph = None
         LOGGER.info("Running %s", self)
 
-    def getVisuOutputFolder(self) -> str:
-        """Return the folder for storing the result-files."""
-        return self.outfolder
-
     @staticmethod
-    def baseStyle(graph, node) -> None:
+    def base_style(graph, node) -> None:
         """Style the node white and with penwidth 1."""
         graph.node(node, fillcolor='white', penwidth="1.0")
 
     @staticmethod
-    def emphasiseNode(graph, node, _fillcolor="yellow",
-                      _penwidth="2.5") -> None:
+    def emphasise_node(graph, node, _fillcolor="yellow",
+                       _penwidth="2.5") -> None:
         """Emphasise node with a different fillcolor (default:'yellow')
         and penwidth (default:2.5).
         """
@@ -134,18 +147,18 @@ class Visualization:
             graph.node(node, penwidth=_penwidth)
 
     @staticmethod
-    def styleHideNode(graph, node) -> None:
+    def style_hide_node(graph, node) -> None:
         """Make the node invisible during drawing."""
         graph.node(node, style="invis")
 
     @staticmethod
-    def styleHideEdge(graph, source, target) -> None:
+    def style_hide_edge(graph, source, target) -> None:
         """Make the edge source->target invisible during drawing."""
         graph.edge(source, target, style="invis")
 
     @staticmethod
-    def bagNode(head, tail, anchor="anchor", headcolor="white",
-                tableborder=0, cellborder=0, cellspacing=0) -> str:
+    def bag_node(head, tail, anchor="anchor", headcolor="white",
+                 tableborder=0, cellborder=0, cellspacing=0) -> str:
         """HTML format with 'head' as the first label, then appending
         further labels.
         After the 'head' there is an (empty) anchor for edges with a name tag. e.g.
@@ -169,7 +182,7 @@ class Visualization:
         return result
 
     @staticmethod
-    def solutionNode(
+    def solution_node(
             solution_table,
             toplabel="",
             bottomlabel="",
@@ -242,7 +255,7 @@ class Visualization:
                     result += "..."
                 result += "}|"      # sep. between columns
             # last column (usually a summary of the previous cols)
-            for i, column in enumerate(solution_table[-1:]):
+            for column in solution_table[-1:]:
                 result += "{"                                   # start column
                 for row in column[:vslice]:
                     result += str(row) + "|"
@@ -258,7 +271,7 @@ class Visualization:
 
         return "{" + result + "}"
 
-    def inspectJson(self, infile) -> None:
+    def inspect_json(self, infile) -> None:
         """Read and preprocess the needed data from the input."""
         visudata = read_json(infile)
         LOGGER.info("Reading from %s", infile)
@@ -270,13 +283,14 @@ class Visualization:
             general_graph = visudata["generalGraph"]
 
             if incid is not False:
-                self.subgraphNameOne = incid.get("subgraphNameOne", 'clauses')
-                self.subgraphNameTwo = incid.get(
+                self.subgraph_one_name = incid.get(
+                    "subgraphNameOne", 'clauses')
+                self.subgraph_two_name = incid.get(
                     "subgraphNameTwo", 'variables')
-                self.varNameOne = incid.get("varNameOne", '')
-                self.varNameTwo = incid.get("varNameTwo", '')
-                self.inferPrimal = incid.get("inferPrimal", False)
-                self.inferDual = incid.get("inferDual", False)
+                self.var_one_name = incid.get("varNameOne", '')
+                self.var_two_name = incid.get("varNameTwo", '')
+                self.infer_primal = incid.get("inferPrimal", False)
+                self.infer_dual = incid.get("inferDual", False)
 
                 self.incidence_edges = [[x['id'], x['list']]
                                         for x in incid["edges"]]
@@ -285,8 +299,8 @@ class Visualization:
                 self.incid = False
 
             if general_graph is not False:
-                self.graphName = general_graph["generalGraph"]
-                self.generalVarName = general_graph.get("varName", '%d')
+                self.general_graph_name = general_graph["generalGraph"]
+                self.general_var_name = general_graph.get("varName", '%d')
                 self.general_edges = general_graph["edges"]
                 self.general_graph = True
             else:
@@ -295,10 +309,10 @@ class Visualization:
             self.timeline = visudata["tdTimeline"]
             self.tree_dec = visudata["treeDecJson"]
             self.bagpre = self.tree_dec["bagpre"]
-        except KeyError as e:
-            raise KeyError("Key {} not found in the input Json.".format(e))
+        except KeyError as err:
+            raise KeyError("Key {} not found in the input Json.".format(err))
 
-    def setupTreeDecGraph(self, rankdir='BT') -> None:
+    def setup_tree_dec_graph(self, rankdir='BT') -> None:
         """Create self.tree_dec_digraph
         strict means not a multigraph - equal edges get merged.
 
@@ -315,18 +329,18 @@ class Visualization:
                 'style': 'rounded,filled',
                 'margin': '0.11,0.01'})
 
-    def basicTDG(self) -> None:
+    def basic_tdg(self) -> None:
         """Create basic bag structure in tree_dec_digraph."""
         for item in self.tree_dec["labeldict"]:
             bagname = self.bagpre % str(item["id"])
             self.tree_dec_digraph.node(bagname,
-                                       self.bagNode(bagname, item["labels"]))
+                                       self.bag_node(bagname, item["labels"]))
 
         self.tree_dec_digraph.edges([(self.bagpre % str(first), self.bagpre % str(
             second)) for (first, second) in self.tree_dec["edgearray"]])
 
-    def forwardIterateTDG(self, joinpre=None, solpre=None,
-                          soljoinpre=None) -> None:
+    def forward_iterate_tdg(self, joinpre=None, solpre=None,
+                            soljoinpre=None) -> None:
         """Create the final positions of all nodes with solutions.
         The arguments are optional"""
         tdg = self.tree_dec_digraph                 # shorten name
@@ -345,7 +359,7 @@ class Visualization:
                 id_inv_bags = node[0]
                 if isinstance(id_inv_bags, int):
                     last_sol = solpre % id_inv_bags
-                    tdg.node(last_sol, self.solutionNode(
+                    tdg.node(last_sol, self.solution_node(
                         *(node[1])), shape='record')
 
                     tdg.edge(self.bagpre % id_inv_bags, last_sol)
@@ -358,7 +372,7 @@ class Visualization:
                     # solution
                     id_inv_bags = tuple(id_inv_bags)
                     last_sol = soljoinpre % id_inv_bags
-                    tdg.node(last_sol, self.solutionNode(
+                    tdg.node(last_sol, self.solution_node(
                         *(node[1])), shape='record')
 
                     tdg.edge(joinpre % id_inv_bags, last_sol)
@@ -378,8 +392,8 @@ class Visualization:
                     tdg.edge(joinpre % id_inv_bags, self.bagpre % suc
                              if isinstance(suc, int) else joinpre % suc)
 
-    def backwardsIterateTDG(self, view=False, joinpre=None,
-                            solpre=None, soljoinpre=None) -> None:
+    def backwards_iterate_tdg(self, view=False, joinpre=None,
+                              solpre=None, soljoinpre=None) -> None:
         """Cut the single steps back and update emphasis acordingly."""
         tdg = self.tree_dec_digraph     # shorten name
         last_sol = ""
@@ -404,44 +418,44 @@ class Visualization:
                         prevhead,
                         int) else joinpre %
                     tuple(prevhead))
-                self.baseStyle(tdg, bag)
+                self.base_style(tdg, bag)
                 if last_sol:
-                    self.styleHideNode(tdg, last_sol)
-                    self.styleHideEdge(tdg, bag, last_sol)
+                    self.style_hide_node(tdg, last_sol)
+                    self.style_hide_edge(tdg, bag, last_sol)
                     last_sol = ""
 
             if len(node) > 1:
                 # solution to be displayed
                 if isinstance(id_inv_bags, int):
                     last_sol = solpre % id_inv_bags
-                    self.emphasiseNode(tdg, last_sol)
+                    self.emphasise_node(tdg, last_sol)
                     tdg.edge(self.bagpre % id_inv_bags, last_sol)
                 else:  # joined node with 2 bags
                     id_inv_bags = tuple(id_inv_bags)
                     last_sol = soljoinpre % id_inv_bags
-                    self.emphasiseNode(tdg, last_sol)
+                    self.emphasise_node(tdg, last_sol)
 
-            self.emphasiseNode(tdg,
-                               self.bagpre %
-                               id_inv_bags if isinstance(
-                                   id_inv_bags,
-                                   int) else joinpre %
-                               id_inv_bags)
+            self.emphasise_node(tdg,
+                                self.bagpre %
+                                id_inv_bags if isinstance(
+                                    id_inv_bags,
+                                    int) else joinpre %
+                                id_inv_bags)
             _filename = self.outfolder + self.td_file + '%d'
             tdg.render(
                 view=view, format='svg', filename=_filename %
                 (len(self.timeline) - i))
 
-    def treeDecTimeline(self, view=False) -> None:
+    def tree_dec_timeline(self, view=False) -> None:
         """Main-method for handling all construction of the timeline."""
 
-        self.setupTreeDecGraph()
+        self.setup_tree_dec_graph()
 
         # Iterate labeldict
 
-        self.basicTDG()
-        self.forwardIterateTDG()
-        self.backwardsIterateTDG(view=view)
+        self.basic_tdg()
+        self.forward_iterate_tdg()
+        self.backwards_iterate_tdg(view=view)
 
         # Prepare Incidence graph Timeline
 
@@ -463,16 +477,16 @@ class Visualization:
                 self.incidence_edges)))
 
         self.primal(
-            TIMELINE=_timeline,
+            timeline=_timeline,
             primal_edges=primal_edges
         )
 
         self.incidence(
-            TIMELINE=_timeline,
-            numVars=self.tree_dec['numVars'],
+            timeline=_timeline,
+            num_vars=self.tree_dec['numVars'],
             colors=self.colors, view=view)
 
-    def primal(self, TIMELINE, primal_edges, view=False) -> None:
+    def primal(self, timeline, primal_edges, view=False) -> None:
         """
         Creates the primal graph emphasized for the given timeline.
 
@@ -499,8 +513,7 @@ class Visualization:
         _filename = self.outfolder + self.primal_file + '%d'
 
         do_sort_nodes = True  # sort nodes on the circle?
-
-        vartagN = self.varNameTwo + '%d'
+        vartag_n = self.var_two_name + '%d'
 
         g_primal = Graph(strict=True,
                          engine='circo',
@@ -508,7 +521,7 @@ class Visualization:
                          node_attr={'fontcolor': 'black',
                                     'penwidth': '2.2'})
         for (s, t) in primal_edges:     # do this before calculating layout!
-            g_primal.edge(vartagN % s, vartagN % t)
+            g_primal.edge(vartag_n % s, vartag_n % t)
 
         if do_sort_nodes:
             # The output consists of one graph line, a sequence of node lines,
@@ -532,7 +545,7 @@ class Visualization:
             center = (sum(node_x_list) / len(node_positions),
                       sum(node_y_list) / len(node_positions))
             # 3.2 get order respective to center, starting at middle-left:
-            from cmath import phase
+
             position_circle = sorted(zip(node_x_list, node_y_list),
                                      key=lambda x: phase(
                                          complex(*x) - complex(*center)),
@@ -543,7 +556,7 @@ class Visualization:
 
         g_primal.engine = 'neato'                 # Use previous positions
         bodybaselen = len(g_primal.body)
-        for i, variables in enumerate(TIMELINE, start=1):    # all timesteps
+        for i, variables in enumerate(timeline, start=1):    # all timesteps
 
             # reset highlighting
             g_primal.body = g_primal.body[:bodybaselen]
@@ -558,7 +571,7 @@ class Visualization:
 
             for var in variables:
                 g_primal.node(
-                    vartagN % var,
+                    vartag_n % var,
                     fillcolor='yellow',
                     style='filled')
 
@@ -567,7 +580,7 @@ class Visualization:
                     edge.difference(variables)) == 1}
 
             for var in adjacent:
-                g_primal.node(vartagN % var,
+                g_primal.node(vartag_n % var,
                               color='green',
                               style='dotted,filled')
 
@@ -575,7 +588,7 @@ class Visualization:
             g_primal.render(view=view, format='svg',
                             filename=_filename % i)
 
-    def incidence(self, TIMELINE, numVars, colors, view=False) -> None:
+    def incidence(self, timeline, num_vars, colors, view=False) -> None:
         """
         Creates the incidence graph emphasized for the given timeline.
 
@@ -587,7 +600,7 @@ class Visualization:
             in the bag(s) under consideration. This function computes all other
             variables that are involved in this timestep using the 'edgelist'.
 
-        numVars : int
+        num_vars : int
             Count of variables that are used in the clauses.
         colors : Iterable of color
             Colors to use for the graph parts.
@@ -599,8 +612,8 @@ class Visualization:
         """
         _filename = self.outfolder + self.inc_file + '%d'
 
-        clausetagN = self.varNameOne + '%d'
-        vartagN = self.varNameTwo + '%d'
+        clausetag_n = self.var_one_name + '%d'
+        vartag_n = self.var_two_name + '%d'
 
         g_incid = Graph(strict=True,
                         graph_attr={'splines': 'false', 'ranksep': '0.2',
@@ -614,7 +627,7 @@ class Visualization:
                               node_attr={'style': 'rounded,filled',
                                          'fillcolor': 'white'}) as clauses:
             clauses.attr(label='clauses')
-            clauses.edges([(clausetagN % (i + 1), clausetagN % (i + 2))
+            clauses.edges([(clausetag_n % (i + 1), clausetag_n % (i + 2))
                            for i in range(len(self.incidence_edges) - 1)])
 
         g_incid.attr('node', shape='diamond', fontcolor='black',
@@ -624,27 +637,27 @@ class Visualization:
                               edge_attr={'style': 'invis'},
                               node_attr={'style': 'dotted'}) as ivars:
             ivars.attr(label='variables')
-            ivars.edges([(vartagN % (i + 1), vartagN % (i + 2))
-                         for i in range(numVars - 1)])
-            for i in range(numVars):
-                g_incid.node(vartagN %
-                             (i + 1), vartagN %
+            ivars.edges([(vartag_n % (i + 1), vartag_n % (i + 2))
+                         for i in range(num_vars - 1)])
+            for i in range(num_vars):
+                g_incid.node(vartag_n %
+                             (i + 1), vartag_n %
                              (i + 1), color=colors[(i + 1) %
                                                    len(colors)])
 
         g_incid.attr('edge', constraint="false")
         # invis distance between clusters: minlen
-        g_incid.edge(clausetagN % 1, vartagN % 1, ltail='cluster_clause',
+        g_incid.edge(clausetag_n % 1, vartag_n % 1, ltail='cluster_clause',
                      lhead='cluster_ivar', minlen='3', style='invis')
         for clause in self.incidence_edges:
             for var in clause[1]:
                 if var >= 0:
-                    g_incid.edge(clausetagN % clause[0],
-                                 vartagN % var,
+                    g_incid.edge(clausetag_n % clause[0],
+                                 vartag_n % var,
                                  color=colors[var % len(colors)])
                 else:
-                    g_incid.edge(clausetagN % clause[0],
-                                 vartagN % -var,
+                    g_incid.edge(clausetag_n % clause[0],
+                                 vartag_n % -var,
                                  color=colors[-var % len(colors)],
                                  arrowtail='odot')  # style='dotted'
 
@@ -662,7 +675,7 @@ class Visualization:
         #             (-8, 8), (-4, 9), (6, 9), (-4, 10), (7, 10)]
 
         bodybaselen = len(g_incid.body)
-        for i, variables in enumerate(TIMELINE, start=1):    # all timesteps
+        for i, variables in enumerate(timeline, start=1):    # all timesteps
 
             # reset highlighting
             g_incid.body = g_incid.body[:bodybaselen]
@@ -679,7 +692,7 @@ class Visualization:
                 lambda var_cl, s=emp_clause: var_cl[1] in s, var_cl_iter)}
 
             for var in emp_var:
-                _vartag = vartagN % abs(var)
+                _vartag = vartag_n % abs(var)
                 _style = 'solid,filled' if var in variables else 'dotted,filled'
                 g_incid.node(
                     _vartag,
@@ -687,27 +700,25 @@ class Visualization:
                     style=_style,
                     fillcolor='yellow')
 
-            for cl in emp_clause:
+            for clause in emp_clause:
                 g_incid.node(
-                    clausetagN %
-                    cl,
-                    clausetagN %
-                    cl,
+                    clausetag_n % clause,
+                    clausetag_n % clause,
                     fillcolor='yellow')
 
             for edge in var_cl_iter:
                 (var, clause) = edge
 
                 _style = 'solid' if clause in emp_clause else 'dotted'
-                _vartag = vartagN % abs(var)
+                _vartag = vartag_n % abs(var)
 
                 if var >= 0:
-                    g_incid.edge(clausetagN % clause,
+                    g_incid.edge(clausetag_n % clause,
                                  _vartag,
                                  color=colors[var % len(colors)],
                                  style=_style)
                 else:                                       # negated variable
-                    g_incid.edge(clausetagN % clause,
+                    g_incid.edge(clausetag_n % clause,
                                  _vartag,
                                  color=colors[-var % len(colors)],
                                  arrowtail='odot',
@@ -721,23 +732,23 @@ def main(args):
 
     # get loglevel
     try:
-        LOGLEVEL = int(float(args.loglevel))
+        loglevel = int(float(args.loglevel))
     except ValueError:
-        LOGLEVEL = args.loglevel
-    LOGGER.setLevel(LOGLEVEL)
+        loglevel = args.loglevel
+    LOGGER.setLevel(loglevel)
 
     INFILE = args.infile
-    OUTFOLDER = args.outfolder
-    if not OUTFOLDER:
-        OUTFOLDER = "outfolder"
-    OUTFOLDER = OUTFOLDER.replace("\\", "/")
-    if not OUTFOLDER.endswith('/'):
-        OUTFOLDER += '/'
+    outfolder = args.outfolder
+    if not outfolder:
+        outfolder = "outfolder"
+    outfolder = outfolder.replace("\\", "/")
+    if not outfolder.endswith('/'):
+        outfolder += '/'
 
-    VISU = Visualization(INFILE, OUTFOLDER, tdFile="TDStep",
+    VISU = Visualization(INFILE, outfolder, tdFile="TDStep",
                          primalFile="PrimalGraphStep",
                          incFile="IncidenceGraphStep")
-    VISU.treeDecTimeline()
+    VISU.tree_dec_timeline()
 
 
 if __name__ == "__main__":
@@ -764,5 +775,5 @@ if __name__ == "__main__":
     PARSER.add_argument('outfolder')
     PARSER.add_argument('loglevel', default='NOTSET')
 
-    args = PARSER.parse_args()                      # get cmd-arguments
-    main(args)                                      # call main()
+    ARGS = PARSER.parse_args()                      # get cmd-arguments
+    main(ARGS)                                      # call main()
