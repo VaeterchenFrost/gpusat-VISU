@@ -312,7 +312,13 @@ class Visualization:
         except KeyError as err:
             raise KeyError("Key {} not found in the input Json.".format(err))
 
-    def setup_tree_dec_graph(self, rankdir='BT') -> None:
+    def setup_tree_dec_graph(
+            self,
+            rankdir='BT',
+            shape='box',
+            fillcolor='white',
+            style='rounded,filled',
+            margin='0.11,0.01') -> None:
         """Create self.tree_dec_digraph
         strict means not a multigraph - equal edges get merged.
 
@@ -324,10 +330,10 @@ class Visualization:
             strict=True,
             graph_attr={'rankdir': rankdir},
             node_attr={
-                'shape': 'box',
-                'fillcolor': 'white',
-                'style': 'rounded,filled',
-                'margin': '0.11,0.01'})
+                'shape': shape,
+                'fillcolor': fillcolor,
+                'style': style,
+                'margin': margin})
 
     def basic_tdg(self) -> None:
         """Create basic bag structure in tree_dec_digraph."""
@@ -486,7 +492,18 @@ class Visualization:
             num_vars=self.tree_dec['numVars'],
             colors=self.colors, view=view)
 
-    def primal(self, timeline, primal_edges, view=False) -> None:
+    def primal(
+            self,
+            timeline,
+            primal_edges,
+            view=False,
+            fontsize='20',
+            fontcolor='black',
+            penwidth='2.2',
+            first_color='yellow',
+            first_style='filled',
+            second_color='green',
+            second_style='dotted,filled') -> None:
         """
         Creates the primal graph emphasized for the given timeline.
 
@@ -517,9 +534,9 @@ class Visualization:
 
         g_primal = Graph(strict=True,
                          engine='circo',
-                         graph_attr={'fontsize': '20'},
-                         node_attr={'fontcolor': 'black',
-                                    'penwidth': '2.2'})
+                         graph_attr={'fontsize': fontsize},
+                         node_attr={'fontcolor': fontcolor,
+                                    'penwidth': penwidth})
         for (s, t) in primal_edges:     # do this before calculating layout!
             g_primal.edge(vartag_n % s, vartag_n % t)
 
@@ -527,10 +544,10 @@ class Visualization:
             # The output consists of one graph line, a sequence of node lines,
             # one per node, a sequence of edge lines, one per edge,
             # and a final stop line.
-            # 1. get current layout code
+            # 1: get current layout code
             # reads in bytes!
             code_lines = g_primal.pipe('plain').splitlines()
-            # 2. read positions per node
+            # 2: read positions per node
             assert code_lines[0].startswith(b'graph')
             node_positions = [line.split()[1:4] for line in code_lines[1:]
                               if line.startswith(b'node')]
@@ -538,19 +555,18 @@ class Visualization:
             node_names_s = sorted([n[0].decode() for n in node_positions])
             node_x_list = [float(n[1]) for n in node_positions]
             node_y_list = [float(n[2]) for n in node_positions]
-            LOGGER.debug("Calculating with primal node positions"
-                         " %s\nnode_names_s=%s", node_positions, node_names_s)
-            # 3. sort nodes in circular order
-            # 3.1 get center (x, y)
+            # LOGGER.debug("Calculating with primal node positions"
+            # " %s\nnode_names_s=%s", node_positions, node_names_s)
+            # 3: sort nodes in circular order
+            # get center (x, y)
             center = (sum(node_x_list) / len(node_positions),
                       sum(node_y_list) / len(node_positions))
-            # 3.2 get order respective to center, starting at middle-left:
-
+            # get order respective to center, starting at middle-left:
             position_circle = sorted(zip(node_x_list, node_y_list),
                                      key=lambda x: phase(
                                          complex(*x) - complex(*center)),
                                      reverse=True)
-            # 4. place back into the (sorted) positions
+            # 4: place back into the (sorted) positions
             for node, position in zip(node_names_s, position_circle):
                 g_primal.node(node, pos="%f,%f!" % position)
 
@@ -572,8 +588,8 @@ class Visualization:
             for var in variables:
                 g_primal.node(
                     vartag_n % var,
-                    fillcolor='yellow',
-                    style='filled')
+                    fillcolor=first_color,
+                    style=first_style)
 
             adjacent = {
                 edge.difference(variables).pop() for edge in primal_edges if len(
@@ -581,14 +597,15 @@ class Visualization:
 
             for var in adjacent:
                 g_primal.node(vartag_n % var,
-                              color='green',
-                              style='dotted,filled')
+                              color=second_color,
+                              style=second_style)
 
             # LOGGER.debug('g_primal %s', g_primal)
             g_primal.render(view=view, format='svg',
                             filename=_filename % i)
 
-    def incidence(self, timeline, num_vars, colors, view=False) -> None:
+    def incidence(self, timeline, num_vars, colors, view=False, fontsize='16',
+                  penwidth='2.2', basefill='white') -> None:
         """
         Creates the incidence graph emphasized for the given timeline.
 
@@ -617,15 +634,14 @@ class Visualization:
 
         g_incid = Graph(strict=True,
                         graph_attr={'splines': 'false', 'ranksep': '0.2',
-                                    'nodesep': '0.5', 'fontsize': '16',
+                                    'nodesep': '0.5', 'fontsize': fontsize,
                                     'compound': 'true'},
-                        edge_attr={'penwidth': '2.2', 'dir': 'back',
+                        edge_attr={'penwidth': penwidth, 'dir': 'back',
                                    'arrowtail': 'none'})
 
         with g_incid.subgraph(name='cluster_clause',
                               edge_attr={'style': 'invis'},
-                              node_attr={'style': 'rounded,filled',
-                                         'fillcolor': 'white'}) as clauses:
+                              node_attr={'style': 'rounded,filled'}) as clauses:
             clauses.attr(label='clauses')
             clauses.edges([(clausetag_n % (i + 1), clausetag_n % (i + 2))
                            for i in range(len(self.incidence_edges) - 1)])
@@ -662,17 +678,14 @@ class Visualization:
                                  arrowtail='odot')  # style='dotted'
 
         # make edgelist variable-based (varX, clauseY), ...
-
+        #  var_cl_iter [(1, 1), (4, 1), ...
         vcmapping = map(
             lambda y: map(
                 lambda x: (x, y[0]),
                 y[1]),
             self.incidence_edges)
 
-        var_cl_iter = tuple(flatten(vcmapping))  # flatten
-        #  var_cl_iter [(1, 1), (4, 1), (6, 1), (1, 2), (-5, 2), (-1, 3), (7, 3), (2, 4),
-        #             (3, 4), (2, 5), (5, 5), (2, 6), (-6, 6), (3, 7), (-8, 7), (4, 8),
-        #             (-8, 8), (-4, 9), (6, 9), (-4, 10), (7, 10)]
+        var_cl_iter = tuple(flatten(vcmapping))
 
         bodybaselen = len(g_incid.body)
         for i, variables in enumerate(timeline, start=1):    # all timesteps
