@@ -611,6 +611,8 @@ class Visualization:
             colors,
             view=False,
             fontsize='16',
+            penwidth='2.2',
+            basefill='white',
             sndshape='diamond',
             neg_tail='odot') -> None:
         """
