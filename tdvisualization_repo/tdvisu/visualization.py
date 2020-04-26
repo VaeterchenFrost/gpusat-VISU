@@ -604,8 +604,15 @@ class Visualization:
             g_primal.render(view=view, format='svg',
                             filename=_filename % i)
 
-    def incidence(self, timeline, num_vars, colors, view=False, fontsize='16',
-                  penwidth='2.2', basefill='white') -> None:
+    def incidence(
+            self,
+            timeline,
+            num_vars,
+            colors,
+            view=False,
+            fontsize='16',
+            sndshape='diamond',
+            neg_tail='odot') -> None:
         """
         Creates the incidence graph emphasized for the given timeline.
 
@@ -641,17 +648,17 @@ class Visualization:
 
         with g_incid.subgraph(name='cluster_clause',
                               edge_attr={'style': 'invis'},
-                              node_attr={'style': 'rounded,filled'}) as clauses:
+                              node_attr={'style': 'rounded,filled',
+                                         'fillcolor': 'white'}) as clauses:
             clauses.attr(label='clauses')
             clauses.edges([(clausetag_n % (i + 1), clausetag_n % (i + 2))
                            for i in range(len(self.incidence_edges) - 1)])
 
-        g_incid.attr('node', shape='diamond', fontcolor='black',
+        g_incid.attr('node', shape=sndshape, fontcolor='black',
                      penwidth='2.2',
                      style='dotted')
         with g_incid.subgraph(name='cluster_ivar',
-                              edge_attr={'style': 'invis'},
-                              node_attr={'style': 'dotted'}) as ivars:
+                              edge_attr={'style': 'invis'}) as ivars:
             ivars.attr(label='variables')
             ivars.edges([(vartag_n % (i + 1), vartag_n % (i + 2))
                          for i in range(num_vars - 1)])
@@ -663,8 +670,8 @@ class Visualization:
 
         g_incid.attr('edge', constraint="false")
         # invis distance between clusters: minlen
-        g_incid.edge(clausetag_n % 1, vartag_n % 1, ltail='cluster_clause',
-                     lhead='cluster_ivar', minlen='3', style='invis')
+        # g_incid.edge(clausetag_n % 1, vartag_n % 1, ltail='cluster_clause',
+        #              lhead='cluster_ivar', minlen='3', style='invis')
         for clause in self.incidence_edges:
             for var in clause[1]:
                 if var >= 0:
@@ -675,7 +682,7 @@ class Visualization:
                     g_incid.edge(clausetag_n % clause[0],
                                  vartag_n % -var,
                                  color=colors[-var % len(colors)],
-                                 arrowtail='odot')  # style='dotted'
+                                 arrowtail=neg_tail)
 
         # make edgelist variable-based (varX, clauseY), ...
         #  var_cl_iter [(1, 1), (4, 1), ...
@@ -697,12 +704,11 @@ class Visualization:
                 continue
 
             emp_clause = {
-                var_cl[1] for var_cl in filter(
-                    lambda var_cl, s=variables: abs(var_cl[0]) in s,
-                    var_cl_iter)}
+                var_cl[1] for var_cl in var_cl_iter if abs(
+                    var_cl[0]) in variables}
 
-            emp_var = {abs(var_cl[0]) for var_cl in filter(
-                lambda var_cl, s=emp_clause: var_cl[1] in s, var_cl_iter)}
+            emp_var = {abs(var_cl[0])
+                       for var_cl in var_cl_iter if var_cl[1] in emp_clause}
 
             for var in emp_var:
                 _vartag = vartag_n % abs(var)

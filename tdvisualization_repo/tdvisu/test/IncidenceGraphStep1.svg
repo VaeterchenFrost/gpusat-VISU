@@ -39,6 +39,10 @@
 <text text-anchor="middle" x="291" y="-482.3" font-family="Times New Roman,serif" font-size="14.00">v_1</text>
 </g>
 <!-- c_1&#45;&#45;v_1 -->
+<g id="edge17" class="edge">
+<title>c_1&#45;&#45;v_1</title>
+<path fill="none" stroke="#b14923" stroke-width="2.2" d="M72.39,-486C133.59,-486 194.79,-486 255.99,-486"/>
+</g>
 <!-- v_4 -->
 <g id="node14" class="node">
 <title>v_4</title>

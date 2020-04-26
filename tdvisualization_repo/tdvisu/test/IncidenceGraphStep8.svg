@@ -9,15 +9,15 @@
 <g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 550)">
 <title>%3</title>
 <polygon fill="white" stroke="transparent" points="-4,4 -4,-550 346,-550 346,4 -4,4"/>
-<g id="clust2" class="cluster">
-<title>cluster_ivar</title>
-<polygon fill="none" stroke="black" points="248,-110 248,-538 334,-538 334,-110 248,-110"/>
-<text text-anchor="middle" x="291" y="-521.2" font-family="Times New Roman,serif" font-size="16.00">variables</text>
-</g>
 <g id="clust1" class="cluster">
 <title>cluster_clause</title>
 <polygon fill="none" stroke="black" points="8,-8 8,-538 82,-538 82,-8 8,-8"/>
 <text text-anchor="middle" x="45" y="-521.2" font-family="Times New Roman,serif" font-size="16.00">clauses</text>
+</g>
+<g id="clust2" class="cluster">
+<title>cluster_ivar</title>
+<polygon fill="none" stroke="black" points="248,-110 248,-538 334,-538 334,-110 248,-110"/>
+<text text-anchor="middle" x="291" y="-521.2" font-family="Times New Roman,serif" font-size="16.00">variables</text>
 </g>
 <!-- c_1 -->
 <g id="node1" class="node">
@@ -41,7 +41,7 @@
 <!-- c_1&#45;&#45;v_1 -->
 <g id="edge17" class="edge">
 <title>c_1&#45;&#45;v_1</title>
-<path fill="none" stroke="#b14923" stroke-width="2.2" stroke-dasharray="1,5" d="M82,-486C137.33,-486 192.67,-486 248,-486"/>
+<path fill="none" stroke="#b14923" stroke-width="2.2" stroke-dasharray="1,5" d="M72.39,-486C133.59,-486 194.79,-486 255.99,-486"/>
 </g>
 <!-- v_4 -->
 <g id="node14" class="node">

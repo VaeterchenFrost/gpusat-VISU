@@ -25,7 +25,6 @@ strict graph {
 	v_7 [label=v_7 color="#da1167"]
 	v_8 [label=v_8 color="#604909"]
 	subgraph cluster_ivar {
-		node [style=dotted]
 		edge [style=invis]
 		label=variables
 		v_1 -- v_2
@@ -37,7 +36,6 @@ strict graph {
 		v_7 -- v_8
 	}
 	edge [constraint=false]
-	c_1 -- v_1 [lhead=cluster_ivar ltail=cluster_clause minlen=3 style=invis]
 	c_1 -- v_1 [color="#b14923"]
 	c_1 -- v_4 [color="#a682ff"]
 	c_1 -- v_6 [color="#0d1321"]
