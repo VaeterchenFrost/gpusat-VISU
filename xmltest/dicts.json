@@ -1,0 +1,1452 @@
+{
+  "svg": {
+    "@width": "588pt",
+    "@height": "1274pt",
+    "@viewBox": "0.00 0.00 588.00 1274.00",
+    "@xmlns": "http://www.w3.org/2000/svg",
+    "@xmlns:xlink": "http://www.w3.org/1999/xlink",
+    "g": {
+      "@id": "graph0",
+      "@class": "graph",
+      "@transform": "scale(1 1) rotate(0) translate(4 1270)",
+      "title": "structs",
+      "polygon": {
+        "@fill": "white",
+        "@stroke": "transparent",
+        "@points": "-4,4 -4,-1270 584,-1270 584,4 -4,4"
+      },
+      "g": [
+        {
+          "@id": "node1",
+          "@class": "node",
+          "title": "bag 0",
+          "path": {
+            "@fill": "yellow",
+            "@stroke": "black",
+            "@stroke-width": "2.5",
+            "@d": "M127.5,-919C127.5,-919 66.5,-919 66.5,-919 60.5,-919 54.5,-913 54.5,-907 54.5,-907 54.5,-887 54.5,-887 54.5,-881 60.5,-875 66.5,-875 66.5,-875 127.5,-875 127.5,-875 133.5,-875 139.5,-881 139.5,-887 139.5,-887 139.5,-907 139.5,-907 139.5,-913 133.5,-919 127.5,-919"
+          },
+          "polygon": {
+            "@fill": "white",
+            "@stroke": "transparent",
+            "@points": "63,-899 63,-918 132,-918 132,-899 63,-899"
+          },
+          "text": [
+            {
+              "@text-anchor": "start",
+              "@x": "82",
+              "@y": "-904.8",
+              "@font-family": "Times New Roman,serif",
+              "@font-size": "14.00",
+              "#text": "bag 0"
+            },
+            {
+              "@text-anchor": "start",
+              "@x": "65",
+              "@y": "-881.8",
+              "@font-family": "Times New Roman,serif",
+              "@font-size": "14.00",
+              "#text": "[2 3 8 9 10]"
+            }
+          ]
+        },
+        {
+          "@id": "node2",
+          "@class": "node",
+          "title": "bag 1",
+          "path": {
+            "@fill": "white",
+            "@stroke": "black",
+            "@d": "M200.5,-669.5C200.5,-669.5 139.5,-669.5 139.5,-669.5 133.5,-669.5 127.5,-663.5 127.5,-657.5 127.5,-657.5 127.5,-637.5 127.5,-637.5 127.5,-631.5 133.5,-625.5 139.5,-625.5 139.5,-625.5 200.5,-625.5 200.5,-625.5 206.5,-625.5 212.5,-631.5 212.5,-637.5 212.5,-637.5 212.5,-657.5 212.5,-657.5 212.5,-663.5 206.5,-669.5 200.5,-669.5"
+          },
+          "polygon": {
+            "@fill": "white",
+            "@stroke": "transparent",
+            "@points": "136,-649.5 136,-668.5 205,-668.5 205,-649.5 136,-649.5"
+          },
+          "text": [
+            {
+              "@text-anchor": "start",
+              "@x": "155",
+              "@y": "-655.3",
+              "@font-family": "Times New Roman,serif",
+              "@font-size": "14.00",
+              "#text": "bag 1"
+            },
+            {
+              "@text-anchor": "start",
+              "@x": "138",
+              "@y": "-632.3",
+              "@font-family": "Times New Roman,serif",
+              "@font-size": "14.00",
+              "#text": "[1 2 4 9 10]"
+            }
+          ]
+        },
+        {
+          "@id": "edge1",
+          "@class": "edge",
+          "title": "bag 1->bag 0",
+          "path": {
+            "@fill": "none",
+            "@stroke": "black",
+            "@d": "M163.78,-669.6C150.87,-713.35 121.16,-814.09 106.1,-865.14"
+          },
+          "polygon": {
+            "@fill": "black",
+            "@stroke": "black",
+            "@points": "102.68,-864.37 103.21,-874.95 109.39,-866.35 102.68,-864.37"
+          }
+        },
+        {
+          "@id": "node3",
+          "@class": "node",
+          "title": "bag 2",
+          "path": {
+            "@fill": "white",
+            "@stroke": "black",
+            "@d": "M279.5,-420C279.5,-420 218.5,-420 218.5,-420 212.5,-420 206.5,-414 206.5,-408 206.5,-408 206.5,-388 206.5,-388 206.5,-382 212.5,-376 218.5,-376 218.5,-376 279.5,-376 279.5,-376 285.5,-376 291.5,-382 291.5,-388 291.5,-388 291.5,-408 291.5,-408 291.5,-414 285.5,-420 279.5,-420"
+          },
+          "polygon": {
+            "@fill": "white",
+            "@stroke": "transparent",
+            "@points": "215,-400 215,-419 284,-419 284,-400 215,-400"
+          },
+          "text": [
+            {
+              "@text-anchor": "start",
+              "@x": "234",
+              "@y": "-405.8",
+              "@font-family": "Times New Roman,serif",
+              "@font-size": "14.00",
+              "#text": "bag 2"
+            },
+            {
+              "@text-anchor": "start",
+              "@x": "217",
+              "@y": "-382.8",
+              "@font-family": "Times New Roman,serif",
+              "@font-size": "14.00",
+              "#text": "[1 4 5 9 10]"
+            }
+          ]
+        },
+        {
+          "@id": "edge2",
+          "@class": "edge",
+          "title": "bag 2->bag 1",
+          "path": {
+            "@fill": "none",
+            "@stroke": "black",
+            "@d": "M242.26,-420.1C228.3,-463.85 196.14,-564.59 179.85,-615.64"
+          },
+          "polygon": {
+            "@fill": "black",
+            "@stroke": "black",
+            "@points": "176.43,-614.86 176.72,-625.45 183.09,-616.99 176.43,-614.86"
+          }
+        },
+        {
+          "@id": "node4",
+          "@class": "node",
+          "title": "bag 3",
+          "path": {
+            "@fill": "white",
+            "@stroke": "black",
+            "@d": "M282,-44C282,-44 252,-44 252,-44 246,-44 240,-38 240,-32 240,-32 240,-12 240,-12 240,-6 246,0 252,0 252,0 282,0 282,0 288,0 294,-6 294,-12 294,-12 294,-32 294,-32 294,-38 288,-44 282,-44"
+          },
+          "polygon": {
+            "@fill": "white",
+            "@stroke": "transparent",
+            "@points": "250,-24 250,-43 285,-43 285,-24 250,-24"
+          },
+          "text": [
+            {
+              "@text-anchor": "start",
+              "@x": "252",
+              "@y": "-29.8",
+              "@font-family": "Times New Roman,serif",
+              "@font-size": "14.00",
+              "#text": "bag 3"
+            },
+            {
+              "@text-anchor": "start",
+              "@x": "259.5",
+              "@y": "-6.8",
+              "@font-family": "Times New Roman,serif",
+              "@font-size": "14.00",
+              "#text": "[6]"
+            }
+          ]
+        },
+        {
+          "@id": "node9",
+          "@class": "node",
+          "title": "Join 3~4",
+          "path": {
+            "@fill": "white",
+            "@stroke": "black",
+            "@d": "M342,-192C342,-192 302,-192 302,-192 296,-192 290,-186 290,-180 290,-180 290,-168 290,-168 290,-162 296,-156 302,-156 302,-156 342,-156 342,-156 348,-156 354,-162 354,-168 354,-168 354,-180 354,-180 354,-186 348,-192 342,-192"
+          },
+          "text": {
+            "@text-anchor": "middle",
+            "@x": "322",
+            "@y": "-170.3",
+            "@font-family": "Times New Roman,serif",
+            "@font-size": "14.00",
+            "#text": "Join 3~4"
+          }
+        },
+        {
+          "@id": "edge8",
+          "@class": "edge",
+          "title": "bag 3->Join 3~4",
+          "path": {
+            "@fill": "none",
+            "@stroke": "black",
+            "@d": "M274.76,-44.17C284.56,-70.9 301.43,-116.91 312.14,-146.1"
+          },
+          "polygon": {
+            "@fill": "black",
+            "@stroke": "black",
+            "@points": "308.91,-147.48 315.64,-155.66 315.49,-145.07 308.91,-147.48"
+          }
+        },
+        {
+          "@id": "node5",
+          "@class": "node",
+          "title": "bag 4",
+          "path": {
+            "@fill": "white",
+            "@stroke": "black",
+            "@d": "M377.5,-44C377.5,-44 326.5,-44 326.5,-44 320.5,-44 314.5,-38 314.5,-32 314.5,-32 314.5,-12 314.5,-12 314.5,-6 320.5,0 326.5,0 326.5,0 377.5,0 377.5,0 383.5,0 389.5,-6 389.5,-12 389.5,-12 389.5,-32 389.5,-32 389.5,-38 383.5,-44 377.5,-44"
+          },
+          "polygon": {
+            "@fill": "white",
+            "@stroke": "transparent",
+            "@points": "323,-24 323,-43 382,-43 382,-24 323,-24"
+          },
+          "text": [
+            {
+              "@text-anchor": "start",
+              "@x": "337",
+              "@y": "-29.8",
+              "@font-family": "Times New Roman,serif",
+              "@font-size": "14.00",
+              "#text": "bag 4"
+            },
+            {
+              "@text-anchor": "start",
+              "@x": "325",
+              "@y": "-6.8",
+              "@font-family": "Times New Roman,serif",
+              "@font-size": "14.00",
+              "#text": "[1 5 7 10]"
+            }
+          ]
+        },
+        {
+          "@id": "edge9",
+          "@class": "edge",
+          "title": "bag 4->Join 3~4",
+          "path": {
+            "@fill": "none",
+            "@stroke": "black",
+            "@d": "M347.77,-44.17C342.44,-70.79 333.3,-116.51 327.46,-145.72"
+          },
+          "polygon": {
+            "@fill": "black",
+            "@stroke": "black",
+            "@points": "324,-145.17 325.47,-155.66 330.86,-146.54 324,-145.17"
+          }
+        },
+        {
+          "@id": "edge10",
+          "@class": "edge",
+          "title": "Join 3~4->bag 2",
+          "path": {
+            "@fill": "none",
+            "@stroke": "black",
+            "@d": "M316.39,-192.05C304.14,-229.32 274.82,-318.49 259.2,-365.99"
+          },
+          "polygon": {
+            "@fill": "black",
+            "@stroke": "black",
+            "@points": "255.79,-365.14 255.99,-375.73 262.44,-367.33 255.79,-365.14"
+          }
+        }
+      ]
+    }
+  }
+}{
+  "svg": {
+    "@width": "421pt",
+    "@height": "408pt",
+    "@viewBox": "0.00 0.00 420.96 408.49",
+    "@xmlns": "http://www.w3.org/2000/svg",
+    "@xmlns:xlink": "http://www.w3.org/1999/xlink",
+    "g": {
+      "@id": "graph0",
+      "@class": "graph",
+      "@transform": "scale(1 1) rotate(0) translate(204.899 204.246)",
+      "title": "%3",
+      "polygon": {
+        "@fill": "white",
+        "@stroke": "none",
+        "@points": "-204.899,204.246 -204.899,-204.246 216.058,-204.246 216.058,204.246 -204.899,204.246"
+      },
+      "g": [
+        {
+          "@id": "node1",
+          "@class": "node",
+          "title": "v_1",
+          "ellipse": {
+            "@fill": "none",
+            "@stroke": "black",
+            "@stroke-width": "2.2",
+            "@cx": "-173.899",
+            "@cy": "-63.2952",
+            "@rx": "27",
+            "@ry": "18"
+          },
+          "text": {
+            "@text-anchor": "middle",
+            "@x": "-173.899",
+            "@y": "-59.5952",
+            "@font-family": "Times New Roman,serif",
+            "@font-size": "14.00",
+            "#text": "v_1"
+          }
+        },
+        {
+          "@id": "node2",
+          "@class": "node",
+          "title": "v_2",
+          "ellipse": {
+            "@fill": "none",
+            "@stroke": "black",
+            "@stroke-width": "2.2",
+            "@cx": "32.137",
+            "@cy": "-182.246",
+            "@rx": "27",
+            "@ry": "18"
+          },
+          "text": {
+            "@text-anchor": "middle",
+            "@x": "32.137",
+            "@y": "-178.546",
+            "@font-family": "Times New Roman,serif",
+            "@font-size": "14.00",
+            "#text": "v_2"
+          }
+        },
+        {
+          "@id": "edge1",
+          "@class": "edge",
+          "title": "v_1--v_2",
+          "path": {
+            "@fill": "none",
+            "@stroke": "black",
+            "@d": "M-153.39,-75.1356C-113.897,-97.9361 -27.7163,-147.691 11.7111,-170.454"
+          }
+        },
+        {
+          "@id": "node3",
+          "@class": "node",
+          "title": "v_4",
+          "ellipse": {
+            "@fill": "none",
+            "@stroke": "black",
+            "@stroke-width": "2.2",
+            "@cx": "185.058",
+            "@cy": "-0",
+            "@rx": "27",
+            "@ry": "18"
+          },
+          "text": {
+            "@text-anchor": "middle",
+            "@x": "185.058",
+            "@y": "3.7",
+            "@font-family": "Times New Roman,serif",
+            "@font-size": "14.00",
+            "#text": "v_4"
+          }
+        },
+        {
+          "@id": "edge2",
+          "@class": "edge",
+          "title": "v_1--v_4",
+          "path": {
+            "@fill": "none",
+            "@stroke": "black",
+            "@d": "M-147.795,-58.6922C-81.6483,-47.0286 92.0023,-16.4086 158.566,-4.67131"
+          }
+        },
+        {
+          "@id": "node4",
+          "@class": "node",
+          "title": "v_9",
+          "ellipse": {
+            "@fill": "none",
+            "@stroke": "black",
+            "@stroke-width": "2.2",
+            "@cx": "-173.899",
+            "@cy": "63.2952",
+            "@rx": "27",
+            "@ry": "18"
+          },
+          "text": {
+            "@text-anchor": "middle",
+            "@x": "-173.899",
+            "@y": "66.9952",
+            "@font-family": "Times New Roman,serif",
+            "@font-size": "14.00",
+            "#text": "v_9"
+          }
+        },
+        {
+          "@id": "edge3",
+          "@class": "edge",
+          "title": "v_1--v_9",
+          "path": {
+            "@fill": "none",
+            "@stroke": "black",
+            "@d": "M-173.899,-45.1579C-173.899,-21.0931 -173.899,21.1437 -173.899,45.1915"
+          }
+        },
+        {
+          "@id": "node5",
+          "@class": "node",
+          "title": "v_10",
+          "ellipse": {
+            "@fill": "none",
+            "@stroke": "black",
+            "@stroke-width": "2.2",
+            "@cx": "-92.531",
+            "@cy": "-160.265",
+            "@rx": "28.6953",
+            "@ry": "18"
+          },
+          "text": {
+            "@text-anchor": "middle",
+            "@x": "-92.531",
+            "@y": "-156.565",
+            "@font-family": "Times New Roman,serif",
+            "@font-size": "14.00",
+            "#text": "v_10"
+          }
+        },
+        {
+          "@id": "edge4",
+          "@class": "edge",
+          "title": "v_1--v_10",
+          "path": {
+            "@fill": "none",
+            "@stroke": "black",
+            "@d": "M-160.463,-79.3078C-145.387,-97.2747 -121.072,-126.252 -105.987,-144.228"
+          }
+        },
+        {
+          "@id": "node6",
+          "@class": "node",
+          "title": "v_7",
+          "ellipse": {
+            "@fill": "none",
+            "@stroke": "black",
+            "@stroke-width": "2.2",
+            "@cx": "32.137",
+            "@cy": "182.246",
+            "@rx": "27",
+            "@ry": "18"
+          },
+          "text": {
+            "@text-anchor": "middle",
+            "@x": "32.137",
+            "@y": "185.946",
+            "@font-family": "Times New Roman,serif",
+            "@font-size": "14.00",
+            "#text": "v_7"
+          }
+        },
+        {
+          "@id": "edge15",
+          "@class": "edge",
+          "title": "v_1--v_7",
+          "path": {
+            "@fill": "none",
+            "@stroke": "black",
+            "@d": "M-160.697,-47.5619C-123.572,-3.31795 -18.5375,121.856 18.7784,166.326"
+          }
+        },
+        {
+          "@id": "node8",
+          "@class": "node",
+          "title": "v_5",
+          "ellipse": {
+            "@fill": "none",
+            "@stroke": "black",
+            "@stroke-width": "2.2",
+            "@cx": "141.764",
+            "@cy": "118.951",
+            "@rx": "27",
+            "@ry": "18"
+          },
+          "text": {
+            "@text-anchor": "middle",
+            "@x": "141.764",
+            "@y": "122.651",
+            "@font-family": "Times New Roman,serif",
+            "@font-size": "14.00",
+            "#text": "v_5"
+          }
+        },
+        {
+          "@id": "edge14",
+          "@class": "edge",
+          "title": "v_1--v_5",
+          "path": {
+            "@fill": "none",
+            "@stroke": "black",
+            "@d": "M-153.187,-51.3375C-95.9912,-18.3156 63.6891,73.875 120.976,106.949"
+          }
+        },
+        {
+          "@id": "edge5",
+          "@class": "edge",
+          "title": "v_2--v_4",
+          "path": {
+            "@fill": "none",
+            "@stroke": "black",
+            "@d": "M45.4402,-166.392C74.361,-131.925 142.685,-50.4989 171.676,-15.9475"
+          }
+        },
+        {
+          "@id": "edge7",
+          "@class": "edge",
+          "title": "v_2--v_10",
+          "path": {
+            "@fill": "none",
+            "@stroke": "black",
+            "@d": "M6.00246,-177.638C-14.7035,-173.987 -43.5646,-168.899 -64.6998,-165.172"
+          }
+        },
+        {
+          "@id": "node7",
+          "@class": "node",
+          "title": "v_3",
+          "ellipse": {
+            "@fill": "none",
+            "@stroke": "black",
+            "@stroke-width": "2.2",
+            "@cx": "141.764",
+            "@cy": "-118.951",
+            "@rx": "27",
+            "@ry": "18"
+          },
+          "text": {
+            "@text-anchor": "middle",
+            "@x": "141.764",
+            "@y": "-115.251",
+            "@font-family": "Times New Roman,serif",
+            "@font-size": "14.00",
+            "#text": "v_3"
+          }
+        },
+        {
+          "@id": "edge19",
+          "@class": "edge",
+          "title": "v_2--v_3",
+          "path": {
+            "@fill": "none",
+            "@stroke": "black",
+            "@d": "M52.757,-170.341C72.3566,-159.025 101.668,-142.102 121.237,-130.803"
+          }
+        },
+        {
+          "@id": "edge17",
+          "@class": "edge",
+          "title": "v_4--v_5",
+          "path": {
+            "@fill": "none",
+            "@stroke": "black",
+            "@d": "M178.67,17.5517C170.484,40.0413 156.376,78.8032 148.178,101.328"
+          }
+        },
+        {
+          "@id": "edge6",
+          "@class": "edge",
+          "title": "v_9--v_2",
+          "path": {
+            "@fill": "none",
+            "@stroke": "black",
+            "@d": "M-160.697,47.5619C-123.572,3.31795 -18.5375,-121.856 18.7784,-166.326"
+          }
+        },
+        {
+          "@id": "edge8",
+          "@class": "edge",
+          "title": "v_9--v_4",
+          "path": {
+            "@fill": "none",
+            "@stroke": "black",
+            "@d": "M-147.795,58.6922C-81.6483,47.0286 92.0023,16.4086 158.566,4.67131"
+          }
+        },
+        {
+          "@id": "edge10",
+          "@class": "edge",
+          "title": "v_9--v_10",
+          "path": {
+            "@fill": "none",
+            "@stroke": "black",
+            "@d": "M-167.514,45.7528C-152.341,4.06457 -114.255,-100.578 -98.9988,-142.495"
+          }
+        },
+        {
+          "@id": "edge12",
+          "@class": "edge",
+          "title": "v_9--v_3",
+          "path": {
+            "@fill": "none",
+            "@stroke": "black",
+            "@d": "M-153.187,51.3375C-95.9912,18.3156 63.6891,-73.875 120.976,-106.949"
+          }
+        },
+        {
+          "@id": "edge18",
+          "@class": "edge",
+          "title": "v_9--v_5",
+          "path": {
+            "@fill": "none",
+            "@stroke": "black",
+            "@d": "M-147.529,67.9447C-88.1098,78.4211 55.6893,103.775 115.247,114.276"
+          }
+        },
+        {
+          "@id": "edge9",
+          "@class": "edge",
+          "title": "v_10--v_4",
+          "path": {
+            "@fill": "none",
+            "@stroke": "black",
+            "@d": "M-71.21,-147.955C-19.2855,-117.977 113.213,-41.4795 164.421,-11.9145"
+          }
+        },
+        {
+          "@id": "edge11",
+          "@class": "edge",
+          "title": "v_10--v_7",
+          "path": {
+            "@fill": "none",
+            "@stroke": "black",
+            "@d": "M-86.0039,-142.332C-64.4607,-83.1448 4.22583,105.564 25.6744,164.491"
+          }
+        },
+        {
+          "@id": "edge13",
+          "@class": "edge",
+          "title": "v_10--v_3",
+          "path": {
+            "@fill": "none",
+            "@stroke": "black",
+            "@d": "M-64.7342,-155.363C-19.1572,-147.327 70.8445,-131.457 115.442,-123.593"
+          }
+        },
+        {
+          "@id": "edge16",
+          "@class": "edge",
+          "title": "v_5--v_7",
+          "path": {
+            "@fill": "none",
+            "@stroke": "black",
+            "@d": "M121.144,130.857C101.545,142.173 72.2335,159.096 52.6645,170.394"
+          }
+        },
+        {
+          "@id": "node9",
+          "@class": "node",
+          "title": "v_8",
+          "ellipse": {
+            "@fill": "none",
+            "@stroke": "black",
+            "@stroke-width": "2.2",
+            "@cx": "-92.531",
+            "@cy": "160.265",
+            "@rx": "27",
+            "@ry": "18"
+          },
+          "text": {
+            "@text-anchor": "middle",
+            "@x": "-92.531",
+            "@y": "163.965",
+            "@font-family": "Times New Roman,serif",
+            "@font-size": "14.00",
+            "#text": "v_8"
+          }
+        },
+        {
+          "@id": "edge20",
+          "@class": "edge",
+          "title": "v_8--v_2",
+          "path": {
+            "@fill": "none",
+            "@stroke": "black",
+            "@d": "M-86.0039,142.332C-64.4607,83.1448 4.22583,-105.564 25.6744,-164.491"
+          }
+        },
+        {
+          "@id": "edge22",
+          "@class": "edge",
+          "title": "v_8--v_9",
+          "path": {
+            "@fill": "none",
+            "@stroke": "black",
+            "@d": "M-105.967,144.252C-121.134,126.178 -145.65,96.9607 -160.713,79.0098"
+          }
+        },
+        {
+          "@id": "edge23",
+          "@class": "edge",
+          "title": "v_8--v_10",
+          "path": {
+            "@fill": "none",
+            "@stroke": "black",
+            "@d": "M-92.531,142.113C-92.531,85.8291 -92.531,-85.362 -92.531,-141.915"
+          }
+        },
+        {
+          "@id": "edge21",
+          "@class": "edge",
+          "title": "v_8--v_3",
+          "path": {
+            "@fill": "none",
+            "@stroke": "black",
+            "@d": "M-79.263,144.453C-38.1213,95.4232 87.013,-53.7028 128.351,-102.967"
+          }
+        }
+      ]
+    }
+  }
+}{
+  "svg": {
+    "@width": "276pt",
+    "@height": "554pt",
+    "@viewBox": "0.00 0.00 276.00 554.00",
+    "@xmlns": "http://www.w3.org/2000/svg",
+    "@xmlns:xlink": "http://www.w3.org/1999/xlink",
+    "g": {
+      "@id": "graph0",
+      "@class": "graph",
+      "@transform": "scale(1 1) rotate(0) translate(4 550)",
+      "title": "%3",
+      "polygon": {
+        "@fill": "white",
+        "@stroke": "transparent",
+        "@points": "-4,4 -4,-550 272,-550 272,4 -4,4"
+      },
+      "g": [
+        {
+          "@id": "clust2",
+          "@class": "cluster",
+          "title": "cluster_ivar",
+          "polygon": {
+            "@fill": "none",
+            "@stroke": "black",
+            "@points": "164,-8 164,-538 260,-538 260,-8 164,-8"
+          },
+          "text": {
+            "@text-anchor": "middle",
+            "@x": "212",
+            "@y": "-521.2",
+            "@font-family": "Times New Roman,serif",
+            "@font-size": "16.00",
+            "#text": "variables"
+          }
+        },
+        {
+          "@id": "clust1",
+          "@class": "cluster",
+          "title": "cluster_clause",
+          "polygon": {
+            "@fill": "none",
+            "@stroke": "black",
+            "@points": "8,-210 8,-538 78,-538 78,-210 8,-210"
+          },
+          "text": {
+            "@text-anchor": "middle",
+            "@x": "43",
+            "@y": "-521.2",
+            "@font-family": "Times New Roman,serif",
+            "@font-size": "16.00",
+            "#text": "clauses"
+          }
+        },
+        {
+          "@id": "node1",
+          "@class": "node",
+          "title": "c_1",
+          "ellipse": {
+            "@fill": "white",
+            "@stroke": "black",
+            "@cx": "43",
+            "@cy": "-486",
+            "@rx": "27",
+            "@ry": "18"
+          },
+          "text": {
+            "@text-anchor": "middle",
+            "@x": "43",
+            "@y": "-482.3",
+            "@font-family": "Times New Roman,serif",
+            "@font-size": "14.00",
+            "#text": "c_1"
+          }
+        },
+        {
+          "@id": "node2",
+          "@class": "node",
+          "title": "c_2",
+          "ellipse": {
+            "@fill": "white",
+            "@stroke": "black",
+            "@cx": "43",
+            "@cy": "-436",
+            "@rx": "27",
+            "@ry": "18"
+          },
+          "text": {
+            "@text-anchor": "middle",
+            "@x": "43",
+            "@y": "-432.3",
+            "@font-family": "Times New Roman,serif",
+            "@font-size": "14.00",
+            "#text": "c_2"
+          }
+        },
+        {
+          "@id": "node7",
+          "@class": "node",
+          "title": "v_1",
+          "polygon": {
+            "@fill": "none",
+            "@stroke": "#b14923",
+            "@stroke-width": "2.2",
+            "@stroke-dasharray": "1,5",
+            "@points": "212,-504 177.14,-486 212,-468 246.86,-486 212,-504"
+          },
+          "text": {
+            "@text-anchor": "middle",
+            "@x": "212",
+            "@y": "-482.3",
+            "@font-family": "Times New Roman,serif",
+            "@font-size": "14.00",
+            "#text": "v_1"
+          }
+        },
+        {
+          "@id": "node8",
+          "@class": "node",
+          "title": "v_2",
+          "polygon": {
+            "@fill": "none",
+            "@stroke": "#244320",
+            "@stroke-width": "2.2",
+            "@stroke-dasharray": "1,5",
+            "@points": "212,-454 177.14,-436 212,-418 246.86,-436 212,-454"
+          },
+          "text": {
+            "@text-anchor": "middle",
+            "@x": "212",
+            "@y": "-432.3",
+            "@font-family": "Times New Roman,serif",
+            "@font-size": "14.00",
+            "#text": "v_2"
+          }
+        },
+        {
+          "@id": "edge16",
+          "@class": "edge",
+          "title": "c_1--v_2",
+          "path": {
+            "@fill": "none",
+            "@stroke": "#244320",
+            "@stroke-width": "2.2",
+            "@d": "M75.35,-475.81C109.24,-466.18 161.52,-451.34 190.61,-443.08"
+          },
+          "ellipse": {
+            "@fill": "none",
+            "@stroke": "#244320",
+            "@stroke-width": "2.2",
+            "@cx": "71.42",
+            "@cy": "-476.93",
+            "@rx": "4",
+            "@ry": "4"
+          }
+        },
+        {
+          "@id": "node10",
+          "@class": "node",
+          "title": "v_4",
+          "polygon": {
+            "@fill": "none",
+            "@stroke": "#a682ff",
+            "@stroke-width": "2.2",
+            "@stroke-dasharray": "1,5",
+            "@points": "212,-354 177.14,-336 212,-318 246.86,-336 212,-354"
+          },
+          "text": {
+            "@text-anchor": "middle",
+            "@x": "212",
+            "@y": "-332.3",
+            "@font-family": "Times New Roman,serif",
+            "@font-size": "14.00",
+            "#text": "v_4"
+          }
+        },
+        {
+          "@id": "edge17",
+          "@class": "edge",
+          "title": "c_1--v_4",
+          "path": {
+            "@fill": "none",
+            "@stroke": "#a682ff",
+            "@stroke-width": "2.2",
+            "@d": "M65.83,-465.74C101.76,-433.84 170.39,-372.93 198.99,-347.55"
+          },
+          "ellipse": {
+            "@fill": "none",
+            "@stroke": "#a682ff",
+            "@stroke-width": "2.2",
+            "@cx": "62.5",
+            "@cy": "-468.69",
+            "@rx": "4",
+            "@ry": "4"
+          }
+        },
+        {
+          "@id": "node15",
+          "@class": "node",
+          "title": "v_9",
+          "polygon": {
+            "@fill": "none",
+            "@stroke": "#0073a1",
+            "@stroke-width": "2.2",
+            "@stroke-dasharray": "1,5",
+            "@points": "212,-102 177.14,-84 212,-66 246.86,-84 212,-102"
+          },
+          "text": {
+            "@text-anchor": "middle",
+            "@x": "212",
+            "@y": "-80.3",
+            "@font-family": "Times New Roman,serif",
+            "@font-size": "14.00",
+            "#text": "v_9"
+          }
+        },
+        {
+          "@id": "edge18",
+          "@class": "edge",
+          "title": "c_1--v_9",
+          "path": {
+            "@fill": "none",
+            "@stroke": "#0073a1",
+            "@stroke-width": "2.2",
+            "@d": "M50.37,-468.47C78.58,-401.37 179.41,-161.52 205.7,-98.99"
+          }
+        },
+        {
+          "@id": "node16",
+          "@class": "node",
+          "title": "v_10",
+          "polygon": {
+            "@fill": "none",
+            "@stroke": "#b14923",
+            "@stroke-width": "2.2",
+            "@stroke-dasharray": "1,5",
+            "@points": "212,-52 171.61,-34 212,-16 252.39,-34 212,-52"
+          },
+          "text": {
+            "@text-anchor": "middle",
+            "@x": "212",
+            "@y": "-30.3",
+            "@font-family": "Times New Roman,serif",
+            "@font-size": "14.00",
+            "#text": "v_10"
+          }
+        },
+        {
+          "@id": "edge19",
+          "@class": "edge",
+          "title": "c_1--v_10",
+          "path": {
+            "@fill": "none",
+            "@stroke": "#b14923",
+            "@stroke-width": "2.2",
+            "@d": "M49.63,-468.28C76.9,-395.32 180.32,-118.74 206.13,-49.69"
+          }
+        },
+        {
+          "@id": "node3",
+          "@class": "node",
+          "title": "c_3",
+          "ellipse": {
+            "@fill": "white",
+            "@stroke": "black",
+            "@cx": "43",
+            "@cy": "-386",
+            "@rx": "27",
+            "@ry": "18"
+          },
+          "text": {
+            "@text-anchor": "middle",
+            "@x": "43",
+            "@y": "-382.3",
+            "@font-family": "Times New Roman,serif",
+            "@font-size": "14.00",
+            "#text": "c_3"
+          }
+        },
+        {
+          "@id": "node13",
+          "@class": "node",
+          "title": "v_7",
+          "polygon": {
+            "@fill": "none",
+            "@stroke": "#da1167",
+            "@stroke-width": "2.2",
+            "@stroke-dasharray": "1,5",
+            "@points": "212,-202 177.14,-184 212,-166 246.86,-184 212,-202"
+          },
+          "text": {
+            "@text-anchor": "middle",
+            "@x": "212",
+            "@y": "-180.3",
+            "@font-family": "Times New Roman,serif",
+            "@font-size": "14.00",
+            "#text": "v_7"
+          }
+        },
+        {
+          "@id": "edge20",
+          "@class": "edge",
+          "title": "c_2--v_7",
+          "path": {
+            "@fill": "none",
+            "@stroke": "#da1167",
+            "@stroke-width": "2.2",
+            "@d": "M58.65,-412.66C93.31,-360.98 175.62,-238.25 202.98,-197.45"
+          },
+          "ellipse": {
+            "@fill": "none",
+            "@stroke": "#da1167",
+            "@stroke-width": "2.2",
+            "@cx": "56.32",
+            "@cy": "-416.14",
+            "@rx": "4",
+            "@ry": "4"
+          }
+        },
+        {
+          "@id": "edge21",
+          "@class": "edge",
+          "title": "c_2--v_10",
+          "path": {
+            "@fill": "none",
+            "@stroke": "#b14923",
+            "@stroke-width": "2.2",
+            "@d": "M50.37,-418.47C78.51,-351.52 178.96,-112.6 205.52,-49.42"
+          }
+        },
+        {
+          "@id": "node4",
+          "@class": "node",
+          "title": "c_4",
+          "ellipse": {
+            "@fill": "white",
+            "@stroke": "black",
+            "@cx": "43",
+            "@cy": "-336",
+            "@rx": "27",
+            "@ry": "18"
+          },
+          "text": {
+            "@text-anchor": "middle",
+            "@x": "43",
+            "@y": "-332.3",
+            "@font-family": "Times New Roman,serif",
+            "@font-size": "14.00",
+            "#text": "c_4"
+          }
+        },
+        {
+          "@id": "node9",
+          "@class": "node",
+          "title": "v_3",
+          "polygon": {
+            "@fill": "none",
+            "@stroke": "#b1740f",
+            "@stroke-width": "2.2",
+            "@stroke-dasharray": "1,5",
+            "@points": "212,-404 177.14,-386 212,-368 246.86,-386 212,-404"
+          },
+          "text": {
+            "@text-anchor": "middle",
+            "@x": "212",
+            "@y": "-382.3",
+            "@font-family": "Times New Roman,serif",
+            "@font-size": "14.00",
+            "#text": "v_3"
+          }
+        },
+        {
+          "@id": "edge22",
+          "@class": "edge",
+          "title": "c_3--v_3",
+          "path": {
+            "@fill": "none",
+            "@stroke": "#b1740f",
+            "@stroke-width": "2.2",
+            "@d": "M70.07,-386C105.73,-386 141.4,-386 177.07,-386"
+          }
+        },
+        {
+          "@id": "edge23",
+          "@class": "edge",
+          "title": "c_3--v_9",
+          "path": {
+            "@fill": "none",
+            "@stroke": "#0073a1",
+            "@stroke-width": "2.2",
+            "@d": "M56.61,-361.68C90.43,-301.24 177.5,-145.66 204.14,-98.05"
+          },
+          "ellipse": {
+            "@fill": "none",
+            "@stroke": "#0073a1",
+            "@stroke-width": "2.2",
+            "@cx": "54.52",
+            "@cy": "-365.41",
+            "@rx": "4",
+            "@ry": "4"
+          }
+        },
+        {
+          "@id": "edge24",
+          "@class": "edge",
+          "title": "c_3--v_10",
+          "path": {
+            "@fill": "none",
+            "@stroke": "#b14923",
+            "@stroke-width": "2.2",
+            "@d": "M51.38,-368.54C80.55,-307.78 177.36,-106.15 204.73,-49.14"
+          }
+        },
+        {
+          "@id": "node5",
+          "@class": "node",
+          "title": "c_5",
+          "ellipse": {
+            "@fill": "white",
+            "@stroke": "black",
+            "@cx": "43",
+            "@cy": "-286",
+            "@rx": "27",
+            "@ry": "18"
+          },
+          "text": {
+            "@text-anchor": "middle",
+            "@x": "43",
+            "@y": "-282.3",
+            "@font-family": "Times New Roman,serif",
+            "@font-size": "14.00",
+            "#text": "c_5"
+          }
+        },
+        {
+          "@id": "edge25",
+          "@class": "edge",
+          "title": "c_4--v_1",
+          "path": {
+            "@fill": "none",
+            "@stroke": "#b14923",
+            "@stroke-width": "2.2",
+            "@d": "M65.75,-356.2C101.69,-388.09 170.42,-449.1 199.02,-474.48"
+          },
+          "ellipse": {
+            "@fill": "none",
+            "@stroke": "#b14923",
+            "@stroke-width": "2.2",
+            "@cx": "62.44",
+            "@cy": "-353.25",
+            "@rx": "4",
+            "@ry": "4"
+          }
+        },
+        {
+          "@id": "node11",
+          "@class": "node",
+          "title": "v_5",
+          "polygon": {
+            "@fill": "none",
+            "@stroke": "#004066",
+            "@stroke-width": "2.2",
+            "@stroke-dasharray": "1,5",
+            "@points": "212,-304 177.14,-286 212,-268 246.86,-286 212,-304"
+          },
+          "text": {
+            "@text-anchor": "middle",
+            "@x": "212",
+            "@y": "-282.3",
+            "@font-family": "Times New Roman,serif",
+            "@font-size": "14.00",
+            "#text": "v_5"
+          }
+        },
+        {
+          "@id": "edge26",
+          "@class": "edge",
+          "title": "c_4--v_5",
+          "path": {
+            "@fill": "none",
+            "@stroke": "#004066",
+            "@stroke-width": "2.2",
+            "@d": "M67.57,-328.02C100.71,-318.61 159.19,-302 190.61,-293.08"
+          }
+        },
+        {
+          "@id": "edge27",
+          "@class": "edge",
+          "title": "c_4--v_7",
+          "path": {
+            "@fill": "none",
+            "@stroke": "#da1167",
+            "@stroke-width": "2.2",
+            "@d": "M59.2,-321.43C92.58,-291.41 168.42,-223.2 198.93,-195.76"
+          }
+        },
+        {
+          "@id": "node6",
+          "@class": "node",
+          "title": "c_6",
+          "ellipse": {
+            "@fill": "white",
+            "@stroke": "black",
+            "@cx": "43",
+            "@cy": "-236",
+            "@rx": "27",
+            "@ry": "18"
+          },
+          "text": {
+            "@text-anchor": "middle",
+            "@x": "43",
+            "@y": "-232.3",
+            "@font-family": "Times New Roman,serif",
+            "@font-size": "14.00",
+            "#text": "c_6"
+          }
+        },
+        {
+          "@id": "edge28",
+          "@class": "edge",
+          "title": "c_5--v_1",
+          "path": {
+            "@fill": "none",
+            "@stroke": "#b14923",
+            "@stroke-width": "2.2",
+            "@d": "M61.82,-308.27C97.3,-350.26 173.03,-439.88 201.17,-473.18"
+          },
+          "ellipse": {
+            "@fill": "none",
+            "@stroke": "#b14923",
+            "@stroke-width": "2.2",
+            "@cx": "59.07",
+            "@cy": "-305.02",
+            "@rx": "4",
+            "@ry": "4"
+          }
+        },
+        {
+          "@id": "edge29",
+          "@class": "edge",
+          "title": "c_5--v_4",
+          "path": {
+            "@fill": "none",
+            "@stroke": "#a682ff",
+            "@stroke-width": "2.2",
+            "@d": "M75.28,-296.17C109.17,-305.79 161.49,-320.65 190.6,-328.92"
+          },
+          "ellipse": {
+            "@fill": "none",
+            "@stroke": "#a682ff",
+            "@stroke-width": "2.2",
+            "@cx": "71.36",
+            "@cy": "-295.05",
+            "@rx": "4",
+            "@ry": "4"
+          }
+        },
+        {
+          "@id": "edge30",
+          "@class": "edge",
+          "title": "c_5--v_5",
+          "path": {
+            "@fill": "none",
+            "@stroke": "#004066",
+            "@stroke-width": "2.2",
+            "@d": "M78.43,-286C111.31,-286 144.19,-286 177.07,-286"
+          },
+          "ellipse": {
+            "@fill": "none",
+            "@stroke": "#004066",
+            "@stroke-width": "2.2",
+            "@cx": "74.07",
+            "@cy": "-286",
+            "@rx": "4",
+            "@ry": "4"
+          }
+        },
+        {
+          "@id": "edge31",
+          "@class": "edge",
+          "title": "c_5--v_9",
+          "path": {
+            "@fill": "none",
+            "@stroke": "#0073a1",
+            "@stroke-width": "2.2",
+            "@d": "M61.59,-263.77C97.1,-221.34 173.5,-130.01 201.47,-96.59"
+          },
+          "ellipse": {
+            "@fill": "none",
+            "@stroke": "#0073a1",
+            "@stroke-width": "2.2",
+            "@cx": "58.83",
+            "@cy": "-267.08",
+            "@rx": "4",
+            "@ry": "4"
+          }
+        },
+        {
+          "@id": "edge32",
+          "@class": "edge",
+          "title": "c_6--v_2",
+          "path": {
+            "@fill": "none",
+            "@stroke": "#244320",
+            "@stroke-width": "2.2",
+            "@d": "M56.49,-251.96C89.06,-290.51 171.52,-388.1 201.17,-423.18"
+          }
+        },
+        {
+          "@id": "edge33",
+          "@class": "edge",
+          "title": "c_6--v_3",
+          "path": {
+            "@fill": "none",
+            "@stroke": "#b1740f",
+            "@stroke-width": "2.2",
+            "@d": "M65.75,-256.2C101.69,-288.09 170.42,-349.1 199.02,-374.48"
+          },
+          "ellipse": {
+            "@fill": "none",
+            "@stroke": "#b1740f",
+            "@stroke-width": "2.2",
+            "@cx": "62.44",
+            "@cy": "-253.25",
+            "@rx": "4",
+            "@ry": "4"
+          }
+        },
+        {
+          "@id": "node14",
+          "@class": "node",
+          "title": "v_8",
+          "polygon": {
+            "@fill": "none",
+            "@stroke": "#604909",
+            "@stroke-width": "2.2",
+            "@stroke-dasharray": "1,5",
+            "@points": "212,-152 177.14,-134 212,-116 246.86,-134 212,-152"
+          },
+          "text": {
+            "@text-anchor": "middle",
+            "@x": "212",
+            "@y": "-130.3",
+            "@font-family": "Times New Roman,serif",
+            "@font-size": "14.00",
+            "#text": "v_8"
+          }
+        },
+        {
+          "@id": "edge34",
+          "@class": "edge",
+          "title": "c_6--v_8",
+          "path": {
+            "@fill": "none",
+            "@stroke": "#604909",
+            "@stroke-width": "2.2",
+            "@d": "M70.2,-219.58C105.61,-198.21 166.39,-161.53 195.51,-143.95"
+          },
+          "ellipse": {
+            "@fill": "none",
+            "@stroke": "#604909",
+            "@stroke-width": "2.2",
+            "@cx": "66.47",
+            "@cy": "-221.83",
+            "@rx": "4",
+            "@ry": "4"
+          }
+        },
+        {
+          "@id": "edge35",
+          "@class": "edge",
+          "title": "c_6--v_9",
+          "path": {
+            "@fill": "none",
+            "@stroke": "#0073a1",
+            "@stroke-width": "2.2",
+            "@d": "M59.2,-221.43C92.58,-191.41 168.42,-123.2 198.93,-95.76"
+          }
+        },
+        {
+          "@id": "edge36",
+          "@class": "edge",
+          "title": "c_6--v_10",
+          "path": {
+            "@fill": "none",
+            "@stroke": "#b14923",
+            "@stroke-width": "2.2",
+            "@d": "M61.55,-213.82C96.77,-171.73 172.34,-81.41 200.83,-47.36"
+          },
+          "ellipse": {
+            "@fill": "none",
+            "@stroke": "#b14923",
+            "@stroke-width": "2.2",
+            "@cx": "58.83",
+            "@cy": "-217.08",
+            "@rx": "4",
+            "@ry": "4"
+          }
+        },
+        {
+          "@id": "node12",
+          "@class": "node",
+          "title": "v_6",
+          "polygon": {
+            "@fill": "none",
+            "@stroke": "#0d1321",
+            "@stroke-width": "2.2",
+            "@stroke-dasharray": "1,5",
+            "@points": "212,-254 177.14,-236 212,-218 246.86,-236 212,-254"
+          },
+          "text": {
+            "@text-anchor": "middle",
+            "@x": "212",
+            "@y": "-232.3",
+            "@font-family": "Times New Roman,serif",
+            "@font-size": "14.00",
+            "#text": "v_6"
+          }
+        }
+      ]
+    }
+  }
+}
