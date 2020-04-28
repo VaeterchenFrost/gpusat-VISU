@@ -463,7 +463,7 @@ class Visualization:
         self.forward_iterate_tdg()
         self.backwards_iterate_tdg(view=view)
 
-        # Prepare Incidence graph Timeline
+        # Prepare incidence graph timeline
 
         _timeline = []
         for step in self.timeline:

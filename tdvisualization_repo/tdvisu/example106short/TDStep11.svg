@@ -18,8 +18,10 @@
 <text text-anchor="start" x="65" y="-881.8" font-family="Times New Roman,serif" font-size="14.00">[2 3 8 9 10]</text>
 </g>
 <!-- sol0 -->
-<g id="node12" class="node">
-<title>sol0</title>
+<g id="node12" class="node" opacity="0">
+    <animate attributeName="opacity" begin="2s"
+            dur="2" from="0" to="1" fill="freeze" />
+            <title>sol0</title>
 <path fill="yellow" stroke="black" stroke-width="2.5" d="M12,-1027.5C12,-1027.5 182,-1027.5 182,-1027.5 188,-1027.5 194,-1033.5 194,-1039.5 194,-1039.5 194,-1253.5 194,-1253.5 194,-1259.5 188,-1265.5 182,-1265.5 182,-1265.5 12,-1265.5 12,-1265.5 6,-1265.5 0,-1259.5 0,-1253.5 0,-1253.5 0,-1039.5 0,-1039.5 0,-1033.5 6,-1027.5 12,-1027.5"/>
 <text text-anchor="middle" x="97" y="-1253.3" font-family="Times New Roman,serif" font-size="14.00">sol bag 0</text>
 <polyline fill="none" stroke="black" stroke-width="2.5" points="0,-1248.5 194,-1248.5 "/>
@@ -170,7 +172,9 @@
 <text text-anchor="middle" x="97" y="-1032.3" font-family="Times New Roman,serif" font-size="14.00">sum: 516</text>
 </g>
 <!-- bag 0&#45;&gt;sol0 -->
-<g id="edge13" class="edge">
+<g id="edge13" class="edge" opacity="0">
+        <animate attributeName="opacity" begin="2s"
+            dur="2" from="0" to="1" fill="freeze" />
 <title>bag 0&#45;&gt;sol0</title>
 <path fill="none" stroke="black" d="M97,-919.1C97,-941.58 97,-979.12 97,-1017.22"/>
 <polygon fill="black" stroke="black" points="93.5,-1017.44 97,-1027.44 100.5,-1017.44 93.5,-1017.44"/>
