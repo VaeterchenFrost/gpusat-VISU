@@ -49,8 +49,7 @@ def main():
     #             indent=2))
     #     f.write(json.dumps(json.loads(str(incid).replace("'", '"')), indent=2))
 
-
-def append_svg(first_dict: dict, snd_dict: dict) -> dict:
+def append_svg(first_dict: dict, snd_dict: dict, centerpad:float=10) -> dict:
     """
     Modifies the first of two xml-svg dictionary containing a viewbox to
     append the second svg to the right of the first image.
@@ -91,19 +90,19 @@ def append_svg(first_dict: dict, snd_dict: dict) -> dict:
     viewbox2 = re.split(pattern, second_svg['@viewBox'])
 
     # adjust viewbox of first svg
-    viewbox1[WIDTH] = str(float(viewbox1[WIDTH]) + float(viewbox2[WIDTH]))
+    viewbox1[WIDTH] = str(float(viewbox1[WIDTH]) + float(viewbox2[WIDTH]) + centerpad)
     viewbox1[HEIGHT] = str(
         max(float(viewbox1[HEIGHT]), float(viewbox2[HEIGHT])))
 
     first_svg['@viewBox'] = ' '.join(viewbox1)
-    # drop width+height
+    # drop width,height
     first_svg.pop("@width", None)
     first_svg.pop("@height", None)
     # move second image group next to first
     transform = second_svg['g'].get('@transform', '')
     if transform:
         transform += ' '
-    transform += 'translate(%s)' % viewbox1[WIDTH]
+    transform += 'translate(%f)' % (float(viewbox1[WIDTH])+centerpad)
     second_svg['g']['@transform'] = transform
     # add group to list of 'g'
     if isinstance(first_svg['g'], list):
