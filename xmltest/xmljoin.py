@@ -6,47 +6,48 @@ Created on Mon Apr 27 22:18:54 2020
 @author: Martin Röbke
 """
 
+import re
 from benedict import benedict
 
 
 def main():
-    with open('TDStep1.svg') as f1:
-        tdstep = benedict.from_xml(f1.read())
-    with open('PrimalGraphStep1.svg') as f2:
-        primal = benedict.from_xml(f2.read())
-    with open('IncidenceGraphStep1.svg') as f3:
-        incid = benedict.from_xml(f3.read())
+    with open('TDStep1.svg') as file:
+        tdstep = benedict.from_xml(file.read())
+    with open('PrimalGraphStep1.svg') as file:
+        primal = benedict.from_xml(file.read())
+    with open('IncidenceGraphStep1.svg') as file:
+        incid = benedict.from_xml(file.read())
 
     result = append_svg(tdstep, incid)
     result = append_svg(result, primal)
     result['svg']['@preserveAspectRatio'] = "xMinYMin"
-    with open("benedict.svg", "w") as f:
-        result.to_xml(output=f)
+    with open("benedict.svg", "w") as file:
+        result.to_xml(output=file)
     # ==============================================
-    x1, x2, x3 = [r['svg']['@viewBox'].split()
-                  for r in (tdstep, incid, primal)]
-    print(x1, x2, x3)
-    x2[2] = float(x1[2]) + float(x2[2])
-    x3[2] = x2[2] + float(x3[2])
-    print(x1, x2, x3)
-    import json
-    with open("dicts.txt", mode="w") as f:
-        f.write(
-            json.dumps(
-                json.loads(
-                    str(tdstep).replace(
-                        "'",
-                        '"')),
-                indent=2))
-    with open("dicts.txt", mode="a") as f:
-        f.write(
-            json.dumps(
-                json.loads(
-                    str(primal).replace(
-                        "'",
-                        '"')),
-                indent=2))
-        f.write(json.dumps(json.loads(str(incid).replace("'", '"')), indent=2))
+    # x1, x2, x3 = [r['svg']['@viewBox'].split()
+    #               for r in (tdstep, incid, primal)]
+    # print(x1, x2, x3)
+    # x2[2] = float(x1[2]) + float(x2[2])
+    # x3[2] = x2[2] + float(x3[2])
+    # print(x1, x2, x3)
+    # import json
+    # with open("dicts.txt", mode="w") as f:
+    #     f.write(
+    #         json.dumps(
+    #             json.loads(
+    #                 str(tdstep).replace(
+    #                     "'",
+    #                     '"')),
+    #             indent=2))
+    # with open("dicts.txt", mode="a") as f:
+    #     f.write(
+    #         json.dumps(
+    #             json.loads(
+    #                 str(primal).replace(
+    #                     "'",
+    #                     '"')),
+    #             indent=2))
+    #     f.write(json.dumps(json.loads(str(incid).replace("'", '"')), indent=2))
 
 
 def append_svg(first_dict: dict, snd_dict: dict) -> dict:
@@ -85,7 +86,6 @@ def append_svg(first_dict: dict, snd_dict: dict) -> dict:
     second_svg = snd_dict['svg']
 
     # get viewbox
-    import re
     pattern = re.compile(r'\s*,\s*|\s+')
     viewbox1 = re.split(pattern, first_svg['@viewBox'])
     viewbox2 = re.split(pattern, second_svg['@viewBox'])
