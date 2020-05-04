@@ -38,12 +38,12 @@ import pathlib
 from time import sleep
 from configparser import ConfigParser
 from typing import Optional, Iterable, Iterator, TypeVar
-import psycopg2 as pg
-from more_itertools import locate
 
+import psycopg2 as pg
 
 from dijkstra import bidirectional_dijkstra as find_path
 from dijkstra import convert_to_adj
+
 
 __author__ = "Martin Röbke <martin.roebke@tu-dresden.de>"
 __status__ = "development"
@@ -209,10 +209,9 @@ class DpdbSharpSatVisu(IDpdbVisuConstruct):
             cur.execute(
                 "SELECT * FROM public.p{:d}_sat_clause".format(self.problem))
             result = cur.fetchall()
-            result_cleaned = [
-                [i + 1 if x[i] else -(i + 1) for i in
-                 locate(x, lambda p: p is not None)] for x in result
-            ]
+            result_cleaned = [[pos if elem else -pos for pos, elem in
+                               enumerate(line, 1) if elem is not None]
+                              for line in result]
             clauses_edges = [{"id": i, "list": item}
                              for (i, item) in enumerate(result_cleaned, 1)]
             return clauses_edges
