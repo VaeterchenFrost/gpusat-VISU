@@ -38,8 +38,9 @@ import pathlib
 from time import sleep
 from configparser import ConfigParser
 from typing import Optional, Iterable, Iterator, TypeVar
-from more_itertools import locate
 import psycopg2 as pg
+from more_itertools import locate
+
 
 from dijkstra import bidirectional_dijkstra as find_path
 from dijkstra import convert_to_adj
@@ -100,7 +101,7 @@ def good_db_status() -> tuple:
             pg.extensions.TRANSACTION_STATUS_INTRANS)
 
 
-def read_cfg(cfg_file, section):
+def read_cfg(cfg_file, section) -> dict:
     """Read the config file and return the result.
 
     Works for both .ini and .json files but
@@ -158,7 +159,7 @@ class IDpdbVisuConstruct(metaclass=abc.ABCMeta):
         raise NotImplementedError
 
     @abc.abstractmethod
-    def read_labeldict(self, num_bags: int) -> list:
+    def read_labeldict(self) -> list:
         """Construct the corresponding labels for each bag."""
         raise NotImplementedError
 
@@ -216,7 +217,17 @@ class DpdbSharpSatVisu(IDpdbVisuConstruct):
                              for (i, item) in enumerate(result_cleaned, 1)]
             return clauses_edges
 
-    def read_labeldict(self, num_bags=1):
+    def read_labeldict(self) -> list:
+        """
+        Read from '_td_bag' the edges and 'td_node_status' tables the labels
+        for the bags.
+
+        Returns
+        -------
+        list
+            The filled labeldict for visualization.
+
+        """
         with self.connection.cursor() as cur:  # create a cursor
             labeldict = []
             # check bag numbering:
@@ -229,21 +240,21 @@ class DpdbSharpSatVisu(IDpdbVisuConstruct):
                 cur.execute(
                     "SELECT node FROM public.p{:d}_td_bag WHERE bag=%s".format(
                         self.problem), (bag,))
-                result = list(flatten(cur.fetchall()))
+                nodes = list(flatten(cur.fetchall()))
                 cur.execute(
                     "SELECT start_time,end_time-start_time "
                     "FROM public.p{:d}_td_node_status WHERE node=%s".format(
                         self.problem), (bag,))
                 start_time, dtime = cur.fetchone()
                 labeldict.append(
-                    {"id": bag, "items": result, "labels":
-                     [str(result),
+                    {"id": bag, "items": nodes, "labels":
+                     [str(nodes),
                       "dtime=%.4fs" % dtime.total_seconds(),
                       start_time.strftime("%D %T")
                       ]})
             return labeldict
 
-    def read_timeline(self, edgearray):
+    def read_timeline(self, edgearray) -> list:
         """
         Read from td_node_status and the edearray to
         - create the timeline of the solving process
@@ -393,7 +404,7 @@ def create_json(problem: int) -> Optional[dict]:
                     "edges": clauses_edges}
 
                 # create tree_dec_json
-                labeldict = constructor.read_labeldict(num_bags)
+                labeldict = constructor.read_labeldict()
                 edgearray = constructor.read_edgearray()
                 tree_dec_json = {
                     "bagpre": "bag %s",
@@ -411,6 +422,7 @@ def create_json(problem: int) -> Optional[dict]:
     except (Exception, pg.DatabaseError) as error:
         LOGGER.error(error)
         raise error
+    return {}
 
 
 if __name__ == "__main__":
