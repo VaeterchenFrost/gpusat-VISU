@@ -21,8 +21,8 @@ Changelog: 16.04.
     	Optional("subgraphNameOne" : STR, default='clauses'),
     	Optional("subgraphNameTwo" : STR, default='variables'),
 
-    	Optional("varNameOne" : STR, default='%d'),
-    	Optional("varNameTwo" : STR, default='%d'),
+    	Optional("varNameOne" : STR, default=''),
+    	Optional("varNameTwo" : STR, default=''),
 
         Optional("inferPrimal" : BOOLEAN, default=false),
         Optional("inferDual" : BOOLEAN, default=false),
