@@ -1,4 +1,4 @@
-strict graph {
+strict graph "primal graph" {
 	graph [fontsize=20]
 	node [fontcolor=black penwidth=2.2]
 	v_1 -- v_4

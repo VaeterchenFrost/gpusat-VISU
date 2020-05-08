@@ -1,5 +1,5 @@
-strict digraph structs {
-	graph [rankdir=BT title=TreeDec]
+strict digraph "Tree-Decomposition" {
+	graph [rankdir=BT]
 	node [fillcolor=white margin="0.11,0.01" shape=box style="rounded,filled"]
 	"bag 1" [label=<<TABLE BORDER="0" CELLBORDER="0" CELLSPACING="0">
                   <TR><TD BGCOLOR="white">bag 1</TD></TR><TR><TD PORT="anchor"></TD></TR><TR><TD>[1, 4, 7]</TD></TR><TR><TD>dtime=0.0009s</TD></TR><TR><TD>04/08/20 14:36:32</TD></TR></TABLE>>]

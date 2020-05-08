@@ -1,4 +1,4 @@
-strict graph {
+strict graph "incidence graph" {
 	graph [compound=true fontsize=16 nodesep=0.5 ranksep=0.2 splines=false]
 	edge [arrowtail=none dir=back penwidth=2.2]
 	subgraph cluster_clause {

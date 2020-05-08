@@ -326,8 +326,7 @@ class Visualization:
             - normally Bottom-Top or Top-Bottom.
         """
         self.tree_dec_digraph = Digraph(
-            'structs',
-            strict=True,
+            'Tree-Decomposition', strict=True,
             graph_attr={'rankdir': rankdir},
             node_attr={
                 'shape': shape,
@@ -532,7 +531,7 @@ class Visualization:
         do_sort_nodes = True  # sort nodes on the circle?
         vartag_n = self.var_two_name + '%d'
 
-        g_primal = Graph(strict=True,
+        g_primal = Graph('primal graph', strict=True,
                          engine='circo',
                          graph_attr={'fontsize': fontsize},
                          node_attr={'fontcolor': fontcolor,
@@ -642,7 +641,7 @@ class Visualization:
         clausetag_n = self.var_one_name + '%d'
         vartag_n = self.var_two_name + '%d'
 
-        g_incid = Graph(strict=True,
+        g_incid = Graph('incidence graph', strict=True,
                         graph_attr={'splines': 'false', 'ranksep': '0.2',
                                     'nodesep': str(column_distance), 'fontsize': str(int(fontsize)),
                                     'compound': 'true'},
