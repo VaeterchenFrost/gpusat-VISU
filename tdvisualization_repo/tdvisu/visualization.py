@@ -610,11 +610,12 @@ class Visualization:
             num_vars,
             colors,
             view=False,
-            fontsize='16',
-            penwidth='2.2',
+            fontsize=16,
+            penwidth=2.2,
             basefill='white',
             sndshape='diamond',
-            neg_tail='odot') -> None:
+            neg_tail='odot',
+            column_distance=0.5) -> None:
         """
         Creates the incidence graph emphasized for the given timeline.
 
@@ -643,9 +644,9 @@ class Visualization:
 
         g_incid = Graph(strict=True,
                         graph_attr={'splines': 'false', 'ranksep': '0.2',
-                                    'nodesep': '0.5', 'fontsize': fontsize,
+                                    'nodesep': str(column_distance), 'fontsize': str(int(fontsize)),
                                     'compound': 'true'},
-                        edge_attr={'penwidth': penwidth, 'dir': 'back',
+                        edge_attr={'penwidth': str(penwidth), 'dir': 'back',
                                    'arrowtail': 'none'})
 
         with g_incid.subgraph(name='cluster_clause',
@@ -671,9 +672,7 @@ class Visualization:
                                                    len(colors)])
 
         g_incid.attr('edge', constraint="false")
-        # invis distance between clusters: minlen
-        # g_incid.edge(clausetag_n % 1, vartag_n % 1, ltail='cluster_clause',
-        #              lhead='cluster_ivar', minlen='3', style='invis')
+
         for clause in self.incidence_edges:
             for var in clause[1]:
                 if var >= 0:
@@ -794,7 +793,7 @@ if __name__ == "__main__":
                         default=stdin)
 
     PARSER.add_argument('outfolder')
-    PARSER.add_argument('loglevel', default='NOTSET')
+    PARSER.add_argument('--loglevel', default='WARNING')
 
     ARGS = PARSER.parse_args()                      # get cmd-arguments
     main(ARGS)                                      # call main()
