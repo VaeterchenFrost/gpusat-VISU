@@ -5,7 +5,7 @@ Created on Mon Jan 27 12:31:12 2020
 @author: Martin Röbke
 """
 
-from setuptools import setup, find_packages
+from setuptools import setup
 
 setup(name="tdvisu",
       version="0.3",
@@ -13,4 +13,8 @@ setup(name="tdvisu",
       url="https://github.com/VaeterchenFrost/gpusat-VISU",
       author="Martin Röbke",
       author_email="Martin.Roebke@mailbox.tu-dresden.de",
-      packages=find_packages())
+      packages=['tdvisu'],
+      install_requires=[
+          'pygraphviz','psycopg2','python-benedict'
+      ],
+      zip_safe=False)
