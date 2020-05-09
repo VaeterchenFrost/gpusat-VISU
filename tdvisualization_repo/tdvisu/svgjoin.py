@@ -26,7 +26,7 @@ def main():
         result.to_xml(output=file)
 
 
-def append_svg(first_dict: dict, snd_dict: dict, centerpad: float = 0) -> dict:
+def append_svg(first_dict: dict, snd_dict: dict, centerpad: float = 0., v_baseline:float=1.) -> dict:
     """
     Modifies the first of two xml-svg dictionary containing a viewbox to
     append the second svg to the right of the first image.
@@ -49,7 +49,11 @@ def append_svg(first_dict: dict, snd_dict: dict, centerpad: float = 0) -> dict:
         Dictionary with key 'svg' including one 'g' element and a '@viewBox' attribute.
     centerpad : float, optional
         Additional padding in units between the two images. The default is 0.
-
+    v_baseline : float, optional
+        Vertical baseline for the second image relative to the size of the first.
+        The baseline adjusts the relative height (0->bottom, 1->top) and could
+        even be negative or greater than one.
+        
     Returns
     -------
     dict
