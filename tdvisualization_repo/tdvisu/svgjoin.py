@@ -11,15 +11,16 @@ from benedict import benedict
 
 
 def main():
-    with open('TDStep1.svg') as file:
+    with open('test/TDStep1.svg') as file:
         tdstep = benedict.from_xml(file.read())
-    with open('PrimalGraphStep1.svg') as file:
+    with open('test/PrimalGraphStep1.svg') as file:
         primal = benedict.from_xml(file.read())
-    with open('IncidenceGraphStep1.svg') as file:
+    with open('test/IncidenceGraphStep1.svg') as file:
         incid = benedict.from_xml(file.read())
 
-    result = append_svg(tdstep, incid)
-    result = append_svg(result, primal)
+    padding = 40
+    result = append_svg(tdstep, incid, padding)
+    result = append_svg(result, primal, padding)
     result['svg']['@preserveAspectRatio'] = "xMinYMin"
     with open("benedict.svg", "w") as file:
         result.to_xml(output=file)
@@ -56,6 +57,7 @@ def append_svg(first_dict: dict, snd_dict: dict, centerpad: float = 0) -> dict:
 
     """
 
+    # indices
     WIDTH = 2
     HEIGHT = 3
     first_svg = first_dict['svg']
@@ -65,14 +67,11 @@ def append_svg(first_dict: dict, snd_dict: dict, centerpad: float = 0) -> dict:
     pattern = re.compile(r'\s*,\s*|\s+')
     viewbox1 = re.split(pattern, first_svg['@viewBox'])
     viewbox2 = re.split(pattern, second_svg['@viewBox'])
-
+    displacement = float(viewbox1[WIDTH]) + centerpad
     # adjust viewbox of first svg
     viewbox1[WIDTH] = str(
-        float(
-            viewbox1[WIDTH]) +
-        float(
-            viewbox2[WIDTH]) +
-        centerpad)
+        displacement + float(viewbox2[WIDTH]))
+
     viewbox1[HEIGHT] = str(
         max(float(viewbox1[HEIGHT]), float(viewbox2[HEIGHT])))
 
@@ -84,7 +83,7 @@ def append_svg(first_dict: dict, snd_dict: dict, centerpad: float = 0) -> dict:
     transform = second_svg['g'].get('@transform', '')
     if transform:
         transform += ' '
-    transform += 'translate(%f)' % (float(viewbox1[WIDTH]) + centerpad)
+    transform += 'translate(%f)' % (displacement)
     second_svg['g']['@transform'] = transform
     # add group to list of 'g'
     if isinstance(first_svg['g'], list):
