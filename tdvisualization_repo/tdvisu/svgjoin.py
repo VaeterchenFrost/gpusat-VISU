@@ -1,30 +1,13 @@
 # -*- coding: utf-8 -*-
-"""
-Load and manipulate svg images. Could also be streamed as string.
-Created on 2020-04-29 13:15:38
-
-@author: Martin Röbke
-"""
+"""Load and manipulate svg images. Could also be streamed as string."""
 
 import re
 from benedict import benedict
 
-
-def main():
-    with open('test/TDStep1.svg') as file:
-        tdstep = benedict.from_xml(file.read())
-    with open('test/PrimalGraphStep1.svg') as file:
-        primal = benedict.from_xml(file.read())
-    with open('test/IncidenceGraphStep1.svg') as file:
-        incid = benedict.from_xml(file.read())
-
-    padding = 40
-    result = append_svg(tdstep, incid, padding)
-    result = append_svg(result, primal, padding)
-    result['svg']['@preserveAspectRatio'] = "xMinYMin"
-    with open("benedict.svg", "w") as file:
-        result.to_xml(output=file)
-
+__author__ = "Martin Röbke <martin.roebke@tu-dresden.de>"
+__status__ = "development"
+__version__ = "0.1"
+__date__ = "29 April 2020"
 
 def append_svg(first_dict: dict, snd_dict: dict, centerpad: float = 0., v_baseline:float=1.) -> dict:
     """
@@ -98,5 +81,25 @@ def append_svg(first_dict: dict, snd_dict: dict, centerpad: float = 0., v_baseli
     return first_dict
 
 
+def new_height(h_one, h_two, v_baseline):
+    pass
+
+
+def main():
+    with open('test/TDStep1.svg') as file:
+        tdstep = benedict.from_xml(file.read())
+    with open('test/PrimalGraphStep1.svg') as file:
+        primal = benedict.from_xml(file.read())
+    with open('test/IncidenceGraphStep1.svg') as file:
+        incid = benedict.from_xml(file.read())
+
+    padding = 40
+    result = append_svg(tdstep, incid, padding)
+    result = append_svg(result, primal, padding)
+    result['svg']['@preserveAspectRatio'] = "xMinYMin"
+    with open("benedict.svg", "w") as file:
+        result.to_xml(output=file)
+        
+        
 if __name__ == "__main__":
     main()
