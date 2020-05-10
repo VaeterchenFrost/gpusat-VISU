@@ -15,6 +15,6 @@ setup(name="tdvisu",
       author_email="Martin.Roebke@mailbox.tu-dresden.de",
       packages=['tdvisu'],
       install_requires=[
-          'pygraphviz','psycopg2','python-benedict'
+          'graphviz','psycopg2','python-benedict'
       ],
       zip_safe=False)
