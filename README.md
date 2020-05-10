@@ -1,5 +1,5 @@
 # gpusat-VISU
-Visualization API for GPUSAT
+Visualization API for [dynamic programming](https://en.wikipedia.org/wiki/Dynamic_programming) on [tree decompositions](https://en.wikipedia.org/wiki/Tree_decomposition).
 
 # Using
 [Alubbock:Graphviz](https://anaconda.org/alubbock/graphviz) (or [Graphviz (>=2.38)](https://graphviz.gitlab.io/download/))
