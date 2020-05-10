@@ -3,13 +3,16 @@
 
 import re
 from benedict import benedict
+from typing import Tuple
 
 __author__ = "Martin Röbke <martin.roebke@tu-dresden.de>"
 __status__ = "development"
 __version__ = "0.1"
 __date__ = "29 April 2020"
 
-def append_svg(first_dict: dict, snd_dict: dict, centerpad: float = 0., v_baseline:float=1.) -> dict:
+
+def append_svg(first_dict: dict, snd_dict: dict,
+               centerpad: float = 0., v_baseline: float = 1.) -> dict:
     """
     Modifies the first of two xml-svg dictionary containing a viewbox to
     append the second svg to the right of the first image.
@@ -36,7 +39,7 @@ def append_svg(first_dict: dict, snd_dict: dict, centerpad: float = 0., v_baseli
         Vertical baseline for the second image relative to the size of the first.
         The baseline adjusts the relative height (0->bottom, 1->top) and could
         even be negative or greater than one.
-        
+
     Returns
     -------
     dict
@@ -54,13 +57,14 @@ def append_svg(first_dict: dict, snd_dict: dict, centerpad: float = 0., v_baseli
     pattern = re.compile(r'\s*,\s*|\s+')
     viewbox1 = re.split(pattern, first_svg['@viewBox'])
     viewbox2 = re.split(pattern, second_svg['@viewBox'])
-    displacement = float(viewbox1[WIDTH]) + centerpad
+    h_displacement = float(viewbox1[WIDTH]) + centerpad
     # adjust viewbox of first svg
     viewbox1[WIDTH] = str(
-        displacement + float(viewbox2[WIDTH]))
+        h_displacement + float(viewbox2[WIDTH]))
 
-    viewbox1[HEIGHT] = str(
-        max(float(viewbox1[HEIGHT]), float(viewbox2[HEIGHT])))
+    (v_displacement, combine_height) = new_height(
+        viewbox1[HEIGHT], viewbox2[HEIGHT], v_baseline)
+    viewbox1[HEIGHT] = str(combine_height)
 
     first_svg['@viewBox'] = ' '.join(viewbox1)
     # drop width,height
@@ -70,7 +74,7 @@ def append_svg(first_dict: dict, snd_dict: dict, centerpad: float = 0., v_baseli
     transform = second_svg['g'].get('@transform', '')
     if transform:
         transform += ' '
-    transform += 'translate(%f)' % (displacement)
+    transform += 'translate(%f)' % (h_displacement)
     second_svg['g']['@transform'] = transform
     # add group to list of 'g'
     if isinstance(first_svg['g'], list):
@@ -81,8 +85,14 @@ def append_svg(first_dict: dict, snd_dict: dict, centerpad: float = 0., v_baseli
     return first_dict
 
 
-def new_height(h_one, h_two, v_baseline):
-    pass
+def new_height(h_one_, h_two_, v_baseline: float) -> Tuple[float, float]:
+    # cast to float
+    h_one = float(h_one_)
+    h_two = float(h_two_)
+    # calc v_displacement
+    # calc combine_height
+
+    return (0, 0)
 
 
 def main():
@@ -99,7 +109,7 @@ def main():
     result['svg']['@preserveAspectRatio'] = "xMinYMin"
     with open("benedict.svg", "w") as file:
         result.to_xml(output=file)
-        
-        
+
+
 if __name__ == "__main__":
     main()
