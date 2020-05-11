@@ -6,6 +6,7 @@ Created on Mon Jan 27 12:31:12 2020
 """
 
 from setuptools import setup
+tests_require = ['unittest_expander']
 
 setup(name="tdvisu",
       version="0.3",
@@ -17,4 +18,5 @@ setup(name="tdvisu",
       install_requires=[
           'graphviz','psycopg2','python-benedict'
       ],
+      extras_require={'test': tests_require},
       zip_safe=False)
