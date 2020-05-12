@@ -2,6 +2,7 @@
 """Load and manipulate svg images. Could also be streamed as string."""
 
 import re
+import logging
 from benedict import benedict
 from typing import Tuple
 
@@ -10,9 +11,11 @@ __status__ = "development"
 __version__ = "0.1"
 __date__ = "29 April 2020"
 
+LOGGER = logging.getLogger(__name__)
+
 
 def append_svg(first_dict: dict, snd_dict: dict,
-               centerpad: float = 0., v_baseline: float = 1.) -> dict:
+               centerpad: float = 0., v_bottom=None, v_top=None) -> dict:
     """
     Modifies the first of two xml-svg dictionary containing a viewbox to
     append the second svg to the right of the first image.
@@ -63,7 +66,7 @@ def append_svg(first_dict: dict, snd_dict: dict,
         h_displacement + float(viewbox2[WIDTH]))
 
     (v_displacement, combine_height) = new_height(
-        viewbox1[HEIGHT], viewbox2[HEIGHT], v_baseline)
+        viewbox1[HEIGHT], viewbox2[HEIGHT], v_bottom, v_top)
     viewbox1[HEIGHT] = str(combine_height)
 
     first_svg['@viewBox'] = ' '.join(viewbox1)
@@ -74,7 +77,8 @@ def append_svg(first_dict: dict, snd_dict: dict,
     transform = second_svg['g'].get('@transform', '')
     if transform:
         transform += ' '
-    transform += 'translate(%f)' % (h_displacement)
+    # v_displacement goes top->bottom, so negative w.r.t. "height"
+    transform += 'translate(%f %f)' % (h_displacement, -v_displacement)
     second_svg['g']['@transform'] = transform
     # add group to list of 'g'
     if isinstance(first_svg['g'], list):
@@ -85,14 +89,78 @@ def append_svg(first_dict: dict, snd_dict: dict,
     return first_dict
 
 
-def new_height(h_one_, h_two_, v_baseline: float) -> Tuple[float, float]:
+def new_height(h_one_, h_two_, v_bottom=None,
+               v_top=None, scale2=None) -> Tuple[float, float]:
+    """
+    Calculate vertical position of second image.
+    The scale is in units from
+    0: bottom of first image
+    1: top of first image
+
+
+               ----------v_top
+    ---------1 |        |
+    |       |  |        |
+    | first |  | second |
+    |       |  |        |
+    ---------0 |        |
+               ----------v_bottom
+
+
+    Parameters
+    ----------
+    h_one_ : float-like
+        Height of the first image.
+    h_two_ : float-like
+        Height of the second image.
+    v_bottom : float or str, optional
+        DESCRIPTION. The default is None.
+    v_top : float or str, optional
+        DESCRIPTION. The default is None.
+    scale2: float, optional
+        Scale the second image. Only used if either v_bottom or v_top is None.
+
+    Returns
+    -------
+    Tuple[float, float]
+        v_displacement, combine_height.
+
+    """
     # cast to float
     h_one = float(h_one_)
     h_two = float(h_two_)
+    # normalize values
+    if v_bottom == 'bottom':
+        v_bottom = 0
+    elif v_bottom == 'center':
+        v_bottom = 0.5
+    elif v_bottom == 'top':
+        v_bottom = 1
+    elif v_bottom == -float('inf'):
+        v_bottom = 0
+    elif v_bottom == float('inf'):
+        v_bottom = 1
+    if v_top == 'bottom':
+        v_top = 0
+    elif v_top == 'center':
+        v_top = 0.5
+    elif v_top == 'top':
+        v_top = 1
+    elif v_top == -float('inf'):
+        v_top = 0
+    elif v_top == float('inf'):
+        v_top = 1   
+    # exceptions (special case None)
+    if v_top is not None and v_bottom == v_top:
+        LOGGER.warning("The values of 'v_top', 'v_bottom' are both interpreted "
+                       "as %f - skipping vertical adjustment!", v_top, exc_info=1)
+        v_bottom = v_top = None
     # calc v_displacement
+    if v_bottom is not None:
+        displacement = v_bottom * h_one
     # calc combine_height
 
-    return (0, 0)
+    return (0, max(h_one, h_two))
 
 
 def main():
@@ -106,9 +174,10 @@ def main():
     padding = 40
     result = append_svg(tdstep, incid, padding)
     result = append_svg(result, primal, padding)
+    # https://css-tricks.com/scale-svg/#article-header-id-1
     result['svg']['@preserveAspectRatio'] = "xMinYMin"
     with open("benedict.svg", "w") as file:
-        result.to_xml(output=file)
+        result.to_xml(output=file, pretty=True)
 
 
 if __name__ == "__main__":
