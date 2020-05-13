@@ -8,7 +8,7 @@ from typing import Tuple
 
 __author__ = "Martin Röbke <martin.roebke@tu-dresden.de>"
 __status__ = "development"
-__version__ = "0.1"
+__version__ = "0.2"
 __date__ = "29 April 2020"
 
 LOGGER = logging.getLogger(__name__)
@@ -65,7 +65,7 @@ def append_svg(first_dict: dict, snd_dict: dict,
     viewbox1[WIDTH] = str(
         h_displacement + float(viewbox2[WIDTH]))
 
-    (v_displacement, combine_height) = transform(
+    (v_displacement, combine_height, scale2) = f_transform(
         viewbox1[HEIGHT], viewbox2[HEIGHT], v_bottom, v_top)
     viewbox1[HEIGHT] = str(combine_height)
 
@@ -89,8 +89,8 @@ def append_svg(first_dict: dict, snd_dict: dict,
     return first_dict
 
 
-def transform(h_one_, h_two_, v_bottom=None,
-               v_top=None, scale2=None) -> Tuple[float, float]:
+def f_transform(h_one_, h_two_, v_bottom=None,
+                v_top=None, scale2=None) -> Tuple[float, float, float]:
     """
     Calculate vertical position of second image.
     The scale is in units from
@@ -122,10 +122,11 @@ def transform(h_one_, h_two_, v_bottom=None,
 
     Returns
     -------
-    Tuple[float, float]
-        v_displacement, combine_height.
+    Tuple[float, float, float]
+        v_displacement, combine_height, scale2.
 
     """
+    v_displacement, combine_height, scale2 = 0, None, 1
     # cast to float
     h_one = float(h_one_)
     h_two = float(h_two_)
@@ -135,10 +136,10 @@ def transform(h_one_, h_two_, v_bottom=None,
     v_bottom = conversion.get(v_bottom, v_bottom)
     v_top = conversion.get(v_top, v_top)
     # cases (special case None)
-    if None is v_top is v_bottom: # only scaling
+    if None is v_top is v_bottom:  # only scaling
         if scale2 is None:
-            return (0, max(h_one, h_two))
-        return (0, max(h_one, h_two * scale2))
+            combine_height = max(h_one, h_two)
+        combine_height = max(h_one, h_two * scale2)
 
     if v_top is not None and v_bottom == v_top:
         LOGGER.warning("The values of 'v_top', 'v_bottom' are both interpreted "
@@ -147,13 +148,14 @@ def transform(h_one_, h_two_, v_bottom=None,
 
     if v_bottom is not None:
         if v_top is not None:
-            if v_bottom>v_top: # swap
-                v_top,v_bottom = v_bottom,v_top
+            if v_bottom > v_top:  # swap
+                v_top, v_bottom = v_bottom, v_top
             # scaling
             scale2 = (v_top - v_bottom) * h_one / h_two
+            # height
+            combine_height = max(h_one, h_two * scale2)
 
-
-    return (0, max(h_one, h_two))
+    return (v_displacement, combine_height, scale2)
 
 
 def main():
