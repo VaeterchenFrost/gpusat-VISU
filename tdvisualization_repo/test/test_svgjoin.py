@@ -4,7 +4,7 @@
 import unittest
 from random import randint
 from unittest_expander import expand, foreach, param, paramseq
-from tdvisu.svgjoin import new_height
+from tdvisu.svgjoin import transform
 
 __author__ = "Martin Röbke <martin.roebke@tu-dresden.de>"
 __status__ = "development"
@@ -29,7 +29,7 @@ def rand_larger(number):
 
 @expand
 class TestNewHeight(unittest.TestCase):
-    """Test the new_height method in svgjoin"""
+    """Test the transform method in svgjoin"""
     # Sizes considered for image-dimensions
     test_parameters = [
         # no baseline
@@ -53,7 +53,7 @@ class TestNewHeight(unittest.TestCase):
     @foreach(test_parameters)
     def test_newheight(self, kargs, expected):
         if isinstance(kargs, dict):
-            self.assertEqual(new_height(**kargs), expected)
+            self.assertEqual(transform(**kargs), expected)
 
 
 class TestSvgJoin(unittest.TestCase):
@@ -63,6 +63,7 @@ class TestSvgJoin(unittest.TestCase):
 
 if __name__ == '__main__':
     import sys
+
     def run_tests(*test_case_classes):
         suite = unittest.TestSuite(
             unittest.TestLoader().loadTestsFromTestCase(cls)

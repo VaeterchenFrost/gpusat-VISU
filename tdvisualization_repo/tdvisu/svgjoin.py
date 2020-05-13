@@ -65,7 +65,7 @@ def append_svg(first_dict: dict, snd_dict: dict,
     viewbox1[WIDTH] = str(
         h_displacement + float(viewbox2[WIDTH]))
 
-    (v_displacement, combine_height) = new_height(
+    (v_displacement, combine_height) = transform(
         viewbox1[HEIGHT], viewbox2[HEIGHT], v_bottom, v_top)
     viewbox1[HEIGHT] = str(combine_height)
 
@@ -89,7 +89,7 @@ def append_svg(first_dict: dict, snd_dict: dict,
     return first_dict
 
 
-def new_height(h_one_, h_two_, v_bottom=None,
+def transform(h_one_, h_two_, v_bottom=None,
                v_top=None, scale2=None) -> Tuple[float, float]:
     """
     Calculate vertical position of second image.
@@ -130,35 +130,28 @@ def new_height(h_one_, h_two_, v_bottom=None,
     h_one = float(h_one_)
     h_two = float(h_two_)
     # normalize values
-    if v_bottom == 'bottom':
-        v_bottom = 0
-    elif v_bottom == 'center':
-        v_bottom = 0.5
-    elif v_bottom == 'top':
-        v_bottom = 1
-    elif v_bottom == -float('inf'):
-        v_bottom = 0
-    elif v_bottom == float('inf'):
-        v_bottom = 1
-    if v_top == 'bottom':
-        v_top = 0
-    elif v_top == 'center':
-        v_top = 0.5
-    elif v_top == 'top':
-        v_top = 1
-    elif v_top == -float('inf'):
-        v_top = 0
-    elif v_top == float('inf'):
-        v_top = 1   
-    # exceptions (special case None)
+    conversion = {'bottom': 0, 'center': 0.5, 'top': 1,
+                  -float('inf'): 0, float('inf'): 1}
+    v_bottom = conversion.get(v_bottom, v_bottom)
+    v_top = conversion.get(v_top, v_top)
+    # cases (special case None)
+    if None is v_top is v_bottom: # only scaling
+        if scale2 is None:
+            return (0, max(h_one, h_two))
+        return (0, max(h_one, h_two * scale2))
+
     if v_top is not None and v_bottom == v_top:
         LOGGER.warning("The values of 'v_top', 'v_bottom' are both interpreted "
                        "as %f - skipping vertical adjustment!", v_top, exc_info=1)
         v_bottom = v_top = None
-    # calc v_displacement
+
     if v_bottom is not None:
-        displacement = v_bottom * h_one
-    # calc combine_height
+        if v_top is not None:
+            if v_bottom>v_top: # swap
+                v_top,v_bottom = v_bottom,v_top
+            # scaling
+            scale2 = (v_top - v_bottom) * h_one / h_two
+
 
     return (0, max(h_one, h_two))
 
