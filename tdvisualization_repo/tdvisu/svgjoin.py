@@ -96,6 +96,7 @@ def f_transform(h_one_, h_two_, v_bottom=None,
     The scale is in units from
     0: bottom of first image
     1: top of first image
+    v_displacement is the difference of both baselines (bottom).
 
 
                ----------v_top
@@ -126,7 +127,9 @@ def f_transform(h_one_, h_two_, v_bottom=None,
         v_displacement, combine_height, scale2.
 
     """
-    v_displacement, combine_height, scale2 = 0, None, 1
+    if scale2 is None:
+        scale2 = 1
+    v_displacement = 0
     # cast to float
     h_one = float(h_one_)
     h_two = float(h_two_)
@@ -136,11 +139,8 @@ def f_transform(h_one_, h_two_, v_bottom=None,
     v_bottom = conversion.get(v_bottom, v_bottom)
     v_top = conversion.get(v_top, v_top)
     # cases (special case None)
-    if None is v_top is v_bottom:  # only scaling
-        if scale2 is None:
-            combine_height = max(h_one, h_two)
-        combine_height = max(h_one, h_two * scale2)
 
+    # same value
     if v_top is not None and v_bottom == v_top:
         LOGGER.warning("The values of 'v_top', 'v_bottom' are both interpreted "
                        "as %f - skipping vertical adjustment!", v_top, exc_info=1)
@@ -153,7 +153,14 @@ def f_transform(h_one_, h_two_, v_bottom=None,
             # scaling
             scale2 = (v_top - v_bottom) * h_one / h_two
             # height
-            combine_height = max(h_one, h_two * scale2)
+        v_displacement = v_bottom * h_one
+    elif v_top is not None:  # v_bottom now None
+        size2 = h_two * scale2
+        v_displacement = h_one * v_top - size2
+
+    size2 = h_two * scale2
+    combine_height = (max(h_one, v_displacement + size2) -
+                      min(0, v_displacement))
 
     return (v_displacement, combine_height, scale2)
 
