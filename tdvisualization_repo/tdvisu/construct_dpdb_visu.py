@@ -232,18 +232,18 @@ class DpdbSharpSatVisu(IDpdbVisuConstruct):
 
     def read_num_vars(self) -> int:
         """
-        Select the number of "variables" in the graph.
+        Select the number of "vertices" in the graph.
 
         Returns
         -------
         int
-            Number of "variables" in the graph.
+            Number of "vertices" in the graph.
 
         """
         with self.connection.cursor() as cur:  # create a cursor
             cur.execute(
-                "SELECT num_vars FROM "
-                "public.problem_sharpsat WHERE id=%s", (self.problem,))
+                "SELECT num_vertices FROM "
+                "public.problem WHERE id=%s", (self.problem,))
             self.num_vars = cur.fetchone()[0]
             assert isinstance(self.num_vars,int)
             return self.num_vars
@@ -373,6 +373,7 @@ class DpdbSharpSatVisu(IDpdbVisuConstruct):
             return timeline
 
     def read_edgearray(self):
+        """Read from _td_edge the edges between bags."""
         with self.connection.cursor() as cur:  # create a cursor
             cur.execute(
                 "SELECT node,parent FROM public.p{}_td_edge".format(
@@ -384,7 +385,35 @@ class DpdbSharpSatVisu(IDpdbVisuConstruct):
 class DpdbMinVcVisu(DpdbSharpSatVisu):
     """TODO
     """
-    pass
+    def read_clauses(self):
+        raise NotImplementedError(self.__class__.__name__+" can not read_clauses!")
+        
+    def construct(self):
+        """
+
+        Construct the Json calling several helper methods.
+
+        Returns
+        -------
+        dict
+            The Json for the visualization-API.
+
+        """
+        # create tree_dec_json
+        labeldict = self.read_labeldict()
+        edgearray = self.read_edgearray()
+        tree_dec_json = {
+            "bagpre": "bag %s",
+            "edgearray": edgearray,
+            "labeldict": labeldict,
+            "numVars": self.read_num_vars()}
+
+        timeline = self.read_timeline(edgearray)
+        return {"incidenceGraph": False,
+                "generalGraph": general_graph,
+                "tdTimeline": timeline,
+                "treeDecJson": tree_dec_json}
+        
 
 
 def connect() -> pg.extensions.connection:
