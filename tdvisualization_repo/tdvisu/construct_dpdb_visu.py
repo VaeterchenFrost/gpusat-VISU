@@ -244,7 +244,8 @@ class DpdbSharpSatVisu(IDpdbVisuConstruct):
             cur.execute(
                 "SELECT num_vars FROM "
                 "public.problem_sharpsat WHERE id=%s", (self.problem,))
-            self.num_vars = cur.fetchone()
+            self.num_vars = cur.fetchone()[0]
+            assert isinstance(self.num_vars,int)
             return self.num_vars
 
     def read_clauses(self) -> list:
@@ -439,10 +440,11 @@ def create_json(problem: int) -> Optional[dict]:
 
 
 if __name__ == "__main__":
+    # Logging:
     LOGGER.setLevel(logging.DEBUG)
 
-    RESULTJSON = create_json(problem=24)
-    with open('dbjson.json', 'w') as outfile:
+    RESULTJSON = create_json(problem=10)
+    with open('dbjson%d.json'%10, 'w') as outfile:
         json.dump(RESULTJSON, outfile, sort_keys=True, indent=2,
                   ensure_ascii=False)
         LOGGER.info("Wrote to %s", outfile)
