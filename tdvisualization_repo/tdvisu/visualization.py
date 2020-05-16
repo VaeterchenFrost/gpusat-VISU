@@ -43,8 +43,7 @@ __date__ = "12 March 2020"
 logging.basicConfig(
     format="%(asctime)s,%(msecs)d %(levelname)s"
     "[%(filename)s:%(lineno)d] %(message)s",
-    datefmt='%Y-%m-%d:%H:%M:%S',
-    level=logging.WARNING)
+    datefmt='%Y-%m-%d:%H:%M:%S')
 
 LOGGER = logging.getLogger(__name__)
 
@@ -462,7 +461,7 @@ class Visualization:
         self.forward_iterate_tdg()
         self.backwards_iterate_tdg(view=view)
 
-        # Prepare incidence graph timeline
+        # Prepare supporting graph timeline
 
         _timeline = []
         for step in self.timeline:
@@ -783,16 +782,20 @@ if __name__ == "__main__":
             WARNING:  30
             INFO:     20
             DEBUG:    10
-            NOTSET:    0
-            """)
+            NOTSET:    0 (will traverse the logging hierarchy until a value is found)
+            """,
+        formatter_class=argparse.RawDescriptionHelpFormatter)
 
     # possible to use stdin for the file.
     PARSER.add_argument('infile', nargs='?',
                         type=argparse.FileType('r', encoding='UTF-8'),
-                        default=stdin)
-
-    PARSER.add_argument('outfolder')
+                        default=stdin,
+                        help="Input file for the visualization. "
+                        "Must be a Json fulfilling the 'JsonAPI_v1.1.md'")
+    PARSER.add_argument('outfolder',
+                        help="Folder to output the visualization results.")
     PARSER.add_argument('--loglevel', default='WARNING')
-
-    ARGS = PARSER.parse_args()                      # get cmd-arguments
-    main(ARGS)                                      # call main()
+    # get cmd-arguments
+    ARGS = PARSER.parse_args()                      
+    # call main()
+    main(ARGS)                                      
