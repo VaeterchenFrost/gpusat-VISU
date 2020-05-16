@@ -329,7 +329,7 @@ class DpdbSharpSatVisu(IDpdbVisuConstruct):
             timeline = list()
             adj = convert_to_adj(edgearray)
             cur.execute(
-                "SELECT node FROM public.p{}_td_node_status".format(
+                "SELECT node FROM public.p{}_td_node_status ORDER BY start_time".format(
                     self.problem))
             order_solved = list(flatten(cur.fetchall()))
             # tour sol -> through result nodes along the edges
@@ -383,7 +383,8 @@ class DpdbSharpSatVisu(IDpdbVisuConstruct):
 
 
 class DpdbMinVcVisu(DpdbSharpSatVisu):
-    """TODO
+    """Implementation of the JSON-Construction for the MinVC problem.
+    Borrowing several methods from DpdbSharpSatVisu.
     """
     def read_clauses(self):
         raise NotImplementedError(self.__class__.__name__+" can not read_clauses!")
@@ -410,7 +411,7 @@ class DpdbMinVcVisu(DpdbSharpSatVisu):
 
         timeline = self.read_timeline(edgearray)
         return {"incidenceGraph": False,
-                "generalGraph": general_graph,
+                "generalGraph": False,
                 "tdTimeline": timeline,
                 "treeDecJson": tree_dec_json}
         
@@ -471,9 +472,10 @@ def create_json(problem: int) -> Optional[dict]:
 if __name__ == "__main__":
     # Logging:
     LOGGER.setLevel(logging.DEBUG)
-
-    RESULTJSON = create_json(problem=10)
-    with open('dbjson%d.json'%10, 'w') as outfile:
-        json.dump(RESULTJSON, outfile, sort_keys=True, indent=2,
+    p=24
+    pretty=False
+    RESULTJSON = create_json(problem=p)
+    with open('dbjson%d.json'%p, 'w') as outfile:
+        json.dump(RESULTJSON, outfile, sort_keys=True, indent=2 if pretty else None,
                   ensure_ascii=False)
         LOGGER.info("Wrote to %s", outfile)
