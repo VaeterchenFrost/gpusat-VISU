@@ -145,7 +145,9 @@ class IDpdbVisuConstruct(metaclass=abc.ABCMeta):
     """
     @classmethod
     def __subclasshook__(cls, subclass):
-        return (hasattr(subclass, 'read_labeldict') and
+        return (hasattr(subclass, 'construct') and
+                callable(subclass.construct) and
+                hasattr(subclass, 'read_labeldict') and
                 callable(subclass.read_labeldict) and
                 hasattr(subclass, 'read_timeline') and
                 callable(subclass.read_timeline) and
@@ -194,6 +196,56 @@ class DpdbSharpSatVisu(IDpdbVisuConstruct):
             status = db.get_transaction_status()
 
         self.connection = db
+
+    def construct(self) -> dict:
+        """
+        Construct the Json calling several helper methods.
+
+        Returns
+        -------
+        dict
+            The Json for the visualization-API.
+
+        """
+        clauses_edges = self.read_clauses()
+        incidence_graph = {
+            "varNameOne": "c_",
+            "varNameTwo": "v_",
+            "inferPrimal": True,
+            "edges": clauses_edges}
+
+        # create tree_dec_json
+        labeldict = self.read_labeldict()
+        edgearray = self.read_edgearray()
+        tree_dec_json = {
+            "bagpre": "bag %s",
+            "edgearray": edgearray,
+            "labeldict": labeldict,
+            "numVars": self.read_num_vars()}
+
+        timeline = self.read_timeline(edgearray)
+
+        return {"incidenceGraph": incidence_graph,
+                "generalGraph": False,
+                "tdTimeline": timeline,
+                "treeDecJson": tree_dec_json}
+
+    def read_num_vars(self) -> int:
+        """
+        Select the number of "variables" in the graph.
+
+        Returns
+        -------
+        int
+            Number of "variables" in the graph.
+
+        """
+        with self.connection.cursor() as cur:  # create a cursor
+            cur.execute(
+                "SELECT num_vars FROM "
+                "public.problem_sharpsat WHERE id=%s", (self.problem,))
+            self.num_vars = cur.fetchone()
+            return self.num_vars
 
     def read_clauses(self) -> list:
         """Return the clauses used for satiyfiability.
@@ -317,7 +369,6 @@ class DpdbSharpSatVisu(IDpdbVisuConstruct):
                              True]]
                 timeline.append(solution)
                 last = bag
-
             return timeline
 
     def read_edgearray(self):
@@ -336,47 +387,25 @@ class DpdbMinVcVisu(DpdbSharpSatVisu):
 
 
 def connect() -> pg.extensions.connection:
-    """Connect to the PostgreSQL database server using the params from config
-    """
+    """Connect to the PostgreSQL database server using the params from config"""
+
     conn = None
     try:
         # read connection parameters
         params = config()
         db_name = params["database"]
-
         LOGGER.info("Connecting to the PostgreSQL database '%s'...", db_name)
         conn = pg.connect(**params)
-
         with conn.cursor() as cur:  # create a cursor
-
             # display the PostgreSQL database server version
             LOGGER.info('PostgreSQL database version:')
             cur.execute('SELECT version()')
-
             db_version = cur.fetchone()
             LOGGER.info(db_version)
-
     except (Exception, pg.DatabaseError) as error:
         LOGGER.error(error)
         raise error
     return conn
-
-
-def read_problem(problem: int, connection: pg.extensions.connection) -> tuple:
-    """TODO
-    """
-    with connection.cursor() as cur:  # create a cursor
-        cur.execute(
-            "SELECT num_vars,num_clauses,model_count FROM "
-            "public.problem_sharpsat WHERE id=%s", (problem,))
-        num_vars, num_clauses, model_count = cur.fetchone()
-        cur.execute("SELECT name,type,num_bags,tree_width,num_vertices,"
-                    "setup_start_time,calc_start_time,end_time FROM "
-                    "public.problem WHERE id=%s", (problem,))
-        (name, ptype, num_bags, tree_width, num_vertices,
-         setup_start_time, calc_start_time, end_time) = cur.fetchone()
-        return (num_vars, num_clauses, model_count, ptype, num_bags)
-    raise pg.DatabaseError("Could not get a cursor for read_problem.")
 
 
 def create_json(problem: int) -> Optional[dict]:
@@ -387,36 +416,21 @@ def create_json(problem: int) -> Optional[dict]:
     try:
         with connect() as connection:
             # get type of problem
-            (num_vars, num_clauses, model_count, ptype,
-             num_bags) = read_problem(problem, connection)
+            with connection.cursor() as cur:
+                cur.execute("SELECT name,type,num_bags FROM "
+                            "public.problem WHERE id=%s", (problem,))
+                (name, ptype, num_bags) = cur.fetchone()
+
             # select the valid constructor for the problem
             constructor: IDpdbVisuConstruct
 
             if ptype == "SharpSat":
                 constructor = DpdbSharpSatVisu(connection, problem)
 
-                clauses_edges = constructor.read_clauses()
-                incidence_graph = {
-                    "varNameOne": "c_",
-                    "varNameTwo": "v_",
-                    "inferPrimal": True,
-                    "edges": clauses_edges}
+            elif ptype == "VertexCover":
+                constructor = DpdbMinVcVisu(connection, problem)
 
-                # create tree_dec_json
-                labeldict = constructor.read_labeldict()
-                edgearray = constructor.read_edgearray()
-                tree_dec_json = {
-                    "bagpre": "bag %s",
-                    "edgearray": edgearray,
-                    "labeldict": labeldict,
-                    "numVars": num_vars}
-
-                timeline = constructor.read_timeline(edgearray)
-
-                return {"incidenceGraph": incidence_graph,
-                        "generalGraph": False,
-                        "tdTimeline": timeline,
-                        "treeDecJson": tree_dec_json}
+            return constructor.construct()
 
     except (Exception, pg.DatabaseError) as error:
         LOGGER.error(error)
@@ -427,7 +441,7 @@ def create_json(problem: int) -> Optional[dict]:
 if __name__ == "__main__":
     LOGGER.setLevel(logging.DEBUG)
 
-    RESULTJSON = create_json(problem=10)
+    RESULTJSON = create_json(problem=24)
     with open('dbjson.json', 'w') as outfile:
         json.dump(RESULTJSON, outfile, sort_keys=True, indent=2,
                   ensure_ascii=False)
