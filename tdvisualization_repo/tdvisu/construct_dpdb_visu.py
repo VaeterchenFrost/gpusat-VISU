@@ -245,7 +245,7 @@ class DpdbSharpSatVisu(IDpdbVisuConstruct):
                 "SELECT num_vertices FROM "
                 "public.problem WHERE id=%s", (self.problem,))
             self.num_vars = cur.fetchone()[0]
-            assert isinstance(self.num_vars,int)
+            assert isinstance(self.num_vars, int)
             return self.num_vars
 
     def read_clauses(self) -> list:
@@ -384,11 +384,14 @@ class DpdbSharpSatVisu(IDpdbVisuConstruct):
 
 class DpdbMinVcVisu(DpdbSharpSatVisu):
     """Implementation of the JSON-Construction for the MinVC problem.
-    Borrowing several methods from DpdbSharpSatVisu.
+    Borrowing methods from DpdbSharpSatVisu.
     """
+
     def read_clauses(self):
-        raise NotImplementedError(self.__class__.__name__+" can not read_clauses!")
-        
+        raise NotImplementedError(
+            self.__class__.__name__ +
+            " can not read_clauses!")
+
     def construct(self):
         """
 
@@ -414,7 +417,6 @@ class DpdbMinVcVisu(DpdbSharpSatVisu):
                 "generalGraph": False,
                 "tdTimeline": timeline,
                 "treeDecJson": tree_dec_json}
-        
 
 
 def connect() -> pg.extensions.connection:
@@ -472,10 +474,11 @@ def create_json(problem: int) -> Optional[dict]:
 if __name__ == "__main__":
     # Logging:
     LOGGER.setLevel(logging.DEBUG)
-    p=24
-    pretty=False
+    p = 24
+    pretty = False
+
     RESULTJSON = create_json(problem=p)
-    with open('dbjson%d.json'%p, 'w') as outfile:
+    with open('dbjson%d.json' % p, 'w') as outfile:
         json.dump(RESULTJSON, outfile, sort_keys=True, indent=2 if pretty else None,
                   ensure_ascii=False)
         LOGGER.info("Wrote to %s", outfile)
