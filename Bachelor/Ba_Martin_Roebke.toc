@@ -1,6 +1,8 @@
 \contentsline {section}{\numberline {1}Introduction}{4}{section.1}%
-\contentsline {section}{\numberline {2}Theory}{5}{section.2}%
-\contentsline {section}{\numberline {3}My Visualization Project}{6}{section.3}%
-\contentsline {section}{\numberline {4}Implementation in GPUSAT}{7}{section.4}%
-\contentsline {section}{\numberline {5}Implementation in dpdb}{8}{section.5}%
-\contentsline {section}{\numberline {6}Summary}{9}{section.6}%
+\contentsline {section}{\numberline {2}Background}{5}{section.2}%
+\contentsline {section}{\numberline {3}Konzept}{6}{section.3}%
+\contentsline {section}{\numberline {4}My Visualization Project}{7}{section.4}%
+\contentsline {subsection}{\numberline {4.1}Integration in GPUSAT}{8}{subsection.4.1}%
+\contentsline {subsection}{\numberline {4.2}Integration in dpdb}{9}{subsection.4.2}%
+\contentsline {section}{\numberline {5}Application and Images}{10}{section.5}%
+\contentsline {section}{\numberline {6}Summary and Outline}{11}{section.6}%
