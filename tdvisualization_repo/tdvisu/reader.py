@@ -70,18 +70,22 @@ class DimacsReader(Reader):
         sys.exit(1)
 
 
-def _add_directed_edge(edges, adjacency_list, vertex1, vertex2):
+def _add_edge_to(edges, adjacency_list, vertex1, vertex2):
     if vertex1 in adjacency_list:
-        adjacency_list[vertex1].append(vertex2)
+        adjacency_list[vertex1].add(vertex2)
     else:
-        adjacency_list[vertex1] = [vertex2]
-    edges.append((vertex1, vertex2))
+        adjacency_list[vertex1] = {vertex2}
+    if vertex2 in adjacency_list:
+        adjacency_list[vertex2].add(vertex1)
+    else:
+        adjacency_list[vertex2] = {vertex1}
+    edges.add((vertex1, vertex2))
 
 
 class TwReader(DimacsReader):
     def __init__(self):
         super().__init__()
-        self.edges = []
+        self.edges = set()
         self.adjacency_list = {}
 
     def store_problem_vars(self):
@@ -106,18 +110,9 @@ class TwReader(DimacsReader):
             vertex1 = int(line[0])
             vertex2 = int(line[1])
 
-            _add_directed_edge(
-                self.edges,
-                self.adjacency_list,
-                vertex1,
-                vertex2)
-            _add_directed_edge(
-                self.edges,
-                self.adjacency_list,
-                vertex2,
-                vertex1)
+            _add_edge_to(self.edges, self.adjacency_list, vertex1, vertex2)
 
-        if len(self.edges) != self.num_edges * 2:
+        if len(self.edges) != self.num_edges:
             logger.warning(
-                "Effective number of edges mismatch preamble (%d vs %d)", len(
-                    self.edges) / 2, self.num_edges)
+                "Number of edges mismatch preamble (%d vs %d)", len(
+                    self.edges), self.num_edges)
