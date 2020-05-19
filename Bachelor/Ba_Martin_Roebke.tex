@@ -5,10 +5,11 @@
 \usepackage{url}
 \usepackage{bm} % bold math
 \usepackage{nccmath} % medium fraction with mfrac 
-\usepackage{amsmath}
+\usepackage{amssymb}
 \usepackage{graphicx}
 \usepackage{amsthm} % theorems
 \usepackage{hyperref}
+\usepackage{float}
 
 \newtheorem{theorem}{Theorem}[section]
 \begin{document}
@@ -76,6 +77,25 @@ Stand Umsetzung, Tools
 \newpage
 \section{Background}
 Siehe Vortrag
+\begin{quotation}
+	Every graph property definable in monadic second-order logic (MSO) is decidable in linear time on graphs of bounded treewidth.\\
+	{\small Courcelle, Bruno (1990)}\footnote{Courcelle, Bruno "The monadic second-order logic of graphs. I. Recognizable sets of finite graphs",\\ Information and Computation, 85 (1990) no. 1: 12-75}
+\end{quotation}
+
+For all $k \in \mathbb{N}$ and MSO-sentences F is the decision problem for a given graph G, whether $G \models F$ is true, in time $2^{p(tw(G))} \cdot |G|$ with a polynom p decidable.
+\begin{itemize}
+	
+	\item \emph{drawback:} still expensive ($2^{p(tw G)}$, $2^{2^{(\#Q)}}$, large constants) \smallskip 
+
+\end{itemize}
+
+The workflow then looks like we see in figure~\ref{fig:UsageCourcelle}.
+
+\begin{figure}[H]
+	\includegraphics[height=0.2\textheight]{images/UsageCourcelle.gv.png}
+	\caption{Implementation of the theorem}
+	\label{fig:UsageCourcelle}
+\end{figure}
 \newpage
 \section{Concept}
 What I do and why I did it
