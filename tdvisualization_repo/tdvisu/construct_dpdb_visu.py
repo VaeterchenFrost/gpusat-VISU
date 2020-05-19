@@ -43,6 +43,7 @@ import psycopg2 as pg
 
 from dijkstra import bidirectional_dijkstra as find_path
 from dijkstra import convert_to_adj
+from reader import TwReader
 
 
 __author__ = "Martin Röbke <martin.roebke@tu-dresden.de>"
@@ -387,10 +388,28 @@ class DpdbMinVcVisu(DpdbSharpSatVisu):
     Borrowing methods from DpdbSharpSatVisu.
     """
 
+    def __init__(self, db, problem, tw_file=None):
+        super().__init__(db, problem)
+        self.tw_file = tw_file
+
     def read_clauses(self):
         raise NotImplementedError(
             self.__class__.__name__ +
             " can not read_clauses!")
+
+    def read_twfile(self):
+        """
+        Use TwReader.from_file to read the edges for the generalGraph.
+
+        Returns
+        -------
+        List
+            The edges as an list of pairs of vertices.
+
+        """
+        reader = TwReader.from_file(self.tw_file)
+        # create list so that it is JSON serializable
+        return list(reader.edges)
 
     def construct(self):
         """
@@ -412,9 +431,11 @@ class DpdbMinVcVisu(DpdbSharpSatVisu):
             "labeldict": labeldict,
             "numVars": self.read_num_vars()}
 
+        generalGraph = {"edges": self.read_twfile()} if self.tw_file else False
+
         timeline = self.read_timeline(edgearray)
         return {"incidenceGraph": False,
-                "generalGraph": False,
+                "generalGraph": generalGraph,
                 "tdTimeline": timeline,
                 "treeDecJson": tree_dec_json}
 
@@ -441,10 +462,13 @@ def connect() -> pg.extensions.connection:
     return conn
 
 
-def create_json(problem: int) -> Optional[dict]:
+def create_json(problem: int, tw_file=None) -> Optional[dict]:
     """Create the JSON for the specified Problem instance."""
 
-    LOGGER.info("creating JSON for problem %s.", problem)
+    LOGGER.info(
+        "creating JSON for problem %s, tw_file '%s'.",
+        problem,
+        tw_file)
 
     try:
         with connect() as connection:
@@ -461,7 +485,7 @@ def create_json(problem: int) -> Optional[dict]:
                 constructor = DpdbSharpSatVisu(connection, problem)
 
             elif ptype == "VertexCover":
-                constructor = DpdbMinVcVisu(connection, problem)
+                constructor = DpdbMinVcVisu(connection, problem, tw_file)
 
             return constructor.construct()
 
@@ -473,11 +497,12 @@ def create_json(problem: int) -> Optional[dict]:
 
 if __name__ == "__main__":
     # Logging:
-    LOGGER.setLevel(logging.DEBUG)
+    LOGGER.setLevel(logging.INFO)
     p = 24
-    pretty = False
+    tw_file_ = r'C:\Users\Martin\Documents\GitHub\dp_on_dbs\gr5.td'
+    pretty = True
 
-    RESULTJSON = create_json(problem=p)
+    RESULTJSON = create_json(problem=p, tw_file=tw_file_)
     with open('dbjson%d.json' % p, 'w') as outfile:
         json.dump(RESULTJSON, outfile, sort_keys=True, indent=2 if pretty else None,
                   ensure_ascii=False)
