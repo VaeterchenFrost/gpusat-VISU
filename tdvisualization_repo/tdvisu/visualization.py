@@ -476,19 +476,16 @@ class Visualization:
                 # Join operation - no clauses involved in computation
                 _timeline.append(None)
 
-        primal_edges = tuple(set(elem) for elem in flatten(
-            map(lambda x: (itertools.combinations(map(abs, x[1]), 2)),
-                self.incidence_edges)))
-
-        self.primal(
-            timeline=_timeline,
-            primal_edges=primal_edges
-        )
-
-        self.incidence(
-            timeline=_timeline,
-            num_vars=self.tree_dec['numVars'],
-            colors=self.colors, view=view)
+        if self.incid:
+            if self.infer_primal:
+                primal_edges = tuple(set(elem) for elem in flatten(
+                    map(lambda x: (itertools.combinations(map(abs, x[1]), 2)),
+                        self.incidence_edges)))
+                self.primal(timeline=_timeline, primal_edges=primal_edges)
+            self.incidence(
+                timeline=_timeline,
+                num_vars=self.tree_dec['numVars'],
+                colors=self.colors, view=view)
 
     def primal(
             self,
@@ -515,7 +512,7 @@ class Visualization:
             None if no variables get highlighted in this step.
             Else the 'timeline' provides the set of variables that are
             in the bag(s) under consideration. This function computes all other
-    variables that are involved in this timestep using the 'edgelist'.
+            variables that are involved in this timestep using the 'edgelist'.
 
         colors : Iterable of color
             Colors to use for the graph parts.
@@ -650,7 +647,7 @@ class Visualization:
         with g_incid.subgraph(name='cluster_clause',
                               edge_attr={'style': 'invis'},
                               node_attr={'style': 'rounded,filled',
-                                         'fillcolor': 'white'}) as clauses:
+                                         'fillcolor': basefill}) as clauses:
             clauses.attr(label='clauses')
             clauses.edges([(clausetag_n % (i + 1), clausetag_n % (i + 2))
                            for i in range(len(self.incidence_edges) - 1)])
@@ -796,6 +793,6 @@ if __name__ == "__main__":
                         help="Folder to output the visualization results.")
     PARSER.add_argument('--loglevel', default='WARNING')
     # get cmd-arguments
-    ARGS = PARSER.parse_args()                      
+    ARGS = PARSER.parse_args()
     # call main()
-    main(ARGS)                                      
+    main(ARGS)
