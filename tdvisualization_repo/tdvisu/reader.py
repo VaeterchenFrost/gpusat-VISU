@@ -15,6 +15,7 @@ logger = logging.getLogger(__name__)
 
 
 class Reader():
+    """Base class for string-readers."""
     @classmethod
     def from_file(cls, fname):
         with open(fname, "r") as file:
@@ -35,6 +36,14 @@ class Reader():
 
 
 class DimacsReader(Reader):
+    """Reader for the DIMACS graph data format.
+    It is a commonly used exchange format for graphs.
+    It stores a single undirected graph.
+    Plain text or binary format.
+    DIMACS is an acronym derived from http://dimacs.rutgers.edu/
+    Discrete Mathematics and Theoretical Computer Science.
+    """
+
     def parse(self, string):
         self.problem_solution_type = "?"
         self.format = "?"
@@ -61,32 +70,60 @@ class DimacsReader(Reader):
                 self.format = line[1]
                 self._problem_vars = line[2:]
                 return lineno + 1
-            elif not line or self.is_comment(line):
+
+            if not line or self.is_comment(line):
                 continue
-            else:
-                logger.warning(
-                    "Invalid content in preamble at line %d: %s", lineno, line)
+
+            warn = "Invalid content in preamble at line %d: %s"
+            logger.warning(warn, lineno, line)
+
         logger.error("No type found in DIMACS file!")
         sys.exit(1)
 
 
-def _add_edge_to(edges, adjacency_list, vertex1, vertex2):
-    if vertex1 in adjacency_list:
-        adjacency_list[vertex1].add(vertex2)
+def _add_edge_to(edges, adjacency_dict, vertex1, vertex2):
+    """
+    Adding (undirected) edge from 'vertex1' to 'vertex2'
+    to the edges and adjacency-list.
+
+    Parameters
+    ----------
+    edges : set-like
+        Set of tuples of vertices.
+    adjacency_dict : dict-like
+        Saves adjecent vertices for each vertex.
+    vertex1 : any
+        First vertex of the new edge
+    vertex2 : any
+        Second vertex of the new edge.
+
+    Returns
+    -------
+    None.
+
+    """
+    if vertex1 in adjacency_dict:
+        adjacency_dict[vertex1].add(vertex2)
     else:
-        adjacency_list[vertex1] = {vertex2}
-    if vertex2 in adjacency_list:
-        adjacency_list[vertex2].add(vertex1)
+        adjacency_dict[vertex1] = {vertex2}
+    if vertex2 in adjacency_dict:
+        adjacency_dict[vertex2].add(vertex1)
     else:
-        adjacency_list[vertex2] = {vertex1}
+        adjacency_dict[vertex2] = {vertex1}
     edges.add((vertex1, vertex2))
 
 
 class TwReader(DimacsReader):
+    """Dimacs Reader for tw format (edges).
+    Stores edges and one adjacency_dict,
+    as well as number of vertices and number of edges.
+    Needs one graph saved in a 'tw' format.
+    """
+
     def __init__(self):
         super().__init__()
         self.edges = set()
-        self.adjacency_list = {}
+        self.adjacency_dict = dict()
 
     def store_problem_vars(self):
         self.num_vertices = int(self._problem_vars[0])
@@ -110,7 +147,7 @@ class TwReader(DimacsReader):
             vertex1 = int(line[0])
             vertex2 = int(line[1])
 
-            _add_edge_to(self.edges, self.adjacency_list, vertex1, vertex2)
+            _add_edge_to(self.edges, self.adjacency_dict, vertex1, vertex2)
 
         if len(self.edges) != self.num_edges:
             logger.warning(
