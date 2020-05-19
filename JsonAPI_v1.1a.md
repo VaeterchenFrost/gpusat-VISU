@@ -13,6 +13,10 @@ Changelog: 16.04.
     - current default behaviour was to infer the primal graph from the clauses\
         now controlled by the flags **inferPrimal** and **inferDual**
 
+19.05. v1.1a
+
+- made generalGraph.graphname optional, defaults to 'graph'
+
 
 ```perl
 {
@@ -37,7 +41,7 @@ Changelog: 16.04.
 
     "generalGraph" : false or
     {
-        "graphName" : STR,
+        Optional("graphName" : STR, default='graph'),
 
         Optional("varName" : STR, default='%d'),
 
