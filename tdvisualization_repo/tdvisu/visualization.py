@@ -111,13 +111,15 @@ class Visualization:
 
     def __init__(self, infile, outfolder, tdFile="TDStep",
                  primalFile="PrimalGraphStep",
-                 incFile="IncidenceGraphStep") -> None:
+                 incFile="IncidenceGraphStep",
+                 dualFile="DualGraphStep") -> None:
         """Copy needed fields from arguments and create additional constants"""
         self.inspect_json(infile)
         self.outfolder = outfolder
         self.td_file = tdFile
         self.primal_file = primalFile
         self.inc_file = incFile
+        self.dualFile = dualFile
         self.colors = ['#0073a1', '#b14923', '#244320', '#b1740f', '#a682ff',
                        '#004066', '#0d1321', '#da1167', '#604909', '#0073a1',
                        '#b14923', '#244320', '#b1740f', '#a682ff']
@@ -481,16 +483,21 @@ class Visualization:
                 primal_edges = tuple(set(elem) for elem in flatten(
                     map(lambda x: (itertools.combinations(map(abs, x[1]), 2)),
                         self.incidence_edges)))
-                self.primal(timeline=_timeline, primal_edges=primal_edges)
+                self.general_graph(timeline=_timeline, edges=primal_edges,
+                                   _file=self.primal_file)
+            if self.infer_dual:
+                dual_edges = None
+                self.general_graph(timeline=_timeline, edges=dual_edges,
+                                   _file=self.dualFile)
             self.incidence(
                 timeline=_timeline,
                 num_vars=self.tree_dec['numVars'],
                 colors=self.colors, view=view)
 
-    def primal(
+    def general_graph(
             self,
             timeline,
-            primal_edges,
+            edges,
             view=False,
             fontsize='20',
             fontcolor='black',
@@ -498,14 +505,15 @@ class Visualization:
             first_color='yellow',
             first_style='filled',
             second_color='green',
-            second_style='dotted,filled') -> None:
+            second_style='dotted,filled',
+            _file='graph') -> None:
         """
-        Creates the primal graph emphasized for the given timeline.
+        Creates one graph emphasized for the given timeline.
 
         Parameters
         ----------
-        primal_edges : Iterable of: {int, int}
-            All edges between variables that occur in one or more clauses together.
+        edges : Iterable of: {int, int}
+            All edges between nodes in the graph.
             BOTH edges (x, y) and (y, x) could be in the EDGELIST.
 
         TIMELINE : Iterable of: None | [int...]
@@ -522,18 +530,18 @@ class Visualization:
         None, but outputs the files with the graph for each timestep.
 
         """
-        _filename = self.outfolder + self.primal_file + '%d'
+        _filename = self.outfolder + _file + '%d'
 
         do_sort_nodes = True  # sort nodes on the circle?
         vartag_n = self.var_two_name + '%d'
 
-        g_primal = Graph('primal graph', strict=True,
+        graph = Graph(_file, strict=True,
                          engine='circo',
                          graph_attr={'fontsize': fontsize},
                          node_attr={'fontcolor': fontcolor,
                                     'penwidth': penwidth})
-        for (s, t) in primal_edges:     # do this before calculating layout!
-            g_primal.edge(vartag_n % s, vartag_n % t)
+        for (s, t) in edges:     # do this before calculating layout!
+            graph.edge(vartag_n % s, vartag_n % t)
 
         if do_sort_nodes:
             # The output consists of one graph line, a sequence of node lines,
@@ -541,7 +549,7 @@ class Visualization:
             # and a final stop line.
             # 1: get current layout code
             # reads in bytes!
-            code_lines = g_primal.pipe('plain').splitlines()
+            code_lines = graph.pipe('plain').splitlines()
             # 2: read positions per node
             assert code_lines[0].startswith(b'graph')
             node_positions = [line.split()[1:4] for line in code_lines[1:]
@@ -563,17 +571,17 @@ class Visualization:
                                      reverse=True)
             # 4: place back into the (sorted) positions
             for node, position in zip(node_names_s, position_circle):
-                g_primal.node(node, pos="%f,%f!" % position)
+                graph.node(node, pos="%f,%f!" % position)
 
-        g_primal.engine = 'neato'                 # Use previous positions
-        bodybaselen = len(g_primal.body)
+        graph.engine = 'neato'                 # Use previous positions
+        bodybaselen = len(graph.body)
         for i, variables in enumerate(timeline, start=1):    # all timesteps
 
             # reset highlighting
-            g_primal.body = g_primal.body[:bodybaselen]
+            graph.body = graph.body[:bodybaselen]
 
             if variables is None:
-                g_primal.render(
+                graph.render(
                     view=view,
                     format='svg',
                     filename=_filename %
@@ -581,22 +589,22 @@ class Visualization:
                 continue
 
             for var in variables:
-                g_primal.node(
+                graph.node(
                     vartag_n % var,
                     fillcolor=first_color,
                     style=first_style)
 
             adjacent = {
-                edge.difference(variables).pop() for edge in primal_edges if len(
+                edge.difference(variables).pop() for edge in edges if len(
                     edge.difference(variables)) == 1}
 
             for var in adjacent:
-                g_primal.node(vartag_n % var,
+                graph.node(vartag_n % var,
                               color=second_color,
                               style=second_style)
 
-            # LOGGER.debug('g_primal %s', g_primal)
-            g_primal.render(view=view, format='svg',
+            # LOGGER.debug('graph %s', graph)
+            graph.render(view=view, format='svg',
                             filename=_filename % i)
 
     def incidence(
