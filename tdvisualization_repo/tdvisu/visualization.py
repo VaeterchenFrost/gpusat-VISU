@@ -295,17 +295,17 @@ class Visualization:
 
                 self.incidence_edges = [[x['id'], x['list']]
                                         for x in incid["edges"]]
-                self.incid = True
+                self.do_incid = True
             else:
-                self.incid = False
+                self.do_incid = False
 
             if general_graph is not False:
                 self.general_graph_name = general_graph["generalGraph"]
                 self.general_var_name = general_graph.get("varName", '%d')
                 self.general_edges = general_graph["edges"]
-                self.general_graph = True
+                self.do_general_graph = True
             else:
-                self.general_graph = False
+                self.do_general_graph = False
 
             self.timeline = visudata["tdTimeline"]
             self.tree_dec = visudata["treeDecJson"]
@@ -478,7 +478,7 @@ class Visualization:
                 # Join operation - no clauses involved in computation
                 _timeline.append(None)
 
-        if self.incid:
+        if self.do_incid:
             if self.infer_primal:
                 primal_edges = tuple(set(elem) for elem in flatten(
                     map(lambda x: (itertools.combinations(map(abs, x[1]), 2)),
@@ -486,14 +486,17 @@ class Visualization:
                 self.general_graph(timeline=_timeline, edges=primal_edges,
                                    _file=self.primal_file, var_name=self.var_two_name)
             if self.infer_dual:
-                dual_edges = None
+                # Edge, if clauses share the same variable
+                dual_edges = None #TODO
                 self.general_graph(timeline=_timeline, edges=dual_edges,
                                    _file=self.dualFile, var_name=self.var_one_name)
             self.incidence(
                 timeline=_timeline,
                 num_vars=self.tree_dec['numVars'],
                 colors=self.colors, view=view)
-
+        if self.do_general_graph:
+            pass
+    
     def general_graph(
             self,
             timeline,
