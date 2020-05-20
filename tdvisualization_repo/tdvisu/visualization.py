@@ -484,11 +484,11 @@ class Visualization:
                     map(lambda x: (itertools.combinations(map(abs, x[1]), 2)),
                         self.incidence_edges)))
                 self.general_graph(timeline=_timeline, edges=primal_edges,
-                                   _file=self.primal_file)
+                                   _file=self.primal_file, var_name=self.var_two_name)
             if self.infer_dual:
                 dual_edges = None
                 self.general_graph(timeline=_timeline, edges=dual_edges,
-                                   _file=self.dualFile)
+                                   _file=self.dualFile, var_name=self.var_one_name)
             self.incidence(
                 timeline=_timeline,
                 num_vars=self.tree_dec['numVars'],
@@ -506,7 +506,9 @@ class Visualization:
             first_style='filled',
             second_color='green',
             second_style='dotted,filled',
-            _file='graph') -> None:
+            _file='graph',
+            do_sort_nodes=True,
+            var_name='') -> None:
         """
         Creates one graph emphasized for the given timeline.
 
@@ -532,24 +534,23 @@ class Visualization:
         """
         _filename = self.outfolder + _file + '%d'
 
-        do_sort_nodes = True  # sort nodes on the circle?
-        vartag_n = self.var_two_name + '%d'
+        vartag_n = var_name + '%d'
 
         graph = Graph(_file, strict=True,
-                         engine='circo',
-                         graph_attr={'fontsize': fontsize},
-                         node_attr={'fontcolor': fontcolor,
-                                    'penwidth': penwidth})
+                      engine='circo',
+                      graph_attr={'fontsize': fontsize},
+                      node_attr={'fontcolor': fontcolor,
+                                 'penwidth': penwidth})
         for (s, t) in edges:     # do this before calculating layout!
             graph.edge(vartag_n % s, vartag_n % t)
 
         if do_sort_nodes:
-            # The output consists of one graph line, a sequence of node lines,
-            # one per node, a sequence of edge lines, one per edge,
-            # and a final stop line.
             # 1: get current layout code
             # reads in bytes!
             code_lines = graph.pipe('plain').splitlines()
+            # The output consists of one graph line, a sequence of node lines,
+            # one per node, a sequence of edge lines, one per edge,
+            # and a final stop line.
             # 2: read positions per node
             assert code_lines[0].startswith(b'graph')
             node_positions = [line.split()[1:4] for line in code_lines[1:]
@@ -558,8 +559,8 @@ class Visualization:
             node_names_s = sorted([n[0].decode() for n in node_positions])
             node_x_list = [float(n[1]) for n in node_positions]
             node_y_list = [float(n[2]) for n in node_positions]
-            # LOGGER.debug("Calculating with primal node positions"
-            # " %s\nnode_names_s=%s", node_positions, node_names_s)
+            LOGGER.debug("Calculating with primal node positions"
+                         " %s\nnode_names_s=%s", node_positions, node_names_s)
             # 3: sort nodes in circular order
             # get center (x, y)
             center = (sum(node_x_list) / len(node_positions),
@@ -573,10 +574,11 @@ class Visualization:
             for node, position in zip(node_names_s, position_circle):
                 graph.node(node, pos="%f,%f!" % position)
 
-        graph.engine = 'neato'                 # Use previous positions
+        # Engine uses previous positions
+        graph.engine = 'neato'
         bodybaselen = len(graph.body)
-        for i, variables in enumerate(timeline, start=1):    # all timesteps
 
+        for i, variables in enumerate(timeline, start=1):    # all timesteps
             # reset highlighting
             graph.body = graph.body[:bodybaselen]
 
@@ -584,8 +586,7 @@ class Visualization:
                 graph.render(
                     view=view,
                     format='svg',
-                    filename=_filename %
-                    i)
+                    filename=_filename % i)
                 continue
 
             for var in variables:
@@ -600,12 +601,11 @@ class Visualization:
 
             for var in adjacent:
                 graph.node(vartag_n % var,
-                              color=second_color,
-                              style=second_style)
+                           color=second_color,
+                           style=second_style)
 
-            # LOGGER.debug('graph %s', graph)
             graph.render(view=view, format='svg',
-                            filename=_filename % i)
+                         filename=_filename % i)
 
     def incidence(
             self,
