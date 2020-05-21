@@ -408,7 +408,9 @@ class DpdbMinVcVisu(DpdbSharpSatVisu):
             The edges as an list of pairs of vertices.
 
         """
+
         reader = TwReader.from_file(self.tw_file)
+        LOGGER.info("Reading from %s", self.tw_file)
         # create list so that it is JSON serializable
         return list(reader.edges)
 
@@ -463,7 +465,7 @@ def connect() -> pg.extensions.connection:
     return conn
 
 
-def create_json(problem: int, tw_file=None) -> Optional[dict]:
+def create_json(problem: int, tw_file=None) -> dict:
     """Create the JSON for the specified Problem instance."""
     try:
         with connect() as connection:
@@ -478,11 +480,11 @@ def create_json(problem: int, tw_file=None) -> Optional[dict]:
 
             if ptype == "SharpSat":
                 constructor = DpdbSharpSatVisu(connection, problem)
-
             elif ptype == "VertexCover":
                 constructor = DpdbMinVcVisu(connection, problem, tw_file)
-            LOGGER.debug("Using %s for type=%s",
-                         (constructor.__class__.__name__, ptype))
+
+            LOGGER.info("Using %s for type=%s",
+                        constructor.__class__.__name__, ptype)
             LOGGER.info("Constructing Json...")
             return constructor.construct()
 
