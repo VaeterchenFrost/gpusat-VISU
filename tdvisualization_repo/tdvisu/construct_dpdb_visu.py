@@ -48,8 +48,8 @@ from reader import TwReader
 
 __author__ = "Martin Röbke <martin.roebke@tu-dresden.de>"
 __status__ = "development"
-__version__ = "0.2"
-__date__ = "20 April 2020"
+__version__ = "0.3"
+__date__ = "21 May 2020"
 
 logging.basicConfig(
     format="%(asctime)s,%(msecs)d %(levelname)-8s"
@@ -208,6 +208,7 @@ class DpdbSharpSatVisu(IDpdbVisuConstruct):
             The Json for the visualization-API.
 
         """
+
         clauses_edges = self.read_clauses()
         incidence_graph = {
             "varNameOne": "c_",
@@ -464,12 +465,6 @@ def connect() -> pg.extensions.connection:
 
 def create_json(problem: int, tw_file=None) -> Optional[dict]:
     """Create the JSON for the specified Problem instance."""
-
-    LOGGER.info(
-        "creating JSON for problem %s, tw_file '%s'.",
-        problem,
-        tw_file)
-
     try:
         with connect() as connection:
             # get type of problem
@@ -486,7 +481,9 @@ def create_json(problem: int, tw_file=None) -> Optional[dict]:
 
             elif ptype == "VertexCover":
                 constructor = DpdbMinVcVisu(connection, problem, tw_file)
-
+            LOGGER.debug("Using %s for type=%s",
+                         (constructor.__class__.__name__, ptype))
+            LOGGER.info("Constructing Json...")
             return constructor.construct()
 
     except (Exception, pg.DatabaseError) as error:
@@ -496,14 +493,61 @@ def create_json(problem: int, tw_file=None) -> Optional[dict]:
 
 
 if __name__ == "__main__":
-    # Logging:
-    LOGGER.setLevel(logging.INFO)
-    p = 24
-    tw_file_ = r'C:\Users\Martin\Documents\GitHub\dp_on_dbs\gr5.td'
-    pretty = True
 
-    RESULTJSON = create_json(problem=p, tw_file=tw_file_)
-    with open('dbjson%d.json' % p, 'w') as outfile:
-        json.dump(RESULTJSON, outfile, sort_keys=True, indent=2 if pretty else None,
+    import argparse
+
+    PARSER = argparse.ArgumentParser(
+        description="Extracts Information from https://github.com/hmarkus/dp_on_dbs runs "
+        "for further 'Visualizing Dynamic Programming on Tree-Decompositions'.",
+        epilog="""Logging levels for python 3.8.2:
+            CRITICAL: 50
+            ERROR:    40
+            WARNING:  30
+            INFO:     20
+            DEBUG:    10
+            NOTSET:    0 (will traverse the logging hierarchy until a value is found)
+            """,
+        formatter_class=argparse.RawDescriptionHelpFormatter)
+
+    PARSER.add_argument('problemnumber', type=int,
+                        help="problem-id in the Postgres-Database.")
+    PARSER.add_argument('--twfile',
+                        type=argparse.FileType('r', encoding='UTF-8'),
+                        help="tw-File containing the edges of the graph - "
+                        "obtained from dpdb with option --gr-file GR_FILE."
+                        "")
+    PARSER.add_argument('--loglevel', default='INFO', help="default:'INFO'")
+    PARSER.add_argument(
+        '--outfile',
+        default='dbjson%d.json',
+        help="default:'dbjson%%d.json'")
+    PARSER.add_argument('--pretty', action='store_true',
+                        help="Pretty-print the JSON.")
+    PARSER.add_argument('--version', action='version',
+                        version='%(prog)s ' + __version__ + ", " + __date__)
+    # get cmd-arguments
+    args = PARSER.parse_args()
+    LOGGER.info('%s', args)
+    # get loglevel
+    try:
+        loglevel = int(float(args.loglevel))
+    except ValueError:
+        loglevel = args.loglevel.upper()
+    LOGGER.setLevel(loglevel)
+    problem_ = args.problemnumber
+    # get tw_file if supplied
+    try:
+        tw_file_ = args.tw_file
+    except AttributeError:
+        tw_file_ = None
+    RESULTJSON = create_json(problem=problem_, tw_file=tw_file_)
+    # build json filename, can be supplied with problem-number
+    try:
+        outfile = args.outfile % problem_
+    except TypeError:
+        outfile = args.outfile
+    LOGGER.info("Output file-name: %s", outfile)
+    with open(outfile, 'w') as file:
+        json.dump(RESULTJSON, file, sort_keys=True, indent=2 if args.pretty else None,
                   ensure_ascii=False)
-        LOGGER.info("Wrote to %s", outfile)
+        LOGGER.debug("Wrote to %s", file)

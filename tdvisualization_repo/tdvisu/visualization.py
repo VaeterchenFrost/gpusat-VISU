@@ -761,7 +761,7 @@ def main(args):
     try:
         loglevel = int(float(args.loglevel))
     except ValueError:
-        loglevel = args.loglevel
+        loglevel = args.loglevel.upper()
     LOGGER.setLevel(loglevel)
 
     INFILE = args.infile
