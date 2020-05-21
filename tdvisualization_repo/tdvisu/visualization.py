@@ -487,7 +487,7 @@ class Visualization:
                                    _file=self.primal_file, var_name=self.var_two_name)
             if self.infer_dual:
                 # Edge, if clauses share the same variable
-                dual_edges = None #TODO
+                dual_edges = None  # TODO
                 self.general_graph(timeline=_timeline, edges=dual_edges,
                                    _file=self.dualFile, var_name=self.var_one_name)
             self.incidence(
@@ -495,8 +495,9 @@ class Visualization:
                 num_vars=self.tree_dec['numVars'],
                 colors=self.colors, view=view)
         if self.do_general_graph:
-            pass
-    
+            self.general_graph(timeline=_timeline, edges=self.general_edges, _file=self.general_graph_name,
+                               var_name=self.general_var_name)
+
     def general_graph(
             self,
             timeline,
