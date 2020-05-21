@@ -37,8 +37,8 @@ from graphviz import Digraph, Graph
 
 __author__ = "Martin Röbke <martin.roebke@tu-dresden.de>"
 __status__ = "development"
-__version__ = "0.2"
-__date__ = "12 March 2020"
+__version__ = "0.3"
+__date__ = "21 May 2020"
 
 logging.basicConfig(
     format="%(asctime)s,%(msecs)d %(levelname)s"
@@ -783,7 +783,6 @@ if __name__ == "__main__":
     import argparse
 
     PARSER = argparse.ArgumentParser(
-        prog='visualization.py',
         description='Visualizing Dynamic Programming on Tree-Decompositions.',
         epilog="""Logging levels for python 3.8.2:
             CRITICAL: 50
@@ -804,6 +803,9 @@ if __name__ == "__main__":
     PARSER.add_argument('outfolder',
                         help="Folder to output the visualization results.")
     PARSER.add_argument('--loglevel', default='WARNING')
+    PARSER.add_argument('--version', action='version',
+                        version='%(prog)s ' + __version__ + ", " + __date__)
+
     # get cmd-arguments
     ARGS = PARSER.parse_args()
     # call main()
