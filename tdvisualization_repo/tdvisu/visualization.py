@@ -119,7 +119,7 @@ class Visualization:
         self.td_file = tdFile
         self.primal_file = primalFile
         self.inc_file = incFile
-        self.dualFile = dualFile
+        self.dual_file = dualFile
         self.colors = ['#0073a1', '#b14923', '#244320', '#b1740f', '#a682ff',
                        '#004066', '#0d1321', '#da1167', '#604909', '#0073a1',
                        '#b14923', '#244320', '#b1740f', '#a682ff']
@@ -300,8 +300,9 @@ class Visualization:
                 self.do_incid = False
 
             if general_graph is not False:
-                self.general_graph_name = general_graph["generalGraph"]
-                self.general_var_name = general_graph.get("varName", '%d')
+                self.general_graph_name = general_graph.get(
+                    "graphName", 'graph')
+                self.general_var_name = general_graph.get("varName", '')
                 self.general_edges = general_graph["edges"]
                 self.do_general_graph = True
             else:
@@ -485,18 +486,32 @@ class Visualization:
                         self.incidence_edges)))
                 self.general_graph(timeline=_timeline, edges=primal_edges,
                                    _file=self.primal_file, var_name=self.var_two_name)
+                LOGGER.info(
+                    "Created infered primal-graph for file='%s'",
+                    self.primal_file)
             if self.infer_dual:
                 # Edge, if clauses share the same variable
                 dual_edges = None  # TODO
                 self.general_graph(timeline=_timeline, edges=dual_edges,
-                                   _file=self.dualFile, var_name=self.var_one_name)
+                                   _file=self.dual_file, var_name=self.var_one_name)
+                LOGGER.info(
+                    "Created infered dual-graph for file='%s'",
+                    self.dual_file)
             self.incidence(
                 timeline=_timeline,
                 num_vars=self.tree_dec['numVars'],
                 colors=self.colors, view=view)
+            LOGGER.info(
+                    "Created incidence-graph for file='%s'",
+                    self.inc_file)
         if self.do_general_graph:
-            self.general_graph(timeline=_timeline, edges=self.general_edges, _file=self.general_graph_name,
+            self.general_graph(timeline=_timeline, 
+                               edges=self.general_edges, 
+                               _file=self.general_graph_name,
                                var_name=self.general_var_name)
+            LOGGER.info(
+                    "Created general-graph for file='%s'",
+                    self.general_graph_name)
 
     def general_graph(
             self,
@@ -520,7 +535,8 @@ class Visualization:
         ----------
         edges : Iterable of: {int, int}
             All edges between nodes in the graph.
-            BOTH edges (x, y) and (y, x) could be in the EDGELIST.
+            Should NOT contain self-edges!
+            BOTH edges (x, y) and (y, x) could be in the edgelist.
 
         TIMELINE : Iterable of: None | [int...]
             None if no variables get highlighted in this step.
@@ -599,6 +615,8 @@ class Visualization:
                     fillcolor=first_color,
                     style=first_style)
 
+            # set.difference accepts list as argument, "-" does not.
+            edges = [set(edge) for edge in edges]
             adjacent = {
                 edge.difference(variables).pop() for edge in edges if len(
                     edge.difference(variables)) == 1}
