@@ -179,8 +179,8 @@ def main():
     padding = 40
     num_images = 14
     folder = "generalgraphNoDijkstra/"
-    resultname = folder+"generalgraph%d.svg"
-    names = [folder+'TDStep%d.svg', folder+'graph%d.svg']
+    resultname = folder + "generalgraph%d.svg"
+    names = [folder + 'TDStep%d.svg', folder + 'graph%d.svg']
 
     for step in range(1, num_images + 1):
         # first - needs at least two images
@@ -194,7 +194,7 @@ def main():
             with open(name % step) as file:
                 image = benedict.from_xml(file.read())
             result = append_svg(result, image, padding)
-            
+
         # https://css-tricks.com/scale-svg/#article-header-id-1
         result['svg']['@preserveAspectRatio'] = "xMinYMin"
         with open(resultname % step, "w") as file:

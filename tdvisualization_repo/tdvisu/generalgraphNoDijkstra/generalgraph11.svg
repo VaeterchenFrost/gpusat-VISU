@@ -479,7 +479,7 @@
 		</g>
 		<g id="node2" class="node">
 			<title>15</title>
-			<ellipse fill="green" stroke="green" stroke-width="2.2" stroke-dasharray="1,5" cx="-74.5781" cy="-101.562" rx="27" ry="18"></ellipse>
+			<ellipse fill="none" stroke="black" stroke-width="2.2" cx="-74.5781" cy="-101.562" rx="27" ry="18"></ellipse>
 			<text text-anchor="middle" x="-74.5781" y="-97.862" font-family="Times New Roman,serif" font-size="14.00">15</text>
 		</g>
 		<g id="edge1" class="edge">
@@ -511,7 +511,7 @@
 		</g>
 		<g id="node4" class="node">
 			<title>4</title>
-			<ellipse fill="green" stroke="green" stroke-width="2.2" stroke-dasharray="1,5" cx="61.9481" cy="-91.4861" rx="27" ry="18"></ellipse>
+			<ellipse fill="none" stroke="black" stroke-width="2.2" cx="61.9481" cy="-91.4861" rx="27" ry="18"></ellipse>
 			<text text-anchor="middle" x="61.9481" y="-87.7861" font-family="Times New Roman,serif" font-size="14.00">4</text>
 		</g>
 		<g id="edge2" class="edge">
@@ -533,7 +533,7 @@
 		</g>
 		<g id="node5" class="node">
 			<title>14</title>
-			<ellipse fill="green" stroke="green" stroke-width="2.2" stroke-dasharray="1,5" cx="-84.5124" cy="86.1287" rx="27" ry="18"></ellipse>
+			<ellipse fill="none" stroke="black" stroke-width="2.2" cx="-84.5124" cy="86.1287" rx="27" ry="18"></ellipse>
 			<text text-anchor="middle" x="-84.5124" y="89.8287" font-family="Times New Roman,serif" font-size="14.00">14</text>
 		</g>
 		<g id="edge3" class="edge">
@@ -582,7 +582,7 @@
 		</g>
 		<g id="node10" class="node">
 			<title>8</title>
-			<ellipse fill="green" stroke="green" stroke-width="2.2" stroke-dasharray="1,5" cx="34.1131" cy="101.8" rx="27" ry="18"></ellipse>
+			<ellipse fill="none" stroke="black" stroke-width="2.2" cx="34.1131" cy="101.8" rx="27" ry="18"></ellipse>
 			<text text-anchor="middle" x="34.1131" y="105.5" font-family="Times New Roman,serif" font-size="14.00">8</text>
 		</g>
 		<g id="edge18" class="edge">

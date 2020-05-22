@@ -43,7 +43,7 @@
 </g>
 <!-- 3 -->
 <g id="node3" class="node"><title>3</title>
-<ellipse fill="green" stroke="green" stroke-width="2.2" stroke-dasharray="1,5" cx="108.878" cy="-152.627" rx="27" ry="18"/>
+<ellipse fill="none" stroke="black" stroke-width="2.2" cx="108.878" cy="-152.627" rx="27" ry="18"/>
 <text text-anchor="middle" x="108.878" y="-148.927" font-family="Times New Roman,serif" font-size="14.00">3</text>
 </g>
 <!-- 4 -->

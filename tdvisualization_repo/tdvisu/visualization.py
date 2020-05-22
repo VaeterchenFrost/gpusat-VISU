@@ -129,11 +129,12 @@ class Visualization:
         self.soljoinpre = "solJoin%d~%d"
 
         self.tree_dec_digraph = None
-        LOGGER.info("Running %s", self)
+        LOGGER.debug("Running %s", self)
 
     @staticmethod
     def base_style(graph, node) -> None:
         """Style the node white and with penwidth 1."""
+        # TODO: Basestyle modifiable
         graph.node(node, fillcolor='white', penwidth="1.0")
 
     @staticmethod
@@ -187,7 +188,7 @@ class Visualization:
             solution_table,
             toplabel="",
             bottomlabel="",
-            transpose=False, linesmax=10, columnsmax=5) -> str:
+            transpose=False, linesmax=100, columnsmax=20) -> str:
         """Fill the node from the 2D 'solution_table' (columnbased!).
         Optionally add a line above and/or below the table.
 
@@ -502,17 +503,18 @@ class Visualization:
                 num_vars=self.tree_dec['numVars'],
                 colors=self.colors, view=view)
             LOGGER.info(
-                    "Created incidence-graph for file='%s'",
-                    self.inc_file)
+                "Created incidence-graph for file='%s'",
+                self.inc_file)
         if self.do_general_graph:
-            self.general_graph(timeline=_timeline, 
-                               edges=self.general_edges, 
+            self.general_graph(timeline=_timeline,
+                               edges=self.general_edges,
                                _file=self.general_graph_name,
                                var_name=self.general_var_name,
-                               do_sort_nodes=False)
+                               do_sort_nodes=False,
+                               do_adj_nodes=False)
             LOGGER.info(
-                    "Created general-graph for file='%s'",
-                    self.general_graph_name)
+                "Created general-graph for file='%s'",
+                self.general_graph_name)
 
     def general_graph(
             self,
@@ -528,6 +530,7 @@ class Visualization:
             second_style='dotted,filled',
             _file='graph',
             do_sort_nodes=True,
+            do_adj_nodes=True,
             var_name='') -> None:
         """
         Creates one graph emphasized for the given timeline.
@@ -581,7 +584,7 @@ class Visualization:
             node_x_list = [float(n[1]) for n in node_positions]
             node_y_list = [float(n[2]) for n in node_positions]
             LOGGER.info("Calculating with primal node positions"
-                         " %s\nnode_names_s=%s", node_positions, node_names_s)
+                        " %s\nnode_names_s=%s", node_positions, node_names_s)
             # 3: sort nodes in circular order
             # get center (x, y)
             center = (sum(node_x_list) / len(node_positions),
@@ -616,16 +619,17 @@ class Visualization:
                     fillcolor=first_color,
                     style=first_style)
 
-            # set.difference accepts list as argument, "-" does not.
-            edges = [set(edge) for edge in edges]
-            adjacent = {
-                edge.difference(variables).pop() for edge in edges if len(
-                    edge.difference(variables)) == 1}
+            if do_adj_nodes:
+                # set.difference accepts list as argument, "-" does not.
+                edges = [set(edge) for edge in edges]
+                adjacent = {
+                    edge.difference(variables).pop() for edge in edges if len(
+                        edge.difference(variables)) == 1}
 
-            for var in adjacent:
-                graph.node(vartag_n % var,
-                           color=second_color,
-                           style=second_style)
+                for var in adjacent:
+                    graph.node(vartag_n % var,
+                               color=second_color,
+                               style=second_style)
 
             graph.render(view=view, format='svg',
                          filename=_filename % i)
@@ -684,7 +688,7 @@ class Visualization:
                            for i in range(len(self.incidence_edges) - 1)])
 
         g_incid.attr('node', shape=sndshape, fontcolor='black',
-                     penwidth='2.2',
+                     penwidth=str(penwidth),
                      style='dotted')
         with g_incid.subgraph(name='cluster_ivar',
                               edge_attr={'style': 'invis'}) as ivars:

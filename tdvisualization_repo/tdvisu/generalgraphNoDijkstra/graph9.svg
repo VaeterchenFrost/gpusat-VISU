@@ -25,7 +25,7 @@
 </g>
 <!-- 7 -->
 <g id="node6" class="node"><title>7</title>
-<ellipse fill="green" stroke="green" stroke-width="2.2" stroke-dasharray="1,5" cx="-19.8247" cy="36.3523" rx="27" ry="18"/>
+<ellipse fill="none" stroke="black" stroke-width="2.2" cx="-19.8247" cy="36.3523" rx="27" ry="18"/>
 <text text-anchor="middle" x="-19.8247" y="40.0523" font-family="Times New Roman,serif" font-size="14.00">7</text>
 </g>
 <!-- 6&#45;&#45;7 -->
@@ -101,7 +101,7 @@
 </g>
 <!-- 13 -->
 <g id="node9" class="node"><title>13</title>
-<ellipse fill="green" stroke="green" stroke-width="2.2" stroke-dasharray="1,5" cx="-207.772" cy="169.898" rx="27" ry="18"/>
+<ellipse fill="none" stroke="black" stroke-width="2.2" cx="-207.772" cy="169.898" rx="27" ry="18"/>
 <text text-anchor="middle" x="-207.772" y="173.598" font-family="Times New Roman,serif" font-size="14.00">13</text>
 </g>
 <!-- 12&#45;&#45;13 -->
@@ -128,7 +128,7 @@
 </g>
 <!-- 9 -->
 <g id="node11" class="node"><title>9</title>
-<ellipse fill="green" stroke="green" stroke-width="2.2" stroke-dasharray="1,5" cx="5.41282" cy="178.295" rx="27" ry="18"/>
+<ellipse fill="none" stroke="black" stroke-width="2.2" cx="5.41282" cy="178.295" rx="27" ry="18"/>
 <text text-anchor="middle" x="5.41282" y="181.995" font-family="Times New Roman,serif" font-size="14.00">9</text>
 </g>
 <!-- 8&#45;&#45;9 -->

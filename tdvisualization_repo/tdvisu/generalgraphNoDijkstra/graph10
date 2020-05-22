@@ -40,8 +40,4 @@ strict graph "graph" {
 	7 [fillcolor=yellow style=filled]
 	11 [fillcolor=yellow style=filled]
 	14 [fillcolor=yellow style=filled]
-	8 [color=green style="dotted,filled"]
-	9 [color=green style="dotted,filled"]
-	12 [color=green style="dotted,filled"]
-	6 [color=green style="dotted,filled"]
 }

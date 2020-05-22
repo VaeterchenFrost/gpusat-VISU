@@ -450,7 +450,7 @@
 		<polygon fill="white" stroke="none" points="-238.772,269.962 -238.772,-295.4 227.123,-295.4 227.123,269.962 -238.772,269.962"></polygon>
 		<g id="node1" class="node">
 			<title>6</title>
-			<ellipse fill="green" stroke="green" stroke-width="2.2" stroke-dasharray="1,5" cx="-9.09732" cy="-48.0529" rx="27" ry="18"></ellipse>
+			<ellipse fill="none" stroke="black" stroke-width="2.2" cx="-9.09732" cy="-48.0529" rx="27" ry="18"></ellipse>
 			<text text-anchor="middle" x="-9.09732" y="-44.3529" font-family="Times New Roman,serif" font-size="14.00">6</text>
 		</g>
 		<g id="node2" class="node">
@@ -518,7 +518,7 @@
 		</g>
 		<g id="node8" class="node">
 			<title>12</title>
-			<ellipse fill="green" stroke="green" stroke-width="2.2" stroke-dasharray="1,5" cx="-138.734" cy="138.363" rx="27" ry="18"></ellipse>
+			<ellipse fill="none" stroke="black" stroke-width="2.2" cx="-138.734" cy="138.363" rx="27" ry="18"></ellipse>
 			<text text-anchor="middle" x="-138.734" y="142.063" font-family="Times New Roman,serif" font-size="14.00">12</text>
 		</g>
 		<g id="edge12" class="edge">
@@ -558,7 +558,7 @@
 		</g>
 		<g id="node10" class="node">
 			<title>8</title>
-			<ellipse fill="green" stroke="green" stroke-width="2.2" stroke-dasharray="1,5" cx="34.1131" cy="101.8" rx="27" ry="18"></ellipse>
+			<ellipse fill="none" stroke="black" stroke-width="2.2" cx="34.1131" cy="101.8" rx="27" ry="18"></ellipse>
 			<text text-anchor="middle" x="34.1131" y="105.5" font-family="Times New Roman,serif" font-size="14.00">8</text>
 		</g>
 		<g id="edge18" class="edge">
@@ -567,7 +567,7 @@
 		</g>
 		<g id="node11" class="node">
 			<title>9</title>
-			<ellipse fill="green" stroke="green" stroke-width="2.2" stroke-dasharray="1,5" cx="5.41282" cy="178.295" rx="27" ry="18"></ellipse>
+			<ellipse fill="none" stroke="black" stroke-width="2.2" cx="5.41282" cy="178.295" rx="27" ry="18"></ellipse>
 			<text text-anchor="middle" x="5.41282" y="181.995" font-family="Times New Roman,serif" font-size="14.00">9</text>
 		</g>
 		<g id="edge7" class="edge">

@@ -359,7 +359,7 @@
 		</g>
 		<g id="node5" class="node">
 			<title>14</title>
-			<ellipse fill="green" stroke="green" stroke-width="2.2" stroke-dasharray="1,5" cx="-84.5124" cy="86.1287" rx="27" ry="18"></ellipse>
+			<ellipse fill="none" stroke="black" stroke-width="2.2" cx="-84.5124" cy="86.1287" rx="27" ry="18"></ellipse>
 			<text text-anchor="middle" x="-84.5124" y="89.8287" font-family="Times New Roman,serif" font-size="14.00">14</text>
 		</g>
 		<g id="edge3" class="edge">
@@ -399,7 +399,7 @@
 		</g>
 		<g id="node13" class="node">
 			<title>11</title>
-			<ellipse fill="green" stroke="green" stroke-width="2.2" stroke-dasharray="1,5" cx="-71.2158" cy="164.175" rx="27" ry="18"></ellipse>
+			<ellipse fill="none" stroke="black" stroke-width="2.2" cx="-71.2158" cy="164.175" rx="27" ry="18"></ellipse>
 			<text text-anchor="middle" x="-71.2158" y="167.875" font-family="Times New Roman,serif" font-size="14.00">11</text>
 		</g>
 		<g id="edge17" class="edge">
