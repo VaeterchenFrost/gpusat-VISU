@@ -408,9 +408,13 @@ class DpdbMinVcVisu(DpdbSharpSatVisu):
             The edges as an list of pairs of vertices.
 
         """
-
-        reader = TwReader.from_file(self.tw_file)
         LOGGER.info("Reading from %s", self.tw_file)
+        try:
+            reader = TwReader.from_filewrapper(self.tw_file)
+        except Exception as error:
+            LOGGER.error("Problem while reading from self.tw_file: %s",error)
+            raise error
+        
         # create list so that it is JSON serializable
         return list(reader.edges)
 
@@ -537,9 +541,9 @@ if __name__ == "__main__":
         loglevel = args.loglevel.upper()
     LOGGER.setLevel(loglevel)
     problem_ = args.problemnumber
-    # get tw_file if supplied
+    # get twfile if supplied
     try:
-        tw_file_ = args.tw_file
+        tw_file_ = args.twfile
     except AttributeError:
         tw_file_ = None
     RESULTJSON = create_json(problem=problem_, tw_file=tw_file_)
