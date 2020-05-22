@@ -177,9 +177,10 @@ def main():
     # result = append_svg(tdstep, incid, padding)
     # result = append_svg(result, primal, padding)
     padding = 40
-    num_images = 54
-    resultname = "generalgraph/generalgraph%d.svg"
-    names = ['generalgraph/TDStep%d.svg', 'generalgraph/graph%d.svg']
+    num_images = 14
+    folder = "generalgraphNoDijkstra/"
+    resultname = folder+"generalgraph%d.svg"
+    names = [folder+'TDStep%d.svg', folder+'graph%d.svg']
 
     for step in range(1, num_images + 1):
         # first - needs at least two images
