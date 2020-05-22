@@ -43,7 +43,7 @@ Changelog: 16.04.
     {
         Optional("graphName" : STR, default='graph'),
 
-        Optional("varName" : STR, default='%d'),
+        Optional("varName" : STR, default=''),
 
         "edges" : [
             [INT, INT],
