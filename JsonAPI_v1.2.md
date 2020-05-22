@@ -17,6 +17,9 @@ Changelog: 16.04.
 
 - made generalGraph.graphname optional, defaults to 'graph'
 
+22.05. v1.2
+
+- added several additional arguments (sortNodes, needAdjNodes...)
 
 ```perl
 {
@@ -30,7 +33,10 @@ Changelog: 16.04.
 
         Optional("inferPrimal" : BOOLEAN, default=false),
         Optional("inferDual" : BOOLEAN, default=false),
-
+        Optional("fontsize" : INT, default=16),
+        Optional("secondshape" : STR, default='diamond'),
+        Optional("columnDistance" : FLOAT, default=0.5),
+        
         "edges" : [
             {"id" : INT (subgraphOneId), 
             "list" : [INT...]
@@ -42,8 +48,10 @@ Changelog: 16.04.
     "generalGraph" : false or
     {
         Optional("graphName" : STR, default='graph'),
-
         Optional("varName" : STR, default=''),
+        Optional("sortNodes" : BOOLEAN, default=True),
+        Optional("needAdjNodes" : BOOLEAN, default=True),
+        
 
         "edges" : [
             [INT, INT],
@@ -82,7 +90,24 @@ Changelog: 16.04.
                 }
                 ...
             ],
-         "numVars" : INT
-    }
+         "numVars" : INT,
+    },
+    
+    Optional("orientation" : Any['BT', 'TB', 'LR', 'RL'] , default='BT'),
+    Optional("linesmax" : INT, default=100),
+    Optional("columnsmax" : INT, default=20),
+    Optional("bagcolor" : STR, default='white'),
+    Optional("fontsize" : INT, default=20),
+    Optional("penwidth" : FLOAT, default=2.2),
+    Optional("fontcolor" : STR, default='black'),
+    
+    Optional("emphasis" : DICT, default=
+        {
+            "firstcolor" : STR/COLOR, default='yellow',
+            "secondcolor" : STR/COLOR, default='green',
+            "firststyle" : STR, default='filled',
+            "secondstyle" : STR, default='dotted,filled'
+        }
+    )
 
 }
