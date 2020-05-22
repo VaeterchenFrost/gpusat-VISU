@@ -166,20 +166,38 @@ def f_transform(h_one_, h_two_, v_bottom=None,
 
 
 def main():
-    with open('test/TDStep1.svg') as file:
-        tdstep = benedict.from_xml(file.read())
-    with open('test/PrimalGraphStep1.svg') as file:
-        primal = benedict.from_xml(file.read())
-    with open('test/IncidenceGraphStep1.svg') as file:
-        incid = benedict.from_xml(file.read())
+    # with open('test/TDStep1.svg') as file:
+    #     tdstep = benedict.from_xml(file.read())
+    # with open('test/PrimalGraphStep1.svg') as file:
+    #     primal = benedict.from_xml(file.read())
+    # with open('test/IncidenceGraphStep1.svg') as file:
+    #     incid = benedict.from_xml(file.read())
 
+    # padding = 40
+    # result = append_svg(tdstep, incid, padding)
+    # result = append_svg(result, primal, padding)
     padding = 40
-    result = append_svg(tdstep, incid, padding)
-    result = append_svg(result, primal, padding)
-    # https://css-tricks.com/scale-svg/#article-header-id-1
-    result['svg']['@preserveAspectRatio'] = "xMinYMin"
-    with open("benedict.svg", "w") as file:
-        result.to_xml(output=file, pretty=True)
+    num_images = 54
+    resultname = "generalgraph/generalgraph%d.svg"
+    names = ['generalgraph/TDStep%d.svg', 'generalgraph/graph%d.svg']
+
+    for step in range(1, num_images + 1):
+        # first - needs at least two images
+        with open(names[0] % step) as file:
+            im_1 = benedict.from_xml(file.read())
+        with open(names[1] % step) as file:
+            im_2 = benedict.from_xml(file.read())
+        result = append_svg(im_1, im_2, padding)
+        # rest:
+        for name in names[2:]:
+            with open(name % step) as file:
+                image = benedict.from_xml(file.read())
+            result = append_svg(result, image, padding)
+            
+        # https://css-tricks.com/scale-svg/#article-header-id-1
+        result['svg']['@preserveAspectRatio'] = "xMinYMin"
+        with open(resultname % step, "w") as file:
+            result.to_xml(output=file, pretty=True)
 
 
 if __name__ == "__main__":
