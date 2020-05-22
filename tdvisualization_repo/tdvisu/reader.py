@@ -1,8 +1,14 @@
 # -*- coding: utf-8 -*-
-"""Usage like:
+"""
+Adapted DIMACS reader from: https://github.com/hmarkus/dp_on_dbs/tree/master/dpdb
+DIMACS is an acronym derived from http://dimacs.rutgers.edu/
+Discrete Mathematics and Theoretical Computer Science.
+
+Example usage:
+
 import reader
-r=reader.TwReader()
-inp = r.from_file('gr5.td')
+r = reader.TwReader()
+inp = r.from_filename('gr5.tw')
 inp.num_vertices
 inp.num_edges
 inp.edges
@@ -11,15 +17,25 @@ inp.edges
 import logging
 import sys
 
+__author__ = "Martin Röbke <martin.roebke@tu-dresden.de>"
+__credits__ = ["https://github.com/Fend0r"]
+__status__ = "development"
+__version__ = "1.0"
+__date__ = "22 May 2020"
+
 logger = logging.getLogger(__name__)
 
 
 class Reader():
     """Base class for string-readers."""
     @classmethod
-    def from_file(cls, fname):
+    def from_filename(cls, fname):
         with open(fname, "r") as file:
             return cls.from_string(file.read())
+
+    @classmethod
+    def from_filewrapper(cls, fwrapper):
+        return cls.from_string(fwrapper.read())
 
     @classmethod
     def from_stream(cls, stream):
@@ -44,9 +60,12 @@ class DimacsReader(Reader):
     Discrete Mathematics and Theoretical Computer Science.
     """
 
-    def parse(self, string):
-        self.problem_solution_type = "?"
-        self.format = "?"
+    def __init__(self):
+        self.problem_solution_type = None
+        self.format = None
+        self._problem_vars = None
+
+    def parse(self, string) -> None:
         lines = string.split("\n")
         body_start = self.preamble(lines)
         self.store_problem_vars()
@@ -56,13 +75,22 @@ class DimacsReader(Reader):
         pass
 
     @staticmethod
-    def is_comment(line):
+    def is_comment(line) -> bool:
         return line.startswith("c ") or line == "c"
 
     def body(self, lines):
         pass
 
-    def preamble(self, lines):
+    def preamble(self, lines) -> int:
+        """
+        Searches for the preamble line in lines and saves:
+            problem_solution_type, format, _problem_vars
+        Then returns the index of the next line.
+
+        If no preamble is present:
+            Exit with error.
+
+        """
         for lineno, line in enumerate(lines):
             if line.startswith("p ") or line.startswith("s "):
                 line = line.split()
@@ -81,7 +109,7 @@ class DimacsReader(Reader):
         sys.exit(1)
 
 
-def _add_edge_to(edges, adjacency_dict, vertex1, vertex2):
+def _add_edge_to(edges, adjacency_dict, vertex1, vertex2) -> None:
     """
     Adding (undirected) edge from 'vertex1' to 'vertex2'
     to the edges and adjacency-list.
@@ -93,13 +121,13 @@ def _add_edge_to(edges, adjacency_dict, vertex1, vertex2):
     adjacency_dict : dict-like
         Saves adjecent vertices for each vertex.
     vertex1 : any
-        First vertex of the new edge
+        First vertex of the new edge.
     vertex2 : any
         Second vertex of the new edge.
 
     Returns
     -------
-    None.
+    None
 
     """
     if vertex1 in adjacency_dict:
@@ -114,22 +142,23 @@ def _add_edge_to(edges, adjacency_dict, vertex1, vertex2):
 
 
 class TwReader(DimacsReader):
-    """Dimacs Reader for tw format (edges).
-    Stores edges and one adjacency_dict,
-    as well as number of vertices and number of edges.
-    Needs one graph saved in a 'tw' format.
+    """Dimacs Reader for the 'tw' format (saving directed edges).
+    Stores edges and adjacency together with
+    the number of vertices and number of edges.
     """
 
     def __init__(self):
         super().__init__()
         self.edges = set()
         self.adjacency_dict = dict()
+        self.num_vertices = self.num_edges = None
 
     def store_problem_vars(self):
         self.num_vertices = int(self._problem_vars[0])
         self.num_edges = int(self._problem_vars[1])
 
-    def body(self, lines):
+    def body(self, lines) -> None:
+        """Store the content from the given lines in the edges and adjacency_dict."""
         if self.format != "tw":
             logger.error("Not a tw file!")
             sys.exit(1)
