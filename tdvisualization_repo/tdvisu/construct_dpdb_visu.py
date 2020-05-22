@@ -178,15 +178,20 @@ class IDpdbVisuConstruct(metaclass=abc.ABCMeta):
 class DpdbSharpSatVisu(IDpdbVisuConstruct):
     """Implementation of the JSON-Construction for the SharpSat problem."""
 
-    def __init__(self, db: pg.extensions.connection, problem: int):
+    def __init__(self, db: pg.extensions.connection,
+                 problem: int, intermed_nodes: bool):
         """db : psycopg2.connection
             database to read from.
         problem : int
             index of the problem.
+        intermed_nodes : bool
+            if True calculates the shortest path between successive nodes.
         """
         LOGGER.debug("Creating %s for problem %d.",
                      self.__class__.__name__, problem)
         self.problem = problem
+        self.intermed_nodes = intermed_nodes
+
         # wait for good connection
         status = db.get_transaction_status()
         sleeptimer = 0.5
@@ -329,21 +334,26 @@ class DpdbSharpSatVisu(IDpdbVisuConstruct):
         """
         with self.connection.cursor() as cur:  # create a cursor
             timeline = list()
-            adj = convert_to_adj(edgearray)
+            adj = convert_to_adj(edgearray) if self.intermed_nodes else {}
             cur.execute(
                 "SELECT node FROM public.p{}_td_node_status ORDER BY start_time".format(
                     self.problem))
             order_solved = list(flatten(cur.fetchall()))
             # tour sol -> through result nodes along the edges
-            last = order_solved[-1]
-            startpath = find_path(adj, last, order_solved[0])
-            timeline = [[bag] for bag in startpath[1]]
+
+            if self.intermed_nodes:
+                last = order_solved[-1]
+                startpath = find_path(adj, last, order_solved[0])
+                timeline = [[bag] for bag in startpath[1]]
+            else:
+                timeline.append([order_solved[0]])
             # add the other bags in order_solved to the timeline
             last = order_solved[0]
             for bag in order_solved:
-                path = find_path(adj, last, bag)
-                for intermed in path[1][1:]:
-                    timeline.append([intermed])
+                if self.intermed_nodes:
+                    path = find_path(adj, last, bag)
+                    for intermed in path[1][1:]:
+                        timeline.append([intermed])
                 # query column names
                 #  deepcode ignore Sqli: general query, inserting integers
                 cur.execute(
@@ -389,8 +399,8 @@ class DpdbMinVcVisu(DpdbSharpSatVisu):
     Borrowing methods from DpdbSharpSatVisu.
     """
 
-    def __init__(self, db, problem, tw_file=None):
-        super().__init__(db, problem)
+    def __init__(self, db, problem, intermed_nodes, tw_file=None):
+        super().__init__(db, problem, intermed_nodes)
         self.tw_file = tw_file
 
     def read_clauses(self):
@@ -412,9 +422,9 @@ class DpdbMinVcVisu(DpdbSharpSatVisu):
         try:
             reader = TwReader.from_filewrapper(self.tw_file)
         except Exception as error:
-            LOGGER.error("Problem while reading from self.tw_file: %s",error)
+            LOGGER.error("Problem while reading from self.tw_file: %s", error)
             raise error
-        
+
         # create list so that it is JSON serializable
         return list(reader.edges)
 
@@ -469,7 +479,7 @@ def connect() -> pg.extensions.connection:
     return conn
 
 
-def create_json(problem: int, tw_file=None) -> dict:
+def create_json(problem: int, tw_file=None, intermed_nodes=False) -> dict:
     """Create the JSON for the specified Problem instance."""
     try:
         with connect() as connection:
@@ -483,9 +493,11 @@ def create_json(problem: int, tw_file=None) -> dict:
             constructor: IDpdbVisuConstruct
 
             if ptype == "SharpSat":
-                constructor = DpdbSharpSatVisu(connection, problem)
+                constructor = DpdbSharpSatVisu(
+                    connection, problem, intermed_nodes)
             elif ptype == "VertexCover":
-                constructor = DpdbMinVcVisu(connection, problem, tw_file)
+                constructor = DpdbMinVcVisu(
+                    connection, problem, intermed_nodes, tw_file)
 
             LOGGER.info("Using %s for type=%s",
                         constructor.__class__.__name__, ptype)
@@ -529,8 +541,11 @@ if __name__ == "__main__":
         help="default:'dbjson%%d.json'")
     PARSER.add_argument('--pretty', action='store_true',
                         help="Pretty-print the JSON.")
+    PARSER.add_argument('--inter-nodes', action='store_true',
+                        help="Calculate path between successive nodes during the evaluation order.")
     PARSER.add_argument('--version', action='version',
                         version='%(prog)s ' + __version__ + ", " + __date__)
+
     # get cmd-arguments
     args = PARSER.parse_args()
     LOGGER.info('%s', args)
