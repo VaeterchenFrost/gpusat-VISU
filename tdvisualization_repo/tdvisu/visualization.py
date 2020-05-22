@@ -508,7 +508,8 @@ class Visualization:
             self.general_graph(timeline=_timeline, 
                                edges=self.general_edges, 
                                _file=self.general_graph_name,
-                               var_name=self.general_var_name)
+                               var_name=self.general_var_name,
+                               do_sort_nodes=False)
             LOGGER.info(
                     "Created general-graph for file='%s'",
                     self.general_graph_name)
@@ -579,7 +580,7 @@ class Visualization:
             node_names_s = sorted([n[0].decode() for n in node_positions])
             node_x_list = [float(n[1]) for n in node_positions]
             node_y_list = [float(n[2]) for n in node_positions]
-            LOGGER.debug("Calculating with primal node positions"
+            LOGGER.info("Calculating with primal node positions"
                          " %s\nnode_names_s=%s", node_positions, node_names_s)
             # 3: sort nodes in circular order
             # get center (x, y)
