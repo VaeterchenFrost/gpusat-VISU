@@ -377,8 +377,7 @@ class DpdbSharpSatVisu(IDpdbVisuConstruct):
                               *[[int(v) for v in row if v is not None]
                                 for row in solution_raw]],
                              "sol bag " + str(bag),
-                             "sum: " + str(sum([li[-1]
-                                                for li in solution_raw])),
+                             self.footer(solution_raw),
                              True]]
                 timeline.append(solution)
                 last = bag
@@ -392,6 +391,10 @@ class DpdbSharpSatVisu(IDpdbVisuConstruct):
                     self.problem))
             result = cur.fetchall()
             return result
+
+    def footer(self, lines):
+        """Returns the footer for solution bags."""
+        return "sum: " + str(sum([li[-1] for li in lines]))
 
 
 class DpdbMinVcVisu(DpdbSharpSatVisu):
@@ -407,6 +410,10 @@ class DpdbMinVcVisu(DpdbSharpSatVisu):
         raise NotImplementedError(
             self.__class__.__name__ +
             " can not read_clauses!")
+
+    def footer(self, lines):
+        """Returns the footer for solution bags."""
+        return "min-size: " + str(min([li[-1] for li in lines]))
 
     def read_twfile(self):
         """
