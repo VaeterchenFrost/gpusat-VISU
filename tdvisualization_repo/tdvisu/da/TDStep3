@@ -1,0 +1,174 @@
+strict digraph "Tree-Decomposition" {
+	graph [rankdir=BT]
+	node [fillcolor=white margin="0.11,0.01" shape=box style="rounded,filled"]
+	"bag 1" [label=<<TABLE BORDER="0" CELLBORDER="0" CELLSPACING="0">
+                  <TR><TD BGCOLOR="white">bag 1</TD></TR><TR><TD PORT="anchor"></TD></TR><TR><TD>[15, 16]</TD></TR><TR><TD>dtime=0.0007s</TD></TR><TR><TD>05/23/20 19:06:14</TD></TR></TABLE>>]
+	"bag 2" [label=<<TABLE BORDER="0" CELLBORDER="0" CELLSPACING="0">
+                  <TR><TD BGCOLOR="white">bag 2</TD></TR><TR><TD PORT="anchor"></TD></TR><TR><TD>[6, 15]</TD></TR><TR><TD>dtime=0.0008s</TD></TR><TR><TD>05/23/20 19:06:14</TD></TR></TABLE>>]
+	"bag 3" [label=<<TABLE BORDER="0" CELLBORDER="0" CELLSPACING="0">
+                  <TR><TD BGCOLOR="white">bag 3</TD></TR><TR><TD PORT="anchor"></TD></TR><TR><TD>[4, 6, 7]</TD></TR><TR><TD>dtime=0.0007s</TD></TR><TR><TD>05/23/20 19:06:14</TD></TR></TABLE>>]
+	"bag 4" [label=<<TABLE BORDER="0" CELLBORDER="0" CELLSPACING="0">
+                  <TR><TD BGCOLOR="white">bag 4</TD></TR><TR><TD PORT="anchor"></TD></TR><TR><TD>[3, 4, 7]</TD></TR><TR><TD>dtime=0.0014s</TD></TR><TR><TD>05/23/20 19:06:14</TD></TR></TABLE>>]
+	"bag 5" [label=<<TABLE BORDER="0" CELLBORDER="0" CELLSPACING="0">
+                  <TR><TD BGCOLOR="white">bag 5</TD></TR><TR><TD PORT="anchor"></TD></TR><TR><TD>[3, 7, 11]</TD></TR><TR><TD>dtime=0.0026s</TD></TR><TR><TD>05/23/20 19:06:14</TD></TR></TABLE>>]
+	"bag 6" [label=<<TABLE BORDER="0" CELLBORDER="0" CELLSPACING="0">
+                  <TR><TD BGCOLOR="white">bag 6</TD></TR><TR><TD PORT="anchor"></TD></TR><TR><TD>[3, 4, 5]</TD></TR><TR><TD>dtime=0.0019s</TD></TR><TR><TD>05/23/20 19:06:14</TD></TR></TABLE>>]
+	"bag 7" [label=<<TABLE BORDER="0" CELLBORDER="0" CELLSPACING="0">
+                  <TR><TD BGCOLOR="white">bag 7</TD></TR><TR><TD PORT="anchor"></TD></TR><TR><TD>[2, 3]</TD></TR><TR><TD>dtime=0.0013s</TD></TR><TR><TD>05/23/20 19:06:14</TD></TR></TABLE>>]
+	"bag 8" [label=<<TABLE BORDER="0" CELLBORDER="0" CELLSPACING="0">
+                  <TR><TD BGCOLOR="white">bag 8</TD></TR><TR><TD PORT="anchor"></TD></TR><TR><TD>[7, 9, 11]</TD></TR><TR><TD>dtime=0.0037s</TD></TR><TR><TD>05/23/20 19:06:14</TD></TR></TABLE>>]
+	"bag 9" [label=<<TABLE BORDER="0" CELLBORDER="0" CELLSPACING="0">
+                  <TR><TD BGCOLOR="white">bag 9</TD></TR><TR><TD PORT="anchor"></TD></TR><TR><TD>[7, 11, 14]</TD></TR><TR><TD>dtime=0.0009s</TD></TR><TR><TD>05/23/20 19:06:14</TD></TR></TABLE>>]
+	"bag 10" [label=<<TABLE BORDER="0" CELLBORDER="0" CELLSPACING="0">
+                  <TR><TD BGCOLOR="white">bag 10</TD></TR><TR><TD PORT="anchor"></TD></TR><TR><TD>[1, 2]</TD></TR><TR><TD>dtime=0.0029s</TD></TR><TR><TD>05/23/20 19:06:14</TD></TR></TABLE>>]
+	"bag 11" [label=<<TABLE BORDER="0" CELLBORDER="0" CELLSPACING="0">
+                  <TR><TD BGCOLOR="white">bag 11</TD></TR><TR><TD PORT="anchor"></TD></TR><TR><TD>[9, 10]</TD></TR><TR><TD>dtime=0.0019s</TD></TR><TR><TD>05/23/20 19:06:14</TD></TR></TABLE>>]
+	"bag 12" [label=<<TABLE BORDER="0" CELLBORDER="0" CELLSPACING="0">
+                  <TR><TD BGCOLOR="white">bag 12</TD></TR><TR><TD PORT="anchor"></TD></TR><TR><TD>[7, 8, 9]</TD></TR><TR><TD>dtime=0.0022s</TD></TR><TR><TD>05/23/20 19:06:14</TD></TR></TABLE>>]
+	"bag 13" [label=<<TABLE BORDER="0" CELLBORDER="0" CELLSPACING="0">
+                  <TR><TD BGCOLOR="white">bag 13</TD></TR><TR><TD PORT="anchor"></TD></TR><TR><TD>[11, 12, 14]</TD></TR><TR><TD>dtime=0.0023s</TD></TR><TR><TD>05/23/20 19:06:14</TD></TR></TABLE>>]
+	"bag 14" [label=<<TABLE BORDER="0" CELLBORDER="0" CELLSPACING="0">
+                  <TR><TD BGCOLOR="white">bag 14</TD></TR><TR><TD PORT="anchor"></TD></TR><TR><TD>[12, 13]</TD></TR><TR><TD>dtime=0.0021s</TD></TR><TR><TD>05/23/20 19:06:14</TD></TR></TABLE>>]
+	"bag 2" -> "bag 1"
+	"bag 3" -> "bag 2"
+	"bag 4" -> "bag 3"
+	"bag 5" -> "bag 4"
+	"bag 6" -> "bag 4"
+	"bag 7" -> "bag 5"
+	"bag 8" -> "bag 5"
+	"bag 9" -> "bag 5"
+	"bag 10" -> "bag 7"
+	"bag 11" -> "bag 8"
+	"bag 12" -> "bag 8"
+	"bag 13" -> "bag 9"
+	"bag 14" -> "bag 13"
+	sol10 [label="{sol bag 10|{{v2|0|1}|{size|1|1}}|min-size: 1}" shape=record]
+	"bag 10" -> sol10
+	sol11 [label="{sol bag 11|{{v9|0|1}|{size|1|1}}|min-size: 1}" shape=record]
+	"bag 11" -> sol11
+	sol12 [label="{sol bag 12|{{v7|0|1|0|1}|{v9|0|1|1|0}|{size|1|2|2|2}}|min-size: 1}" shape=record]
+	"bag 12" -> sol12
+	sol14 [label="{sol bag 14|{{v12|0|1}|{size|1|1}}|min-size: 1}" shape=record]
+	"bag 14" -> sol14
+	sol7 [label="{sol bag 7|{{v3|0|1}|{size|1|2}}|min-size: 1}" shape=record]
+	"bag 7" -> sol7
+	sol6 [label="{sol bag 6|{{v3|1|1|0}|{v4|1|0|1}|{size|2|2|2}}|min-size: 2}" shape=record]
+	"bag 6" -> sol6
+	sol8 [label="{sol bag 8|{{v7|0|1|1|0}|{v11|0|1|0|1}|{size|2|3|2|3}}|min-size: 2}" shape=record]
+	"bag 8" -> sol8
+	sol13 [label="{sol bag 13|{{v11|1|1|0}|{v14|1|0|1}|{size|3|2|2}}|min-size: 2}" shape=record]
+	"bag 13" -> sol13
+	sol9 [label="{sol bag 9|{{v7|0|1|1|0}|{v11|0|1|0|1}|{size|2|3|3|3}}|min-size: 2}" shape=record]
+	"bag 9" -> sol9
+	sol5 [label="{sol bag 5|{{v3|1|0|0|1}|{v7|1|0|1|0}|{size|6|5|5|6}}|min-size: 5}" shape=record]
+	"bag 5" -> sol5
+	sol4 [label="{sol bag 4|{{v4|0|1|1|0}|{v7|0|1|0|1}|{size|7|7|7|7}}|min-size: 7}" shape=record]
+	"bag 4" -> sol4
+	sol3 [label="{sol bag 3|{{v6|0|1}|{size|7|8}}|min-size: 7}" shape=record]
+	"bag 3" -> sol3
+	sol2 [label="{sol bag 2|{{v15|0|1}|{size|8|8}}|min-size: 8}" shape=record]
+	"bag 2" -> sol2
+	sol1 [label="{sol bag 1|{{v15|1|1|0}|{v16|1|0|1}|{size|9|8|9}}|min-size: 8}" shape=record]
+	"bag 1" -> sol1
+	sol1 [fillcolor=yellow]
+	sol1 [penwidth=2.5]
+	"bag 1" -> sol1
+	"bag 1" [fillcolor=yellow]
+	"bag 1" [penwidth=2.5]
+	"bag 1" [fillcolor=white penwidth=1.0]
+	sol1 [style=invis]
+	"bag 1" -> sol1 [style=invis]
+	sol2 [fillcolor=yellow]
+	sol2 [penwidth=2.5]
+	"bag 2" -> sol2
+	"bag 2" [fillcolor=yellow]
+	"bag 2" [penwidth=2.5]
+	"bag 2" [fillcolor=white penwidth=1.0]
+	sol2 [style=invis]
+	"bag 2" -> sol2 [style=invis]
+	sol3 [fillcolor=yellow]
+	sol3 [penwidth=2.5]
+	"bag 3" -> sol3
+	"bag 3" [fillcolor=yellow]
+	"bag 3" [penwidth=2.5]
+	"bag 3" [fillcolor=white penwidth=1.0]
+	sol3 [style=invis]
+	"bag 3" -> sol3 [style=invis]
+	sol4 [fillcolor=yellow]
+	sol4 [penwidth=2.5]
+	"bag 4" -> sol4
+	"bag 4" [fillcolor=yellow]
+	"bag 4" [penwidth=2.5]
+	"bag 4" [fillcolor=white penwidth=1.0]
+	sol4 [style=invis]
+	"bag 4" -> sol4 [style=invis]
+	sol5 [fillcolor=yellow]
+	sol5 [penwidth=2.5]
+	"bag 5" -> sol5
+	"bag 5" [fillcolor=yellow]
+	"bag 5" [penwidth=2.5]
+	"bag 5" [fillcolor=white penwidth=1.0]
+	sol5 [style=invis]
+	"bag 5" -> sol5 [style=invis]
+	sol9 [fillcolor=yellow]
+	sol9 [penwidth=2.5]
+	"bag 9" -> sol9
+	"bag 9" [fillcolor=yellow]
+	"bag 9" [penwidth=2.5]
+	"bag 9" [fillcolor=white penwidth=1.0]
+	sol9 [style=invis]
+	"bag 9" -> sol9 [style=invis]
+	sol13 [fillcolor=yellow]
+	sol13 [penwidth=2.5]
+	"bag 13" -> sol13
+	"bag 13" [fillcolor=yellow]
+	"bag 13" [penwidth=2.5]
+	"bag 13" [fillcolor=white penwidth=1.0]
+	sol13 [style=invis]
+	"bag 13" -> sol13 [style=invis]
+	sol8 [fillcolor=yellow]
+	sol8 [penwidth=2.5]
+	"bag 8" -> sol8
+	"bag 8" [fillcolor=yellow]
+	"bag 8" [penwidth=2.5]
+	"bag 8" [fillcolor=white penwidth=1.0]
+	sol8 [style=invis]
+	"bag 8" -> sol8 [style=invis]
+	sol6 [fillcolor=yellow]
+	sol6 [penwidth=2.5]
+	"bag 6" -> sol6
+	"bag 6" [fillcolor=yellow]
+	"bag 6" [penwidth=2.5]
+	"bag 6" [fillcolor=white penwidth=1.0]
+	sol6 [style=invis]
+	"bag 6" -> sol6 [style=invis]
+	sol7 [fillcolor=yellow]
+	sol7 [penwidth=2.5]
+	"bag 7" -> sol7
+	"bag 7" [fillcolor=yellow]
+	"bag 7" [penwidth=2.5]
+	"bag 7" [fillcolor=white penwidth=1.0]
+	sol7 [style=invis]
+	"bag 7" -> sol7 [style=invis]
+	sol14 [fillcolor=yellow]
+	sol14 [penwidth=2.5]
+	"bag 14" -> sol14
+	"bag 14" [fillcolor=yellow]
+	"bag 14" [penwidth=2.5]
+	"bag 14" [fillcolor=white penwidth=1.0]
+	sol14 [style=invis]
+	"bag 14" -> sol14 [style=invis]
+	sol12 [fillcolor=yellow]
+	sol12 [penwidth=2.5]
+	"bag 12" -> sol12
+	"bag 12" [fillcolor=yellow]
+	"bag 12" [penwidth=2.5]
+	"bag 12" [fillcolor=white penwidth=1.0]
+	sol12 [style=invis]
+	"bag 12" -> sol12 [style=invis]
+	sol11 [fillcolor=yellow]
+	sol11 [penwidth=2.5]
+	"bag 11" -> sol11
+	"bag 11" [fillcolor=yellow]
+	"bag 11" [penwidth=2.5]
+}

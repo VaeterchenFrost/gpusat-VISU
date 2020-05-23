@@ -176,10 +176,10 @@ def main():
     # padding = 40
     # result = append_svg(tdstep, incid, padding)
     # result = append_svg(result, primal, padding)
-    padding = -2000
-    num_images = 62
-    folder = "run0/"
-    resultname = folder + "generalgraph%d.svg"
+    padding = 40
+    num_images = 15
+    folder = "da/"
+    resultname = folder + "da16%d.svg"
     names = [folder + 'TDStep%d.svg', folder + 'graph%d.svg']
 
     for step in range(1, num_images + 1):
