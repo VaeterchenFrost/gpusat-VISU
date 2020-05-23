@@ -37,7 +37,7 @@ import pathlib
 
 from time import sleep
 from configparser import ConfigParser
-from typing import Optional, Iterable, Iterator, TypeVar
+from typing import Iterable, Iterator, TypeVar
 
 import psycopg2 as pg
 
@@ -48,8 +48,8 @@ from reader import TwReader
 
 __author__ = "Martin Röbke <martin.roebke@tu-dresden.de>"
 __status__ = "development"
-__version__ = "0.3"
-__date__ = "21 May 2020"
+__version__ = "0.4"
+__date__ = "23 May 2020"
 
 logging.basicConfig(
     format="%(asctime)s,%(msecs)d %(levelname)-8s"

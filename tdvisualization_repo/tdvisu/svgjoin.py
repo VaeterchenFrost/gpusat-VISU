@@ -8,8 +8,8 @@ from typing import Tuple
 
 __author__ = "Martin Röbke <martin.roebke@tu-dresden.de>"
 __status__ = "development"
-__version__ = "0.2"
-__date__ = "29 April 2020"
+__version__ = "0.3"
+__date__ = "23 May 2020"
 
 LOGGER = logging.getLogger(__name__)
 
@@ -63,7 +63,7 @@ def append_svg(first_dict: dict, snd_dict: dict,
     h_displacement = float(viewbox1[WIDTH]) + centerpad
     # adjust viewbox of first svg
     viewbox1[WIDTH] = str(max(float(viewbox1[WIDTH]),
-        h_displacement + float(viewbox2[WIDTH])))
+                              h_displacement + float(viewbox2[WIDTH])))
 
     (v_displacement, combine_height, scale2) = f_transform(
         viewbox1[HEIGHT], viewbox2[HEIGHT], v_bottom, v_top)
