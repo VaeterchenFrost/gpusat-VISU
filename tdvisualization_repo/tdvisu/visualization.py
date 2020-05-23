@@ -627,6 +627,11 @@ class Visualization:
                     fillcolor=first_color,
                     style=first_style)
 
+            # highlight edges between variables
+            [graph.edge(vartag_n % s, vartag_n % t, color='red', penwidth=penwidth)
+             for (s, t) in edges
+             if (s in variables and t in variables)]
+
             if do_adj_nodes:
                 # set.difference accepts list as argument, "-" does not.
                 edges = [set(edge) for edge in edges]
