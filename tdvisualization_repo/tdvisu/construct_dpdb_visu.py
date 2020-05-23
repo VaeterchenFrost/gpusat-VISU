@@ -54,7 +54,7 @@ __date__ = "21 May 2020"
 logging.basicConfig(
     format="%(asctime)s,%(msecs)d %(levelname)-8s"
     "[%(filename)s:%(lineno)d] %(message)s",
-    datefmt='%Y-%m-%d:%H:%M:%S',
+    datefmt='%Y-%m-%d %H:%M:%S',
     level=logging.WARNING)
 
 LOGGER = logging.getLogger(__name__)

@@ -43,7 +43,7 @@ __date__ = "21 May 2020"
 logging.basicConfig(
     format="%(asctime)s,%(msecs)d %(levelname)s"
     "[%(filename)s:%(lineno)d] %(message)s",
-    datefmt='%Y-%m-%d:%H:%M:%S')
+    datefmt='%Y-%m-%d %H:%M:%S')
 
 LOGGER = logging.getLogger(__name__)
 
@@ -557,34 +557,36 @@ class Visualization:
 
         """
         _filename = self.outfolder + _file + '%d'
-
+        LOGGER.info("Generating general-graph for '%s'", _file)
         vartag_n = var_name + '%d'
 
         graph = Graph(_file, strict=True,
-                      engine='circo',
-                      graph_attr={'fontsize': fontsize},
+                      engine='circo' if do_sort_nodes else 'sfdp',
+                      graph_attr={'fontsize': fontsize, 'overlap': 'false',
+                                  'outputorder': 'edgesfirst'},
                       node_attr={'fontcolor': fontcolor,
-                                 'penwidth': penwidth})
+                                 'penwidth': penwidth,
+                                 'style': 'filled', 'fillcolor': 'white'})
         for (s, t) in edges:     # do this before calculating layout!
             graph.edge(vartag_n % s, vartag_n % t)
 
-        if do_sort_nodes:
-            # 1: get current layout code
-            # reads in bytes!
-            code_lines = graph.pipe('plain').splitlines()
-            # The output consists of one graph line, a sequence of node lines,
-            # one per node, a sequence of edge lines, one per edge,
-            # and a final stop line.
-            # 2: read positions per node
-            assert code_lines[0].startswith(b'graph')
-            node_positions = [line.split()[1:4] for line in code_lines[1:]
-                              if line.startswith(b'node')]
+        # 1: get current layout code, prevent re-calculating layout later!
+        # reads in bytes!
+        code_lines = graph.pipe('plain').splitlines()
 
+        # The output consists of one graph line, a sequence of node lines,
+        # one per node, a sequence of edge lines, one per edge,
+        # and a final stop line.
+        # 2: read positions per node
+        assert code_lines[0].startswith(b'graph')
+        node_positions = [line.split()[1:4] for line in code_lines[1:]
+                          if line.startswith(b'node')]
+        if do_sort_nodes:
             node_names_s = sorted([n[0].decode() for n in node_positions])
             node_x_list = [float(n[1]) for n in node_positions]
             node_y_list = [float(n[2]) for n in node_positions]
-            LOGGER.info("Calculating with primal node positions"
-                        " %s\nnode_names_s=%s", node_positions, node_names_s)
+            LOGGER.debug("Calculating with primal node positions"
+                         " %s\nnode_names_s=%s", node_positions, node_names_s)
             # 3: sort nodes in circular order
             # get center (x, y)
             center = (sum(node_x_list) / len(node_positions),
@@ -597,6 +599,12 @@ class Visualization:
             # 4: place back into the (sorted) positions
             for node, position in zip(node_names_s, position_circle):
                 graph.node(node, pos="%f,%f!" % position)
+        else:
+            # save old positions
+            for line in node_positions:
+                graph.node(
+                    line[0].decode(), pos="%f,%f!" %
+                    (float(line[1]), float(line[2])))
 
         # Engine uses previous positions
         graph.engine = 'neato'
