@@ -31,7 +31,6 @@ import itertools
 import logging
 from sys import stdin
 from typing import Iterable, Iterator, TypeVar
-from cmath import phase
 
 from graphviz import Digraph, Graph
 
@@ -510,7 +509,7 @@ class Visualization:
                                edges=self.general_edges,
                                _file=self.general_graph_name,
                                var_name=self.general_var_name,
-                               do_sort_nodes=False,
+                               do_sort_nodes=True,
                                do_adj_nodes=False)
             LOGGER.info(
                 "Created general-graph for file='%s'",
@@ -561,55 +560,40 @@ class Visualization:
         vartag_n = var_name + '%d'
         # sfdp http://yifanhu.net/SOFTWARE/SFDP/index.html
         default_engine = 'sfdp'
-        
+
         graph = Graph(_file, strict=True,
-                      engine='circo' if do_sort_nodes else default_engine,
+                      engine=default_engine,
                       graph_attr={'fontsize': fontsize, 'overlap': 'false',
-                                  'outputorder': 'edgesfirst', 'K':'2'},
+                                  'outputorder': 'edgesfirst', 'K': '2'},
                       node_attr={'fontcolor': fontcolor,
                                  'penwidth': penwidth,
                                  'style': 'filled', 'fillcolor': 'white'})
-        for (s, t) in edges:     # do this before calculating layout!
+
+        if do_sort_nodes:
+            bodybaselen = len(graph.body)
+            # 1: layout with circo
+            graph.engine = 'circo'
+            # 2: nodes in edges make a circle
+            nodes = sorted(set(flatten(edges)))  # list
+            for i, node in enumerate(nodes):
+                graph.edge(str(nodes[i - 1]), str(node))
+            # 3: reads in bytes!
+            code_lines = graph.pipe('plain').splitlines()
+            # 4: save the (sorted) positions
+            assert code_lines[0].startswith(b'graph')
+            node_positions = [line.split()[1:4] for line in code_lines[1:]
+                              if line.startswith(b'node')]
+            # 5: cut layout
+            graph.body = graph.body[:bodybaselen]
+            for line in node_positions:
+                graph.node(line[0].decode(),
+                           pos="%f,%f!" % (float(line[1]), float(line[2])))
+            # 5: Engine uses previous positions
+            graph.engine = 'neato'
+
+        for (s, t) in edges:
             graph.edge(vartag_n % s, vartag_n % t)
 
-        # 1: get current layout code, prevent re-calculating layout later!
-        # reads in bytes!
-        code_lines = graph.pipe('plain').splitlines()
-
-        # The output consists of one graph line, a sequence of node lines,
-        # one per node, a sequence of edge lines, one per edge,
-        # and a final stop line.
-        # 2: read positions per node
-        assert code_lines[0].startswith(b'graph')
-        node_positions = [line.split()[1:4] for line in code_lines[1:]
-                          if line.startswith(b'node')]
-        if do_sort_nodes:
-            node_names_s = sorted([n[0].decode() for n in node_positions])
-            node_x_list = [float(n[1]) for n in node_positions]
-            node_y_list = [float(n[2]) for n in node_positions]
-            LOGGER.debug("Calculating with primal node positions"
-                         " %s\nnode_names_s=%s", node_positions, node_names_s)
-            # 3: sort nodes in circular order
-            # get center (x, y)
-            center = (sum(node_x_list) / len(node_positions),
-                      sum(node_y_list) / len(node_positions))
-            # get order respective to center, starting at middle-left:
-            position_circle = sorted(zip(node_x_list, node_y_list),
-                                     key=lambda x: phase(
-                                         complex(*x) - complex(*center)),
-                                     reverse=True)
-            # 4: place back into the (sorted) positions
-            for node, position in zip(node_names_s, position_circle):
-                graph.node(node, pos="%f,%f!" % position)
-        else:
-            # save old positions
-            for line in node_positions:
-                graph.node(
-                    line[0].decode(), pos="%f,%f!" %
-                    (float(line[1]), float(line[2])))
-
-        # Engine uses previous positions
-        graph.engine = 'neato'
         bodybaselen = len(graph.body)
 
         for i, variables in enumerate(timeline, start=1):    # all timesteps
