@@ -559,11 +559,13 @@ class Visualization:
         _filename = self.outfolder + _file + '%d'
         LOGGER.info("Generating general-graph for '%s'", _file)
         vartag_n = var_name + '%d'
-
+        # sfdp http://yifanhu.net/SOFTWARE/SFDP/index.html
+        default_engine = 'sfdp'
+        
         graph = Graph(_file, strict=True,
-                      engine='circo' if do_sort_nodes else 'sfdp',
+                      engine='circo' if do_sort_nodes else default_engine,
                       graph_attr={'fontsize': fontsize, 'overlap': 'false',
-                                  'outputorder': 'edgesfirst'},
+                                  'outputorder': 'edgesfirst', 'K':'2'},
                       node_attr={'fontcolor': fontcolor,
                                  'penwidth': penwidth,
                                  'style': 'filled', 'fillcolor': 'white'})
