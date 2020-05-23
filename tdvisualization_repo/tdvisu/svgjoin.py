@@ -62,17 +62,17 @@ def append_svg(first_dict: dict, snd_dict: dict,
     viewbox2 = re.split(pattern, second_svg['@viewBox'])
     h_displacement = float(viewbox1[WIDTH]) + centerpad
     # adjust viewbox of first svg
-    viewbox1[WIDTH] = str(
-        h_displacement + float(viewbox2[WIDTH]))
+    viewbox1[WIDTH] = str(max(float(viewbox1[WIDTH]),
+        h_displacement + float(viewbox2[WIDTH])))
 
     (v_displacement, combine_height, scale2) = f_transform(
         viewbox1[HEIGHT], viewbox2[HEIGHT], v_bottom, v_top)
     viewbox1[HEIGHT] = str(combine_height)
 
     first_svg['@viewBox'] = ' '.join(viewbox1)
-    # drop width,height
-    first_svg.pop("@width", None)
-    first_svg.pop("@height", None)
+    # update width,height
+    first_svg["@width"] = viewbox1[WIDTH] + "pt"
+    first_svg["@height"] = viewbox1[HEIGHT] + "pt"
     # move second image group next to first
     transform = second_svg['g'].get('@transform', '')
     if transform:
@@ -176,9 +176,9 @@ def main():
     # padding = 40
     # result = append_svg(tdstep, incid, padding)
     # result = append_svg(result, primal, padding)
-    padding = 40
-    num_images = 14
-    folder = "generalgraphNoDijkstra/"
+    padding = -2000
+    num_images = 62
+    folder = "run0/"
     resultname = folder + "generalgraph%d.svg"
     names = [folder + 'TDStep%d.svg', folder + 'graph%d.svg']
 
