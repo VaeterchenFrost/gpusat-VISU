@@ -18,7 +18,7 @@ import logging
 import sys
 
 __author__ = "Martin Röbke <martin.roebke@tu-dresden.de>"
-__credits__ = ["https://github.com/Fend0r"]
+__credits__ = ["Patrick Thier https://github.com/Fend0r, TU Wien"]
 __status__ = "development"
 __version__ = "1.0"
 __date__ = "22 May 2020"
