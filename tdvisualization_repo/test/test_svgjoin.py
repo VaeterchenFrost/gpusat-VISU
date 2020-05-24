@@ -10,9 +10,10 @@ __author__ = "Martin Röbke <martin.roebke@tu-dresden.de>"
 __status__ = "development"
 __date__ = "9 May 2020"
 
+# Sizes considered for image-dimensions
 MIN = 5
 MAX = 1e6
-BASE = randint(40, 240)
+BASE = randint(20, 3000)
 last_random = None
 
 
@@ -35,7 +36,6 @@ def rand_smaller(number):
 @expand
 class TestNewHeight(unittest.TestCase):
     """Test the transform method in svgjoin"""
-    # Sizes considered for image-dimensions
 
     test_parameters = [
         # no baseline
