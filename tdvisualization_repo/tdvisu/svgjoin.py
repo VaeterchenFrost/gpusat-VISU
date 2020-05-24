@@ -142,8 +142,9 @@ def f_transform(h_one_, h_two_, v_bottom=None,
 
     # same value
     if v_top is not None and v_bottom == v_top:
-        LOGGER.warning("The values of 'v_top', 'v_bottom' are both interpreted "
-                       "as %f - skipping vertical adjustment!", v_top, exc_info=1)
+        LOGGER.warning(
+            "The values of 'v_top', 'v_bottom' are both interpreted "
+            "as %f - skipping vertical adjustment!", v_top, exc_info=1)
         v_bottom = v_top = None
 
     if v_bottom is not None:
@@ -165,22 +166,61 @@ def f_transform(h_one_, h_two_, v_bottom=None,
     return (v_displacement, combine_height, scale2)
 
 
-def main():
-    # with open('test/TDStep1.svg') as file:
-    #     tdstep = benedict.from_xml(file.read())
-    # with open('test/PrimalGraphStep1.svg') as file:
-    #     primal = benedict.from_xml(file.read())
-    # with open('test/IncidenceGraphStep1.svg') as file:
-    #     incid = benedict.from_xml(file.read())
+def svg_join(
+        in_names: list,
+        folder: str = "",
+        num_images: int = 1,
+        outname: str = "combined",
+        padding: int = 0,
+        preserve_aspectratio: str = "xMinYMin",
+        suffix: str = "%d.svg"):
+    """
+    Joines different svg-images from tdvisu placed in 'folder' for every timestep
+    in the order specified in 'in_names'.
 
-    # padding = 40
-    # result = append_svg(tdstep, incid, padding)
-    # result = append_svg(result, primal, padding)
-    padding = -500
-    num_images = 61
-    folder = "stars100_55/"
-    resultname = folder + "combined%d.svg"
-    names = [folder + 'TDStep%d.svg', folder + 'graph%d.svg']
+    Parameters
+    ----------
+    in_names : list
+        Base names of the images to join.
+        The method appends the extra 'name'+'%d'+'.svg' to every name with the
+        numbering for '%d' starting from 1.
+    folder : str, optional
+        The working directory. The default is the current directory.
+    num_images : int, optional
+        Expected maximum for 1<=i<=num_images. The default is only 1.
+    outname : str, optional
+        The base name for the combined svg. The default is "combined".
+        The same timestep and ending '.svg' gets appended to the base name.
+    padding : int, optional
+        Additional padding in units between every two images. The default is 0.
+    preserve_aspectratio : str, optional
+        See https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/preserveAspectRatio.
+        or https://css-tricks.com/scale-svg/#article-header-id-1 .
+        The default is "xMinYMin".
+    suffix : str, optional
+        Change the prefix for each file. The default is "%d.svg".
+
+    Returns
+    -------
+    None.
+
+    """
+    # names empty?
+    if not in_names:
+        LOGGER.warning("svg_join found no images to combine!")
+        return
+    # only one?
+    if len(in_names) == 1:
+        LOGGER.warning("svg_join called with one file - nothing to join!")
+        return
+    # could use path library for normalizing the path
+    if folder:
+        folder.replace("\\", "/")
+        if not folder.endswith("/"):
+            folder += "/"
+
+    resultname = folder + outname + suffix
+    names = [folder + name + suffix for name in in_names]
 
     for step in range(1, num_images + 1):
         # first - needs at least two images
@@ -195,11 +235,11 @@ def main():
                 image = benedict.from_xml(file.read())
             result = append_svg(result, image, padding)
 
-        # https://css-tricks.com/scale-svg/#article-header-id-1
-        result['svg']['@preserveAspectRatio'] = "xMinYMin"
+        result['svg']['@preserveAspectRatio'] = preserve_aspectratio
         with open(resultname % step, "w") as file:
             result.to_xml(output=file, pretty=True)
 
 
 if __name__ == "__main__":
-    main()
+    svg_join(['TDStep', 'graph'], 'Archive/stars100_55',
+             num_images=56, padding=-500)
