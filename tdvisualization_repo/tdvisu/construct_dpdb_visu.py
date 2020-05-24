@@ -97,7 +97,7 @@ def flatten(iterable: Iterable[Iterable[_T]]) -> Iterator[_T]:
 
 
 def good_db_status() -> tuple:
-    """Indicating a good db status to proceed."""
+    """Any good db status to proceed."""
     return (pg.extensions.TRANSACTION_STATUS_IDLE,
             pg.extensions.TRANSACTION_STATUS_INTRANS)
 

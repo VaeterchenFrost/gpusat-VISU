@@ -1,6 +1,6 @@
 strict graph "graph" {
-	graph [fontsize=20]
-	node [fontcolor=black penwidth=2.2]
+	graph [K=2 fontsize=20 outputorder=edgesfirst overlap=false]
+	node [fillcolor=white fontcolor=black penwidth=2.2 style=filled]
 	26 -- 21
 	18 -- 17
 	16 -- 84

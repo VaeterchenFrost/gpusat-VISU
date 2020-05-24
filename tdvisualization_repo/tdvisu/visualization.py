@@ -187,7 +187,7 @@ class Visualization:
             solution_table,
             toplabel="",
             bottomlabel="",
-            transpose=False, linesmax=100, columnsmax=20) -> str:
+            transpose=False, linesmax=20, columnsmax=20) -> str:
         """Fill the node from the 2D 'solution_table' (columnbased!).
         Optionally add a line above and/or below the table.
 
@@ -509,7 +509,7 @@ class Visualization:
                                edges=self.general_edges,
                                _file=self.general_graph_name,
                                var_name=self.general_var_name,
-                               do_sort_nodes=True,
+                               do_sort_nodes=False,
                                do_adj_nodes=False)
             LOGGER.info(
                 "Created general-graph for file='%s'",

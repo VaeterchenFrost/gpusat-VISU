@@ -1,6 +1,6 @@
 strict graph "graph" {
-	graph [fontsize=20]
-	node [fontcolor=black penwidth=2.2]
+	graph [K=2 fontsize=20 outputorder=edgesfirst overlap=false]
+	node [fillcolor=white fontcolor=black penwidth=2.2 style=filled]
 	26 -- 21
 	18 -- 17
 	16 -- 84
@@ -1112,4 +1112,24 @@ strict graph "graph" {
 	53 [fillcolor=yellow style=filled]
 	61 [fillcolor=yellow style=filled]
 	66 [fillcolor=yellow style=filled]
+	9 -- 53 [color=red penwidth=2.2]
+	16 -- 51 [color=red penwidth=2.2]
+	61 -- 53 [color=red penwidth=2.2]
+	51 -- 35 [color=red penwidth=2.2]
+	51 -- 53 [color=red penwidth=2.2]
+	66 -- 51 [color=red penwidth=2.2]
+	51 -- 16 [color=red penwidth=2.2]
+	53 -- 61 [color=red penwidth=2.2]
+	53 -- 51 [color=red penwidth=2.2]
+	53 -- 9 [color=red penwidth=2.2]
+	51 -- 66 [color=red penwidth=2.2]
+	9 -- 51 [color=red penwidth=2.2]
+	35 -- 53 [color=red penwidth=2.2]
+	35 -- 61 [color=red penwidth=2.2]
+	35 -- 51 [color=red penwidth=2.2]
+	9 -- 35 [color=red penwidth=2.2]
+	51 -- 9 [color=red penwidth=2.2]
+	61 -- 35 [color=red penwidth=2.2]
+	35 -- 9 [color=red penwidth=2.2]
+	53 -- 35 [color=red penwidth=2.2]
 }
