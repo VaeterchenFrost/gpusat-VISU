@@ -187,7 +187,7 @@ class Visualization:
             solution_table,
             toplabel="",
             bottomlabel="",
-            transpose=False, linesmax=20, columnsmax=20) -> str:
+            transpose=False, linesmax=1000, columnsmax=50) -> str:
         """Fill the node from the 2D 'solution_table' (columnbased!).
         Optionally add a line above and/or below the table.
 

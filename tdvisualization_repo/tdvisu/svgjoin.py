@@ -176,9 +176,9 @@ def main():
     # padding = 40
     # result = append_svg(tdstep, incid, padding)
     # result = append_svg(result, primal, padding)
-    padding = -1500
+    padding = -500
     num_images = 61
-    folder = "run5/"
+    folder = "stars100_55/"
     resultname = folder + "combined%d.svg"
     names = [folder + 'TDStep%d.svg', folder + 'graph%d.svg']
 
