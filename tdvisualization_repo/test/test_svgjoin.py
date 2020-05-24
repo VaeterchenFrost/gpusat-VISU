@@ -3,8 +3,10 @@
 
 import unittest
 from random import randint
+from benedict import benedict
 from unittest_expander import expand, foreach, param, paramseq
-from tdvisu.svgjoin import f_transform
+
+from tdvisu.svgjoin import f_transform, append_svg
 
 __author__ = "Martin Röbke <martin.roebke@tu-dresden.de>"
 __status__ = "development"
@@ -106,8 +108,19 @@ class TestNewHeight(unittest.TestCase):
 
 class TestSvgJoin(unittest.TestCase):
     """Test the append_svg method in svgjoin"""
-    pass
-
+    def test_simple_join(self):
+        """Combine two example svg images to a new one - compare to result."""
+        with open('IncidenceGraphStep11.svg') as file1:
+            im_1 = benedict.from_xml(file1.read())
+            with open('PrimalGraphStep11.svg') as file2:
+                im_2 = benedict.from_xml(file2.read())
+                result=append_svg(im_1,im_2)
+                result['svg']['@preserveAspectRatio'] = "xMinYMin"
+                # to write:
+                # with open('result_simple_join.svg', "w") as file:
+                #     result.to_xml(output=file, pretty=True)
+                with open('result_simple_join.svg', 'r') as expected:
+                    self.assertEqual(result, benedict.from_xml(expected.read()))
 
 if __name__ == '__main__':
     import sys
@@ -118,4 +131,4 @@ if __name__ == '__main__':
             for cls in test_case_classes)
         unittest.TextTestRunner(stream=sys.stdout, verbosity=1).run(suite)
     # run selected tests:
-    run_tests(TestNewHeight)
+    run_tests(TestNewHeight, TestSvgJoin)
