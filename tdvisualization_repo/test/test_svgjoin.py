@@ -74,6 +74,9 @@ class TestNewHeight(unittest.TestCase):
               expected=(-0.5 * BASE, 1.5 * BASE, 1)).label('move down 0.5'),
         param({'h_one_': BASE, 'h_two_': BASE, 'v_bottom': -1},
               expected=(-BASE, 2 * BASE, 1)).label('move down 1'),
+        # moving centerline: v_bot=v_top
+        param({'h_one_': 2*BASE, 'h_two_': BASE, 'v_bottom': 0.5, 'v_top': 0.5},
+              expected=(-0.5*BASE, 2 * BASE, 1)).label('centerline'),
         # just scale
         param({'h_one_': BASE, 'h_two_': BASE, 'scale2': 1},
               expected=(0, BASE, 1)).label('scale 1'),

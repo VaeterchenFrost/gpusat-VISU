@@ -78,7 +78,7 @@ def append_svg(first_dict: dict, snd_dict: dict,
     if transform:
         transform += ' '
     # v_displacement goes top->bottom, so negative w.r.t. "height"
-    transform += 'translate(%f %f)' % (h_displacement, -v_displacement)
+    transform += 'translate(%f %f)' % (h_displacement, v_displacement)
     second_svg['g']['@transform'] = transform
     # add group to list of 'g'
     if isinstance(first_svg['g'], list):
@@ -91,21 +91,20 @@ def append_svg(first_dict: dict, snd_dict: dict,
 
 def f_transform(h_one_, h_two_, v_bottom=None,
                 v_top=None, scale2=None) -> Tuple[float, float, float]:
-    """
-    Calculate vertical position of second image.
-    The scale is in units from
-    0: bottom of first image
-    1: top of first image
-    v_displacement is the difference of both baselines (bottom).
+    r"""Calculate vertical position and scaling of second image.
+    
+    The input scale is in units from
+    0: top of first image
+    1: bottom of first image
+    v_displacement is the position of v_top (top of image 2).
 
-
-               ----------v_top
-    ---------1 |        |
+               ----------v_top (~ -0.2)
+    ---------0 |        |
     |       |  |        |
     | first |  | second |
     |       |  |        |
-    ---------0 |        |
-               ----------v_bottom
+    ---------1 |        |
+               ----------v_bottom (~ 1.2)
 
 
     Parameters
@@ -115,16 +114,18 @@ def f_transform(h_one_, h_two_, v_bottom=None,
     h_two_ : float-like
         Height of the second image.
     v_bottom : float or str, optional
-        DESCRIPTION. The default is None.
+        Expected position of bottom of second image. The default is None.
     v_top : float or str, optional
-        DESCRIPTION. The default is None.
+        Expected position of bottom of second image. The default is None.
     scale2: float, optional
         Scale the second image. Only used if either v_bottom or v_top is None.
 
     Returns
     -------
     Tuple[float, float, float]
-        v_displacement, combine_height, scale2.
+        v_displacement
+        combine_height
+        scale2
 
     """
     if scale2 is None:
@@ -140,20 +141,19 @@ def f_transform(h_one_, h_two_, v_bottom=None,
     v_top = conversion.get(v_top, v_top)
     # cases (special case None)
 
-    # same value
-    if v_top is not None and v_bottom == v_top:
-        LOGGER.warning(
-            "The values of 'v_top', 'v_bottom' are both interpreted "
-            "as %f - skipping vertical adjustment!", v_top, exc_info=1)
-        v_bottom = v_top = None
-
     if v_bottom is not None:
         if v_top is not None:
             if v_bottom > v_top:  # swap
                 v_top, v_bottom = v_bottom, v_top
-            # scaling
-            scale2 = (v_top - v_bottom) * h_one / h_two
-            # height
+            if v_bottom == v_top:
+                # same value - moving the centerline according to value
+                LOGGER.info(
+                    "The values of 'v_top', 'v_bottom' are both interpreted "
+                    "as %f - interpreting as centerline!", v_top)
+                v_displacement = (h_one - h_two * scale2) * v_top
+            else:
+                # scaling
+                scale2 = (v_top - v_bottom) * h_one / h_two
         v_displacement = v_bottom * h_one
     elif v_top is not None:  # v_bottom now None
         size2 = h_two * scale2
@@ -162,7 +162,8 @@ def f_transform(h_one_, h_two_, v_bottom=None,
     size2 = h_two * scale2
     combine_height = (max(h_one, v_displacement + size2) -
                       min(0, v_displacement))
-
+    LOGGER.info("Transformed with v_displacement=%s combine_height=%s scale2=%s",
+                v_displacement, combine_height, scale2)
     return (v_displacement, combine_height, scale2)
 
 
@@ -228,7 +229,7 @@ def svg_join(
             im_1 = benedict.from_xml(file.read())
         with open(names[1] % step) as file:
             im_2 = benedict.from_xml(file.read())
-        result = append_svg(im_1, im_2, padding)
+        result = append_svg(im_1, im_2, padding, 0.5)
         # rest:
         for name in names[2:]:
             with open(name % step) as file:
@@ -238,8 +239,13 @@ def svg_join(
         result['svg']['@preserveAspectRatio'] = preserve_aspectratio
         with open(resultname % step, "w") as file:
             result.to_xml(output=file, pretty=True)
+            LOGGER.info("Wrote combined: %s step %s", resultname, step)
 
 
 if __name__ == "__main__":
+    logging.basicConfig(
+        format="%(asctime)s,%(msecs)d %(levelname)s"
+        "[%(filename)s:%(lineno)d] %(message)s",
+        datefmt='%Y-%m-%d %H:%M:%S', level=logging.DEBUG)
     svg_join(['TDStep', 'graph'], 'Archive/stars100_55',
-             num_images=56, padding=-500)
+             num_images=1, padding=-500)
