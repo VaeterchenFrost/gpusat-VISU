@@ -89,22 +89,26 @@ def append_svg(first_dict: dict, snd_dict: dict,
     return first_dict
 
 
+transformation_example = """
+           ----------v_top (~ -0.2)
+---------0 |        |
+|       |  |        |
+| first |  | second |
+|       |  |        |
+---------1 |        |
+           ----------v_bottom (~ 1.2)
+"""
+
+
 def f_transform(h_one_, h_two_, v_bottom=None,
                 v_top=None, scale2=None) -> Tuple[float, float, float]:
-    r"""Calculate vertical position and scaling of second image.
-    
-    The input scale is in units from
-    0: top of first image
-    1: bottom of first image
-    v_displacement is the position of v_top (top of image 2).
+    """Calculate vertical position of second image.
 
-               ----------v_top (~ -0.2)
-    ---------0 |        |
-    |       |  |        |
-    | first |  | second |
-    |       |  |        |
-    ---------1 |        |
-               ----------v_bottom (~ 1.2)
+    The input scale is in units from\n
+    0: top of first image\n
+    1: bottom of first image\n
+    v_displacement is the position of v_top (top of image 2).\n
+    See also the 'transformation_example'!
 
 
     Parameters
@@ -117,7 +121,7 @@ def f_transform(h_one_, h_two_, v_bottom=None,
         Expected position of bottom of second image. The default is None.
     v_top : float or str, optional
         Expected position of bottom of second image. The default is None.
-    scale2: float, optional
+    scale2 : float, optional
         Scale the second image. Only used if either v_bottom or v_top is None.
 
     Returns
