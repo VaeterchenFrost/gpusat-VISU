@@ -60,17 +60,17 @@ def append_svg(first_dict: dict, snd_dict: dict,
     pattern = re.compile(r'\s*,\s*|\s+')
     viewbox1 = re.split(pattern, first_svg['@viewBox'])
     viewbox2 = re.split(pattern, second_svg['@viewBox'])
-    h_displacement = float(viewbox1[WIDTH]) + centerpad
-    # adjust viewbox of first svg
-    viewbox1[WIDTH] = str(max(float(viewbox1[WIDTH]),
-                              h_displacement + float(viewbox2[WIDTH])))
 
     (v_displacement, combine_height, scale2) = f_transform(
         viewbox1[HEIGHT], viewbox2[HEIGHT], v_bottom, v_top).values()
-        
-    LOGGER.info("Transformed with v_displacement=%s combine_height=%s scale2=%s",
-                v_displacement, combine_height, scale2)
+    LOGGER.info(
+        "Transformed with v_displacement=%s combine_height=%s scale2=%s",
+        v_displacement, combine_height, scale2)
+
     viewbox1[HEIGHT] = str(combine_height)
+    h_displacement = float(viewbox1[WIDTH]) + centerpad
+    viewbox1[WIDTH] = str(max(float(viewbox1[WIDTH]),
+                              h_displacement + float(viewbox2[WIDTH])))
 
     first_svg['@viewBox'] = ' '.join(viewbox1)
     # update width,height
@@ -178,9 +178,9 @@ def f_transform(h_one_, h_two_, v_bottom=None,
     combine_height = (max(h_one, v_displacement + size2) -
                       min(0, v_displacement))
 
-    return {'v_displacement':v_displacement, 
-            'combine_height':combine_height, 
-            'scale2':scale2}
+    return {'v_displacement': v_displacement,
+            'combine_height': combine_height,
+            'scale2': scale2}
 
 
 def svg_join(

@@ -79,7 +79,7 @@ class TestNewHeight(unittest.TestCase):
               expected=(0.25 * BASE, BASE, 1)).label('centerline 0.5'),
         param({'h_one_': BASE, 'h_two_': BASE, 'v_bottom': 0, 'v_top': 0},
               expected=(-0.5 * BASE, 1.5 * BASE, 1)).label('centerline 0 (0)'),
-        param({'h_one_': 2*BASE, 'h_two_': BASE, 'v_bottom': 0, 'v_top': 0},
+        param({'h_one_': 2 * BASE, 'h_two_': BASE, 'v_bottom': 0, 'v_top': 0},
               expected=(-0.5 * BASE, 2.5 * BASE, 1)).label('centerline 0 (1)'),
         param({'h_one_': BASE, 'h_two_': BASE, 'v_bottom': -0.1, 'v_top': -0.1},
               expected=(-0.6 * BASE, 1.6 * BASE, 1)).label('centerline -0.1'),
