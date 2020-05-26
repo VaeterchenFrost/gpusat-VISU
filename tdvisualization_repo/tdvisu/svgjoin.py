@@ -91,10 +91,11 @@ def append_svg(first_dict: dict, snd_dict: dict,
     if transform:
         transform += ' '
     # v_displacement goes top->bottom, so negative w.r.t. "height"
-    transform += ('translate(%f %f) scale(%f)'
+    transform += ('translate(%f %f)'
                   % (h_displacement, 
-                     v_displacement if v_displacement > 0 else -v_displacement*(scale2-1), 
-                     scale2))
+                     v_displacement if v_displacement > 0 else 0))
+    if scale2 != 1:
+        transform = 'scale(%f)'%scale2 + transform
     second_svg['g']['@transform'] = transform
     if v_top < 0 :
         # move first image
@@ -275,7 +276,7 @@ def svg_join(
             im_2,
             padding,
             v_top=-0.3,
-            scale2=2)
+            scale2=1)
         # rest:
         for name in names[2:]:
             with open(name % step) as file:

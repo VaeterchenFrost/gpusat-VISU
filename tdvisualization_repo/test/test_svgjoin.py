@@ -90,7 +90,7 @@ class TestNewHeight(unittest.TestCase):
               expected=(0, 2 * BASE, 2)).label('scale 2'),
         param({'h_one_': BASE, 'h_two_': 0.1 * BASE, 'scale2': 0.1},
               expected=(0, BASE, 0.1)).label('scale 2'),
-        # move + scale
+        # move + scale - add scale to vertical
         param({'h_one_': BASE, 'h_two_': BASE, 'v_bottom': 0.5, 'scale2': 1},
               expected=(0.5 * BASE, 1.5 * BASE, 1)).label('move up 0.5 s1'),
         param({'h_one_': BASE, 'h_two_': BASE, 'v_bottom': 0.5, 'scale2': 2},
@@ -147,4 +147,4 @@ if __name__ == '__main__':
             for cls in test_case_classes)
         unittest.TextTestRunner(stream=sys.stdout, verbosity=1).run(suite)
     # run selected tests:
-    run_tests(TestNewHeight, TestSvgJoin)
+    run_tests(TestNewHeight)
