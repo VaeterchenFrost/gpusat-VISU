@@ -262,12 +262,14 @@ def svg_join(
         with open(names[1] % step) as file:
             im_2 = benedict.from_xml(file.read())
 
+
         result = append_svg(
             im_1,
             im_2,
             padding,
             v_top=-0.3,
             scale2=1)
+
 
         # rest:
         for name in names[2:]:
