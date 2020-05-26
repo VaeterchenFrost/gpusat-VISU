@@ -67,11 +67,15 @@ def append_svg(first_dict: dict, snd_dict: dict,
     viewbox1 = re.split(pattern, first_svg['@viewBox'])
     viewbox2 = re.split(pattern, second_svg['@viewBox'])
 
-    (v_displacement, combine_height, scale2) = f_transform(
-        viewbox1[HEIGHT], viewbox2[HEIGHT], v_bottom, v_top, scale2).values()
+    trafo_result = f_transform(
+        viewbox1[HEIGHT], viewbox2[HEIGHT], v_bottom, v_top, scale2)
+    v_displacement = trafo_result['v_displacement']
+    combine_height = trafo_result['combine_height']
+    scale2 = trafo_result['scale2']
+    v_top = trafo_result['v_top']
     LOGGER.info(
-        "Transformed with v_displacement=%s combine_height=%s scale2=%s",
-        v_displacement, combine_height, scale2)
+        "Transformed with v_displacement=%s combine_height=%s scale2=%s v_top=%s",
+        v_displacement, combine_height, scale2, v_top)
 
     viewbox1[HEIGHT] = str(combine_height)
     h_displacement = float(viewbox1[WIDTH]) + centerpad
@@ -88,9 +92,9 @@ def append_svg(first_dict: dict, snd_dict: dict,
         transform += ' '
     # v_displacement goes top->bottom, so negative w.r.t. "height"
     transform += ('translate(%f %f) scale(%f)'
-                  % (h_displacement, max(0,v_displacement), scale2))
+                  % (h_displacement, v_displacement, scale2))
     second_svg['g']['@transform'] = transform
-    if v_displacement < 0:
+    if v_top < 0:
         # move first image
         transform = first_svg['g'].get('@transform', '')
         if transform:
@@ -155,6 +159,7 @@ def f_transform(h_one_, h_two_, v_bottom=None,
     # cast to float
     h_one = float(h_one_)
     h_two = float(h_two_)
+    LOGGER.info("Calculating with h_one=%f h_two=%f", h_one, h_two)
     # normalize values
     conversion = {'bottom': 1, 'center': 0.5, 'top': 0,
                   -float('inf'): 1, float('inf'): 0}
@@ -165,9 +170,13 @@ def f_transform(h_one_, h_two_, v_bottom=None,
     if v_bottom is None and v_top is None:
         # only scaling from top left corner
         v_top = 0  # set to top of first
+        size2 = h_two * scale2
+        v_bottom = v_top + size2 / h_one
     elif v_bottom is None:
         # now top is already set
-        pass
+        size2 = h_two * scale2
+        v_bottom = v_top + size2 / h_one
+        
     elif v_top is None:
         # calculate v_top (consider scaling)
         size2 = h_two * scale2
@@ -188,15 +197,18 @@ def f_transform(h_one_, h_two_, v_bottom=None,
         scale2 = (v_bottom - v_top) * h_one / h_two
 
     size2 = h_two * scale2
-    v_displacement = v_top * h_one + (scale2 - 1) * h_two
+    if size2 < 1:
+        LOGGER.warning("Image two got scaled to size %s!", size2)
+    v_displacement = v_top * h_one #+ (scale2 - 1) * h_two
     # bottom - top
-    combine_height = (max(h_one, v_displacement + size2) -
-                      min(0, v_displacement))
+    combine_height = (max(h_one, v_bottom * h_one) -
+                      min(0, v_top * h_one ))
 
     # size2 smaller than size1: move 2nd up!
     return {'v_displacement': v_displacement,
             'combine_height': combine_height,
-            'scale2': scale2}
+            'scale2': scale2,
+            'v_top': v_top}
 
 
 def svg_join(
@@ -262,14 +274,7 @@ def svg_join(
         with open(names[1] % step) as file:
             im_2 = benedict.from_xml(file.read())
 
-
-        result = append_svg(
-            im_1,
-            im_2,
-            padding,
-            v_top=-0.3,
-            scale2=1)
-
+        result = append_svg(im_1, im_2, padding,v_top='top', v_bottom='center')
 
         # rest:
         for name in names[2:]:
