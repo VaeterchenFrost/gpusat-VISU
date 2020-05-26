@@ -15,19 +15,13 @@ LOGGER = logging.getLogger(__name__)
 
 
 def append_svg(first_dict: dict, snd_dict: dict,
-               centerpad: float = 0., v_bottom=None, v_top=None) -> dict:
-    """
-    Modifies the first of two xml-svg dictionary containing a viewbox to
+               centerpad: float = 0., v_bottom: float = None, v_top: float = None, scale2: float = None) -> dict:
+    """Modifies the first of two xml-svg dictionary containing a viewbox to
     append the second svg to the right of the first image.
+
     The second svg should only have ONE group 'g'.
+    Scaling keeps the top-left corner in place.
 
-    The value of the viewBox attribute is a list of four numbers:
-        min-x, min-y, width and height.
-        The numbers separated by whitespace and/or a comma,
-        which specify a rectangle in user space which is mapped to the
-        bounds of the viewport established for the associated SVG element.
-
-    See also <https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/viewBox>
 
     Parameters
     ----------
@@ -38,10 +32,15 @@ def append_svg(first_dict: dict, snd_dict: dict,
         Dictionary with key 'svg' including one 'g' element and a '@viewBox' attribute.
     centerpad : float, optional
         Additional padding in units between the two images. The default is 0.
-    v_baseline : float, optional
-        Vertical baseline for the second image relative to the size of the first.
-        The baseline adjusts the relative height (0->bottom, 1->top) and could
-        even be negative or greater than one.
+    v_bottom : float, optional
+        Vertical bottomline for the second image relative to the size of the first.
+        Can even be negative or greater than one.
+    v_top : float, optional
+        Vertical top for the second image relative to the size of the first.
+        Can even be negative or greater than one.
+        If smaller than v_bottom they get swapped.
+    scale2 : float, optional
+        Optional scaling.
 
     Returns
     -------
@@ -57,12 +56,19 @@ def append_svg(first_dict: dict, snd_dict: dict,
     second_svg = snd_dict['svg']
 
     # get viewbox
+    # The value of the viewBox attribute is a list of four numbers:
+    #     min-x, min-y, width and height.
+    #     The numbers separated by whitespace and/or a comma,
+    #     which specify a rectangle in user space which is mapped to the
+    #     bounds of the viewport established for the associated SVG element.
+    # See also
+    # https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/viewBox
     pattern = re.compile(r'\s*,\s*|\s+')
     viewbox1 = re.split(pattern, first_svg['@viewBox'])
     viewbox2 = re.split(pattern, second_svg['@viewBox'])
 
     (v_displacement, combine_height, scale2) = f_transform(
-        viewbox1[HEIGHT], viewbox2[HEIGHT], v_bottom, v_top).values()
+        viewbox1[HEIGHT], viewbox2[HEIGHT], v_bottom, v_top, scale2).values()
     LOGGER.info(
         "Transformed with v_displacement=%s combine_height=%s scale2=%s",
         v_displacement, combine_height, scale2)
@@ -70,7 +76,7 @@ def append_svg(first_dict: dict, snd_dict: dict,
     viewbox1[HEIGHT] = str(combine_height)
     h_displacement = float(viewbox1[WIDTH]) + centerpad
     viewbox1[WIDTH] = str(max(float(viewbox1[WIDTH]),
-                              h_displacement + float(viewbox2[WIDTH])))
+                              h_displacement + scale2 * float(viewbox2[WIDTH])))
 
     first_svg['@viewBox'] = ' '.join(viewbox1)
     # update width,height
@@ -81,7 +87,8 @@ def append_svg(first_dict: dict, snd_dict: dict,
     if transform:
         transform += ' '
     # v_displacement goes top->bottom, so negative w.r.t. "height"
-    transform += 'translate(%f %f)' % (h_displacement, max(0, v_displacement))
+    transform += ('translate(%f %f) scale(%f)'
+                  % (h_displacement, max(0, v_displacement), scale2))
     second_svg['g']['@transform'] = transform
     if v_displacement < 0:
         # move first image
@@ -100,13 +107,13 @@ def append_svg(first_dict: dict, snd_dict: dict,
 
 
 transformation_example = """
-           ----------v_top (~ -0.2)
+           ----------v_top (-0.2)
 ---------0 |        |
 |       |  |        |
 | first |  | second |
 |       |  |        |
 ---------1 |        |
-           ----------v_bottom (~ 1.2)
+           ----------v_bottom (1.2)
 """
 
 
@@ -245,7 +252,7 @@ def svg_join(
             im_1 = benedict.from_xml(file.read())
         with open(names[1] % step) as file:
             im_2 = benedict.from_xml(file.read())
-        result = append_svg(im_1, im_2, padding)
+        result = append_svg(im_1, im_2, padding, 0, 2)
         # rest:
         for name in names[2:]:
             with open(name % step) as file:
