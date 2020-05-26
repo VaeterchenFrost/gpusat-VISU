@@ -182,10 +182,10 @@ def f_transform(h_one_, h_two_, v_bottom=None,
         v_top = v_top - size2 / h_one / 2
         v_bottom = v_bottom + size2 / h_one / 2  # probably not needed further
     else:
-        if v_bottom > v_top:  # swap
+        if v_bottom < v_top:  # swap
             v_top, v_bottom = v_bottom, v_top
         # scaling-factor
-        scale2 = (v_top - v_bottom) * h_one / h_two
+        scale2 = (v_bottom - v_top) * h_one / h_two
 
     size2 = h_two * scale2
     v_displacement = v_top * h_one + (scale2 - 1) * h_two
@@ -261,7 +261,7 @@ def svg_join(
             im_1 = benedict.from_xml(file.read())
         with open(names[1] % step) as file:
             im_2 = benedict.from_xml(file.read())
-        result = append_svg(im_1, im_2, padding, None, None, .9)
+        result = append_svg(im_1, im_2, padding, 1, 2, .9)
         # rest:
         for name in names[2:]:
             with open(name % step) as file:
