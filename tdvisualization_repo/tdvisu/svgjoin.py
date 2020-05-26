@@ -160,31 +160,40 @@ def f_transform(h_one_, h_two_, v_bottom=None,
                   -float('inf'): 0, float('inf'): 1}
     v_bottom = conversion.get(v_bottom, v_bottom)
     v_top = conversion.get(v_top, v_top)
-    # cases (special case None)
 
-    if v_bottom is not None:
-        if v_top is not None:
-            if v_bottom > v_top:  # swap
-                v_top, v_bottom = v_bottom, v_top
-            if v_bottom == v_top:
-                # same value - moving the centerline according to value
-                LOGGER.info(
-                    "The values of 'v_top', 'v_bottom' are both interpreted "
-                    "as %f - interpreting as centerline!", v_top)
-                v_displacement = h_one * v_top - h_two * scale2 / 2
-            else:
-                # scaling
-                scale2 = (v_top - v_bottom) * h_one / h_two
-        if v_bottom != v_top:
-            v_displacement = v_bottom * h_one + h_two * (scale2-1)
-    elif v_top is not None:  # v_bottom now None
+    # cases (special case None)
+    if v_bottom is None and v_top is None:
+        # only scaling from top left corner
+        v_top = 0  # set to top of first
+    elif v_bottom is None:
+        # now top is already set
+        pass
+    elif v_top is None:
+        # calculate v_top (consider scaling)
         size2 = h_two * scale2
-        v_displacement = h_one * v_top - size2
+        v_top = v_bottom - size2 / h_one
+    ####### Both not None #######
+    elif v_bottom == v_top:
+        # moving the centerline according to value and scaling
+        LOGGER.info(
+            "The values of 'v_top', 'v_bottom' are both interpreted "
+            "as %f - interpreting as centerline!", v_top)
+        size2 = h_two * scale2
+        v_top = v_top - size2 / h_one / 2
+        v_bottom = v_bottom + size2 / h_one / 2  # probably not needed further
+    else:
+        if v_bottom > v_top:  # swap
+            v_top, v_bottom = v_bottom, v_top
+        # scaling-factor
+        scale2 = (v_top - v_bottom) * h_one / h_two
 
     size2 = h_two * scale2
+    v_displacement = v_top * h_one + (scale2 - 1) * h_two
+    # bottom - top
     combine_height = (max(h_one, v_displacement + size2) -
                       min(0, v_displacement))
 
+    # size2 smaller than size1: move 2nd up!
     return {'v_displacement': v_displacement,
             'combine_height': combine_height,
             'scale2': scale2}
@@ -252,7 +261,7 @@ def svg_join(
             im_1 = benedict.from_xml(file.read())
         with open(names[1] % step) as file:
             im_2 = benedict.from_xml(file.read())
-        result = append_svg(im_1, im_2, padding, None, -1,2)
+        result = append_svg(im_1, im_2, padding, None, None, .9)
         # rest:
         for name in names[2:]:
             with open(name % step) as file:
