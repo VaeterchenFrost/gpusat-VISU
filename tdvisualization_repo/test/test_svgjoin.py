@@ -4,7 +4,7 @@
 import unittest
 from random import randint
 from benedict import benedict
-from unittest_expander import expand, foreach, param, paramseq
+from unittest_expander import expand, foreach, param
 
 from tdvisu.svgjoin import f_transform, append_svg
 
@@ -75,8 +75,14 @@ class TestNewHeight(unittest.TestCase):
         param({'h_one_': BASE, 'h_two_': BASE, 'v_bottom': -1},
               expected=(-BASE, 2 * BASE, 1)).label('move down 1'),
         # moving centerline: v_bot=v_top
-        param({'h_one_': 2*BASE, 'h_two_': BASE, 'v_bottom': 0.5, 'v_top': 0.5},
-              expected=(-0.5*BASE, 2 * BASE, 1)).label('centerline'),
+        param({'h_one_': BASE, 'h_two_': 0.5 * BASE, 'v_bottom': 0.5, 'v_top': 0.5},
+              expected=(0.25 * BASE, BASE, 1)).label('centerline 0.5'),
+        param({'h_one_': BASE, 'h_two_': BASE, 'v_bottom': 0, 'v_top': 0},
+              expected=(-0.5 * BASE, 1.5 * BASE, 1)).label('centerline 0 (0)'),
+        param({'h_one_': 2*BASE, 'h_two_': BASE, 'v_bottom': 0, 'v_top': 0},
+              expected=(-0.5 * BASE, 2.5 * BASE, 1)).label('centerline 0 (1)'),
+        param({'h_one_': BASE, 'h_two_': BASE, 'v_bottom': -0.1, 'v_top': -0.1},
+              expected=(-0.6 * BASE, 1.6 * BASE, 1)).label('centerline -0.1'),
         # just scale
         param({'h_one_': BASE, 'h_two_': BASE, 'scale2': 1},
               expected=(0, BASE, 1)).label('scale 1'),
@@ -106,24 +112,31 @@ class TestNewHeight(unittest.TestCase):
     @foreach(test_parameters)
     def test_newheight(self, kargs, expected):
         if isinstance(kargs, dict):
-            self.assertEqual(f_transform(**kargs), expected)
+            result = f_transform(**kargs).values()
+            for pos, (actual, expected) in enumerate(zip(result, expected)):
+                self.assertAlmostEqual(actual, expected,
+                                       msg="(Problem on index %d)" % pos)
 
 
 class TestSvgJoin(unittest.TestCase):
     """Test the append_svg method in svgjoin"""
+
     def test_simple_join(self):
         """Combine two example svg images to a new one - compare to result."""
         with open('IncidenceGraphStep11.svg') as file1:
             im_1 = benedict.from_xml(file1.read())
             with open('PrimalGraphStep11.svg') as file2:
                 im_2 = benedict.from_xml(file2.read())
-                result=append_svg(im_1,im_2)
+                result = append_svg(im_1, im_2)
                 result['svg']['@preserveAspectRatio'] = "xMinYMin"
                 # to write:
                 # with open('result_simple_join.svg', "w") as file:
                 #     result.to_xml(output=file, pretty=True)
                 with open('result_simple_join.svg', 'r') as expected:
-                    self.assertEqual(result, benedict.from_xml(expected.read()))
+                    self.assertEqual(
+                        result, benedict.from_xml(
+                            expected.read()))
+
 
 if __name__ == '__main__':
     import sys
