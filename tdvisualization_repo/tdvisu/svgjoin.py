@@ -124,7 +124,7 @@ def f_transform(h_one_, h_two_, v_bottom=None,
     The input scale is in units from\n
     0: top of first image\n
     1: bottom of first image\n
-    v_displacement is the position of v_top (top of image 2).\n
+    v_displacement is the needed vertical displacement of image 2.\n
     See also the 'transformation_example'!
 
 
@@ -156,8 +156,8 @@ def f_transform(h_one_, h_two_, v_bottom=None,
     h_one = float(h_one_)
     h_two = float(h_two_)
     # normalize values
-    conversion = {'bottom': 0, 'center': 0.5, 'top': 1,
-                  -float('inf'): 0, float('inf'): 1}
+    conversion = {'bottom': 1, 'center': 0.5, 'top': 0,
+                  -float('inf'): 1, float('inf'): 0}
     v_bottom = conversion.get(v_bottom, v_bottom)
     v_top = conversion.get(v_top, v_top)
 
@@ -261,7 +261,7 @@ def svg_join(
             im_1 = benedict.from_xml(file.read())
         with open(names[1] % step) as file:
             im_2 = benedict.from_xml(file.read())
-        result = append_svg(im_1, im_2, padding, 0, None, 1.3)
+        result = append_svg(im_1, im_2, padding,v_top='bottom',v_bottom='bottom', scale2=1)
         # rest:
         for name in names[2:]:
             with open(name % step) as file:
@@ -279,5 +279,5 @@ if __name__ == "__main__":
         format="%(asctime)s,%(msecs)d %(levelname)s"
         "[%(filename)s:%(lineno)d] %(message)s",
         datefmt='%Y-%m-%d %H:%M:%S', level=logging.DEBUG)
-    svg_join(['graph', 'graph'], 'Archive/stars100_55',
-             num_images=1, padding=0)
+    svg_join(['TDStep', 'graph'], 'Archive/stars100_55',
+             num_images=1, padding=100)
