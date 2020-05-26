@@ -176,7 +176,7 @@ def f_transform(h_one_, h_two_, v_bottom=None,
                 # scaling
                 scale2 = (v_top - v_bottom) * h_one / h_two
         if v_bottom != v_top:
-            v_displacement = v_bottom * h_one
+            v_displacement = v_bottom * h_one + h_two * (scale2-1)
     elif v_top is not None:  # v_bottom now None
         size2 = h_two * scale2
         v_displacement = h_one * v_top - size2
@@ -252,7 +252,7 @@ def svg_join(
             im_1 = benedict.from_xml(file.read())
         with open(names[1] % step) as file:
             im_2 = benedict.from_xml(file.read())
-        result = append_svg(im_1, im_2, padding, 0, 2)
+        result = append_svg(im_1, im_2, padding, None, -1,2)
         # rest:
         for name in names[2:]:
             with open(name % step) as file:
@@ -271,4 +271,4 @@ if __name__ == "__main__":
         "[%(filename)s:%(lineno)d] %(message)s",
         datefmt='%Y-%m-%d %H:%M:%S', level=logging.DEBUG)
     svg_join(['graph', 'graph'], 'Archive/stars100_55',
-             num_images=1, padding=-100)
+             num_images=1, padding=0)
