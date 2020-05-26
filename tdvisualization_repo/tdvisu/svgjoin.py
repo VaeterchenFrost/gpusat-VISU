@@ -88,7 +88,7 @@ def append_svg(first_dict: dict, snd_dict: dict,
         transform += ' '
     # v_displacement goes top->bottom, so negative w.r.t. "height"
     transform += ('translate(%f %f) scale(%f)'
-                  % (h_displacement, max(0, v_displacement), scale2))
+                  % (h_displacement, max(0,v_displacement), scale2))
     second_svg['g']['@transform'] = transform
     if v_displacement < 0:
         # move first image
@@ -261,7 +261,7 @@ def svg_join(
             im_1 = benedict.from_xml(file.read())
         with open(names[1] % step) as file:
             im_2 = benedict.from_xml(file.read())
-        result = append_svg(im_1, im_2, padding, 1, 2, .9)
+        result = append_svg(im_1, im_2, padding, 0, None, 1.3)
         # rest:
         for name in names[2:]:
             with open(name % step) as file:
