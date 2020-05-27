@@ -14,24 +14,29 @@ __author__ = "Martin Röbke <martin.roebke@tu-dresden.de>"
 __status__ = "development"
 __date__ = "27 May 2020"
 
-# Sizes considered for image-dimensions
-MIN = 5
-MAX = 1e6
+
+MIN, MAX = 5, 1e6
+# Should be in between sizes considered for image-dimensions!
 BASE = randint(20, 3000)
 last_random = None
 
 
-def randomized(lower=MIN, upper=MAX):
+def randomized(lower: int = MIN, upper: int = MAX):
+    """Return randint(lower, upper) with the default values
+    considered for image dimensions.
+    """
     return randint(lower, upper)
 
 
 def rand_larger(number):
+    """Return a random larger image-size than 'number' and save in last_random."""
     global last_random
     last_random = randomized(lower=number + 1)
     return last_random
 
 
 def rand_smaller(number):
+    """Return a random smaller image-size than 'number' and save in last_random."""
     global last_random
     last_random = randomized(upper=number - 1)
     return last_random
@@ -41,7 +46,7 @@ def rand_smaller(number):
 class TestNewHeight(unittest.TestCase):
     """Test the transform method in svgjoin"""
 
-    test_parameters_default = [
+    parameters_default = [
         param({'h_one_': BASE, 'h_two_': BASE},
               expected={'vertical_snd': 0.0, 'vertical_fst': 0.0, 'combine_height': BASE,
                         'scale2': 1}).label('Only heights (same)'),
@@ -61,7 +66,7 @@ class TestNewHeight(unittest.TestCase):
               expected={'vertical_snd': 0.0, 'vertical_fst': 0.0, 'combine_height': BASE,
                         'scale2': 1}).label('Default scale2')]
 
-    test_parameters_moving = [
+    parameters_moving = [
         param({'h_one_': BASE, 'h_two_': BASE, 'v_bottom': 1, 'v_top': 0},
               expected={'vertical_snd': 0.0, 'vertical_fst': 0.0, 'combine_height': BASE,
                         'scale2': 1}).label('static'),
@@ -70,21 +75,25 @@ class TestNewHeight(unittest.TestCase):
                         'scale2': 1}).label("switched bottom and top -> "
                                             "should switch automatically!"),
         param({'h_one_': BASE, 'h_two_': rand_smaller(BASE), 'v_bottom': 1, 'v_top': 0},
-              expected={'vertical_snd': BASE - last_random, 'vertical_fst': 0.0, 'combine_height': BASE,
-                        'scale2': BASE / last_random}).label('scale up to BASE'),
+              expected={'vertical_snd': BASE - last_random, 'vertical_fst': 0.0,
+                        'combine_height': BASE, 'scale2': BASE / last_random}
+              ).label('scale up to BASE'),
         param({'h_one_': BASE, 'h_two_': rand_larger(BASE), 'v_bottom': 1, 'v_top': 0},
-              expected={'vertical_snd': BASE - last_random, 'vertical_fst': 0.0, 'combine_height': BASE,
-                        'scale2': BASE / last_random}).label('scale down to BASE'),
+              expected={'vertical_snd': BASE - last_random, 'vertical_fst': 0.0,
+                        'combine_height': BASE, 'scale2': BASE / last_random}
+              ).label('scale down to BASE'),
     ]
 
-    @foreach(test_parameters_default)
+    @foreach(parameters_default)
     def test_parameters_default(self, kargs, expected):
+        """Test that the default parameters from f_transform work as expected."""
         if isinstance(kargs, dict):
             result = f_transform(**kargs)
             self.assertEqual(result, expected)
 
-    @foreach(test_parameters_moving)
+    @foreach(parameters_moving)
     def test_parameters_moving(self, kargs, expected):
+        """Test that different parameters for f_transform work as expected."""
         if isinstance(kargs, dict):
             result = f_transform(**kargs)
             self.assertEqual(result, expected)
@@ -197,6 +206,7 @@ if __name__ == '__main__':
     verbosity = 1  # increase for more output
 
     def run_tests(*test_case_classes):
+        """Create a test suite for the testcases in 'test_case_classes'."""
         suite = unittest.TestSuite(
             unittest.TestLoader().loadTestsFromTestCase(cls)
             for cls in test_case_classes)
