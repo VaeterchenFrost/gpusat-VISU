@@ -169,16 +169,16 @@ class Visualization:
         <TR><TD>[1, 2, 5]</TD></TR><TR><TD>03/31/20 09:29:51</TD></TR>
         <TR><TD>dtime=0.0051s</TD></TR></TABLE>
         """
-        result = """<<TABLE BORDER=\"{}\" CELLBORDER=\"{}\" CELLSPACING=\"{}\">
-                  <TR><TD BGCOLOR=\"{}\">{}</TD></TR>""".format(
-            tableborder, cellborder, cellspacing, headcolor, head)
-        result += "<TR><TD PORT=\"" + anchor + "\"></TD></TR>"""
+        result = f"""<<TABLE BORDER=\"{tableborder}\" CELLBORDER=\"{cellborder}\"
+                  CELLSPACING=\"{cellspacing}\">
+                  <TR><TD BGCOLOR=\"{headcolor}\">{head}</TD></TR>
+                  <TR><TD PORT=\"{anchor}\"></TD></TR>"""
 
         if isinstance(tail, str):
-            result += "<TR><TD>" + tail + "</TD></TR>"
+            result += f"<TR><TD>{tail}</TD></TR>"
         else:
             for label in tail:
-                result += "<TR><TD>" + label + "</TD></TR>"
+                result += f"<TR><TD>{label}</TD></TR>"
 
         result += "</TABLE>>"
         return result
@@ -313,7 +313,7 @@ class Visualization:
             self.tree_dec = visudata['treeDecJson']
             self.bagpre = self.tree_dec['bagpre']
         except KeyError as err:
-            raise KeyError("Key {} not found in the input Json.".format(err))
+            raise KeyError(f"Key {err} not found in the input Json.")
 
     def setup_tree_dec_graph(
             self,

@@ -262,7 +262,7 @@ class DpdbSharpSatVisu(IDpdbVisuConstruct):
         """
         with self.connection.cursor() as cur:  # create a cursor
             cur.execute(
-                "SELECT * FROM public.p{:d}_sat_clause".format(self.problem))
+                f"SELECT * FROM public.p{self.problem}_sat_clause")
             result = cur.fetchall()
             result_cleaned = [[pos if elem else -pos for pos, elem in
                                enumerate(line, 1) if elem is not None]
@@ -286,19 +286,16 @@ class DpdbSharpSatVisu(IDpdbVisuConstruct):
             labeldict = []
             # check bag numbering:
             cur.execute(
-                "SELECT bag FROM public.p{:d}_td_bag group by bag".format(
-                    self.problem))
+                f"SELECT bag FROM public.p{self.problem}_td_bag group by bag")
             bags = sorted(list(flatten(cur.fetchall())))
             LOGGER.debug("bags: %s", bags)
             for bag in bags:
                 cur.execute(
-                    "SELECT node FROM public.p{:d}_td_bag WHERE bag=%s".format(
-                        self.problem), (bag,))
+                    f"SELECT node FROM public.p{self.problem}_td_bag WHERE bag=%s", (bag,))
                 nodes = list(flatten(cur.fetchall()))
                 cur.execute(
                     "SELECT start_time,end_time-start_time "
-                    "FROM public.p{:d}_td_node_status WHERE node=%s".format(
-                        self.problem), (bag,))
+                    f"FROM public.p{self.problem}_td_node_status WHERE node=%s", (bag,))
                 start_time, dtime = cur.fetchone()
                 labeldict.append(
                     {'id': bag, 'items': nodes, 'labels':
@@ -331,8 +328,7 @@ class DpdbSharpSatVisu(IDpdbVisuConstruct):
             timeline = list()
             adj = convert_to_adj(edgearray) if self.intermed_nodes else {}
             cur.execute(
-                "SELECT node FROM public.p{}_td_node_status ORDER BY start_time".format(
-                    self.problem))
+                f"SELECT node FROM public.p{self.problem}_td_node_status ORDER BY start_time")
             order_solved = list(flatten(cur.fetchall()))
             # tour sol -> through result nodes along the edges
 
@@ -353,14 +349,13 @@ class DpdbSharpSatVisu(IDpdbVisuConstruct):
                 #  deepcode ignore Sqli: general query, inserting integers
                 cur.execute(
                     "SELECT column_name FROM INFORMATION_SCHEMA.COLUMNS "
-                    "WHERE TABLE_NAME = 'p{:d}_td_node_{:d}'".format(
-                        self.problem, bag))
+                    f"WHERE TABLE_NAME = 'p{self.problem}_td_node_{bag}'")
                 column_names = list(flatten(cur.fetchall()))
                 LOGGER.debug("column_names %s", column_names)
                 # get solutions
                 #  deepcode ignore Sqli: general query, inserting integers
                 cur.execute(
-                    "SELECT * FROM public.p{:d}_td_node_{:d}".format(self.problem, bag))
+                    f"SELECT * FROM public.p{self.problem}_td_node_{bag}")
                 solution_raw = cur.fetchall()
                 LOGGER.debug("solution_raw %s", solution_raw)
                 # check for nulled variables - assuming whole columns are
@@ -382,8 +377,7 @@ class DpdbSharpSatVisu(IDpdbVisuConstruct):
         """Read from _td_edge the edges between bags."""
         with self.connection.cursor() as cur:  # create a cursor
             cur.execute(
-                "SELECT node,parent FROM public.p{}_td_edge".format(
-                    self.problem))
+                f"SELECT node,parent FROM public.p{self.problem}_td_edge")
             result = cur.fetchall()
             return result
 

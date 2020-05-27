@@ -195,7 +195,7 @@
 			<path fill="none" stroke="#da1167" stroke-width="2.2" d="M65.6,-46.73C113.53,-76.34 231.68,-149.34 274.86,-176.03"></path>
 		</g>
 	</g>
-	<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 360.856) translate(350.000000 0.000000) scale(1.000000)">
+	<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 360.856) translate(350.0 0.0) scale(1)">
 		<title>%3</title>
 		<polygon fill="white" stroke="none" points="-4,4 -4,-360.856 378.856,-360.856 378.856,4 -4,4"></polygon>
 		<g id="node1" class="node">

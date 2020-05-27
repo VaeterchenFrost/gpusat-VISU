@@ -88,7 +88,7 @@
 			<path fill="none" stroke="black" d="M34.3419,-160.703C43.1694,-139.392 57.8935,-103.845 66.698,-82.5888"></path>
 		</g>
 	</g>
-	<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 550) translate(482.860000 0.000000) scale(1.000000)">
+	<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 550) translate(482.86 0.0) scale(1)">
 		<title>%3</title>
 		<polygon fill="white" stroke="transparent" points="-4,4 -4,-550 346,-550 346,4 -4,4"></polygon>
 		<g id="clust1" class="cluster">

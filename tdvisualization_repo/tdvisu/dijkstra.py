@@ -119,7 +119,7 @@ def bidirectional_dijkstra(edges, source, target, weight='weight'):
 
     """
     if source not in edges or target not in edges:
-        msg = "Either source {} or target {} is not in edges".format(source, target)
+        msg = f"Either source {source} or target {target} is not in edges"
         raise ValueError(msg)
 
     if source == target:
@@ -182,7 +182,7 @@ def bidirectional_dijkstra(edges, source, target, weight='weight'):
                         revpath = paths[1][w][:]
                         revpath.reverse()
                         finalpath = paths[0][w] + revpath[1:]
-    raise DijkstraNoPath("No path between {} and {}.".format(source, target))
+    raise DijkstraNoPath(f"No path between {source} and {target}.")
 
 
 class DijkstraNoPath(RuntimeError):

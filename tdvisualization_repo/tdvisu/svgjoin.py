@@ -117,15 +117,15 @@ def append_svg(
     transform = second_svg['g'].get('@transform', '')
     if transform:
         transform += ' '
-    transform += ('translate(%f %f) scale(%f)'
-                  % (h_displacement, vertical_snd, scale2))
+    transform += f"translate({h_displacement} {vertical_snd}) scale({scale2})"
+                  
     second_svg['g']['@transform'] = transform
     if vertical_fst > 0:
         # move first image
         transform = first_svg['g'].get('@transform', '')
         if transform:
             transform += ' '
-        transform += 'translate(0 %f)' % vertical_fst
+        transform += f"translate(0 {vertical_fst})"
         first_svg['g']['@transform'] = transform
     # add group to list of 'g'
     if isinstance(first_svg['g'], list):
