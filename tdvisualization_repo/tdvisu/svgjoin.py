@@ -21,7 +21,7 @@ def append_svg(
         centerpad: float = 0.,
         v_bottom: float = None,
         v_top: float = None,
-        scale2: float = None) -> dict:
+        scale2: float = 1) -> dict:
     """Modifies the first of two xml-svg dictionary containing a viewbox to
     append the second svg to the right of the first image.
 
