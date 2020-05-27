@@ -1,5 +1,7 @@
 # -*- coding: utf-8 -*-
-"""Testing svgjoin.py"""
+"""Testing svgjoin.py 
+Might want to consider using unittest.TestCase.assertAlmostEqual in some cases.
+"""
 
 import unittest
 from random import randint
@@ -10,7 +12,7 @@ from tdvisu.svgjoin import f_transform, append_svg
 
 __author__ = "Martin Röbke <martin.roebke@tu-dresden.de>"
 __status__ = "development"
-__date__ = "9 May 2020"
+__date__ = "27 May 2020"
 
 # Sizes considered for image-dimensions
 MIN = 5
@@ -39,83 +41,53 @@ def rand_smaller(number):
 class TestNewHeight(unittest.TestCase):
     """Test the transform method in svgjoin"""
 
-    test_parameters = [
-        # no baseline
+    test_parameters_default = [
         param({'h_one_': BASE, 'h_two_': BASE},
-              expected=(0, BASE, 1)).label('same'),
-        param({'h_one_': BASE, 'h_two_': rand_smaller(BASE)},
-              expected=(0, BASE, 1)).label('smaller'),
-        param({'h_one_': BASE, 'h_two_': BASE + 1},
-              expected=(0, BASE + 1, 1)).label('larger'),
-        param({'h_one_': BASE, 'h_two_': BASE + 10},
-              expected=(0, BASE + 10, 1)).label('even larger'),
-        # scale same size
-        param({'h_one_': BASE, 'h_two_': rand_smaller(BASE), 'v_bottom': 0, 'v_top': 1},
-              expected=(0, BASE, BASE / last_random)).label('small->same size'),
-        param({'h_one_': BASE, 'h_two_': rand_larger(BASE), 'v_bottom': 0, 'v_top': 1},
-              expected=(0, BASE, BASE / last_random)).label('large->same size'),
-        param({'h_one_': BASE, 'h_two_': BASE, 'v_bottom': 0, 'v_top': 1},
-              expected=(0, BASE, 1)).label('same size->same size'),
-        # neutral
-        param({'h_one_': BASE, 'h_two_': BASE, 'v_bottom': 0},
-              expected=(0, BASE, 1)).label('neutral v_bot=0'),
-        param({'h_one_': BASE, 'h_two_': BASE, 'v_top': 1},
-              expected=(0, BASE, 1)).label('neutral v_top=1'),
-        param({'h_one_': BASE, 'h_two_': BASE, 'v_bottom': 0, 'scale2': 1},
-              expected=(0, BASE, 1)).label('neutral v_bot=0'),
-        param({'h_one_': BASE, 'h_two_': BASE, 'v_top': 1, 'scale2': 1},
-              expected=(0, BASE, 1)).label('neutral v_top=1'),
-        # move without scale
-        param({'h_one_': BASE, 'h_two_': BASE, 'v_bottom': 0.5},
-              expected=(0.5 * BASE, 1.5 * BASE, 1)).label('move up 0.5'),
-        param({'h_one_': BASE, 'h_two_': BASE, 'v_bottom': 1},
-              expected=(BASE, 2 * BASE, 1)).label('move up 1'),
-        param({'h_one_': BASE, 'h_two_': BASE, 'v_bottom': -0.5},
-              expected=(-0.5 * BASE, 1.5 * BASE, 1)).label('move down 0.5'),
-        param({'h_one_': BASE, 'h_two_': BASE, 'v_bottom': -1},
-              expected=(-BASE, 2 * BASE, 1)).label('move down 1'),
-        # moving centerline: v_bot=v_top
-        param({'h_one_': BASE, 'h_two_': 0.5 * BASE, 'v_bottom': 0.5, 'v_top': 0.5},
-              expected=(0.25 * BASE, BASE, 1)).label('centerline 0.5'),
-        param({'h_one_': BASE, 'h_two_': BASE, 'v_bottom': 0, 'v_top': 0},
-              expected=(-0.5 * BASE, 1.5 * BASE, 1)).label('centerline 0 (0)'),
-        param({'h_one_': 2 * BASE, 'h_two_': BASE, 'v_bottom': 0, 'v_top': 0},
-              expected=(-0.5 * BASE, 2.5 * BASE, 1)).label('centerline 0 (1)'),
-        param({'h_one_': BASE, 'h_two_': BASE, 'v_bottom': -0.1, 'v_top': -0.1},
-              expected=(-0.6 * BASE, 1.6 * BASE, 1)).label('centerline -0.1'),
-        # just scale
+              expected={'vertical_snd': 0.0, 'vertical_fst': 0.0, 'combine_height': BASE,
+                        'scale2': 1}).label('Only heights (same)'),
+        param({'h_one_': BASE, 'h_two_': 2 * BASE},
+              expected={'vertical_snd': 0.0, 'vertical_fst': 0.0, 'combine_height': 2 * BASE,
+                        'scale2': 1}).label('Only heights (larger)'),
+        param({'h_one_': BASE, 'h_two_': 0.5 * BASE},
+              expected={'vertical_snd': 0.0, 'vertical_fst': 0.0, 'combine_height': BASE,
+                        'scale2': 1}).label('Only heights (smaller)'),
+        param({'h_one_': BASE, 'h_two_': BASE, 'v_bottom': None},
+              expected={'vertical_snd': 0.0, 'vertical_fst': 0.0, 'combine_height': BASE,
+                        'scale2': 1}).label('Default v_bottom'),
+        param({'h_one_': BASE, 'h_two_': BASE, 'v_bottom': None, 'v_top': None},
+              expected={'vertical_snd': 0.0, 'vertical_fst': 0.0, 'combine_height': BASE,
+                        'scale2': 1}).label('Default v_bottom&v_top'),
         param({'h_one_': BASE, 'h_two_': BASE, 'scale2': 1},
-              expected=(0, BASE, 1)).label('scale 1'),
-        param({'h_one_': BASE, 'h_two_': BASE, 'scale2': 2},
-              expected=(0, 2 * BASE, 2)).label('scale 2'),
-        param({'h_one_': BASE, 'h_two_': 0.1 * BASE, 'scale2': 0.1},
-              expected=(0, BASE, 0.1)).label('scale 2'),
-        # move + scale - add scale to vertical
-        param({'h_one_': BASE, 'h_two_': BASE, 'v_bottom': 0.5, 'scale2': 1},
-              expected=(0.5 * BASE, 1.5 * BASE, 1)).label('move up 0.5 s1'),
-        param({'h_one_': BASE, 'h_two_': BASE, 'v_bottom': 0.5, 'scale2': 2},
-              expected=(0.5 * BASE, 2.5 * BASE, 2)).label('move up 0.5 scale=2'),
-        param({'h_one_': BASE, 'h_two_': BASE, 'v_bottom': 1, 'scale2': 1},
-              expected=(BASE, 2 * BASE, 1)).label('move up 1 s1'),
-        param({'h_one_': BASE, 'h_two_': BASE, 'v_bottom': 1, 'scale2': 2},
-              expected=(BASE, 3 * BASE, 2)).label('move up 1 scale=2'),
-        param({'h_one_': BASE, 'h_two_': BASE, 'v_bottom': -0.5, 'scale2': 1},
-              expected=(-0.5 * BASE, 1.5 * BASE, 1)).label('move down 0.5 s1'),
-        param({'h_one_': BASE, 'h_two_': BASE, 'v_bottom': -0.5, 'scale2': 3},
-              expected=(-0.5 * BASE, 3 * BASE, 3)).label('move down 0.5 scale=3'),
-        param({'h_one_': BASE, 'h_two_': BASE, 'v_bottom': -1, 'scale2': 1},
-              expected=(-BASE, 2 * BASE, 1)).label('move down 1 s1'),
-        param({'h_one_': BASE, 'h_two_': BASE, 'v_bottom': -1, 'scale2': 0.5},
-              expected=(-BASE, 2 * BASE, 0.5)).label('move down 1 scale=0.5')
+              expected={'vertical_snd': 0.0, 'vertical_fst': 0.0, 'combine_height': BASE,
+                        'scale2': 1}).label('Default scale2')]
+    
+    test_parameters_moving = [
+        param({'h_one_': BASE, 'h_two_': BASE, 'v_bottom': 1, 'v_top': 0},
+              expected={'vertical_snd': 0.0, 'vertical_fst': 0.0, 'combine_height': BASE,
+                        'scale2': 1}).label('static'),
+        param({'h_one_': BASE, 'h_two_': BASE, 'v_bottom': 0, 'v_top': 1},
+              expected={'vertical_snd': 0.0, 'vertical_fst': 0.0, 'combine_height': BASE,
+                        'scale2': 1}).label("switched bottom and top -> "
+                                            "should switch automatically!"),
+        param({'h_one_': BASE, 'h_two_': rand_smaller(BASE), 'v_bottom': 1, 'v_top': 0},
+              expected={'vertical_snd': BASE-last_random, 'vertical_fst': 0.0, 'combine_height': BASE,
+                        'scale2': BASE/last_random}).label('scale up to BASE'),
+        param({'h_one_': BASE, 'h_two_': rand_larger(BASE), 'v_bottom': 1, 'v_top': 0},
+              expected={'vertical_snd': BASE-last_random, 'vertical_fst': 0.0, 'combine_height': BASE,
+                        'scale2': BASE/last_random}).label('scale down to BASE'),
     ]
 
-    @foreach(test_parameters)
-    def test_newheight(self, kargs, expected):
+    @foreach(test_parameters_default)
+    def test_parameters_default(self, kargs, expected):
         if isinstance(kargs, dict):
-            result = f_transform(**kargs).values()
-            for pos, (actual, expected) in enumerate(zip(result, expected)):
-                self.assertAlmostEqual(actual, expected,
-                                       msg="(Problem on index %d)" % pos)
+            result = f_transform(**kargs)
+            self.assertEqual(result, expected)
+
+    @foreach(test_parameters_moving)
+    def test_parameters_moving(self, kargs, expected):
+        if isinstance(kargs, dict):
+            result = f_transform(**kargs)
+            self.assertEqual(result, expected)
 
 
 class TestSvgJoin(unittest.TestCase):
@@ -127,15 +99,13 @@ class TestSvgJoin(unittest.TestCase):
             im_1 = benedict.from_xml(file1.read())
             with open('PrimalGraphStep11.svg') as file2:
                 im_2 = benedict.from_xml(file2.read())
-                result = append_svg(im_1, im_2)
+                result = append_svg(im_2, im_1,0,1)
                 result['svg']['@preserveAspectRatio'] = "xMinYMin"
                 # to write:
-                # with open('result_simple_join.svg', "w") as file:
-                #     result.to_xml(output=file, pretty=True)
-                with open('result_simple_join.svg', 'r') as expected:
-                    self.assertEqual(
-                        result, benedict.from_xml(
-                            expected.read()))
+                with open('result_simple_join.svg', "w") as file:
+                    result.to_xml(output=file, pretty=True)
+                # with open('result_simple_join.svg', 'r') as expected:
+                #     self.assertEqual(result, benedict.from_xml(expected.read()))
 
 
 if __name__ == '__main__':
@@ -147,4 +117,4 @@ if __name__ == '__main__':
             for cls in test_case_classes)
         unittest.TextTestRunner(stream=sys.stdout, verbosity=1).run(suite)
     # run selected tests:
-    run_tests(TestNewHeight)
+    run_tests(TestNewHeight, TestSvgJoin)
