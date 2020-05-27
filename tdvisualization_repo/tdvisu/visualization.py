@@ -95,20 +95,6 @@ class Visualization:
     of dynamic programming on tree decomposition.
     """
 
-    def __str__(self) -> str:
-        """String representation"""
-        return (
-            self.__class__.__name__ +
-            "(folder='" +
-            self.outfolder +
-            "', tdFile='" +
-            self.td_file +
-            "', primalFile='" +
-            self.primal_file +
-            "', incFile='" +
-            self.inc_file +
-            "')")
-
     def __init__(self, infile, outfolder, tdFile='TDStep',
                  primalFile='PrimalGraphStep',
                  incFile='IncidenceGraphStep',
