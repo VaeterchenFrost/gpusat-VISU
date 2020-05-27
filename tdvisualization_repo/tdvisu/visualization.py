@@ -21,9 +21,9 @@ Copyright (C) 2020  Martin Röbke
     GNU General Public License for more details.
 
     You should have received a copy of the GNU General Public License
-    along with this program.  
-    If not, see <https://www.gnu.org/licenses/gpl-3.0.html>.
-    
+    along with this program.
+    If not, see https://www.gnu.org/licenses/gpl-3.0.html
+
 """
 
 import json
@@ -819,7 +819,13 @@ if __name__ == "__main__":
     import argparse
 
     PARSER = argparse.ArgumentParser(
-        description="Visualizing Dynamic Programming on Tree-Decompositions.",
+        description="""
+        Copyright (C) 2020 Martin Röbke
+        This program comes with ABSOLUTELY NO WARRANTY
+        This is free software, and you are welcome to redistribute it
+        under certain conditions; see the LICENSE for more information.
+
+        Visualizing Dynamic Programming on Tree-Decompositions.""",
         epilog="""Logging levels for python 3.8.2:
             CRITICAL: 50
             ERROR:    40

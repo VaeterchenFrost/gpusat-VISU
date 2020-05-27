@@ -6,12 +6,6 @@ See https://www.postgresqltutorial.com/postgresql-python/connect/
 and reference
 https://github.com/VaeterchenFrost/dp_on_dbs.git
 
-IPython adds it's own handler to the root logger, see
-https://stackoverflow.com/questions/24259952/logging-module-does-not-print-in-ipython
-
-Calling python directly prints the logging as per logging.basicConfig!
-
-
 Copyright (C) 2020  Martin Röbke
 
     This program is free software: you can redistribute it and/or modify
@@ -25,8 +19,8 @@ Copyright (C) 2020  Martin Röbke
     GNU General Public License for more details.
 
     You should have received a copy of the GNU General Public License
-    along with this program.  
-    If not, see <https://www.gnu.org/licenses/gpl-3.0.html>.
+    along with this program.
+    If not, see https://www.gnu.org/licenses/gpl-3.0.html
 
 """
 
@@ -523,8 +517,14 @@ if __name__ == "__main__":
     import argparse
 
     PARSER = argparse.ArgumentParser(
-        description="Extracts Information from https://github.com/hmarkus/dp_on_dbs runs "
-        "for further 'Visualizing Dynamic Programming on Tree-Decompositions'.",
+        description="""
+        Copyright (C) 2020 Martin Röbke
+        This program comes with ABSOLUTELY NO WARRANTY
+        This is free software, and you are welcome to redistribute it
+        under certain conditions; see the LICENSE for more information.
+
+        Extracts Information from https://github.com/hmarkus/dp_on_dbs runs
+        for further visualization.""",
         epilog="""Logging levels for python 3.8.2:
             CRITICAL: 50
             ERROR:    40
@@ -533,10 +533,11 @@ if __name__ == "__main__":
             DEBUG:    10
             NOTSET:    0 (will traverse the logging hierarchy until a value is found)
             """,
-        formatter_class=argparse.RawDescriptionHelpFormatter)
+        formatter_class=argparse.RawDescriptionHelpFormatter
+    )
 
     PARSER.add_argument('problemnumber', type=int,
-                        help="problem-id in the Postgres-Database.")
+                        help="problem-id in the postgres-database.")
     PARSER.add_argument('--twfile',
                         type=argparse.FileType('r', encoding='UTF-8'),
                         help="tw-File containing the edges of the graph - "

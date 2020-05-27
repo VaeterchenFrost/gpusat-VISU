@@ -1,8 +1,13 @@
 # -*- coding: utf-8 -*-
 """
-Created on Sun Apr 5 16:14:22 2020
+Bidirectional Dijkstra's Algorithm for finding the shortest path
+between nodes in a graph.
+For more information see for example
+cs.princeton.edu/courses/archive/spr06/cos423/Handouts/EPP%20shortest%20path%20algorithms.pdf
 
-@author: Martin Röbke <martin.roebke@tu-dresden.de>
+
+Created on Sun Apr 5 16:14:22 2020
+Copyright (C) 2020 Martin Röbke <martin.roebke@tu-dresden.de>
 Modified sourcecode from NetworkX.
 
 Copyright (C) 2004-2020, NetworkX Developers
@@ -54,7 +59,7 @@ def bidirectional_dijkstra(edges, source, target, weight='weight'):
         See Docs » Module code » networkx.classes.graph.adj(self)
         for detailed structure.
         Basically: dict of {source1:{target1:{'attr1':value,},},...}
-        https://networkx.github.io/documentation/networkx-2.1/_modules/networkx/classes/graph.html
+        networkx.github.io/documentation/networkx-2.1/_modules/networkx/classes/graph.html
 
     source : node
        Starting node.
