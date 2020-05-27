@@ -3,7 +3,7 @@
 Created on Sun Apr 5 16:14:22 2020
 
 @author: Martin Röbke <martin.roebke@tu-dresden.de>
-Modificated sourcecode from NetworkX.
+Modified sourcecode from NetworkX.
 
 Copyright (C) 2004-2020, NetworkX Developers
 Aric Hagberg <hagberg@lanl.gov>
