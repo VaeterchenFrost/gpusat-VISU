@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-"""Testing svgjoin.py 
+"""Testing svgjoin.py
 Might want to consider using unittest.TestCase.assertAlmostEqual in some cases.
 """
 
@@ -60,7 +60,7 @@ class TestNewHeight(unittest.TestCase):
         param({'h_one_': BASE, 'h_two_': BASE, 'scale2': 1},
               expected={'vertical_snd': 0.0, 'vertical_fst': 0.0, 'combine_height': BASE,
                         'scale2': 1}).label('Default scale2')]
-    
+
     test_parameters_moving = [
         param({'h_one_': BASE, 'h_two_': BASE, 'v_bottom': 1, 'v_top': 0},
               expected={'vertical_snd': 0.0, 'vertical_fst': 0.0, 'combine_height': BASE,
@@ -70,11 +70,11 @@ class TestNewHeight(unittest.TestCase):
                         'scale2': 1}).label("switched bottom and top -> "
                                             "should switch automatically!"),
         param({'h_one_': BASE, 'h_two_': rand_smaller(BASE), 'v_bottom': 1, 'v_top': 0},
-              expected={'vertical_snd': BASE-last_random, 'vertical_fst': 0.0, 'combine_height': BASE,
-                        'scale2': BASE/last_random}).label('scale up to BASE'),
+              expected={'vertical_snd': BASE - last_random, 'vertical_fst': 0.0, 'combine_height': BASE,
+                        'scale2': BASE / last_random}).label('scale up to BASE'),
         param({'h_one_': BASE, 'h_two_': rand_larger(BASE), 'v_bottom': 1, 'v_top': 0},
-              expected={'vertical_snd': BASE-last_random, 'vertical_fst': 0.0, 'combine_height': BASE,
-                        'scale2': BASE/last_random}).label('scale down to BASE'),
+              expected={'vertical_snd': BASE - last_random, 'vertical_fst': 0.0, 'combine_height': BASE,
+                        'scale2': BASE / last_random}).label('scale down to BASE'),
     ]
 
     @foreach(test_parameters_default)
@@ -90,7 +90,7 @@ class TestNewHeight(unittest.TestCase):
             self.assertEqual(result, expected)
 
 
-class TestSvgJoin(unittest.TestCase):
+class TestAppendSvg(unittest.TestCase):
     """Test the append_svg method in svgjoin"""
 
     def test_simple_join(self):
@@ -99,22 +99,59 @@ class TestSvgJoin(unittest.TestCase):
             im_1 = benedict.from_xml(file1.read())
             with open('PrimalGraphStep11.svg') as file2:
                 im_2 = benedict.from_xml(file2.read())
-                result = append_svg(im_2, im_1,0,1)
+                result = append_svg(im_1, im_2)
                 result['svg']['@preserveAspectRatio'] = "xMinYMin"
-                # to write:
-                with open('result_simple_join.svg', "w") as file:
-                    result.to_xml(output=file, pretty=True)
-                # with open('result_simple_join.svg', 'r') as expected:
-                #     self.assertEqual(result, benedict.from_xml(expected.read()))
+                # # to write:
+                # with open('result_simple_join.svg', "w") as file:
+                #     result.to_xml(output=file, pretty=True)
+                with open('result_simple_join.svg', 'r') as expected:
+                    self.assertEqual(
+                        result, benedict.from_xml(
+                            expected.read()))
+
+    def test_simple_join_switched(self):
+        """Test the reverse order - compare to result."""
+        with open('IncidenceGraphStep11.svg') as file1:
+            im_1 = benedict.from_xml(file1.read())
+            with open('PrimalGraphStep11.svg') as file2:
+                im_2 = benedict.from_xml(file2.read())
+                result = append_svg(im_2, im_1)
+                result['svg']['@preserveAspectRatio'] = "xMinYMin"
+                # # to write:
+                # with open('result_simple_join_switched.svg', "w") as file:
+                #     result.to_xml(output=file, pretty=True)
+                with open('result_simple_join_switched.svg', 'r') as expected:
+                    self.assertEqual(
+                        result, benedict.from_xml(
+                            expected.read()))
+
+    def test_scaleddown_join(self):
+        """Scale larger to same size - compare to result."""
+        with open('IncidenceGraphStep11.svg') as file1:
+            im_1 = benedict.from_xml(file1.read())
+            with open('PrimalGraphStep11.svg') as file2:
+                im_2 = benedict.from_xml(file2.read())
+                result = append_svg(im_2, im_1, v_bottom=0, v_top=1)
+                result['svg']['@preserveAspectRatio'] = "xMinYMin"
+                # # to write:
+                # with open('result_scaled_join.svg', "w") as file:
+                #     result.to_xml(output=file, pretty=True)
+                with open('result_scaled_join.svg', 'r') as expected:
+                    self.assertEqual(
+                        result, benedict.from_xml(
+                            expected.read()))
 
 
 if __name__ == '__main__':
     import sys
+    verbosity = 1  # increase for more output
 
     def run_tests(*test_case_classes):
         suite = unittest.TestSuite(
             unittest.TestLoader().loadTestsFromTestCase(cls)
             for cls in test_case_classes)
-        unittest.TextTestRunner(stream=sys.stdout, verbosity=1).run(suite)
+        unittest.TextTestRunner(
+            stream=sys.stdout,
+            verbosity=verbosity).run(suite)
     # run selected tests:
-    run_tests(TestNewHeight, TestSvgJoin)
+    run_tests(TestNewHeight, TestAppendSvg)
