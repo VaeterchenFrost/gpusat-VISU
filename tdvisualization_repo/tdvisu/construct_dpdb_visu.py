@@ -47,8 +47,8 @@ from reader import TwReader
 
 
 __author__ = "Martin Röbke <martin.roebke@tu-dresden.de>"
-__status__ = "development"
-__version__ = "0.4"
+__status__ = 'development'
+__version__ = '0.4'
 __date__ = "23 May 2020"
 
 logging.basicConfig(
@@ -108,18 +108,18 @@ def read_cfg(cfg_file, section) -> dict:
     Works for both .ini and .json files but
     assumes json-format if the ending is NOT .ini
     """
-    if pathlib.Path(cfg_file).suffix.lower() == ".ini":
+    if pathlib.Path(cfg_file).suffix.lower() == '.ini':
         iniconfig = ConfigParser()
         iniconfig.read(cfg_file)
         result = dict()
-        result["host"] = iniconfig.get(section, "host", fallback="localhost")
-        result["port"] = iniconfig.getint(section, "port", fallback=5432)
-        result["database"] = iniconfig.get(
-            section, "database", fallback="logicsem")
-        result["user"] = iniconfig.get(section, "user", fallback="postgres")
-        result["password"] = iniconfig.get(section, "password")
-        result["application_name"] = iniconfig.get(
-            section, "application_name", fallback="dpdb-admin")
+        result['host'] = iniconfig.get(section, 'host', fallback='localhost')
+        result['port'] = iniconfig.getint(section, 'port', fallback=5432)
+        result['database'] = iniconfig.get(
+            section, 'database', fallback='logicsem')
+        result['user'] = iniconfig.get(section, 'user', fallback='postgres')
+        result['password'] = iniconfig.get(section, 'password')
+        result['application_name'] = iniconfig.get(
+            section, 'application_name', fallback='dpdb-admin')
         return {section: result}
 
     # default behaviour
@@ -216,8 +216,8 @@ class DpdbSharpSatVisu(IDpdbVisuConstruct):
 
         clauses_edges = self.read_clauses()
         incidence_graph = {
-            "varNameOne": "c_",
-            "varNameTwo": "v_",
+            "varNameOne": 'c_',
+            "varNameTwo": 'v_',
             "inferPrimal": True,
             "edges": clauses_edges}
 
@@ -232,10 +232,10 @@ class DpdbSharpSatVisu(IDpdbVisuConstruct):
 
         timeline = self.read_timeline(edgearray)
 
-        return {"incidenceGraph": incidence_graph,
-                "generalGraph": False,
-                "tdTimeline": timeline,
-                "treeDecJson": tree_dec_json}
+        return {'incidenceGraph': incidence_graph,
+                'generalGraph': False,
+                'tdTimeline': timeline,
+                'treeDecJson': tree_dec_json}
 
     def read_num_vars(self) -> int:
         """
@@ -272,7 +272,7 @@ class DpdbSharpSatVisu(IDpdbVisuConstruct):
             result_cleaned = [[pos if elem else -pos for pos, elem in
                                enumerate(line, 1) if elem is not None]
                               for line in result]
-            clauses_edges = [{"id": i, "list": item}
+            clauses_edges = [{'id': i, 'list': item}
                              for (i, item) in enumerate(result_cleaned, 1)]
             return clauses_edges
 
@@ -306,7 +306,7 @@ class DpdbSharpSatVisu(IDpdbVisuConstruct):
                         self.problem), (bag,))
                 start_time, dtime = cur.fetchone()
                 labeldict.append(
-                    {"id": bag, "items": nodes, "labels":
+                    {'id': bag, 'items': nodes, 'labels':
                      [str(nodes),
                       "dtime=%.4fs" % dtime.total_seconds(),
                       start_time.strftime("%D %T")
@@ -450,18 +450,18 @@ class DpdbMinVcVisu(DpdbSharpSatVisu):
         labeldict = self.read_labeldict()
         edgearray = self.read_edgearray()
         tree_dec_json = {
-            "bagpre": "bag %s",
-            "edgearray": edgearray,
-            "labeldict": labeldict,
-            "numVars": self.read_num_vars()}
+            'bagpre': "bag %s",
+            'edgearray': edgearray,
+            'labeldict': labeldict,
+            'numVars': self.read_num_vars()}
 
-        generalGraph = {"edges": self.read_twfile()} if self.tw_file else False
+        generalGraph = {'edges': self.read_twfile()} if self.tw_file else False
 
         timeline = self.read_timeline(edgearray)
-        return {"incidenceGraph": False,
-                "generalGraph": generalGraph,
-                "tdTimeline": timeline,
-                "treeDecJson": tree_dec_json}
+        return {'incidenceGraph': False,
+                'generalGraph': generalGraph,
+                'tdTimeline': timeline,
+                'treeDecJson': tree_dec_json}
 
 
 def connect() -> pg.extensions.connection:
@@ -471,7 +471,7 @@ def connect() -> pg.extensions.connection:
     try:
         # read connection parameters
         params = config()
-        db_name = params["database"]
+        db_name = params['database']
         LOGGER.info("Connecting to the PostgreSQL database '%s'...", db_name)
         conn = pg.connect(**params)
         with conn.cursor() as cur:  # create a cursor
@@ -499,10 +499,10 @@ def create_json(problem: int, tw_file=None, intermed_nodes=False) -> dict:
             # select the valid constructor for the problem
             constructor: IDpdbVisuConstruct
 
-            if ptype == "SharpSat":
+            if ptype == 'SharpSat':
                 constructor = DpdbSharpSatVisu(
                     connection, problem, intermed_nodes)
-            elif ptype == "VertexCover":
+            elif ptype == 'VertexCover':
                 constructor = DpdbMinVcVisu(
                     connection, problem, intermed_nodes, tw_file)
 
@@ -539,8 +539,7 @@ if __name__ == "__main__":
     PARSER.add_argument('--twfile',
                         type=argparse.FileType('r', encoding='UTF-8'),
                         help="tw-File containing the edges of the graph - "
-                        "obtained from dpdb with option --gr-file GR_FILE."
-                        "")
+                        "obtained from dpdb with option --gr-file GR_FILE.")
     PARSER.add_argument('--loglevel', default='INFO', help="default:'INFO'")
     PARSER.add_argument(
         '--outfile',
@@ -548,10 +547,12 @@ if __name__ == "__main__":
         help="default:'dbjson%%d.json'")
     PARSER.add_argument('--pretty', action='store_true',
                         help="Pretty-print the JSON.")
-    PARSER.add_argument('--inter-nodes', action='store_true',
-                        help="Calculate path between successive nodes during the evaluation order.")
+    PARSER.add_argument(
+        '--inter-nodes',
+        action='store_true',
+        help="Calculate path between successive nodes during the evaluation order.")
     PARSER.add_argument('--version', action='version',
-                        version='%(prog)s ' + __version__ + ", " + __date__)
+                        version='%(prog)s ' + __version__ + ', ' + __date__)
 
     # get cmd-arguments
     args = PARSER.parse_args()
@@ -576,6 +577,10 @@ if __name__ == "__main__":
         outfile = args.outfile
     LOGGER.info("Output file-name: %s", outfile)
     with open(outfile, 'w') as file:
-        json.dump(RESULTJSON, file, sort_keys=True, indent=2 if args.pretty else None,
-                  ensure_ascii=False)
+        json.dump(
+            RESULTJSON,
+            file,
+            sort_keys=True,
+            indent=2 if args.pretty else None,
+            ensure_ascii=False)
         LOGGER.debug("Wrote to %s", file)

@@ -35,8 +35,8 @@ from typing import Iterable, Iterator, TypeVar
 from graphviz import Digraph, Graph
 
 __author__ = "Martin Röbke <martin.roebke@tu-dresden.de>"
-__status__ = "development"
-__version__ = "0.4"
+__status__ = 'development'
+__version__ = '0.4'
 __date__ = "23 May 2020"
 
 logging.basicConfig(
@@ -108,10 +108,10 @@ class Visualization:
             self.inc_file +
             "')")
 
-    def __init__(self, infile, outfolder, tdFile="TDStep",
-                 primalFile="PrimalGraphStep",
-                 incFile="IncidenceGraphStep",
-                 dualFile="DualGraphStep") -> None:
+    def __init__(self, infile, outfolder, tdFile='TDStep',
+                 primalFile='PrimalGraphStep',
+                 incFile='IncidenceGraphStep',
+                 dualFile='DualGraphStep') -> None:
         """Copy needed fields from arguments and create additional constants"""
         self.inspect_json(infile)
         self.outfolder = outfolder
@@ -135,38 +135,42 @@ class Visualization:
         """Style the node white and with penwidth 1."""
         # TODO: Basestyle modifiable
         graph.node(node, fillcolor='white', penwidth="1.0")
+    # def base_style(graph, node, color='white', penwidth='1.0') -> None:
+    #     """Style the node with default fillcolor and penwidth."""
+    #     graph.node(node, fillcolor=color, penwidth=penwidth)
 
     @staticmethod
-    def emphasise_node(graph, node, _fillcolor="yellow",
-                       _penwidth="2.5") -> None:
+    def emphasise_node(graph, node, color='yellow',
+                       penwidth='2.5') -> None:
         """Emphasise node with a different fillcolor (default:'yellow')
         and penwidth (default:2.5).
         """
-        if _fillcolor:
-            graph.node(node, fillcolor=_fillcolor)
-        if _penwidth:
-            graph.node(node, penwidth=_penwidth)
+        if color:
+            graph.node(node, fillcolor=color)
+        if penwidth:
+            graph.node(node, penwidth=penwidth)
 
     @staticmethod
     def style_hide_node(graph, node) -> None:
         """Make the node invisible during drawing."""
-        graph.node(node, style="invis")
+        graph.node(node, style='invis')
 
     @staticmethod
     def style_hide_edge(graph, source, target) -> None:
         """Make the edge source->target invisible during drawing."""
-        graph.edge(source, target, style="invis")
+        graph.edge(source, target, style='invis')
 
     @staticmethod
-    def bag_node(head, tail, anchor="anchor", headcolor="white",
+    def bag_node(head, tail, anchor='anchor', headcolor='white',
                  tableborder=0, cellborder=0, cellspacing=0) -> str:
         """HTML format with 'head' as the first label, then appending
         further labels.
+
         After the 'head' there is an (empty) anchor for edges with a name tag. e.g.
-        <<TABLE BORDER="0" CELLBORDER="0" CELLSPACING="0">
-                  <TR><TD BGCOLOR="white">bag 3</TD></TR><TR><TD PORT="anchor"></TD></TR>
-                  <TR><TD>[1, 2, 5]</TD></TR><TR><TD>03/31/20 09:29:51</TD></TR>
-                  <TR><TD>dtime=0.0051s</TD></TR></TABLE>>
+        <TABLE BORDER="0" CELLBORDER="0" CELLSPACING="0">
+        <TR><TD BGCOLOR="white">bag 3</TD></TR><TR><TD PORT="anchor"></TD></TR>
+        <TR><TD>[1, 2, 5]</TD></TR><TR><TD>03/31/20 09:29:51</TD></TR>
+        <TR><TD>dtime=0.0051s</TD></TR></TABLE>
         """
         result = """<<TABLE BORDER=\"{}\" CELLBORDER=\"{}\" CELLSPACING=\"{}\">
                   <TR><TD BGCOLOR=\"{}\">{}</TD></TR>""".format(
@@ -185,8 +189,8 @@ class Visualization:
     @staticmethod
     def solution_node(
             solution_table,
-            toplabel="",
-            bottomlabel="",
+            toplabel='',
+            bottomlabel='',
             transpose=False, linesmax=1000, columnsmax=50) -> str:
         """Fill the node from the 2D 'solution_table' (columnbased!).
         Optionally add a line above and/or below the table.
@@ -218,12 +222,12 @@ class Visualization:
         | botlabel |
         |----------|
         """
-        result = ""
+        result = ''
         if toplabel:
-            result += toplabel + "|"
+            result += toplabel + '|'
 
         if len(solution_table) == 0:
-            result += "empty"
+            result += 'empty'
         else:
             if transpose:
                 solution_table = list(zip(*solution_table))
@@ -235,42 +239,42 @@ class Visualization:
             hslice = (min(len(solution_table), columnsmax)
                       if columnsmax > 0 else len(solution_table)) - 1
 
-            result += "{"                                       # insert table
+            result += '{'                                       # insert table
             for column in solution_table[:hslice]:
-                result += "{"                                   # start column
+                result += '{'                                   # start column
                 for row in column[:vslice]:
-                    result += str(row) + "|"
+                    result += str(row) + '|'
                 if vslice < -1:     # add one indicator of shortening
-                    result += "..." + "|"
+                    result += '...' + '|'
                 for row in column[-1:]:
                     result += str(row)
-                result += "}|"      # sep. between columns
+                result += '}|'      # sep. between columns
             # adding one column-skipping indicator
             if hslice < len(solution_table) - 1:
-                result += "{"                                   # start column
+                result += '{'                                   # start column
                 for row in column[:vslice]:
-                    result += "..." + "|"
+                    result += '...' + '|'
                 if vslice < -1:     # add one indicator of shortening
-                    result += "..." + "|"
+                    result += '...' + '|'
                 for row in column[-1:]:
-                    result += "..."
-                result += "}|"      # sep. between columns
+                    result += '...'
+                result += '}|'      # sep. between columns
             # last column (usually a summary of the previous cols)
             for column in solution_table[-1:]:
-                result += "{"                                   # start column
+                result += '{'                                   # start column
                 for row in column[:vslice]:
-                    result += str(row) + "|"
+                    result += str(row) + '|'
                 if vslice < -1:     # add one indicator of shortening
-                    result += "..." + "|"
+                    result += '...' + '|'
                 for row in column[-1:]:
                     result += str(row)
-                result += "}"      # sep. between columns
-            result += "}"                                       # close table
+                result += '}'      # sep. between columns
+            result += '}'                                       # close table
 
         if len(bottomlabel) > 0:
-            result += "|" + bottomlabel
+            result += '|' + bottomlabel
 
-        return "{" + result + "}"
+        return '{' + result + '}'
 
     def inspect_json(self, infile) -> None:
         """Read and preprocess the needed data from the input."""
@@ -280,8 +284,8 @@ class Visualization:
         LOGGER.debug("Found keys %s", visudata.keys())
 
         try:
-            incid = visudata["incidenceGraph"]
-            general_graph = visudata["generalGraph"]
+            incid = visudata['incidenceGraph']
+            general_graph = visudata['generalGraph']
 
             if incid is not False:
                 self.subgraph_one_name = incid.get(
@@ -294,7 +298,7 @@ class Visualization:
                 self.infer_dual = incid.get("inferDual", False)
 
                 self.incidence_edges = [[x['id'], x['list']]
-                                        for x in incid["edges"]]
+                                        for x in incid['edges']]
                 self.do_incid = True
             else:
                 self.do_incid = False
@@ -303,14 +307,14 @@ class Visualization:
                 self.general_graph_name = general_graph.get(
                     "graphName", 'graph')
                 self.general_var_name = general_graph.get("varName", '')
-                self.general_edges = general_graph["edges"]
+                self.general_edges = general_graph['edges']
                 self.do_general_graph = True
             else:
                 self.do_general_graph = False
 
-            self.timeline = visudata["tdTimeline"]
-            self.tree_dec = visudata["treeDecJson"]
-            self.bagpre = self.tree_dec["bagpre"]
+            self.timeline = visudata['tdTimeline']
+            self.tree_dec = visudata['treeDecJson']
+            self.bagpre = self.tree_dec['bagpre']
         except KeyError as err:
             raise KeyError("Key {} not found in the input Json.".format(err))
 
@@ -338,13 +342,13 @@ class Visualization:
 
     def basic_tdg(self) -> None:
         """Create basic bag structure in tree_dec_digraph."""
-        for item in self.tree_dec["labeldict"]:
-            bagname = self.bagpre % str(item["id"])
+        for item in self.tree_dec['labeldict']:
+            bagname = self.bagpre % str(item['id'])
             self.tree_dec_digraph.node(bagname,
-                                       self.bag_node(bagname, item["labels"]))
+                                       self.bag_node(bagname, item['labels']))
 
         self.tree_dec_digraph.edges([(self.bagpre % str(first), self.bagpre % str(
-            second)) for (first, second) in self.tree_dec["edgearray"]])
+            second)) for (first, second) in self.tree_dec['edgearray']])
 
     def forward_iterate_tdg(self, joinpre=None, solpre=None,
                             soljoinpre=None) -> None:
@@ -484,16 +488,22 @@ class Visualization:
                 primal_edges = tuple(set(elem) for elem in flatten(
                     map(lambda x: (itertools.combinations(map(abs, x[1]), 2)),
                         self.incidence_edges)))
-                self.general_graph(timeline=_timeline, edges=primal_edges,
-                                   _file=self.primal_file, var_name=self.var_two_name)
+                self.general_graph(
+                    timeline=_timeline,
+                    edges=primal_edges,
+                    _file=self.primal_file,
+                    var_name=self.var_two_name)
                 LOGGER.info(
                     "Created infered primal-graph for file='%s'",
                     self.primal_file)
             if self.infer_dual:
                 # Edge, if clauses share the same variable
                 dual_edges = None  # TODO
-                self.general_graph(timeline=_timeline, edges=dual_edges,
-                                   _file=self.dual_file, var_name=self.var_one_name)
+                self.general_graph(
+                    timeline=_timeline,
+                    edges=dual_edges,
+                    _file=self.dual_file,
+                    var_name=self.var_one_name)
                 LOGGER.info(
                     "Created infered dual-graph for file='%s'",
                     self.dual_file)
@@ -587,7 +597,7 @@ class Visualization:
             graph.body = graph.body[:bodybaselen]
             for line in node_positions:
                 graph.node(line[0].decode(),
-                           pos="%f,%f!" % (float(line[1]), float(line[2])))
+                           pos='%f,%f!' % (float(line[1]), float(line[2])))
             # 5: Engine uses previous positions
             graph.engine = 'neato'
 
@@ -615,8 +625,7 @@ class Visualization:
 
             # highlight edges between variables
             [graph.edge(vartag_n % s, vartag_n % t, color='red', penwidth=penwidth)
-             for (s, t) in edges
-             if (s in variables and t in variables)]
+             for (s, t) in edges if (s in variables and t in variables)]
 
             if do_adj_nodes:
                 # set.difference accepts list as argument, "-" does not.
@@ -671,12 +680,20 @@ class Visualization:
         clausetag_n = self.var_one_name + '%d'
         vartag_n = self.var_two_name + '%d'
 
-        g_incid = Graph('incidence graph', strict=True,
-                        graph_attr={'splines': 'false', 'ranksep': '0.2',
-                                    'nodesep': str(column_distance), 'fontsize': str(int(fontsize)),
-                                    'compound': 'true'},
-                        edge_attr={'penwidth': str(penwidth), 'dir': 'back',
-                                   'arrowtail': 'none'})
+        g_incid = Graph(
+            'incidence graph',
+            strict=True,
+            graph_attr={
+                'splines': 'false',
+                'ranksep': '0.2',
+                'nodesep': str(column_distance),
+                'fontsize': str(
+                    int(fontsize)),
+                'compound': 'true'},
+            edge_attr={
+                'penwidth': str(penwidth),
+                'dir': 'back',
+                'arrowtail': 'none'})
 
         with g_incid.subgraph(name='cluster_clause',
                               edge_attr={'style': 'invis'},
@@ -700,7 +717,7 @@ class Visualization:
                              (i + 1), color=colors[(i + 1) %
                                                    len(colors)])
 
-        g_incid.attr('edge', constraint="false")
+        g_incid.attr('edge', constraint='false')
 
         for clause in self.incidence_edges:
             for var in clause[1]:
@@ -789,14 +806,14 @@ def main(args):
     INFILE = args.infile
     outfolder = args.outfolder
     if not outfolder:
-        outfolder = "outfolder"
-    outfolder = outfolder.replace("\\", "/")
+        outfolder = 'outfolder'
+    outfolder = outfolder.replace('\\', '/')
     if not outfolder.endswith('/'):
         outfolder += '/'
 
-    VISU = Visualization(INFILE, outfolder, tdFile="TDStep",
-                         primalFile="PrimalGraphStep",
-                         incFile="IncidenceGraphStep")
+    VISU = Visualization(INFILE, outfolder, tdFile='TDStep',
+                         primalFile='PrimalGraphStep',
+                         incFile='IncidenceGraphStep')
     VISU.tree_dec_timeline()
 
 
@@ -805,7 +822,7 @@ if __name__ == "__main__":
     import argparse
 
     PARSER = argparse.ArgumentParser(
-        description='Visualizing Dynamic Programming on Tree-Decompositions.',
+        description="Visualizing Dynamic Programming on Tree-Decompositions.",
         epilog="""Logging levels for python 3.8.2:
             CRITICAL: 50
             ERROR:    40
@@ -826,7 +843,7 @@ if __name__ == "__main__":
                         help="Folder to output the visualization results.")
     PARSER.add_argument('--loglevel', default='WARNING')
     PARSER.add_argument('--version', action='version',
-                        version='%(prog)s ' + __version__ + ", " + __date__)
+                        version='%(prog)s ' + __version__ + ', ' + __date__)
 
     # get cmd-arguments
     ARGS = PARSER.parse_args()

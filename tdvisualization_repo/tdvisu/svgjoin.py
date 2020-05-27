@@ -8,8 +8,8 @@ from benedict import benedict
 
 
 __author__ = "Martin Röbke <martin.roebke@tu-dresden.de>"
-__status__ = "development"
-__version__ = "0.4"
+__status__ = 'development'
+__version__ = '0.4'
 __date__ = "27 May 2020"
 
 LOGGER = logging.getLogger(__name__)
@@ -93,8 +93,8 @@ def append_svg(
 
     first_svg['@viewBox'] = ' '.join(viewbox1)
     # update width,height
-    first_svg["@width"] = viewbox1[WIDTH] + "pt"
-    first_svg["@height"] = viewbox1[HEIGHT] + "pt"
+    first_svg['@width'] = viewbox1[WIDTH] + 'pt'
+    first_svg['@height'] = viewbox1[HEIGHT] + 'pt'
     # move second image group next to first
     transform = second_svg['g'].get('@transform', '')
     if transform:
@@ -217,12 +217,12 @@ def f_transform(h_one_, h_two_, v_bottom=None, v_top=None,
 
 def svg_join(
         in_names: list,
-        folder: str = "",
+        folder: str = '',
         num_images: int = 1,
-        outname: str = "combined",
+        outname: str = 'combined',
         padding: int = 0,
-        preserve_aspectratio: str = "xMinYMin",
-        suffix: str = "%d.svg",
+        preserve_aspectratio: str = 'xMinYMin',
+        suffix: str = '%d.svg',
         scale2: float = 1,
         v_top: Union[float, str] = 'top',
         v_bottom: Union[float, str] = None):
@@ -274,9 +274,9 @@ def svg_join(
         return
     # could use path library for normalizing the path
     if folder:
-        folder.replace("\\", "/")
-        if not folder.endswith("/"):
-            folder += "/"
+        folder.replace('\\', '/')
+        if not folder.endswith('/'):
+            folder += '/'
 
     resultname = folder + outname + suffix
     names = [folder + name + suffix for name in in_names]
@@ -298,7 +298,7 @@ def svg_join(
             result = append_svg(result, image, padding)
 
         result['svg']['@preserveAspectRatio'] = preserve_aspectratio
-        with open(resultname % step, "w") as file:
+        with open(resultname % step, 'w') as file:
             result.to_xml(output=file, pretty=True)
             LOGGER.info("Wrote combined: %s", resultname % step)
 
