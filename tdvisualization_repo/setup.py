@@ -5,6 +5,8 @@ Example setup.py:
     https://github.com/python/mypy/edit/master/setup.py
     https://github.com/xflr6/graphviz/blob/master/setup.py
 
+rst: https://en.wikipedia.org/wiki/ReStructuredText
+
 @author: Martin Röbke
 """
 

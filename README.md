@@ -12,13 +12,13 @@ Visualization API for [dynamic programming](https://en.wikipedia.org/wiki/Dynami
 
 After downloading the latest verion, go to the source-directory. 
 
-With [Conda](https://docs.conda.io/en/latest/) on the system installed, the dependencies for this project can be automatically installed in a new environment:
+With [Conda](https://docs.conda.io/en/latest/) on the system installed, the dependencies for this project can be automatically installed in a new environment - or in a place of your choosing:
 
-Open a conda-command prompt with admin-privileges and run the commands
+Open a *conda-command-prompt* with admin privileges and run the commands from the *gpusat-VISU\tdvisualization_repo* folder:
 ```shell
 conda env create -f .\environment.yml
 ```
-to create the environment with basic dependencies
+to create a new environment with basic dependencies
 ```shell
 conda activate tdvisu
 ```
@@ -28,14 +28,15 @@ dot.exe -c
 ```
 to register the plugins
 ```shell
-python .\setup.py install
+pip install --pre .
 ```
-to install the project in the environment
+to install the project in the environment (currently in pre-release, to get *pip* see: https://anaconda.org/anaconda/pip)
 ```shell
 python .\tdvisu\visualization.py -h
 ```
-to confirm the visualization finds all dependencies.
+to confirm that the visualization finds all dependencies.
 ```shell
+pip install .[test] 
 python -m unittest
 ```
 to run all tests.
@@ -57,7 +58,7 @@ args='visugpusat.json examplefolder',
 wdir='C:/Users/Martin/Documents/GitHub/gpusat-VISU/satvisualization_repo/satvisu')
 ```
 
-It produces 3 kinds of graphs suffixed with a running integer to represent timesteps:
+For #SAT it produces three different graphs suffixed with a running integer to represent timesteps:
 
 + *TDStep* the tree decomposition with solved nodes
 + *PrimalGraphStep* the primal graph with currently active variables
