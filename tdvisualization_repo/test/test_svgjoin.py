@@ -102,7 +102,7 @@ class TestAppendSvg(unittest.TestCase):
                 result = append_svg(im_1, im_2)
                 result['svg']['@preserveAspectRatio'] = "xMinYMin"
                 # # to write:
-                # with open('result_simple_join.svg', "w") as file:
+                # with open('result_simple_join.svg', 'w') as file:
                 #     result.to_xml(output=file, pretty=True)
                 with open('result_simple_join.svg', 'r') as expected:
                     self.assertEqual(
@@ -118,9 +118,25 @@ class TestAppendSvg(unittest.TestCase):
                 result = append_svg(im_2, im_1)
                 result['svg']['@preserveAspectRatio'] = "xMinYMin"
                 # # to write:
-                # with open('result_simple_join_switched.svg', "w") as file:
+                # with open('result_simple_join_switched.svg', 'w') as file:
                 #     result.to_xml(output=file, pretty=True)
                 with open('result_simple_join_switched.svg', 'r') as expected:
+                    self.assertEqual(
+                        result, benedict.from_xml(
+                            expected.read()))
+
+    def test_simple_join_padding(self):
+        """Test the horizontal padding - compare to result."""
+        with open('IncidenceGraphStep11.svg') as file1:
+            im_1 = benedict.from_xml(file1.read())
+            with open('PrimalGraphStep11.svg') as file2:
+                im_2 = benedict.from_xml(file2.read())
+                result = append_svg(im_2, im_1, centerpad=100)
+                result['svg']['@preserveAspectRatio'] = "xMinYMin"
+                # # to write:
+                # with open('result_simple_join_padding.svg', 'w') as file:
+                #     result.to_xml(output=file, pretty=True)
+                with open('result_simple_join_padding.svg', 'r') as expected:
                     self.assertEqual(
                         result, benedict.from_xml(
                             expected.read()))
@@ -134,9 +150,43 @@ class TestAppendSvg(unittest.TestCase):
                 result = append_svg(im_2, im_1, v_bottom=0, v_top=1)
                 result['svg']['@preserveAspectRatio'] = "xMinYMin"
                 # # to write:
-                # with open('result_scaled_join.svg', "w") as file:
+                # with open('result_scaled_join.svg', 'w') as file:
                 #     result.to_xml(output=file, pretty=True)
                 with open('result_scaled_join.svg', 'r') as expected:
+                    self.assertEqual(
+                        result, benedict.from_xml(
+                            expected.read()))
+
+    def test_centered_smaller_join(self):
+        """Center the smaller image - compare to result."""
+        with open('IncidenceGraphStep11.svg') as file1:
+            im_1 = benedict.from_xml(file1.read())
+            with open('PrimalGraphStep11.svg') as file2:
+                im_2 = benedict.from_xml(file2.read())
+                result = append_svg(
+                    im_1, im_2, v_bottom='center', v_top='center')
+                result['svg']['@preserveAspectRatio'] = "xMinYMin"
+                # # to write:
+                # with open('result_centered_join.svg', 'w') as file:
+                #     result.to_xml(output=file, pretty=True)
+                with open('result_centered_join.svg', 'r') as expected:
+                    self.assertEqual(
+                        result, benedict.from_xml(
+                            expected.read()))
+
+    def test_centered_larger_join(self):
+        """Center the smaller image - compare to result."""
+        with open('IncidenceGraphStep11.svg') as file1:
+            im_1 = benedict.from_xml(file1.read())
+            with open('PrimalGraphStep11.svg') as file2:
+                im_2 = benedict.from_xml(file2.read())
+                result = append_svg(
+                    im_2, im_1, v_bottom='center', v_top='center')
+                result['svg']['@preserveAspectRatio'] = "xMinYMin"
+                # # to write:
+                # with open('result_centered_join2.svg', 'w') as file:
+                #     result.to_xml(output=file, pretty=True)
+                with open('result_centered_join2.svg', 'r') as expected:
                     self.assertEqual(
                         result, benedict.from_xml(
                             expected.read()))
