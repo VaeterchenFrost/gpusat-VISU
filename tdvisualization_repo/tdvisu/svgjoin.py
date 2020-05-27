@@ -3,19 +3,25 @@
 
 import re
 import logging
+from typing import Union
 from benedict import benedict
-from typing import Tuple
+
 
 __author__ = "Martin Röbke <martin.roebke@tu-dresden.de>"
 __status__ = "development"
-__version__ = "0.3"
-__date__ = "23 May 2020"
+__version__ = "0.4"
+__date__ = "27 May 2020"
 
 LOGGER = logging.getLogger(__name__)
 
 
-def append_svg(first_dict: dict, snd_dict: dict,
-               centerpad: float = 0., v_bottom: float = None, v_top: float = None, scale2: float = None) -> dict:
+def append_svg(
+        first_dict: dict,
+        snd_dict: dict,
+        centerpad: float = 0.,
+        v_bottom: float = None,
+        v_top: float = None,
+        scale2: float = None) -> dict:
     """Modifies the first of two xml-svg dictionary containing a viewbox to
     append the second svg to the right of the first image.
 
@@ -55,7 +61,6 @@ def append_svg(first_dict: dict, snd_dict: dict,
     first_svg = first_dict['svg']
     second_svg = snd_dict['svg']
 
-    # get viewbox
     # The value of the viewBox attribute is a list of four numbers:
     #     min-x, min-y, width and height.
     #     The numbers separated by whitespace and/or a comma,
@@ -63,19 +68,23 @@ def append_svg(first_dict: dict, snd_dict: dict,
     #     bounds of the viewport established for the associated SVG element.
     # See also
     # https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/viewBox
+
     pattern = re.compile(r'\s*,\s*|\s+')
     viewbox1 = re.split(pattern, first_svg['@viewBox'])
     viewbox2 = re.split(pattern, second_svg['@viewBox'])
 
     trafo_result = f_transform(
         viewbox1[HEIGHT], viewbox2[HEIGHT], v_bottom, v_top, scale2)
-    v_displacement = trafo_result['v_displacement2']
+    vertical_snd = trafo_result['vertical_snd']
     combine_height = trafo_result['combine_height']
     scale2 = trafo_result['scale2']
-    v_displacement1 = trafo_result['v_displacement1']
+    vertical_fst = trafo_result['vertical_fst']
     LOGGER.info(
-        "Transformed with v_displacement=%s combine_height=%s scale2=%s v_displacement1=%s",
-        v_displacement, combine_height, scale2, v_displacement1)
+        "Transformed with vertical_snd=%s combine_height=%s scale2=%s vertical_fst=%s",
+        vertical_snd,
+        combine_height,
+        scale2,
+        vertical_fst)
 
     viewbox1[HEIGHT] = str(combine_height)
     h_displacement = float(viewbox1[WIDTH]) + centerpad
@@ -90,16 +99,15 @@ def append_svg(first_dict: dict, snd_dict: dict,
     transform = second_svg['g'].get('@transform', '')
     if transform:
         transform += ' '
-    # v_displacement goes top->bottom, so negative w.r.t. "height"
     transform += ('translate(%f %f) scale(%f)'
-                  % (h_displacement, v_displacement, scale2))
+                  % (h_displacement, vertical_snd, scale2))
     second_svg['g']['@transform'] = transform
-    if v_displacement1 > 0:
+    if vertical_fst > 0:
         # move first image
         transform = first_svg['g'].get('@transform', '')
         if transform:
             transform += ' '
-        transform += 'translate(0 %f)' % v_displacement1
+        transform += 'translate(0 %f)' % vertical_fst
         first_svg['g']['@transform'] = transform
     # add group to list of 'g'
     if isinstance(first_svg['g'], list):
@@ -110,7 +118,7 @@ def append_svg(first_dict: dict, snd_dict: dict,
     return first_dict
 
 
-transformation_example = """
+TRANSFORMATION_EXAMPLE = """
            ----------v_top (-0.2)
 ---------0 |        |
 |       |  |        |
@@ -121,8 +129,8 @@ transformation_example = """
 """
 
 
-def f_transform(h_one_, h_two_, v_bottom=None,
-                v_top=None, scale2=None) -> Tuple[float, float, float]:
+def f_transform(h_one_, h_two_, v_bottom=None, v_top=None,
+                scale2=1) -> dict:
     """Calculate vertical position of second image.
 
     The input scale is in units from\n
@@ -147,14 +155,13 @@ def f_transform(h_one_, h_two_, v_bottom=None,
 
     Returns
     -------
-    Tuple[float, float, float]
+    dict
         v_displacement
         combine_height
         scale2
 
     """
-    if scale2 is None:
-        scale2 = 1
+
     v_displacement = 0
     # cast to float
     h_one = float(h_one_)
@@ -166,51 +173,46 @@ def f_transform(h_one_, h_two_, v_bottom=None,
     v_bottom = conversion.get(v_bottom, v_bottom)
     v_top = conversion.get(v_top, v_top)
 
+    size2 = h_two * scale2
     # cases (special case None)
     if v_bottom is None and v_top is None:
-        # only scaling from top left corner
         v_top = 0  # set to top of first
-        size2 = h_two * scale2
         v_bottom = v_top + size2 / h_one
     elif v_bottom is None:
         # now top is already set
-        size2 = h_two * scale2
         v_bottom = v_top + size2 / h_one
     elif v_top is None:
-        # calculate v_top (consider scaling)
-        size2 = h_two * scale2
         v_top = v_bottom - size2 / h_one
-    ####### Both not None #######
     elif v_bottom == v_top:
         # moving the centerline according to value and scaling
         LOGGER.info(
             "The values of 'v_top', 'v_bottom' are both interpreted "
             "as %f - interpreting as centerline!", v_top)
-        size2 = h_two * scale2
-        v_top = v_top - size2 / h_one / 2
-        v_bottom = v_bottom + size2 / h_one / 2
+        half = size2 / h_one / 2
+        v_top = v_top - half
+        v_bottom = v_bottom + half
     else:
         if v_bottom < v_top:  # swap
             v_top, v_bottom = v_bottom, v_top
-        # scaling-factor
+        # resulting in scaling
         scale2 = (v_bottom - v_top) * h_one / h_two
+        size2 = h_two * scale2
 
-    size2 = h_two * scale2
-    if size2 < 1:
-        LOGGER.warning("Image two got scaled to size %s!", size2)
+    if size2 < 10:
+        LOGGER.warning("Image two got scaled down to size %s!", size2)
 
-    v_displacement = (v_bottom - min(0, v_top)) * \
-        h_one - h_two  # h_two standard
+    # h_two standard
+    v_displacement = (v_bottom - min(0, v_top)) * h_one - h_two
+
     # bottom - top
     combine_height = (max(h_one, v_bottom * h_one) -
                       min(0, v_top * h_one))
 
     # size2 smaller than size1: move 2nd up!
-    return {'v_displacement2': v_displacement,
-            'v_displacement1': -min(0, v_top) * h_one,
+    return {'vertical_snd': v_displacement,
+            'vertical_fst': -min(0, v_top) * h_one,
             'combine_height': combine_height,
-            'scale2': scale2,
-            }
+            'scale2': scale2}
 
 
 def svg_join(
@@ -220,10 +222,13 @@ def svg_join(
         outname: str = "combined",
         padding: int = 0,
         preserve_aspectratio: str = "xMinYMin",
-        suffix: str = "%d.svg"):
+        suffix: str = "%d.svg",
+        scale2: float = 1,
+        v_top: Union[float, str] = 'top',
+        v_bottom: Union[float, str] = None):
     """
     Joines different svg-images from tdvisu placed in 'folder' for every timestep
-    in the order specified in 'in_names'.
+    in the horizontal order specified in 'in_names'.
 
     Parameters
     ----------
@@ -246,6 +251,13 @@ def svg_join(
         The default is "xMinYMin".
     suffix : str, optional
         Change the prefix for each file. The default is "%d.svg".
+    scale2 : float, optional
+        Scale the second image. Only used if either v_bottom or v_top is None.
+    v_bottom : float or str, optional
+        Expected position of bottom of second image. The default is None.
+    v_top : float or str, optional
+        Expected position of bottom of second image. The default is 'top'.
+
 
     Returns
     -------
@@ -276,7 +288,8 @@ def svg_join(
         with open(names[1] % step) as file:
             im_2 = benedict.from_xml(file.read())
 
-        result = append_svg(im_1, im_2, padding, v_top=0, scale2=4)
+        result = append_svg(im_1, im_2, padding, v_bottom=v_bottom,
+                            v_top=v_top, scale2=scale2)
 
         # rest:
         for name in names[2:]:
@@ -295,5 +308,5 @@ if __name__ == "__main__":
         format="%(asctime)s,%(msecs)d %(levelname)s"
         "[%(filename)s:%(lineno)d] %(message)s",
         datefmt='%Y-%m-%d %H:%M:%S', level=logging.DEBUG)
-    svg_join(['graph', 'graph'], 'Archive/stars100_55',
+    svg_join(['TDStep', 'graph'], 'Archive/stars100_55',
              num_images=1, padding=100)
