@@ -131,13 +131,9 @@ class Visualization:
         LOGGER.debug("Running %s", self)
 
     @staticmethod
-    def base_style(graph, node) -> None:
-        """Style the node white and with penwidth 1."""
-        # TODO: Basestyle modifiable
-        graph.node(node, fillcolor='white', penwidth="1.0")
-    # def base_style(graph, node, color='white', penwidth='1.0') -> None:
-    #     """Style the node with default fillcolor and penwidth."""
-    #     graph.node(node, fillcolor=color, penwidth=penwidth)
+    def base_style(graph, node, color='white', penwidth='1.0') -> None:
+        """Style the node with default fillcolor and penwidth."""
+        graph.node(node, fillcolor=color, penwidth=penwidth)
 
     @staticmethod
     def emphasise_node(graph, node, color='yellow',
