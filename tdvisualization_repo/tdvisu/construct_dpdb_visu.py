@@ -122,7 +122,7 @@ def read_cfg(cfg_file, section) -> dict:
         return json.load(jsonfile)
 
 
-def config(filename='database.json', section='postgresql') -> dict:
+def config(filename='database.ini', section='postgresql') -> dict:
     """Return the database config as JSON"""
     cfg = read_cfg(filename, section)
     if section in cfg:
@@ -261,8 +261,13 @@ class DpdbSharpSatVisu(IDpdbVisuConstruct):
             },...]
         """
         with self.connection.cursor() as cur:  # create a cursor
-            cur.execute(
-                f"SELECT * FROM public.p{self.problem}_sat_clause")
+            try:
+                cur.execute(
+                    f"SELECT * FROM public.p{self.problem}_sat_clause")
+            except pg.ProgrammingError:
+                LOGGER.error(
+                    "dpdb.py SHARPSAT NEEDS TO BE RUN WITH '--store-formula'!")
+                raise
             result = cur.fetchall()
             result_cleaned = [[pos if elem else -pos for pos, elem in
                                enumerate(line, 1) if elem is not None]
