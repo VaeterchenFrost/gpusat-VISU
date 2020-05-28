@@ -118,7 +118,7 @@ def append_svg(
     if transform:
         transform += ' '
     transform += f"translate({h_displacement} {vertical_snd}) scale({scale2})"
-                  
+
     second_svg['g']['@transform'] = transform
     if vertical_fst > 0:
         # move first image
@@ -313,7 +313,8 @@ def svg_join(
         for name in names[2:]:
             with open(name % step) as file:
                 image = benedict.from_xml(file.read())
-            result = append_svg(result, image, padding)
+            result = append_svg(result, image, padding, v_bottom=v_bottom,
+                                v_top=v_top, scale2=scale2)
 
         result['svg']['@preserveAspectRatio'] = preserve_aspectratio
         with open(resultname % step, 'w') as file:
@@ -326,5 +327,5 @@ if __name__ == "__main__":
         format="%(asctime)s,%(msecs)d %(levelname)s"
         "[%(filename)s:%(lineno)d] %(message)s",
         datefmt='%Y-%m-%d %H:%M:%S', level=logging.DEBUG)
-    svg_join(['TDStep', 'graph'], 'Archive/stars100_55',
-             num_images=1, padding=100)
+    svg_join(['TDStep', 'PrimalGraphStep', 'IncidenceGraphStep'], 'Archive/DA4',
+             num_images=6, padding=40, v_top='center', v_bottom='center')
