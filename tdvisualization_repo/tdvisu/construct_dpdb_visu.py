@@ -306,7 +306,7 @@ class DpdbSharpSatVisu(IDpdbVisuConstruct):
                     {'id': bag, 'items': nodes, 'labels':
                      [str(nodes),
                       "dtime=%.4fs" % dtime.total_seconds(),
-                      start_time.strftime("%D %T")
+                      # start_time.strftime("%D %T")
                       ]})
             return labeldict
 
