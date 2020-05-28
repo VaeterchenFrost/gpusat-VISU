@@ -809,7 +809,7 @@ if __name__ == "__main__":
         Copyright (C) 2020 Martin Röbke
         This program comes with ABSOLUTELY NO WARRANTY
         This is free software, and you are welcome to redistribute it
-        under certain conditions; see the LICENSE for more information.
+        under certain conditions; see COPYING for more information.
 
         Visualizing Dynamic Programming on Tree-Decompositions.""",
         epilog="""Logging levels for python 3.8.2:
