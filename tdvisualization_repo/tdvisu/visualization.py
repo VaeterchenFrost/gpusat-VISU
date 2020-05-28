@@ -262,7 +262,7 @@ class Visualization:
     def inspect_json(self, infile) -> None:
         """Read and preprocess the needed data from the input."""
         visudata = read_json(infile)
-        LOGGER.info("Reading from %s", infile)
+        LOGGER.debug("Reading from %s", infile)
 
         LOGGER.debug("Found keys %s", visudata.keys())
 
@@ -567,7 +567,7 @@ class Visualization:
             # 1: layout with circo
             graph.engine = 'circo'
             # 2: nodes in edges make a circle
-            nodes = sorted(set(flatten(edges)))  # list
+            nodes = sorted([vartag_n % n for n in set(flatten(edges))])
             for i, node in enumerate(nodes):
                 graph.edge(str(nodes[i - 1]), str(node))
             # 3: reads in bytes!
@@ -664,7 +664,7 @@ class Visualization:
         vartag_n = self.var_two_name + '%d'
 
         g_incid = Graph(
-            'incidence graph',
+            'IncidenceGraphStep',
             strict=True,
             graph_attr={
                 'splines': 'false',
