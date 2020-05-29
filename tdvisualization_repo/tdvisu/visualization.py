@@ -468,9 +468,18 @@ class Visualization:
 
         if self.do_incid:
             if self.infer_primal:
-                primal_edges = tuple(set(elem) for elem in flatten(
-                    map(lambda x: (itertools.combinations(map(abs, x[1]), 2)),
-                        self.incidence_edges)))
+                # vertex for each variable + edge if the variables
+                # occur in the same clause:
+                primal_edges = list(flatten(
+                    [itertools.combinations(map(abs, x[1]), 2)
+                     for x in self.incidence_edges]))
+                # check if any node is really isolated:
+                isolated = [abs(x[1][0]) for x in self.incidence_edges
+                            if len(x[1]) == 1 and
+                            not any(abs(x[1][0]) in sl for sl in primal_edges)]
+                # TODO Find something better than self-edges, works for now...
+                primal_edges += [(iso, iso) for iso in isolated]
+                primal_edges = set(primal_edges)  # remove duplicates
                 self.general_graph(
                     timeline=_timeline,
                     edges=primal_edges,
