@@ -532,6 +532,7 @@ class Visualization:
             self,
             timeline,
             edges,
+            extra_nodes=tuple(),
             view=False,
             fontsize='20',
             fontcolor='black',
@@ -553,6 +554,9 @@ class Visualization:
             All edges between nodes in the graph.
             Should NOT contain self-edges!
             BOTH edges (x, y) and (y, x) could be in the edgelist.
+
+        extra_nodes : Iterable of int
+            Nodes that are probably not in the edges, but should be rendered.
 
         TIMELINE : Iterable of: None | [int...]
             None if no variables get highlighted in this step.
@@ -586,8 +590,9 @@ class Visualization:
             bodybaselen = len(graph.body)
             # 1: layout with circo
             graph.engine = 'circo'
-            # 2: nodes in edges make a circle
-            nodes = sorted([vartag_n % n for n in set(flatten(edges))])
+            # 2: nodes in edges+extra_nodes make a circle
+            nodes = sorted([vartag_n % n for n in set(
+                itertools.chain(flatten(edges), extra_nodes))])
             for i, node in enumerate(nodes):
                 graph.edge(str(nodes[i - 1]), str(node))
             # 3: reads in bytes!
@@ -606,6 +611,8 @@ class Visualization:
 
         for (s, t) in edges:
             graph.edge(vartag_n % s, vartag_n % t)
+        for node in extra_nodes:
+            graph.node(vartag_n % node)
 
         bodybaselen = len(graph.body)
 
