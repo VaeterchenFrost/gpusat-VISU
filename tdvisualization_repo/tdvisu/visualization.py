@@ -467,16 +467,20 @@ class Visualization:
                 _timeline.append(None)
 
         if self.do_incid:
+            if self.infer_primal or self.infer_dual:
+                # prepare incid edges with abs:
+                abs_clauses = [[cl[0], list(map(abs, cl[1]))]
+                               for cl in self.incidence_edges]
             if self.infer_primal:
                 # vertex for each variable + edge if the variables
                 # occur in the same clause:
                 primal_edges = list(flatten(
-                    [itertools.combinations(map(abs, x[1]), 2)
-                     for x in self.incidence_edges]))
+                    [itertools.combinations(cl[1], 2)
+                     for cl in abs_clauses]))
                 # check if any node is really isolated:
-                isolated = [abs(x[1][0]) for x in self.incidence_edges
-                            if len(x[1]) == 1 and
-                            not any(abs(x[1][0]) in sl for sl in primal_edges)]
+                isolated = [cl[1][0] for cl in abs_clauses
+                            if len(cl[1]) == 1 and
+                            not any(cl[1][0] in sl for sl in primal_edges)]
                 # TODO Find something better than self-edges, works for now...
                 primal_edges += [(iso, iso) for iso in isolated]
                 primal_edges = set(primal_edges)  # remove duplicates
@@ -490,7 +494,14 @@ class Visualization:
                     self.primal_file)
             if self.infer_dual:
                 # Edge, if clauses share the same variable
-                dual_edges = None  # TODO
+                dual_edges = [(cl[0], other[0])
+                              for i, cl in enumerate(abs_clauses)
+                              for other in abs_clauses[i + 1:]  # no multiples
+                              if any(var in cl[1] for var in other[1])]
+                # check if any clause is isolated:
+                isolated = [(cl[0], cl[0]) for cl in abs_clauses
+                            if not any(cl[0] in sl for sl in dual_edges)]
+                dual_edges += isolated
                 self.general_graph(
                     timeline=_timeline,
                     edges=dual_edges,
