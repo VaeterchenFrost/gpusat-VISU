@@ -481,12 +481,12 @@ class Visualization:
                 isolated = [cl[1][0] for cl in abs_clauses
                             if len(cl[1]) == 1 and
                             not any(cl[1][0] in sl for sl in primal_edges)]
-                # TODO Find something better than self-edges, works for now...
-                primal_edges += [(iso, iso) for iso in isolated]
                 primal_edges = set(primal_edges)  # remove duplicates
+
                 self.general_graph(
                     timeline=_timeline,
                     edges=primal_edges,
+                    extra_nodes=set(isolated),
                     _file=self.primal_file,
                     var_name=self.var_two_name)
                 LOGGER.info(
@@ -499,12 +499,13 @@ class Visualization:
                               for other in abs_clauses[i + 1:]  # no multiples
                               if any(var in cl[1] for var in other[1])]
                 # check if any clause is isolated:
-                isolated = [(cl[0], cl[0]) for cl in abs_clauses
+                isolated = [cl[0] for cl in abs_clauses
                             if not any(cl[0] in sl for sl in dual_edges)]
-                dual_edges += isolated
+
                 self.general_graph(
                     timeline=_timeline,
                     edges=dual_edges,
+                    extra_nodes=set(isolated),
                     _file=self.dual_file,
                     var_name=self.var_one_name)
                 LOGGER.info(
