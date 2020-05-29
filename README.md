@@ -66,3 +66,4 @@ For #SAT it produces three different graphs suffixed with a running integer to r
 
 Currently the graphs are images encoded in resolution independent **.svg files** (see https://www.lifewire.com/svg-file-4120603)
 
+<img src="Bachelor/images/combined6DA4.svg" alt="Your image title" width="50%"/>
