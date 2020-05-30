@@ -24,7 +24,6 @@ Copyright (C) 2020  Martin Röbke
 
 """
 
-import itertools
 import json
 import abc
 import logging
@@ -32,13 +31,13 @@ import pathlib
 
 from time import sleep
 from configparser import ConfigParser
-from typing import Iterable, Iterator, TypeVar
 
 import psycopg2 as pg
 
 from dijkstra import bidirectional_dijkstra as find_path
 from dijkstra import convert_to_adj
 from reader import TwReader
+from visualization import flatten
 
 
 __author__ = "Martin Röbke <martin.roebke@tu-dresden.de>"
@@ -77,18 +76,6 @@ PSYCOPG2_8_5_TASTATUS = {
          '(Reported if the connection with the server is bad.)')
 }
 
-_T = TypeVar('_T')
-
-
-def flatten(iterable: Iterable[Iterable[_T]]) -> Iterator[_T]:
-    """ Flatten at first level.
-
-    Turn ex=[[1,2],[3,4]] into
-    [1, 2, 3, 4]
-    and [ex,ex] into
-    [[1, 2], [3, 4], [1, 2], [3, 4]]
-    """
-    return itertools.chain.from_iterable(iterable)
 
 
 def good_db_status() -> tuple:
@@ -186,6 +173,7 @@ class DpdbSharpSatVisu(IDpdbVisuConstruct):
                      self.__class__.__name__, problem)
         self.problem = problem
         self.intermed_nodes = intermed_nodes
+        self.num_vars = None
 
         # wait for good connection
         status = db.get_transaction_status()
@@ -386,7 +374,8 @@ class DpdbSharpSatVisu(IDpdbVisuConstruct):
             result = cur.fetchall()
             return result
 
-    def footer(self, lines):
+    @staticmethod
+    def footer(lines):
         """Returns the footer for solution bags."""
         return "sum: " + str(sum([li[-1] for li in lines]))
 
@@ -405,7 +394,8 @@ class DpdbMinVcVisu(DpdbSharpSatVisu):
             self.__class__.__name__ +
             " can not read_clauses!")
 
-    def footer(self, lines):
+    @staticmethod
+    def footer(lines):
         """Returns the footer for solution bags."""
         return "min-size: " + str(min([li[-1] for li in lines]))
 
