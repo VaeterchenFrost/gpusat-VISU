@@ -25,11 +25,10 @@ Copyright (C) 2020  Martin Röbke
 """
 
 
-from dataclasses import dataclass, field
-from typing import List, Union
+from dataclasses import dataclass
 
 
-@dataclass()
+@dataclass
 class IncidenceGraphData:
     """Class for holding different parameters for the incidence graph."""
     edges: list
@@ -47,33 +46,38 @@ class IncidenceGraphData:
     column_distance: float = 0.5
 
 
-@dataclass()
+@dataclass
 class GeneralGraphData:
     """Class for holding different parameters for the general graph."""
     edges: list
+    extra_nodes: list = None
     graph_name: str = 'graph'
-    subgraph_name_two: str = 'variables'
-    var_name_one: str = ''
-    var_name_two: str = ''
-    infer_primal: bool = False
-    infer_dual: bool = False
-    fontsize: int = 16
-    second_shape: str = 'diamond'
-    column_distance: float = 0.5
+    var_name: str = ''
+    sort_nodes: str = False
+    need_adj_nodes: bool = False
+    fontsize: int = 20
+    first_color: str = 'yellow'
+    first_style: str = 'filled'
+    second_color: str = 'green'
+    second_style: str = 'dotted,filled'
 
 
 @dataclass
 class VisualizationData:
     """Class for holding different parameters for Visualization."""
-    incidence_graph: Union[IncidenceGraphData, bool] = False
-    general_graph: Union[GeneralGraphData, bool] = False
-    colors: List = field(default_factory=lambda: ['#0073a1', '#b14923', '#244320', '#b1740f', '#a682ff',
-                                                  '#004066', '#0d1321', '#da1167', '#604909', '#0073a1',
-                                                  '#b14923', '#244320', '#b1740f', '#a682ff'])
+    incidence_graph: IncidenceGraphData = None
+    general_graph: GeneralGraphData = None
+    colors: list = None
+
+    def __post_init__(self):
+        if self.colors is None:
+            self.colors = ['#0073a1', '#b14923', '#244320', '#b1740f', '#a682ff',
+                           '#004066', '#0d1321', '#da1167', '#604909', '#0073a1',
+                           '#b14923', '#244320', '#b1740f', '#a682ff']
 
 
 if __name__ == "__main__":
     incid = IncidenceGraphData([])
     gen = GeneralGraphData([])
-    data = VisualizationData(colors=['red', 'blue'])
+    data = VisualizationData(incidence_graph=incid, general_graph=gen)
     print(data)
