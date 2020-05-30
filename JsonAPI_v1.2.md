@@ -49,10 +49,15 @@ Changelog: 16.04.
     {
         Optional("graphName" : STR, default='graph'),
         Optional("varName" : STR, default=''),
-        Optional("sortNodes" : BOOLEAN, default=True),
-        Optional("needAdjNodes" : BOOLEAN, default=True),
+        Optional("sortNodes" : BOOLEAN, default=false),
+        Optional("needAdjNodes" : BOOLEAN, default=false),
+        Optional("extraNodes" : LIST, default=[]),
+        Optional("fontsize" : INT, default=20),
+        Optional("firstColor" : STR/COLOR, default ='yellow'),
+        Optional("firstStyle" : STR, default ='filled'),
+        Optional("secondColor : STR/COLOR, default='green'),
+        Optional("secondStyle : STR, default='dotted,filled'),
         
-
         "edges" : [
             [INT, INT],
             ...
