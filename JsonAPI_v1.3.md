@@ -21,6 +21,11 @@ Changelog: 16.04.
 
 - added several additional arguments (sortNodes, needAdjNodes...)
 
+31.05. v1.3
+
+- changed defaults in sortNodes, needAdjNodes to false.
+- added parameters from general_graph
+
 ```perl
 {
     "incidenceGraph" : false or
