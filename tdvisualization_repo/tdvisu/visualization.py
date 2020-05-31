@@ -269,6 +269,9 @@ class Visualization:
             visudata.pop('tdTimeline')
             self.tree_dec = visudata['treeDecJson']
             self.bagpre = self.tree_dec['bagpre']
+            self.joinpre = self.tree_dec.get('joinpre', 'Join %d~%d')
+            self.solpre = self.tree_dec.get('solpre', 'sol%d')
+            self.soljoinpre = self.tree_dec.get('soljoinpre', 'solJoin%d~%d')
             visudata.pop('treeDecJson')
         except KeyError as err:
             raise KeyError(f"Key {err} not found in the input Json.")
@@ -308,14 +311,11 @@ class Visualization:
         self.tree_dec_digraph.edges([(self.bagpre % str(first), self.bagpre % str(
             second)) for (first, second) in self.tree_dec['edgearray']])
 
-    def forward_iterate_tdg(self, joinpre=None, solpre=None,
-                            soljoinpre=None) -> None:
-        """Create the final positions of all nodes with solutions.
-        The arguments are optional"""
+    def forward_iterate_tdg(self, joinpre, solpre, soljoinpre) -> None:
+        """Create the final positions of all nodes with solutions."""
         tdg = self.tree_dec_digraph                 # shorten name
 
-        for i, node in enumerate(
-                self.timeline):                 # Create the positions
+        for i, node in enumerate(self.timeline):    # Create the positions
             if len(node) > 1:
                 # solution to be displayed
                 id_inv_bags = node[0]
@@ -326,12 +326,11 @@ class Visualization:
 
                     tdg.edge(self.bagpre % id_inv_bags, last_sol)
 
-                else:  # joined node with 2 bags
-                    suc = self.timeline[i + 1][0]
-                    # get the joined bags
+                else:                               # joined node with 2 bags
+                    suc = self.timeline[i + 1][0]   # get the joined bags
+
                     LOGGER.debug('joining %s to %s ', node[0], suc)
 
-                    # solution
                     id_inv_bags = tuple(id_inv_bags)
                     last_sol = soljoinpre % id_inv_bags
                     tdg.node(last_sol, self.solution_node(
@@ -354,8 +353,8 @@ class Visualization:
                     tdg.edge(joinpre % id_inv_bags, self.bagpre % suc
                              if isinstance(suc, int) else joinpre % suc)
 
-    def backwards_iterate_tdg(self, view=False, joinpre=None,
-                              solpre=None, soljoinpre=None) -> None:
+    def backwards_iterate_tdg(self, joinpre, solpre, soljoinpre,
+                              view=False) -> None:
         """Cut the single steps back and update emphasis acordingly."""
         tdg = self.tree_dec_digraph     # shorten name
         last_sol = ""
@@ -405,12 +404,18 @@ class Visualization:
         """Main-method for handling all construction of the timeline."""
 
         self.setup_tree_dec_graph()
-
         # Iterate labeldict
 
         self.basic_tdg()
-        self.forward_iterate_tdg()
-        self.backwards_iterate_tdg(view=view)
+        self.forward_iterate_tdg(
+            joinpre=self.joinpre,
+            solpre=self.solpre,
+            soljoinpre=self.soljoinpre)
+        self.backwards_iterate_tdg(
+            view=view,
+            joinpre=self.joinpre,
+            solpre=self.solpre,
+            soljoinpre=self.soljoinpre)
 
         # Prepare supporting graph timeline
 
@@ -474,7 +479,7 @@ class Visualization:
             self.incidence(
                 timeline=_timeline,
                 inc_file=__incid.inc_file,
-                num_vars=self.tree_dec['numVars'],
+                num_vars=self.tree_dec['num_vars'],
                 colors=self.data.colors, view=view,
                 fontsize=__incid.fontsize,
                 penwidth=__incid.penwidth,
@@ -793,7 +798,8 @@ def main(args):
     outfolder = outfolder.replace('\\', '/')
     if not outfolder.endswith('/'):
         outfolder += '/'
-
+    LOGGER.info("Will read from '%s' and write to folder '%s'",
+                infile.name, outfolder)
     visu = Visualization(infile=infile, outfolder=outfolder)
     visu.tree_dec_timeline()
 
