@@ -247,7 +247,7 @@ class Visualization:
         return '{' + result + '}'
 
     def inspect_json(self, infile) -> VisualizationData:
-        """Read and preprocess the needed data from the input."""
+        """Read and preprocess the needed data from the infile into VisualizationData."""
         LOGGER.debug("Reading from: %s", infile)
         visudata = read_json(infile)
         LOGGER.debug("Found keys: %s", visudata.keys())
@@ -260,16 +260,21 @@ class Visualization:
             if incid:
                 incid['edges'] = [[x['id'], x['list']] for x in incid['edges']]
                 incid_data = IncidenceGraphData(**incid)
-
+            visudata.pop('incidenceGraph')
             general_graph_data: GeneralGraphData = None
             if general_graph:
                 general_graph_data = GeneralGraphData(**general_graph)
-
+            visudata.pop('generalGraph')
             self.timeline = visudata['tdTimeline']
+            visudata.pop('tdTimeline')
             self.tree_dec = visudata['treeDecJson']
             self.bagpre = self.tree_dec['bagpre']
+            visudata.pop('treeDecJson')
         except KeyError as err:
             raise KeyError(f"Key {err} not found in the input Json.")
+        return VisualizationData(incidence_graph=incid_data,
+                                 general_graph=general_graph_data,
+                                 **visudata)
 
     def setup_tree_dec_graph(
             self,
@@ -500,6 +505,7 @@ class Visualization:
             first_style='filled',
             second_color='green',
             second_style='dotted,filled',
+            third_color='red',
             graph_name='graph',
             file_basename='graph',
             do_sort_nodes=True,
@@ -594,8 +600,13 @@ class Visualization:
                     style=first_style)
 
             # highlight edges between variables
-            [graph.edge(vartag_n % s, vartag_n % t, color='red', penwidth=penwidth)
-             for (s, t) in edges if (s in variables and t in variables)]
+            for (s, t) in edges:
+                if (s in variables and t in variables):
+                    graph.edge(
+                        vartag_n % s,
+                        vartag_n % t,
+                        color=third_color,
+                        penwidth=penwidth)
 
             if do_adj_nodes:
                 # set.difference accepts list as argument, "-" does not.
@@ -609,8 +620,7 @@ class Visualization:
                                color=second_color,
                                style=second_style)
 
-            graph.render(view=view, format='svg',
-                         filename=_filename % i)
+            graph.render(view=view, format='svg', filename=_filename % i)
 
     def incidence(
             self,
@@ -776,16 +786,16 @@ def main(args):
         loglevel = args.loglevel.upper()
     LOGGER.setLevel(loglevel)
 
-    INFILE = args.infile
-    OUTFOLDER = args.outfolder
-    if not OUTFOLDER:
-        OUTFOLDER = 'outfolder'
-    OUTFOLDER = OUTFOLDER.replace('\\', '/')
-    if not OUTFOLDER.endswith('/'):
-        OUTFOLDER += '/'
+    infile = args.infile
+    outfolder = args.outfolder
+    if not outfolder:
+        outfolder = 'outfolder'
+    outfolder = outfolder.replace('\\', '/')
+    if not outfolder.endswith('/'):
+        outfolder += '/'
 
-    VISU = Visualization(infile=INFILE, outfolder=OUTFOLDER)
-    VISU.tree_dec_timeline()
+    visu = Visualization(infile=infile, outfolder=outfolder)
+    visu.tree_dec_timeline()
 
 
 if __name__ == "__main__":
