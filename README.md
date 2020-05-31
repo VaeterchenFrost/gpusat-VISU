@@ -1,5 +1,12 @@
 # TdVisu
 Visualization for [dynamic programming](https://en.wikipedia.org/wiki/Dynamic_programming) on [tree decompositions](https://en.wikipedia.org/wiki/Tree_decomposition).
+Create a graph object for each desired graph that is of interest for the dynamic programming.
+Then the visualization generates highlights and adds additional solutions for user-defined time steps.
+These snapshots of graphs get written in a supported file-format to a any folder.
+For the portable and light weight '.svg' format, all graphs for a timestep can be joined together to provide a thoroughly view on the process of dynamic programming.
+
+With the '.svg' the images are highly customizable, and even combining several timesteps together using svg [animate](https://developer.mozilla.org/en-US/docs/Web/SVG/Element/animate) would be an option.
+
 
 # Using
 [Alubbock:Graphviz](https://anaconda.org/alubbock/graphviz) (or [Graphviz (>=2.38)](https://graphviz.gitlab.io/download/))
