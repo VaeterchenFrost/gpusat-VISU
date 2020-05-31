@@ -89,6 +89,11 @@ Changelog: 16.04.
     "treeDecJson" : 
     {
         "bagpre" : STR,
+        "numVars" : INT,
+        Optional("joinpre" : STR, default= 'Join %d~%d'),
+        Optional("solpre" : STR, default= 'sol%d'),
+        Optional("soljoinpre" : STR, default= 'solJoin%d~%d'),
+        
         "edgearray" : 
             [[INT, INT]...],
         "labeldict" : 
@@ -100,7 +105,6 @@ Changelog: 16.04.
                 }
                 ...
             ],
-         "numVars" : INT,
     },
     
     Optional("orientation" : Any['BT', 'TB', 'LR', 'RL'] , default='BT'),
