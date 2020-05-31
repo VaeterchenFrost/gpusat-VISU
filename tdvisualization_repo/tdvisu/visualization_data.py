@@ -52,6 +52,7 @@ class GeneralGraphData:
     edges: list
     extra_nodes: list = None
     graph_name: str = 'graph'
+    file_basename: str = 'graph'
     var_name: str = ''
     sort_nodes: str = False
     need_adj_nodes: bool = False

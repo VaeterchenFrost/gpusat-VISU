@@ -502,14 +502,10 @@ class Visualization:
                 column_distance=self.data.incidence_graph.column_distance)
             LOGGER.info(
                 "Created incidence-graph for file='%s'",
-                self.inc_file)
+                self.data.incidence_graph.inc_file)
         if self.do_general_graph:
-            self.general_graph(timeline=_timeline,
-                               edges=self.general_edges,
-                               _file=self.general_graph_name,
-                               var_name=self.general_var_name,
-                               do_sort_nodes=False,
-                               do_adj_nodes=False)
+            self.general_graph(timeline=_timeline, view=view,
+                               **self.data.general_graph)
             LOGGER.info(
                 "Created general-graph for file='%s'",
                 self.general_graph_name)
@@ -527,7 +523,8 @@ class Visualization:
             first_style='filled',
             second_color='green',
             second_style='dotted,filled',
-            _file='graph',
+            graph_name='graph',
+            file_basename='graph',
             do_sort_nodes=True,
             do_adj_nodes=True,
             var_name='') -> None:
@@ -558,13 +555,13 @@ class Visualization:
         None, but outputs the files with the graph for each timestep.
 
         """
-        _filename = self.outfolder + _file + '%d'
-        LOGGER.info("Generating general-graph for '%s'", _file)
+        _filename = self.outfolder + file_basename + '%d'
+        LOGGER.info("Generating general-graph for '%s'", file_basename)
         vartag_n = var_name + '%d'
         # sfdp http://yifanhu.net/SOFTWARE/SFDP/index.html
         default_engine = 'sfdp'
 
-        graph = Graph(_file, strict=True,
+        graph = Graph(graph_name, strict=True,
                       engine=default_engine,
                       graph_attr={'fontsize': fontsize, 'overlap': 'false',
                                   'outputorder': 'edgesfirst', 'K': '2'},
