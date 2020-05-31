@@ -1,5 +1,5 @@
-# gpusat-VISU
-Visualization API for [dynamic programming](https://en.wikipedia.org/wiki/Dynamic_programming) on [tree decompositions](https://en.wikipedia.org/wiki/Tree_decomposition).
+# TdVisu
+Visualization for [dynamic programming](https://en.wikipedia.org/wiki/Dynamic_programming) on [tree decompositions](https://en.wikipedia.org/wiki/Tree_decomposition).
 
 # Using
 [Alubbock:Graphviz](https://anaconda.org/alubbock/graphviz) (or [Graphviz (>=2.38)](https://graphviz.gitlab.io/download/))
@@ -43,22 +43,23 @@ to run all tests.
 
 
 # How to use
+
+The visualization needs input in the form of the [Json API](https://github.com/VaeterchenFrost/gpusat-VISU/blob/master/JsonAPI_v1.3.md).
+The creation of this file is exemplary implemented in *construct_dpdb_visu.py* or the fork [GPUSAT](https://github.com/VaeterchenFrost/GPUSAT) and *--visufile filename* (optionally disabling preprocessing with *-p*).
+
 Run the python file with the above dependencies installed:
 [visualization.py](https://github.com/VaeterchenFrost/gpusat-VISU/blob/master/satvisualization_repo/satvisu/visualization.py)
-
-The input JSON is for example produced with help of running [gpusat](github.com/VaeterchenFrost/GPUSAT) and *--visufile filename* (optionally disabling preprocessing with *-p*.
 
 **visualization.py** takes two parameters, the json-**infile** to read from, and optionally one **outputfolder**.
 With both arguments a call from IPython might look like this:
 
 ```python
-runfile(
-'C:/Users/Martin/Documents/GitHub/gpusat-VISU/satvisualization_repo/satvisu/visualization.py', 
+runfile('visualization.py', 
 args='visugpusat.json examplefolder', 
 wdir='C:/Users/Martin/Documents/GitHub/gpusat-VISU/satvisualization_repo/satvisu')
 ```
 
-For #SAT it produces three different graphs suffixed with a running integer to represent timesteps:
+For #SAT it produces for example three different graphs suffixed with a running integer to represent timesteps:
 
 + *TDStep* the tree decomposition with solved nodes
 + *PrimalGraphStep* the primal graph with currently active variables
@@ -66,4 +67,4 @@ For #SAT it produces three different graphs suffixed with a running integer to r
 
 Currently the graphs are images encoded in resolution independent **.svg files** (see https://www.lifewire.com/svg-file-4120603)
 
-<img src="Bachelor/images/combined6DA4.svg" alt="Your image title" width="50%"/>
+<img src="Bachelor/images/combined6DA4.svg" alt="Example SharpSat" width="50%"/>

@@ -834,12 +834,12 @@ if __name__ == "__main__":
                         type=argparse.FileType('r', encoding='UTF-8'),
                         default=stdin,
                         help="Input file for the visualization. "
-                        "Must be a Json fulfilling the 'JsonAPI_v1.1.md'")
+                        "Must be a Json fulfilling the 'JsonAPI_v1.3.md'")
     PARSER.add_argument('outfolder',
                         help="Folder to output the visualization results.")
-    PARSER.add_argument('--loglevel', default='WARNING')
     PARSER.add_argument('--version', action='version',
                         version='%(prog)s ' + __version__ + ', ' + __date__)
+    PARSER.add_argument('--loglevel', default='WARNING', help="set the minimal loglevel")
 
     # get cmd-arguments
     ARGS = PARSER.parse_args()
