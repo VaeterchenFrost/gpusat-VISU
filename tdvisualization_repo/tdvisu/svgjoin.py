@@ -147,8 +147,10 @@ TRANSFORMATION_EXAMPLE = """
 """
 
 
-def f_transform(h_one_, h_two_, v_bottom=None, v_top=None,
-                scale2=1) -> dict:
+def f_transform(h_one_, h_two_,
+                v_bottom: Union[float, str, None] = None,
+                v_top: Union[float, str, None] = None,
+                scale2: float = 1) -> dict:
     """Calculate vertical position of second image.
 
     The input scale is in units from\n
@@ -179,17 +181,20 @@ def f_transform(h_one_, h_two_, v_bottom=None, v_top=None,
         scale2
 
     """
-
     v_displacement = 0
     # cast to float
     h_one = float(h_one_)
     h_two = float(h_two_)
     LOGGER.info("Calculating with h_one=%f h_two=%f", h_one, h_two)
     # normalize values
-    conversion = {'bottom': 1, 'center': 0.5, 'top': 0,
+    conversion = {'bottom': 1, 'center': 0.5, 'top': 0, 'inf': 0,
                   -float('inf'): 1, float('inf'): 0}
     v_bottom = conversion.get(v_bottom, v_bottom)
+    if isinstance(v_bottom, str):
+        raise ValueError(f"Encountered {v_bottom=} not in {conversion=}")
     v_top = conversion.get(v_top, v_top)
+    if isinstance(v_top, str):
+        raise ValueError(f"Encountered {v_top=} not in {conversion=}")
 
     size2 = h_two * scale2
     # cases (special case None)
