@@ -440,14 +440,13 @@ class Visualization:
             if __incid.infer_primal:
                 # vertex for each variable + edge if the variables
                 # occur in the same clause:
-                primal_edges = list(flatten(
+                primal_edges = set(flatten(             # remove duplicates
                     [itertools.combinations(cl[1], 2)
                      for cl in abs_clauses]))
                 # check if any node is really isolated:
                 isolated = [cl[1][0] for cl in abs_clauses
                             if len(cl[1]) == 1 and
                             not any(cl[1][0] in sl for sl in primal_edges)]
-                primal_edges = set(primal_edges)  # remove duplicates
 
                 self.general_graph(
                     timeline=_timeline,
@@ -474,7 +473,7 @@ class Visualization:
                     extra_nodes=set(isolated),
                     graph_name=__incid.dual_file,
                     file_basename=__incid.dual_file,
-                    var_name=__incid.var_one_name)
+                    var_name=__incid.var_name_one)
                 LOGGER.info("Created infered dual-graph")
             self.incidence(
                 timeline=_timeline,
@@ -492,7 +491,7 @@ class Visualization:
                 self.data.incidence_graph.inc_file)
         if self.data.general_graph:
             self.general_graph(timeline=_timeline, view=view,
-                               **self.data.general_graph)
+                               **self.data.general_graph.__dict__)
             LOGGER.info(
                 "Created general-graph for file='%s'",
                 self.data.general_graph.file_basename)
