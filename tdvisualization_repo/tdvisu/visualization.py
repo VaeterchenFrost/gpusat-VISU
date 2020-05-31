@@ -267,31 +267,14 @@ class Visualization:
             incid = visudata['incidenceGraph']
             general_graph = visudata['generalGraph']
 
+            incid_data : IncidenceGraphData = None
             if incid:
                 incid['edges'] = [[x['id'], x['list']] for x in incid['edges']]
+                incid_data = IncidenceGraphData(**incid)
                 
-                self.subgraph_one_name = incid.get(
-                    "subgraphNameOne", 'clauses')
-                self.subgraph_two_name = incid.get(
-                    "subgraphNameTwo", 'variables')
-                self.var_one_name = incid.get("varNameOne", '')
-                self.var_two_name = incid.get("varNameTwo", '')
-                self.infer_primal = incid.get("inferPrimal", False)
-                self.infer_dual = incid.get("inferDual", False)
-
-                
-                self.do_incid = True
-            else:
-                self.do_incid = False
-
+            general_graph_data : GeneralGraphData = None
             if general_graph:
-                self.general_graph_name = general_graph.get(
-                    "graphName", 'graph')
-                self.general_var_name = general_graph.get("varName", '')
-                self.general_edges = general_graph['edges']
-                self.do_general_graph = True
-            else:
-                self.do_general_graph = False
+                general_graph_data = GeneralGraphData(**general_graph)
 
             self.timeline = visudata['tdTimeline']
             self.tree_dec = visudata['treeDecJson']

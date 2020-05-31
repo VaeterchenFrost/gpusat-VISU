@@ -106,6 +106,7 @@ class VisualizationData:
 
 
 if __name__ == "__main__":
+    """Just Testing:"""
     incid = IncidenceGraphData([])
     gen = GeneralGraphData([])
     data = VisualizationData(incidence_graph=incid, general_graph=gen)
