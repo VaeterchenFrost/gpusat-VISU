@@ -98,19 +98,8 @@ class Visualization:
 
     def __init__(self, infile, outfolder) -> None:
         """Copy needed fields from arguments and create additional constants"""
-        self.inspect_json(infile)
+        self.data: VisualizationData = self.inspect_json(infile)
         self.outfolder = outfolder
-        # self.td_file = tdFile
-        # self.primal_file = primalFile
-        # self.inc_file = incFile
-        # self.dual_file = dualFile
-        # self.colors = ['#0073a1', '#b14923', '#244320', '#b1740f', '#a682ff',
-        #                '#004066', '#0d1321', '#da1167', '#604909', '#0073a1',
-        #                '#b14923', '#244320', '#b1740f', '#a682ff']
-
-        # self.joinpre = "Join %d~%d"
-        # self.solpre = "sol%d"
-        # self.soljoinpre = "solJoin%d~%d"
 
         self.tree_dec_digraph = None
         LOGGER.debug("Initialized: %s", self)
@@ -320,13 +309,6 @@ class Visualization:
         The arguments are optional"""
         tdg = self.tree_dec_digraph                 # shorten name
 
-        if joinpre is None:
-            joinpre = self.joinpre
-        if solpre is None:
-            solpre = self.solpre
-        if soljoinpre is None:
-            soljoinpre = self.soljoinpre
-
         for i, node in enumerate(
                 self.timeline):                 # Create the positions
             if len(node) > 1:
@@ -373,13 +355,6 @@ class Visualization:
         tdg = self.tree_dec_digraph     # shorten name
         last_sol = ""
 
-        if joinpre is None:
-            joinpre = self.joinpre
-        if solpre is None:
-            solpre = self.solpre
-        if soljoinpre is None:
-            soljoinpre = self.soljoinpre
-
         for i, node in enumerate(reversed(self.timeline)):
             id_inv_bags = node[0]
             LOGGER.debug("%s: Reverse traversing on %s", i, id_inv_bags)
@@ -416,7 +391,7 @@ class Visualization:
                                     id_inv_bags,
                                     int) else joinpre %
                                 id_inv_bags)
-            _filename = self.outfolder + self.td_file + '%d'
+            _filename = self.outfolder + self.data.td_file + '%d'
             tdg.render(
                 view=view, format='svg', filename=_filename %
                 (len(self.timeline) - i))
@@ -446,13 +421,13 @@ class Visualization:
             else:
                 # Join operation - no clauses involved in computation
                 _timeline.append(None)
-
-        if self.do_incid:
-            if self.infer_primal or self.infer_dual:
+        __incid = self.data.incidence_graph
+        if __incid:
+            if __incid.infer_primal or __incid.infer_dual:
                 # prepare incid edges with abs:
                 abs_clauses = [[cl[0], list(map(abs, cl[1]))]
-                               for cl in self.incidence_edges]
-            if self.infer_primal:
+                               for cl in __incid.edges]
+            if __incid.infer_primal:
                 # vertex for each variable + edge if the variables
                 # occur in the same clause:
                 primal_edges = list(flatten(
@@ -468,11 +443,12 @@ class Visualization:
                     timeline=_timeline,
                     edges=primal_edges,
                     extra_nodes=set(isolated),
-                    _file=self.data.incidence_graph.primal_file,
-                    var_name=self.data.incidence_graph.var_two_name)
+                    graph_name=__incid.primal_file,
+                    file_basename=__incid.primal_file,
+                    var_name=__incid.var_two_name)
                 LOGGER.info("Created infered primal-graph")
 
-            if self.infer_dual:
+            if __incid.infer_dual:
                 # Edge, if clauses share the same variable
                 dual_edges = [(cl[0], other[0])
                               for i, cl in enumerate(abs_clauses)
@@ -486,29 +462,30 @@ class Visualization:
                     timeline=_timeline,
                     edges=dual_edges,
                     extra_nodes=set(isolated),
-                    _file=self.data.incidence_graph.dual_file,
-                    var_name=self.data.incidence_graph.var_one_name)
+                    graph_name=__incid.dual_file,
+                    file_basename=__incid.dual_file,
+                    var_name=__incid.var_one_name)
                 LOGGER.info("Created infered dual-graph")
             self.incidence(
                 timeline=_timeline,
-                inc_file=self.data.incidence_graph.inc_file,
+                inc_file=__incid.inc_file,
                 num_vars=self.tree_dec['numVars'],
-                colors=self.colors, view=view,
-                fontsize=self.data.incidence_graph.fontsize,
-                penwidth=self.data.incidence_graph.penwidth,
+                colors=self.data.colors, view=view,
+                fontsize=__incid.fontsize,
+                penwidth=__incid.penwidth,
                 basefill=self.data.bagcolor,
-                var_name_one=self.data.incidence_graph.var_name_one,
-                var_name_two=self.data.incidence_graph.var_name_two,
-                column_distance=self.data.incidence_graph.column_distance)
+                var_name_one=__incid.var_name_one,
+                var_name_two=__incid.var_name_two,
+                column_distance=__incid.column_distance)
             LOGGER.info(
                 "Created incidence-graph for file='%s'",
                 self.data.incidence_graph.inc_file)
-        if self.do_general_graph:
+        if self.data.general_graph:
             self.general_graph(timeline=_timeline, view=view,
                                **self.data.general_graph)
             LOGGER.info(
                 "Created general-graph for file='%s'",
-                self.general_graph_name)
+                self.data.general_graph.file_basename)
 
     def general_graph(
             self,
@@ -690,14 +667,14 @@ class Visualization:
                 'penwidth': str(penwidth),
                 'dir': 'back',
                 'arrowtail': 'none'})
-
+        __incid = self.data.incidence_graph
         with g_incid.subgraph(name='cluster_clause',
                               edge_attr={'style': 'invis'},
                               node_attr={'style': 'rounded,filled',
                                          'fillcolor': basefill}) as clauses:
             clauses.attr(label='clauses')
             clauses.edges([(clausetag_n % (i + 1), clausetag_n % (i + 2))
-                           for i in range(len(self.incidence_edges) - 1)])
+                           for i in range(len(__incid.edges) - 1)])
 
         g_incid.attr('node', shape=sndshape, fontcolor='black',
                      penwidth=str(penwidth),
@@ -715,7 +692,7 @@ class Visualization:
 
         g_incid.attr('edge', constraint='false')
 
-        for clause in self.incidence_edges:
+        for clause in __incid.edges:
             for var in clause[1]:
                 if var >= 0:
                     g_incid.edge(clausetag_n % clause[0],
@@ -733,7 +710,7 @@ class Visualization:
             lambda y: map(
                 lambda x: (x, y[0]),
                 y[1]),
-            self.incidence_edges)
+            __incid.edges)
 
         var_cl_iter = tuple(flatten(vcmapping))
 

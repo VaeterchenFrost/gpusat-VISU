@@ -68,6 +68,7 @@ class VisualizationData:
     """Class for holding different parameters for Visualization."""
     incidence_graph: IncidenceGraphData = None
     general_graph: GeneralGraphData = None
+    td_file:str = 'TDStep'
     colors: list = None
     orientation: str = 'BT'
     linesmax: int = 100
