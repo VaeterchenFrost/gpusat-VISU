@@ -25,6 +25,7 @@ Changelog: 16.04.
 
 - changed defaults in sortNodes, needAdjNodes to false.
 - added parameters from general_graph
+- added optional "joinpre", "solpre", "soljoinpre" to treeDecJson with previous defaults.
 
 ```perl
 {
