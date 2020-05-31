@@ -267,12 +267,12 @@ class Visualization:
             incid = visudata['incidenceGraph']
             general_graph = visudata['generalGraph']
 
-            incid_data : IncidenceGraphData = None
+            incid_data: IncidenceGraphData = None
             if incid:
                 incid['edges'] = [[x['id'], x['list']] for x in incid['edges']]
                 incid_data = IncidenceGraphData(**incid)
-                
-            general_graph_data : GeneralGraphData = None
+
+            general_graph_data: GeneralGraphData = None
             if general_graph:
                 general_graph_data = GeneralGraphData(**general_graph)
 
@@ -468,11 +468,10 @@ class Visualization:
                     timeline=_timeline,
                     edges=primal_edges,
                     extra_nodes=set(isolated),
-                    _file=self.primal_file,
-                    var_name=self.var_two_name)
-                LOGGER.info(
-                    "Created infered primal-graph for file='%s'",
-                    self.primal_file)
+                    _file=self.data.incidence_graph.primal_file,
+                    var_name=self.data.incidence_graph.var_two_name)
+                LOGGER.info("Created infered primal-graph")
+
             if self.infer_dual:
                 # Edge, if clauses share the same variable
                 dual_edges = [(cl[0], other[0])
@@ -487,15 +486,20 @@ class Visualization:
                     timeline=_timeline,
                     edges=dual_edges,
                     extra_nodes=set(isolated),
-                    _file=self.dual_file,
-                    var_name=self.var_one_name)
-                LOGGER.info(
-                    "Created infered dual-graph for file='%s'",
-                    self.dual_file)
+                    _file=self.data.incidence_graph.dual_file,
+                    var_name=self.data.incidence_graph.var_one_name)
+                LOGGER.info("Created infered dual-graph")
             self.incidence(
                 timeline=_timeline,
+                inc_file=self.data.incidence_graph.inc_file,
                 num_vars=self.tree_dec['numVars'],
-                colors=self.colors, view=view)
+                colors=self.colors, view=view,
+                fontsize=self.data.incidence_graph.fontsize,
+                penwidth=self.data.incidence_graph.penwidth,
+                basefill=self.data.bagcolor,
+                var_name_one=self.data.incidence_graph.var_name_one,
+                var_name_two=self.data.incidence_graph.var_name_two,
+                column_distance=self.data.incidence_graph.column_distance)
             LOGGER.info(
                 "Created incidence-graph for file='%s'",
                 self.inc_file)
@@ -639,12 +643,15 @@ class Visualization:
             timeline,
             num_vars,
             colors,
+            inc_file='IncidenceGraphStep',
             view=False,
             fontsize=16,
             penwidth=2.2,
             basefill='white',
             sndshape='diamond',
             neg_tail='odot',
+            var_name_one='',
+            var_name_two='',
             column_distance=0.5) -> None:
         """
         Creates the incidence graph emphasized for the given timeline.
@@ -667,13 +674,13 @@ class Visualization:
         None, but outputs the files with the graph for each timestep.
 
         """
-        _filename = self.outfolder + self.inc_file + '%d'
+        _filename = self.outfolder + inc_file + '%d'
 
-        clausetag_n = self.var_one_name + '%d'
-        vartag_n = self.var_two_name + '%d'
+        clausetag_n = var_name_one + '%d'
+        vartag_n = var_name_two + '%d'
 
         g_incid = Graph(
-            'IncidenceGraphStep',
+            inc_file,
             strict=True,
             graph_attr={
                 'splines': 'false',
@@ -839,7 +846,10 @@ if __name__ == "__main__":
                         help="Folder to output the visualization results.")
     PARSER.add_argument('--version', action='version',
                         version='%(prog)s ' + __version__ + ', ' + __date__)
-    PARSER.add_argument('--loglevel', default='WARNING', help="set the minimal loglevel")
+    PARSER.add_argument(
+        '--loglevel',
+        default='WARNING',
+        help="set the minimal loglevel")
 
     # get cmd-arguments
     ARGS = PARSER.parse_args()
