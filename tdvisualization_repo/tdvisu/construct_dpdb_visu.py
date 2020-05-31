@@ -199,9 +199,9 @@ class DpdbSharpSatVisu(IDpdbVisuConstruct):
 
         clauses_edges = self.read_clauses()
         incidence_graph = {
-            "varNameOne": 'c_',
-            "varNameTwo": 'v_',
-            "inferPrimal": True,
+            "var_name_one": 'c_',
+            "var_name_two": 'v_',
+            "infer_primal": True,
             "edges": clauses_edges}
 
         # create tree_dec_json
@@ -211,7 +211,7 @@ class DpdbSharpSatVisu(IDpdbVisuConstruct):
             "bagpre": "bag %s",
             "edgearray": edgearray,
             "labeldict": labeldict,
-            "numVars": self.read_num_vars()}
+            "num_vars": self.read_num_vars()}
 
         timeline = self.read_timeline(edgearray)
 
@@ -437,7 +437,7 @@ class DpdbMinVcVisu(DpdbSharpSatVisu):
             'bagpre': "bag %s",
             'edgearray': edgearray,
             'labeldict': labeldict,
-            'numVars': self.read_num_vars()}
+            'num_vars': self.read_num_vars()}
 
         generalGraph = {'edges': self.read_twfile()} if self.tw_file else False
 
