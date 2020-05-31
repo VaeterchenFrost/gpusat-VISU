@@ -139,6 +139,11 @@ class IDpdbVisuConstruct(metaclass=abc.ABCMeta):
                 NotImplemented)
 
     @abc.abstractmethod
+    def construct(self) -> dict:
+        """Return the constructed Json."""
+        raise NotImplementedError
+        
+    @abc.abstractmethod
     def read_edgearray(self) -> list:
         """Return the edges between the bags."""
         raise NotImplementedError
