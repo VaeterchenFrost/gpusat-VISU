@@ -68,12 +68,41 @@ class VisualizationData:
     incidence_graph: IncidenceGraphData = None
     general_graph: GeneralGraphData = None
     colors: list = None
+    orientation: str = 'BT'
+    linesmax: int = 100
+    columnsmax: int = 20
+    bagcolor: str = 'white'
+    fontsize: int = 20
+    penwidth: float = 2.2
+    fontcolor: str = 'black'
+    emphasis: dict = None
 
     def __post_init__(self):
         if self.colors is None:
-            self.colors = ['#0073a1', '#b14923', '#244320', '#b1740f', '#a682ff',
-                           '#004066', '#0d1321', '#da1167', '#604909', '#0073a1',
-                           '#b14923', '#244320', '#b1740f', '#a682ff']
+            self.colors = [
+                '#0073a1',
+                '#b14923',
+                '#244320',
+                '#b1740f',
+                '#a682ff',
+                '#004066',
+                '#0d1321',
+                '#da1167',
+                '#604909',
+                '#0073a1',
+                '#b14923',
+                '#244320',
+                '#b1740f',
+                '#a682ff']
+        if self.emphasis is None:
+            self.emphasis = dict()
+        # merge input over defaults:
+        self.emphasis = {**{"firstcolor": 'yellow',
+                            "secondcolor": 'green',
+                            "firststyle": 'filled',
+                            "secondstyle": 'dotted,filled'
+                            },
+                         **self.emphasis}
 
 
 if __name__ == "__main__":
