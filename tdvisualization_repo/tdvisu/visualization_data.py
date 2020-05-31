@@ -55,7 +55,7 @@ class GeneralGraphData:
     graph_name: str = 'graph'
     file_basename: str = 'graph'
     var_name: str = ''
-    sort_nodes: str = False
+    sort_nodes: bool = False
     need_adj_nodes: bool = False
     fontsize: int = 20
     first_color: str = 'yellow'
