@@ -24,7 +24,7 @@ Copyright (C) 2020  Martin Röbke
 
 """
 
-
+from typing import Union
 from dataclasses import dataclass
 
 
@@ -42,6 +42,7 @@ class IncidenceGraphData:
     inc_file: str = 'IncidenceGraphStep'
     dual_file: str = 'DualGraphStep'
     fontsize: int = 16
+    penwidth: Union[float, str] = 2.2
     second_shape: str = 'diamond'
     column_distance: float = 0.5
 

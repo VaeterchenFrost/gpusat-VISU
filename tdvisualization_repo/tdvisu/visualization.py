@@ -455,7 +455,7 @@ class Visualization:
                     extra_nodes=set(isolated),
                     graph_name=__incid.primal_file,
                     file_basename=__incid.primal_file,
-                    var_name=__incid.var_two_name)
+                    var_name=__incid.var_name_two)
                 LOGGER.info("Created infered primal-graph")
 
             if __incid.infer_dual:
