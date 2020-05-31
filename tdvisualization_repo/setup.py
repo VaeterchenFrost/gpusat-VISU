@@ -1,19 +1,21 @@
 # -*- coding: utf-8 -*-
-"""
-Created on Mon Jan 27 12:31:12 2020
-Example setup.py:
-    https://github.com/python/mypy/edit/master/setup.py
-    https://github.com/xflr6/graphviz/blob/master/setup.py
-
-rst: https://en.wikipedia.org/wiki/ReStructuredText
-
-@author: Martin Röbke
-"""
-
 import io
 from setuptools import setup
+
+
+def read_files(files):
+    data = []
+    for file in files:
+        with io.open(file, encoding='utf-8') as f:
+            data.append(f.read())
+    return "\n".join(data)
+
+
+long_description = read_files(['README.md', 'CHANGELOG.md'])
+
+
 tests_require = ['unittest_expander']
-description = "Visualizing dynamic programming on tree decompositions."
+description = "Visualizing Dynamic Programming on Tree Decompositions."
 
 classifiers = [
     'Development Status :: 4 - Beta',
@@ -24,17 +26,15 @@ classifiers = [
     'Operating System :: OS Independent',
     'License :: OSI Approved :: GNU General Public License v3 or later (GPLv3+)',
     'Programming Language :: Python :: 3',
-    'Programming Language :: Python :: 3.5',
-    'Programming Language :: Python :: 3.6',
-    'Programming Language :: Python :: 3.7',
     'Programming Language :: Python :: 3.8',
     'Topic :: Scientific/Engineering :: Visualization',
-    'Topic :: Multimedia :: Graphics :: Presentation'
-]
+    'Topic :: Multimedia :: Graphics :: Presentation']
 
 setup(name="tdvisu",
       version="0.4",
       description=description,
+      long_description=long_description,
+      long_description_content_type='text/markdown',
       url="https://github.com/VaeterchenFrost/gpusat-VISU",
       author="Martin Röbke",
       author_email="martin.roebke@mailbox.tu-dresden.de",
@@ -43,6 +43,5 @@ setup(name="tdvisu",
       platforms='any',
       install_requires=['graphviz', 'psycopg2', 'python-benedict'],
       extras_require={'test': tests_require},
-      # long_description=io.open('README.txt', encoding='utf-8').read(),
       classifiers=classifiers,
       keywords='graph visualization dynamic-programming msol-solver')
