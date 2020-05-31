@@ -34,6 +34,7 @@ from sys import stdin
 from typing import Iterable, Iterator, TypeVar
 
 from graphviz import Digraph, Graph
+from visualization_data import VisualizationData, IncidenceGraphData, GeneralGraphData
 
 __author__ = "Martin Röbke <martin.roebke@tu-dresden.de>"
 __status__ = 'development'
@@ -48,7 +49,7 @@ logging.basicConfig(
 LOGGER = logging.getLogger(__name__)
 
 
-def read_json(json_data):
+def read_json(json_data) -> dict:
     """
     Read json data into a callable object.
     Throws error if the parsed object has length 0.
@@ -95,27 +96,24 @@ class Visualization:
     of dynamic programming on tree decomposition.
     """
 
-    def __init__(self, infile, outfolder, tdFile='TDStep',
-                 primalFile='PrimalGraphStep',
-                 incFile='IncidenceGraphStep',
-                 dualFile='DualGraphStep') -> None:
+    def __init__(self, infile, outfolder) -> None:
         """Copy needed fields from arguments and create additional constants"""
         self.inspect_json(infile)
         self.outfolder = outfolder
-        self.td_file = tdFile
-        self.primal_file = primalFile
-        self.inc_file = incFile
-        self.dual_file = dualFile
-        self.colors = ['#0073a1', '#b14923', '#244320', '#b1740f', '#a682ff',
-                       '#004066', '#0d1321', '#da1167', '#604909', '#0073a1',
-                       '#b14923', '#244320', '#b1740f', '#a682ff']
+        # self.td_file = tdFile
+        # self.primal_file = primalFile
+        # self.inc_file = incFile
+        # self.dual_file = dualFile
+        # self.colors = ['#0073a1', '#b14923', '#244320', '#b1740f', '#a682ff',
+        #                '#004066', '#0d1321', '#da1167', '#604909', '#0073a1',
+        #                '#b14923', '#244320', '#b1740f', '#a682ff']
 
-        self.joinpre = "Join %d~%d"
-        self.solpre = "sol%d"
-        self.soljoinpre = "solJoin%d~%d"
+        # self.joinpre = "Join %d~%d"
+        # self.solpre = "sol%d"
+        # self.soljoinpre = "solJoin%d~%d"
 
         self.tree_dec_digraph = None
-        LOGGER.debug("Running %s", self)
+        LOGGER.debug("Initialized: %s", self)
 
     @staticmethod
     def base_style(graph, node, color='white', penwidth='1.0') -> None:
@@ -259,18 +257,19 @@ class Visualization:
 
         return '{' + result + '}'
 
-    def inspect_json(self, infile) -> None:
+    def inspect_json(self, infile) -> VisualizationData:
         """Read and preprocess the needed data from the input."""
+        LOGGER.debug("Reading from: %s", infile)
         visudata = read_json(infile)
-        LOGGER.debug("Reading from %s", infile)
-
-        LOGGER.debug("Found keys %s", visudata.keys())
+        LOGGER.debug("Found keys: %s", visudata.keys())
 
         try:
             incid = visudata['incidenceGraph']
             general_graph = visudata['generalGraph']
 
-            if incid is not False:
+            if incid:
+                incid['edges'] = [[x['id'], x['list']] for x in incid['edges']]
+                
                 self.subgraph_one_name = incid.get(
                     "subgraphNameOne", 'clauses')
                 self.subgraph_two_name = incid.get(
@@ -280,13 +279,12 @@ class Visualization:
                 self.infer_primal = incid.get("inferPrimal", False)
                 self.infer_dual = incid.get("inferDual", False)
 
-                self.incidence_edges = [[x['id'], x['list']]
-                                        for x in incid['edges']]
+                
                 self.do_incid = True
             else:
                 self.do_incid = False
 
-            if general_graph is not False:
+            if general_graph:
                 self.general_graph_name = general_graph.get(
                     "graphName", 'graph')
                 self.general_var_name = general_graph.get("varName", '')
@@ -815,16 +813,14 @@ def main(args):
     LOGGER.setLevel(loglevel)
 
     INFILE = args.infile
-    outfolder = args.outfolder
-    if not outfolder:
-        outfolder = 'outfolder'
-    outfolder = outfolder.replace('\\', '/')
-    if not outfolder.endswith('/'):
-        outfolder += '/'
+    OUTFOLDER = args.outfolder
+    if not OUTFOLDER:
+        OUTFOLDER = 'outfolder'
+    OUTFOLDER = OUTFOLDER.replace('\\', '/')
+    if not OUTFOLDER.endswith('/'):
+        OUTFOLDER += '/'
 
-    VISU = Visualization(INFILE, outfolder, tdFile='TDStep',
-                         primalFile='PrimalGraphStep',
-                         incFile='IncidenceGraphStep')
+    VISU = Visualization(infile=INFILE, outfolder=OUTFOLDER)
     VISU.tree_dec_timeline()
 
 
