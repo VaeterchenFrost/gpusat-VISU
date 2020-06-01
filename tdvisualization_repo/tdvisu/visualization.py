@@ -34,7 +34,7 @@ from sys import stdin
 from typing import Iterable, Iterator, TypeVar
 
 from graphviz import Digraph, Graph
-from visualization_data import VisualizationData, IncidenceGraphData, GeneralGraphData
+from tdvisu.visualization_data import VisualizationData, IncidenceGraphData, GeneralGraphData
 
 __author__ = "Martin Röbke <martin.roebke@tu-dresden.de>"
 __status__ = 'development'

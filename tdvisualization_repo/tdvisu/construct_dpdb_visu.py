@@ -34,10 +34,10 @@ from configparser import ConfigParser
 
 import psycopg2 as pg
 
-from dijkstra import bidirectional_dijkstra as find_path
-from dijkstra import convert_to_adj
-from reader import TwReader
-from visualization import flatten
+from tdvisu.dijkstra import bidirectional_dijkstra as find_path
+from tdvisu.dijkstra import convert_to_adj
+from tdvisu.reader import TwReader
+from tdvisu.visualization import flatten
 
 
 __author__ = "Martin Röbke <martin.roebke@tu-dresden.de>"
