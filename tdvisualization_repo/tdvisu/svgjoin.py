@@ -25,11 +25,6 @@ from typing import Union
 from benedict import benedict
 
 
-__author__ = "Martin Röbke <martin.roebke@tu-dresden.de>"
-__status__ = 'development'
-__version__ = '0.4'
-__date__ = "27 May 2020"
-
 LOGGER = logging.getLogger(__name__)
 
 

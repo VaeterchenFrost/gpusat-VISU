@@ -28,9 +28,6 @@ from unittest_expander import expand, foreach, param
 
 from tdvisu.svgjoin import f_transform, append_svg
 
-__author__ = "Martin Röbke <martin.roebke@tu-dresden.de>"
-__status__ = "development"
-__date__ = "27 May 2020"
 
 
 MIN, MAX = 5, 1e6

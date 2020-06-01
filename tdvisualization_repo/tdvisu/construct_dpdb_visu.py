@@ -40,11 +40,6 @@ from tdvisu.reader import TwReader
 from tdvisu.visualization import flatten
 
 
-__author__ = "Martin Röbke <martin.roebke@tu-dresden.de>"
-__status__ = 'development'
-__version__ = '0.4'
-__date__ = "23 May 2020"
-
 logging.basicConfig(
     format="%(asctime)s,%(msecs)d %(levelname)-8s"
     "[%(filename)s:%(lineno)d] %(message)s",

@@ -22,9 +22,6 @@ Copyright (C) 2020  Martin Röbke
 import unittest
 from tdvisu.visualization import Visualization
 
-__author__ = "Martin Röbke <martin.roebke@tu-dresden.de>"
-__status__ = "development"
-__date__ = "20 April 2020"
 
 
 SOLUTIONTABLE1 = [["id", "0"], ["v1", "1"],

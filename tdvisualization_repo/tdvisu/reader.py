@@ -13,7 +13,8 @@ inp.num_vertices
 inp.num_edges
 inp.edges
 
-Copyright (C) 2020  Patrick Thier, Martin Röbke
+Copyright (C) 2020  Patrick Thier https://github.com/Fend0r, TU Wien, 
+                    Martin Röbke, TU Dresden
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -34,11 +35,6 @@ Copyright (C) 2020  Patrick Thier, Martin Röbke
 import logging
 import sys
 
-__author__ = "Martin Röbke <martin.roebke@tu-dresden.de>"
-__credits__ = ["Patrick Thier https://github.com/Fend0r, TU Wien"]
-__status__ = "development"
-__version__ = "1.0"
-__date__ = "22 May 2020"
 
 logger = logging.getLogger(__name__)
 
