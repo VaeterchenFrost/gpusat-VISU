@@ -1,31 +1,33 @@
-#Deckblatt
+## Cover
 
-#Abstract
+## Abstract
 - Topic
 - Result
 - Users / Intended Audience
 
-#Intrudoction
+## Intrudoction
 - Extended Topic
 - Previously existing visualization
 - Timeline
 - Previous experience with Python/Visualization
 
-#Theoretical Background
-##MSOL
-##Tree Decomposition
-##Courcelle's Theorem
-#Concept
+## Theoretical Background
+### MSOL
+### Tree Decomposition
+### Courcelle's Theorem
+## Concept
 - Decision Progress
 
-#TdVisu Project
+## TdVisu Project
 
-##Integration in GPUSAT
-##Integration in dpdb
+### Integration in GPUSAT
+### Integration in dpdb
 
-#Application
+## Application
 
 
-##Images
+### Images
 
-#Summary & Outline
+## Summary & Outline
+
+## References
