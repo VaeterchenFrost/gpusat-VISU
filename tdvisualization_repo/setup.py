@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 import io
 from setuptools import setup
-
+from tdvisu.version import __version__ as version
 
 def read_files(files):
     data = []
@@ -14,7 +14,6 @@ def read_files(files):
 long_description = read_files(['README.md', 'CHANGELOG.md'])
 
 
-tests_require = ['unittest_expander']
 description = "Visualizing Dynamic Programming on Tree Decompositions."
 
 classifiers = [
@@ -30,8 +29,10 @@ classifiers = [
     'Topic :: Scientific/Engineering :: Visualization',
     'Topic :: Multimedia :: Graphics :: Presentation']
 
+tests_require = ['unittest_expander']
+
 setup(name="tdvisu",
-      version="0.5",
+      version=version,
       description=description,
       long_description=long_description,
       long_description_content_type='text/markdown',
