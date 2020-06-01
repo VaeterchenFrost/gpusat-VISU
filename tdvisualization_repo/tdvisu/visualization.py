@@ -32,10 +32,11 @@ import itertools
 import logging
 from sys import stdin
 from typing import Iterable, Iterator, TypeVar
+from dataclasses import asdict
 
 from graphviz import Digraph, Graph
 from tdvisu.visualization_data import VisualizationData, IncidenceGraphData, GeneralGraphData
-
+from tdvisu.version import __date__, __version__ as version
 
 logging.basicConfig(
     format="%(asctime)s,%(msecs)d %(levelname)s"
@@ -487,7 +488,7 @@ class Visualization:
                 self.data.incidence_graph.inc_file)
         if self.data.general_graph:
             self.general_graph(timeline=_timeline, view=view,
-                               **self.data.general_graph.__dict__)
+                               **asdict(self.data.general_graph))
             LOGGER.info(
                 "Created general-graph for file='%s'",
                 self.data.general_graph.file_basename)
@@ -830,7 +831,7 @@ if __name__ == "__main__":
     PARSER.add_argument('outfolder',
                         help="Folder to output the visualization results.")
     PARSER.add_argument('--version', action='version',
-                        version='%(prog)s ' + __version__ + ', ' + __date__)
+                        version='%(prog)s ' + version + ', ' + __date__)
     PARSER.add_argument(
         '--loglevel',
         default='WARNING',
