@@ -31,7 +31,7 @@ classifiers = [
     'Topic :: Multimedia :: Graphics :: Presentation']
 
 setup(name="tdvisu",
-      version="0.4",
+      version="0.5",
       description=description,
       long_description=long_description,
       long_description_content_type='text/markdown',
