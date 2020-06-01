@@ -1,5 +1,5 @@
 ## Cover
-
+...
 ## Abstract
 - Topic
 - Result
@@ -13,21 +13,27 @@
 
 ## Theoretical Background
 ### MSOL
+...
 ### Tree Decomposition
+...
 ### Courcelle's Theorem
+...
 ## Concept
 - Decision Progress
 
 ## TdVisu Project
-
+...
 ### Integration in GPUSAT
+...
 ### Integration in dpdb
+...
 
 ## Application
-
+...
 
 ### Images
-
+...
 ## Summary & Outline
-
+...
 ## References
+...
