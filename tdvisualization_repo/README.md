@@ -62,8 +62,7 @@ With both arguments a call from IPython might look like this:
 
 ```python
 runfile('visualization.py', 
-args='visugpusat.json examplefolder', 
-wdir='C:/Users/Martin/Documents/GitHub/gpusat-VISU/satvisualization_repo/satvisu')
+args='visugpusat.json examplefolder')
 ```
 
 For #SAT it produces for example three different graphs suffixed with a running integer to represent timesteps:
@@ -73,5 +72,8 @@ For #SAT it produces for example three different graphs suffixed with a running 
 + *IncidenceGraphStep* the bipartite incidence graph with active clauses/variables
 
 Currently the graphs are images encoded in resolution independent **.svg files** (see https://www.lifewire.com/svg-file-4120603)
+
+## How to use construct_dpdb_visu.py
+
 
 <img src="Bachelor/images/combined6DA4.svg" alt="Example SharpSat" width="50%"/>
