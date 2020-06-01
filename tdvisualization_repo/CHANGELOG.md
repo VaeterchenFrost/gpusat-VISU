@@ -7,18 +7,22 @@ project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
-*No unreleased change at this time.*
+- Removed individual versioning 
+- Added version.py
+- Added module-name to imports
+- Added README to tdvisu directly
 
-## [1.0.0] - 2020-06-01
+## [0.5.0] - 2020-06-01
 
 ### Added
 
-- Add support for a Bash-like default value in variable expansion (#248 by [@bbc2]).
+- Current development version
 
 
 [#78]: https://github.com/theskumar/python-dotenv/issues/78
 
-[@Flimm]: https://github.com/Flimm
+[@VaeterchenFrost]: https://github.com/VaeterchenFrost
 
-[Unreleased]: https://github.com/theskumar/python-dotenv/compare/v0.13.0...HEAD
+[Unreleased]: https://github.com/VaeterchenFrost/gpusat-VISU/compare/v0.5.0...HEAD
 
+[0.5.0]: https://github.com/VaeterchenFrost/gpusat-VISU/releases/tag/v0.5.0
