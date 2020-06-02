@@ -5,7 +5,7 @@
 - Result
 - Users / Intended Audience
 
-## Intrudoction
+## Introduction
 - Extended Topic
 - Previously existing visualization
 - Timeline
