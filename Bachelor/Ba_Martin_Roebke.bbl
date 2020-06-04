@@ -1,3 +1,12 @@
-\begin{thebibliography}{}
+\begin{thebibliography}{1}
+
+\bibitem{Courcelle2012}
+B.~Courcelle and J.~Engelfriet, {\em Graph Structure and Monadic Second-Order
+  Logic - A Language-Theoretic Approach}.
+\newblock Cambridge: Cambridge University Press, 1~ed., 2012.
+
+\bibitem{evaluationMSO}
+A.~Langer, F.~Reidl, P.~Rossmanith, and S.~Sikdar, ``Evaluation of an
+  mso-solver,'' {\em Proc. of ALENEX 2012}, 01 2012.
 
 \end{thebibliography}
