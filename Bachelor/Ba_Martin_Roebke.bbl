@@ -9,4 +9,10 @@ B.~Courcelle and J.~Engelfriet, {\em Graph Structure and Monadic Second-Order
 A.~Langer, F.~Reidl, P.~Rossmanith, and S.~Sikdar, ``Evaluation of an
   mso-solver,'' {\em Proc. of ALENEX 2012}, 01 2012.
 
+\bibitem{SAT1971}
+S.~A. Cook, ``The complexity of theorem-proving procedures,'' in {\em
+  Proceedings of the Third Annual ACM Symposium on Theory of Computing}, STOC
+  ’71, (New York, NY, USA), p.~151–158, Association for Computing
+  Machinery, 1971.
+
 \end{thebibliography}
