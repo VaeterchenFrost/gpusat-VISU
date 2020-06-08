@@ -113,9 +113,49 @@ formulas we can solve with the best SAT solvers. Generally speaking, current
 exact counting methods can tackle problems with a couple of hundred variables, while approximate counting methods push this to around 1, 000 variables.
 
 
-\subsection{MSOL}
+\subsection{Monadic Second Order Logic}
 See also figure~\ref{fig:logictheory}.
 
+Explain graphs?Node, Edge
+
+MSO graph properties are "fixed-parameter-tractable" with respect to clique-width and tree-width. 
+\url{https://www.youtube.com/watch?v=hZI-wANHO1w} 5th workshop on Graph Classes, Optimization, and Width Parameters (GROW 2011)
+2011-10-28.
+MSO counting (k-colorings )and optimizing (distance between two vertices...) functions.
+Interested in MSO logic over graphs.
+
+Two types of MSO formulas \textit{or logical graph representations}.
+\begin{itemize}
+	\item MSO formulas
+	\item MSO_{2} formulas with edge quantification $\equiv$ MSO formulas over incidence graphs
+\end{itemize}
+\begin{itemize}
+	\item G=(vertices, edges as binary relation)
+	\item INC(G) = (vertices and edges, Inc)
+		for G undirected: Inc(e,v) <-> v is a vertex of edge e
+\end{itemize}
+\begin{itemize}
+	\item FPT for clique width
+	\item FPT for tree-width
+\end{itemize}
+This can also be done for directed graphs!
+
+Typical MSO_{2} graph properties:
+
+has a perfect matching
+has a Hamiltonian circuit
+spanning tree of degree $\le$ 3
+
+The expressions have the form: "There exists a \textbf{set of edges} that is..." can not be transferred into "set of vertices"
+
+\url{https://youtu.be/Wyn3djrYg7c?t=1385} Bruno Courcelle: Recognizable sets of graphs: algebraic and logical aspects 
+\url{https://library.cirm-math.fr/Record.htm?idlist=2&record=19276851124910940339}
+Recording during the thematic meeting: "Frontiers of reconnaissability" the April 29, 2014 at the Centre International de Rencontres Mathématiques (Marseille, France)
+
+FPT for model checking:
+An algorithm is FPT if it takes time $f(k)\cdot n^{c}$ for some fixed function f and constant c. The size of the input is n. 
+The value k is a parameter of the input. 
+This algorithm is then usable for small values of k. usually tree-width and clique width.
 
 
 \subsection{DIMACS Format}
@@ -135,6 +175,7 @@ Supported also in Maple \url{https://www.maplesoft.com/support/help/maple/view.a
 Examples in appendix
 
 \subsection{Tree Decomposition}
+
 \subsection{Courcelle's Theorem}
 \begin{quotation}
 	Every graph property definable in monadic second-order logic (MSO) is decidable in linear time on graphs of bounded treewidth.\\
