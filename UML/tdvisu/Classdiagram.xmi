@@ -1,0 +1,724 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<XMI verified="false" xmi.version="1.2" timestamp="2020-06-07T19:49:29" xmlns:UML="http://schema.omg.org/spec/UML/1.4">
+ <XMI.header>
+  <XMI.documentation>
+   <XMI.exporter>umbrello uml modeller http://umbrello.kde.org</XMI.exporter>
+   <XMI.exporterVersion>1.6.18</XMI.exporterVersion>
+   <XMI.exporterEncoding>UnicodeUTF8</XMI.exporterEncoding>
+  </XMI.documentation>
+  <XMI.metamodel xmi.version="1.4" href="UML.xml" xmi.name="UML"/>
+ </XMI.header>
+ <XMI.content>
+  <UML:Model isSpecification="false" isAbstract="false" isLeaf="false" xmi.id="m1" isRoot="false" name="UML Model">
+   <UML:Namespace.ownedElement>
+    <UML:Stereotype visibility="public" isSpecification="false" namespace="m1" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="folder" name="folder"/>
+    <UML:Stereotype visibility="public" isSpecification="false" namespace="m1" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="constructor" name="constructor"/>
+    <UML:Stereotype visibility="public" isSpecification="false" namespace="m1" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="class-or-package" name="class-or-package"/>
+    <UML:Model visibility="public" isSpecification="false" namespace="m1" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="Logical_View" name="Logical View">
+     <UML:Namespace.ownedElement>
+      <UML:Package stereotype="folder" visibility="public" isSpecification="false" namespace="Logical_View" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="Datatypes" name="Datatypes">
+       <UML:Namespace.ownedElement>
+        <UML:DataType visibility="public" isSpecification="false" namespace="Datatypes" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="uEhmz6kCqqDRH" name="char"/>
+        <UML:DataType visibility="public" isSpecification="false" namespace="Datatypes" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="uugbZsa8NvZKo" name="int"/>
+        <UML:DataType visibility="public" isSpecification="false" namespace="Datatypes" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="uiou2vWF3HHY9" name="float"/>
+        <UML:DataType visibility="public" isSpecification="false" namespace="Datatypes" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="uBQoDpJuQjJp8" name="double"/>
+        <UML:DataType visibility="public" isSpecification="false" namespace="Datatypes" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="uMC5hgfca6v6x" name="bool"/>
+        <UML:DataType visibility="public" isSpecification="false" namespace="Datatypes" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="uUtsRhaEhKsvE" name="string"/>
+        <UML:DataType visibility="public" isSpecification="false" namespace="Datatypes" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="uBHk8XX6VuAVF" name="unsigned char"/>
+        <UML:DataType visibility="public" isSpecification="false" namespace="Datatypes" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="u8wgubtjUk5TE" name="signed char"/>
+        <UML:DataType visibility="public" isSpecification="false" namespace="Datatypes" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="uuHlXu3Jhczwc" name="unsigned int"/>
+        <UML:DataType visibility="public" isSpecification="false" namespace="Datatypes" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="ugTiUHJyKKmaj" name="signed int"/>
+        <UML:DataType visibility="public" isSpecification="false" namespace="Datatypes" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="uWqWheoU8xu53" name="short int"/>
+        <UML:DataType visibility="public" isSpecification="false" namespace="Datatypes" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="uASAy4EgGwLBD" name="unsigned short int"/>
+        <UML:DataType visibility="public" isSpecification="false" namespace="Datatypes" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="uvks9iomEsliQ" name="signed short int"/>
+        <UML:DataType visibility="public" isSpecification="false" namespace="Datatypes" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="uypDsXiDY6m4a" name="long int"/>
+        <UML:DataType visibility="public" isSpecification="false" namespace="Datatypes" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="u42l7RXX4H9NC" name="signed long int"/>
+        <UML:DataType visibility="public" isSpecification="false" namespace="Datatypes" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="uXehZ4zE8DjGC" name="unsigned long int"/>
+        <UML:DataType visibility="public" isSpecification="false" namespace="Datatypes" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="ueOZLUZfK1ttu" name="long double"/>
+        <UML:DataType visibility="public" isSpecification="false" namespace="Datatypes" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="uiGKc4lROAuMP" name="wchar_t"/>
+        <UML:DataType visibility="public" isSpecification="false" namespace="Datatypes" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="uwhCMnf29ppW0" name="array"/>
+        <UML:DataType visibility="public" isSpecification="false" namespace="Datatypes" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="uufWLsnME2B7k" name="tuple"/>
+        <UML:DataType visibility="public" isSpecification="false" namespace="Datatypes" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="uE8X9zWSY0kt1" name="list"/>
+        <UML:DataType visibility="public" isSpecification="false" namespace="Datatypes" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="uRHBnda1cg2ME" name="long"/>
+        <UML:DataType visibility="public" isSpecification="false" namespace="Datatypes" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="udHgTX7EHoyBR" name="dict"/>
+        <UML:DataType visibility="public" isSpecification="false" namespace="Datatypes" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="uQUALsK5DAVwc" name="object"/>
+        <UML:DataType visibility="public" isSpecification="false" namespace="Datatypes" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="uBIawCm80BJvo" name="set"/>
+       </UML:Namespace.ownedElement>
+      </UML:Package>
+      <UML:Class visibility="public" isSpecification="false" namespace="Logical_View" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="umk1nsKDgpWNz" name="IDpdbVisuConstruct">
+       <UML:GeneralizableElement.generalization>
+        <UML:Generalization xmi.idref="utm0laJMEz8ww"/>
+       </UML:GeneralizableElement.generalization>
+       <UML:Classifier.feature>
+        <UML:Operation visibility="private" isSpecification="false" isQuery="false" isAbstract="false" isLeaf="false" ownerScope="classifier" isRoot="false" xmi.id="uDubY5PIkPobT" isOverride="false" name="subclasshook__" isInline="false" isVirtual="false">
+         <UML:BehavioralFeature.parameter>
+          <UML:Parameter kind="return" xmi.id="un7YZP2YCukGn" type="uUtsRhaEhKsvE"/>
+          <UML:Parameter visibility="private" isSpecification="false" xmi.id="ubq5MUdpEPwr2" type="uUtsRhaEhKsvE" value="" name="cls"/>
+          <UML:Parameter visibility="private" isSpecification="false" xmi.id="uT7wngHrTWjv3" type="uUtsRhaEhKsvE" value="" name="subclass"/>
+         </UML:BehavioralFeature.parameter>
+        </UML:Operation>
+        <UML:Operation visibility="public" isSpecification="false" isQuery="false" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="uB1MhLNkBgeAH" comment="Return the constructed Json." isOverride="false" name="construct" isInline="false" isVirtual="false">
+         <UML:BehavioralFeature.parameter>
+          <UML:Parameter kind="return" xmi.id="u7ZWQPhZcBSs0" type="uUtsRhaEhKsvE"/>
+         </UML:BehavioralFeature.parameter>
+        </UML:Operation>
+        <UML:Operation visibility="public" isSpecification="false" isQuery="false" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="u74KrRZSKH9sP" comment="Return the edges between the bags." isOverride="false" name="read_edgearray" isInline="false" isVirtual="false">
+         <UML:BehavioralFeature.parameter>
+          <UML:Parameter kind="return" xmi.id="u7muTskCESoW0" type="uUtsRhaEhKsvE"/>
+         </UML:BehavioralFeature.parameter>
+        </UML:Operation>
+        <UML:Operation visibility="public" isSpecification="false" isQuery="false" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="uTC9d8B1ucmtd" comment="Construct the corresponding labels for each bag." isOverride="false" name="read_labeldict" isInline="false" isVirtual="false">
+         <UML:BehavioralFeature.parameter>
+          <UML:Parameter kind="return" xmi.id="ufTNQT1pYxn75" type="uUtsRhaEhKsvE"/>
+         </UML:BehavioralFeature.parameter>
+        </UML:Operation>
+        <UML:Operation visibility="public" isSpecification="false" isQuery="false" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="uxFBNffsmVQXV" comment="Read from td_node_status and the edearray to&#xa;            - create the timeline of the solving process&#xa;            - construct the path and solution-tables used during solving.&#xa;" isOverride="false" name="read_timeline" isInline="false" isVirtual="false">
+         <UML:BehavioralFeature.parameter>
+          <UML:Parameter kind="return" xmi.id="uB73jw8l46r5Q" type="uUtsRhaEhKsvE"/>
+          <UML:Parameter visibility="private" isSpecification="false" xmi.id="u5krNAS1HZDIK" type="uUtsRhaEhKsvE" value="" name="edgearray"/>
+         </UML:BehavioralFeature.parameter>
+        </UML:Operation>
+       </UML:Classifier.feature>
+      </UML:Class>
+      <UML:Class visibility="public" isSpecification="false" namespace="Logical_View" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="u6nl2HJ0TkQXP" name="metaclass"/>
+      <UML:Generalization discriminator="" visibility="public" isSpecification="false" namespace="Logical_View" child="umk1nsKDgpWNz" xmi.id="utm0laJMEz8ww" parent="u6nl2HJ0TkQXP" name=""/>
+      <UML:Class visibility="public" isSpecification="false" namespace="Logical_View" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="uhUgf0YSeMiGm" comment="Implementation of the JSON-Construction for the SharpSat problem." name="DpdbSharpSatVisu">
+       <UML:GeneralizableElement.generalization>
+        <UML:Generalization xmi.idref="uoHr02D7YUkBh"/>
+       </UML:GeneralizableElement.generalization>
+       <UML:Classifier.feature>
+        <UML:Attribute visibility="public" isSpecification="false" xmi.id="u6Yothj1rVo5K" type="uQUALsK5DAVwc" comment="db : psycopg2.connection&#xa;database to read from.&#xa;problem : int&#xa;index of the problem.&#xa;intermed_nodes : bool&#xa;if True calculates the shortest path between successive nodes.&#xa;" name="intermed_nodes"/>
+        <UML:Attribute visibility="public" isSpecification="false" xmi.id="u6LDQfLq1c0mO" type="uQUALsK5DAVwc" comment="db : psycopg2.connection&#xa;database to read from.&#xa;problem : int&#xa;index of the problem.&#xa;intermed_nodes : bool&#xa;if True calculates the shortest path between successive nodes.&#xa;" initialValue="None" name="num_vars"/>
+        <UML:Attribute visibility="public" isSpecification="false" ownerScope="classifier" xmi.id="uNCLXzk0253kE" type="uSUthanHJnVdO" comment="db : psycopg2.connection&#xa;database to read from.&#xa;problem : int&#xa;index of the problem.&#xa;intermed_nodes : bool&#xa;if True calculates the shortest path between successive nodes.&#xa;wait for good connection" initialValue="()" name="status"/>
+        <UML:Attribute visibility="public" isSpecification="false" ownerScope="classifier" xmi.id="um6dFsDnHTh1n" type="uiou2vWF3HHY9" comment="db : psycopg2.connection&#xa;database to read from.&#xa;problem : int&#xa;index of the problem.&#xa;intermed_nodes : bool&#xa;if True calculates the shortest path between successive nodes.&#xa;wait for good connection" initialValue="0.5" name="sleeptimer"/>
+        <UML:Operation stereotype="constructor" visibility="public" isSpecification="false" isQuery="false" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="uO3lsh5Cai3jt" comment="db : psycopg2.connection&#xa;            database to read from.&#xa;        problem : int&#xa;            index of the problem.&#xa;        intermed_nodes : bool&#xa;            if True calculates the shortest path between successive nodes.&#xa; wait for good connection" isOverride="false" name="__init__" isInline="false" isVirtual="false">
+         <UML:BehavioralFeature.parameter>
+          <UML:Parameter kind="return" xmi.id="ujzBDb4WYrEUN" type="uUtsRhaEhKsvE"/>
+          <UML:Parameter visibility="private" isSpecification="false" xmi.id="uXIcFbAM2OtY6" type="uUtsRhaEhKsvE" value="" name="db"/>
+          <UML:Parameter visibility="private" isSpecification="false" xmi.id="u8GOmBtJJztIJ" type="uUtsRhaEhKsvE" value="" name=":"/>
+          <UML:Parameter visibility="private" isSpecification="false" xmi.id="uooueVKB382Ka" type="uUtsRhaEhKsvE" value="" name="pg.extensions.connection"/>
+          <UML:Parameter visibility="private" isSpecification="false" xmi.id="uctlanqnKaDKT" type="uUtsRhaEhKsvE" value="" name=";"/>
+          <UML:Parameter visibility="private" isSpecification="false" xmi.id="uvznR45mDXsxc" type="uUtsRhaEhKsvE" value="" name="problem"/>
+          <UML:Parameter visibility="private" isSpecification="false" xmi.id="u0LsCpeZRfuEP" type="uUtsRhaEhKsvE" value="" name=":"/>
+          <UML:Parameter visibility="private" isSpecification="false" xmi.id="uh5qgJlnGiInm" type="uUtsRhaEhKsvE" value="" name="int"/>
+          <UML:Parameter visibility="private" isSpecification="false" xmi.id="uMdQbJBniaZ2g" type="uUtsRhaEhKsvE" value="" name="intermed_nodes"/>
+          <UML:Parameter visibility="private" isSpecification="false" xmi.id="unsz5wjjh5DVC" type="uUtsRhaEhKsvE" value="" name=":"/>
+          <UML:Parameter visibility="private" isSpecification="false" xmi.id="uve5uXuafW70q" type="uUtsRhaEhKsvE" value="" name="bool"/>
+         </UML:BehavioralFeature.parameter>
+        </UML:Operation>
+        <UML:Operation visibility="public" isSpecification="false" isQuery="false" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="ucngLHC6SAC3U" comment="        Construct the Json calling several helper methods.&#xa;        Returns&#xa;        -------&#xa;        dict&#xa;            The Json for the visualization-API.&#xa; create tree_dec_json" isOverride="false" name="construct" isInline="false" isVirtual="false">
+         <UML:BehavioralFeature.parameter>
+          <UML:Parameter kind="return" xmi.id="u4idSTP32LCGa" type="uUtsRhaEhKsvE"/>
+         </UML:BehavioralFeature.parameter>
+        </UML:Operation>
+        <UML:Operation visibility="public" isSpecification="false" isQuery="false" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="uX8Di4YXDY8QB" comment="        Select the number of &quot;vertices&quot; in the graph.&#xa;        Returns&#xa;        -------&#xa;        int&#xa;            Number of &quot;vertices&quot; in the graph.&#xa; create a cursor" isOverride="false" name="read_num_vars" isInline="false" isVirtual="false">
+         <UML:BehavioralFeature.parameter>
+          <UML:Parameter kind="return" xmi.id="uJ5CT33UHHCHx" type="uUtsRhaEhKsvE"/>
+         </UML:BehavioralFeature.parameter>
+        </UML:Operation>
+        <UML:Operation visibility="public" isSpecification="false" isQuery="false" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="ukLNHy700BEh7" comment="Return the clauses used for satiyfiability.&#xa;        Variables are counted from 1 and negative if negated in the clause.&#xa;        For example:&#xa;            [{&#xa;                &quot;id&quot; : 1,&#xa;                &quot;list&quot; : [ 1, -4, 6 ]&#xa;            },...]&#xa; create a cursor" isOverride="false" name="read_clauses" isInline="false" isVirtual="false">
+         <UML:BehavioralFeature.parameter>
+          <UML:Parameter kind="return" xmi.id="uHaU0lohsyEKs" type="uUtsRhaEhKsvE"/>
+         </UML:BehavioralFeature.parameter>
+        </UML:Operation>
+        <UML:Operation visibility="public" isSpecification="false" isQuery="false" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="uvZLaHxruxcuM" comment="        Read from '_td_bag' the edges and 'td_node_status' tables the labels&#xa;        for the bags.&#xa;        Returns&#xa;        -------&#xa;        list&#xa;            The filled labeldict for visualization.&#xa; create a cursor check bag numbering: start_time.strftime(&quot;%D %T&quot;)" isOverride="false" name="read_labeldict" isInline="false" isVirtual="false">
+         <UML:BehavioralFeature.parameter>
+          <UML:Parameter kind="return" xmi.id="u1LvwFthHLDEn" type="uUtsRhaEhKsvE"/>
+         </UML:BehavioralFeature.parameter>
+        </UML:Operation>
+        <UML:Operation visibility="public" isSpecification="false" isQuery="false" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="uZQmDucE2CkqL" comment="        Read from td_node_status and the edearray to&#xa;        - create the timeline of the solving process&#xa;        - construct the path and solution-tables used during solving.&#xa;        Parameters&#xa;        ----------&#xa;        edgearray : array of pairs of bagids&#xa;            Representing the tree-like structure between all bag-ids.&#xa;            It is assumed that all ids are included in this array.&#xa;            Example: [(2, 1), (3, 2), (4, 2), (5, 4)]&#xa;        Returns&#xa;        -------&#xa;        result : array&#xa;            array of bagids and eventually solution-tables.&#xa; create a cursor tour sol -> through result nodes along the edges add the other bags in order_solved to the timeline query column names  deepcode ignore Sqli: general query, inserting integers get solutions  deepcode ignore Sqli: general query, inserting integers check for nulled variables - assuming whole columns are nulled:" isOverride="false" name="read_timeline" isInline="false" isVirtual="false">
+         <UML:BehavioralFeature.parameter>
+          <UML:Parameter kind="return" xmi.id="uYBjlhFPBIG1H" type="uUtsRhaEhKsvE"/>
+          <UML:Parameter visibility="private" isSpecification="false" xmi.id="uNc99gETRZKPn" type="uUtsRhaEhKsvE" value="" name="edgearray"/>
+         </UML:BehavioralFeature.parameter>
+        </UML:Operation>
+        <UML:Operation visibility="public" isSpecification="false" isQuery="false" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="ub6SuD8mDbBh3" comment="Read from _td_edge the edges between bags. create a cursor" isOverride="false" name="read_edgearray" isInline="false" isVirtual="false">
+         <UML:BehavioralFeature.parameter>
+          <UML:Parameter kind="return" xmi.id="uQiy1QKh1QFst" type="uUtsRhaEhKsvE"/>
+         </UML:BehavioralFeature.parameter>
+        </UML:Operation>
+        <UML:Operation visibility="public" isSpecification="false" isQuery="false" isAbstract="false" isLeaf="false" ownerScope="classifier" isRoot="false" xmi.id="uyu2HfgMtBOvS" comment="Returns the footer for solution bags." isOverride="false" name="footer" isInline="false" isVirtual="false">
+         <UML:BehavioralFeature.parameter>
+          <UML:Parameter kind="return" xmi.id="u03N4dOMF1mRk" type="uUtsRhaEhKsvE"/>
+          <UML:Parameter visibility="private" isSpecification="false" xmi.id="uFX3DE4wUgoqo" type="uUtsRhaEhKsvE" value="" name="lines"/>
+         </UML:BehavioralFeature.parameter>
+        </UML:Operation>
+       </UML:Classifier.feature>
+      </UML:Class>
+      <UML:Generalization discriminator="" visibility="public" isSpecification="false" namespace="Logical_View" child="uhUgf0YSeMiGm" xmi.id="uoHr02D7YUkBh" parent="umk1nsKDgpWNz" name=""/>
+      <UML:Class stereotype="class-or-package" visibility="public" isSpecification="false" namespace="Logical_View" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="uLcGDbCq8ikbF" name="db">
+       <UML:Namespace.ownedElement>
+        <UML:Class visibility="public" isSpecification="false" namespace="uLcGDbCq8ikbF" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="uSUthanHJnVdO" name="get_transaction_status"/>
+       </UML:Namespace.ownedElement>
+      </UML:Class>
+      <UML:Class visibility="public" isSpecification="false" namespace="Logical_View" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="uNkmAQAL5YodW" comment="Implementation of the JSON-Construction for the MinVC problem.&#xa;    Borrowing methods from DpdbSharpSatVisu.&#xa;" name="DpdbMinVcVisu">
+       <UML:GeneralizableElement.generalization>
+        <UML:Generalization xmi.idref="uBX8OrMhF15HO"/>
+       </UML:GeneralizableElement.generalization>
+       <UML:Classifier.feature>
+        <UML:Attribute visibility="public" isSpecification="false" xmi.id="uDobLngGGt4uW" type="uQUALsK5DAVwc" name="tw_file"/>
+        <UML:Operation stereotype="constructor" visibility="public" isSpecification="false" isQuery="false" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="upMb7sO8TTUKQ" isOverride="false" name="__init__" isInline="false" isVirtual="false">
+         <UML:BehavioralFeature.parameter>
+          <UML:Parameter kind="return" xmi.id="uSu6TvSXw5eHT" type="uUtsRhaEhKsvE"/>
+          <UML:Parameter visibility="private" isSpecification="false" xmi.id="uHZUys8NONaZc" type="uUtsRhaEhKsvE" value="" name="db"/>
+          <UML:Parameter visibility="private" isSpecification="false" xmi.id="uEhRsqROBQyHv" type="uUtsRhaEhKsvE" value="" name="problem"/>
+          <UML:Parameter visibility="private" isSpecification="false" xmi.id="u7KWKMGZlD6xY" type="uUtsRhaEhKsvE" value="" name="intermed_nodes"/>
+          <UML:Parameter visibility="private" isSpecification="false" xmi.id="uokRqDxRTroUB" type="uQUALsK5DAVwc" value="None" name="tw_file"/>
+         </UML:BehavioralFeature.parameter>
+        </UML:Operation>
+        <UML:Operation visibility="public" isSpecification="false" isQuery="false" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="ucjSTIF0NC4zy" isOverride="false" name="read_clauses" isInline="false" isVirtual="false">
+         <UML:BehavioralFeature.parameter>
+          <UML:Parameter kind="return" xmi.id="u3lgiF0aP38W9" type="uUtsRhaEhKsvE"/>
+         </UML:BehavioralFeature.parameter>
+        </UML:Operation>
+        <UML:Operation visibility="public" isSpecification="false" isQuery="false" isAbstract="false" isLeaf="false" ownerScope="classifier" isRoot="false" xmi.id="uQqvl6piJvWw6" comment="Returns the footer for solution bags." isOverride="false" name="footer" isInline="false" isVirtual="false">
+         <UML:BehavioralFeature.parameter>
+          <UML:Parameter kind="return" xmi.id="uHP0gNuQp60Cq" type="uUtsRhaEhKsvE"/>
+          <UML:Parameter visibility="private" isSpecification="false" xmi.id="uW6n2XfR9XviY" type="uUtsRhaEhKsvE" value="" name="lines"/>
+         </UML:BehavioralFeature.parameter>
+        </UML:Operation>
+        <UML:Operation visibility="public" isSpecification="false" isQuery="false" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="uKPnwfGaQ1cqx" comment="        Use TwReader.from_file to read the edges for the generalGraph.&#xa;        Returns&#xa;        -------&#xa;        List&#xa;            The edges as an list of pairs of vertices.&#xa; create list so that it is JSON serializable" isOverride="false" name="read_twfile" isInline="false" isVirtual="false">
+         <UML:BehavioralFeature.parameter>
+          <UML:Parameter kind="return" xmi.id="u7LfWx9bW8oNu" type="uUtsRhaEhKsvE"/>
+         </UML:BehavioralFeature.parameter>
+        </UML:Operation>
+        <UML:Operation visibility="public" isSpecification="false" isQuery="false" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="ubQ4Ld2Eixplp" comment="        Construct the Json calling several helper methods.&#xa;        Returns&#xa;        -------&#xa;        dict&#xa;            The Json for the visualization-API.&#xa; create tree_dec_json" isOverride="false" name="construct" isInline="false" isVirtual="false">
+         <UML:BehavioralFeature.parameter>
+          <UML:Parameter kind="return" xmi.id="ubrS0B79jL8h4" type="uUtsRhaEhKsvE"/>
+         </UML:BehavioralFeature.parameter>
+        </UML:Operation>
+       </UML:Classifier.feature>
+      </UML:Class>
+      <UML:Generalization discriminator="" visibility="public" isSpecification="false" namespace="Logical_View" child="uNkmAQAL5YodW" xmi.id="uBX8OrMhF15HO" parent="uhUgf0YSeMiGm" name=""/>
+      <UML:Class visibility="public" isSpecification="false" namespace="Logical_View" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="uxIyTrVt69eGQ" name="DijkstraNoPath">
+       <UML:GeneralizableElement.generalization>
+        <UML:Generalization xmi.idref="uPemhiwPq5KT1"/>
+       </UML:GeneralizableElement.generalization>
+      </UML:Class>
+      <UML:Class visibility="public" isSpecification="false" namespace="Logical_View" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="uV8xAomgiB3qS" name="RuntimeError"/>
+      <UML:Generalization discriminator="" visibility="public" isSpecification="false" namespace="Logical_View" child="uxIyTrVt69eGQ" xmi.id="uPemhiwPq5KT1" parent="uV8xAomgiB3qS" name=""/>
+      <UML:Class visibility="public" isSpecification="false" namespace="Logical_View" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="u4Z0rHts1S0ht" name="Reader">
+       <UML:Classifier.feature>
+        <UML:Operation visibility="public" isSpecification="false" isQuery="false" isAbstract="false" isLeaf="false" ownerScope="classifier" isRoot="false" xmi.id="uYdLy2xTxh3Pj" isOverride="false" name="from_filename" isInline="false" isVirtual="false">
+         <UML:BehavioralFeature.parameter>
+          <UML:Parameter kind="return" xmi.id="uA2IteQs6Rhew" type="uUtsRhaEhKsvE"/>
+          <UML:Parameter visibility="private" isSpecification="false" xmi.id="u8ElImZL2MFyi" type="uUtsRhaEhKsvE" value="" name="cls"/>
+          <UML:Parameter visibility="private" isSpecification="false" xmi.id="uZEVc2s0gwUiD" type="uUtsRhaEhKsvE" value="" name="fname"/>
+         </UML:BehavioralFeature.parameter>
+        </UML:Operation>
+        <UML:Operation visibility="public" isSpecification="false" isQuery="false" isAbstract="false" isLeaf="false" ownerScope="classifier" isRoot="false" xmi.id="uwApOk3hQoGli" isOverride="false" name="from_filewrapper" isInline="false" isVirtual="false">
+         <UML:BehavioralFeature.parameter>
+          <UML:Parameter kind="return" xmi.id="udTq8tX7UrnNI" type="uUtsRhaEhKsvE"/>
+          <UML:Parameter visibility="private" isSpecification="false" xmi.id="uSExvFgd2VVQA" type="uUtsRhaEhKsvE" value="" name="cls"/>
+          <UML:Parameter visibility="private" isSpecification="false" xmi.id="u8rcXEiEQfkn2" type="uUtsRhaEhKsvE" value="" name="fwrapper"/>
+         </UML:BehavioralFeature.parameter>
+        </UML:Operation>
+        <UML:Operation visibility="public" isSpecification="false" isQuery="false" isAbstract="false" isLeaf="false" ownerScope="classifier" isRoot="false" xmi.id="u8PG0Y3R3jDia" isOverride="false" name="from_stream" isInline="false" isVirtual="false">
+         <UML:BehavioralFeature.parameter>
+          <UML:Parameter kind="return" xmi.id="uTilzU2EXQ5H6" type="uUtsRhaEhKsvE"/>
+          <UML:Parameter visibility="private" isSpecification="false" xmi.id="u0TUvbVF8aMuw" type="uUtsRhaEhKsvE" value="" name="cls"/>
+          <UML:Parameter visibility="private" isSpecification="false" xmi.id="u7EfKWlQwEPsQ" type="uUtsRhaEhKsvE" value="" name="stream"/>
+         </UML:BehavioralFeature.parameter>
+        </UML:Operation>
+        <UML:Operation visibility="public" isSpecification="false" isQuery="false" isAbstract="false" isLeaf="false" ownerScope="classifier" isRoot="false" xmi.id="uppi7PVGvEBXz" isOverride="false" name="from_string" isInline="false" isVirtual="false">
+         <UML:BehavioralFeature.parameter>
+          <UML:Parameter kind="return" xmi.id="u521kzMxvWQ8L" type="uUtsRhaEhKsvE"/>
+          <UML:Parameter visibility="private" isSpecification="false" xmi.id="uVeZYZ8pNeS7I" type="uUtsRhaEhKsvE" value="" name="cls"/>
+          <UML:Parameter visibility="private" isSpecification="false" xmi.id="uNxpUN5DBuBME" type="uUtsRhaEhKsvE" value="" name="string"/>
+         </UML:BehavioralFeature.parameter>
+        </UML:Operation>
+        <UML:Operation visibility="public" isSpecification="false" isQuery="false" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="uhd3Di99ONGpI" isOverride="false" name="parse" isInline="false" isVirtual="false">
+         <UML:BehavioralFeature.parameter>
+          <UML:Parameter kind="return" xmi.id="u2rCL0NF057XX" type="uUtsRhaEhKsvE"/>
+          <UML:Parameter visibility="private" isSpecification="false" xmi.id="uPnmpoiNOJ1iY" type="uUtsRhaEhKsvE" value="" name="string"/>
+         </UML:BehavioralFeature.parameter>
+        </UML:Operation>
+       </UML:Classifier.feature>
+      </UML:Class>
+      <UML:Class visibility="public" isSpecification="false" namespace="Logical_View" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="uuVBALNWYqXmm" comment="Reader for the DIMACS graph data format.&#xa;    It is a commonly used exchange format for graphs.&#xa;    It stores a single undirected graph.&#xa;    Plain text or binary format.&#xa;    DIMACS is an acronym derived from http://dimacs.rutgers.edu/&#xa;    Discrete Mathematics and Theoretical Computer Science.&#xa;" name="DimacsReader">
+       <UML:GeneralizableElement.generalization>
+        <UML:Generalization xmi.idref="uWi4Qxte2Ww9m"/>
+       </UML:GeneralizableElement.generalization>
+       <UML:Classifier.feature>
+        <UML:Attribute visibility="public" isSpecification="false" xmi.id="u1cr8pO3EjvdA" type="uQUALsK5DAVwc" initialValue="None" name="problem_solution_type"/>
+        <UML:Attribute visibility="public" isSpecification="false" xmi.id="uU27P9f7kpCLV" type="uQUALsK5DAVwc" initialValue="None" name="format"/>
+        <UML:Attribute visibility="protected" isSpecification="false" xmi.id="uzO21WzrFrwD3" type="uQUALsK5DAVwc" initialValue="None" name="problem_vars"/>
+        <UML:Operation stereotype="constructor" visibility="public" isSpecification="false" isQuery="false" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="ugRypUzmR9CIw" isOverride="false" name="__init__" isInline="false" isVirtual="false">
+         <UML:BehavioralFeature.parameter>
+          <UML:Parameter kind="return" xmi.id="unbjP0eA3eSkF" type="uUtsRhaEhKsvE"/>
+         </UML:BehavioralFeature.parameter>
+        </UML:Operation>
+        <UML:Operation visibility="public" isSpecification="false" isQuery="false" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="u6KKL8wzE1GGw" isOverride="false" name="parse" isInline="false" isVirtual="false">
+         <UML:BehavioralFeature.parameter>
+          <UML:Parameter kind="return" xmi.id="uWwoojoSKVkiv" type="uUtsRhaEhKsvE"/>
+          <UML:Parameter visibility="private" isSpecification="false" xmi.id="uuYMRW10fKeMU" type="uUtsRhaEhKsvE" value="" name="string"/>
+         </UML:BehavioralFeature.parameter>
+        </UML:Operation>
+        <UML:Operation visibility="public" isSpecification="false" isQuery="false" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="u6U8IzTO7qeDM" isOverride="false" name="store_problem_vars" isInline="false" isVirtual="false">
+         <UML:BehavioralFeature.parameter>
+          <UML:Parameter kind="return" xmi.id="u9U9sMAAPnTot" type="uUtsRhaEhKsvE"/>
+         </UML:BehavioralFeature.parameter>
+        </UML:Operation>
+        <UML:Operation visibility="public" isSpecification="false" isQuery="false" isAbstract="false" isLeaf="false" ownerScope="classifier" isRoot="false" xmi.id="uyv4mj6w11R2a" isOverride="false" name="is_comment" isInline="false" isVirtual="false">
+         <UML:BehavioralFeature.parameter>
+          <UML:Parameter kind="return" xmi.id="uayppyrgh2tmj" type="uUtsRhaEhKsvE"/>
+          <UML:Parameter visibility="private" isSpecification="false" xmi.id="uJcJl5epmM7Eo" type="uUtsRhaEhKsvE" value="" name="line"/>
+         </UML:BehavioralFeature.parameter>
+        </UML:Operation>
+        <UML:Operation visibility="public" isSpecification="false" isQuery="false" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="uT2kU45ULKILR" isOverride="false" name="body" isInline="false" isVirtual="false">
+         <UML:BehavioralFeature.parameter>
+          <UML:Parameter kind="return" xmi.id="u7UIiCkiWJJyP" type="uUtsRhaEhKsvE"/>
+          <UML:Parameter visibility="private" isSpecification="false" xmi.id="u14eYLdJQia3E" type="uUtsRhaEhKsvE" value="" name="lines"/>
+         </UML:BehavioralFeature.parameter>
+        </UML:Operation>
+        <UML:Operation visibility="public" isSpecification="false" isQuery="false" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="uU6cMKjtXCQO1" comment="        Searches for the preamble line in lines and saves:&#xa;            problem_solution_type, format, _problem_vars&#xa;        Then returns the index of the next line.&#xa;        If no preamble is present:&#xa;            Exit with error.&#xa;" isOverride="false" name="preamble" isInline="false" isVirtual="false">
+         <UML:BehavioralFeature.parameter>
+          <UML:Parameter kind="return" xmi.id="unsmyLJ1frWKQ" type="uUtsRhaEhKsvE"/>
+          <UML:Parameter visibility="private" isSpecification="false" xmi.id="ugM0yBqOekQ89" type="uUtsRhaEhKsvE" value="" name="lines"/>
+         </UML:BehavioralFeature.parameter>
+        </UML:Operation>
+       </UML:Classifier.feature>
+      </UML:Class>
+      <UML:Generalization discriminator="" visibility="public" isSpecification="false" namespace="Logical_View" child="uuVBALNWYqXmm" xmi.id="uWi4Qxte2Ww9m" parent="u4Z0rHts1S0ht" name=""/>
+      <UML:Class visibility="public" isSpecification="false" namespace="Logical_View" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="uYJyfM1gWuFWR" comment="Dimacs Reader for the 'tw' format (saving directed edges).&#xa;    Stores edges and adjacency together with&#xa;    the number of vertices and number of edges.&#xa;" name="TwReader">
+       <UML:GeneralizableElement.generalization>
+        <UML:Generalization xmi.idref="ua2feqsEWzaFx"/>
+       </UML:GeneralizableElement.generalization>
+       <UML:Classifier.feature>
+        <UML:Attribute visibility="public" isSpecification="false" xmi.id="uXem2GaefdljR" type="uBIawCm80BJvo" initialValue="()" name="edges"/>
+        <UML:Attribute visibility="public" isSpecification="false" xmi.id="uXnTegM78HpV4" type="udHgTX7EHoyBR" initialValue="()" name="adjacency_dict"/>
+        <UML:Attribute visibility="public" isSpecification="false" xmi.id="uzkeQU55eJKKS" type="uQUALsK5DAVwc" initialValue="None" name="num_vertices"/>
+        <UML:Operation stereotype="constructor" visibility="public" isSpecification="false" isQuery="false" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="uM9B632AtaKkV" isOverride="false" name="__init__" isInline="false" isVirtual="false">
+         <UML:BehavioralFeature.parameter>
+          <UML:Parameter kind="return" xmi.id="uxL0RV6fpFlsh" type="uUtsRhaEhKsvE"/>
+         </UML:BehavioralFeature.parameter>
+        </UML:Operation>
+        <UML:Operation visibility="public" isSpecification="false" isQuery="false" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="uoxiMXn6KALuc" isOverride="false" name="store_problem_vars" isInline="false" isVirtual="false">
+         <UML:BehavioralFeature.parameter>
+          <UML:Parameter kind="return" xmi.id="undoj7rAZESxi" type="uUtsRhaEhKsvE"/>
+         </UML:BehavioralFeature.parameter>
+        </UML:Operation>
+        <UML:Operation visibility="public" isSpecification="false" isQuery="false" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="uIwTjixoUL9xS" comment="Store the content from the given lines in the edges and adjacency_dict." isOverride="false" name="body" isInline="false" isVirtual="false">
+         <UML:BehavioralFeature.parameter>
+          <UML:Parameter kind="return" xmi.id="u4z4JGmU6ScFO" type="uUtsRhaEhKsvE"/>
+          <UML:Parameter visibility="private" isSpecification="false" xmi.id="ur1fKLXXmHmaT" type="uUtsRhaEhKsvE" value="" name="lines"/>
+         </UML:BehavioralFeature.parameter>
+        </UML:Operation>
+       </UML:Classifier.feature>
+      </UML:Class>
+      <UML:Generalization discriminator="" visibility="public" isSpecification="false" namespace="Logical_View" child="uYJyfM1gWuFWR" xmi.id="ua2feqsEWzaFx" parent="uuVBALNWYqXmm" name=""/>
+      <UML:Class visibility="public" isSpecification="false" namespace="Logical_View" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="u4FpQTON8oLLH" comment="Holds and processes the information needed to provide dot-format&#xa;    and image output for the visualization&#xa;    of dynamic programming on tree decomposition.&#xa;" name="Visualization">
+       <UML:Classifier.feature>
+        <UML:Attribute visibility="public" isSpecification="false" xmi.id="uvd5kAeoC9JoF" type="uQUALsK5DAVwc" name="outfolder"/>
+        <UML:Attribute visibility="public" isSpecification="false" xmi.id="uP1ifyKYhbSr7" type="uQUALsK5DAVwc" initialValue="None" name="tree_dec_digraph"/>
+        <UML:Operation stereotype="constructor" visibility="public" isSpecification="false" isQuery="false" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="ugbi1v0NLK59f" comment="Copy needed fields from arguments and create additional constants" isOverride="false" name="__init__" isInline="false" isVirtual="false">
+         <UML:BehavioralFeature.parameter>
+          <UML:Parameter kind="return" xmi.id="uTD7YLzdYUIdu" type="uUtsRhaEhKsvE"/>
+          <UML:Parameter visibility="private" isSpecification="false" xmi.id="uXwhKRpV4dz5M" type="uUtsRhaEhKsvE" value="" name="infile"/>
+          <UML:Parameter visibility="private" isSpecification="false" xmi.id="u4mlWcHgm4hhK" type="uUtsRhaEhKsvE" value="" name="outfolder"/>
+         </UML:BehavioralFeature.parameter>
+        </UML:Operation>
+        <UML:Operation visibility="public" isSpecification="false" isQuery="false" isAbstract="false" isLeaf="false" ownerScope="classifier" isRoot="false" xmi.id="uIp5tUMv1JWkO" comment="Style the node with default fillcolor and penwidth." isOverride="false" name="base_style" isInline="false" isVirtual="false">
+         <UML:BehavioralFeature.parameter>
+          <UML:Parameter kind="return" xmi.id="uGmw1WeLduGTH" type="uUtsRhaEhKsvE"/>
+          <UML:Parameter visibility="private" isSpecification="false" xmi.id="uoqLVUM0VIte7" type="uUtsRhaEhKsvE" value="" name="graph"/>
+          <UML:Parameter visibility="private" isSpecification="false" xmi.id="uAPbbVNFG0jvb" type="uUtsRhaEhKsvE" value="" name="node"/>
+          <UML:Parameter visibility="private" isSpecification="false" xmi.id="uOkHEeq01Cmah" type="uQUALsK5DAVwc" value="" name="color"/>
+          <UML:Parameter visibility="private" isSpecification="false" xmi.id="uYhdzqriU5kcX" type="uiou2vWF3HHY9" value="'1.0'" name="penwidth"/>
+         </UML:BehavioralFeature.parameter>
+        </UML:Operation>
+        <UML:Operation visibility="public" isSpecification="false" isQuery="false" isAbstract="false" isLeaf="false" ownerScope="classifier" isRoot="false" xmi.id="uGMibRM2SSTKP" comment="Emphasise node with a different fillcolor (default:'yellow')&#xa;        and penwidth (default:2.5).&#xa;" isOverride="false" name="emphasise_node" isInline="false" isVirtual="false">
+         <UML:BehavioralFeature.parameter>
+          <UML:Parameter kind="return" xmi.id="uxVERCyJ96HDs" type="uUtsRhaEhKsvE"/>
+          <UML:Parameter visibility="private" isSpecification="false" xmi.id="uYVExsY5WRdGh" type="uUtsRhaEhKsvE" value="" name="graph"/>
+          <UML:Parameter visibility="private" isSpecification="false" xmi.id="ucQwSrptEeCcj" type="uUtsRhaEhKsvE" value="" name="node"/>
+          <UML:Parameter visibility="private" isSpecification="false" xmi.id="u1aHCZG7yMZcx" type="uQUALsK5DAVwc" value="" name="color"/>
+          <UML:Parameter visibility="private" isSpecification="false" xmi.id="urPt730XMFJY3" type="uUtsRhaEhKsvE" value="" name=";"/>
+          <UML:Parameter visibility="private" isSpecification="false" xmi.id="uszQuytiPy8v4" type="uiou2vWF3HHY9" value="'2.5'" name="penwidth"/>
+         </UML:BehavioralFeature.parameter>
+        </UML:Operation>
+        <UML:Operation visibility="public" isSpecification="false" isQuery="false" isAbstract="false" isLeaf="false" ownerScope="classifier" isRoot="false" xmi.id="u2din4wvudx8r" comment="Make the node invisible during drawing." isOverride="false" name="style_hide_node" isInline="false" isVirtual="false">
+         <UML:BehavioralFeature.parameter>
+          <UML:Parameter kind="return" xmi.id="uRr42BabwqxFD" type="uUtsRhaEhKsvE"/>
+          <UML:Parameter visibility="private" isSpecification="false" xmi.id="uBsrCDnDYOWo1" type="uUtsRhaEhKsvE" value="" name="graph"/>
+          <UML:Parameter visibility="private" isSpecification="false" xmi.id="uSCs2sYZqqOnb" type="uUtsRhaEhKsvE" value="" name="node"/>
+         </UML:BehavioralFeature.parameter>
+        </UML:Operation>
+        <UML:Operation visibility="public" isSpecification="false" isQuery="false" isAbstract="false" isLeaf="false" ownerScope="classifier" isRoot="false" xmi.id="u9VTrK3pXQvzn" comment="Make the edge source->target invisible during drawing." isOverride="false" name="style_hide_edge" isInline="false" isVirtual="false">
+         <UML:BehavioralFeature.parameter>
+          <UML:Parameter kind="return" xmi.id="uLz8Wq7zDtL3e" type="uUtsRhaEhKsvE"/>
+          <UML:Parameter visibility="private" isSpecification="false" xmi.id="u6Sp7qHOdwUMS" type="uUtsRhaEhKsvE" value="" name="graph"/>
+          <UML:Parameter visibility="private" isSpecification="false" xmi.id="u6KUklqsWdLWz" type="uUtsRhaEhKsvE" value="" name="source"/>
+          <UML:Parameter visibility="private" isSpecification="false" xmi.id="uRh3FOxoxxB8J" type="uUtsRhaEhKsvE" value="" name="target"/>
+         </UML:BehavioralFeature.parameter>
+        </UML:Operation>
+        <UML:Operation visibility="public" isSpecification="false" isQuery="false" isAbstract="false" isLeaf="false" ownerScope="classifier" isRoot="false" xmi.id="uT8ZhRXOBbx5Q" comment="HTML format with 'head' as the first label, then appending&#xa;        further labels.&#xa;        After the 'head' there is an (empty) anchor for edges with a name tag. e.g.&#xa;        &lt;TABLE BORDER=&quot;0&quot; CELLBORDER=&quot;0&quot; CELLSPACING=&quot;0&quot;>&#xa;        &lt;TR>&lt;TD BGCOLOR=&quot;white&quot;>bag 3&lt;/TD>&lt;/TR>&lt;TR>&lt;TD PORT=&quot;anchor&quot;>&lt;/TD>&lt;/TR>&#xa;        &lt;TR>&lt;TD>[1, 2, 5]&lt;/TD>&lt;/TR>&lt;TR>&lt;TD>03/31/20 09:29:51&lt;/TD>&lt;/TR>&#xa;        &lt;TR>&lt;TD>dtime=0.0051s&lt;/TD>&lt;/TR>&lt;/TABLE>&#xa;&lt;&lt;TABLE BORDER=\&quot;{tableborder}\&quot; CELLBORDER=\&quot;{cellborder}\&quot;&#xa;                  CELLSPACING=\&quot;{cellspacing}\&quot;>&#xa;                  &lt;TR>&lt;TD BGCOLOR=\&quot;{headcolor}\&quot;>{head}&lt;/TD>&lt;/TR>&#xa;&lt;TR>&lt;TD PORT=\&quot;{anchor}\&quot;>&lt;/TD>&lt;/TR" isOverride="false" name="bag_node" isInline="false" isVirtual="false">
+         <UML:BehavioralFeature.parameter>
+          <UML:Parameter kind="return" xmi.id="u1cvTOGT9m9V8" type="uUtsRhaEhKsvE"/>
+          <UML:Parameter visibility="private" isSpecification="false" xmi.id="uaEBkIF0VdGp8" type="uUtsRhaEhKsvE" value="" name="head"/>
+          <UML:Parameter visibility="private" isSpecification="false" xmi.id="ucxVOzO7nBIYv" type="uUtsRhaEhKsvE" value="" name="tail"/>
+          <UML:Parameter visibility="private" isSpecification="false" xmi.id="urU3yNFMRArPh" type="uQUALsK5DAVwc" value="" name="anchor"/>
+          <UML:Parameter visibility="private" isSpecification="false" xmi.id="uhaHsR4Fcw6E0" type="uQUALsK5DAVwc" value="" name="headcolor"/>
+          <UML:Parameter visibility="private" isSpecification="false" xmi.id="uoqbanElI5cAb" type="uUtsRhaEhKsvE" value="" name=";"/>
+          <UML:Parameter visibility="private" isSpecification="false" xmi.id="u4qBZm1zbOXa1" type="uugbZsa8NvZKo" value="0" name="tableborder"/>
+          <UML:Parameter visibility="private" isSpecification="false" xmi.id="uwRJsDXLCCH0g" type="uugbZsa8NvZKo" value="0" name="cellborder"/>
+          <UML:Parameter visibility="private" isSpecification="false" xmi.id="uvhXVF9P99QZB" type="uugbZsa8NvZKo" value="0" name="cellspacing"/>
+         </UML:BehavioralFeature.parameter>
+        </UML:Operation>
+        <UML:Operation visibility="public" isSpecification="false" isQuery="false" isAbstract="false" isLeaf="false" ownerScope="classifier" isRoot="false" xmi.id="uU8s40OMXuLXB" comment="Fill the node from the 2D 'solution_table' (columnbased!).&#xa;        Optionally add a line above and/or below the table.&#xa;        solution_table : 2D-arraylike, entries get converted to str&#xa;        toplabel : string, placed above the table&#xa;        bottomlabel : string, placed below the table&#xa;        transpose : bool, whether to transpose the solution_table before&#xa;        processing&#xa;        linesmax : int, if positive it indicates the&#xa;                maximum number of lines in the table to display.&#xa;        columnsmax : int, if positive it indicates the&#xa;                maximum number of columns to display + the last.&#xa;        Example structure for four columns:&#xa;        |----------|&#xa;        | toplabel |&#xa;        ------------&#xa;        |v1|v2|v3|v4|&#xa;        |0 |1 |0 |1 |&#xa;        |1 |1 |0 |0 |&#xa;        ...&#xa;        ------------&#xa;        | botlabel |&#xa;        |----------|&#xa; limit lines backwards from length of column limit columns forwards minus one insert table start column add one indicator of shortening sep. between columns adding one column-skipping indicator start column add one indicator of shortening sep. between columns last column (usually a summary of the previous cols) start column add one indicator of shortening sep. between columns close table" isOverride="false" name="solution_node" isInline="false" isVirtual="false">
+         <UML:BehavioralFeature.parameter>
+          <UML:Parameter kind="return" xmi.id="upuMsif0sHrJ7" type="uUtsRhaEhKsvE"/>
+          <UML:Parameter visibility="private" isSpecification="false" xmi.id="uVJXvI31eQ9Jg" type="uUtsRhaEhKsvE" value="" name=";"/>
+          <UML:Parameter visibility="private" isSpecification="false" xmi.id="uMQCu4Usna8dh" type="uUtsRhaEhKsvE" value="" name="solution_table"/>
+          <UML:Parameter visibility="private" isSpecification="false" xmi.id="uTzJKHEF3PaQU" type="uQUALsK5DAVwc" value="" name="toplabel"/>
+          <UML:Parameter visibility="private" isSpecification="false" xmi.id="uugEpymrleUQ0" type="uQUALsK5DAVwc" value="" name="bottomlabel"/>
+          <UML:Parameter visibility="private" isSpecification="false" xmi.id="un06axinGoYb2" type="uMC5hgfca6v6x" value="False" name="transpose"/>
+          <UML:Parameter visibility="private" isSpecification="false" xmi.id="ulIRmRzyiZCJd" type="uugbZsa8NvZKo" value="1000" name="linesmax"/>
+          <UML:Parameter visibility="private" isSpecification="false" xmi.id="u7lJ7Nr7eVoLy" type="uugbZsa8NvZKo" value="50" name="columnsmax"/>
+         </UML:BehavioralFeature.parameter>
+        </UML:Operation>
+        <UML:Operation visibility="public" isSpecification="false" isQuery="false" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="udEiCaodxFY0o" comment="Read and preprocess the needed data from the infile into VisualizationData." isOverride="false" name="inspect_json" isInline="false" isVirtual="false">
+         <UML:BehavioralFeature.parameter>
+          <UML:Parameter kind="return" xmi.id="uHcQNxdHlshiJ" type="uUtsRhaEhKsvE"/>
+          <UML:Parameter visibility="private" isSpecification="false" xmi.id="uoGa4dCwEag7k" type="uUtsRhaEhKsvE" value="" name="infile"/>
+         </UML:BehavioralFeature.parameter>
+        </UML:Operation>
+        <UML:Operation visibility="public" isSpecification="false" isQuery="false" isAbstract="false" isLeaf="false" ownerScope="classifier" isRoot="false" xmi.id="uw9yFFDpFPvTz" comment="Create self.tree_dec_digraph&#xa;        strict means not a multigraph - equal edges get merged.&#xa;        rankdir sets the direction in which the nodes are built up.&#xa;            - normally Bottom-Top or Top-Bottom.&#xa;" isOverride="false" name="setup_tree_dec_graph" isInline="false" isVirtual="false">
+         <UML:BehavioralFeature.parameter>
+          <UML:Parameter kind="return" xmi.id="u7Dgl7jbkJlhU" type="uUtsRhaEhKsvE"/>
+          <UML:Parameter visibility="private" isSpecification="false" xmi.id="u43jqopj1blHk" type="uUtsRhaEhKsvE" value="" name=";"/>
+          <UML:Parameter visibility="private" isSpecification="false" xmi.id="udGez5J8CLjMu" type="uUtsRhaEhKsvE" value="" name="self"/>
+          <UML:Parameter visibility="private" isSpecification="false" xmi.id="usSKZvrCCgxf4" type="uQUALsK5DAVwc" value="" name="rankdir"/>
+          <UML:Parameter visibility="private" isSpecification="false" xmi.id="upZDuDe8Ysj1Z" type="uQUALsK5DAVwc" value="" name="shape"/>
+          <UML:Parameter visibility="private" isSpecification="false" xmi.id="uXGEGiyhRR8Xf" type="uQUALsK5DAVwc" value="" name="fillcolor"/>
+          <UML:Parameter visibility="private" isSpecification="false" xmi.id="uB14QH7KT8zJc" type="uQUALsK5DAVwc" value="" name="style"/>
+          <UML:Parameter visibility="private" isSpecification="false" xmi.id="u6R4avuOGYJHA" type="uiou2vWF3HHY9" value="'0.11,0.01'" name="margin"/>
+         </UML:BehavioralFeature.parameter>
+        </UML:Operation>
+        <UML:Operation visibility="public" isSpecification="false" isQuery="false" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="ucrkrydfvhTJP" comment="Create basic bag structure in tree_dec_digraph." isOverride="false" name="basic_tdg" isInline="false" isVirtual="false">
+         <UML:BehavioralFeature.parameter>
+          <UML:Parameter kind="return" xmi.id="uC6zMMrENPaOt" type="uUtsRhaEhKsvE"/>
+         </UML:BehavioralFeature.parameter>
+        </UML:Operation>
+        <UML:Operation visibility="public" isSpecification="false" isQuery="false" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="u4smD7oXCugAH" comment="Create the final positions of all nodes with solutions. shorten name Create the positions solution to be displayed joined node with 2 bags get the joined bags edges basically &quot;remove&quot; current TODO check where 2 args are possibly occuring" isOverride="false" name="forward_iterate_tdg" isInline="false" isVirtual="false">
+         <UML:BehavioralFeature.parameter>
+          <UML:Parameter kind="return" xmi.id="uVelxI8g55Fil" type="uUtsRhaEhKsvE"/>
+          <UML:Parameter visibility="private" isSpecification="false" xmi.id="uCMHUsA5ps0xh" type="uUtsRhaEhKsvE" value="" name="joinpre"/>
+          <UML:Parameter visibility="private" isSpecification="false" xmi.id="uAw155DBKQsMp" type="uUtsRhaEhKsvE" value="" name="solpre"/>
+          <UML:Parameter visibility="private" isSpecification="false" xmi.id="uamJLqAo6SSud" type="uUtsRhaEhKsvE" value="" name="soljoinpre"/>
+         </UML:BehavioralFeature.parameter>
+        </UML:Operation>
+        <UML:Operation visibility="public" isSpecification="false" isQuery="false" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="uL2lbkbi1RfAl" comment="Cut the single steps back and update emphasis acordingly. shorten name Delete previous emphasis solution to be displayed joined node with 2 bags" isOverride="false" name="backwards_iterate_tdg" isInline="false" isVirtual="false">
+         <UML:BehavioralFeature.parameter>
+          <UML:Parameter kind="return" xmi.id="uajZtM51gcdCo" type="uUtsRhaEhKsvE"/>
+          <UML:Parameter visibility="private" isSpecification="false" xmi.id="u06YtYbf8O7l8" type="uUtsRhaEhKsvE" value="" name="joinpre"/>
+          <UML:Parameter visibility="private" isSpecification="false" xmi.id="u0yyMkcR7eTAD" type="uUtsRhaEhKsvE" value="" name="solpre"/>
+          <UML:Parameter visibility="private" isSpecification="false" xmi.id="uZdK2ZtVJ0OHX" type="uUtsRhaEhKsvE" value="" name="soljoinpre"/>
+          <UML:Parameter visibility="private" isSpecification="false" xmi.id="uXMVkFT5TnNst" type="uUtsRhaEhKsvE" value="" name=";"/>
+          <UML:Parameter visibility="private" isSpecification="false" xmi.id="uBYtA5ijGN8Du" type="uMC5hgfca6v6x" value="False" name="view"/>
+         </UML:BehavioralFeature.parameter>
+        </UML:Operation>
+        <UML:Operation visibility="public" isSpecification="false" isQuery="false" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="uoCoN62L3Odti" comment="Main-method for handling all construction of the timeline. Iterate labeldict Prepare supporting graph timeline Join operation - no clauses involved in computation prepare incid edges with abs: vertex for each variable + edge if the variables occur in the same clause: remove duplicates check if any node is really isolated: Edge, if clauses share the same variable no multiples check if any clause is isolated:" isOverride="false" name="tree_dec_timeline" isInline="false" isVirtual="false">
+         <UML:BehavioralFeature.parameter>
+          <UML:Parameter kind="return" xmi.id="u2pKDiJL8jUaV" type="uUtsRhaEhKsvE"/>
+          <UML:Parameter visibility="private" isSpecification="false" xmi.id="uUxAlYU1spNxK" type="uMC5hgfca6v6x" value="False" name="view"/>
+         </UML:BehavioralFeature.parameter>
+        </UML:Operation>
+        <UML:Operation visibility="public" isSpecification="false" isQuery="false" isAbstract="false" isLeaf="false" ownerScope="classifier" isRoot="false" xmi.id="ub7cjN6lFujzo" comment="        Creates one graph emphasized for the given timeline.&#xa;        Parameters&#xa;        ----------&#xa;        edges : Iterable of: {int, int}&#xa;            All edges between nodes in the graph.&#xa;            Should NOT contain self-edges!&#xa;            BOTH edges (x, y) and (y, x) could be in the edgelist.&#xa;        extra_nodes : Iterable of int&#xa;            Nodes that are probably not in the edges, but should be rendered.&#xa;        TIMELINE : Iterable of: None | [int...]&#xa;            None if no variables get highlighted in this step.&#xa;            Else the 'timeline' provides the set of variables that are&#xa;            in the bag(s) under consideration. This function computes all other&#xa;            variables that are involved in this timestep using the 'edgelist'.&#xa;        colors : Iterable of color&#xa;            Colors to use for the graph parts.&#xa;        Returns&#xa;        -------&#xa;        None, but outputs the files with the graph for each timestep.&#xa; sfdp http://yifanhu.net/SOFTWARE/SFDP/index.html 1: layout with circo 2: nodes in edges+extra_nodes make a circle 3: reads in bytes! 4: save the (sorted) positions 5: cut layout 5: Engine uses previous positions all timesteps reset highlighting highlight edges between variables set.difference accepts list as argument, &quot;-&quot; does not." isOverride="false" name="general_graph" isInline="false" isVirtual="false">
+         <UML:BehavioralFeature.parameter>
+          <UML:Parameter kind="return" xmi.id="uURc7ZxkLefCT" type="uUtsRhaEhKsvE"/>
+          <UML:Parameter visibility="private" isSpecification="false" xmi.id="u3eQTHsa3yUrm" type="uUtsRhaEhKsvE" value="" name=";"/>
+          <UML:Parameter visibility="private" isSpecification="false" xmi.id="ux6s3a8fGB9Fp" type="uUtsRhaEhKsvE" value="" name="self"/>
+          <UML:Parameter visibility="private" isSpecification="false" xmi.id="uyOz3XwVXAEDW" type="uUtsRhaEhKsvE" value="" name="timeline"/>
+          <UML:Parameter visibility="private" isSpecification="false" xmi.id="uCjfUa0MLh9XP" type="uUtsRhaEhKsvE" value="" name="edges"/>
+          <UML:Parameter visibility="private" isSpecification="false" xmi.id="uTYqqN08GbW3F" type="uufWLsnME2B7k" value="()" name="extra_nodes"/>
+          <UML:Parameter visibility="private" isSpecification="false" xmi.id="uMQvVBxEaTGHW" type="uMC5hgfca6v6x" value="False" name="view"/>
+          <UML:Parameter visibility="private" isSpecification="false" xmi.id="uezcZSSvbPK1g" type="uugbZsa8NvZKo" value="'20'" name="fontsize"/>
+          <UML:Parameter visibility="private" isSpecification="false" xmi.id="uzU3za947yNFr" type="uQUALsK5DAVwc" value="" name="fontcolor"/>
+          <UML:Parameter visibility="private" isSpecification="false" xmi.id="uMnPykjK7WCXx" type="uiou2vWF3HHY9" value="'2.2'" name="penwidth"/>
+          <UML:Parameter visibility="private" isSpecification="false" xmi.id="uyvS1LC9VTJ0v" type="uQUALsK5DAVwc" value="" name="first_color"/>
+          <UML:Parameter visibility="private" isSpecification="false" xmi.id="udbElFtllsjFp" type="uQUALsK5DAVwc" value="" name="first_style"/>
+          <UML:Parameter visibility="private" isSpecification="false" xmi.id="uMkWkwUZgDqsW" type="uQUALsK5DAVwc" value="" name="second_color"/>
+          <UML:Parameter visibility="private" isSpecification="false" xmi.id="uiUKIY1vZWLlY" type="uQUALsK5DAVwc" value="" name="second_style"/>
+          <UML:Parameter visibility="private" isSpecification="false" xmi.id="uCUAqOTMTKNPN" type="uQUALsK5DAVwc" value="" name="third_color"/>
+          <UML:Parameter visibility="private" isSpecification="false" xmi.id="u4PHHJvjZsi8I" type="uQUALsK5DAVwc" value="" name="graph_name"/>
+          <UML:Parameter visibility="private" isSpecification="false" xmi.id="uZcyOOT0c60Qm" type="uQUALsK5DAVwc" value="" name="file_basename"/>
+          <UML:Parameter visibility="private" isSpecification="false" xmi.id="u0qs3OUsza8l0" type="uMC5hgfca6v6x" value="True" name="do_sort_nodes"/>
+          <UML:Parameter visibility="private" isSpecification="false" xmi.id="u6DwZfWmWdwjt" type="uMC5hgfca6v6x" value="True" name="do_adj_nodes"/>
+          <UML:Parameter visibility="private" isSpecification="false" xmi.id="uQDtKtlLIHm4R" type="uQUALsK5DAVwc" value="" name="var_name"/>
+         </UML:BehavioralFeature.parameter>
+        </UML:Operation>
+        <UML:Operation visibility="public" isSpecification="false" isQuery="false" isAbstract="false" isLeaf="false" ownerScope="classifier" isRoot="false" xmi.id="usCYFWG469xNr" comment="        Creates the incidence graph emphasized for the given timeline.&#xa;        Parameters&#xa;        ----------&#xa;        TIMELINE : Iterable of: None | [int...]&#xa;            None if no variables get highlighted in this step.&#xa;            Else the 'timeline' provides the set of variables that are&#xa;            in the bag(s) under consideration. This function computes all other&#xa;            variables that are involved in this timestep using the 'edgelist'.&#xa;        num_vars : int&#xa;            Count of variables that are used in the clauses.&#xa;        colors : Iterable of color&#xa;            Colors to use for the graph parts.&#xa;        Returns&#xa;        -------&#xa;        None, but outputs the files with the graph for each timestep.&#xa; make edgelist variable-based (varX, clauseY), ...  var_cl_iter [(1, 1), (4, 1), ... all timesteps reset highlighting negated variable" isOverride="false" name="incidence" isInline="false" isVirtual="false">
+         <UML:BehavioralFeature.parameter>
+          <UML:Parameter kind="return" xmi.id="ugB58pib6bk5w" type="uUtsRhaEhKsvE"/>
+          <UML:Parameter visibility="private" isSpecification="false" xmi.id="ujO54isjqHtfE" type="uUtsRhaEhKsvE" value="" name=";"/>
+          <UML:Parameter visibility="private" isSpecification="false" xmi.id="u8qUdiBblk8K1" type="uUtsRhaEhKsvE" value="" name="self"/>
+          <UML:Parameter visibility="private" isSpecification="false" xmi.id="ukiAW7D49UR5J" type="uUtsRhaEhKsvE" value="" name="timeline"/>
+          <UML:Parameter visibility="private" isSpecification="false" xmi.id="ulOJebwPvjrru" type="uUtsRhaEhKsvE" value="" name="num_vars"/>
+          <UML:Parameter visibility="private" isSpecification="false" xmi.id="ulU1OvR191J4i" type="uUtsRhaEhKsvE" value="" name="colors"/>
+          <UML:Parameter visibility="private" isSpecification="false" xmi.id="uo9aLCrAmrjE5" type="uQUALsK5DAVwc" value="" name="inc_file"/>
+          <UML:Parameter visibility="private" isSpecification="false" xmi.id="uyYWDNkIzwieq" type="uMC5hgfca6v6x" value="False" name="view"/>
+          <UML:Parameter visibility="private" isSpecification="false" xmi.id="u6leBBWbjh3eP" type="uugbZsa8NvZKo" value="16" name="fontsize"/>
+          <UML:Parameter visibility="private" isSpecification="false" xmi.id="udVwjqNa3C7Vi" type="uiou2vWF3HHY9" value="2.2" name="penwidth"/>
+          <UML:Parameter visibility="private" isSpecification="false" xmi.id="uRNnx7t1AqUL0" type="uQUALsK5DAVwc" value="" name="basefill"/>
+          <UML:Parameter visibility="private" isSpecification="false" xmi.id="uObzedN4an3rv" type="uQUALsK5DAVwc" value="" name="sndshape"/>
+          <UML:Parameter visibility="private" isSpecification="false" xmi.id="uZWzLgtkRplSf" type="uQUALsK5DAVwc" value="" name="neg_tail"/>
+          <UML:Parameter visibility="private" isSpecification="false" xmi.id="uqx1shaECwoh4" type="uQUALsK5DAVwc" value="" name="var_name_one"/>
+          <UML:Parameter visibility="private" isSpecification="false" xmi.id="u1hjqIfjcnwdt" type="uQUALsK5DAVwc" value="" name="var_name_two"/>
+          <UML:Parameter visibility="private" isSpecification="false" xmi.id="udWt2qYwkwCrV" type="uiou2vWF3HHY9" value="0.5" name="column_distance"/>
+         </UML:BehavioralFeature.parameter>
+        </UML:Operation>
+       </UML:Classifier.feature>
+      </UML:Class>
+      <UML:Class visibility="public" isSpecification="false" namespace="Logical_View" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="u2Kb9EbsTrWR7" name="IncidenceGraphData"/>
+      <UML:Class visibility="public" isSpecification="false" namespace="Logical_View" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="umX1aqq0cE1kT" name="GeneralGraphData"/>
+      <UML:Class visibility="public" isSpecification="false" namespace="Logical_View" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="uILsfsgN7vTK5" name="VisualizationData">
+       <UML:Classifier.feature>
+        <UML:Operation visibility="private" isSpecification="false" isQuery="false" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="u517yrEJsfVoF" comment="0073a1',b14923',244320',b1740f',a682ff',004066',0d1321',da1167',604909',0073a1',b14923',244320',b1740f',a682ff'] merge input over defaults:" isOverride="false" name="post_init__" isInline="false" isVirtual="false">
+         <UML:BehavioralFeature.parameter>
+          <UML:Parameter kind="return" xmi.id="uSrHFY65iwwVP" type="uUtsRhaEhKsvE"/>
+         </UML:BehavioralFeature.parameter>
+        </UML:Operation>
+       </UML:Classifier.feature>
+      </UML:Class>
+      <UML:Class visibility="public" isSpecification="false" namespace="Logical_View" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="ubbSlG5SxcXai" name="TestNewHeight">
+       <UML:Classifier.feature>
+        <UML:Attribute visibility="public" isSpecification="false" ownerScope="classifier" xmi.id="uMvlHUHKz255c" type="uE8X9zWSY0kt1" comment="Test the transform method in svgjoin" initialValue="[;param({'h_one_':BASE,'h_two_':BASE},{'vertical_snd':0.0,'combine_height':BASE,'scale2':1},id='Only heights (same)'),param({'h_one_':BASE,'h_two_':2*BASE},{'vertical_snd':0.0,'combine_height':2*BASE,'scale2':1},id='Only heights (larger)'),param({'h_one_':BASE,'h_two_':0.5*BASE},{'vertical_snd':0.0,'combine_height':BASE,'scale2':1},id='Only heights (smaller)'),param({'h_one_':BASE,'h_two_':BASE,'v_bottom':None},{'vertical_snd':0.0,'combine_height':BASE,'scale2':1},id='Default v_bottom'),param({'h_one_':BASE,'h_two_':BASE,'v_bottom':None,'v_top':None},{'vertical_snd':0.0,'combine_height':BASE,'scale2':1},id='Default v_bottom&amp;v_top'),param({'h_one_':BASE,'h_two_':BASE,'scale2':1},{'vertical_snd':0.0,'combine_height':BASE,'scale2':1},id='Default scale2')]" name="parameters_default"/>
+        <UML:Attribute visibility="public" isSpecification="false" ownerScope="classifier" xmi.id="un8fEvC9z3ai0" type="uE8X9zWSY0kt1" initialValue="[;param({'h_one_':BASE,'h_two_':BASE,'v_bottom':1,'v_top':0},{'vertical_snd':0.0,'combine_height':BASE,'scale2':1},id='static'),param({'h_one_':BASE,'h_two_':BASE,'v_bottom':0,'v_top':1},{'vertical_snd':0.0,'combine_height':BASE,'scale2':1},id=&quot;switched bottom and top -> &quot;&quot;should switch automatically!&quot;),param({'h_one_':BASE,'h_two_':rand_smaller(BASE),'v_bottom':1,'v_top':0},{'vertical_snd':0.0,'combine_height':BASE,'scale2':BASE/last_random},id='scale up to BASE'),param({'h_one_':BASE,'h_two_':rand_larger(BASE),'v_bottom':1,'v_top':0},{'vertical_snd':0.0,'combine_height':BASE,'scale2':BASE/last_random},id='scale down to BASE'),]" name="parameters_moving"/>
+        <UML:Operation visibility="public" isSpecification="false" isQuery="false" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="uW0Qy5xx3DV89" comment="Test that the default parameters from f_transform work as expected." isOverride="false" name="test_parameters_default" isInline="false" isVirtual="false">
+         <UML:BehavioralFeature.parameter>
+          <UML:Parameter kind="return" xmi.id="uSr1B2Jb5GGJC" type="uUtsRhaEhKsvE"/>
+          <UML:Parameter visibility="private" isSpecification="false" xmi.id="ukrsiRBc8wu7f" type="uUtsRhaEhKsvE" value="" name="arguments"/>
+          <UML:Parameter visibility="private" isSpecification="false" xmi.id="utnz12qSVFB38" type="uUtsRhaEhKsvE" value="" name="expected"/>
+         </UML:BehavioralFeature.parameter>
+        </UML:Operation>
+        <UML:Operation visibility="public" isSpecification="false" isQuery="false" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="uwUX3naAYOBjb" comment="Test that different parameters for f_transform work as expected." isOverride="false" name="test_parameters_moving" isInline="false" isVirtual="false">
+         <UML:BehavioralFeature.parameter>
+          <UML:Parameter kind="return" xmi.id="usOG6s93BrJ1Z" type="uUtsRhaEhKsvE"/>
+          <UML:Parameter visibility="private" isSpecification="false" xmi.id="uwnHfPskSPxty" type="uUtsRhaEhKsvE" value="" name="arguments"/>
+          <UML:Parameter visibility="private" isSpecification="false" xmi.id="unxsc3gwthAwb" type="uUtsRhaEhKsvE" value="" name="expected"/>
+         </UML:BehavioralFeature.parameter>
+        </UML:Operation>
+       </UML:Classifier.feature>
+      </UML:Class>
+     </UML:Namespace.ownedElement>
+     <XMI.extension xmi.extender="umbrello">
+      <diagrams resolution="120">
+       <diagram showopsig="1" linecolor="#ff0000" snapx="25" showattribassocs="1" snapy="25" linewidth="0" showattsig="1" textcolor="#000000" isopen="1" showpackage="1" showpubliconly="0" showstereotype="1" name="class diagram" font="Sans Serif,9,-1,0,50,0,0,0,0,0" canvasheight="306" canvaswidth="1000" localid="-1" snapcsgrid="0" showgrid="0" showops="1" griddotcolor="#d3d3d3" backgroundcolor="#ffffff" usefillcolor="1" fillcolor="#ffff00" zoom="86,95652173913041" xmi.id="uS00eU7r9HrQ1" documentation="" showscope="1" snapgrid="0" showatts="1" type="1">
+        <widgets>
+         <classwidget linecolor="#ff0000" usesdiagramfillcolor="0" linewidth="0" textcolor="#000000" showoperations="1" usesdiagramusefillcolor="0" showpubliconly="0" showpackage="1" x="685.55" showattsigs="601" showstereotype="1" y="-2439.45" showattributes="1" font="Sans Serif,9,-1,0,50,0,0,0,0,0" localid="usNiytUuP8kFH" width="1000" isinstance="0" usefillcolor="1" fillcolor="#ffff00" xmi.id="u4FpQTON8oLLH" autoresize="1" showscope="1" height="306" showopsigs="601"/>
+        </widgets>
+        <messages/>
+        <associations/>
+       </diagram>
+       <diagram showopsig="1" linecolor="#ff0000" snapx="25" showattribassocs="1" snapy="25" linewidth="0" showattsig="1" textcolor="#000000" isopen="1" showpackage="1" showpubliconly="0" showstereotype="1" name="communication diagram" font="Sans Serif,9,-1,0,50,0,0,0,0,0" canvasheight="0" canvaswidth="0" localid="-1" snapcsgrid="0" showgrid="0" showops="1" griddotcolor="#d3d3d3" backgroundcolor="#ffffff" autoincrementsequence="0" usefillcolor="1" fillcolor="#ffff00" zoom="100" xmi.id="utk2xrpXU7Qi4" documentation="" showscope="1" snapgrid="0" showatts="1" type="4">
+        <widgets/>
+        <messages/>
+        <associations/>
+       </diagram>
+      </diagrams>
+     </XMI.extension>
+    </UML:Model>
+    <UML:Model visibility="public" isSpecification="false" namespace="m1" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="Use_Case_View" name="Use Case View">
+     <UML:Namespace.ownedElement/>
+    </UML:Model>
+    <UML:Model visibility="public" isSpecification="false" namespace="m1" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="Component_View" name="Component View">
+     <UML:Namespace.ownedElement/>
+    </UML:Model>
+    <UML:Model visibility="public" isSpecification="false" namespace="m1" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="Deployment_View" name="Deployment View">
+     <UML:Namespace.ownedElement/>
+    </UML:Model>
+    <UML:Model visibility="public" isSpecification="false" namespace="m1" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="Entity_Relationship_Model" name="Entity Relationship Model">
+     <UML:Namespace.ownedElement/>
+    </UML:Model>
+   </UML:Namespace.ownedElement>
+  </UML:Model>
+ </XMI.content>
+ <XMI.extensions xmi.extender="umbrello">
+  <docsettings viewid="uS00eU7r9HrQ1" uniqueid="usNiytUuP8kFH" documentation=""/>
+  <listview>
+   <listitem open="1" type="800" id="Views">
+    <listitem open="1" type="821" id="Component_View"/>
+    <listitem open="1" type="827" id="Deployment_View"/>
+    <listitem open="1" type="836" id="Entity_Relationship_Model"/>
+    <listitem open="1" type="801" id="Logical_View">
+     <listitem open="0" type="807" id="uS00eU7r9HrQ1" label="class diagram"/>
+     <listitem open="0" type="806" id="utk2xrpXU7Qi4" label="communication diagram"/>
+     <listitem open="0" type="830" id="Datatypes">
+      <listitem open="1" type="829" id="uwhCMnf29ppW0"/>
+      <listitem open="0" type="829" id="uMC5hgfca6v6x"/>
+      <listitem open="0" type="829" id="uEhmz6kCqqDRH"/>
+      <listitem open="1" type="829" id="udHgTX7EHoyBR"/>
+      <listitem open="0" type="829" id="uBQoDpJuQjJp8"/>
+      <listitem open="0" type="829" id="uiou2vWF3HHY9"/>
+      <listitem open="0" type="829" id="uugbZsa8NvZKo"/>
+      <listitem open="1" type="829" id="uE8X9zWSY0kt1"/>
+      <listitem open="1" type="829" id="uRHBnda1cg2ME"/>
+      <listitem open="0" type="829" id="ueOZLUZfK1ttu"/>
+      <listitem open="0" type="829" id="uypDsXiDY6m4a"/>
+      <listitem open="1" type="829" id="uQUALsK5DAVwc"/>
+      <listitem open="1" type="829" id="uBIawCm80BJvo"/>
+      <listitem open="0" type="829" id="uWqWheoU8xu53"/>
+      <listitem open="0" type="829" id="u8wgubtjUk5TE"/>
+      <listitem open="0" type="829" id="ugTiUHJyKKmaj"/>
+      <listitem open="0" type="829" id="u42l7RXX4H9NC"/>
+      <listitem open="0" type="829" id="uvks9iomEsliQ"/>
+      <listitem open="0" type="829" id="uUtsRhaEhKsvE"/>
+      <listitem open="1" type="829" id="uufWLsnME2B7k"/>
+      <listitem open="0" type="829" id="uBHk8XX6VuAVF"/>
+      <listitem open="0" type="829" id="uuHlXu3Jhczwc"/>
+      <listitem open="0" type="829" id="uXehZ4zE8DjGC"/>
+      <listitem open="0" type="829" id="uASAy4EgGwLBD"/>
+      <listitem open="0" type="829" id="uiGKc4lROAuMP"/>
+     </listitem>
+     <listitem open="0" type="813" id="uLcGDbCq8ikbF">
+      <listitem open="0" type="813" id="uSUthanHJnVdO"/>
+     </listitem>
+     <listitem open="0" type="813" id="uxIyTrVt69eGQ"/>
+     <listitem open="0" type="813" id="uuVBALNWYqXmm">
+      <listitem open="0" type="815" id="ugRypUzmR9CIw"/>
+      <listitem open="0" type="815" id="uT2kU45ULKILR"/>
+      <listitem open="0" type="814" id="uU27P9f7kpCLV"/>
+      <listitem open="0" type="815" id="uyv4mj6w11R2a"/>
+      <listitem open="0" type="815" id="u6KKL8wzE1GGw"/>
+      <listitem open="0" type="815" id="uU6cMKjtXCQO1"/>
+      <listitem open="0" type="814" id="u1cr8pO3EjvdA"/>
+      <listitem open="0" type="814" id="uzO21WzrFrwD3"/>
+      <listitem open="0" type="815" id="u6U8IzTO7qeDM"/>
+     </listitem>
+     <listitem open="0" type="813" id="uNkmAQAL5YodW">
+      <listitem open="0" type="815" id="upMb7sO8TTUKQ"/>
+      <listitem open="0" type="815" id="ubQ4Ld2Eixplp"/>
+      <listitem open="0" type="815" id="uQqvl6piJvWw6"/>
+      <listitem open="0" type="815" id="ucjSTIF0NC4zy"/>
+      <listitem open="0" type="815" id="uKPnwfGaQ1cqx"/>
+      <listitem open="0" type="814" id="uDobLngGGt4uW"/>
+     </listitem>
+     <listitem open="0" type="813" id="uhUgf0YSeMiGm">
+      <listitem open="0" type="815" id="uO3lsh5Cai3jt"/>
+      <listitem open="0" type="815" id="ucngLHC6SAC3U"/>
+      <listitem open="0" type="815" id="uyu2HfgMtBOvS"/>
+      <listitem open="0" type="814" id="u6Yothj1rVo5K"/>
+      <listitem open="0" type="814" id="u6LDQfLq1c0mO"/>
+      <listitem open="0" type="815" id="ukLNHy700BEh7"/>
+      <listitem open="0" type="815" id="ub6SuD8mDbBh3"/>
+      <listitem open="0" type="815" id="uvZLaHxruxcuM"/>
+      <listitem open="0" type="815" id="uX8Di4YXDY8QB"/>
+      <listitem open="0" type="815" id="uZQmDucE2CkqL"/>
+      <listitem open="0" type="814" id="um6dFsDnHTh1n"/>
+      <listitem open="0" type="814" id="uNCLXzk0253kE"/>
+     </listitem>
+     <listitem open="0" type="813" id="umX1aqq0cE1kT"/>
+     <listitem open="0" type="813" id="umk1nsKDgpWNz">
+      <listitem open="0" type="815" id="uB1MhLNkBgeAH"/>
+      <listitem open="0" type="815" id="u74KrRZSKH9sP"/>
+      <listitem open="0" type="815" id="uTC9d8B1ucmtd"/>
+      <listitem open="0" type="815" id="uxFBNffsmVQXV"/>
+      <listitem open="0" type="815" id="uDubY5PIkPobT"/>
+     </listitem>
+     <listitem open="0" type="813" id="u2Kb9EbsTrWR7"/>
+     <listitem open="0" type="813" id="u6nl2HJ0TkQXP"/>
+     <listitem open="0" type="813" id="u4Z0rHts1S0ht">
+      <listitem open="0" type="815" id="uYdLy2xTxh3Pj"/>
+      <listitem open="0" type="815" id="uwApOk3hQoGli"/>
+      <listitem open="0" type="815" id="u8PG0Y3R3jDia"/>
+      <listitem open="0" type="815" id="uppi7PVGvEBXz"/>
+      <listitem open="0" type="815" id="uhd3Di99ONGpI"/>
+     </listitem>
+     <listitem open="0" type="813" id="uV8xAomgiB3qS"/>
+     <listitem open="0" type="813" id="ubbSlG5SxcXai">
+      <listitem open="0" type="814" id="uMvlHUHKz255c"/>
+      <listitem open="0" type="814" id="un8fEvC9z3ai0"/>
+      <listitem open="0" type="815" id="uW0Qy5xx3DV89"/>
+      <listitem open="0" type="815" id="uwUX3naAYOBjb"/>
+     </listitem>
+     <listitem open="0" type="813" id="uYJyfM1gWuFWR">
+      <listitem open="0" type="815" id="uM9B632AtaKkV"/>
+      <listitem open="0" type="814" id="uXnTegM78HpV4"/>
+      <listitem open="0" type="815" id="uIwTjixoUL9xS"/>
+      <listitem open="0" type="814" id="uXem2GaefdljR"/>
+      <listitem open="0" type="814" id="uzkeQU55eJKKS"/>
+      <listitem open="0" type="815" id="uoxiMXn6KALuc"/>
+     </listitem>
+     <listitem open="1" type="813" id="u4FpQTON8oLLH">
+      <listitem open="0" type="815" id="ugbi1v0NLK59f"/>
+      <listitem open="0" type="815" id="uL2lbkbi1RfAl"/>
+      <listitem open="0" type="815" id="uT8ZhRXOBbx5Q"/>
+      <listitem open="0" type="815" id="uIp5tUMv1JWkO"/>
+      <listitem open="0" type="815" id="ucrkrydfvhTJP"/>
+      <listitem open="0" type="815" id="uGMibRM2SSTKP"/>
+      <listitem open="0" type="815" id="u4smD7oXCugAH"/>
+      <listitem open="0" type="815" id="ub7cjN6lFujzo"/>
+      <listitem open="0" type="815" id="usCYFWG469xNr"/>
+      <listitem open="0" type="815" id="udEiCaodxFY0o"/>
+      <listitem open="0" type="814" id="uvd5kAeoC9JoF"/>
+      <listitem open="0" type="815" id="uw9yFFDpFPvTz"/>
+      <listitem open="0" type="815" id="uU8s40OMXuLXB"/>
+      <listitem open="0" type="815" id="u9VTrK3pXQvzn"/>
+      <listitem open="0" type="815" id="u2din4wvudx8r"/>
+      <listitem open="0" type="814" id="uP1ifyKYhbSr7"/>
+      <listitem open="0" type="815" id="uoCoN62L3Odti"/>
+     </listitem>
+     <listitem open="1" type="813" id="uILsfsgN7vTK5">
+      <listitem open="0" type="815" id="u517yrEJsfVoF"/>
+     </listitem>
+    </listitem>
+    <listitem open="1" type="802" id="Use_Case_View"/>
+   </listitem>
+  </listview>
+  <codegeneration>
+   <codegenerator language="Python">
+    <sourcecode value="return(hasattr(subclass,'construct')and&#xa;callable(subclass.construct)and hasattr(subclass,'read_labeldict')and callable(subclass.read_labeldict)and hasattr(subclass,'read_timeline')and callable(subclass.read_timeline)and hasattr(subclass,'read_edgearray')and callable(subclass.read_edgearray)or NotImplemented)" id="uDubY5PIkPobT"/>
+    <sourcecode value="raise NotImplementedError&#xa;" id="uB1MhLNkBgeAH"/>
+    <sourcecode value="raise NotImplementedError&#xa;" id="u74KrRZSKH9sP"/>
+    <sourcecode value="raise NotImplementedError&#xa;" id="uTC9d8B1ucmtd"/>
+    <sourcecode value="raise NotImplementedError&#xa;" id="uxFBNffsmVQXV"/>
+    <sourcecode value="LOGGER.debug(&quot;Creating %s for problem %d.&quot;,&#xa;self.__class__.__name__,problem)self.problem=problem&#xa;self.intermed_nodes=intermed_nodes&#xa;self.num_vars=None&#xa;status=db.get_transaction_status()&#xa;sleeptimer=0.5&#xa;while status not in good_db_status():&#xa;  logging.warning(&quot;Waiting %fs for DB connection in status %s&quot;,&#xa;  sleeptimer,PSYCOPG2_8_5_TASTATUS[status])sleep(sleeptimer)&#xa;  status=db.get_transaction_status()&#xa;&#xa;self.connection=db&#xa;" id="uO3lsh5Cai3jt"/>
+    <sourcecode value="clauses_edges=self.read_clauses()&#xa;incidence_graph=:&#xa;&#xa;  &quot;var_name_one&quot;:'c_',&quot;var_name_two&quot;:'v_',&quot;infer_primal&quot;:True,&quot;edges&quot;:clauses_edges&#xa;labeldict=self.read_labeldict()&#xa;edgearray=self.read_edgearray()&#xa;tree_dec_json=:&#xa;&#xa;  &quot;bagpre&quot;:&quot;bag %s&quot;,&quot;edgearray&quot;:edgearray,&quot;labeldict&quot;:labeldict,&quot;num_vars&quot;:self.read_num_vars()&#xa;timeline=self.read_timeline(edgearray)&#xa;return:&#xa;  'incidenceGraph':incidence_graph,&#xa;  'generalGraph':False,'tdTimeline':timeline,'treeDecJson':tree_dec_json&#xa;" id="ucngLHC6SAC3U"/>
+    <sourcecode value="with self.connection.cursor()as cur:&#xa;  cur.execute(&#xa;  &quot;SELECT num_vertices FROM &quot;&quot;public.problem WHERE id=%s&quot;,(self.problem,))self.num_vars=cur.fetchone()[0]&#xa;  assert isinstance(self.num_vars,int)&#xa;  return self.num_vars&#xa;&#xa;" id="uX8Di4YXDY8QB"/>
+    <sourcecode value="with self.connection.cursor()as cur:&#xa;  try:&#xa;    cur.execute(&#xa;    f&quot;SELECT * FROM public.p{self.problem}_sat_clause&quot;)&#xa;  except pg.ProgrammingError:&#xa;    LOGGER.error(&#xa;    &quot;dpdb.py SHARPSAT NEEDS TO BE RUN WITH '--store-formula'!&quot;)raise&#xa;&#xa;  result=cur.fetchall()&#xa;  result_cleaned=[[pos if elem else-pos for pos,elem in&#xa;  enumerate(line,1)if elem is not None]for line in result]clauses_edges=[:&#xa;    'id':i,'list':item&#xa;&#xa;  for(i,item)in enumerate(result_cleaned,1)]return clauses_edges&#xa;&#xa;" id="ukLNHy700BEh7"/>
+    <sourcecode value="with self.connection.cursor()as cur:&#xa;  labeldict=[]&#xa;  cur.execute(&#xa;  f&quot;SELECT bag FROM public.p{self.problem}_td_bag group by bag&quot;)bags=sorted(list(flatten(cur.fetchall())))&#xa;  LOGGER.debug(&quot;bags: %s&quot;,bags)&#xa;  for bag in bags:&#xa;    cur.execute(&#xa;    f&quot;SELECT node FROM public.p{self.problem}_td_bag WHERE bag=%s&quot;,(bag,))nodes=list(flatten(cur.fetchall()))&#xa;    cur.execute(&#xa;    &quot;SELECT start_time,end_time-start_time &quot;f&quot;FROM public.p{self.problem}_td_node_status WHERE node=%s&quot;,(bag,))start_time,dtime=cur.fetchone()&#xa;    labeldict.append(&#xa;:&#xa;      'id':bag,'items':nodes,'labels':&#xa;        [str(nodes),&#xa;        &quot;dtime=%.4fs&quot;%dtime.total_seconds(),]&#xa;      )&#xa;&#xa;  return labeldict&#xa;&#xa;" id="uvZLaHxruxcuM"/>
+    <sourcecode value="with self.connection.cursor()as cur:&#xa;  timeline=list()&#xa;  adj=convert_to_adj(edgearray)if self.intermed_nodes else:&#xa;&#xa;&#xa;  cur.execute(&#xa;  f&quot;SELECT node FROM public.p{self.problem}_td_node_status ORDER BY start_time&quot;)order_solved=list(flatten(cur.fetchall()))&#xa;  if self.intermed_nodes:&#xa;    last=order_solved[-1]&#xa;    startpath=find_path(adj,last,order_solved[0])&#xa;    timeline=[[bag]for bag in startpath[1]]&#xa;&#xa;  else:&#xa;    timeline.append([order_solved[0]])&#xa;&#xa;  last=order_solved[0]&#xa;  for bag in order_solved:&#xa;    if self.intermed_nodes:&#xa;      path=find_path(adj,last,bag)&#xa;      for intermed in path[1][1:]:&#xa;        timeline.append([intermed])&#xa;&#xa;&#xa;    cur.execute(&#xa;    &quot;SELECT column_name FROM INFORMATION_SCHEMA.COLUMNS &quot;f&quot;WHERE TABLE_NAME = 'p{self.problem}_td_node_{bag}'&quot;)column_names=list(flatten(cur.fetchall()))&#xa;    LOGGER.debug(&quot;column_names %s&quot;,column_names)&#xa;    cur.execute(&#xa;    f&quot;SELECT * FROM public.p{self.problem}_td_node_{bag}&quot;)solution_raw=cur.fetchall()&#xa;    LOGGER.debug(&quot;solution_raw %s&quot;,solution_raw)&#xa;    columns_notnull=[column_names[i]for i,x in&#xa;    enumerate(solution_raw[0])if x is not None]solution=[bag,&#xa;    [[columns_notnull,*[[int(v)for v in row if v is not None]for row in solution_raw]],&quot;sol bag &quot;+str(bag),self.footer(solution_raw),True]]timeline.append(solution)&#xa;    last=bag&#xa;&#xa;  return timeline&#xa;&#xa;" id="uZQmDucE2CkqL"/>
+    <sourcecode value="with self.connection.cursor()as cur:&#xa;  cur.execute(&#xa;  f&quot;SELECT node,parent FROM public.p{self.problem}_td_edge&quot;)result=cur.fetchall()&#xa;  return result&#xa;&#xa;" id="ub6SuD8mDbBh3"/>
+    <sourcecode value="return&quot;sum: &quot;+str(sum([li[-1]for li in lines]))&#xa;" id="uyu2HfgMtBOvS"/>
+    <sourcecode value="super().__init__(db,problem,intermed_nodes)&#xa;self.tw_file=tw_file&#xa;" id="upMb7sO8TTUKQ"/>
+    <sourcecode value="raise NotImplementedError(&#xa;self.__class__.__name__+&quot; can not read_clauses!&quot;)" id="ucjSTIF0NC4zy"/>
+    <sourcecode value="return&quot;min-size: &quot;+str(min([li[-1]for li in lines]))&#xa;" id="uQqvl6piJvWw6"/>
+    <sourcecode value="LOGGER.info(&quot;Reading from %s&quot;,self.tw_file)&#xa;try:&#xa;  reader=TwReader.from_filewrapper(self.tw_file)&#xa;&#xa;except Exception as error:&#xa;  LOGGER.error(&quot;Problem while reading from self.tw_file: %s&quot;,error)&#xa;  raise error&#xa;&#xa;return list(reader.edges)&#xa;" id="uKPnwfGaQ1cqx"/>
+    <sourcecode value="labeldict=self.read_labeldict()&#xa;edgearray=self.read_edgearray()&#xa;tree_dec_json=:&#xa;&#xa;  'bagpre':&quot;bag %s&quot;,'edgearray':edgearray,'labeldict':labeldict,'num_vars':self.read_num_vars()&#xa;generalGraph=:&#xa;  'edges':self.read_twfile()&#xa;if self.tw_file else False&#xa;timeline=self.read_timeline(edgearray)&#xa;return:&#xa;  'incidenceGraph':False,&#xa;  'generalGraph':generalGraph,'tdTimeline':timeline,'treeDecJson':tree_dec_json&#xa;" id="ubQ4Ld2Eixplp"/>
+    <sourcecode value="with open(fname,&quot;r&quot;)as file:&#xa;  return cls.from_string(file.read())&#xa;&#xa;" id="uYdLy2xTxh3Pj"/>
+    <sourcecode value="return cls.from_string(fwrapper.read())&#xa;" id="uwApOk3hQoGli"/>
+    <sourcecode value="return cls.from_string(stream.read().decode())&#xa;" id="u8PG0Y3R3jDia"/>
+    <sourcecode value="instance=cls()&#xa;instance.parse(string)&#xa;return instance&#xa;" id="uppi7PVGvEBXz"/>
+    <sourcecode value="pass&#xa;" id="uhd3Di99ONGpI"/>
+    <sourcecode value="self.problem_solution_type=None&#xa;self.format=None&#xa;self._problem_vars=None&#xa;" id="ugRypUzmR9CIw"/>
+    <sourcecode value="lines=string.split(&quot;\n&quot;)&#xa;body_start=self.preamble(lines)&#xa;self.store_problem_vars()&#xa;self.body(lines[body_start:])&#xa;" id="u6KKL8wzE1GGw"/>
+    <sourcecode value="pass&#xa;" id="u6U8IzTO7qeDM"/>
+    <sourcecode value="return line.startswith(&quot;c &quot;)or line==&quot;c&quot;&#xa;" id="uyv4mj6w11R2a"/>
+    <sourcecode value="pass&#xa;" id="uT2kU45ULKILR"/>
+    <sourcecode value="for lineno,line in enumerate(lines):&#xa;  if line.startswith(&quot;p &quot;)or line.startswith(&quot;s &quot;):&#xa;    line=line.split()&#xa;    self.problem_solution_type=line[0]&#xa;    self.format=line[1]&#xa;    self._problem_vars=line[2:]&#xa;    return lineno+1&#xa;&#xa;  if not line or self.is_comment(line):&#xa;    continue&#xa;&#xa;  warn=&quot;Invalid content in preamble at line %d: %s&quot;&#xa;  logger.warning(warn,lineno,line)&#xa;&#xa;logger.error(&quot;No type found in DIMACS file!&quot;)&#xa;sys.exit(1)&#xa;" id="uU6cMKjtXCQO1"/>
+    <sourcecode value="super().__init__()&#xa;self.edges=set()&#xa;self.adjacency_dict=dict()&#xa;self.num_vertices=self.num_edges=None&#xa;" id="uM9B632AtaKkV"/>
+    <sourcecode value="self.num_vertices=int(self._problem_vars[0])&#xa;self.num_edges=int(self._problem_vars[1])&#xa;" id="uoxiMXn6KALuc"/>
+    <sourcecode value="if self.format!=&quot;tw&quot;:&#xa;  logger.error(&quot;Not a tw file!&quot;)&#xa;  sys.exit(1)&#xa;&#xa;for lineno,line in enumerate(lines):&#xa;  if not line or self.is_comment(line):&#xa;    continue&#xa;&#xa;  line=line.split()&#xa;  if len(line)!=2:&#xa;    logger.warning(&#xa;    &quot;Expected exactly 2 vertices at line %d, but %d found&quot;,lineno,len(line))&#xa;  vertex1=int(line[0])&#xa;  vertex2=int(line[1])&#xa;  _add_edge_to(self.edges,self.adjacency_dict,vertex1,vertex2)&#xa;&#xa;if len(self.edges)!=self.num_edges:&#xa;  logger.warning(&#xa;  &quot;Number of edges mismatch preamble (%d vs %d)&quot;,len(self.edges),self.num_edges" id="uIwTjixoUL9xS"/>
+    <sourcecode value="self.data:VisualizationData=self.inspect_json(infile)&#xa;self.outfolder=outfolder&#xa;self.tree_dec_digraph=None&#xa;LOGGER.debug(&quot;Initialized: %s&quot;,self)&#xa;" id="ugbi1v0NLK59f"/>
+    <sourcecode value="graph.node(node,fillcolor=color,penwidth=penwidth)&#xa;" id="uIp5tUMv1JWkO"/>
+    <sourcecode value="if color:&#xa;  graph.node(node,fillcolor=color)&#xa;&#xa;if penwidth:&#xa;  graph.node(node,penwidth=penwidth)&#xa;&#xa;" id="uGMibRM2SSTKP"/>
+    <sourcecode value="graph.node(node,style='invis')&#xa;" id="u2din4wvudx8r"/>
+    <sourcecode value="graph.edge(source,target,style='invis')&#xa;" id="u9VTrK3pXQvzn"/>
+    <sourcecode value="result=f&#xa;if isinstance(tail,str):&#xa;  result+=f&quot;&lt;TR>&lt;TD>{tail}&lt;/TD>&lt;/TR>&quot;&#xa;&#xa;else:&#xa;  for label in tail:&#xa;    result+=f&quot;&lt;TR>&lt;TD>{label}&lt;/TD>&lt;/TR>&quot;&#xa;&#xa;&#xa;result+=&quot;&lt;/TABLE>>&quot;&#xa;return result&#xa;" id="uT8ZhRXOBbx5Q"/>
+    <sourcecode value="result=''&#xa;if toplabel:&#xa;  result+=toplabel+'|'&#xa;&#xa;if len(solution_table)==0:&#xa;  result+='empty'&#xa;&#xa;else:&#xa;  if transpose:&#xa;    solution_table=list(zip(*solution_table))&#xa;&#xa;  vslice=(min(-1,linesmax-len(solution_table[0]))&#xa;  if linesmax>0 else-1)hslice=(min(len(solution_table),columnsmax)&#xa;  if columnsmax>0 else len(solution_table))-1 result+='{'&#xa;  for column in solution_table[:hslice]:&#xa;    result+='{'&#xa;    for row in column[:vslice]:&#xa;      result+=str(row)+'|'&#xa;&#xa;    if vslice&lt;-1:&#xa;      result+='...'+'|'&#xa;&#xa;    for row in column[-1:]:&#xa;      result+=str(row)&#xa;&#xa;    result+='}|'&#xa;&#xa;  if hslice&lt;len(solution_table)-1:&#xa;    result+='{'&#xa;    for row in column[:vslice]:&#xa;      result+='...'+'|'&#xa;&#xa;    if vslice&lt;-1:&#xa;      result+='...'+'|'&#xa;&#xa;    for row in column[-1:]:&#xa;      result+='...'&#xa;&#xa;    result+='}|'&#xa;&#xa;  for column in solution_table[-1:]:&#xa;    result+='{'&#xa;    for row in column[:vslice]:&#xa;      result+=str(row)+'|'&#xa;&#xa;    if vslice&lt;-1:&#xa;      result+='...'+'|'&#xa;&#xa;    for row in column[-1:]:&#xa;      result+=str(row)&#xa;&#xa;    result+='}'&#xa;&#xa;  result+='}'&#xa;&#xa;if len(bottomlabel)>0:&#xa;  result+='|'+bottomlabel&#xa;&#xa;return'{'+result+'}'&#xa;" id="uU8s40OMXuLXB"/>
+    <sourcecode value="LOGGER.debug(&quot;Reading from: %s&quot;,infile)&#xa;visudata=read_json(infile)&#xa;LOGGER.debug(&quot;Found keys: %s&quot;,visudata.keys())&#xa;try:&#xa;  incid=visudata['incidenceGraph']&#xa;  general_graph=visudata['generalGraph']&#xa;  incid_data:IncidenceGraphData=None&#xa;  if incid:&#xa;    incid['edges']=[[x['id'],x['list']]for x in incid['edges']]&#xa;    incid_data=IncidenceGraphData(**incid)&#xa;&#xa;  visudata.pop('incidenceGraph')&#xa;  general_graph_data:GeneralGraphData=None&#xa;  if general_graph:&#xa;    general_graph_data=GeneralGraphData(**general_graph)&#xa;&#xa;  visudata.pop('generalGraph')&#xa;  self.timeline=visudata['tdTimeline']&#xa;  visudata.pop('tdTimeline')&#xa;  self.tree_dec=visudata['treeDecJson']&#xa;  self.bagpre=self.tree_dec['bagpre']&#xa;  self.joinpre=self.tree_dec.get('joinpre','Join %d~%d')&#xa;  self.solpre=self.tree_dec.get('solpre','sol%d')&#xa;  self.soljoinpre=self.tree_dec.get('soljoinpre','solJoin%d~%d')&#xa;  visudata.pop('treeDecJson')&#xa;&#xa;except KeyError as err:&#xa;  raise KeyError(f&quot;Key {err} not found in the input Json.&quot;)&#xa;&#xa;return VisualizationData(incidence_graph=incid_data,&#xa;general_graph=general_graph_data,**visudata)" id="udEiCaodxFY0o"/>
+    <sourcecode value="self.tree_dec_digraph=Digraph(&#xa;'Tree-Decomposition',strict=True,graph_attr=:&#xa;  'rankdir':rankdir&#xa;,node_attr=:&#xa;  'shape':shape,'fillcolor':fillcolor,'style':style,'margin':margin&#xa;)" id="uw9yFFDpFPvTz"/>
+    <sourcecode value="for item in self.tree_dec['labeldict']:&#xa;  bagname=self.bagpre%str(item['id'])&#xa;  self.tree_dec_digraph.node(bagname,&#xa;  self.bag_node(bagname,item['labels']))&#xa;self.tree_dec_digraph.edges([(self.bagpre%str(first),self.bagpre%str(&#xa;second))for(first,second)in self.tree_dec['edgearray']])" id="ucrkrydfvhTJP"/>
+    <sourcecode value="tdg=self.tree_dec_digraph&#xa;for i,node in enumerate(self.timeline):&#xa;  if len(node)>1:&#xa;    id_inv_bags=node[0]&#xa;    if isinstance(id_inv_bags,int):&#xa;      last_sol=solpre%id_inv_bags&#xa;      tdg.node(last_sol,self.solution_node(&#xa;      *(node[1])),shape='record')tdg.edge(self.bagpre%id_inv_bags,last_sol)&#xa;&#xa;    else:&#xa;      suc=self.timeline[i+1][0]&#xa;      LOGGER.debug('joining %s to %s ',node[0],suc)&#xa;      id_inv_bags=tuple(id_inv_bags)&#xa;      last_sol=soljoinpre%id_inv_bags&#xa;      tdg.node(last_sol,self.solution_node(&#xa;      *(node[1])),shape='record')tdg.edge(joinpre%id_inv_bags,last_sol)&#xa;      for child in id_inv_bags:&#xa;        tdg.edge(&#xa;        self.bagpre%child if isinstance(child,int)else joinpre%child,self.bagpre%suc if isinstance(suc,int)else joinpre%suc,style='invis',constraint='false')tdg.edge(self.bagpre%child if isinstance(child,int)&#xa;        else joinpre%child,joinpre%id_inv_bags)&#xa;      tdg.edge(joinpre%id_inv_bags,self.bagpre%suc&#xa;      if isinstance(suc,int)else joinpre%suc)&#xa;&#xa;&#xa;" id="u4smD7oXCugAH"/>
+    <sourcecode value="tdg=self.tree_dec_digraph&#xa;last_sol=&quot;&quot;&#xa;for i,node in enumerate(reversed(self.timeline)):&#xa;  id_inv_bags=node[0]&#xa;  LOGGER.debug(&quot;%s: Reverse traversing on %s&quot;,i,id_inv_bags)&#xa;  if i>0:&#xa;    prevhead=self.timeline[len(self.timeline)-i][0]&#xa;    bag=(&#xa;    self.bagpre%prevhead if isinstance(prevhead,int)else joinpre%tuple(prevhead))self.base_style(tdg,bag)&#xa;    if last_sol:&#xa;      self.style_hide_node(tdg,last_sol)&#xa;      self.style_hide_edge(tdg,bag,last_sol)&#xa;      last_sol=&quot;&quot;&#xa;&#xa;&#xa;  if len(node)>1:&#xa;    if isinstance(id_inv_bags,int):&#xa;      last_sol=solpre%id_inv_bags&#xa;      self.emphasise_node(tdg,last_sol)&#xa;      tdg.edge(self.bagpre%id_inv_bags,last_sol)&#xa;&#xa;    else:&#xa;      id_inv_bags=tuple(id_inv_bags)&#xa;      last_sol=soljoinpre%id_inv_bags&#xa;      self.emphasise_node(tdg,last_sol)&#xa;&#xa;&#xa;  self.emphasise_node(tdg,&#xa;  self.bagpre%id_inv_bags if isinstance(id_inv_bags,int)else joinpre%id_inv_bags)_filename=self.outfolder+self.data.td_file+'%d'&#xa;  tdg.render(&#xa;  view=view,format='svg',filename=_filename%(len(self.timeline)-i))&#xa;" id="uL2lbkbi1RfAl"/>
+    <sourcecode value="self.setup_tree_dec_graph()&#xa;self.basic_tdg()&#xa;self.forward_iterate_tdg(&#xa;joinpre=self.joinpre,solpre=self.solpre,soljoinpre=self.soljoinpre)self.backwards_iterate_tdg(&#xa;view=view,joinpre=self.joinpre,solpre=self.solpre,soljoinpre=self.soljoinpre)_timeline=[]&#xa;for step in self.timeline:&#xa;  if len(step)&lt;2:&#xa;    _timeline.append(None)&#xa;&#xa;  elif isinstance(step[0],int):&#xa;    _timeline.append(&#xa;    next((item.get('items')for item in self.tree_dec['labeldict']if item['id']==step[0])))&#xa;  else:&#xa;    _timeline.append(None)&#xa;&#xa;&#xa;__incid=self.data.incidence_graph&#xa;if __incid:&#xa;  if __incid.infer_primal or __incid.infer_dual:&#xa;    abs_clauses=[[cl[0],list(map(abs,cl[1]))]&#xa;    for cl in __incid.edges]&#xa;  if __incid.infer_primal:&#xa;    primal_edges=set(flatten(&#xa;    [itertools.combinations(cl[1],2)for cl in abs_clauses]))isolated=[cl[1][0]for cl in abs_clauses&#xa;    if len(cl[1])==1 and not any(cl[1][0]in sl for sl in primal_edges)]self.general_graph(&#xa;    timeline=_timeline,edges=primal_edges,extra_nodes=set(isolated),graph_name=__incid.primal_file,file_basename=__incid.primal_file,var_name=__incid.var_name_two)LOGGER.info(&quot;Created infered primal-graph&quot;)&#xa;&#xa;  if __incid.infer_dual:&#xa;    dual_edges=[(cl[0],other[0])&#xa;    for i,cl in enumerate(abs_clauses)for other in abs_clauses[i+1:]if any(var in cl[1]for var in other[1])]isolated=[cl[0]for cl in abs_clauses&#xa;    if not any(cl[0]in sl for sl in dual_edges)]self.general_graph(&#xa;    timeline=_timeline,edges=dual_edges,extra_nodes=set(isolated),graph_name=__incid.dual_file,file_basename=__incid.dual_file,var_name=__incid.var_name_one)LOGGER.info(&quot;Created infered dual-graph&quot;)&#xa;&#xa;  self.incidence(&#xa;  timeline=_timeline,inc_file=__incid.inc_file,num_vars=self.tree_dec['num_vars'],colors=self.data.colors,view=view,fontsize=__incid.fontsize,penwidth=__incid.penwidth,basefill=self.data.bagcolor,var_name_one=__incid.var_name_one,var_name_two=__incid.var_name_two,column_distance=__incid.column_distance)LOGGER.info(&#xa;  &quot;Created incidence-graph for file='%s'&quot;,self.data.incidence_graph.inc_file)&#xa;if self.data.general_graph:&#xa;  self.general_graph(timeline=_timeline,view=view,&#xa;  **asdict(self.data.general_graph))LOGGER.info(&#xa;  &quot;Created general-graph for file='%s'&quot;,self.data.general_graph.file_basename)&#xa;" id="uoCoN62L3Odti"/>
+    <sourcecode value="_filename=self.outfolder+file_basename+'%d'&#xa;LOGGER.info(&quot;Generating general-graph for '%s'&quot;,file_basename)&#xa;vartag_n=var_name+'%d'&#xa;default_engine='sfdp'&#xa;graph=Graph(graph_name,strict=True,&#xa;engine=default_engine,graph_attr=:&#xa;  'fontsize':fontsize,'overlap':'false','outputorder':'edgesfirst','K':'2'&#xa;,node_attr=:&#xa;  'fontcolor':fontcolor,'penwidth':penwidth,'style':'filled','fillcolor':'white'&#xa;)if do_sort_nodes:&#xa;  bodybaselen=len(graph.body)&#xa;  graph.engine='circo'&#xa;  nodes=sorted([vartag_n%n for n in set(&#xa;  itertools.chain(flatten(edges),extra_nodes))])for i,node in enumerate(nodes):&#xa;    graph.edge(str(nodes[i-1]),str(node))&#xa;&#xa;  code_lines=graph.pipe('plain').splitlines()&#xa;  assert code_lines[0].startswith(b'graph')&#xa;  node_positions=[line.split()[1:4]for line in code_lines[1:]&#xa;  if line.startswith(b'node')]graph.body=graph.body[:bodybaselen]&#xa;  for line in node_positions:&#xa;    graph.node(line[0].decode(),&#xa;    pos='%f,%f!'%(float(line[1]),float(line[2])))&#xa;  graph.engine='neato'&#xa;&#xa;for(s,t)in edges:&#xa;  graph.edge(vartag_n%s,vartag_n%t)&#xa;&#xa;for node in extra_nodes:&#xa;  graph.node(vartag_n%node)&#xa;&#xa;bodybaselen=len(graph.body)&#xa;for i,variables in enumerate(timeline,start=1):&#xa;  graph.body=graph.body[:bodybaselen]&#xa;  if variables is None:&#xa;    graph.render(&#xa;    view=view,format='svg',filename=_filename%i)continue&#xa;&#xa;  for var in variables:&#xa;    graph.node(&#xa;    vartag_n%var,fillcolor=first_color,style=first_style)&#xa;  for(s,t)in edges:&#xa;    if(s in variables and t in variables):&#xa;      graph.edge(&#xa;      vartag_n%s,vartag_n%t,color=third_color,penwidth=penwidth)&#xa;&#xa;  if do_adj_nodes:&#xa;    edges=[set(edge)for edge in edges]&#xa;    adjacent=:&#xa;&#xa;      edge.difference(variables).pop()for edge in edges if len(edge.difference(variables))==1&#xa;    for var in adjacent:&#xa;      graph.node(vartag_n%var,&#xa;      color=second_color,style=second_style)&#xa;&#xa;  graph.render(view=view,format='svg',filename=_filename%i)&#xa;&#xa;" id="ub7cjN6lFujzo"/>
+    <sourcecode value="_filename=self.outfolder+inc_file+'%d'&#xa;clausetag_n=var_name_one+'%d'&#xa;vartag_n=var_name_two+'%d'&#xa;g_incid=Graph(&#xa;inc_file,strict=True,graph_attr=:&#xa;  'splines':'false','ranksep':'0.2','nodesep':str(column_distance),'fontsize':str(int(fontsize)),'compound':'true'&#xa;,edge_attr=:&#xa;  'penwidth':str(penwidth),'dir':'back','arrowtail':'none'&#xa;)__incid=self.data.incidence_graph&#xa;with g_incid.subgraph(name='cluster_clause',&#xa;edge_attr=:&#xa;  'style':'invis'&#xa;,node_attr=:&#xa;  'style':'rounded,filled','fillcolor':basefill&#xa;)as clauses:&#xa;  clauses.attr(label='clauses')&#xa;  clauses.edges([(clausetag_n%(i+1),clausetag_n%(i+2))&#xa;  for i in range(len(__incid.edges)-1)])&#xa;g_incid.attr('node',shape=sndshape,fontcolor='black',&#xa;penwidth=str(penwidth),style='dotted')with g_incid.subgraph(name='cluster_ivar',&#xa;edge_attr=:&#xa;  'style':'invis'&#xa;)as ivars:&#xa;  ivars.attr(label='variables')&#xa;  ivars.edges([(vartag_n%(i+1),vartag_n%(i+2))&#xa;  for i in range(num_vars-1)])for i in range(num_vars):&#xa;    g_incid.node(vartag_n%&#xa;    (i+1),vartag_n%(i+1),color=colors[(i+1)%len(colors)])&#xa;&#xa;g_incid.attr('edge',constraint='false')&#xa;for clause in __incid.edges:&#xa;  for var in clause[1]:&#xa;    if var>=0:&#xa;      g_incid.edge(clausetag_n%clause[0],&#xa;      vartag_n%var,color=colors[var%len(colors)])&#xa;    else:&#xa;      g_incid.edge(clausetag_n%clause[0],&#xa;      vartag_n%-var,color=colors[-var%len(colors)],arrowtail=neg_tail)&#xa;&#xa;&#xa;vcmapping=map(&#xa;lambda y:map(lambda x:(x,y[0]),y[1]),__incid.edges)var_cl_iter=tuple(flatten(vcmapping))&#xa;bodybaselen=len(g_incid.body)&#xa;for i,variables in enumerate(timeline,start=1):&#xa;  g_incid.body=g_incid.body[:bodybaselen]&#xa;  if variables is None:&#xa;    g_incid.render(view=view,format='svg',filename=_filename%i)&#xa;    continue&#xa;&#xa;  emp_clause=:&#xa;&#xa;    var_cl[1]for var_cl in var_cl_iter if abs(var_cl[0])in variables&#xa;  emp_var=:&#xa;    abs(var_cl[0])&#xa;    for var_cl in var_cl_iter if var_cl[1]in emp_clause&#xa;  for var in emp_var:&#xa;    _vartag=vartag_n%abs(var)&#xa;    _style='solid,filled'if var in variables else'dotted,filled'&#xa;    g_incid.node(&#xa;    _vartag,_vartag,style=_style,fillcolor='yellow')&#xa;  for clause in emp_clause:&#xa;    g_incid.node(&#xa;    clausetag_n%clause,clausetag_n%clause,fillcolor='yellow')&#xa;  for edge in var_cl_iter:&#xa;    (var,clause)=edge&#xa;    _style='solid'if clause in emp_clause else'dotted'&#xa;    _vartag=vartag_n%abs(var)&#xa;    if var>=0:&#xa;      g_incid.edge(clausetag_n%clause,&#xa;      _vartag,color=colors[var%len(colors)],style=_style)&#xa;    else:&#xa;      g_incid.edge(clausetag_n%clause,&#xa;      _vartag,color=colors[-var%len(colors)],arrowtail='odot',style=_style)&#xa;&#xa;  g_incid.render(view=view,format='svg',filename=_filename%i)&#xa;&#xa;" id="usCYFWG469xNr"/>
+    <sourcecode value="if self.colors is None:&#xa;  self.colors=[&#xa;  ''''''''''''''&#xa;if self.emphasis is None:&#xa;  self.emphasis=dict()&#xa;&#xa;self.emphasis=:&#xa;  **:&#xa;    &quot;firstcolor&quot;:'yellow',&#xa;    &quot;secondcolor&quot;:'green',&quot;firststyle&quot;:'filled',&quot;secondstyle&quot;:'dotted,filled'&#xa;  ,**self.emphasis&#xa;" id="u517yrEJsfVoF"/>
+    <sourcecode value="result=f_transform(**arguments)&#xa;assert result==expected&#xa;" id="uW0Qy5xx3DV89"/>
+    <sourcecode value="result=f_transform(**arguments)&#xa;assert result==expected&#xa;" id="uwUX3naAYOBjb"/>
+   </codegenerator>
+  </codegeneration>
+ </XMI.extensions>
+</XMI>
