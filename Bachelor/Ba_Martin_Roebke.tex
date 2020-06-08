@@ -98,6 +98,13 @@ SAT was the first known NP-complete problem, as proved by Stephen Cook at the Un
 
 Connection to graphs with ...DA...
 
+SAT Handbook:
+Even finding a single solution can be a challenge
+for such problems; counting the number of solutions is much harder.Not
+surprisingly, the largest formulas we can solve for the model counting problem
+with state - of - the - art model counters are orders of magnitude smaller than the
+formulas we can solve with the best SAT solvers. Generally speaking, current
+exact counting methods can tackle problems with a couple of hundred variables, while approximate counting methods push this to around 1, 000 variables.
 
 
 \subsection{MSOL}
@@ -133,9 +140,15 @@ Research: language (python - explain) graph-construction (graphviz vs networkX),
 \newpage
 \section{My Visualization Project}
 
-Github
-Objectives
-htd hier oder auslassen?
+Pip, requirements files, virtual environments and how to pick quality Python libraries:
+\url{https://realpython.com/products/managing-python-dependencies/?utm_source=drip&utm_medium=email&utm_campaign=productfooter&utm_content=mpd}
+
+
+The first stages were in \url{https://github.com/VaeterchenFrost/gpusat-VISU} and the first releases of the source code outsourced to\url{https://github.com/VaeterchenFrost/tdvisu}
+
+The objective of this project was/is to support the visualization mainly to document and improve the development efforts of dynamic programming on tree decompositions.
+
+The tree decompositions in every tested application were provided by the utility \url{https://github.com/mabseher/htd} (small but efficient C++ library for computing (customized) tree and hypertree decompositions).
 Files / Classes / Methods
 Current 
 perspective 
@@ -143,8 +156,45 @@ Checking with www.deepcode.ai
 
 \newpage
 \subsection{Integration in GPUSAT}
-Programm
-Umsetzung
+Windows opencl driver problem: ERROR: clBuildProgram(-9999)
+
+Programm \url{https://github.com/VaeterchenFrost/GPUSAT} \\
+Differences: \url{https://github.com/daajoe/GPUSAT/compare/master...VaeterchenFrost:master}  Commits 142 Files changed 94 
+Nagoya talk:
+Graphs for performance are Ordered by used time per algorithm - gpusat quite good
+
+Working with cmake remotly. ssh @(sg1.)dbai.tuwien.ac.at
+CPU branch wasn't working.
+Only AMD/Nvidia graphics  with respective flags.
+
+First steps:
+Connect ssh
+mkdir Ba
+cd Ba
+git clone https://github.com/mabseher/htd.git
+ cd htd/
+ cmake .
+ make -B -j1 
+ make test
+ (100pct tests passed, 0 tests failed out of 38                                                                                                                                                                                                                                                                                                             Total Test time (real) =   0.81 sec )\\
+
+git clone https://github.com/VaeterchenFrost/GPUSAT.git
+Adding include_directories (/home/roemar/Ba/htd/
+include) to CMakeLists.txt \\
+find_library(HTD_LIB htd /home/roemar/Ba/htd/lib)
+find_library(HTD_IO_LIB htd_io /home/roemar/Ba/htd/lib) 
+cmake - L~/Ba/GPUSAT/build
+-- Configuring done
+-- Generating done
+-- Build files have been written to : /home/roemar/Ba/GPUSAT/build-- Cache values 
+\\
+Common commands
+cd Ba/GPUSAT      
+date \&\& make \&\& scp ./gpusat mroebke@128.131.196.128:~/Ba/GPUSAT/GPUSAT/build/december
+
+The CUDA Remote had no cmake so I built the projects on the 
+
+Umsetzung Special fork connecting the Visualization directly to the 
 Beispiel
 \newpage
 \subsection{Integration in dpdb}
