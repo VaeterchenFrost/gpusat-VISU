@@ -47,4 +47,13 @@
 	series = {STOC ’71}
 }
 
-
+@BOOK{DiplomarbeitZisser,
+	author = {Zisser, Markus},
+	title = {Solving the #SAT problem on the GPU with dynamic programming and OpenCL},
+	address = {Wien},
+	YEAR = {2018},
+	Language = {English},
+	url={http://katalog.ub.tuwien.ac.at/AC15055950},
+	location = {Technische Universität Wien},
+	abstract = {ger:; eng: There are many computational hard problems in computer science and a variety of these problems can be expressed via Boolean formulas. For some of these problems, the number of satisfying assignments can be directly linked to the solution. The task to compute the number of solutions of a Boolean formula is called the #SAT problem. Algorithms in artificial intelligence and machine learning tasks have profited from the massive parallelism provided by Graphic Processing Units (GPUs). However many current #SAT solvers rely on techniques from Satisfiability solving or approximate solving based on sampling of the search space. A central method for solving the Satisfiability problem is Conflict Driven Clause Learning (CDCL), but CDCL contains parts which are hard to or not parallelizable at all. CDCL does not work well on the GPU since parallelization on the GPU requires an algorithm with many similar independent steps. Dynamic Programming (DP) on tree decompositions on the other hand parallelizes well as we can execute many similar operations which are independent from another. For DP we need tree decompositions with a sufficiently small width. In the course of this thesis we developed gpusat, a #SAT solver which is based on dynamic programming on tree decompositions with OpenCL, an open standard that can be used to parallelize tasks on the GPU. We use tree decompositions of the primal, incidence and dual graph as base for our dynamic programming algorithms. gpusat is also able to solve Weighted Model Counting (WMC) where a weight is assigned to every literal and the weight of a solution is the product of its literal weights. To compare gpusat with other solvers we collected #SAT and WMC instances from different sources, and generated tree decompositions of the primal, incidence and dual graph for each of these instances. Then we compared the runtime of gpusat with other state of the art #SAT and WMC solvers on our instances. To get a better understanding of our benchmark set we also generated an overview of the tree width for our benchmark instances. Our experiments have shown that gpusat is competitive with other solvers for a tree width of up to 30. We were also able to solve some instances with a tree width of up to 45. About half of the instances had a width of 30 or below.},
+}
