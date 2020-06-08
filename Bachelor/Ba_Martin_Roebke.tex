@@ -79,11 +79,17 @@ Stand Umsetzung, Tools: Slack, Trello, GitHub, Presentations
 
 \newpage
 \section{Background}
+\textit{This chapter provides the reader with a brief background for this work}.
+
+We begin with a description on SAT and #SAT as examples for a very general problem that can be described with monadic second order logic (MSOL).
+Furthermore the general case of MSOL will be described, as well as the \textit{DIMACS}-file-format used in the projects.
+The following section describes Tree Decompositions (TDs) which are the basis for our visualization. 
+Finally we shortly discuss Courcelle's Theorem~\cite{Courcelle2012} as a related method of solving these problems.
 
 \subsection{Boolean satisfiability problem}
 \url{https://en.wikipedia.org/wiki/Boolean_satisfiability_problem}
 
-SAT was the first known NP-complete problem, as proved by Stephen Cook at the University of Toronto in 1971 \cite{SAT1971}
+SAT was the first known NP-complete problem, shown by Stephen Cook at the University of Toronto in 1971 \cite{SAT1971}
 
 \begin{align*}
 \text{literal}&\equiv\text{boolean variable v or its negation} \\
@@ -96,7 +102,7 @@ SAT was the first known NP-complete problem, as proved by Stephen Cook at the Un
 \text{satisfiedform}&\equiv\text{each clause in the formula is satisfied by assignment} \\
 \end{align*}
 
-Connection to graphs with ...DA...
+Connection to graphs with \cite{DiplomarbeitZisser}
 
 SAT Handbook:
 Even finding a single solution can be a challenge
@@ -109,6 +115,9 @@ exact counting methods can tackle problems with a couple of hundred variables, w
 
 \subsection{MSOL}
 See also figure~\ref{fig:logictheory}.
+
+
+
 \subsection{DIMACS Format}
 \subsection{Tree Decomposition}
 \subsection{Courcelle's Theorem}
