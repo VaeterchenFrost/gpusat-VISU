@@ -92,14 +92,14 @@ Finally we shortly discuss Courcelle's Theorem~\cite{Courcelle2012} as a related
 SAT was the first known NP-complete problem, shown by Stephen Cook at the University of Toronto in 1971 \cite{SAT1971}
 
 \begin{align*}
-\text{literal}&\equiv\text{boolean variable v or its negation} \\
-\text{clause}&\equiv\text{finite set of literals, interpreted as the disjunction} \\
-\text{unit}&\equiv\text{clause with $|$c$|$=1} \\
-\text{CNF formula}&\equiv\text{set of clauses, interpreted as their conjunction} \\
-\text{var}&\equiv\text{set of variables contained in the clause or clause set C} \\
+\text{literal}&\equiv \text{boolean variable v or its negation} \\
+\text{clause}&\equiv \text{finite set of literals, interpreted as the disjunction} \\
+\text{unit}&\equiv \text{clause with $|$c$|$=1} \\
+\text{CNF formula}&\equiv \text{set of clauses, interpreted as their conjunction} \\
+\text{var}&\equiv \text{set of variables contained in the clause or clause set C} \\
 \text{assignment}&\equiv \text{$\alpha $:var(C) $\to $ \{0,1\}} \\
-\text{satisfiedclause}&\equiv\text{if $\exists $v $\in $ var(c), v$\in $c and $\alpha $(v)=1 or $\neg $v$\in $c and $\alpha $(v)= 0. Otherwise falsified}\\ 
-\text{satisfiedform}&\equiv\text{each clause in the formula is satisfied by assignment} \\
+\text{satisfiedclause}&\equiv \text{if $\exists $v $\in $ var(c), v$\in $c and $\alpha $(v)=1 or $\neg $v$\in $c and $\alpha $(v)= 0. Otherwise falsified}\\ 
+\text{satisfiedform}&\equiv \text{each clause in the formula is satisfied by assignment} \\
 \end{align*}
 
 Connection to graphs with \cite{DiplomarbeitZisser}
@@ -119,6 +119,21 @@ See also figure~\ref{fig:logictheory}.
 
 
 \subsection{DIMACS Format}
+Developed in 1993 at Rutgers University.
+DIMACS (the Center for Discrete Mathematics and Theoretical Computer Science)
+
+Wolfram Language fully supports the DIMACS format for storing a single undirected graph.
+\url{https://reference.wolfram.com/language/ref/format/DIMACS.html}
+
+DIMACS CNF: This format is used to define a Boolean expression, written in conjunctive normal form.
+\url{https://people.sc.fsu.edu/~jburkardt/data/cnf/cnf.html}
+
+Other formats for WMC, different graphs...
+
+Supported also in Maple \url{https://www.maplesoft.com/support/help/maple/view.aspx?path=Formats/CNF}
+
+Examples in appendix
+
 \subsection{Tree Decomposition}
 \subsection{Courcelle's Theorem}
 \begin{quotation}
