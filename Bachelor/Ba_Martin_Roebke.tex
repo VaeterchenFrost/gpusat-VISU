@@ -184,11 +184,23 @@ Supported also in Maple \url{https://www.maplesoft.com/support/help/maple/view.a
 Examples in appendix
 
 \subsection{Tree Decomposition}
+\cite{DiplomarbeitZisser}chapter 2.2
+Tree decompositions were originally introduced by Robertson and Seymour \cite{ROBERTSON198449} in 1984.
+A \textit{tree decomposition} (TD) of a graph G is a pair $(T, \chi)$. $T$ is a tree and $\chi$ is a mapping which assigns each node $n~\in~V(T)$ 
+a set $\chi(n) \subseteq V(G)$ called a \textit{bag}. Then $(T, \chi)$. $T$ is a TD if the following conditions hold:
 
+\begin{itemize}
+	\item[1.] for each vertex $v(n) \in V(G)$ there is a node $n \in V(T)$ such that $v \in \chi(n)$
+	\item[2.] for each edge $(x,y) \in E(G)$ there is a node $n\in V(T)$ such that $x,y \in\chi(n)$
+	\item[3.] if $x,y,z \in V(T)$ and $y$ lies on the path from x to z then $\chi(x) \cap \chi(z) \subseteq \chi(y)$.
+\end{itemize}
+The width $width(T)$ of a tree decomposition $T$ is $max_{n\in V(T)}(|\chi(n)|)-1$.
+The tree width of a graph is the \textit{minimal width} over all tree decompositions of the graph.
 
+!!!Example (can take one from the visualizations) also in \cite{pcgp2019} page 169
 \subsection{Courcelle's Theorem}
 \begin{quotation}
-	Every graph property definable in monadic second-order logic (MSO) is decidable in linear time on graphs of bounded treewidth.\\
+	Every graph property definable in monadic second-order logic (MSO) is decidable in linear time on graphs of bounded tree-width.\\
 	{\small Courcelle, Bruno (1990)}\footnote{Courcelle, Bruno "The monadic second-order logic of graphs. I. Recognizable sets of finite graphs",\\ Information and Computation, 85 (1990) no. 1: 12-75}
 \end{quotation}
 
