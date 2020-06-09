@@ -294,10 +294,12 @@ The CUDA Remote had no cmake so I built the projects on the Proxy tuwien.
 First steps in automatically visualizing the solving process with its tree decomposition.
 Outputs a .dot graph !!!EXAMPLE!!! with the bags and their solution nodes.
 
-Additionally two functions to generate a Neo4J Cypher ***Link*** Query to generate
+Additionally two functions to generate a Neo4J Cypher ***Link*** Query with:
 \begin{itemize}
 	\item one graph representing the SAT formula and  queries to construct incidence, dual and primal representations.
+	output as satFile = "cypherSatFormula.txt"
 	\item a graph representing the tree decomposition of the primal graph with it's bags containing variables.
+	output as tdFile = "cypherTreedec.txt"
 \end{itemize}
 \subsubsection{Class SolverVisualization}
 
