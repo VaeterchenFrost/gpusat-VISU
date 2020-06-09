@@ -50,12 +50,15 @@
 \section*{Abstract}
 \vspace{4ex}
 The thesis is about a practical and lightweight implementation for visualizing dynamic programming on tree decompositions.
-I created the python-package\href{https://pypi.org/project/tdvisu}{tdvisu} for the purpose of visualizing, teaching and analyzing the solving process of MSOL-problems using tree decomposition. 
-Intended audience: Developer of dynamic programming on tree decompositions for debugging. Researcher of such algorithms for comparisons and visualizations.
-Teachers or students wanting some automatic visualization of their examples and the dynamic-solving-process.
-As two reference implementations of dynamic programming on tree decompositions the projects \href{https://github.com/daajoe/GPUSAT}{GPUSAT} and \href{https://github.com/hmarkus/dp_on_dbs}{dpdb} were chosen.
+I created the python-package\href{https://pypi.org/project/tdvisu}{tdvisu} for the purpose of visualizing, teaching and analyzing the solving process of MSOL-problems using tree decomposition. \\
+Intended audience: 
+\begin{itemize}
+	\item  Developer of dynamic programming on tree decompositions for debugging.
+	\item Researcher of such algorithms for comparisons and visualizations.
+	\item Teachers or students wanting some automatic visualization of their examples and the dynamic-solving-process.
+\end{itemize} 
 
-
+As two reference implementations of dynamic programming on tree decompositions we chose the projects \href{https://github.com/daajoe/GPUSAT}{GPUSAT} and \href{https://github.com/hmarkus/dp_on_dbs}{dpdb}.
 
 \newpage
 
@@ -90,7 +93,7 @@ Stand Umsetzung, Tools: Slack, Trello, GitHub, Presentations
 \section{Background}
 \textit{This chapter provides the reader with a brief background for this work}.
 
-We begin with a description on SAT and #SAT as examples for a very general problem that can be described with monadic second order logic (MSOL).
+We begin with a description on SAT and \#SAT as examples for a very general problem that can be described with monadic second order logic (MSOL).
 Furthermore the general case of MSOL will be described, as well as the \textit{DIMACS}-file-format used in the projects.
 The following section describes Tree Decompositions (TDs) which are the basis for our visualization. 
 Finally we shortly discuss Courcelle's Theorem~\cite{Courcelle2012} as a related method of solving these problems.
@@ -136,7 +139,7 @@ Interested in MSO logic over graphs.
 Two types of MSO formulas \textit{or logical graph representations}.
 \begin{itemize}
 	\item MSO formulas
-	\item MSO_{2} formulas with edge quantification $\equiv$ MSO formulas over incidence graphs
+	\item MSO$_{2}$ formulas with edge quantification $\equiv$ MSO formulas over incidence graphs
 \end{itemize}
 \begin{itemize}
 	\item G=(vertices, edges as binary relation)
@@ -149,7 +152,7 @@ Two types of MSO formulas \textit{or logical graph representations}.
 \end{itemize}
 This can also be done for directed graphs!
 
-Typical MSO_{2} graph properties:
+Typical MSO$_{2}$ graph properties:
 
 has a perfect matching
 has a Hamiltonian circuit
@@ -272,10 +275,10 @@ git clone https://github.com/mabseher/htd.git
  (100pct tests passed, 0 tests failed out of 38                                                                                                                                                                                                                                                                                                             Total Test time (real) =   0.81 sec )\\
 
 git clone https://github.com/VaeterchenFrost/GPUSAT.git
-Adding include_directories (/home/roemar/Ba/htd/
+Adding include\_directories (/home/roemar/Ba/htd/
 include) to CMakeLists.txt \\
-find_library(HTD_LIB htd /home/roemar/Ba/htd/lib)
-find_library(HTD_IO_LIB htd_io /home/roemar/Ba/htd/lib) 
+find\_library(HTD\_LIB htd /home/roemar/Ba/htd/lib)
+find\_library(HTD\_IO\_LIB htd\_io /home/roemar/Ba/htd/lib) 
 cmake - L~/Ba/GPUSAT/build
 -- Configuring done
 -- Generating done
@@ -320,7 +323,7 @@ What worked good, what bad?
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=0.8\linewidth]{images/logictheory.png}
-	\caption{From propositional logic to monadic second order logic}
+	\caption{From propositional logic to monadic second order logic and Courcelle's Theorem}
 	\label{fig:logictheory}
 \end{figure}
 \end{document}
