@@ -15,4 +15,17 @@ S.~A. Cook, ``The complexity of theorem-proving procedures,'' in {\em
   ’71, (New York, NY, USA), p.~151–158, Association for Computing
   Machinery, 1971.
 
+\bibitem{DiplomarbeitZisser}
+M.~Zisser, {\em Solving the \#SAT problem on the GPU with dynamic programming
+  and OpenCL}.
+\newblock 2018.
+
+\bibitem{ROBERTSON198449}
+N.~Robertson and P.~Seymour, ``Graph minors. iii. planar tree-width,'' {\em
+  Journal of Combinatorial Theory, Series B}, vol.~36, no.~1, pp.~49 -- 64,
+  1984.
+
+\bibitem{pcgp2019}
+J.~K. Fichte, ``Parameterized complexity and its applications in practice.''
+
 \end{thebibliography}

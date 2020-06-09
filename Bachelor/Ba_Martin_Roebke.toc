@@ -1,14 +1,14 @@
 \contentsline {section}{\numberline {1}Introduction}{4}{section.1}%
 \contentsline {section}{\numberline {2}Background}{5}{section.2}%
 \contentsline {subsection}{\numberline {2.1}Boolean satisfiability problem}{5}{subsection.2.1}%
-\contentsline {subsection}{\numberline {2.2}MSOL}{5}{subsection.2.2}%
-\contentsline {subsection}{\numberline {2.3}DIMACS Format}{5}{subsection.2.3}%
-\contentsline {subsection}{\numberline {2.4}Tree Decomposition}{5}{subsection.2.4}%
-\contentsline {subsection}{\numberline {2.5}Courcelle's Theorem}{5}{subsection.2.5}%
-\contentsline {section}{\numberline {3}Concept}{7}{section.3}%
-\contentsline {section}{\numberline {4}My Visualization Project}{8}{section.4}%
-\contentsline {subsection}{\numberline {4.1}Integration in GPUSAT}{9}{subsection.4.1}%
-\contentsline {subsection}{\numberline {4.2}Integration in dpdb}{10}{subsection.4.2}%
-\contentsline {section}{\numberline {5}Application and Images}{11}{section.5}%
-\contentsline {section}{\numberline {6}Summary and Outline}{12}{section.6}%
-\contentsline {section}{\numberline {A}Images}{13}{appendix.A}%
+\contentsline {subsection}{\numberline {2.2}Monadic Second Order Logic}{5}{subsection.2.2}%
+\contentsline {subsection}{\numberline {2.3}DIMACS Format}{6}{subsection.2.3}%
+\contentsline {subsection}{\numberline {2.4}Tree Decomposition}{7}{subsection.2.4}%
+\contentsline {subsection}{\numberline {2.5}Courcelle's Theorem}{7}{subsection.2.5}%
+\contentsline {section}{\numberline {3}Concept}{8}{section.3}%
+\contentsline {section}{\numberline {4}My Visualization Project}{9}{section.4}%
+\contentsline {subsection}{\numberline {4.1}Integration in GPUSAT}{10}{subsection.4.1}%
+\contentsline {subsection}{\numberline {4.2}Integration in dpdb}{11}{subsection.4.2}%
+\contentsline {section}{\numberline {5}Application and Images}{12}{section.5}%
+\contentsline {section}{\numberline {6}Summary and Outline}{13}{section.6}%
+\contentsline {section}{\numberline {A}Images}{14}{appendix.A}%
