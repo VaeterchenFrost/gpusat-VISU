@@ -275,20 +275,10 @@ git clone https://github.com/mabseher/htd.git
  (100pct tests passed, 0 tests failed out of 38                                                                                                                                                                                                                                                                                                             Total Test time (real) =   0.81 sec )\\
 
 git clone https://github.com/VaeterchenFrost/GPUSAT.git
-Adding include\_directories (/home/roemar/Ba/htd/
-include) to CMakeLists.txt \\
-find\_library(HTD\_LIB htd /home/roemar/Ba/htd/lib)
-find\_library(HTD\_IO\_LIB htd\_io /home/roemar/Ba/htd/lib) 
-cmake - L~/Ba/GPUSAT/build
--- Configuring done
--- Generating done
--- Build files have been written to : /home/roemar/Ba/GPUSAT/build-- Cache values 
-\\
-Common commands
-cd Ba/GPUSAT      
-date \&\& make \&\& scp ./gpusat mroebke@128.131.196.128:~/Ba/GPUSAT/GPUSAT/build/december
 
-The CUDA Remote had no cmake so I built the projects on the Proxy tuwien.
+Configuration manual with the include options in CMakeLists.txt \url{https://github.com/VaeterchenFrost/GPUSAT/blob/master/CMakeLists.txt} 
+or with help from \url{https://marketplace.visualstudio.com/items?itemName=ms-vscode.cmake-tools}
+to set up for the (potentially remote) environment.
 
 \subsubsection{Class Graphoutput}
 First steps in automatically visualizing the solving process with its tree decomposition.
@@ -303,7 +293,29 @@ Additionally two functions to generate a Neo4J Cypher ***Link*** Query with:
 \end{itemize}
 \subsubsection{Class SolverVisualization}
 
-Umsetzung Special fork connecting the Visualization directly to the 
+Umsetzung Special fork connecting the Visualization directly to the Solver.
+Utilizing the c++ library JsonCpp \url{https://github.com/open-source-parsers/jsoncpp} version 1.9.2 
+Usage: ./gpusat [OPTIONS]
+
+Options:
+-h,--help                   Print this help message and exit
+-s,--seed INT               number used to initialize the pseudorandom number generator
+-f,--formula TEXT           path to the file containing the sat formula
+-d,--decomposition TEXT     path to the file containing the tree decomposition
+--CPU                       run the solver on a cpu
+--NVIDIA                    run the solver on an NVIDIA device
+--AMD                       run the solver on an AMD device
+--weighted                  use weighted model count
+--noExp                     don't use extended exponents
+-v,--verbose                print additional program information
+-p,--nopreprocess           skips the preprocessing step for debugging and visualisation-purposes
+--dataStructure TEXT in {array,combined,tree}=combined
+data structure for storing the solution
+-m,--maxBagSize INT=-1      max size of a bag on the gpu
+-w,--combineWidth INT=20    maximum width to combine bags of the decomposition
+-g,--graph TEXT             filename for saving the decomposition graph
+--visufile TEXT             filename for saving the visualization file
+
 Beispiel
 \newpage
 \subsection{Integration in dpdb}
