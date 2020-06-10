@@ -49,13 +49,19 @@
 %==============================================================================
 \section*{Abstract}
 \vspace{4ex}
-The thesis is about a practical and lightweight implementation for visualizing dynamic programming on tree decompositions.
-I created the python-package\href{https://pypi.org/project/tdvisu}{tdvisu} for the purpose of visualizing, teaching and analyzing the solving process of MSOL-problems using tree decomposition. \\
+This thesis introduces a practical and lightweight implementation for visualizing dynamic programming on tree decompositions.
+The provided source code is located in the python-package \href{https://pypi.org/project/tdvisu}{tdvisu} for the purpose of visualizing, teaching and analyzing the dynamic solving process. \\
+It defines a \href{https://www.json.org/json-en.html}{JSON}-format specification for portability and customization of the visualization combined in one human-readable file and two reference implementations in actual solvers.
+The implementation currently does not support hyper-graphs and assumes that each node in the tree decomposition has either one or two children.
+The visualization output consists by default of scalable vector graphics \href{https://developer.mozilla.org/en-US/docs/Web/SVG}{SVG}, a very flexible text-based that can be compressed and modified very easily without loss of quality.
+The images are split up into different views on the current state of the tree decomposition for consecutive user-defined time steps showing the progress of the dynamic programming.
+As illustrations of the possibilities for an application smaller examples from the problem-types "\#SAT" and "minimal vertex cover" are presented,
+as well as an example of a faulty tree-decomposition that occurred during development.
 Intended audience: 
 \begin{itemize}
-	\item  Developer of dynamic programming on tree decompositions for debugging.
+	\item Developer of dynamic programming on tree decompositions for debugging.
 	\item Researcher of such algorithms for comparisons and visualizations.
-	\item Teachers or students wanting some automatic visualization of their examples and the dynamic-solving-process.
+	\item Teachers or students looking for automatic visualization of their examples and the dynamic programming.
 \end{itemize} 
 
 As two reference implementations of dynamic programming on tree decompositions we chose the projects \href{https://github.com/daajoe/GPUSAT}{GPUSAT} and \href{https://github.com/hmarkus/dp_on_dbs}{dpdb}.
