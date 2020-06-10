@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<XMI verified="false" xmi.version="1.2" timestamp="2020-06-07T19:49:29" xmlns:UML="http://schema.omg.org/spec/UML/1.4">
+<XMI verified="false" xmi.version="1.2" timestamp="2020-06-10T18:45:26" xmlns:UML="http://schema.omg.org/spec/UML/1.4">
  <XMI.header>
   <XMI.documentation>
    <XMI.exporter>umbrello uml modeller http://umbrello.kde.org</XMI.exporter>
@@ -48,6 +48,7 @@
       <UML:Class visibility="public" isSpecification="false" namespace="Logical_View" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="umk1nsKDgpWNz" name="IDpdbVisuConstruct">
        <UML:GeneralizableElement.generalization>
         <UML:Generalization xmi.idref="utm0laJMEz8ww"/>
+        <UML:Generalization xmi.idref="uaOHQL5DpAw2H"/>
        </UML:GeneralizableElement.generalization>
        <UML:Classifier.feature>
         <UML:Operation visibility="private" isSpecification="false" isQuery="false" isAbstract="false" isLeaf="false" ownerScope="classifier" isRoot="false" xmi.id="uDubY5PIkPobT" isOverride="false" name="subclasshook__" isInline="false" isVirtual="false">
@@ -85,27 +86,13 @@
       <UML:Class visibility="public" isSpecification="false" namespace="Logical_View" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="uhUgf0YSeMiGm" comment="Implementation of the JSON-Construction for the SharpSat problem." name="DpdbSharpSatVisu">
        <UML:GeneralizableElement.generalization>
         <UML:Generalization xmi.idref="uoHr02D7YUkBh"/>
+        <UML:Generalization xmi.idref="uOLFawuYdl2ul"/>
        </UML:GeneralizableElement.generalization>
        <UML:Classifier.feature>
         <UML:Attribute visibility="public" isSpecification="false" xmi.id="u6Yothj1rVo5K" type="uQUALsK5DAVwc" comment="db : psycopg2.connection&#xa;database to read from.&#xa;problem : int&#xa;index of the problem.&#xa;intermed_nodes : bool&#xa;if True calculates the shortest path between successive nodes.&#xa;" name="intermed_nodes"/>
         <UML:Attribute visibility="public" isSpecification="false" xmi.id="u6LDQfLq1c0mO" type="uQUALsK5DAVwc" comment="db : psycopg2.connection&#xa;database to read from.&#xa;problem : int&#xa;index of the problem.&#xa;intermed_nodes : bool&#xa;if True calculates the shortest path between successive nodes.&#xa;" initialValue="None" name="num_vars"/>
         <UML:Attribute visibility="public" isSpecification="false" ownerScope="classifier" xmi.id="uNCLXzk0253kE" type="uSUthanHJnVdO" comment="db : psycopg2.connection&#xa;database to read from.&#xa;problem : int&#xa;index of the problem.&#xa;intermed_nodes : bool&#xa;if True calculates the shortest path between successive nodes.&#xa;wait for good connection" initialValue="()" name="status"/>
         <UML:Attribute visibility="public" isSpecification="false" ownerScope="classifier" xmi.id="um6dFsDnHTh1n" type="uiou2vWF3HHY9" comment="db : psycopg2.connection&#xa;database to read from.&#xa;problem : int&#xa;index of the problem.&#xa;intermed_nodes : bool&#xa;if True calculates the shortest path between successive nodes.&#xa;wait for good connection" initialValue="0.5" name="sleeptimer"/>
-        <UML:Operation stereotype="constructor" visibility="public" isSpecification="false" isQuery="false" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="uO3lsh5Cai3jt" comment="db : psycopg2.connection&#xa;            database to read from.&#xa;        problem : int&#xa;            index of the problem.&#xa;        intermed_nodes : bool&#xa;            if True calculates the shortest path between successive nodes.&#xa; wait for good connection" isOverride="false" name="__init__" isInline="false" isVirtual="false">
-         <UML:BehavioralFeature.parameter>
-          <UML:Parameter kind="return" xmi.id="ujzBDb4WYrEUN" type="uUtsRhaEhKsvE"/>
-          <UML:Parameter visibility="private" isSpecification="false" xmi.id="uXIcFbAM2OtY6" type="uUtsRhaEhKsvE" value="" name="db"/>
-          <UML:Parameter visibility="private" isSpecification="false" xmi.id="u8GOmBtJJztIJ" type="uUtsRhaEhKsvE" value="" name=":"/>
-          <UML:Parameter visibility="private" isSpecification="false" xmi.id="uooueVKB382Ka" type="uUtsRhaEhKsvE" value="" name="pg.extensions.connection"/>
-          <UML:Parameter visibility="private" isSpecification="false" xmi.id="uctlanqnKaDKT" type="uUtsRhaEhKsvE" value="" name=";"/>
-          <UML:Parameter visibility="private" isSpecification="false" xmi.id="uvznR45mDXsxc" type="uUtsRhaEhKsvE" value="" name="problem"/>
-          <UML:Parameter visibility="private" isSpecification="false" xmi.id="u0LsCpeZRfuEP" type="uUtsRhaEhKsvE" value="" name=":"/>
-          <UML:Parameter visibility="private" isSpecification="false" xmi.id="uh5qgJlnGiInm" type="uUtsRhaEhKsvE" value="" name="int"/>
-          <UML:Parameter visibility="private" isSpecification="false" xmi.id="uMdQbJBniaZ2g" type="uUtsRhaEhKsvE" value="" name="intermed_nodes"/>
-          <UML:Parameter visibility="private" isSpecification="false" xmi.id="unsz5wjjh5DVC" type="uUtsRhaEhKsvE" value="" name=":"/>
-          <UML:Parameter visibility="private" isSpecification="false" xmi.id="uve5uXuafW70q" type="uUtsRhaEhKsvE" value="" name="bool"/>
-         </UML:BehavioralFeature.parameter>
-        </UML:Operation>
         <UML:Operation visibility="public" isSpecification="false" isQuery="false" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="ucngLHC6SAC3U" comment="        Construct the Json calling several helper methods.&#xa;        Returns&#xa;        -------&#xa;        dict&#xa;            The Json for the visualization-API.&#xa; create tree_dec_json" isOverride="false" name="construct" isInline="false" isVirtual="false">
          <UML:BehavioralFeature.parameter>
           <UML:Parameter kind="return" xmi.id="u4idSTP32LCGa" type="uUtsRhaEhKsvE"/>
@@ -143,6 +130,21 @@
           <UML:Parameter visibility="private" isSpecification="false" xmi.id="uFX3DE4wUgoqo" type="uUtsRhaEhKsvE" value="" name="lines"/>
          </UML:BehavioralFeature.parameter>
         </UML:Operation>
+        <UML:Operation stereotype="constructor" visibility="public" isSpecification="false" isQuery="false" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="uQse3wp8AbDjk" comment="Implementation of the JSON-Construction for the SharpSat problem." isOverride="false" name="__init__" isInline="false" isVirtual="false">
+         <UML:BehavioralFeature.parameter>
+          <UML:Parameter kind="return" xmi.id="umKS41XJZbJgr" type="uUtsRhaEhKsvE"/>
+          <UML:Parameter visibility="private" isSpecification="false" xmi.id="uZOtNf1CNXLbr" type="uUtsRhaEhKsvE" value="" name="db"/>
+          <UML:Parameter visibility="private" isSpecification="false" xmi.id="uo7aU7ILNntlU" type="uUtsRhaEhKsvE" value="" name=":"/>
+          <UML:Parameter visibility="private" isSpecification="false" xmi.id="uaUEJ9cIRqLSm" type="uUtsRhaEhKsvE" value="" name="pg.extensions.connection"/>
+          <UML:Parameter visibility="private" isSpecification="false" xmi.id="un3kL36ONgid0" type="uUtsRhaEhKsvE" value="" name=";"/>
+          <UML:Parameter visibility="private" isSpecification="false" xmi.id="uwLPTgarXYGTT" type="uUtsRhaEhKsvE" value="" name="problem"/>
+          <UML:Parameter visibility="private" isSpecification="false" xmi.id="uM6JlcTYrLwtt" type="uUtsRhaEhKsvE" value="" name=":"/>
+          <UML:Parameter visibility="private" isSpecification="false" xmi.id="uYk53MBH0sViV" type="uUtsRhaEhKsvE" value="" name="int"/>
+          <UML:Parameter visibility="private" isSpecification="false" xmi.id="ule6Qp91kVjeH" type="uUtsRhaEhKsvE" value="" name="intermed_nodes"/>
+          <UML:Parameter visibility="private" isSpecification="false" xmi.id="uQFwcSotVBOUN" type="uUtsRhaEhKsvE" value="" name=":"/>
+          <UML:Parameter visibility="private" isSpecification="false" xmi.id="uSpGWNcQdBCkt" type="uUtsRhaEhKsvE" value="" name="bool"/>
+         </UML:BehavioralFeature.parameter>
+        </UML:Operation>
        </UML:Classifier.feature>
       </UML:Class>
       <UML:Generalization discriminator="" visibility="public" isSpecification="false" namespace="Logical_View" child="uhUgf0YSeMiGm" xmi.id="uoHr02D7YUkBh" parent="umk1nsKDgpWNz" name=""/>
@@ -154,12 +156,12 @@
       <UML:Class visibility="public" isSpecification="false" namespace="Logical_View" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="uNkmAQAL5YodW" comment="Implementation of the JSON-Construction for the MinVC problem.&#xa;    Borrowing methods from DpdbSharpSatVisu.&#xa;" name="DpdbMinVcVisu">
        <UML:GeneralizableElement.generalization>
         <UML:Generalization xmi.idref="uBX8OrMhF15HO"/>
+        <UML:Generalization xmi.idref="uOZP8BowampSJ"/>
        </UML:GeneralizableElement.generalization>
        <UML:Classifier.feature>
         <UML:Attribute visibility="public" isSpecification="false" xmi.id="uDobLngGGt4uW" type="uQUALsK5DAVwc" name="tw_file"/>
-        <UML:Operation stereotype="constructor" visibility="public" isSpecification="false" isQuery="false" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="upMb7sO8TTUKQ" isOverride="false" name="__init__" isInline="false" isVirtual="false">
+        <UML:Operation stereotype="constructor" visibility="public" isSpecification="false" isQuery="false" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="upMb7sO8TTUKQ" comment="Implementation of the JSON-Construction for the MinVC problem.&#xa;Borrowing methods from DpdbSharpSatVisu.&#xa;" isOverride="false" name="__init__" isInline="false" isVirtual="false">
          <UML:BehavioralFeature.parameter>
-          <UML:Parameter kind="return" xmi.id="uSu6TvSXw5eHT" type="uUtsRhaEhKsvE"/>
           <UML:Parameter visibility="private" isSpecification="false" xmi.id="uHZUys8NONaZc" type="uUtsRhaEhKsvE" value="" name="db"/>
           <UML:Parameter visibility="private" isSpecification="false" xmi.id="uEhRsqROBQyHv" type="uUtsRhaEhKsvE" value="" name="problem"/>
           <UML:Parameter visibility="private" isSpecification="false" xmi.id="u7KWKMGZlD6xY" type="uUtsRhaEhKsvE" value="" name="intermed_nodes"/>
@@ -193,6 +195,7 @@
       <UML:Class visibility="public" isSpecification="false" namespace="Logical_View" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="uxIyTrVt69eGQ" name="DijkstraNoPath">
        <UML:GeneralizableElement.generalization>
         <UML:Generalization xmi.idref="uPemhiwPq5KT1"/>
+        <UML:Generalization xmi.idref="u2QEg5HNY0wda"/>
        </UML:GeneralizableElement.generalization>
       </UML:Class>
       <UML:Class visibility="public" isSpecification="false" namespace="Logical_View" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="uV8xAomgiB3qS" name="RuntimeError"/>
@@ -238,12 +241,13 @@
       <UML:Class visibility="public" isSpecification="false" namespace="Logical_View" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="uuVBALNWYqXmm" comment="Reader for the DIMACS graph data format.&#xa;    It is a commonly used exchange format for graphs.&#xa;    It stores a single undirected graph.&#xa;    Plain text or binary format.&#xa;    DIMACS is an acronym derived from http://dimacs.rutgers.edu/&#xa;    Discrete Mathematics and Theoretical Computer Science.&#xa;" name="DimacsReader">
        <UML:GeneralizableElement.generalization>
         <UML:Generalization xmi.idref="uWi4Qxte2Ww9m"/>
+        <UML:Generalization xmi.idref="uWVRDTZQGBwlK"/>
        </UML:GeneralizableElement.generalization>
        <UML:Classifier.feature>
         <UML:Attribute visibility="public" isSpecification="false" xmi.id="u1cr8pO3EjvdA" type="uQUALsK5DAVwc" initialValue="None" name="problem_solution_type"/>
         <UML:Attribute visibility="public" isSpecification="false" xmi.id="uU27P9f7kpCLV" type="uQUALsK5DAVwc" initialValue="None" name="format"/>
         <UML:Attribute visibility="protected" isSpecification="false" xmi.id="uzO21WzrFrwD3" type="uQUALsK5DAVwc" initialValue="None" name="problem_vars"/>
-        <UML:Operation stereotype="constructor" visibility="public" isSpecification="false" isQuery="false" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="ugRypUzmR9CIw" isOverride="false" name="__init__" isInline="false" isVirtual="false">
+        <UML:Operation stereotype="constructor" visibility="public" isSpecification="false" isQuery="false" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="ugRypUzmR9CIw" comment="Reader for the DIMACS graph data format.&#xa;It is a commonly used exchange format for graphs.&#xa;It stores a single undirected graph.&#xa;Plain text or binary format.&#xa;DIMACS is an acronym derived from http://dimacs.rutgers.edu/&#xa;Discrete Mathematics and Theoretical Computer Science.&#xa;" isOverride="false" name="__init__" isInline="false" isVirtual="false">
          <UML:BehavioralFeature.parameter>
           <UML:Parameter kind="return" xmi.id="unbjP0eA3eSkF" type="uUtsRhaEhKsvE"/>
          </UML:BehavioralFeature.parameter>
@@ -283,12 +287,13 @@
       <UML:Class visibility="public" isSpecification="false" namespace="Logical_View" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="uYJyfM1gWuFWR" comment="Dimacs Reader for the 'tw' format (saving directed edges).&#xa;    Stores edges and adjacency together with&#xa;    the number of vertices and number of edges.&#xa;" name="TwReader">
        <UML:GeneralizableElement.generalization>
         <UML:Generalization xmi.idref="ua2feqsEWzaFx"/>
+        <UML:Generalization xmi.idref="uPnnwm6Uo7vnn"/>
        </UML:GeneralizableElement.generalization>
        <UML:Classifier.feature>
         <UML:Attribute visibility="public" isSpecification="false" xmi.id="uXem2GaefdljR" type="uBIawCm80BJvo" initialValue="()" name="edges"/>
         <UML:Attribute visibility="public" isSpecification="false" xmi.id="uXnTegM78HpV4" type="udHgTX7EHoyBR" initialValue="()" name="adjacency_dict"/>
         <UML:Attribute visibility="public" isSpecification="false" xmi.id="uzkeQU55eJKKS" type="uQUALsK5DAVwc" initialValue="None" name="num_vertices"/>
-        <UML:Operation stereotype="constructor" visibility="public" isSpecification="false" isQuery="false" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="uM9B632AtaKkV" isOverride="false" name="__init__" isInline="false" isVirtual="false">
+        <UML:Operation stereotype="constructor" visibility="public" isSpecification="false" isQuery="false" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="uM9B632AtaKkV" comment="Dimacs Reader for the 'tw' format (saving directed edges).&#xa;Stores edges and adjacency together with&#xa;the number of vertices and number of edges.&#xa;" isOverride="false" name="__init__" isInline="false" isVirtual="false">
          <UML:BehavioralFeature.parameter>
           <UML:Parameter kind="return" xmi.id="uxL0RV6fpFlsh" type="uUtsRhaEhKsvE"/>
          </UML:BehavioralFeature.parameter>
@@ -311,7 +316,7 @@
        <UML:Classifier.feature>
         <UML:Attribute visibility="public" isSpecification="false" xmi.id="uvd5kAeoC9JoF" type="uQUALsK5DAVwc" name="outfolder"/>
         <UML:Attribute visibility="public" isSpecification="false" xmi.id="uP1ifyKYhbSr7" type="uQUALsK5DAVwc" initialValue="None" name="tree_dec_digraph"/>
-        <UML:Operation stereotype="constructor" visibility="public" isSpecification="false" isQuery="false" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="ugbi1v0NLK59f" comment="Copy needed fields from arguments and create additional constants" isOverride="false" name="__init__" isInline="false" isVirtual="false">
+        <UML:Operation stereotype="constructor" visibility="public" isSpecification="false" isQuery="false" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="ugbi1v0NLK59f" comment="Holds and processes the information needed to provide dot-format&#xa;and image output for the visualization&#xa;of dynamic programming on tree decomposition.&#xa;" isOverride="false" name="__init__" isInline="false" isVirtual="false">
          <UML:BehavioralFeature.parameter>
           <UML:Parameter kind="return" xmi.id="uTD7YLzdYUIdu" type="uUtsRhaEhKsvE"/>
           <UML:Parameter visibility="private" isSpecification="false" xmi.id="uXwhKRpV4dz5M" type="uUtsRhaEhKsvE" value="" name="infile"/>
@@ -501,18 +506,64 @@
         </UML:Operation>
        </UML:Classifier.feature>
       </UML:Class>
+      <UML:Generalization discriminator="" visibility="public" isSpecification="false" namespace="Logical_View" child="umk1nsKDgpWNz" xmi.id="uaOHQL5DpAw2H" parent="u6nl2HJ0TkQXP" name=""/>
+      <UML:Generalization discriminator="" visibility="public" isSpecification="false" namespace="Logical_View" child="uhUgf0YSeMiGm" xmi.id="uOLFawuYdl2ul" parent="umk1nsKDgpWNz" name=""/>
+      <UML:Generalization discriminator="" visibility="public" isSpecification="false" namespace="Logical_View" child="uNkmAQAL5YodW" xmi.id="uOZP8BowampSJ" parent="uhUgf0YSeMiGm" name=""/>
+      <UML:Generalization discriminator="" visibility="public" isSpecification="false" namespace="Logical_View" child="uxIyTrVt69eGQ" xmi.id="u2QEg5HNY0wda" parent="uV8xAomgiB3qS" name=""/>
+      <UML:Generalization discriminator="" visibility="public" isSpecification="false" namespace="Logical_View" child="uuVBALNWYqXmm" xmi.id="uWVRDTZQGBwlK" parent="u4Z0rHts1S0ht" name=""/>
+      <UML:Generalization discriminator="" visibility="public" isSpecification="false" namespace="Logical_View" child="uYJyfM1gWuFWR" xmi.id="uPnnwm6Uo7vnn" parent="uuVBALNWYqXmm" name=""/>
      </UML:Namespace.ownedElement>
      <XMI.extension xmi.extender="umbrello">
       <diagrams resolution="120">
-       <diagram showopsig="1" linecolor="#ff0000" snapx="25" showattribassocs="1" snapy="25" linewidth="0" showattsig="1" textcolor="#000000" isopen="1" showpackage="1" showpubliconly="0" showstereotype="1" name="class diagram" font="Sans Serif,9,-1,0,50,0,0,0,0,0" canvasheight="306" canvaswidth="1000" localid="-1" snapcsgrid="0" showgrid="0" showops="1" griddotcolor="#d3d3d3" backgroundcolor="#ffffff" usefillcolor="1" fillcolor="#ffff00" zoom="86,95652173913041" xmi.id="uS00eU7r9HrQ1" documentation="" showscope="1" snapgrid="0" showatts="1" type="1">
+       <diagram showopsig="1" linecolor="#ff0000" snapx="25" showattribassocs="1" snapy="25" linewidth="0" showattsig="1" textcolor="#000000" isopen="1" showpackage="1" showpubliconly="0" showstereotype="1" name="class diagram" font="Sans Serif,9,-1,0,50,0,0,0,0,0" canvasheight="1101.73" canvaswidth="1532.48" localid="-1" snapcsgrid="0" showgrid="0" showops="1" griddotcolor="#d3d3d3" backgroundcolor="#ffffff" usefillcolor="1" fillcolor="#ffff00" zoom="93" xmi.id="uS00eU7r9HrQ1" documentation="" showscope="1" snapgrid="0" showatts="1" type="1">
         <widgets>
-         <classwidget linecolor="#ff0000" usesdiagramfillcolor="0" linewidth="0" textcolor="#000000" showoperations="1" usesdiagramusefillcolor="0" showpubliconly="0" showpackage="1" x="685.55" showattsigs="601" showstereotype="1" y="-2439.45" showattributes="1" font="Sans Serif,9,-1,0,50,0,0,0,0,0" localid="usNiytUuP8kFH" width="1000" isinstance="0" usefillcolor="1" fillcolor="#ffff00" xmi.id="u4FpQTON8oLLH" autoresize="1" showscope="1" height="306" showopsigs="601"/>
+         <classwidget linecolor="#ff0000" usesdiagramfillcolor="0" linewidth="0" textcolor="#000000" showoperations="1" usesdiagramusefillcolor="0" showpubliconly="0" showpackage="1" x="681.204" showattsigs="601" showstereotype="1" y="-2413.29" showattributes="1" font="Sans Serif,9,-1,0,50,0,0,0,0,0" localid="usNiytUuP8kFH" width="1000" isinstance="0" usefillcolor="1" fillcolor="#ffff00" xmi.id="u4FpQTON8oLLH" autoresize="0" showscope="1" height="322.128" showopsigs="601"/>
+         <classwidget linecolor="#ff0000" usesdiagramfillcolor="0" linewidth="0" textcolor="#000000" showoperations="1" usesdiagramusefillcolor="0" showpubliconly="0" showpackage="1" x="405.279" showattsigs="601" showstereotype="1" y="-2563.22" showattributes="1" font="Sans Serif,9,-1,0,50,0,0,0,0,0" localid="uZSrzjLGBZcbA" width="149.424" isinstance="0" usefillcolor="1" fillcolor="#ffff00" xmi.id="uILsfsgN7vTK5" autoresize="0" showscope="1" height="42" showopsigs="601"/>
+         <classwidget linecolor="#ff0000" usesdiagramfillcolor="0" linewidth="0" textcolor="#000000" showoperations="1" usesdiagramusefillcolor="0" showpubliconly="0" showpackage="1" x="1566.81" showattsigs="601" showstereotype="1" y="-1664.11" showattributes="1" font="Sans Serif,9,-1,0,50,0,0,0,0,0" localid="us9ATA4qEGwUL" width="370" isinstance="0" usefillcolor="1" fillcolor="#ffff00" xmi.id="u4Z0rHts1S0ht" autoresize="1" showscope="1" height="110" showopsigs="601"/>
+         <classwidget linecolor="#ff0000" usesdiagramfillcolor="0" linewidth="0" textcolor="#000000" showoperations="1" usesdiagramusefillcolor="0" showpubliconly="0" showpackage="1" x="426.781" showattsigs="601" showstereotype="1" y="-2297.9" showattributes="1" font="Sans Serif,9,-1,0,50,0,0,0,0,0" localid="usvzHH2q9oPzp" width="119" isinstance="0" usefillcolor="1" fillcolor="#ffff00" xmi.id="uxIyTrVt69eGQ" autoresize="1" showscope="1" height="33" showopsigs="601"/>
+         <classwidget linecolor="#ff0000" usesdiagramfillcolor="0" linewidth="0" textcolor="#000000" showoperations="1" usesdiagramusefillcolor="0" showpubliconly="0" showpackage="1" x="1591.33" showattsigs="601" showstereotype="1" y="-1880.24" showattributes="1" font="Sans Serif,9,-1,0,50,0,0,0,0,0" localid="udA0UDo2wsugm" width="272" isinstance="0" usefillcolor="1" fillcolor="#ffff00" xmi.id="uuVBALNWYqXmm" autoresize="1" showscope="1" height="170" showopsigs="601"/>
+         <classwidget linecolor="#ff0000" usesdiagramfillcolor="0" linewidth="0" textcolor="#000000" showoperations="1" usesdiagramusefillcolor="0" showpubliconly="0" showpackage="1" x="508.097" showattsigs="601" showstereotype="1" y="-2027.6" showattributes="1" font="Sans Serif,9,-1,0,50,0,0,0,0,0" localid="ud5KyvyH0Qdni" width="663" isinstance="0" usefillcolor="1" fillcolor="#ffff00" xmi.id="uNkmAQAL5YodW" autoresize="1" showscope="1" height="119" showopsigs="601"/>
+         <classwidget linecolor="#ff0000" usesdiagramfillcolor="0" linewidth="0" textcolor="#000000" showoperations="1" usesdiagramusefillcolor="0" showpubliconly="0" showpackage="1" x="744.382" showattsigs="601" showstereotype="1" y="-1854.93" showattributes="1" font="Sans Serif,9,-1,0,50,0,0,0,0,0" localid="uoyirFBcD5qgB" width="281" isinstance="0" usefillcolor="1" fillcolor="#ffff00" xmi.id="uhUgf0YSeMiGm" autoresize="1" showscope="1" height="204" showopsigs="601"/>
+         <classwidget linecolor="#ff0000" usesdiagramfillcolor="0" linewidth="0" textcolor="#000000" showoperations="1" usesdiagramusefillcolor="0" showpubliconly="0" showpackage="1" x="673.516" showattsigs="601" showstereotype="1" y="-1571.49" showattributes="1" font="Sans Serif,9,-1,0,50,0,0,0,0,0" localid="unXFUdel6P4ev" width="365" isinstance="0" usefillcolor="1" fillcolor="#ffff00" xmi.id="umk1nsKDgpWNz" autoresize="1" showscope="1" height="110" showopsigs="601"/>
+         <classwidget linecolor="#ff0000" usesdiagramfillcolor="0" linewidth="0" textcolor="#000000" showoperations="1" usesdiagramusefillcolor="0" showpubliconly="0" showpackage="1" x="410.513" showattsigs="601" showstereotype="1" y="-2474.2" showattributes="1" font="Sans Serif,9,-1,0,50,0,0,0,0,0" localid="uEgWg6UuXHdVQ" width="146" isinstance="0" usefillcolor="1" fillcolor="#ffff00" xmi.id="umX1aqq0cE1kT" autoresize="1" showscope="1" height="33" showopsigs="601"/>
+         <classwidget linecolor="#ff0000" usesdiagramfillcolor="0" linewidth="0" textcolor="#000000" showoperations="1" usesdiagramusefillcolor="0" showpubliconly="0" showpackage="1" x="404.33" showattsigs="601" showstereotype="1" y="-2385.25" showattributes="1" font="Sans Serif,9,-1,0,50,0,0,0,0,0" localid="uUP68pBddIhZs" width="158" isinstance="0" usefillcolor="1" fillcolor="#ffff00" xmi.id="u2Kb9EbsTrWR7" autoresize="1" showscope="1" height="33" showopsigs="601"/>
+         <classwidget linecolor="#ff0000" usesdiagramfillcolor="0" linewidth="0" textcolor="#000000" showoperations="1" usesdiagramusefillcolor="0" showpubliconly="0" showpackage="1" x="1609.65" showattsigs="601" showstereotype="1" y="-2039.83" showattributes="1" font="Sans Serif,9,-1,0,50,0,0,0,0,0" localid="ugG3j7lj7OpKh" width="225" isinstance="0" usefillcolor="1" fillcolor="#ffff00" xmi.id="uYJyfM1gWuFWR" autoresize="1" showscope="1" height="119" showopsigs="601"/>
         </widgets>
         <messages/>
-        <associations/>
+        <associations>
+         <assocwidget indexa="1" linecolor="#ff0000" usesdiagramfillcolor="1" widgetbid="u4Z0rHts1S0ht" indexb="1" linewidth="0" seqnum="" textcolor="none" usesdiagramusefillcolor="1" totalcounta="2" totalcountb="2" widgetaid="uuVBALNWYqXmm" font="Sans Serif,9,-1,0,50,0,0,0,0,0" localid="ugP5i18IbESYE" usefillcolor="1" fillcolor="none" xmi.id="uWi4Qxte2Ww9m" autoresize="1" type="500">
+          <linepath layout="Direct">
+           <startpoint startx="1698.9" starty="-1710.24"/>
+           <endpoint endx="1698.9" endy="-1664.11"/>
+          </linepath>
+         </assocwidget>
+         <assocwidget indexa="1" linecolor="#ff0000" usesdiagramfillcolor="1" widgetbid="uhUgf0YSeMiGm" indexb="1" linewidth="0" seqnum="" textcolor="none" usesdiagramusefillcolor="1" totalcounta="2" totalcountb="2" widgetaid="uNkmAQAL5YodW" font="Sans Serif,9,-1,0,50,0,0,0,0,0" localid="uRprCu5DbB0JZ" usefillcolor="1" fillcolor="none" xmi.id="uBX8OrMhF15HO" autoresize="1" type="500">
+          <linepath layout="Direct">
+           <startpoint startx="831.05" starty="-1908.6"/>
+           <endpoint endx="831.05" endy="-1854.93"/>
+          </linepath>
+         </assocwidget>
+         <assocwidget indexa="1" linecolor="#ff0000" usesdiagramfillcolor="1" widgetbid="umk1nsKDgpWNz" indexb="1" linewidth="0" seqnum="" textcolor="none" usesdiagramusefillcolor="1" totalcounta="2" totalcountb="2" widgetaid="uhUgf0YSeMiGm" font="Sans Serif,9,-1,0,50,0,0,0,0,0" localid="uQ4hHMFOQXF9v" usefillcolor="1" fillcolor="none" xmi.id="uoHr02D7YUkBh" autoresize="1" type="500">
+          <linepath layout="Direct">
+           <startpoint startx="822.663" starty="-1650.93"/>
+           <endpoint endx="822.663" endy="-1571.49"/>
+          </linepath>
+         </assocwidget>
+         <assocwidget indexa="1" linecolor="#ff0000" usesdiagramfillcolor="1" widgetbid="uuVBALNWYqXmm" indexb="1" linewidth="0" seqnum="" textcolor="none" usesdiagramusefillcolor="1" totalcounta="2" totalcountb="2" widgetaid="uYJyfM1gWuFWR" font="Sans Serif,9,-1,0,50,0,0,0,0,0" localid="utW8lJPixWEtC" usefillcolor="1" fillcolor="none" xmi.id="ua2feqsEWzaFx" autoresize="1" type="500">
+          <linepath layout="Direct">
+           <startpoint startx="1708.57" starty="-1920.83"/>
+           <endpoint endx="1708.57" endy="-1880.24"/>
+          </linepath>
+         </assocwidget>
+        </associations>
        </diagram>
-       <diagram showopsig="1" linecolor="#ff0000" snapx="25" showattribassocs="1" snapy="25" linewidth="0" showattsig="1" textcolor="#000000" isopen="1" showpackage="1" showpubliconly="0" showstereotype="1" name="communication diagram" font="Sans Serif,9,-1,0,50,0,0,0,0,0" canvasheight="0" canvaswidth="0" localid="-1" snapcsgrid="0" showgrid="0" showops="1" griddotcolor="#d3d3d3" backgroundcolor="#ffffff" autoincrementsequence="0" usefillcolor="1" fillcolor="#ffff00" zoom="100" xmi.id="utk2xrpXU7Qi4" documentation="" showscope="1" snapgrid="0" showatts="1" type="4">
-        <widgets/>
+       <diagram showopsig="1" linecolor="#ff0000" snapx="25" showattribassocs="1" snapy="25" linewidth="0" showattsig="1" textcolor="#000000" isopen="1" showpackage="1" showpubliconly="0" showstereotype="1" name="communication diagram" font="Sans Serif,9,-1,0,50,0,0,0,0,0" canvasheight="515" canvaswidth="482" localid="-1" snapcsgrid="0" showgrid="0" showops="1" griddotcolor="#d3d3d3" backgroundcolor="#ffffff" autoincrementsequence="0" usefillcolor="1" fillcolor="#ffff00" zoom="100" xmi.id="utk2xrpXU7Qi4" documentation="" showscope="1" snapgrid="0" showatts="1" type="4">
+        <widgets>
+         <objectwidget linecolor="#ff0000" usesdiagramfillcolor="1" linewidth="0" textcolor="#000000" usesdiagramusefillcolor="1" x="-773" decon="0" showstereotype="1" y="-355" font="Sans Serif,9,-1,0,50,0,0,0,0,0" localid="ulQbrSo0bHOAu" width="103" isinstance="0" multipleinstance="0" usefillcolor="1" fillcolor="none" xmi.id="u4FpQTON8oLLH" autoresize="1" height="27" drawasactor="0"/>
+         <objectwidget linecolor="#ff0000" usesdiagramfillcolor="1" linewidth="0" textcolor="#000000" usesdiagramusefillcolor="1" x="-1132" decon="0" showstereotype="1" y="-843" font="Sans Serif,9,-1,0,50,0,0,0,0,0" localid="uc8rMgLa2WM88" width="135" isinstance="0" multipleinstance="0" usefillcolor="1" fillcolor="none" xmi.id="uILsfsgN7vTK5" autoresize="1" height="27" drawasactor="0"/>
+         <objectwidget linecolor="#ff0000" usesdiagramfillcolor="1" linewidth="0" textcolor="#000000" usesdiagramusefillcolor="1" x="-1141" decon="0" showstereotype="1" y="-749" font="Sans Serif,9,-1,0,50,0,0,0,0,0" localid="uI5eYxwHbyas7" width="147" isinstance="0" multipleinstance="0" usefillcolor="1" fillcolor="none" xmi.id="umX1aqq0cE1kT" autoresize="1" height="27" drawasactor="0"/>
+         <objectwidget linecolor="#ff0000" usesdiagramfillcolor="1" linewidth="0" textcolor="#000000" usesdiagramusefillcolor="1" x="-1152" decon="0" showstereotype="1" y="-699" font="Sans Serif,9,-1,0,50,0,0,0,0,0" localid="uE9GQqNu1EuiX" width="158" isinstance="0" multipleinstance="0" usefillcolor="1" fillcolor="none" xmi.id="u2Kb9EbsTrWR7" autoresize="1" height="27" drawasactor="0"/>
+        </widgets>
         <messages/>
         <associations/>
        </diagram>
@@ -535,7 +586,7 @@
   </UML:Model>
  </XMI.content>
  <XMI.extensions xmi.extender="umbrello">
-  <docsettings viewid="uS00eU7r9HrQ1" uniqueid="usNiytUuP8kFH" documentation=""/>
+  <docsettings viewid="uS00eU7r9HrQ1" uniqueid="uE9GQqNu1EuiX" documentation=""/>
   <listview>
    <listitem open="1" type="800" id="Views">
     <listitem open="1" type="821" id="Component_View"/>
@@ -595,7 +646,7 @@
       <listitem open="0" type="814" id="uDobLngGGt4uW"/>
      </listitem>
      <listitem open="0" type="813" id="uhUgf0YSeMiGm">
-      <listitem open="0" type="815" id="uO3lsh5Cai3jt"/>
+      <listitem open="0" type="815" id="uQse3wp8AbDjk"/>
       <listitem open="0" type="815" id="ucngLHC6SAC3U"/>
       <listitem open="0" type="815" id="uyu2HfgMtBOvS"/>
       <listitem open="0" type="814" id="u6Yothj1rVo5K"/>
@@ -618,7 +669,7 @@
      </listitem>
      <listitem open="0" type="813" id="u2Kb9EbsTrWR7"/>
      <listitem open="0" type="813" id="u6nl2HJ0TkQXP"/>
-     <listitem open="0" type="813" id="u4Z0rHts1S0ht">
+     <listitem open="1" type="813" id="u4Z0rHts1S0ht">
       <listitem open="0" type="815" id="uYdLy2xTxh3Pj"/>
       <listitem open="0" type="815" id="uwApOk3hQoGli"/>
       <listitem open="0" type="815" id="u8PG0Y3R3jDia"/>
@@ -626,7 +677,7 @@
       <listitem open="0" type="815" id="uhd3Di99ONGpI"/>
      </listitem>
      <listitem open="0" type="813" id="uV8xAomgiB3qS"/>
-     <listitem open="0" type="813" id="ubbSlG5SxcXai">
+     <listitem open="1" type="813" id="ubbSlG5SxcXai">
       <listitem open="0" type="814" id="uMvlHUHKz255c"/>
       <listitem open="0" type="814" id="un8fEvC9z3ai0"/>
       <listitem open="0" type="815" id="uW0Qy5xx3DV89"/>
@@ -640,7 +691,7 @@
       <listitem open="0" type="814" id="uzkeQU55eJKKS"/>
       <listitem open="0" type="815" id="uoxiMXn6KALuc"/>
      </listitem>
-     <listitem open="1" type="813" id="u4FpQTON8oLLH">
+     <listitem open="0" type="813" id="u4FpQTON8oLLH">
       <listitem open="0" type="815" id="ugbi1v0NLK59f"/>
       <listitem open="0" type="815" id="uL2lbkbi1RfAl"/>
       <listitem open="0" type="815" id="uT8ZhRXOBbx5Q"/>
@@ -673,7 +724,6 @@
     <sourcecode value="raise NotImplementedError&#xa;" id="u74KrRZSKH9sP"/>
     <sourcecode value="raise NotImplementedError&#xa;" id="uTC9d8B1ucmtd"/>
     <sourcecode value="raise NotImplementedError&#xa;" id="uxFBNffsmVQXV"/>
-    <sourcecode value="LOGGER.debug(&quot;Creating %s for problem %d.&quot;,&#xa;self.__class__.__name__,problem)self.problem=problem&#xa;self.intermed_nodes=intermed_nodes&#xa;self.num_vars=None&#xa;status=db.get_transaction_status()&#xa;sleeptimer=0.5&#xa;while status not in good_db_status():&#xa;  logging.warning(&quot;Waiting %fs for DB connection in status %s&quot;,&#xa;  sleeptimer,PSYCOPG2_8_5_TASTATUS[status])sleep(sleeptimer)&#xa;  status=db.get_transaction_status()&#xa;&#xa;self.connection=db&#xa;" id="uO3lsh5Cai3jt"/>
     <sourcecode value="clauses_edges=self.read_clauses()&#xa;incidence_graph=:&#xa;&#xa;  &quot;var_name_one&quot;:'c_',&quot;var_name_two&quot;:'v_',&quot;infer_primal&quot;:True,&quot;edges&quot;:clauses_edges&#xa;labeldict=self.read_labeldict()&#xa;edgearray=self.read_edgearray()&#xa;tree_dec_json=:&#xa;&#xa;  &quot;bagpre&quot;:&quot;bag %s&quot;,&quot;edgearray&quot;:edgearray,&quot;labeldict&quot;:labeldict,&quot;num_vars&quot;:self.read_num_vars()&#xa;timeline=self.read_timeline(edgearray)&#xa;return:&#xa;  'incidenceGraph':incidence_graph,&#xa;  'generalGraph':False,'tdTimeline':timeline,'treeDecJson':tree_dec_json&#xa;" id="ucngLHC6SAC3U"/>
     <sourcecode value="with self.connection.cursor()as cur:&#xa;  cur.execute(&#xa;  &quot;SELECT num_vertices FROM &quot;&quot;public.problem WHERE id=%s&quot;,(self.problem,))self.num_vars=cur.fetchone()[0]&#xa;  assert isinstance(self.num_vars,int)&#xa;  return self.num_vars&#xa;&#xa;" id="uX8Di4YXDY8QB"/>
     <sourcecode value="with self.connection.cursor()as cur:&#xa;  try:&#xa;    cur.execute(&#xa;    f&quot;SELECT * FROM public.p{self.problem}_sat_clause&quot;)&#xa;  except pg.ProgrammingError:&#xa;    LOGGER.error(&#xa;    &quot;dpdb.py SHARPSAT NEEDS TO BE RUN WITH '--store-formula'!&quot;)raise&#xa;&#xa;  result=cur.fetchall()&#xa;  result_cleaned=[[pos if elem else-pos for pos,elem in&#xa;  enumerate(line,1)if elem is not None]for line in result]clauses_edges=[:&#xa;    'id':i,'list':item&#xa;&#xa;  for(i,item)in enumerate(result_cleaned,1)]return clauses_edges&#xa;&#xa;" id="ukLNHy700BEh7"/>
@@ -681,6 +731,7 @@
     <sourcecode value="with self.connection.cursor()as cur:&#xa;  timeline=list()&#xa;  adj=convert_to_adj(edgearray)if self.intermed_nodes else:&#xa;&#xa;&#xa;  cur.execute(&#xa;  f&quot;SELECT node FROM public.p{self.problem}_td_node_status ORDER BY start_time&quot;)order_solved=list(flatten(cur.fetchall()))&#xa;  if self.intermed_nodes:&#xa;    last=order_solved[-1]&#xa;    startpath=find_path(adj,last,order_solved[0])&#xa;    timeline=[[bag]for bag in startpath[1]]&#xa;&#xa;  else:&#xa;    timeline.append([order_solved[0]])&#xa;&#xa;  last=order_solved[0]&#xa;  for bag in order_solved:&#xa;    if self.intermed_nodes:&#xa;      path=find_path(adj,last,bag)&#xa;      for intermed in path[1][1:]:&#xa;        timeline.append([intermed])&#xa;&#xa;&#xa;    cur.execute(&#xa;    &quot;SELECT column_name FROM INFORMATION_SCHEMA.COLUMNS &quot;f&quot;WHERE TABLE_NAME = 'p{self.problem}_td_node_{bag}'&quot;)column_names=list(flatten(cur.fetchall()))&#xa;    LOGGER.debug(&quot;column_names %s&quot;,column_names)&#xa;    cur.execute(&#xa;    f&quot;SELECT * FROM public.p{self.problem}_td_node_{bag}&quot;)solution_raw=cur.fetchall()&#xa;    LOGGER.debug(&quot;solution_raw %s&quot;,solution_raw)&#xa;    columns_notnull=[column_names[i]for i,x in&#xa;    enumerate(solution_raw[0])if x is not None]solution=[bag,&#xa;    [[columns_notnull,*[[int(v)for v in row if v is not None]for row in solution_raw]],&quot;sol bag &quot;+str(bag),self.footer(solution_raw),True]]timeline.append(solution)&#xa;    last=bag&#xa;&#xa;  return timeline&#xa;&#xa;" id="uZQmDucE2CkqL"/>
     <sourcecode value="with self.connection.cursor()as cur:&#xa;  cur.execute(&#xa;  f&quot;SELECT node,parent FROM public.p{self.problem}_td_edge&quot;)result=cur.fetchall()&#xa;  return result&#xa;&#xa;" id="ub6SuD8mDbBh3"/>
     <sourcecode value="return&quot;sum: &quot;+str(sum([li[-1]for li in lines]))&#xa;" id="uyu2HfgMtBOvS"/>
+    <sourcecode value="LOGGER.debug(&quot;Creating %s for problem %d.&quot;,&#xa;self.__class__.__name__,problem)self.problem=problem&#xa;self.intermed_nodes=intermed_nodes&#xa;self.num_vars=None&#xa;status=db.get_transaction_status()&#xa;sleeptimer=0.5&#xa;while status not in good_db_status():&#xa;  logging.warning(&quot;Waiting %fs for DB connection in status %s&quot;,&#xa;  sleeptimer,PSYCOPG2_8_5_TASTATUS[status])sleep(sleeptimer)&#xa;  status=db.get_transaction_status()&#xa;&#xa;self.connection=db&#xa;" id="uQse3wp8AbDjk"/>
     <sourcecode value="super().__init__(db,problem,intermed_nodes)&#xa;self.tw_file=tw_file&#xa;" id="upMb7sO8TTUKQ"/>
     <sourcecode value="raise NotImplementedError(&#xa;self.__class__.__name__+&quot; can not read_clauses!&quot;)" id="ucjSTIF0NC4zy"/>
     <sourcecode value="return&quot;min-size: &quot;+str(min([li[-1]for li in lines]))&#xa;" id="uQqvl6piJvWw6"/>

@@ -1,5 +1,10 @@
 \begin{thebibliography}{1}
 
+\bibitem{graphUseCases}
+``Graph database use cases and solutions.'' \url{http://neo4j.com/use-cases},
+  August 2016.
+\newblock [Online; accessed 11-June-2020].
+
 \bibitem{Courcelle2012}
 B.~Courcelle and J.~Engelfriet, {\em Graph Structure and Monadic Second-Order
   Logic - A Language-Theoretic Approach}.
@@ -26,6 +31,8 @@ N.~Robertson and P.~Seymour, ``Graph minors. iii. planar tree-width,'' {\em
   1984.
 
 \bibitem{pcgp2019}
-J.~K. Fichte, ``Parameterized complexity and its applications in practice.''
+J.~K. Fichte, ``Parameterized complexity and its applications in practice,''
+  May.
+\newblock Summer 2019 (May 6th – May 16th).
 
 \end{thebibliography}
