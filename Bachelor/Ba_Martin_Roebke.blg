@@ -3,11 +3,20 @@ The style file: ieeetr.bst
 Database file #1: bibtex.bib
 Warning--entry type for "pcgp2019" isn't style-file defined
 --line 11 of file bibtex.bib
-I was expecting a `,' or a `}'---line 84 of file bibtex.bib
+I was expecting a `,' or a `}'---line 83 of file bibtex.bib
  :  
- :  month = {June},
+ :  month = jun,
+(Error may have been on previous line)
+I'm skipping whatever remains of this entry
+I was expecting a `,' or a `}'---line 91 of file bibtex.bib
+ :  
+ :  month = may,
+(Error may have been on previous line)
+I'm skipping whatever remains of this entry
+Illegal end of database file---line 118 of file bibtex.bib
+ :  
+ :  
 (Error may have been on previous line)
 I'm skipping whatever remains of this entry
 Warning--empty publisher in DiplomarbeitZisser
-Warning--there's a month but no year in pcgp2019
-(There was 1 error message)
+(There were 3 error messages)

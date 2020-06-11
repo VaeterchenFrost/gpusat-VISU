@@ -2,7 +2,7 @@
 
 \bibitem{graphUseCases}
 ``Graph database use cases and solutions.'' \url{http://neo4j.com/use-cases},
-  August 2016.
+  Aug. 2016.
 \newblock [Online; accessed 11-June-2020].
 
 \bibitem{Courcelle2012}
@@ -12,7 +12,7 @@ B.~Courcelle and J.~Engelfriet, {\em Graph Structure and Monadic Second-Order
 
 \bibitem{evaluationMSO}
 A.~Langer, F.~Reidl, P.~Rossmanith, and S.~Sikdar, ``Evaluation of an
-  mso-solver,'' {\em Proc. of ALENEX 2012}, 01 2012.
+  mso-solver,'' {\em Proc. of ALENEX 2012}, Jan. 2012.
 
 \bibitem{SAT1971}
 S.~A. Cook, ``The complexity of theorem-proving procedures,'' in {\em
@@ -31,8 +31,7 @@ N.~Robertson and P.~Seymour, ``Graph minors. iii. planar tree-width,'' {\em
   1984.
 
 \bibitem{pcgp2019}
-J.~K. Fichte, ``Parameterized complexity and its applications in practice,''
-  May.
+J.~K. Fichte, ``Parameterized complexity and its applications in practice.''
 \newblock Summer 2019 (May 6th – May 16th).
 
 \end{thebibliography}
