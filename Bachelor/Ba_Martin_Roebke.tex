@@ -255,6 +255,21 @@ My previous experience connected to this work mainly stemmed from these two very
 	chair of computational physics, TU Dresden 2016
 	\item algorithms and various manipulations on graphs from the lecture "Graph Data Management and Analytics" by Hannes Voigt. \cite{VLGDMA}
 \end{itemize}
+
+%=========================== DOT Language ====================================
+
+The nodes in the dot-language are \emph{labeled}, so creating a node takes one string identifier and
+can additionally be provided a string label. Valid examples for IDs include: a, b, A1, node1.
+The complete abstract grammar for DOT can be viewed at \href{https://graphviz.gitlab.io/_pages/doc/info/lang.html}{the DOT language}.
+
+It supports directed (\textit{digraph} with edges indicated by '->') an undirected (\textit{graph} with edges indicated by '--') graphs.
+The visualizations presented here are constructed as undirected graphs, but would be easily extendable to directed representations since almost all operations keep the order of edge-endpoints given as input.
+
+Another concept utilized were the sub-graphs and clusters available in DOT.
+To get a well structured (bipartite) incidence graph, each partition is placed in an individual cluster
+and sorted by node-label to easier find single nodes in potentially large clusters.
+
+
 %==============================================================================
 %============== PROJECT =======================================================
 %==============================================================================
@@ -298,12 +313,16 @@ The functional changes were:
 	\item start collecting information that might be needed for a visualization
 		\emph{graphfile} for saving the decomposition graph
 	\item add \textit{graphout }to solver flow to get automated insight into a run.
-		
+	
+	\item 
 \end{enumerate}
 Programm \url{https://github.com/VaeterchenFrost/GPUSAT} \\
 Differences: \url{https://github.com/daajoe/GPUSAT/compare/master...VaeterchenFrost:master}  Commits 142 Files changed 94 
 Nagoya talk:
 Graphs for performance are Ordered by used time per algorithm - gpusat quite good
+
+
+
 
 Working with cmake remotly. ssh @(sg1.)dbai.tuwien.ac.at
 CPU branch wasn't working.
