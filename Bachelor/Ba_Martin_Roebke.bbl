@@ -34,4 +34,10 @@ N.~Robertson and P.~Seymour, ``Graph minors. iii. planar tree-width,'' {\em
 J.~K. Fichte, ``Parameterized complexity and its applications in practice.''
 \newblock Summer 2019 (May 6th – May 16th).
 
+\bibitem{VLGDMA}
+H.~Voigt and A.~Krause, ``{Course}: Graph data management and analytics.''
+  \url{https://wwwdb.inf.tu-dresden.de/study/teaching/teaching-archive/winter-term-2018-19/graph-data-management-and-analytics/},
+  Feb. 2019.
+\newblock [Online; accessed 11-June-2020].
+
 \end{thebibliography}

@@ -53,7 +53,7 @@ This thesis introduces a practical and lightweight implementation for visualizin
 The provided source code is located in the python-package \href{https://pypi.org/project/tdvisu}{tdvisu} for the purpose of visualizing, teaching and analyzing the dynamic solving process. \\
 It defines a \href{https://www.json.org/json-en.html}{JSON}-format specification for portability and customization of the visualization combined in one human-readable file and two reference implementations in actual solvers.
 The implementation currently does not support hyper-graphs and assumes that each node in the tree decomposition has either one or two children.
-The visualization output consists by default of scalable vector graphics \href{https://developer.mozilla.org/en-US/docs/Web/SVG}{SVG}, a very flexible text-based that can be compressed and modified very easily without loss of quality.
+The visualization output consists by default of scalable-vector-graphics \href{https://developer.mozilla.org/en-US/docs/Web/SVG}{SVG}, a very flexible text-based that can be compressed and modified very easily without loss of quality.
 The images are split up into different views on the current state of the tree decomposition for consecutive user-defined time steps showing the progress of the dynamic programming.
 As illustrations of the possibilities for an application smaller examples from the problem-types "\#SAT" and "minimal vertex cover" are presented,
 as well as an example of a faulty tree-decomposition that occurred during development.
@@ -244,13 +244,14 @@ The workflow then looks like we see in figure~\ref{fig:UsageCourcelle}.
 %==============================================================================
 \newpage
 \section{Concept}
-What I do and why I did it
-Steps in Trello, Issues, Commits
+We did setup a board with \url{https://trello.com} to track the progress and gather information connected to the project.
+Discussion and problems were mostly discussed with a dedicated \href{slack channel}{https://slack.com/intl/en-de/} in the \emph{Collaborations Parameterized Algorithms and Complexity} team.
+
 Research: language (python - explain) graph-construction (graphviz vs networkX), examples (diploma at first). 
 
 My previous experience connected to this work mainly stemmed from these two very good courses:
 \begin{itemize}
-	\item Visualizaion with python from the lecture "Computational Physics" by Prof. Dr. A. Bäcker,
+	\item Visualization with python from the lecture "Computational Physics" by Prof. Dr. A. Bäcker,
 	chair of computational physics, TU Dresden 2016
 	\item algorithms and various manipulations on graphs from the lecture "Graph Data Management and Analytics" by Hannes Voigt. \cite{VLGDMA}
 \end{itemize}
@@ -276,8 +277,29 @@ Checking with www.deepcode.ai
 
 \newpage
 \subsection{Integration in GPUSAT}
-Windows opencl driver problem: ERROR: clBuildProgram(-9999)
+To study and improve the handling of the C++ program was chronologically the first task I did experiment with.
+Getting the program up and running proved to be more difficult than we envisioned due to a probable bug in the driver when running OpenCL Drivers from CUDA on the Windows OS.
 
+Some non-functional changes made to the source were 
+\begin{itemize}
+	\item[a)] some adjustments to satisfy the local compiler (shortening kernel string, and -> \&\&)
+	\item[b)] some explicit casts
+	\item[c)] fixed some documentation of cmd line arguments
+	
+\end{itemize}
+
+The functional changes were:
+\begin{enumerate}
+	\item allow tabs instead of spaces in input files
+	\item output more information about the hardware used (device\_query)
+	\item add verbose output globally toggled by a flag 
+	\item decide on \url{https://en.wikipedia.org/wiki/DOT_\%28graph_description_language\%29} 
+		as the intermediate format for storing graphs.
+	\item start collecting information that might be needed for a visualization
+		\emph{graphfile} for saving the decomposition graph
+	\item add \textit{graphout }to solver flow to get automated insight into a run.
+		
+\end{enumerate}
 Programm \url{https://github.com/VaeterchenFrost/GPUSAT} \\
 Differences: \url{https://github.com/daajoe/GPUSAT/compare/master...VaeterchenFrost:master}  Commits 142 Files changed 94 
 Nagoya talk:
@@ -304,6 +326,23 @@ Configuration manual with the include options in CMakeLists.txt \url{https://git
 or with help from \url{https://marketplace.visualstudio.com/items?itemName=ms-vscode.cmake-tools}
 to set up for the (potentially remote) environment.
 
+Usage: ./gpusat [OPTIONS]
+
+Options:
+-s,--seed INT               number used to initialize the pseudorandom number generator
+-f,--formula TEXT           path to the file containing the sat formula
+-d,--decomposition TEXT     path to the file containing the tree decomposition
+--CPU                       run the solver on a cpu
+--NVIDIA                    run the solver on an NVIDIA device
+--AMD                       run the solver on an AMD device
+--weighted                  use weighted model count
+--noExp                     don't use extended exponents
+-v,--verbose                print additional program information
+-p,--nopreprocess           skips the preprocessing step for debugging and visualisation-purposes
+-w,--combineWidth INT=20    maximum width to combine bags of the decomposition
+-g,--graph TEXT             filename for saving the decomposition graph
+--visufile TEXT             filename for saving the visualization file
+
 \subsubsection{Class Graphoutput}
 First steps in automatically visualizing the solving process with its tree decomposition.
 Outputs a .dot graph !!!EXAMPLE!!! with the bags and their solution nodes.
@@ -319,26 +358,7 @@ Additionally two functions to generate a Neo4J Cypher ***Link*** Query with:
 
 Umsetzung Special fork connecting the Visualization directly to the Solver.
 Utilizing the c++ library JsonCpp \url{https://github.com/open-source-parsers/jsoncpp} version 1.9.2 
-Usage: ./gpusat [OPTIONS]
 
-Options:
--h,--help                   Print this help message and exit
--s,--seed INT               number used to initialize the pseudorandom number generator
--f,--formula TEXT           path to the file containing the sat formula
--d,--decomposition TEXT     path to the file containing the tree decomposition
---CPU                       run the solver on a cpu
---NVIDIA                    run the solver on an NVIDIA device
---AMD                       run the solver on an AMD device
---weighted                  use weighted model count
---noExp                     don't use extended exponents
--v,--verbose                print additional program information
--p,--nopreprocess           skips the preprocessing step for debugging and visualisation-purposes
---dataStructure TEXT in {array,combined,tree}=combined
-data structure for storing the solution
--m,--maxBagSize INT=-1      max size of a bag on the gpu
--w,--combineWidth INT=20    maximum width to combine bags of the decomposition
--g,--graph TEXT             filename for saving the decomposition graph
---visufile TEXT             filename for saving the visualization file
 
 Beispiel
 \newpage
