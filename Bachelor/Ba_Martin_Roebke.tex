@@ -312,17 +312,25 @@ The functional changes were:
 		as the intermediate format for storing graphs.
 	\item start collecting information that might be needed for a visualization
 		\emph{graphfile} for saving the decomposition graph
-	\item add \textit{graphout }to solver flow to get automated insight into a run.
+	\item add \emph{graphout }to solver flow to get automated insight into the structure of a run.
 	
-	\item 
+	\item add function \emph{solutiontable} to extract tables of variable assignments as a string
+	\item add labels to each node (bags and solutions at this point)
+	\item encapsulating the previous functions into gpusat::Graphoutput class and instantiate it in main.
+	\item using the class functionality in the Solver
+	\item changing enum to the \href{https://coders-corner.net/2017/08/13/scoped-vs-unscoped-enum/}{scoped enum class} for better encapsulation and strongly typed.
+	\item with \href{https://github.com/daajoe/GPUSAT/commit/cfb310}{inlining gpusatutils} the current functionality of creating raw dot was completed.
+	
+	\item Experimented with neo4j \cite{graphUseCases}, but found the visualization in particular not that presentable. The functionality to create \href{https://neo4j.com/developer/cypher-resources/}{cypher-queries} for the SAT formula with primal, incidence and dual graph is still present in the class.
+	\item The functionality to create the cypher-query for the graph of the tree-decomposition was added.
+	
+	
+	
 \end{enumerate}
 Programm \url{https://github.com/VaeterchenFrost/GPUSAT} \\
 Differences: \url{https://github.com/daajoe/GPUSAT/compare/master...VaeterchenFrost:master}  Commits 142 Files changed 94 
 Nagoya talk:
 Graphs for performance are Ordered by used time per algorithm - gpusat quite good
-
-
-
 
 Working with cmake remotly. ssh @(sg1.)dbai.tuwien.ac.at
 CPU branch wasn't working.
