@@ -10,6 +10,7 @@
 \usepackage{amsthm} % theorems
 \usepackage{hyperref}
 \usepackage{float}
+\usepackage{listings} % code
 
 \newtheorem{theorem}{Theorem}[section]
 \begin{document}
@@ -437,9 +438,11 @@ the main parameters
 	Calculate and animate the shortest path between successive bags in the order of evaluation. To accomplish this task, an efficient implementation of the bidirectional Dijkstra's algorithm \cite{shortestPathAlgo} based on the implementation by NetworkX \cite{SciPyProceedings_11} in \href{https://networkx.github.io/documentation/networkx-2.1/reference/algorithms/generated/networkx.algorithms.shortest_paths.weighted.bidirectional_dijkstra.html#networkx.algorithms.shortest_paths.weighted.bidirectional_dijkstra}{bidirectional\_dijkstra}.
 	in our case the weight function is a constant, as the edges have no weight associated with them.
 \end{itemize}
-After the arguments are parsed by \href{https://docs.python.org/3/library/argparse.html}{pythons argparse} it is possible to adjust logging output by either providing a configuration file (\href{https://github.com/VaeterchenFrost/tdvisu/blob/master/tdvisu/logging.yml}{template} provided) or giving a minimal loglevel per program argument.
+After the arguments are parsed by \href{https://docs.python.org/3/library/argparse.html}{pythons argparse} it is possible to adjust logging output by either providing a configuration file (\href{https://github.com/VaeterchenFrost/tdvisu/blob/master/tdvisu/logging.yml}{template} provided) or giving a minimal logging level per program argument.
 
-Then the file containing the edges of the (connected) original graph of the problem gets read from TWFILE if provided. If a file is found it will be passed over to the next 
+Next the \textit{create\_json}~\ref{lst:create-json} function connects to the database driver with 
+the number of the stored problem. 
+The "problem type" of the instance
 Beispiel
 
 %==============================================================================
@@ -470,4 +473,31 @@ What worked good, what bad?
 	\caption{From propositional logic to monadic second order logic and Courcelle's Theorem}
 	\label{fig:logictheory}
 \end{figure}
+
+\section{Code Snippets}
+\lstset{numbers=left}
+\begin{lstlisting}[language={Python}, caption={Construct\_dpdb\_visu.py}, label={lst:create-json}]
+def create_json(problem: int, tw_file=None, intermed_nodes=False):
+  """Create the JSON for the specified problem instance."""
+  with connect() as connection:
+    # get type of problem
+    with connection.cursor() as cur:
+        query = """SELECT name,type,num_bags 
+            FROM public.problem WHERE id=%s"""
+        cur.execute(query, (problem,))
+        (name, ptype, num_bags) = cur.fetchone()
+        
+    constructor: IDpdbVisuConstruct  
+    if ptype == 'SharpSat':
+        constructor = DpdbSharpSatVisu(connection, 
+                                       problem, 
+                                       intermed_nodes)
+    elif ptype == 'VertexCover':
+        constructor = DpdbMinVcVisu(connection, 
+                                    problem, 
+                                    intermed_nodes,                                     
+                                    tw_file)
+    return constructor.construct()
+  return {}  
+\end{lstlisting}
 \end{document}

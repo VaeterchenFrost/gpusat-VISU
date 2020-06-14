@@ -14,3 +14,4 @@
 \contentsline {section}{\numberline {5}Application and Images}{14}{section.5}%
 \contentsline {section}{\numberline {6}Summary and Outline}{15}{section.6}%
 \contentsline {section}{\numberline {A}Images}{16}{appendix.A}%
+\contentsline {section}{\numberline {B}Code Snippets}{16}{appendix.B}%
