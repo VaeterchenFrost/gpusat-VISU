@@ -1,4 +1,4 @@
-\begin{thebibliography}{1}
+\begin{thebibliography}{10}
 
 \bibitem{graphUseCases}
 ``Graph database use cases and solutions.'' \url{http://neo4j.com/use-cases},
@@ -39,5 +39,18 @@ H.~Voigt and A.~Krause, ``{Course}: Graph data management and analytics.''
   \url{https://wwwdb.inf.tu-dresden.de/study/teaching/teaching-archive/winter-term-2018-19/graph-data-management-and-analytics/},
   Feb. 2019.
 \newblock [Online; accessed 11-June-2020].
+
+\bibitem{shortestPathAlgo}
+A.~V. Goldberg, C.~Harrelson, H.~Kaplan, and R.~F. Werneck, ``Efficient
+  point-to-point shortest path algorithms.''
+  \url{https://www.cs.princeton.edu/courses/archive/spr06/cos423/Handouts/EPP%20shortest%20path%20algorithms.pdf},
+  2006.
+\newblock [Online; accessed 14-June-2020].
+
+\bibitem{SciPyProceedings_11}
+A.~A. Hagberg, D.~A. Schult, and P.~J. Swart, ``Exploring network structure,
+  dynamics, and function using networkx,'' in {\em Proceedings of the 7th
+  Python in Science Conference} (G.~Varoquaux, T.~Vaught, and J.~Millman,
+  eds.), (Pasadena, CA USA), pp.~11 -- 15, 2008.
 
 \end{thebibliography}

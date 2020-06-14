@@ -295,14 +295,18 @@ Checking with www.deepcode.ai
 To study and improve the handling of the C++ program was chronologically the first task I did experiment with.
 Getting the program up and running proved to be more difficult than we envisioned due to a probable bug in the driver when running OpenCL Drivers from CUDA on the Windows OS.
 
+%=================Performance=======================
+Impact on performance:
+Utilizing small classes and \href{http://www.cplusplus.com/reference/sstream/stringstream/}{streams} we tried to keep the impact on performance during the solving process low. However running on the same thread especially for larger problem instances 
+
 Some non-functional changes made to the source were 
 \begin{itemize}
-	\item[a)] some adjustments to satisfy the local compiler (shortening kernel string, and -> \&\&)
+	\item[a)] some adjustments to satisfy the local compiler (shortening kernel string, replacing '\emph{and}' with '\&\&')
 	\item[b)] some explicit casts
 	\item[c)] fixed some documentation of cmd line arguments
 	
 \end{itemize}
-
+necessary 
 The functional changes were:
 \begin{enumerate}
 	\item allow tabs instead of spaces in input files
@@ -328,6 +332,11 @@ The functional changes were:
 	\item Setting format to {BasedOnStyle: LLVM, UseTab: Never, IndentWidth: 4, TabWidth: 4, ColumnLimit: 0}
 	\item Creating a \emph{Grid} class for efficiently storing unsigned integer values in a two-dimensional structure
 	based on ideas from \href{https://stackoverflow.com/questions/936687}{this thread}
+	\item create \href{https://github.com/VaeterchenFrost/GPUSAT/blob/master/VisualCodeUsage.md}{guide} for remote development with \emph{Visual Code}
+	\item Converted intermediate string operations to string-streams instead of files
+	\item Updated README.md
+	\item Added Doxygen for docbook, html, latex
+	
 	
 \end{enumerate}
 Programm \url{https://github.com/VaeterchenFrost/GPUSAT} \\
@@ -394,7 +403,43 @@ Beispiel
 \newpage
 \subsection{Integration in dpdb}
 Programm
-Umsetzung
+The integration of the API with dpdb was easier to implement after the solving process instead of
+hooking into the solving, 
+provided that all necessary information got persisted in the database.
+The integration is included in the TDVisu project as a separate python file.
+This can be accomplished using the arguments
+\begin{itemize}
+	\item --store-formula as a problem specific option for Sat and SharpSat
+	\item --gr-file GR\_FILE for problems like VertexCover with graph input 
+\end{itemize}
+when calling dpdb.py\\
+The integration for SharpSat was the first implemented in the file \textit{construct\_dpdb\_visu.py} with
+the main parameters
+
+\begin{itemize}
+	\item
+	\textbf{problemnumber}
+	 the problem-id to select in the database
+	\item
+	\textbf{--twfile TWFILE}
+	tw-file containing the edges of the graph 
+	\item
+	\textbf{--outfile OUTFILE} 
+	 file to write the output to, default 'dbjson\%d.json'
+	 \textbf{--loglevel LOGLEVEL}
+	 set the minimal loglevel for the root logger
+	 \item
+	\item
+	\textbf{--pretty}
+	 pretty-print the JSON
+	 \item
+	\textbf{--inter-nodes}
+	Calculate and animate the shortest path between successive bags in the order of evaluation. To accomplish this task, an efficient implementation of the bidirectional Dijkstra's algorithm \cite{shortestPathAlgo} based on the implementation by NetworkX \cite{SciPyProceedings_11} in \href{https://networkx.github.io/documentation/networkx-2.1/reference/algorithms/generated/networkx.algorithms.shortest_paths.weighted.bidirectional_dijkstra.html#networkx.algorithms.shortest_paths.weighted.bidirectional_dijkstra}{bidirectional\_dijkstra}.
+	in our case the weight function is a constant, as the edges have no weight associated with them.
+\end{itemize}
+After the arguments are parsed by \href{https://docs.python.org/3/library/argparse.html}{pythons argparse} it is possible to adjust logging output by either providing a configuration file (\href{https://github.com/VaeterchenFrost/tdvisu/blob/master/tdvisu/logging.yml}{template} provided) or giving a minimal loglevel per program argument.
+
+Then the file containing the edges of the (connected) original graph of the problem gets read from TWFILE if provided. If a file is found it will be passed over to the next 
 Beispiel
 
 %==============================================================================
