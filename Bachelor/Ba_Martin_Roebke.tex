@@ -441,7 +441,7 @@ the main parameters
 	\item
 	\textbf{--inter-nodes}
 	Calculate and animate the shortest path between successive bags in the order of evaluation. To accomplish this task, an efficient implementation of the bidirectional Dijkstra's algorithm \cite{shortestPathAlgo} based on the implementation by NetworkX \cite{SciPyProceedings_11} in \href{https://networkx.github.io/documentation/networkx-2.1/reference/algorithms/generated/networkx.algorithms.shortest_paths.weighted.bidirectional_dijkstra.html#networkx.algorithms.shortest_paths.weighted.bidirectional_dijkstra}{bidirectional\_dijkstra}.
-	in our case the weight function is a constant, as the edges have no weight associated with them.
+	in our case the weight function is always one, as the edges have no weight associated with them.
 \end{itemize}
 After the arguments are parsed by \href{https://docs.python.org/3/library/argparse.html}{pythons argparse} it is possible to adjust logging output by either providing a configuration file (\href{https://github.com/VaeterchenFrost/tdvisu/blob/master/tdvisu/logging.yml}{template} provided) or giving a minimal logging level per program argument.
 
@@ -506,5 +506,47 @@ def create_json(problem: int, tw_file=None, intermed_nodes=False):
                                     tw_file)
     return constructor.construct()
   return {}  
+\end{lstlisting}
+
+\section{Input Examples}
+\lstset{numbers=none}
+\begin{lstlisting}[caption={Edge encoding of example graph with 16 vertices}, label={lst:minvc16}]
+p tw 16 36
+1 2
+2 1
+2 3
+3 2
+3 4
+4 3
+3 5
+5 3
+4 5
+5 4
+4 6
+6 4
+6 7
+7 6
+7 8
+8 7
+8 9
+9 8
+9 10
+10 9
+9 11
+11 9
+11 12
+12 11
+12 13
+13 12
+12 14
+14 12
+11 14
+14 11
+14 7
+7 14
+6 15
+15 6
+15 16
+16 15
 \end{lstlisting}
 \end{document}
