@@ -447,7 +447,7 @@ After the arguments are parsed by \href{https://docs.python.org/3/library/argpar
 
 Next the \textit{create\_json}~\ref{lst:create-json} function connects to the database driver with 
 the number of the stored problem. 
-The "problem type" is available as a string in table \emph{public.problem}, and the appropriate class of type \emph{IDpdbVisuConstruct} will be constructed.
+The "problem type" is available as a string in table \emph{public.problem}, and the appropriate class to prepare the json will be instantiated. At this time the solver handles the problems of \textit{satisfiability} (Sat), \textit{count solutions to a Boolean formula} (SharpSat) as well as \textit{minimum vertex cover} (VertexCover).
 
 
 Beispiel
