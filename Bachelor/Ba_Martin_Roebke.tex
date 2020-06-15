@@ -442,7 +442,9 @@ After the arguments are parsed by \href{https://docs.python.org/3/library/argpar
 
 Next the \textit{create\_json}~\ref{lst:create-json} function connects to the database driver with 
 the number of the stored problem. 
-The "problem type" of the instance
+The "problem type" is available as a string in table \emph{public.problem}, and the appropriate class of type \emph{IDpdbVisuConstruct} will be constructed.
+
+
 Beispiel
 
 %==============================================================================
