@@ -277,8 +277,9 @@ and sorted by node-label to easier find single nodes in potentially large cluste
 \newpage
 \section{My Visualization Project}
 
-Pip, requirements files, virtual environments and how to pick quality Python libraries:
-\url{https://realpython.com/products/managing-python-dependencies/?utm_source=drip&utm_medium=email&utm_campaign=productfooter&utm_content=mpd}
+Python because:
+
+Python 3.8 because:
 
 
 The first stages were in \url{https://github.com/VaeterchenFrost/gpusat-VISU} and the first releases of the source code outsourced to\url{https://github.com/VaeterchenFrost/tdvisu}
@@ -403,12 +404,11 @@ Utilizing the c++ library JsonCpp \url{https://github.com/open-source-parsers/js
 Beispiel
 \newpage
 \subsection{Integration in dpdb}
-Programm
 The integration of the API with dpdb was easier to implement after the solving process instead of
 hooking into the solving, 
 provided that all necessary information got persisted in the database.
 The integration is included in the TDVisu project as a separate python file.
-This can be accomplished using the arguments
+A complete workflow can be accomplished using the arguments
 \begin{itemize}
 	\item --store-formula as a problem specific option for Sat and SharpSat
 	\item --gr-file GR\_FILE for problems like VertexCover with graph input 
@@ -421,19 +421,24 @@ the main parameters
 	\item
 	\textbf{problemnumber}
 	 the problem-id to select in the database
+	 
 	\item
-	\textbf{--twfile TWFILE}
+	\textbf{--twfile }TWFILE
 	tw-file containing the edges of the graph 
+	
 	\item
-	\textbf{--outfile OUTFILE} 
+	\textbf{--outfile }OUTFILE
 	 file to write the output to, default 'dbjson\%d.json'
-	 \textbf{--loglevel LOGLEVEL}
+	 
+	\item
+	\textbf{--loglevel }LOGLEVEL
 	 set the minimal loglevel for the root logger
-	 \item
+	 
 	\item
 	\textbf{--pretty}
 	 pretty-print the JSON
-	 \item
+	 
+	\item
 	\textbf{--inter-nodes}
 	Calculate and animate the shortest path between successive bags in the order of evaluation. To accomplish this task, an efficient implementation of the bidirectional Dijkstra's algorithm \cite{shortestPathAlgo} based on the implementation by NetworkX \cite{SciPyProceedings_11} in \href{https://networkx.github.io/documentation/networkx-2.1/reference/algorithms/generated/networkx.algorithms.shortest_paths.weighted.bidirectional_dijkstra.html#networkx.algorithms.shortest_paths.weighted.bidirectional_dijkstra}{bidirectional\_dijkstra}.
 	in our case the weight function is a constant, as the edges have no weight associated with them.
