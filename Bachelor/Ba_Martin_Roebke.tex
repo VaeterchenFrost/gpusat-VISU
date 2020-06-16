@@ -65,7 +65,7 @@ Intended audience:
 	\item Teachers or students looking for automatic visualization of their examples and the dynamic programming.
 \end{itemize} 
 
-As two reference implementations of dynamic programming on tree decompositions we chose the projects \href{https://github.com/daajoe/GPUSAT}{GPUSAT} and \href{https://github.com/hmarkus/dp_on_dbs}{dpdb}.
+As two reference implementations of dynamic programming on tree decompositions we chose the existing solvers \href{https://github.com/daajoe/GPUSAT}{GPUSAT} and \href{https://github.com/hmarkus/dp_on_dbs}{dpdb}.
 
 \newpage
 
@@ -81,20 +81,20 @@ As two reference implementations of dynamic programming on tree decompositions w
 
 \section{Introduction}
 Graphs are increasingly interesting in scientific work, as the applications of interconnected datasets grow.
-The use cases outlined by Neo4j \cite{graphUseCases}, a provider of open source database tools for "labeled property graphs" and  include fields like
+The use cases for example outlined by Neo4j in \cite{graphUseCases}, a provider of open source database tools for \textit{labeled property graphs}  does include fields of interest like
 \begin{itemize}
 	\item[-] Network and Database Infrastructure
 	\item[-] Recommendation Engines
 	\item[-] Artificial Intelligence and Analytics
 \end{itemize}
 While many problems can be expressed using the language of graphs, there is still plenty of room
-to utilize graph
-The idea for this project comes from my supervisor Dr. Johannes Fichte, who works on and with many projects such as the ones listed above on solving monadic second order logic (MSOL\cite{Courcelle2012}) problems using highly parallelized architectures like graphics processing units or state of the art databases.
+to utilize the graph structure of problems.
+The idea for this project comes from my supervisor Dr. Johannes Fichte, who works with many projects such as \href{https://github.com/hmarkus/dp_on_dbs}{dpdb} on solving monadic second order logic (MSOL\cite{Courcelle2012}) problems using highly parallelized architectures like graphics processing units or state of the art databases.
 One early implementation is published in \cite{evaluationMSO} where for different real world examples the results looked promising
 These projects are very competitive ????REF????? for solving even large instances of those problems.
 The source code for TDVisu is available under GPL3 license.
 
-\href{https://graphviz.org/}{Graphviz} is a open source graph visualization software that provides
+\href{https://graphviz.org/}{Graphviz} is open source graph visualization software that provides
 customizable visualization for directed and undirected graphs.
 The information processed by graphviz 
 
