@@ -294,7 +294,7 @@ Checking with www.deepcode.ai
 
 \newpage
 \subsection{Integration in GPUSAT}
-To study and improve the handling of the C++ program was chronologically the first task I did experiment with.
+To study and improve the handling of the C++ program was chronologically the first task I experimented with.
 Getting the program up and running proved to be more difficult than we envisioned due to a probable bug in the driver when running OpenCL Drivers from CUDA on the Windows OS.
 
 %=================Performance=======================
@@ -305,10 +305,9 @@ Some non-functional changes made to the source were
 \begin{itemize}
 	\item[a)] some adjustments to satisfy the local compiler (shortening kernel string, replacing '\emph{and}' with '\&\&')
 	\item[b)] some explicit casts
-	\item[c)] fixed some documentation of cmd line arguments
-	
+	\item[c)] fixed documentation of command line arguments
 \end{itemize}
-necessary 
+
 The functional changes were:
 \begin{enumerate}
 	\item allow tabs instead of spaces in input files
@@ -337,9 +336,7 @@ The functional changes were:
 	\item create \href{https://github.com/VaeterchenFrost/GPUSAT/blob/master/VisualCodeUsage.md}{guide} for remote development with \emph{Visual Code}
 	\item Converted intermediate string operations to string-streams instead of files
 	\item Updated README.md
-	\item Added Doxygen for docbook, html, latex
-	
-	
+	\item Added Doxygen for docbook, html, latex	
 \end{enumerate}
 Programm \url{https://github.com/VaeterchenFrost/GPUSAT} \\
 Differences: \url{https://github.com/daajoe/GPUSAT/compare/master...VaeterchenFrost:master}  Commits 142 Files changed 94 
@@ -350,20 +347,7 @@ Working with cmake remotly. ssh @(sg1.)dbai.tuwien.ac.at
 CPU branch wasn't working.
 Only AMD/Nvidia graphics  with respective flags.
 
-First steps:
-Connect ssh
-mkdir Ba
-cd Ba
-git clone https://github.com/mabseher/htd.git
- cd htd/
- cmake .
- make -B -j1 
- make test
- (100pct tests passed, 0 tests failed out of 38                                                                                                                                                                                                                                                                                                             Total Test time (real) =   0.81 sec )\\
-
-git clone https://github.com/VaeterchenFrost/GPUSAT.git
-
-Configuration manual with the include options in CMakeLists.txt \url{https://github.com/VaeterchenFrost/GPUSAT/blob/master/CMakeLists.txt} 
+Manual configuration with the include options from \href{https://cmake.org/}{cmake} in \href{https://github.com/VaeterchenFrost/GPUSAT/blob/master/CMakeLists.txt}{CMakeLists.txt}
 or with help from \url{https://marketplace.visualstudio.com/items?itemName=ms-vscode.cmake-tools}
 to set up for the (potentially remote) environment.
 
@@ -379,7 +363,7 @@ Options:
 --weighted                  use weighted model count
 --noExp                     don't use extended exponents
 -v,--verbose                print additional program information
--p,--nopreprocess           skips the preprocessing step for debugging and visualisation-purposes
+-p,--nopreprocess           skips the preprocessing step for debugging and visualization-purposes
 -w,--combineWidth INT=20    maximum width to combine bags of the decomposition
 -g,--graph TEXT             filename for saving the decomposition graph
 --visufile TEXT             filename for saving the visualization file
@@ -388,7 +372,7 @@ Options:
 First steps in automatically visualizing the solving process with its tree decomposition.
 Outputs a .dot graph !!!EXAMPLE!!! with the bags and their solution nodes.
 
-Additionally two functions to generate a Neo4J Cypher ***Link*** Query with:
+Two additional functions generate a \href{https://neo4j.com/docs/cypher-refcard/current/}{Neo4j Cypher} query with:
 \begin{itemize}
 	\item one graph representing the SAT formula and  queries to construct incidence, dual and primal representations.
 	output as satFile = "cypherSatFormula.txt"
