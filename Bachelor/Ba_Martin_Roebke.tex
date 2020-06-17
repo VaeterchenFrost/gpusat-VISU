@@ -12,6 +12,9 @@
 \usepackage{float}
 \usepackage{listings} % code
 \usepackage{xcolor}
+\usepackage{longtable} % breaks pages
+\usepackage{tabularx}
+\usepackage{booktabs}
 
 \definecolor{light-gray}{gray}{0.9}
 \lstset{tabsize=2, linewidth=1.05\textwidth, framextopmargin=5pt}
@@ -266,7 +269,7 @@ The nodes in the dot-language are \emph{labeled}, so creating a node takes one s
 can additionally be provided a string label. Valid examples for IDs include: a, b, A1, node1.
 The complete abstract grammar for DOT can be viewed at \href{https://graphviz.gitlab.io/_pages/doc/info/lang.html}{the DOT language}.
 
-It supports directed (\textit{digraph} with edges indicated by '->') an undirected (\textit{graph} with edges indicated by '--') graphs.
+It supports directed (\textit{digraph} with edges indicated by '->') an undirected (\textit{graph} with edges indicated by '-{}-') graphs.
 The visualizations presented here are constructed as undirected graphs, but would be easily extendable to directed representations since almost all operations keep the order of edge-endpoints given as input.
 
 Another concept utilized were the sub-graphs and clusters available in DOT.
@@ -354,24 +357,42 @@ Manual configuration with the include options from \href{https://cmake.org/}{cma
 or with help from \url{https://marketplace.visualstudio.com/items?itemName=ms-vscode.cmake-tools}
 to set up for the (potentially remote) environment.
 
-Usage: ./gpusat [OPTIONS]
+\begin{itemize}
+	\item 
+	\item Options:
+\end{itemize}
 
-Options:
--s,--seed INT               number used to initialize the pseudorandom number generator
--f,--formula TEXT           path to the file containing the sat formula
--d,--decomposition TEXT     path to the file containing the tree decomposition
---CPU                       run the solver on a cpu
---NVIDIA                    run the solver on an NVIDIA device
---AMD                       run the solver on an AMD device
---weighted                  use weighted model count
---noExp                     don't use extended exponents
--v,--verbose                print additional program information
--p,--nopreprocess           skips the preprocessing step for debugging and visualization-purposes
--w,--combineWidth INT=20    maximum width to combine bags of the decomposition
--g,--graph TEXT             filename for saving the decomposition graph
---visufile TEXT             filename for saving the visualization file
 
-An example call with \textit{./gpusat -f ../examples/test\_da4\_1.cnf -v -p -d ../examples/td4p1.txt  -g ../examples/graphfileda41.txt --visufile ../examples/visufileda41.json} enabled verbose output, disabled pre-processing to prevent the creation of bags with too many variables at once to be visualized, and creates
+\begin{longtable}{ll}
+	\caption{Usage: ./gpusat [OPTIONS]
+		\label{tab:optionsgpusat}}\\
+	\hline
+	\vspace{0.5ex}
+	\endfirsthead
+-s,-{}-seed INT&  number used to initialize the pseudorandom number generator\\
+	-f,-{}-formula TEXT &  path to the file containing the sat formula\\
+	-d,-{}-decomposition TEXT  &   path to the file containing the tree decomposition\\
+	-{}-CPU                   &    run the solver on a cpu\\
+	-{}-NVIDIA                &    run the solver on an NVIDIA device\\
+	-{}-AMD                   &    run the solver on an AMD device\\
+	-{}-weighted              &   use weighted model count\\
+	-{}-noExp                 &    don't use extended exponents\\
+	-v,-{}-verbose            &    print additional program information\\
+	-p,-{}-nopreprocess       &    skips the preprocessing step for debugging and visualization-purposes\\
+	-w,-{}-combineWidth INT=20&    maximum width to combine bags of the decomposition\\
+	-g,-{}-graph TEXT         &    filename for saving the decomposition graph\\
+	-{}-visufile TEXT         &    filename for saving the visualization file\\
+
+\end{longtable}
+               
+          
+
+
+An example call with \textit{./gpusat -f ../examples/test\_da4\_1.cnf -v -p -d ../examples/td4p1.txt  -g ../examples/graphfileda41.txt -{}-visufile ../examples/visufileda41.json} enabled verbose output, disabled pre-processing to prevent the creation of bags with too many variables at once to be visualized, and creates
+
+
+
+
 \subsubsection{Class Graphoutput}
 First steps to automatically visualize the tree decomposition of the solving process with its solutions.
 Outputs a graph specified in gml\cite{Himsolt2010GMLAP} (Graph Modeling Language).
@@ -400,8 +421,8 @@ provided that all necessary information got persisted in the database.
 The integration is included in the TDVisu project as a separate python file.
 A complete workflow can be accomplished using the arguments
 \begin{itemize}
-	\item --store-formula as a problem specific option for Sat and SharpSat
-	\item --gr-file GR\_FILE for problems like VertexCover with graph input 
+	\item -{}-store-formula as a problem specific option for Sat and SharpSat
+	\item -{}-gr-file GR\_FILE for problems like VertexCover with graph input 
 \end{itemize}
 when calling dpdb.py\\
 The integration for SharpSat was the first implemented in the file \textit{construct\_dpdb\_visu.py} with
@@ -413,23 +434,23 @@ the main parameters
 	 the problem-id to select in the database
 	 
 	\item
-	\textbf{--twfile }TWFILE
+	\textbf{-{}-twfile }TWFILE
 	tw-file containing the edges of the graph 
 	
 	\item
-	\textbf{--outfile }OUTFILE
+	\textbf{-{}-outfile }OUTFILE
 	 file to write the output to, default 'dbjson\%d.json'
 	 
 	\item
-	\textbf{--loglevel }LOGLEVEL
+	\textbf{-{}-loglevel }LOGLEVEL
 	 set the minimal loglevel for the root logger
 	 
 	\item
-	\textbf{--pretty}
+	\textbf{-{}-pretty}
 	 pretty-print the JSON
 	 
 	\item
-	\textbf{--inter-nodes}
+	\textbf{-{}-inter-nodes}
 	Calculate and animate the shortest path between successive bags in the order of evaluation. To accomplish this task, an efficient implementation of the bidirectional Dijkstra's algorithm \cite{shortestPathAlgo} based on the implementation by NetworkX \cite{SciPyProceedings_11} in \href{https://networkx.github.io/documentation/networkx-2.1/reference/algorithms/generated/networkx.algorithms.shortest_paths.weighted.bidirectional_dijkstra.html#networkx.algorithms.shortest_paths.weighted.bidirectional_dijkstra}{bidirectional\_dijkstra}.
 	in our case the weight function is always one, as the edges have no weight associated with them.
 \end{itemize}

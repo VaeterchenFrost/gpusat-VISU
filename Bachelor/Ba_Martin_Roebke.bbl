@@ -40,10 +40,8 @@ H.~Voigt and A.~Krause, ``{Course}: Graph data management and analytics.''
   Feb. 2019.
 \newblock [Online; accessed 11-June-2020].
 
-\bibitem{dotsalgorithm93}
-E.~R. Gansner, E.~Koutsofios, S.~C. North, and K.~phong Vo, ``A technique for
-  drawing directed graphs,'' {\em IEEE TRANSACTIONS ON SOFTWARE ENGINEERING},
-  vol.~19, no.~3, pp.~214--230, 1993.
+\bibitem{Himsolt2010GMLAP}
+M.~Himsolt, ``Gml: A portable graph file format,'' 2010.
 
 \bibitem{shortestPathAlgo}
 A.~V. Goldberg, C.~Harrelson, H.~Kaplan, and R.~F. Werneck, ``Efficient
