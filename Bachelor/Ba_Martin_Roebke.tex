@@ -11,7 +11,10 @@
 \usepackage{hyperref}
 \usepackage{float}
 \usepackage{listings} % code
+\usepackage{xcolor}
 
+\definecolor{light-gray}{gray}{0.9}
+\lstset{tabsize=2, linewidth=1.05\textwidth, framextopmargin=5pt}
 \newtheorem{theorem}{Theorem}[section]
 \begin{document}
 
@@ -385,7 +388,6 @@ To include the extraction of all necessary visualization information into the so
 To simplify the creation of valid json I selected the actively developed c++ library JsonCpp \url{https://github.com/open-source-parsers/jsoncpp} version 1.9.2 from the open-source-parsers repository.
 
 
-Beispiel
 \newpage
 \subsection{Integration in dpdb}
 The integration of the API with dpdb was easier to implement after the solving process instead of
@@ -464,9 +466,15 @@ What worked good, what bad?
 	\caption{From propositional logic to monadic second order logic and Courcelle's Theorem}
 	\label{fig:logictheory}
 \end{figure}
-
+\begin{figure}[H]
+	\centering
+	\includegraphics[height=\textheight]{images/g41digraphdot.png}
+	\caption{Created scalable-vector-graphic directly from \ref{lst:g41digraphdot}}
+	\label{fig:g41Digraph}
+\end{figure}
+\newpage
 \section{Code Snippets}
-\lstset{numbers=left}
+\lstset{numbers=left,backgroundcolor=\color{light-gray}}
 \begin{lstlisting}[language={Python}, caption={Construct\_dpdb\_visu.py}, label={lst:create-json}]
 def create_json(problem: int, tw_file=None, intermed_nodes=False):
   """Create the JSON for the specified problem instance."""
@@ -493,6 +501,7 @@ def create_json(problem: int, tw_file=None, intermed_nodes=False):
 \end{lstlisting}
 
 \section{Input Examples}
+
 \lstset{numbers=none}
 \begin{lstlisting}[caption={Edge encoding of example graph with 16 vertices}, label={lst:minvc16}]
 p tw 16 36
@@ -573,4 +582,6 @@ p cnf 18 24
 15 -16 -17 -18 0
 15 16 17 -18 0
 \end{lstlisting}
+\lstinputlisting[caption={DOT source for visualization of example 4.1}, label={lst:g41digraphdot}]{includes/g41digraphdot}
+
 \end{document}
