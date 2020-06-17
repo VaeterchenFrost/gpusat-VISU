@@ -372,8 +372,8 @@ Options:
 --visufile TEXT             filename for saving the visualization file
 
 \subsubsection{Class Graphoutput}
-First steps in automatically visualizing the solving process with its tree decomposition.
-Outputs a .dot graph !!!EXAMPLE!!! with the bags and their solution nodes.
+First steps to automatically visualize the tree decomposition of the solving process with its solutions.
+Outputs a dot graph~\cite{dotsalgorithm93} like for our example for \#SAT~\ref{lst:g41digraphdot} with the bags and respective solutions as nodes connected to the bag they solve.
 
 Two additional functions generate a \href{https://neo4j.com/docs/cypher-refcard/current/}{Neo4j Cypher} query with:
 \begin{itemize}
@@ -382,6 +382,8 @@ Two additional functions generate a \href{https://neo4j.com/docs/cypher-refcard/
 	\item a graph representing the tree decomposition of the primal graph with it's bags containing variables.
 	output as tdFile = "cypherTreedec.txt"
 \end{itemize}
+
+
 \subsubsection{Class SolverVisualization}
 
 To include the extraction of all necessary visualization information into the solver I created a separate fork.
