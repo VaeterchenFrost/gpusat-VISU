@@ -17,7 +17,7 @@
 \usepackage{booktabs}
 
 \definecolor{light-gray}{gray}{0.9}
-\lstset{tabsize=2, linewidth=1.05\textwidth, framextopmargin=5pt}
+\lstset{tabsize=2, linewidth=1.05\textwidth, framextopmargin=1em, basicstyle=\tiny\ttfamily}
 \newtheorem{theorem}{Theorem}[section]
 \begin{document}
 
@@ -369,18 +369,18 @@ to set up for the (potentially remote) environment.
 	\hline
 	\vspace{0.5ex}
 	\endfirsthead
--s,-{}-seed INT&  number used to initialize the pseudorandom number generator\\
-	-f,-{}-formula TEXT &  path to the file containing the sat formula\\
-	-d,-{}-decomposition TEXT  &   path to the file containing the tree decomposition\\
+-s, -{}-seed INT&  number used to initialize the pseudorandom number generator\\
+	-f, -{}-formula TEXT &  path to the file containing the sat formula\\
+	-d, -{}-decomposition TEXT  &   path to the file containing the tree decomposition\\
 	-{}-CPU                   &    run the solver on a cpu\\
 	-{}-NVIDIA                &    run the solver on an NVIDIA device\\
 	-{}-AMD                   &    run the solver on an AMD device\\
 	-{}-weighted              &   use weighted model count\\
 	-{}-noExp                 &    don't use extended exponents\\
-	-v,-{}-verbose            &    print additional program information\\
-	-p,-{}-nopreprocess       &    skips the preprocessing step for debugging and visualization-purposes\\
-	-w,-{}-combineWidth INT=20&    maximum width to combine bags of the decomposition\\
-	-g,-{}-graph TEXT         &    filename for saving the decomposition graph\\
+	-v, -{}-verbose            &    print additional program information\\
+	-p, -{}-nopreprocess       &    skips the preprocessing step for debugging and visualization-purposes\\
+	-w, -{}-combineWidth INT=20&    maximum width to combine bags of the decomposition\\
+	-g, -{}-graph TEXT         &    filename for saving the decomposition graph\\
 	-{}-visufile TEXT         &    filename for saving the visualization file\\
 
 \end{longtable}
@@ -388,7 +388,8 @@ to set up for the (potentially remote) environment.
           
 
 
-An example call with \textit{./gpusat -f ../examples/test\_da4\_1.cnf -v -p -d ../examples/td4p1.txt  -g ../examples/graphfileda41.txt -{}-visufile ../examples/visufileda41.json} enabled verbose output, disabled pre-processing to prevent the creation of bags with too many variables at once to be visualized, and creates
+An example call with \textit{./gpusat -f ../examples/test\_da4\_1.cnf -v -p -d ../examples/td4p1.txt  -g ../examples/graphfileda41.txt -{}-visufile ../examples/visufileda41.json} enabled verbose output, disabled pre-processing to prevent the creation of bags with too many variables at once to be visualized, and creates full visualization output. 
+The console output produced by this example call is listed in \ref{lst:outputGpusat}.
 
 
 
@@ -608,5 +609,5 @@ p cnf 18 24
 15 16 17 -18 0
 \end{lstlisting}
 \lstinputlisting[caption={DOT source for visualization of example 4.1}, label={lst:g41digraphdot}]{includes/g41digraphdot}
-
+\lstinputlisting[caption={stdout of program gpusat with call \textit{./gpusat -f ../examples/test\_da4\_1.cnf -v -p -d ../examples/td4p1.txt  -g ../examples/graphfileda41.txt -{}-visufile ../examples/visufileda41.json}}, label={lst:outputGpusat}]{includes/outputGpusat.txt}
 \end{document}
