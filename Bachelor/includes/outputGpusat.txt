@@ -4,7 +4,8 @@ Platform - 1
   1.2 CL_PLATFORM_VENDOR: Advanced Micro Devices, Inc.
   1.3 CL_PLATFORM_VERSION: OpenCL 2.1 AMD-APP (2671.3)
   1.4 CL_PLATFORM_PROFILE: FULL_PROFILE
-  1.5 CL_PLATFORM_EXTENSIONS: cl_khr_icd cl_amd_event_callback cl_amd_offline_devices 
+  1.5 CL_PLATFORM_EXTENSIONS: cl_khr_icd cl_amd_event_callback 
+ 			      cl_amd_offline_devices 
   Device - 1:
     CL_DEVICE_NAME: Ellesmere
     CL_DEVICE_VENDOR: Advanced Micro Devices, Inc.
