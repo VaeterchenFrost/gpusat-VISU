@@ -40,6 +40,12 @@ H.~Voigt and A.~Krause, ``{Course}: Graph data management and analytics.''
   Feb. 2019.
 \newblock [Online; accessed 11-June-2020].
 
+\bibitem{rapidPrototypingOvermyer}
+S.~P. Overmeyer, ``Revolutionary vs. evolutionary rapid prototyping: Balancing
+  software productivity and hci design concerns,'' in {\em Proceedings of the
+  Fourth International Conference on Human-Computer Interaction}, pp.~303--308,
+  Elsevier Science, Sept. 1991.
+
 \bibitem{Himsolt2010GMLAP}
 M.~Himsolt, ``Gml: A portable graph file format,'' 2010.
 

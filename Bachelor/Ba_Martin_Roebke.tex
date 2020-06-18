@@ -14,10 +14,10 @@
 \usepackage{xcolor}
 \usepackage{longtable} % breaks pages
 \usepackage{tabularx}
-\usepackage{booktabs}
+
 
 \definecolor{light-gray}{gray}{0.9}
-\lstset{tabsize=2, linewidth=1.05\textwidth, framextopmargin=1em, basicstyle=\tiny\ttfamily}
+\lstset{tabsize=2, linewidth=1.05\textwidth, framextopmargin=1em, basicstyle=\small\ttfamily}
 \newtheorem{theorem}{Theorem}[section]
 \begin{document}
 
@@ -285,18 +285,22 @@ and sorted by node-label to easier find single nodes in potentially large cluste
 
 Python because: Rich dependency environment. Fast prototyping. Simple tooling for debugging (pdb), static analysis (mypy), code-style (pylint, autopep8), packaging (pip, pypi).
 
-Python 3.8 because: Python 3.8 was at the beginning of the project the newest python version, released on October 14th 2019 (for a longer list see \href{https://docs.python.org/3/whatsnew/3.8.html}{summary of release highlights}). The change applied most times in this project would be \href{https://docs.python.org/3/whatsnew/3.8.html#f-strings-support-for-self-documenting-expressions-and-debugging}{f-string support} for shorter and easier to read string-building.
+Python 3.8 because: Python 3.8 was the newest python version at the beginning of the project, released on October 14th 2019. The change applied most times in this project would be \href{https://docs.python.org/3/whatsnew/3.8.html#f-strings-support-for-self-documenting-expressions-and-debugging}{f-string support} for shorter and easier to read string-building - for a longer list see \href{https://docs.python.org/3/whatsnew/3.8.html}{summary of release highlights}.
 
+The development process was for most parts of the final software driven by evolutionary prototyping with the help of small and well understood examples such as \ref{fig:g41Digraph}. It helped to understand the possibilities of visualization in this domain and gather user input and requirements early \cite{rapidPrototypingOvermyer}. Some artifacts of the early prototypes with different graph-description languages can be still seen in the class \textit{Graphoutput} in \ref{chagraphoutput}.
 
-The first stages were in \url{https://github.com/VaeterchenFrost/gpusat-VISU} and the first releases of the source code outsourced to\url{https://github.com/VaeterchenFrost/tdvisu}
+The first steps were in \url{https://github.com/VaeterchenFrost/gpusat-VISU} and the first releases of the source code outsourced to\url{https://github.com/VaeterchenFrost/tdvisu}
 
 The objective of this project was/is to support the visualization mainly to document and improve the development efforts of dynamic programming on tree decompositions.
 
 The tree decompositions in every tested application were provided by the utility \url{https://github.com/mabseher/htd} (small but efficient C++ library for computing (customized) tree and hypertree decompositions).
-Files / Classes / Methods
-Current 
-perspective 
-Checking with www.deepcode.ai
+% Files / Classes / Methods
+ 
+% perspective 
+
+% Checking with www.deepcode.ai
+
+The class \textit{tdvisu.Visualization} reads the parameters in a format 
 
 \newpage
 \subsection{Integration in GPUSAT}
@@ -394,7 +398,7 @@ The console output produced by this example call is listed in \ref{lst:outputGpu
 
 
 
-\subsubsection{Class Graphoutput}
+\subsubsection{Class Graphoutput}\label{chagraphoutput}
 First steps to automatically visualize the tree decomposition of the solving process with its solutions.
 Outputs a graph specified in gml\cite{Himsolt2010GMLAP} (Graph Modeling Language).
 For our example for \#SAT~\ref{lst:g41digraphdot} with the bags and respective solutions as nodes connected to the bag they solve.
@@ -470,6 +474,8 @@ Beispiel
 \newpage
 \section{Application and Images }
 
+To collect the first parameters to be changed 
+
 %==============================================================================
 %============== SUMMARY =======================================================
 %==============================================================================
@@ -501,29 +507,32 @@ What worked good, what bad?
 \newpage
 \section{Code Snippets}
 \lstset{numbers=left,backgroundcolor=\color{light-gray}}
+
+\lstinputlisting[caption={The JSON format used to describe MSOL visualization on tree decompositions}, label={lst:jsonapi}]{includes/JsonAPI.txt}
+
 \begin{lstlisting}[language={Python}, caption={Construct\_dpdb\_visu.py}, label={lst:create-json}]
 def create_json(problem: int, tw_file=None, intermed_nodes=False):
-  """Create the JSON for the specified problem instance."""
-  with connect() as connection:
-    # get type of problem
-    with connection.cursor() as cur:
-        query = """SELECT name,type,num_bags 
-            FROM public.problem WHERE id=%s"""
-        cur.execute(query, (problem,))
-        (name, ptype, num_bags) = cur.fetchone()
-        
-    constructor: IDpdbVisuConstruct  
-    if ptype == 'SharpSat':
-        constructor = DpdbSharpSatVisu(connection, 
-                                       problem, 
-                                       intermed_nodes)
-    elif ptype == 'VertexCover':
-        constructor = DpdbMinVcVisu(connection, 
-                                    problem, 
-                                    intermed_nodes,                                     
-                                    tw_file)
-    return constructor.construct()
-  return {}  
+"""Create the JSON for the specified problem instance."""
+with connect() as connection:
+# get type of problem
+with connection.cursor() as cur:
+query = """SELECT name,type,num_bags 
+FROM public.problem WHERE id=%s"""
+cur.execute(query, (problem,))
+(name, ptype, num_bags) = cur.fetchone()
+
+constructor: IDpdbVisuConstruct  
+if ptype == 'SharpSat':
+constructor = DpdbSharpSatVisu(connection, 
+problem, 
+intermed_nodes)
+elif ptype == 'VertexCover':
+constructor = DpdbMinVcVisu(connection, 
+problem, 
+intermed_nodes,                                     
+tw_file)
+return constructor.construct()
+return {}  
 \end{lstlisting}
 
 \section{Input Examples}
