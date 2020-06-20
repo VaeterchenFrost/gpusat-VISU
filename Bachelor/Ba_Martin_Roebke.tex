@@ -21,6 +21,7 @@
 \newtheorem{theorem}{Theorem}[section]
 
 
+
 \begin{document}
 \def\myauthor{Martin Röbke} 
 \def\mycoauthor{Dr. Johannes Fichte} 
@@ -62,6 +63,9 @@
 	\vspace{\stretch{2}}
 \end{titlepage}
 \newpage
+%==============================================================================
+%============== DECLARATION ===================================================
+%==============================================================================
 \section*{}
 \thispagestyle{empty}
 {\huge\bfseries{Erklärung zur Urheberschaft}\vspace{20pt}}
@@ -96,22 +100,21 @@ Dresden,  ............................. \hfill .............................
 %==============================================================================
 \section*{Abstract}
 \vspace{4ex}
-This thesis introduces a practical and lightweight implementation for visualizing dynamic programming on tree decompositions.
-The provided source code is located in the python-package \href{https://pypi.org/project/tdvisu}{tdvisu} for the purpose of visualizing, teaching and analyzing the dynamic solving process. \\
-It defines a \href{https://www.json.org/json-en.html}{JSON}-format specification for portability and customization of the visualization combined in one human-readable file and two reference implementations in actual solvers.
-The implementation currently does not support hyper-graphs and assumes that each node in the tree decomposition has either one or two children.
-The visualization output consists by default of scalable-vector-graphics \href{https://developer.mozilla.org/en-US/docs/Web/SVG}{SVG}, a very flexible text-based that can be compressed and modified very easily without loss of quality.
-The images are split up into different views on the current state of the tree decomposition for consecutive user-defined time steps showing the progress of the dynamic programming.
-As illustrations of the possibilities for an application smaller examples from the problem-types "\#SAT" and "minimal vertex cover" are presented,
-as well as an example of a faulty tree-decomposition that occurred during development.
-Intended audience: 
-\begin{itemize}
-	\item Developer of dynamic programming on tree decompositions for debugging.
-	\item Researcher of such algorithms for comparisons and visualizations.
-	\item Teachers or students looking for automatic visualization of their examples and the dynamic programming.
-\end{itemize} 
 
-As two reference implementations of dynamic programming on tree decompositions we chose the existing solvers \href{https://github.com/daajoe/GPUSAT}{GPUSAT} and \href{https://github.com/hmarkus/dp_on_dbs}{dpdb}.
+Answering questions that can be expressed using graph theory is increasingly interesting in scientific work.
+Many problems such as Boolean satisfiability or problems related traffic can be translated and solved as a graph.
+We think that utilizing the graph structure of problems and the connection between data points can help to improve algorithms concerning problems.
+
+The algorithms we visualize in this thesis use dynamic programming on such graphs.
+We preprocess the input graph into a customized tree-decomposition of small tree-width.
+This gives us a description of the processing sequence for the algorithm, and allows 
+with right hindsight for good parallelization and allows for faster solving times on larger instances.
+
+To help for further refinement and visualization of the dynamic programming,
+we specified a JSON-form to communicate between solvers and the newly created visualization tool \href{https://github.com/VaeterchenFrost/tdvisu}{TDVisu}.
+
+As two reference implementations of dynamic programming on tree decompositions we selected the existing solvers \href{https://github.com/daajoe/GPUSAT}{GPUSAT} and \href{https://github.com/hmarkus/dp_on_dbs}{dpdb}.
+
 
 \newpage
 
@@ -133,8 +136,19 @@ The use cases for example outlined by Neo4j in \cite{graphUseCases}, a provider 
 	\item[-] Recommendation Engines
 	\item[-] Artificial Intelligence and Analytics
 \end{itemize}
-While many problems can be expressed using the language of graphs, there is still plenty of room
-to utilize the graph structure of problems.
+It defines a \href{https://www.json.org/json-en.html}{JSON}-format specification for portability and customization of the visualization combined in one human-readable file and two reference implementations in actual solvers.
+The implementation currently does not support hyper-graphs and assumes that each node in the tree decomposition has either one or two children.
+The visualization output consists by default of scalable-vector-graphics \href{https://developer.mozilla.org/en-US/docs/Web/SVG}{SVG}, a very flexible text-based that can be compressed and modified very easily without loss of quality.
+The images are split up into different views on the current state of the tree decomposition for consecutive user-defined time steps showing the progress of the dynamic programming.
+As illustrations of the possibilities for an application smaller examples from the problem-types "\#SAT" and "minimal vertex cover" are presented,
+as well as an example of a faulty tree-decomposition that occurred during development.
+Intended audience: 
+\begin{itemize}
+	\item Developer of dynamic programming on tree decompositions for debugging.
+	\item Researcher of such algorithms for comparisons and visualizations.
+	\item Teachers or students looking for automatic visualization of their examples and the dynamic programming.
+\end{itemize} 
+
 The idea for this project comes from my supervisor Dr. Johannes Fichte, who works with many projects such as \href{https://github.com/hmarkus/dp_on_dbs}{dpdb} on solving monadic second order logic (MSOL\cite{Courcelle2012}) problems using highly parallelized architectures like graphics processing units or state of the art databases.
 One early implementation is published in \cite{evaluationMSO} where for different real world examples the results looked promising
 These projects are very competitive ????REF????? for solving even large instances of those problems.
@@ -323,6 +337,7 @@ and sorted by node-label to easier find single nodes in potentially large cluste
 \newpage
 \section{My Visualization Project}
 
+
 Python because: Rich dependency environment. Fast prototyping. Simple tooling for debugging (pdb), static analysis (mypy), code-style (pylint, autopep8), packaging (pip, pypi).
 
 Python 3.8 because: Python 3.8 was the newest python version at the beginning of the project, released on October 14th 2019. The change applied most times in this project would be \href{https://docs.python.org/3/whatsnew/3.8.html#f-strings-support-for-self-documenting-expressions-and-debugging}{f-string support} for shorter and easier to read string-building - for a longer list see \href{https://docs.python.org/3/whatsnew/3.8.html}{summary of release highlights}.
@@ -343,7 +358,7 @@ The tree decompositions in every tested application were provided by the utility
 The class \textit{tdvisu.Visualization} reads the parameters in a format 
 
 \newpage
-\subsection{Integration in GPUSAT}
+\section{Integration in GPUSAT}
 To study and improve the handling of the C++ program was chronologically the first task I experimented with.
 Getting the program up and running proved to be more difficult than we envisioned due to a probable bug in the driver when running OpenCL Drivers from CUDA on the Windows OS.
 
@@ -459,7 +474,7 @@ To simplify the creation of valid json I selected the actively developed c++ lib
 
 
 \newpage
-\subsection{Integration in dpdb}
+\section{Integration in dpdb}
 The integration of the API with dpdb was easier to implement after the solving process instead of
 hooking into the solving, 
 provided that all necessary information got persisted in the database.
