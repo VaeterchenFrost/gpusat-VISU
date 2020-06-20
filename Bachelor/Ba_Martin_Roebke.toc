@@ -8,12 +8,12 @@
 \contentsline {section}{\numberline {3}Concept}{9}{section.3}%
 \contentsline {section}{\numberline {4}My Visualization Project}{10}{section.4}%
 \contentsline {subsection}{\numberline {4.1}Commandline and Configuration}{10}{subsection.4.1}%
-\contentsline {section}{\numberline {5}Integration in GPUSAT}{11}{section.5}%
-\contentsline {subsubsection}{\numberline {5.0.1}Class Graphoutput}{13}{subsubsection.5.0.1}%
-\contentsline {subsubsection}{\numberline {5.0.2}Class SolverVisualization}{13}{subsubsection.5.0.2}%
-\contentsline {section}{\numberline {6}Integration in dpdb}{14}{section.6}%
-\contentsline {section}{\numberline {7}Application and Images}{15}{section.7}%
-\contentsline {section}{\numberline {8}Summary and Outline}{16}{section.8}%
-\contentsline {section}{\numberline {A}Images}{18}{appendix.A}%
-\contentsline {section}{\numberline {B}Code Snippets}{20}{appendix.B}%
-\contentsline {section}{\numberline {C}Input Examples}{23}{appendix.C}%
+\contentsline {section}{\numberline {5}Integration in GPUSAT}{12}{section.5}%
+\contentsline {subsubsection}{\numberline {5.0.1}Class Graphoutput}{14}{subsubsection.5.0.1}%
+\contentsline {subsubsection}{\numberline {5.0.2}Class SolverVisualization}{14}{subsubsection.5.0.2}%
+\contentsline {section}{\numberline {6}Integration in dpdb}{15}{section.6}%
+\contentsline {section}{\numberline {7}Application and Images}{16}{section.7}%
+\contentsline {section}{\numberline {8}Summary and Outline}{17}{section.8}%
+\contentsline {section}{\numberline {A}Images}{19}{appendix.A}%
+\contentsline {section}{\numberline {B}Code Snippets}{21}{appendix.B}%
+\contentsline {section}{\numberline {C}Input Examples}{24}{appendix.C}%
