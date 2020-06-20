@@ -357,7 +357,7 @@ The tree decompositions in every tested application were provided by the utility
 \subsection{Commandline and Configuration}
 
 
-The class \textit{tdvisu.Visualization} reads the parameters in a format described by \ref{tab:optionstdvisu}.
+The \textit{tdvisu.visualization} expects the command line parameters in a format described by table~\ref{tab:optionstdvisu}.
 
 \def\arraystretch{1.2}%  1 is the default
 \begin{longtable}{|ll|}
@@ -375,6 +375,18 @@ The class \textit{tdvisu.Visualization} reads the parameters in a format describ
 	-h, -{}-help & show the help message and exit\\
 	\hline
 \end{longtable}
+
+We see that this input is very simple, and that the heavy lifting is done with the input file given in \textit{infile}.
+
+One extra possibility for configuration comes with the method \textbf{logging\_cfg} from \textit{tdvisu.utilities}. There are two example configurations provided with our project, one in the .yml, one in .ini format. The implementation is very flexible in detecting which parser has to be applied - either via a dictionary-like or a configuration-like function. Both possibilities are documented in python's \href{https://docs.python.org/3/library/logging.config.html#logging-config-api}{logging configuration}.
+
+Our default configuration in tdvisu/logging.yml and tdvisu/logging.ini provides one handler, two formatters and six loggers.
+
+The \textbf{handler} is a stream handler to sys.stdout with level \textit{WARNING} and the the 'full'-formatter to format messages.
+
+The \textbf{full-formatter} includes the full date and time up to milliseconds. After that we can expect the logging-level, filename and line where it was generated, and the message itself.
+
+
 % perspective 
 
 % Checking with www.deepcode.ai
