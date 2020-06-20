@@ -356,28 +356,29 @@ The tree decompositions in every tested application were provided by the utility
 
 \subsection{Commandline and Configuration}
 
-\begin{longtable}{ll}
-	\caption{Usage: visualization.py 
+
+The class \textit{tdvisu.Visualization} reads the parameters in a format described by \ref{tab:optionstdvisu}.
+
+\def\arraystretch{1.2}%  1 is the default
+\begin{longtable}{|ll|}
+	\caption{Usage visualization.py 
 		\label{tab:optionstdvisu}}\\
-	\hline
-	\multicolumn{2}{c}{[-h] [--version] [--loglevel LOGLEVEL] [infile] outfolder}
+	\hline 
+	\multicolumn{2}{|c|}{[-h] [--version] [--loglevel LOGLEVEL] [infile] outfolder}
 	\\[2ex]
 	\endfirsthead
-	
-	
+
 	infile=stdin &  Input file for the visualization must conform with the JsonAPI.md\\
 	outfolder &  Foldername to output the visualization results to\\
 	-{}-loglevel  &   set the minimal loglevel for the root logger\\
 	-{}-version & show program's version number and exit\\
 	-h, -{}-help & show the help message and exit\\
-	
-	
+	\hline
 \end{longtable}
 % perspective 
 
 % Checking with www.deepcode.ai
 
-The class \textit{tdvisu.Visualization} reads the parameters in a format 
 
 \newpage
 \section{Integration in GPUSAT}
