@@ -400,7 +400,28 @@ The \textbf{loggers} we use in our project are located in
 and can be individually customized using one configuration file.
 With the command line parameter \textit{-{}-loglevel} we can modify the level of \textit{root} and it's associated handlers.
 
-After the configuration we instantiate a Visualization object as shown in listing~\ref{lst:visuinit} , which parses the VisualizationData with the help from our inspect\_json method.
+After the configuration we instantiate a Visualization object as shown in listing~\ref{lst:visuinit} , which parses the VisualizationData with the help from our inspect\_json method. 
+
+The main purpose of the initialization is parsing the input file containing visualization information.
+This is encapsulated in \textit{read\_json}.
+
+Next we want to extract information into two places: 
+\begin{itemize}
+	\item the instance variables 
+	\begin{itemize}
+		\item \textit{timeline}, describing the time steps on the tree decomposition
+		\item \textit{tree\_dec}, describing the TD itself
+		\item \textit{bagpre}, \textit{joinpre}, \textit{solpre} and \textit{soljoinpre} as names for different nodes in the produced visualization
+	\end{itemize}
+	\item \textit{VisualizationData} containing the data for 
+	\begin{itemize}
+		\item IncidenceGraphData in listing \ref{lst:incidencedata}
+		\item GeneralGraphData in \ref{lst:gengraphdata}
+		\item SvgJoinData in \ref{lst:svgjoindata}
+		\item adjustable parameters affecting the visuals of the visualization
+	\end{itemize}
+\end{itemize}
+
 
 \begin{lstlisting}[language={Python}, caption={Visualization}, label={lst:visuinit}]
 def __init__(self, infile, outfolder) -> None:
@@ -457,7 +478,7 @@ def inspect_json(self, infile) -> VisualizationData:
 
 \end{lstlisting}
 
-\begin{lstlisting}[language={Python}, caption={SvgJoinData}, label={lst:scgjoindata}]
+\begin{lstlisting}[language={Python}, caption={SvgJoinData}, label={lst:svgjoindata}]
 @dataclass
 class SvgJoinData:
 	"""Class holding different parameters to join the results."""
