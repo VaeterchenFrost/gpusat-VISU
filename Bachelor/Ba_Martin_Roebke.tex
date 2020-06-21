@@ -533,6 +533,20 @@ class GeneralGraphData:
 	second_color: str = 'green'
 	second_style: str = 'dotted,filled'
 \end{lstlisting}
+
+Next we call the method \textit{Visualization.tree\_dec\_timeline} that will start the visualization.
+First it does a quick setup for a directed graph that 
+\begin{itemize}
+	\item is \textit{strict}, meaning a simple graph where equal edges are merged into one
+	\item has an orientation where it grows with each "rank" of the nodes
+	\item has a shape and a fill-color for it's nodes
+	\item has a margin around it's final bounding box.
+\end{itemize}
+
+Secondly it creates the basic bag-structure adding nodes and edges for all bags of the provided tree decomposition.
+
+
+
 % perspective 
 
 % Checking with www.deepcode.ai
