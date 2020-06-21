@@ -570,6 +570,19 @@ With additional data from \textit{IncidenceGraphData} we are able to reconstruct
 \end{itemize}
 and with the edges from \textit{GeneralGraphData} we can construct a graph that should include the nodes we find in the bags of the TD.
 
+% ----- Example for isolated nodes -------
+Because graph representations of Boolean formulas are not necessarily connected ---EXAMPLE--- we make sure to include potentially isolated nodes into the graph.
+
+\subsection{Incidence Graph}
+The incidence graph is a bipartite graph that we present in a way that creates a one to one correspondence with the 
+Boolean formula it does represent. For an example for an incidence visualization see \ref{fig:incidencestep6}
+
+This bipartite graph is prepared with good default values, but is customizable in many parameters.
+Those values are:
+
+\begin{enumerate}
+	\item colors 
+\end{enumerate}
 
 % perspective 
 
@@ -779,6 +792,12 @@ What worked good, what bad?
 	\includegraphics[height=\textheight]{images/g41digraphdot.png}
 	\caption{Created scalable-vector-graphic directly from \ref{lst:g41digraphdot}}
 	\label{fig:g41Digraph}
+\end{figure}
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.4\linewidth]{images/IncidenceStep6.png}
+	\caption{Example for an incidence graph from example 4.1}
+	\label{fig:incidencestep6}
 \end{figure}
 \newpage
 \section{Code Snippets}
