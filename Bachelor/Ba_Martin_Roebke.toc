@@ -8,6 +8,7 @@
 \contentsline {section}{\numberline {3}Concept}{9}{section.3}%
 \contentsline {section}{\numberline {4}My Visualization Project}{10}{section.4}%
 \contentsline {subsection}{\numberline {4.1}Commandline and Configuration}{10}{subsection.4.1}%
+\contentsline {subsection}{\numberline {4.2}Construct and Layout Solving Process}{11}{subsection.4.2}%
 \contentsline {section}{\numberline {5}Integration in GPUSAT}{15}{section.5}%
 \contentsline {subsubsection}{\numberline {5.0.1}Class Graphoutput}{17}{subsubsection.5.0.1}%
 \contentsline {subsubsection}{\numberline {5.0.2}Class SolverVisualization}{17}{subsubsection.5.0.2}%
@@ -16,4 +17,4 @@
 \contentsline {section}{\numberline {8}Summary and Outline}{20}{section.8}%
 \contentsline {section}{\numberline {A}Images}{22}{appendix.A}%
 \contentsline {section}{\numberline {B}Code Snippets}{24}{appendix.B}%
-\contentsline {section}{\numberline {C}Input Examples}{27}{appendix.C}%
+\contentsline {section}{\numberline {C}Input Examples}{28}{appendix.C}%
