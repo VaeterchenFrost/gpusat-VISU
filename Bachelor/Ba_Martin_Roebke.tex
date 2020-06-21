@@ -554,6 +554,23 @@ In this case we basically remove old connections between the children and the pa
 
 The second run iterates backwards over all timesteps to hide later timesteps and emphasize the current node.
 When rendering the graphs there is an added option to automatically \textit{view} the result (disabled by default. Details for this function can be viewed in listing \ref{lst:backward-iterate}.
+
+\subsection{Create time steps for the underlying graph}
+To get a more comprehensive insight into the solving process we decided to also highlight the parts of the 
+graph that best describes the problem instance that the solver works on.
+
+Because the information in the API does not directly include details about highlights in those graphs, we do construct this data on the fly.
+
+First we select only bag ids from the timeline provided that present an IF-operation.
+With additional data from \textit{IncidenceGraphData} we are able to reconstruct the
+\begin{itemize}
+	\item incidence graph,
+	\item primal graph,
+	\item dual graph
+\end{itemize}
+and with the edges from \textit{GeneralGraphData} we can construct a graph that should include the nodes we find in the bags of the TD.
+
+
 % perspective 
 
 % Checking with www.deepcode.ai
