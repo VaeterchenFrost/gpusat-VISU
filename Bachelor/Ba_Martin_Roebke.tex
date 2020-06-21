@@ -18,6 +18,7 @@
 
 \definecolor{light-gray}{gray}{0.9}
 \lstset{tabsize=2, linewidth=1.05\textwidth, framextopmargin=1em, basicstyle=\small\ttfamily}
+\lstset{numbers=left,backgroundcolor=\color{light-gray}}
 \newtheorem{theorem}{Theorem}[section]
 
 
@@ -350,6 +351,7 @@ The objective of this project was/is to support the visualization mainly to docu
 
 The tree decompositions in every tested application were provided by the utility \url{https://github.com/mabseher/htd} (small but efficient C++ library for computing (customized) tree and hypertree decompositions).
 
+
 % License
 
 % Files / Classes / Methods
@@ -398,6 +400,118 @@ The \textbf{loggers} we use in our project are located in
 and can be individually customized using one configuration file.
 With the command line parameter \textit{-{}-loglevel} we can modify the level of \textit{root} and it's associated handlers.
 
+After the configuration we instantiate a Visualization object as shown in listing~\ref{lst:visuinit} , which parses the VisualizationData with the help from our inspect\_json method.
+
+\begin{lstlisting}[language={Python}, caption={Visualization}, label={lst:visuinit}]
+def __init__(self, infile, outfolder) -> None:
+	"""Copy needed fields from arguments and create VisualizationData.
+	"""
+	self.data: VisualizationData = self.inspect_json(infile)
+	self.outfolder = outfolder
+	
+	self.tree_dec_digraph = None
+	
+def inspect_json(self, infile) -> VisualizationData:
+	"""Read and preprocess the needed data from the infile into 
+	VisualizationData.
+	"""
+	LOGGER.debug("Reading from: %s", infile)
+	visudata = read_json(infile)
+	LOGGER.debug("Found keys: %s", visudata.keys())
+	
+	try:
+		_incid = visudata['incidenceGraph']
+		_general_graph = visudata['generalGraph']
+		_svg_join = visudata.get('svg_join', None)
+		
+		incid_data: IncidenceGraphData = None
+		if _incid:
+		_incid['edges'] = [[x['id'], x['list']]
+		for x in _incid['edges']]
+		incid_data = IncidenceGraphData(**_incid)
+		visudata.pop('incidenceGraph')
+		general_graph_data: GeneralGraphData = None
+		if _general_graph:
+		general_graph_data = GeneralGraphData(**_general_graph)
+		visudata.pop('generalGraph')
+		svg_join_data: SvgJoinData = None
+		if _svg_join:
+		svg_join_data = SvgJoinData(**_svg_join)
+		if 'svg_join' in visudata:
+		visudata.pop('svg_join')
+		
+		self.timeline = visudata['tdTimeline']
+		visudata.pop('tdTimeline')
+		self.tree_dec = visudata['treeDecJson']
+		self.bagpre = self.tree_dec['bagpre']
+		self.joinpre = self.tree_dec.get('joinpre', 'Join %d~%d')
+		self.solpre = self.tree_dec.get('solpre', 'sol%d')
+		self.soljoinpre = self.tree_dec.get('soljoinpre', 'solJoin%d~%d')
+		visudata.pop('treeDecJson')
+	except KeyError as err:
+		raise KeyError(f"Key {err} not found in the input Json.")
+	return VisualizationData(incidence_graph=incid_data,
+													 general_graph=general_graph_data,
+													 svg_join=svg_join_data,
+													 **visudata)
+
+\end{lstlisting}
+
+\begin{lstlisting}[language={Python}, caption={SvgJoinData}, label={lst:scgjoindata}]
+@dataclass
+class SvgJoinData:
+	"""Class holding different parameters to join the results."""
+	base_names: Union[str, Iterable[str]]
+	folder: Optional[str] = None
+	outname: str = 'combined'
+	suffix: str = '%d.svg'
+	preserve_aspectratio: str = 'xMinYMin'
+	num_images: int = 1
+	padding: Union[int, Iterable[int]] = 0
+	scale2: Union[float, Iterable[float]] = 1.0
+	v_top: Union[None, float, str, 
+	             Iterable[Union[None, float, str]]] = 'top'
+	v_bottom: Union[None, float, str, 
+	                Iterable[Union[None, float, str]]] = None	
+\end{lstlisting}
+
+\begin{lstlisting}[language={Python}, caption={IncidenceGraphData}, label={lst:incidencedata}]
+@dataclass
+class IncidenceGraphData:
+	"""Class holding different parameters for the incidence graph."""
+	edges: list
+	subgraph_name_one: str = 'clauses'
+	subgraph_name_two: str = 'variables'
+	var_name_one: str = ''
+	var_name_two: str = ''
+	infer_primal: bool = False
+	infer_dual: bool = False
+	primal_file: str = 'PrimalGraphStep'
+	inc_file: str = 'IncidenceGraphStep'
+	dual_file: str = 'DualGraphStep'
+	fontsize: int = 16
+	penwidth: Union[float, str] = 2.2
+	second_shape: str = 'diamond'
+	column_distance: float = 0.5	
+\end{lstlisting}
+
+\begin{lstlisting}[language={Python}, caption={GeneralGraphData}, label={lst:gengraphdata}]
+@dataclass
+class GeneralGraphData:
+	"""Class holding different parameters for the general graph."""
+	edges: list
+	extra_nodes: Optional[list] = None
+	graph_name: str = 'graph'
+	file_basename: str = 'graph'
+	var_name: str = ''
+	sort_nodes: bool = False
+	need_adj_nodes: bool = False
+	fontsize: int = 20
+	first_color: str = 'yellow'
+	first_style: str = 'filled'
+	second_color: str = 'green'
+	second_style: str = 'dotted,filled'
+\end{lstlisting}
 % perspective 
 
 % Checking with www.deepcode.ai
@@ -609,7 +723,7 @@ What worked good, what bad?
 \end{figure}
 \newpage
 \section{Code Snippets}
-\lstset{numbers=left,backgroundcolor=\color{light-gray}}
+
 
 \lstinputlisting[caption={The JSON format used to describe MSOL visualization on tree decompositions}, label={lst:jsonapi}]{includes/JsonAPI.txt}
 
