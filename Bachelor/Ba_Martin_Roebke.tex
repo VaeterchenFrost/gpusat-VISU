@@ -545,7 +545,9 @@ First it does a quick setup for a directed graph that
 
 Secondly it creates the basic bag-structure adding nodes and edges for all bags of the provided tree decomposition.
 
-
+Now comes the heavy lifting when it iterates over the timeline, adding provided solutions and edges connecting those to the existing bags. One special case occurs when joining two solved bags into a new one.
+In this case we basically remove old connections between the children and the parent node, insert the join-result into the graph and add connections from children to the join-result and from the join-result to the parent. 
+!!! Example !!!
 
 % perspective 
 
