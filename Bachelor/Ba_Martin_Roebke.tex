@@ -561,17 +561,27 @@ To get a more comprehensive insight into the solving process we decided to also 
 
 Because the data in the API does not directly include details about highlights in those graphs, we will construct this information on the fly.
 
-First we select only bag ids from the timeline provided that present an IF-operation.
+First we select only bag ids from the timeline provided that represent an IF-operation.
 With additional data from \textit{IncidenceGraphData} we are able to reconstruct the
 \begin{itemize}
 	\item incidence graph,
 	\item primal graph,
 	\item dual graph
 \end{itemize}
-and with the edges from \textit{GeneralGraphData} we can construct a graph that should include the nodes we find in the bags of the TD.
+for Boolean formulas.
+With input from \textit{GeneralGraphData} we can construct a simple graph that should include the nodes we find in the bags of the TD.
 
 % ----- Example for isolated nodes -------
-Because graph representations of Boolean formulas are not necessarily connected ---EXAMPLE--- we make sure to include potentially isolated nodes into the graph.
+Because graph representations of Boolean formulas are not necessarily connected, we make sure to include potentially isolated nodes into the graph as well.
+For example the formula $(\neg a\lor \neg b\lor \neg c\lor \neg d)\land (b\lor c\lor d)\land g$
+with the clause-set $\{c_{1}=\{-a,-b,-c,-d\},c_{2}=\{b,c,d\},c_{3}=\{g\}\}$ will create the dual graph \ref{fig:disconnected123}. This happens with no pre-processing and if the variable g is only included in the unit $c_{3}$.
+
+\begin{figure}
+	\centering
+	\includegraphics{images/disconnected123.png}
+	\caption{Disconnected (dual) graph}
+	\label{fig:disconnected123}
+\end{figure}
 
 \subsection{Incidence Graph}\label{sec:incid}
 The incidence graph is a bipartite graph that we present in a way that creates a one to one correspondence with the 
