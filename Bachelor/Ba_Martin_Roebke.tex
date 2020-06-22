@@ -574,7 +574,7 @@ With input from \textit{GeneralGraphData} we can construct a simple graph that s
 % ----- Example for isolated nodes -------
 Because graph representations of Boolean formulas are not necessarily connected, we make sure to include potentially isolated nodes into the graph as well.
 For example the formula $(\neg a\lor \neg b\lor \neg c\lor \neg d)\land (b\lor c\lor d)\land g$
-with the clause-set $\{c_{1}=\{-a,-b,-c,-d\},c_{2}=\{b,c,d\},c_{3}=\{g\}\}$ will create the dual graph \ref{fig:disconnected123}. This happens with no pre-processing and if the variable g is only included in the unit $c_{3}$.
+with its set of clauses $\{c_{1}=\{-a,-b,-c,-d\},c_{2}=\{b,c,d\},c_{3}=\{g\}\}$ will create the dual graph \ref{fig:disconnected123}. This happens with no pre-processing and if the variable g is only included in the unit $c_{3}$.
 
 \begin{figure}
 	\centering
