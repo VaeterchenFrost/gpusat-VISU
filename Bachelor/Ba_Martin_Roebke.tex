@@ -618,22 +618,11 @@ For smaller and dense graphs of up to 20 vertices it might be helpful to sort th
 
 To layout these two options we chose the engine 
 \begin{itemize}
-	\item \textit{do\_sort\_nodes} true: circo
-	\item \textit{do\_sort\_nodes} false: sfdp
+	\item \textit{do\_sort\_nodes} true: circo (see \cite{ST99})
+	\item \textit{do\_sort\_nodes} false: sfdp (see \cite{Hu05}) with the spring constant 'K' in virtual physical model set to 2.
 \end{itemize}
 
-\begin{enumerate}
-	\item \textit{colors}, an iterable of colors that is used to color different nodes
-	\item \textit{inc\_file}, basis for the file created that gets appended with the step number
-	\item \textit{view}, could automatically open the generated files with the default program
-	\item \textit{fontsize}, the size of all text in this graph
-	\item \textit{penwidth}, width of the lines around nodes
-	\item \textit{basefill}, filling of the background for nodes
-	\item \textit{sndshape}, shape of the nodes with variables
-	\item \textit{neg\_tail}, the shape of the edge-tail indicating a negated variable
-	\item \textit{var\_name\_one(/two)}, prefix for nodes in the left (right) partition
-	\item \textit{column\_distance}, the distance between both partitions
-\end{enumerate}
+Additional parameters used in both layouts are set to: not overlap nodes to easily identify each node, and draw the edges first. This should provide a minimally cluttered layout compared to the defaults, but could make edges ambiguous in some cases. Of course these layouts could use even more configuration than what was set for this version, a complete overview is provided in the \href{https://graphviz.org/doc/info/attrs.html}{graphviz-doc}. 
 
 \begin{itemize}
 	\item There is no active clause in this step: we only reset highlighting
