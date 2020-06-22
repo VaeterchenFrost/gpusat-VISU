@@ -103,7 +103,7 @@ Dresden,  ............................. \hfill .............................
 \section*{Abstract}
 \vspace{4ex}
 
-Answering questions that can be expressed using graph theory is increasingly interesting in scientific work.
+Answering questions that  be expressed using graph theory is increasingly interesting in scientific work.
 Many problems such as Boolean satisfiability or problems related to traffic can be translated to and solved on a graph.
 We think that utilizing the graph structure of problems and the connection between data points can help to improve algorithms concerning problems for different areas of interest.
 
@@ -660,6 +660,7 @@ Once all user defined images for one timeline are created, it would be nice to h
 To support this functionality and some basic scaling and adjusting, there is a special key in the API for joining the svg-graphs. 
 The functionality is placed in the file \textit{svgjoin.py} and called with the specifications given in the optional dictionary \textbf{svgjoin} within the JsonAPI.
 
+We transform this information into the python \textit{dataclass} \textbf{SvgJoinData} \ref{lst:svgjoindata}.
 
 % perspective 
 
@@ -992,6 +993,23 @@ def backwards_iterate_tdg(self, joinpre, solpre, soljoinpre,
 
 \end{lstlisting}
 
+\begin{lstlisting}[language={Python}, caption={SvgJoinData}, label={lst:svgjoindata}]
+@dataclass
+class SvgJoinData:
+	"""Class for holding different parameters to join the results."""
+	base_names: Union[str, Iterable[str]]
+	folder: Optional[str] = None
+	outname: str = 'combined'
+	suffix: str = '%d.svg'
+	preserve_aspectratio: str = 'xMinYMin'
+	num_images: int = 1
+	padding: Union[int, Iterable[int]] = 0
+	scale2: Union[float, Iterable[float]] = 1.0
+	v_top: Union[None, float, str, 
+	             Iterable[Union[None, float, str]]] = 'top'
+	v_bottom: Union[None, float, str, 
+	                Iterable[Union[None, float, str]]] = None
+\end{lstlisting}
 \section{Input Examples}
 
 \lstset{numbers=none}
