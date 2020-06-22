@@ -67,7 +67,7 @@
 %==============================================================================
 %============== DECLARATION ===================================================
 %==============================================================================
-\section*{}
+\section*{ }
 \thispagestyle{empty}
 {\huge\bfseries{Erklärung zur Urheberschaft}\vspace{20pt}}
 
@@ -575,7 +575,7 @@ Because graph representations of Boolean formulas are not necessarily connected 
 
 \subsection{Incidence Graph}
 The incidence graph is a bipartite graph that we present in a way that creates a one to one correspondence with the 
-Boolean formula it does represent. For an example for an incidence visualization see \ref{fig:incidencestep6}
+Boolean formula it does represent. For an example of an incidence graph visualization see \ref{fig:incidencestep6}
 
 This bipartite graph is prepared with good default values, but is customizable in many parameters.
 Those values are:
@@ -592,6 +592,13 @@ Those values are:
 	\item \textit{var\_name\_one(/two)}, prefix for nodes in the left (right) partition
 	\item \textit{column\_distance}, the distance between both partitions
 \end{enumerate}
+
+We create the graph, add the necessary arguments and two sub-graphs. 
+The first subgraph is called \textit{cluster\_clause} with it's label \textit{clauses}.
+We add the clauses with their clause-ids starting at one sorted in ascending order from top to bottom.
+
+The second sub-graph we call \textit{cluster\_ivar} labeled \textit{variables} gets all variables added to it, 
+starting from variable-id one. 
 
 % perspective 
 

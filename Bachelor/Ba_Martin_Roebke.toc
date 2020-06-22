@@ -18,5 +18,5 @@
 \contentsline {section}{\numberline {7}Application and Images}{20}{section.7}%
 \contentsline {section}{\numberline {8}Summary and Outline}{21}{section.8}%
 \contentsline {section}{\numberline {A}Images}{23}{appendix.A}%
-\contentsline {section}{\numberline {B}Code Snippets}{25}{appendix.B}%
-\contentsline {section}{\numberline {C}Input Examples}{29}{appendix.C}%
+\contentsline {section}{\numberline {B}Code Snippets}{26}{appendix.B}%
+\contentsline {section}{\numberline {C}Input Examples}{30}{appendix.C}%
