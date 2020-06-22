@@ -245,6 +245,33 @@
       \field{pages}{11\bibrangedash 15}
       \range{pages}{5}
     \endentry
+    \entry{Hu05}{article}{}
+      \name{author}{1}{}{%
+        {{hash=855f3b81b4485b5f0dcd527f5803bb66}{%
+           family={Hu},
+           familyi={H\bibinitperiod},
+           given={Yifan},
+           giveni={Y\bibinitperiod}}}%
+      }
+      \strng{namehash}{855f3b81b4485b5f0dcd527f5803bb66}
+      \strng{fullhash}{855f3b81b4485b5f0dcd527f5803bb66}
+      \strng{bibnamehash}{855f3b81b4485b5f0dcd527f5803bb66}
+      \strng{authorbibnamehash}{855f3b81b4485b5f0dcd527f5803bb66}
+      \strng{authornamehash}{855f3b81b4485b5f0dcd527f5803bb66}
+      \strng{authorfullhash}{855f3b81b4485b5f0dcd527f5803bb66}
+      \field{labelalpha}{Hu05}
+      \field{sortinit}{H}
+      \field{sortinithash}{6db6145dae8dc9e1271a8d556090b50a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Mathematica Journal}
+      \field{month}{01}
+      \field{title}{Efficient and high quality force-directed graph drawing}
+      \field{volume}{10}
+      \field{year}{2005}
+      \field{pages}{37\bibrangedash 71}
+      \range{pages}{35}
+    \endentry
     \entry{evaluationMSO}{article}{}
       \name{author}{4}{}{%
         {{hash=ed01e6237f996f5f339053e2c2041bb0}{%
@@ -359,6 +386,54 @@
       \verb{url}
       \verb http://www.sciencedirect.com/science/article/pii/0095895684900133
       \endverb
+    \endentry
+    \entry{ST99}{inproceedings}{}
+      \name{author}{2}{}{%
+        {{hash=ba3c7e965cb924666fe02501a886b422}{%
+           family={Six},
+           familyi={S\bibinitperiod},
+           given={Janet\bibnamedelima M.},
+           giveni={J\bibinitperiod\bibinitdelim M\bibinitperiod}}}%
+        {{hash=6ee81b15b0fe72f6a37e30514bd0d061}{%
+           family={Tollis},
+           familyi={T\bibinitperiod},
+           given={Ioannis\bibnamedelima G.},
+           giveni={I\bibinitperiod\bibinitdelim G\bibinitperiod}}}%
+      }
+      \name{editor}{1}{}{%
+        {{hash=2f926d68e1ae5d560599a669579f40e4}{%
+           family={Kratochv{í}yl},
+           familyi={K\bibinitperiod},
+           given={Jan},
+           giveni={J\bibinitperiod}}}%
+      }
+      \list{location}{1}{%
+        {Berlin, Heidelberg}%
+      }
+      \list{publisher}{1}{%
+        {Springer Berlin Heidelberg}%
+      }
+      \strng{namehash}{cebe29e6cadcf18d59e6f6c463975a62}
+      \strng{fullhash}{cebe29e6cadcf18d59e6f6c463975a62}
+      \strng{bibnamehash}{cebe29e6cadcf18d59e6f6c463975a62}
+      \strng{authorbibnamehash}{cebe29e6cadcf18d59e6f6c463975a62}
+      \strng{authornamehash}{cebe29e6cadcf18d59e6f6c463975a62}
+      \strng{authorfullhash}{cebe29e6cadcf18d59e6f6c463975a62}
+      \strng{editorbibnamehash}{2f926d68e1ae5d560599a669579f40e4}
+      \strng{editornamehash}{2f926d68e1ae5d560599a669579f40e4}
+      \strng{editorfullhash}{2f926d68e1ae5d560599a669579f40e4}
+      \field{labelalpha}{ST99}
+      \field{sortinit}{S}
+      \field{sortinithash}{c319cff79d99c853d775f88277d4e45f}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{Drawings of graphs which show the inherent strengths and weaknesses of structures with clustered views would be advantageous additions to many network design tools. In this paper we present a framework for producing circular drawings of networks represented by non-biconnected graphs. Furthermore, the drawings produced by these techniques clearly show the biconnectivity structure of the given networks. We also include results of an extensive experimental study which shows our approach to significantly outperform the current state of the art.}
+      \field{booktitle}{Graph Drawing}
+      \field{isbn}{978-3-540-46648-2}
+      \field{title}{A Framework for Circular Drawings of Networks}
+      \field{year}{1999}
+      \field{pages}{107\bibrangedash 116}
+      \range{pages}{10}
     \endentry
     \entry{VLGDMA}{misc}{}
       \name{author}{2}{}{%

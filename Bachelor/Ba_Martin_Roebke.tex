@@ -624,10 +624,17 @@ To layout these two options we chose the engine
 
 Additional parameters used in both layouts are set to: not overlap nodes to easily identify each node, and draw the edges first. This should provide a minimally cluttered layout compared to the defaults, but could make edges ambiguous in some cases. Of course these layouts could use even more configuration than what was set for this version, a complete overview is provided in the \href{https://graphviz.org/doc/info/attrs.html}{graphviz-doc}. 
 
-\begin{itemize}
-	\item There is no active clause in this step: we only reset highlighting
-	\item Else: we also create new highlighting for clauses, variables and edges
-\end{itemize}
+If the option to sort the nodes was chosen with \textit{do\_sort\_nodes} the method
+\begin{enumerate}
+	\item saves the current graph source 
+	\item sets the layout engine to \textit{circo}
+	\item adds edges between successive node-ids to form a closed circle
+	\item runs the layout and reads back the output in plain dot-format
+	\item reads the calculated positions for each node in the graph
+	\item resets the source to step one, removing all temporary additions
+	\item writes the calculated positions into each node
+	\item sets the layout engine to an engine that uses those calculated positions later.
+\end{enumerate}
 In each case we create one image after the step to provide the inside generated.
 % perspective 
 
