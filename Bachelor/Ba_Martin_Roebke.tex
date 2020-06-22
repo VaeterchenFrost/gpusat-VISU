@@ -599,7 +599,15 @@ We add the clauses with their clause-ids starting at one sorted in ascending ord
 
 The second sub-graph we call \textit{cluster\_ivar} labeled \textit{variables} gets all variables added to it, 
 starting from variable-id one. 
+This sub-graph does get the different provided \textit{colors} applied to its nodes and their adjacent edges.
 
+The last step in this method is the highlighting of "active" parts in each time step beeing processed during it's dynamic programming. To accomplish this with as small overhead as possible, we apply and remove additional lines to the body of its graph source code. 
+For highlighting there are two main cases:
+\begin{itemize}
+	\item There is no active clause in this step: we only reset highlighting
+	\item Else: we also create new highlighting for clauses, variables and edges
+\end{itemize}
+In each case we create one image after the step.
 % perspective 
 
 % Checking with www.deepcode.ai
