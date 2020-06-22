@@ -647,7 +647,11 @@ EXAMPLES
 In each case we create one image after the time step to provide the inside generated.
 
 \subsection{Joining SVG}{Joining each time step into one image}
-Once all user defined images for one timeline are created, it would be nice to have only one file for each timestep
+Once all user defined images for one timeline are created, it would be nice to have only one file for every step.
+To support this functionality and some basic scaling and adjusting, there is a special key in the API for joining the svg-graphs. 
+The functionality is placed in the file \textit{svgjoin.py} and called with the specifications given in the optional dictionary \textbf{svgjoin} within the JsonAPI.
+
+
 % perspective 
 
 % Checking with www.deepcode.ai
