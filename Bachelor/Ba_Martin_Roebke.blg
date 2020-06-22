@@ -1,53 +1,17 @@
-This is BibTeX, Version 0.99d
-Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
-The top-level auxiliary file: Ba_Martin_Roebke.aux
-Reallocating 'name_of_file' (item size: 1) to 7 items.
-Reallocating 'name_of_file' (item size: 1) to 7 items.
-The style file: ieeetr.bst
-Database file #1: bibtex.bib
-Warning--entry type for "pcgp2019" isn't style-file defined
---line 11 of file bibtex.bib
-Warning--empty publisher in DiplomarbeitZisser
-Warning--empty booktitle in Himsolt2010GMLAP
-You've used 12 entries,
-            1876 wiz_defined-function locations,
-            563 strings with 5964 characters,
-and the built_in function-call counts, 2658 in all, are:
-= -- 252
-> -- 95
-< -- 0
-+ -- 37
-- -- 25
-* -- 162
-:= -- 365
-add.period$ -- 17
-call.type$ -- 12
-change.case$ -- 11
-chr.to.int$ -- 0
-cite$ -- 14
-duplicate$ -- 144
-empty$ -- 288
-format.name$ -- 25
-if$ -- 669
-int.to.chr$ -- 0
-int.to.str$ -- 12
-missing$ -- 10
-newline$ -- 45
-num.names$ -- 13
-pop$ -- 68
-preamble$ -- 1
-purify$ -- 0
-quote$ -- 0
-skip$ -- 92
-stack$ -- 0
-substring$ -- 102
-swap$ -- 49
-text.length$ -- 0
-text.prefix$ -- 0
-top$ -- 0
-type$ -- 0
-warning$ -- 2
-while$ -- 19
-width$ -- 14
-write$ -- 115
-(There were 3 warnings)
+[0] Config.pm:304> INFO - This is Biber 2.14
+[0] Config.pm:307> INFO - Logfile is 'Ba_Martin_Roebke.blg'
+[62] biber-MSWIN64:322> INFO - === 
+[78] Biber.pm:415> INFO - Reading 'Ba_Martin_Roebke.bcf'
+[164] Biber.pm:943> INFO - Found 11 citekeys in bib section 0
+[179] Biber.pm:4256> INFO - Processing section 0
+[179] Utils.pm:75> INFO - Globbing data source 'bibtex.bib'
+[187] Utils.pm:91> INFO - Globbed data source 'bibtex.bib' to bibtex.bib
+[200] Biber.pm:4455> INFO - Looking for bibtex format file 'bibtex.bib' for section 0
+[203] bibtex.pm:1653> INFO - LaTeX decoding ...
+[234] bibtex.pm:1471> INFO - Found BibTeX data source 'bibtex.bib'
+[333] UCollate.pm:68> INFO - Overriding locale 'en-US' defaults 'normalization = NFD' with 'normalization = prenormalized'
+[333] UCollate.pm:68> INFO - Overriding locale 'en-US' defaults 'variable = shifted' with 'variable = non-ignorable'
+[333] Biber.pm:4084> INFO - Sorting list 'anyt/global//global/global' of type 'entry' with template 'anyt' and locale 'en-US'
+[333] Biber.pm:4090> INFO - No sort tailoring available for locale 'en-US'
+[348] bbl.pm:652> INFO - Writing 'Ba_Martin_Roebke.bbl' with encoding 'UTF-8'
+[353] bbl.pm:755> INFO - Output to Ba_Martin_Roebke.bbl

@@ -1,6 +1,6 @@
 % Paperformat
 \documentclass[a4paper, 12pt]{scrartcl}
-\usepackage{cite}
+%\usepackage{cite}
 \usepackage{ragged2e}
 \usepackage{url}
 \usepackage{bm} % bold math
@@ -15,12 +15,13 @@
 \usepackage{longtable} % breaks pages
 \usepackage{tabularx}
 
+\usepackage[style=alphabetic,backend=biber]{biblatex}
+\addbibresource{bibtex.bib}
 
 \definecolor{light-gray}{gray}{0.9}
 \lstset{tabsize=2, linewidth=1.05\textwidth, framextopmargin=1em, basicstyle=\small\ttfamily}
 \lstset{numbers=left,backgroundcolor=\color{light-gray}}
 \newtheorem{theorem}{Theorem}[section]
-
 
 
 \begin{document}
@@ -131,7 +132,7 @@ As two reference implementations of dynamic programming on tree decompositions w
 
 \section{Introduction}
 Graphs are increasingly interesting in scientific work, as the applications of interconnected datasets grow.
-The use cases for example outlined by Neo4j in \cite{graphUseCases}, a provider of open source database tools for \textit{labeled property graphs}  does include fields of interest like
+Some use cases for example outlined \href{http://neo4j.com/use-cases}{here} do include fields of interest like
 \begin{itemize}
 	\item[-] Network and Database Infrastructure
 	\item[-] Recommendation Engines
@@ -607,7 +608,38 @@ For highlighting there are two main cases:
 	\item There is no active clause in this step: we only reset highlighting
 	\item Else: we also create new highlighting for clauses, variables and edges
 \end{itemize}
-In each case we create one image after the step.
+In each case we create one image after the step to provide the inside generated.
+
+\subsection{General Graph}
+The so called "general graph" can represent the underlying graph for different problems, as well as primal and dual graph for Boolean formulas.
+Because of its larger area of application the general graph was not as easy to layout as the incidence graph.
+We did prepare two different layouts that should cover most cases and are toggled by the parameter \textit{do\_sort\_nodes}.
+For smaller and dense graphs of up to 20 vertices it might be helpful to sort the nodes on a circle, while for larger or sparse graphs an organic layout may be more appropriate.
+
+To layout these two options we chose the engine 
+\begin{itemize}
+	\item \textit{do\_sort\_nodes} true: circo
+	\item \textit{do\_sort\_nodes} false: sfdp
+\end{itemize}
+
+\begin{enumerate}
+	\item \textit{colors}, an iterable of colors that is used to color different nodes
+	\item \textit{inc\_file}, basis for the file created that gets appended with the step number
+	\item \textit{view}, could automatically open the generated files with the default program
+	\item \textit{fontsize}, the size of all text in this graph
+	\item \textit{penwidth}, width of the lines around nodes
+	\item \textit{basefill}, filling of the background for nodes
+	\item \textit{sndshape}, shape of the nodes with variables
+	\item \textit{neg\_tail}, the shape of the edge-tail indicating a negated variable
+	\item \textit{var\_name\_one(/two)}, prefix for nodes in the left (right) partition
+	\item \textit{column\_distance}, the distance between both partitions
+\end{enumerate}
+
+\begin{itemize}
+	\item There is no active clause in this step: we only reset highlighting
+	\item Else: we also create new highlighting for clauses, variables and edges
+\end{itemize}
+In each case we create one image after the step to provide the inside generated.
 % perspective 
 
 % Checking with www.deepcode.ai
@@ -647,7 +679,7 @@ The functional changes were:
 	\item changing enum to the \href{https://coders-corner.net/2017/08/13/scoped-vs-unscoped-enum/}{scoped enum class} for better encapsulation and strongly typed.
 	\item with \href{https://github.com/daajoe/GPUSAT/commit/cfb310}{inlining gpusatutils} the current functionality of creating raw dot was completed.
 	
-	\item Experimented with neo4j \cite{graphUseCases}, but found the visualization in particular not that presentable. The functionality to create \href{https://neo4j.com/developer/cypher-resources/}{cypher-queries} for the SAT formula with primal, incidence and dual graph is still present in the class.
+	\item Experimented with Neo4j, but found the visualization in particular not that presentable. The functionality to create \href{https://neo4j.com/developer/cypher-resources/}{cypher-queries} for the SAT formula with primal, incidence and dual graph is still present in the class.
 	\item The functionality to create the cypher-query for the graph of the tree-decomposition was added.
 	\item Rename \textit{visualisierung} into \textit{visualization}
 	\item Using \href{https://github.com/open-source-parsers/jsoncpp}{JsonCPP} for processing and formatting json objects in C++
@@ -796,8 +828,6 @@ To collect the first parameters to be changed
 \section{Summary and Outline}
 What is achieved?
 What worked good, what bad?
-\bibliography{bibtex}{}
-\bibliographystyle{ieeetr}
 
 %==============================================================================
 %============== APPENDIX ======================================================
@@ -1025,4 +1055,12 @@ p cnf 18 24
 \end{lstlisting}
 \lstinputlisting[caption={DOT source for visualization of example 4.1}, label={lst:g41digraphdot}]{includes/g41digraphdot}
 \lstinputlisting[caption={stdout of program gpusat with call \textit{./gpusat -f ../examples/test\_da4\_1.cnf -v -p -d ../examples/td4p1.txt  -g ../examples/graphfileda41.txt -{}-visufile ../examples/visufileda41.json}}, label={lst:outputGpusat}]{includes/outputGpusat.txt}
+
+%==============================================================================
+%============== BIBLIOGRAPHY ==================================================
+%==============================================================================
+\newpage
+\printbibliography
+%\bibliography{bibtex}{}
+%\bibliographystyle{ieeetr}
 \end{document}

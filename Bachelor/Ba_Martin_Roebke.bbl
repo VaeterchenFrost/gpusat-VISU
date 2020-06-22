@@ -1,65 +1,425 @@
-\begin{thebibliography}{10}
+% $ biblatex auxiliary file $
+% $ biblatex bbl format version 3.1 $
+% Do not modify the above lines!
+%
+% This is an auxiliary file used by the 'biblatex' package.
+% This file may safely be deleted. It will be recreated by
+% biber as required.
+%
+\begingroup
+\makeatletter
+\@ifundefined{ver@biblatex.sty}
+  {\@latex@error
+     {Missing 'biblatex' package}
+     {The bibliography requires the 'biblatex' package.}
+      \aftergroup\endinput}
+  {}
+\endgroup
 
-\bibitem{graphUseCases}
-``Graph database use cases and solutions.'' \url{http://neo4j.com/use-cases},
-  Aug. 2016.
-\newblock [Online; accessed 11-June-2020].
 
-\bibitem{Courcelle2012}
-B.~Courcelle and J.~Engelfriet, {\em Graph Structure and Monadic Second-Order
-  Logic - A Language-Theoretic Approach}.
-\newblock Cambridge: Cambridge University Press, 1~ed., 2012.
+\refsection{0}
+  \datalist[entry]{anyt/global//global/global}
+    \entry{Courcelle2012}{book}{}
+      \name{author}{2}{}{%
+        {{hash=5eb043c6d579ba54ec303811f38c6bfe}{%
+           family={Courcelle},
+           familyi={C\bibinitperiod},
+           given={Bruno},
+           giveni={B\bibinitperiod}}}%
+        {{hash=017b40b8d219b85da1d78cc417a7342a}{%
+           family={Engelfriet},
+           familyi={E\bibinitperiod},
+           given={Joost},
+           giveni={J\bibinitperiod}}}%
+      }
+      \list{location}{1}{%
+        {Cambridge}%
+      }
+      \list{publisher}{1}{%
+        {Cambridge University Press}%
+      }
+      \strng{namehash}{353cfab5de635217d0f331d4d089677a}
+      \strng{fullhash}{353cfab5de635217d0f331d4d089677a}
+      \strng{bibnamehash}{353cfab5de635217d0f331d4d089677a}
+      \strng{authorbibnamehash}{353cfab5de635217d0f331d4d089677a}
+      \strng{authornamehash}{353cfab5de635217d0f331d4d089677a}
+      \strng{authorfullhash}{353cfab5de635217d0f331d4d089677a}
+      \field{labelalpha}{CE12}
+      \field{sortinit}{C}
+      \field{sortinithash}{4c244ceae61406cdc0cc2ce1cb1ff703}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{edition}{1}
+      \field{isbn}{978-0-521-89833-1}
+      \field{title}{Graph Structure and Monadic Second-Order Logic - A Language-Theoretic Approach}
+      \field{year}{2012}
+    \endentry
+    \entry{SAT1971}{inproceedings}{}
+      \name{author}{1}{}{%
+        {{hash=609a39905dc0e988c3b294dceecdb1e4}{%
+           family={Cook},
+           familyi={C\bibinitperiod},
+           given={Stephen\bibnamedelima A.},
+           giveni={S\bibinitperiod\bibinitdelim A\bibinitperiod}}}%
+      }
+      \list{location}{1}{%
+        {Shaker Heights, Ohio, USA}%
+      }
+      \list{publisher}{1}{%
+        {Association for Computing Machinery}%
+      }
+      \strng{namehash}{609a39905dc0e988c3b294dceecdb1e4}
+      \strng{fullhash}{609a39905dc0e988c3b294dceecdb1e4}
+      \strng{bibnamehash}{609a39905dc0e988c3b294dceecdb1e4}
+      \strng{authorbibnamehash}{609a39905dc0e988c3b294dceecdb1e4}
+      \strng{authornamehash}{609a39905dc0e988c3b294dceecdb1e4}
+      \strng{authorfullhash}{609a39905dc0e988c3b294dceecdb1e4}
+      \field{labelalpha}{Coo71}
+      \field{sortinit}{C}
+      \field{sortinithash}{4c244ceae61406cdc0cc2ce1cb1ff703}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{Proceedings of the Third Annual ACM Symposium on Theory of Computing}
+      \field{isbn}{9781450374644}
+      \field{series}{STOC ’71}
+      \field{title}{The Complexity of Theorem-Proving Procedures}
+      \field{year}{1971}
+      \field{pages}{151\bibrangedash 158}
+      \range{pages}{8}
+      \verb{doi}
+      \verb 10.1145/800157.805047
+      \endverb
+    \endentry
+    \entry{pcgp2019}{report}{}
+      \name{author}{1}{}{%
+        {{hash=b35881e116f0ff5e0da60dd6921c903d}{%
+           family={Fichte},
+           familyi={F\bibinitperiod},
+           given={Johannes\bibnamedelima K.},
+           giveni={J\bibinitperiod\bibinitdelim K\bibinitperiod}}}%
+      }
+      \list{institution}{1}{%
+        {TU Dresden, Germany}%
+      }
+      \list{location}{1}{%
+        {Jakarta, Indonesia}%
+      }
+      \strng{namehash}{b35881e116f0ff5e0da60dd6921c903d}
+      \strng{fullhash}{b35881e116f0ff5e0da60dd6921c903d}
+      \strng{bibnamehash}{b35881e116f0ff5e0da60dd6921c903d}
+      \strng{authorbibnamehash}{b35881e116f0ff5e0da60dd6921c903d}
+      \strng{authornamehash}{b35881e116f0ff5e0da60dd6921c903d}
+      \strng{authorfullhash}{b35881e116f0ff5e0da60dd6921c903d}
+      \field{labelalpha}{Fic19}
+      \field{sortinit}{F}
+      \field{sortinithash}{fb0c0faa89eb6abae8213bf60e6799ea}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{day}{6}
+      \field{month}{5}
+      \field{note}{Summer 2019 (May 6th – May 16th)}
+      \field{subtitle}{From Foundations to Implementations}
+      \field{title}{Parameterized Complexity and its Applications in Practice}
+      \field{type}{pdf}
+      \field{year}{2019}
+      \field{dateera}{ce}
+      \field{pages}{162\bibrangedash 174}
+      \range{pages}{13}
+    \endentry
+    \entry{shortestPathAlgo}{misc}{}
+      \name{author}{4}{}{%
+        {{hash=575546439bd6e9b2cbc49d9c92ced13f}{%
+           family={Goldberg},
+           familyi={G\bibinitperiod},
+           given={Andrew\bibnamedelima V.},
+           giveni={A\bibinitperiod\bibinitdelim V\bibinitperiod}}}%
+        {{hash=1bdb7c1c10755d6d6124c768e4b2c815}{%
+           family={Harrelson},
+           familyi={H\bibinitperiod},
+           given={Chris},
+           giveni={C\bibinitperiod}}}%
+        {{hash=74fc28f5c63cf11e0fa303a99e5e55a5}{%
+           family={Kaplan},
+           familyi={K\bibinitperiod},
+           given={Haim},
+           giveni={H\bibinitperiod}}}%
+        {{hash=8839683a16ad350312493c2e29f35b86}{%
+           family={Werneck},
+           familyi={W\bibinitperiod},
+           given={Renato\bibnamedelima F.},
+           giveni={R\bibinitperiod\bibinitdelim F\bibinitperiod}}}%
+      }
+      \strng{namehash}{4263fac8a3217cdcaefce6f56f674152}
+      \strng{fullhash}{020395205e190368445e0bdf9693b026}
+      \strng{bibnamehash}{4263fac8a3217cdcaefce6f56f674152}
+      \strng{authorbibnamehash}{4263fac8a3217cdcaefce6f56f674152}
+      \strng{authornamehash}{4263fac8a3217cdcaefce6f56f674152}
+      \strng{authorfullhash}{020395205e190368445e0bdf9693b026}
+      \field{labelalpha}{Gol+06}
+      \field{sortinit}{G}
+      \field{sortinithash}{62eb2aa29549e4fdbd3cb154ec5711cb}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{howpublished}{\url{https://www.cs.princeton.edu/courses/archive/spr06/cos423/Handouts/EPP shortest path algorithms.pdf}}
+      \field{note}{[Online; accessed 14-June-2020]}
+      \field{title}{Efficient Point-to-Point Shortest Path Algorithms}
+      \field{year}{2006}
+    \endentry
+    \entry{Himsolt2010GMLAP}{}{}
+      \name{author}{1}{}{%
+        {{hash=546c48a59b5da6110f657046c6a732b9}{%
+           family={Himsolt},
+           familyi={H\bibinitperiod},
+           given={Michael},
+           giveni={M\bibinitperiod}}}%
+      }
+      \strng{namehash}{546c48a59b5da6110f657046c6a732b9}
+      \strng{fullhash}{546c48a59b5da6110f657046c6a732b9}
+      \strng{bibnamehash}{546c48a59b5da6110f657046c6a732b9}
+      \strng{authorbibnamehash}{546c48a59b5da6110f657046c6a732b9}
+      \strng{authornamehash}{546c48a59b5da6110f657046c6a732b9}
+      \strng{authorfullhash}{546c48a59b5da6110f657046c6a732b9}
+      \field{labelalpha}{Him10}
+      \field{sortinit}{H}
+      \field{sortinithash}{6db6145dae8dc9e1271a8d556090b50a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{GML: A portable Graph File Format}
+      \field{year}{2010}
+    \endentry
+    \entry{SciPyProceedings_11}{inproceedings}{}
+      \name{author}{3}{}{%
+        {{hash=94707ad079516150870c2f9a2932df46}{%
+           family={Hagberg},
+           familyi={H\bibinitperiod},
+           given={Aric\bibnamedelima A.},
+           giveni={A\bibinitperiod\bibinitdelim A\bibinitperiod}}}%
+        {{hash=12f80aa3aca50b90f024775e52dde170}{%
+           family={Schult},
+           familyi={S\bibinitperiod},
+           given={Daniel\bibnamedelima A.},
+           giveni={D\bibinitperiod\bibinitdelim A\bibinitperiod}}}%
+        {{hash=58fb3a96810da0d56606677a3ce7e677}{%
+           family={Swart},
+           familyi={S\bibinitperiod},
+           given={Pieter\bibnamedelima J.},
+           giveni={P\bibinitperiod\bibinitdelim J\bibinitperiod}}}%
+      }
+      \name{editor}{3}{}{%
+        {{hash=cfa3239dded54488f9a82a5718d5b927}{%
+           family={Varoquaux},
+           familyi={V\bibinitperiod},
+           given={Gaël},
+           giveni={G\bibinitperiod}}}%
+        {{hash=5d98f8482048dcc3052b092b91de894c}{%
+           family={Vaught},
+           familyi={V\bibinitperiod},
+           given={Travis},
+           giveni={T\bibinitperiod}}}%
+        {{hash=eca9aeefdc8563b0e153fbedf08bc1a1}{%
+           family={Millman},
+           familyi={M\bibinitperiod},
+           given={Jarrod},
+           giveni={J\bibinitperiod}}}%
+      }
+      \list{location}{1}{%
+        {Pasadena, CA USA}%
+      }
+      \strng{namehash}{3a1b2e51fcffd45628935c7b6334f944}
+      \strng{fullhash}{3a1b2e51fcffd45628935c7b6334f944}
+      \strng{bibnamehash}{3a1b2e51fcffd45628935c7b6334f944}
+      \strng{authorbibnamehash}{3a1b2e51fcffd45628935c7b6334f944}
+      \strng{authornamehash}{3a1b2e51fcffd45628935c7b6334f944}
+      \strng{authorfullhash}{3a1b2e51fcffd45628935c7b6334f944}
+      \strng{editorbibnamehash}{5c6f569244b62f16c51830f1dac15458}
+      \strng{editornamehash}{5c6f569244b62f16c51830f1dac15458}
+      \strng{editorfullhash}{5c6f569244b62f16c51830f1dac15458}
+      \field{labelalpha}{HSS08}
+      \field{sortinit}{H}
+      \field{sortinithash}{6db6145dae8dc9e1271a8d556090b50a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{Proceedings of the 7th Python in Science Conference}
+      \field{title}{Exploring Network Structure, Dynamics, and Function using NetworkX}
+      \field{year}{2008}
+      \field{pages}{11\bibrangedash 15}
+      \range{pages}{5}
+    \endentry
+    \entry{evaluationMSO}{article}{}
+      \name{author}{4}{}{%
+        {{hash=ed01e6237f996f5f339053e2c2041bb0}{%
+           family={Langer},
+           familyi={L\bibinitperiod},
+           given={Alexander},
+           giveni={A\bibinitperiod}}}%
+        {{hash=bb8ab51e8d187213b9a89721e912e81d}{%
+           family={Reidl},
+           familyi={R\bibinitperiod},
+           given={Felix},
+           giveni={F\bibinitperiod}}}%
+        {{hash=421ac03a7e5191a301c9b65fbedcca56}{%
+           family={Rossmanith},
+           familyi={R\bibinitperiod},
+           given={Peter},
+           giveni={P\bibinitperiod}}}%
+        {{hash=9a3a67b13da6db8115193298375f94cf}{%
+           family={Sikdar},
+           familyi={S\bibinitperiod},
+           given={Somnath},
+           giveni={S\bibinitperiod}}}%
+      }
+      \strng{namehash}{be9f0329133968cc3582515e7ede59cf}
+      \strng{fullhash}{96f5392c96666fc8ff0d80c1a72a40d7}
+      \strng{bibnamehash}{be9f0329133968cc3582515e7ede59cf}
+      \strng{authorbibnamehash}{be9f0329133968cc3582515e7ede59cf}
+      \strng{authornamehash}{be9f0329133968cc3582515e7ede59cf}
+      \strng{authorfullhash}{96f5392c96666fc8ff0d80c1a72a40d7}
+      \field{labelalpha}{Lan+12}
+      \field{sortinit}{L}
+      \field{sortinithash}{dad3efd0836470093a7b4a7bb756eb8c}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Proc. of ALENEX 2012}
+      \field{month}{1}
+      \field{title}{Evaluation of an MSO-solver}
+      \field{year}{2012}
+      \verb{doi}
+      \verb 10.1137/1.9781611972924.5
+      \endverb
+    \endentry
+    \entry{rapidPrototypingOvermyer}{inproceedings}{}
+      \name{author}{1}{}{%
+        {{hash=4112ca859ff71ff59f1f5484c365c845}{%
+           family={Overmeyer},
+           familyi={O\bibinitperiod},
+           given={Scott\bibnamedelima P.},
+           giveni={S\bibinitperiod\bibinitdelim P\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Elsevier Science}%
+      }
+      \strng{namehash}{4112ca859ff71ff59f1f5484c365c845}
+      \strng{fullhash}{4112ca859ff71ff59f1f5484c365c845}
+      \strng{bibnamehash}{4112ca859ff71ff59f1f5484c365c845}
+      \strng{authorbibnamehash}{4112ca859ff71ff59f1f5484c365c845}
+      \strng{authornamehash}{4112ca859ff71ff59f1f5484c365c845}
+      \strng{authorfullhash}{4112ca859ff71ff59f1f5484c365c845}
+      \field{labelalpha}{Ove91}
+      \field{sortinit}{O}
+      \field{sortinithash}{ff8d4eeb5101e3cf3809959b3592d942}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{Proceedings of the Fourth International Conference on Human-Computer Interaction}
+      \field{howpublished}{\url{https://www.interaction-design.org/literature/conference/proceedings-of-the-fourth-international-conference-on-human-computer-interaction}}
+      \field{month}{9}
+      \field{title}{Revolutionary vs. Evolutionary Rapid Prototyping: Balancing Software Productivity and HCI Design Concerns}
+      \field{year}{1991}
+      \field{pages}{303\bibrangedash 308}
+      \range{pages}{6}
+    \endentry
+    \entry{ROBERTSON198449}{article}{}
+      \name{author}{2}{}{%
+        {{hash=30004d929a781bee1262997e1b576502}{%
+           family={Robertson},
+           familyi={R\bibinitperiod},
+           given={Neil},
+           giveni={N\bibinitperiod}}}%
+        {{hash=9c86b2da84f8e18c3c5e6194460cbfbb}{%
+           family={Seymour},
+           familyi={S\bibinitperiod},
+           given={P.D},
+           giveni={P\bibinitperiod}}}%
+      }
+      \strng{namehash}{1c46a51d3b7bab4f1b95f280f231547e}
+      \strng{fullhash}{1c46a51d3b7bab4f1b95f280f231547e}
+      \strng{bibnamehash}{1c46a51d3b7bab4f1b95f280f231547e}
+      \strng{authorbibnamehash}{1c46a51d3b7bab4f1b95f280f231547e}
+      \strng{authornamehash}{1c46a51d3b7bab4f1b95f280f231547e}
+      \strng{authorfullhash}{1c46a51d3b7bab4f1b95f280f231547e}
+      \field{labelalpha}{RS84}
+      \field{sortinit}{R}
+      \field{sortinithash}{b9c68a358aea118dfa887b6e902414a7}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{The “tree-width” of a graph is defined and it is proved that for any fixed planar graph H, every planar graph with sufficiently large tree-width has a minor isomorphic to H. This result has several applications which are described in other papers in this series.}
+      \field{issn}{0095-8956}
+      \field{journaltitle}{Journal of Combinatorial Theory, Series B}
+      \field{number}{1}
+      \field{title}{Graph minors. III. Planar tree-width}
+      \field{volume}{36}
+      \field{year}{1984}
+      \field{pages}{49\bibrangedash 64}
+      \range{pages}{16}
+      \verb{doi}
+      \verb https://doi.org/10.1016/0095-8956(84)90013-3
+      \endverb
+      \verb{urlraw}
+      \verb http://www.sciencedirect.com/science/article/pii/0095895684900133
+      \endverb
+      \verb{url}
+      \verb http://www.sciencedirect.com/science/article/pii/0095895684900133
+      \endverb
+    \endentry
+    \entry{VLGDMA}{misc}{}
+      \name{author}{2}{}{%
+        {{hash=817d00b45da619d61d149f204327ff0b}{%
+           family={Voigt},
+           familyi={V\bibinitperiod},
+           given={Hannes},
+           giveni={H\bibinitperiod}}}%
+        {{hash=daef9e1cee3c1c651fba794968a8a426}{%
+           family={Krause},
+           familyi={K\bibinitperiod},
+           given={Alexander},
+           giveni={A\bibinitperiod}}}%
+      }
+      \strng{namehash}{0d90f71504e01c590c77374a68989899}
+      \strng{fullhash}{0d90f71504e01c590c77374a68989899}
+      \strng{bibnamehash}{0d90f71504e01c590c77374a68989899}
+      \strng{authorbibnamehash}{0d90f71504e01c590c77374a68989899}
+      \strng{authornamehash}{0d90f71504e01c590c77374a68989899}
+      \strng{authorfullhash}{0d90f71504e01c590c77374a68989899}
+      \field{labelalpha}{VK19}
+      \field{sortinit}{V}
+      \field{sortinithash}{02432525618c08e2b03cac47c19764af}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{howpublished}{\url{https://wwwdb.inf.tu-dresden.de/study/teaching/teaching-archive/winter-term-2018-19/graph-data-management-and-analytics/}}
+      \field{month}{2}
+      \field{note}{[Online; accessed 11-June-2020]}
+      \field{title}{{Course}: Graph Data Management and Analytics}
+      \field{year}{2019}
+    \endentry
+    \entry{DiplomarbeitZisser}{book}{}
+      \name{author}{1}{}{%
+        {{hash=2af06efc6b5d9ea597dc054485d03436}{%
+           family={Zisser},
+           familyi={Z\bibinitperiod},
+           given={Markus},
+           giveni={M\bibinitperiod}}}%
+      }
+      \list{language}{1}{%
+        {English}%
+      }
+      \list{location}{1}{%
+        {Technische Universität Wien}%
+      }
+      \strng{namehash}{2af06efc6b5d9ea597dc054485d03436}
+      \strng{fullhash}{2af06efc6b5d9ea597dc054485d03436}
+      \strng{bibnamehash}{2af06efc6b5d9ea597dc054485d03436}
+      \strng{authorbibnamehash}{2af06efc6b5d9ea597dc054485d03436}
+      \strng{authornamehash}{2af06efc6b5d9ea597dc054485d03436}
+      \strng{authorfullhash}{2af06efc6b5d9ea597dc054485d03436}
+      \field{labelalpha}{Zis18}
+      \field{sortinit}{Z}
+      \field{sortinithash}{8f7b480688e809b50b6f6577b16f3db5}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{howpublished}{\url{http://katalog.ub.tuwien.ac.at/AC15055950}}
+      \field{title}{Solving the \#SAT problem on the GPU with dynamic programming and OpenCL}
+      \field{year}{2018}
+    \endentry
+  \enddatalist
+\endrefsection
+\endinput
 
-\bibitem{evaluationMSO}
-A.~Langer, F.~Reidl, P.~Rossmanith, and S.~Sikdar, ``Evaluation of an
-  mso-solver,'' {\em Proc. of ALENEX 2012}, Jan. 2012.
-
-\bibitem{SAT1971}
-S.~A. Cook, ``The complexity of theorem-proving procedures,'' in {\em
-  Proceedings of the Third Annual ACM Symposium on Theory of Computing}, STOC
-  ’71, (New York, NY, USA), p.~151–158, Association for Computing
-  Machinery, 1971.
-
-\bibitem{DiplomarbeitZisser}
-M.~Zisser, {\em Solving the \#SAT problem on the GPU with dynamic programming
-  and OpenCL}.
-\newblock 2018.
-
-\bibitem{ROBERTSON198449}
-N.~Robertson and P.~Seymour, ``Graph minors. iii. planar tree-width,'' {\em
-  Journal of Combinatorial Theory, Series B}, vol.~36, no.~1, pp.~49 -- 64,
-  1984.
-
-\bibitem{pcgp2019}
-J.~K. Fichte, ``Parameterized complexity and its applications in practice.''
-\newblock Summer 2019 (May 6th – May 16th).
-
-\bibitem{VLGDMA}
-H.~Voigt and A.~Krause, ``{Course}: Graph data management and analytics.''
-  \url{https://wwwdb.inf.tu-dresden.de/study/teaching/teaching-archive/winter-term-2018-19/graph-data-management-and-analytics/},
-  Feb. 2019.
-\newblock [Online; accessed 11-June-2020].
-
-\bibitem{rapidPrototypingOvermyer}
-S.~P. Overmeyer, ``Revolutionary vs. evolutionary rapid prototyping: Balancing
-  software productivity and hci design concerns,'' in {\em Proceedings of the
-  Fourth International Conference on Human-Computer Interaction}, pp.~303--308,
-  Elsevier Science, Sept. 1991.
-
-\bibitem{Himsolt2010GMLAP}
-M.~Himsolt, ``Gml: A portable graph file format,'' 2010.
-
-\bibitem{shortestPathAlgo}
-A.~V. Goldberg, C.~Harrelson, H.~Kaplan, and R.~F. Werneck, ``Efficient
-  point-to-point shortest path algorithms.''
-  \url{https://www.cs.princeton.edu/courses/archive/spr06/cos423/Handouts/EPP%20shortest%20path%20algorithms.pdf},
-  2006.
-\newblock [Online; accessed 14-June-2020].
-
-\bibitem{SciPyProceedings_11}
-A.~A. Hagberg, D.~A. Schult, and P.~J. Swart, ``Exploring network structure,
-  dynamics, and function using networkx,'' in {\em Proceedings of the 7th
-  Python in Science Conference} (G.~Varoquaux, T.~Vaught, and J.~Millman,
-  eds.), (Pasadena, CA USA), pp.~11 -- 15, 2008.
-
-\end{thebibliography}
