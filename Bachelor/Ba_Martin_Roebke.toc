@@ -28,6 +28,8 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {subsection}{\numberline {4.5}General Graph}{16}{subsection.4.5}%
 \defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {4.6}Joining SVG}{17}{subsection.4.6}%
+\defcounter {refsection}{0}\relax 
 \contentsline {section}{\numberline {5}Integration in GPUSAT}{18}{section.5}%
 \defcounter {refsection}{0}\relax 
 \contentsline {subsubsection}{\numberline {5.0.1}Class Graphoutput}{20}{subsubsection.5.0.1}%
