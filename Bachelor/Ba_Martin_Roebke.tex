@@ -401,7 +401,7 @@ The \textbf{loggers} we use in our project are located in
 and can be individually customized using one configuration file.
 With the command line parameter \textit{-{}-loglevel} we can modify the level of \textit{root} and it's associated handlers.
 
-\subsection{Construct and Layout Solving Process}
+\subsection{Initialization and Tree Decomposition}
 
 After the configuration we instantiate a Visualization object as shown in listing~\ref{lst:visuinit} , which parses the VisualizationData with the help from our inspect\_json method. 
 
@@ -557,10 +557,9 @@ The second run iterates backwards over all timesteps to hide later timesteps and
 When rendering the graphs there is an added option to automatically \textit{view} the result (disabled by default. Details for this function can be viewed in listing \ref{lst:backward-iterate}.
 
 \subsection{Create time steps for the underlying graph}
-To get a more comprehensive insight into the solving process we decided to also highlight the parts of the 
-graph that best describes the problem instance that the solver works on.
+To get a more comprehensive insight into the solving process we decided to also highlight the parts of graphs that best describe the problem instance the solver worked on.
 
-Because the information in the API does not directly include details about highlights in those graphs, we do construct this data on the fly.
+Because the data in the API does not directly include details about highlights in those graphs, we will construct this information on the fly.
 
 First we select only bag ids from the timeline provided that present an IF-operation.
 With additional data from \textit{IncidenceGraphData} we are able to reconstruct the
