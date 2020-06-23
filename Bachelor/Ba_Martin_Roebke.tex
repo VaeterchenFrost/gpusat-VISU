@@ -662,7 +662,20 @@ The functionality is placed in the file \textit{svgjoin.py} and called with the 
 
 We transform this information into the python \textit{dataclass} \textbf{SvgJoinData} \ref{lst:svgjoindata}.
 % Show example with description of parameters 
+The internally used method \textit{svgjoin.append\_svg} joins two images horizontally in each step.
+With default settings it will align the top of both images and apply no scaling to either of them.
+The possible parameters
+\begin{itemize}
+	\item centerpad: float = 0,
+	\item v\_bottom: float = None,
+	\item v\_top: float = None,
+	\item scale2: float = 1,
+\end{itemize}
+allow very flexible and easy to use vertical, horizontal and scaling transformations.
+Note that the images are placed in a Cartesian coordinate system and its origin is the top left corner of its bounding box. All images fill a rectangle in this coordinate system with height and width respectively.
 
+
+Possibilities for joining images with these four parameters include:
 % perspective 
 
 % Checking with www.deepcode.ai
