@@ -131,6 +131,5 @@ dmypy.json
 # Custom
 
 *.stats
-*.png
 tdvisualization_repo/tdvisu/Archive/*
 
