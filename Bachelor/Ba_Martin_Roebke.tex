@@ -131,6 +131,7 @@ As two reference implementations of dynamic programming on tree decompositions w
 %==============================================================================
 
 \section{Introduction}
+\subsection{Motivation}
 Graphs are increasingly interesting in scientific work, as the applications of interconnected datasets grow.
 Some use cases for example outlined \href{http://neo4j.com/use-cases}{here} do include fields of interest like
 \begin{itemize}
@@ -160,16 +161,35 @@ The source code for TDVisu is available under GPL3 license.
 customizable visualization for directed and undirected graphs.
 The information processed by graphviz 
 
+%============== Concept ====================================================
+\subsection{Concept}
+
+Stand Umsetzung, Tools: Slack, Trello, GitHub, Presentations
+
+Research: language (python - explain) graph-construction (graphviz vs networkX), examples (diploma at first). 
+
+My experience with the topics of this work comes mainly from the two courses:
+\begin{itemize}
+	\item Visualization with python from the lecture "Computational Physics" by Prof. Dr. A. Bäcker,
+	chair of computational physics, TU Dresden 2016
+	\item algorithms and various manipulations on graphs from the lecture "Graph Data Management and Analytics" by Hannes Voigt. \cite{VLGDMA}
+\end{itemize}
+
+
+
+
+%============== Rel Work ====================================================
+\subsection{Related Work}
 intro. mit motivation und related work, state of the art, advancements.
 
 Visualization Pipeline
+%============== Outline ====================================================
+\subsection{Thesis Outline}
 
-Stand Umsetzung, Tools: Slack, Trello, GitHub, Presentations
 
 %==============================================================================
 %============== BACKGROUND ====================================================
 %==============================================================================
-
 \newpage
 \section{Background}
 \textit{In this chapter we provide a brief background on }.
@@ -179,6 +199,7 @@ Furthermore the general case of MSOL will be described, as well as the \textit{D
 The following section describes Tree Decompositions (TDs) which are the basis for our visualization. 
 Finally we shortly discuss Courcelle's Theorem~\cite{Courcelle2012} as a related method of solving these problems.
 
+%============== SAT ====================================================
 \subsection{Boolean satisfiability problem}
 \url{https://en.wikipedia.org/wiki/Boolean_satisfiability_problem}
 
@@ -205,7 +226,7 @@ with state - of - the - art model counters are orders of magnitude smaller than 
 formulas we can solve with the best SAT solvers. Generally speaking, current
 exact counting methods can tackle problems with a couple of hundred variables, while approximate counting methods push this to around 1, 000 variables.
 
-
+%============== MSOL ====================================================
 \subsection{Monadic Second Order Logic}
 See also figure~\ref{fig:logictheory}.
 
@@ -250,6 +271,7 @@ An algorithm is FPT if it takes time $f(k)\cdot n^{c}$ for some fixed function f
 The value k is a parameter of the input. 
 This algorithm is then usable for small values of k. usually tree-width and clique width.
 
+%============== Courcelle ====================================================
 \subsection{Courcelle's Theorem}
 \begin{quotation}
 	Every graph property definable in monadic second-order logic (MSO) is decidable in linear time on graphs of bounded tree-width.\\
@@ -271,7 +293,7 @@ The workflow then looks like we see in figure~\ref{fig:UsageCourcelle}.
 	\label{fig:UsageCourcelle}
 \end{figure}
 
-
+%============== TD ====================================================
 \subsection{Tree Decomposition}
 \cite{DiplomarbeitZisser}chapter 2.2
 Tree decompositions were originally introduced by Robertson and Seymour \cite{ROBERTSON198449} in 1984.
@@ -288,6 +310,7 @@ The tree width of a graph is the \textit{minimal width} over all tree decomposit
 
 !!!Example (can take one from the visualizations) also in \cite{pcgp2019} page 169
 
+%============== DIMACS ====================================================
 \subsection{DIMACS format}
 Developed in 1993 at Rutgers University.
 DIMACS (the Center for Discrete Mathematics and Theoretical Computer Science)
@@ -304,32 +327,15 @@ Supported also in Maple \url{https://www.maplesoft.com/support/help/maple/view.a
 
 Examples in appendix
 
+%============== DOT ====================================================
 \subsection{DOT format}
 The graph description language DOT can be used to describe directed or undirected graphs and specify layout details and various attributes for graphs, edges and nodes. It is similar to the Graph Modeling Language as a text based file format for describing graphs, and the Graphviz project includes gml2gv and gv2gml as two tools that can convert between GML and DOT files.
 
-Dot Language: http://www.graphviz.org/doc/info/lang.html
-
 Attributes (new site): http://www.graphviz.org/doc/info/attrs.html
 List specialized types for input used.
-
-%==============================================================================
-%============== CONCEPT =======================================================
-%==============================================================================
-\newpage
-\section{Concept}
-We did setup a board with \url{https://trello.com} to track the progress and gather information connected to the project.
-Discussion and problems were mostly discussed with a dedicated \href{slack channel}{https://slack.com/intl/en-de/} in the \emph{Collaborations Parameterized Algorithms and Complexity} team.
-
-Research: language (python - explain) graph-construction (graphviz vs networkX), examples (diploma at first). 
-
-My previous experience connected to this work mainly stemmed from these two very good courses:
-\begin{itemize}
-	\item Visualization with python from the lecture "Computational Physics" by Prof. Dr. A. Bäcker,
-	chair of computational physics, TU Dresden 2016
-	\item algorithms and various manipulations on graphs from the lecture "Graph Data Management and Analytics" by Hannes Voigt. \cite{VLGDMA}
-\end{itemize}
-
 %=========================== DOT Language ====================================
+
+Dot Language: http://www.graphviz.org/doc/info/lang.html
 
 The nodes in the dot-language are \emph{labeled}, so creating a node takes one string identifier and
 can additionally be provided a string label. Valid examples for IDs include: a, b, A1, node1.
@@ -366,7 +372,7 @@ The tree decompositions in every tested application were provided by the utility
 % License
 
 % Files / Classes / Methods
-
+%============== CMD Config ====================================================
 \subsection{Commandline and Configuration}
 
 
@@ -411,6 +417,7 @@ The \textbf{loggers} we use in our project are located in
 and can be individually customized using one configuration file.
 With the command line parameter \textit{-{}-loglevel} we can modify the level of \textit{root} and it's associated handlers.
 
+%============== Init ====================================================
 \subsection{Initialization and Tree Decomposition}
 
 After the configuration we instantiate a Visualization object as shown in listing~\ref{lst:visuinit} , which parses the VisualizationData with the help from our inspect\_json method. 
@@ -566,6 +573,7 @@ In this case we basically remove old connections between the children and the pa
 The second run iterates backwards over all timesteps to hide later timesteps and emphasize the current node.
 When rendering the graphs there is an added option to automatically \textit{view} the result (disabled by default. Details for this function can be viewed in listing \ref{lst:backward-iterate}.
 
+%============== Timesteps ====================================================
 \subsection{Create time steps for the underlying graph}
 To get a more comprehensive insight into the solving process we decided to also highlight the parts of graphs that best describe the problem instance the solver worked on.
 
@@ -593,6 +601,7 @@ with its set of clauses $\{c_{1}=\{-a,-b,-c,-d\},c_{2}=\{b,c,d\},c_{3}=\{g\}\}$ 
 	\label{fig:disconnected123}
 \end{figure}
 
+%============== Incid ====================================================
 \subsection{Incidence Graph}\label{sec:incid}
 The incidence graph is a bipartite graph that we present in a way that creates a one to one correspondence with the 
 Boolean formula it does represent. For an example of an incidence graph visualization see \ref{fig:incidencestep6}
@@ -629,6 +638,7 @@ For highlighting there are two main cases:
 \end{itemize}
 In each case we create one image after the step to provide the inside generated.
 
+%============== General Graph ====================================================
 \subsection{General Graph}
 The so called "general graph" can represent the underlying graph for different problems, as well as primal and dual graph for Boolean formulas.
 Because of its larger area of application the general graph was not as easy to layout as the incidence graph.
@@ -665,6 +675,7 @@ EXAMPLES
 
 In each case we create one image after the time step to provide the inside generated.
 
+%============== Joining SVG ====================================================
 \subsection{Joining SVG}{Joining each time step into one image}
 Once all user defined images for one timeline are created, it would be nice to have only one file for every step.
 To support this functionality and some basic scaling and adjusting, there is a special key in the API for joining the svg-graphs. 
@@ -739,7 +750,9 @@ The list can be of different length for each parameter - if it is exhausted the 
 
 % Checking with www.deepcode.ai
 
-
+%==============================================================================
+%============== GPUSAT ========================================================
+%==============================================================================
 \newpage
 \section{Integration in GPUSAT}
 To study and improve the handling of the C++ program was chronologically the first task I experimented with.
@@ -825,17 +838,12 @@ to set up for the (potentially remote) environment.
 	-g, -{}-graph TEXT         &    filename for saving the decomposition graph\\
 	-{}-visufile TEXT         &    filename for saving the visualization file\\
 
-\end{longtable}
-               
-          
-
-
+\end{longtable}      
+        
 An example call with \textit{./gpusat -f ../examples/test\_da4\_1.cnf -v -p -d ../examples/td4p1.txt  -g ../examples/graphfileda41.txt -{}-visufile ../examples/visufileda41.json} enabled verbose output, disabled pre-processing to prevent the creation of bags with too many variables at once to be visualized, and creates full visualization output. 
 The console output produced by this example call is listed in \ref{lst:outputGpusat}.
 
-
-
-
+%============== Graphoutput ====================================================
 \subsubsection{Class Graphoutput}\label{chagraphoutput}
 First steps to automatically visualize the tree decomposition of the solving process with its solutions.
 Outputs a graph specified in gml\cite{Himsolt2010GMLAP} (Graph Modeling Language).
@@ -849,13 +857,15 @@ Two additional functions generate a \href{https://neo4j.com/docs/cypher-refcard/
 	output as tdFile = "cypherTreedec.txt"
 \end{itemize}
 
-
+%============== SolverVisualization ====================================================
 \subsubsection{Class SolverVisualization}
 
 To include the extraction of all necessary visualization information into the solver I created a separate fork.
 To simplify the creation of valid json I selected the actively developed c++ library JsonCpp \url{https://github.com/open-source-parsers/jsoncpp} version 1.9.2 from the open-source-parsers repository.
 
-
+%==============================================================================
+%============== DPDB ==========================================================
+%==============================================================================
 \newpage
 \section{Integration in dpdb}
 The integration of the API with dpdb was easier to implement after the solving process instead of
@@ -920,17 +930,18 @@ Beispiel
 % Appl. svgjoin with different options
 
 %==============================================================================
-%============== SUMMARY =======================================================
+%============== Conclusion ====================================================
 %==============================================================================
 \newpage
-\section{Summary and Outline}
+\section{Conclusion}
 What is achieved?
 % Open source Assistant for visualizing dynamic programming on tree decompositions
 % Small dataformat, highly adaptable svg format
 % Two example integrations in actively developed MSO solvers
-
+\subsection{Summary}
 What worked good, what bad?
 
+\subsection{Future Work}
 % Graphs could provide more options to the user
 % Generate multiple bipartite and general graphs
 % Operate on hypergraphs
