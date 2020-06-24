@@ -342,6 +342,16 @@ The graph description language DOT can be used to describe directed or undirecte
 
 Attributes (new site): http://www.graphviz.org/doc/info/attrs.html
 List specialized types for input used.
+rankdir
+fillcolor
+style
+margin
+fontsize
+fontcolor
+penwidth
+nodesep
+label
+shape
 %=========================== DOT Language ====================================
 
 Dot Language: http://www.graphviz.org/doc/info/lang.html
@@ -639,7 +649,7 @@ Those values are:
 	\item \textit{basefill}, filling of the background for nodes
 	\item \textit{sndshape}, shape of the nodes with variables
 	\item \textit{neg\_tail}, the shape of the edge-tail indicating a negated variable
-	\item \textit{var\_name\_one(/two)}, prefix for nodes in the left (right) partition
+	\item \textit{var\_name\_one/two}, prefix for nodes in the left (right) partition
 	\item \textit{column\_distance}, the distance between both partitions
 \end{enumerate}
 
@@ -669,10 +679,10 @@ For smaller and dense graphs of up to 20 vertices it might be helpful to sort th
 To layout these two options we chose the engine 
 \begin{itemize}
 	\item \textit{do\_sort\_nodes} true: circo (see \cite{ST99})
-	\item \textit{do\_sort\_nodes} false: sfdp (see \cite{Hu05}) with the spring constant 'K' in virtual physical model set to 2.
+	\item \textit{do\_sort\_nodes} false: sfdp (see \cite{Hu05}) with the spring constant 'K' set to 2.
 \end{itemize}
 
-Additional parameters used in both layouts are set to: not overlap nodes to easily identify each node, and draw the edges first. This should provide a minimally cluttered layout compared to the defaults, but could make edges ambiguous in some cases. Of course these layouts could use even more configuration than what was set for this version, a complete overview is provided in the \href{https://graphviz.org/doc/info/attrs.html}{graphviz-doc}. 
+Additional parameters used in both layouts are set to not overlap nodes and easily identify each node, as well as drawing the edges first. This should provide a minimally cluttered layout compared to the defaults, but could make edges ambiguous in some cases. Of course these layouts could use even more configuration than what was set for this version, a complete overview is provided in the \href{https://graphviz.org/doc/info/attrs.html}{graphviz-doc}. 
 
 Only if the option to sort the nodes was chosen with \textit{do\_sort\_nodes} the method
 \begin{enumerate}
