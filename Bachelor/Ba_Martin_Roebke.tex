@@ -658,24 +658,56 @@ In each case we create one image after the time step to provide the inside gener
 \subsection{Joining SVG}{Joining each time step into one image}
 Once all user defined images for one timeline are created, it would be nice to have only one file for every step.
 To support this functionality and some basic scaling and adjusting, there is a special key in the API for joining the svg-graphs. 
-The functionality is placed in the file \textit{svgjoin.py} and called with the specifications given in the optional dictionary \textbf{svgjoin} within the JsonAPI.
+The functionality is placed in the file \textit{svgjoin.py} and will be called with the specifications given in the optional dictionary \textbf{svgjoin} within the JsonAPI.
 
 We transform this information into the python \textit{dataclass} \textbf{SvgJoinData} \ref{lst:svgjoindata}.
 % Show example with description of parameters 
 The internally used method \textit{svgjoin.append\_svg} joins two images horizontally in each step.
 With default settings it will align the top of both images and apply no scaling to either of them.
-The possible parameters
+The possible parameters (in [unit])
 \begin{itemize}
-	\item centerpad: float = 0,
-	\item v\_bottom: float = None,
-	\item v\_top: float = None,
-	\item scale2: float = 1,
+	\item centerpad: float = 0, [image coordinates]
+	\item v\_bottom: float = None, [size of the \textit{first} image]
+	\item v\_top: float = None, [size of the \textit{first} image]
+	\item scale2: float = 1, [size of the \textit{second} image]
 \end{itemize}
-allow very flexible and easy to use vertical, horizontal and scaling transformations.
+allow flexible and easy to use vertical, horizontal and scaling transformations.
 Note that the images are placed in a Cartesian coordinate system and its origin is the top left corner of its bounding box. All images fill a rectangle in this coordinate system with height and width respectively.
 
+Since the order of the parameters \textit{v\_bottom} and \textit{v\_top} could be confused due to the coordinate system, we make sure to correctly set \textit{v\_top} to the smaller and \textit{v\_bottom} to the larger one if this is possible.
+
+One special case is achieved by setting both these parameters to the same number. Then they are interpreted as the position of the vertical centerline for the second image in units of the first. So setting both parameters to $\dfrac{1}{2}$ would result in centering both images vertically.
 
 Possibilities for joining images with these four parameters include:
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.8\linewidth]{images/svgjoinpad200.png}
+	\caption{Joining the blue (right side) image to the left gray image with only one parameter \textit{centerpadding} set to 200. We see the default vertical position v\_top=0, and the implied coordinate system with an origin in the top left corner.}
+	\label{fig:svgjoinpad200}
+\end{figure}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.6\linewidth]{images/svgjoinpad0.png}
+	\caption{Example f0r joining with no \textit{centerpadding}.}
+	\label{fig:svgjoinpad0}
+\end{figure}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.6\linewidth]{images/svgjoinpad0.png}
+	\caption{The second image gets scaled to the same size as the first image. This can be conveniently achieved by setting \textit{v\_top} to 0 and \textit{v\_bottom} to 1. Parameter \textit{centerpadding} is 200 as hinted.}
+	\label{fig:svgjoinscale1}
+\end{figure}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.6\linewidth]{images/svgjoinpad0centered.png}
+	\caption{Aligning both images to be vertically centered. \\
+		This can be achieved by setting $v\_bottom=v\_top=0.5$.}
+	\label{fig:svgjoinpad0centered}
+\end{figure}
 % perspective 
 
 % Checking with www.deepcode.ai
