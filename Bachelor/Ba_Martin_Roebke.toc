@@ -8,42 +8,44 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {subsection}{\numberline {2.2}Monadic Second Order Logic}{6}{subsection.2.2}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {2.3}DIMACS Format}{7}{subsection.2.3}%
+\contentsline {subsection}{\numberline {2.3}Courcelle's Theorem}{7}{subsection.2.3}%
 \defcounter {refsection}{0}\relax 
 \contentsline {subsection}{\numberline {2.4}Tree Decomposition}{8}{subsection.2.4}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {2.5}Courcelle's Theorem}{8}{subsection.2.5}%
+\contentsline {subsection}{\numberline {2.5}DIMACS format}{8}{subsection.2.5}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {3}Concept}{9}{section.3}%
+\contentsline {subsection}{\numberline {2.6}DOT format}{9}{subsection.2.6}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {4}My Visualization Project}{10}{section.4}%
+\contentsline {section}{\numberline {3}Concept}{10}{section.3}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {4.1}Commandline and Configuration}{10}{subsection.4.1}%
+\contentsline {section}{\numberline {4}My Visualization Project}{11}{section.4}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {4.2}Initialization and Tree Decomposition}{11}{subsection.4.2}%
+\contentsline {subsection}{\numberline {4.1}Commandline and Configuration}{11}{subsection.4.1}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {4.3}Create time steps for the underlying graph}{14}{subsection.4.3}%
+\contentsline {subsection}{\numberline {4.2}Initialization and Tree Decomposition}{12}{subsection.4.2}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {4.4}Incidence Graph}{15}{subsection.4.4}%
+\contentsline {subsection}{\numberline {4.3}Create time steps for the underlying graph}{15}{subsection.4.3}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {4.5}General Graph}{16}{subsection.4.5}%
+\contentsline {subsection}{\numberline {4.4}Incidence Graph}{16}{subsection.4.4}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {4.6}Joining SVG}{17}{subsection.4.6}%
+\contentsline {subsection}{\numberline {4.5}General Graph}{17}{subsection.4.5}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {5}Integration in GPUSAT}{22}{section.5}%
+\contentsline {subsection}{\numberline {4.6}Joining SVG}{18}{subsection.4.6}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{\numberline {5.0.1}Class Graphoutput}{24}{subsubsection.5.0.1}%
+\contentsline {section}{\numberline {5}Integration in GPUSAT}{23}{section.5}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{\numberline {5.0.2}Class SolverVisualization}{24}{subsubsection.5.0.2}%
+\contentsline {subsubsection}{\numberline {5.0.1}Class Graphoutput}{25}{subsubsection.5.0.1}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {6}Integration in dpdb}{25}{section.6}%
+\contentsline {subsubsection}{\numberline {5.0.2}Class SolverVisualization}{25}{subsubsection.5.0.2}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {7}Application and Images}{26}{section.7}%
+\contentsline {section}{\numberline {6}Integration in dpdb}{26}{section.6}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {8}Summary and Outline}{27}{section.8}%
+\contentsline {section}{\numberline {7}Application and Images}{27}{section.7}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {A}Images}{28}{appendix.A}%
+\contentsline {section}{\numberline {8}Summary and Outline}{28}{section.8}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {B}Code Snippets}{31}{appendix.B}%
+\contentsline {section}{\numberline {A}Images}{29}{appendix.A}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {C}Input Examples}{36}{appendix.C}%
+\contentsline {section}{\numberline {B}Code Snippets}{32}{appendix.B}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {C}Input Examples}{37}{appendix.C}%
