@@ -172,7 +172,7 @@ Stand Umsetzung, Tools: Slack, Trello, GitHub, Presentations
 
 \newpage
 \section{Background}
-\textit{This chapter provides the reader with a brief background for this work}.
+\textit{In this chapter we provide a brief background on }.
 
 We begin with a description on SAT and \#SAT as examples for a very general problem that can be described with monadic second order logic (MSOL).
 Furthermore the general case of MSOL will be described, as well as the \textit{DIMACS}-file-format used in the projects.
@@ -250,6 +250,43 @@ An algorithm is FPT if it takes time $f(k)\cdot n^{c}$ for some fixed function f
 The value k is a parameter of the input. 
 This algorithm is then usable for small values of k. usually tree-width and clique width.
 
+\subsection{Courcelle's Theorem}
+\begin{quotation}
+	Every graph property definable in monadic second-order logic (MSO) is decidable in linear time on graphs of bounded tree-width.\\
+	{\small Courcelle, Bruno (1990)}\footnote{Courcelle, Bruno "The monadic second-order logic of graphs. I. Recognizable sets of finite graphs",\\ Information and Computation, 85 (1990) no. 1: 12-75}
+\end{quotation}
+
+For all $k \in \mathbb{N}$ and MSO-sentences F is the decision problem for a given graph G, whether $G \models F$ is true, in time $2^{p(tw(G))} \cdot |G|$ with a polynom p decidable.
+\begin{itemize}
+	
+	\item \emph{drawback:} still expensive ($2^{p(tw G)}$, $2^{2^{(\#Q)}}$, large constants) \smallskip 
+	
+\end{itemize}
+
+The workflow then looks like we see in figure~\ref{fig:UsageCourcelle}.
+
+\begin{figure}[H]
+	\includegraphics[height=0.2\textheight]{images/UsageCourcelle.gv.png}
+	\caption{Implementation of the theorem}
+	\label{fig:UsageCourcelle}
+\end{figure}
+
+
+\subsection{Tree Decomposition}
+\cite{DiplomarbeitZisser}chapter 2.2
+Tree decompositions were originally introduced by Robertson and Seymour \cite{ROBERTSON198449} in 1984.
+A \textit{tree decomposition} (TD) of a graph G is a pair $(T, \chi)$. $T$ is a tree and $\chi$ is a mapping which assigns each node $n~\in~V(T)$ 
+a set $\chi(n) \subseteq V(G)$ called a \textit{bag}. Then $(T, \chi)$. $T$ is a TD if the following conditions hold:
+
+\begin{itemize}
+	\item[1.] for each vertex $v(n) \in V(G)$ there is a node $n \in V(T)$ such that $v \in \chi(n)$
+	\item[2.] for each edge $(x,y) \in E(G)$ there is a node $n\in V(T)$ such that $x,y \in\chi(n)$
+	\item[3.] if $x,y,z \in V(T)$ and $y$ lies on the path from x to z then $\chi(x) \cap \chi(z) \subseteq \chi(y)$.
+\end{itemize}
+The width $width(T)$ of a tree decomposition $T$ is $max_{n\in V(T)}(|\chi(n)|)-1$.
+The tree width of a graph is the \textit{minimal width} over all tree decompositions of the graph.
+
+!!!Example (can take one from the visualizations) also in \cite{pcgp2019} page 169
 
 \subsection{DIMACS Format}
 Developed in 1993 at Rutgers University.
@@ -267,41 +304,8 @@ Supported also in Maple \url{https://www.maplesoft.com/support/help/maple/view.a
 
 Examples in appendix
 
-\subsection{Tree Decomposition}
-\cite{DiplomarbeitZisser}chapter 2.2
-Tree decompositions were originally introduced by Robertson and Seymour \cite{ROBERTSON198449} in 1984.
-A \textit{tree decomposition} (TD) of a graph G is a pair $(T, \chi)$. $T$ is a tree and $\chi$ is a mapping which assigns each node $n~\in~V(T)$ 
-a set $\chi(n) \subseteq V(G)$ called a \textit{bag}. Then $(T, \chi)$. $T$ is a TD if the following conditions hold:
-
-\begin{itemize}
-	\item[1.] for each vertex $v(n) \in V(G)$ there is a node $n \in V(T)$ such that $v \in \chi(n)$
-	\item[2.] for each edge $(x,y) \in E(G)$ there is a node $n\in V(T)$ such that $x,y \in\chi(n)$
-	\item[3.] if $x,y,z \in V(T)$ and $y$ lies on the path from x to z then $\chi(x) \cap \chi(z) \subseteq \chi(y)$.
-\end{itemize}
-The width $width(T)$ of a tree decomposition $T$ is $max_{n\in V(T)}(|\chi(n)|)-1$.
-The tree width of a graph is the \textit{minimal width} over all tree decompositions of the graph.
-
-!!!Example (can take one from the visualizations) also in \cite{pcgp2019} page 169
-\subsection{Courcelle's Theorem}
-\begin{quotation}
-	Every graph property definable in monadic second-order logic (MSO) is decidable in linear time on graphs of bounded tree-width.\\
-	{\small Courcelle, Bruno (1990)}\footnote{Courcelle, Bruno "The monadic second-order logic of graphs. I. Recognizable sets of finite graphs",\\ Information and Computation, 85 (1990) no. 1: 12-75}
-\end{quotation}
-
-For all $k \in \mathbb{N}$ and MSO-sentences F is the decision problem for a given graph G, whether $G \models F$ is true, in time $2^{p(tw(G))} \cdot |G|$ with a polynom p decidable.
-\begin{itemize}
-	
-	\item \emph{drawback:} still expensive ($2^{p(tw G)}$, $2^{2^{(\#Q)}}$, large constants) \smallskip 
-
-\end{itemize}
-
-The workflow then looks like we see in figure~\ref{fig:UsageCourcelle}.
-
-\begin{figure}[H]
-	\includegraphics[height=0.2\textheight]{images/UsageCourcelle.gv.png}
-	\caption{Implementation of the theorem}
-	\label{fig:UsageCourcelle}
-\end{figure}
+\subsection{DOT format}
+The graph description language DOT can be used to describe directed or undirected graphs and specify layout details and various attributes for graphs, edges and nodes. 
 %==============================================================================
 %============== CONCEPT =======================================================
 %==============================================================================
@@ -723,8 +727,8 @@ Possibilities for joining images with these four parameters include:
 	\label{fig:svgjoinscaledbottom}
 \end{figure}
 
-If we want to merge more than two images we can specify the parameters in a list.
-The list can be of different length for each parameter - if it is exhausted the last parameter in the list will be repeatedly used until all images are joined.
+If we want to merge more than two images it is possible to specify the parameters in a list.
+The list can be of different length for each parameter - if it is exhausted the last parameter in the list will be repeatedly used until all images are joined together.
 % perspective 
 
 % Checking with www.deepcode.ai
