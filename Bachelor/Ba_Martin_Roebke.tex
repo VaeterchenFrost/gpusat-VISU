@@ -341,17 +341,30 @@ Examples in appendix
 The graph description language DOT can be used to describe directed or undirected graphs and specify layout details and various attributes for graphs, edges and nodes. It is similar to the Graph Modeling Language as a text based file format for describing graphs, and the Graphviz project includes gml2gv and gv2gml as two tools that can convert between GML and DOT files.
 
 Attributes (new site): http://www.graphviz.org/doc/info/attrs.html
+
 List specialized types for input used.
-rankdir
-fillcolor
-style
-margin
-fontsize
-fontcolor
-penwidth
-nodesep
-label
-shape
+rankdir "TB", "LR", "BT", "RL", corresponding to directed graphs drawn from top to bottom, from left to right, from bottom to top, and from right to left, respectively. 
+
+fillcolor  https://graphviz.org/doc/info/attrs.html#k:color https://graphviz.org/doc/info/colors.html 
+If the value is a colorList, a gradient fill is used. By default, this is a linear fill; setting style=radial will cause a radial fill. 
+
+fontcolor Color used for text. 
+
+style for nodes https://graphviz.org/doc/info/attrs.html#d:style
+At present, the recognized style names are "dashed", "dotted", "solid", "invis" and "bold" for nodes and edges,  and "filled", "striped", "wedged", "diagonals" and "rounded" for nodes only.
+
+
+margin not customizable, node attr margin='0.11,0.01' https://graphviz.org/doc/info/attrs.html#d:margin
+
+fontsize Font size, in points, used for text. 
+
+
+penwidth Specifies the width of the pen, in points, used to draw lines and curves, including the boundaries of edges and clusters. 
+
+nodesep In dot, this specifies the minimum space between two adjacent nodes in the same rank, in inches. 
+
+shape https://graphviz.org/doc/info/shapes.html
+
 %=========================== DOT Language ====================================
 
 Dot Language: http://www.graphviz.org/doc/info/lang.html
