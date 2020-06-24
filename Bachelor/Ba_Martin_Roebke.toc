@@ -30,20 +30,20 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {subsection}{\numberline {4.6}Joining SVG}{17}{subsection.4.6}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {5}Integration in GPUSAT}{21}{section.5}%
+\contentsline {section}{\numberline {5}Integration in GPUSAT}{22}{section.5}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{\numberline {5.0.1}Class Graphoutput}{23}{subsubsection.5.0.1}%
+\contentsline {subsubsection}{\numberline {5.0.1}Class Graphoutput}{24}{subsubsection.5.0.1}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{\numberline {5.0.2}Class SolverVisualization}{23}{subsubsection.5.0.2}%
+\contentsline {subsubsection}{\numberline {5.0.2}Class SolverVisualization}{24}{subsubsection.5.0.2}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {6}Integration in dpdb}{24}{section.6}%
+\contentsline {section}{\numberline {6}Integration in dpdb}{25}{section.6}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {7}Application and Images}{25}{section.7}%
+\contentsline {section}{\numberline {7}Application and Images}{26}{section.7}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {8}Summary and Outline}{26}{section.8}%
+\contentsline {section}{\numberline {8}Summary and Outline}{27}{section.8}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {A}Images}{27}{appendix.A}%
+\contentsline {section}{\numberline {A}Images}{28}{appendix.A}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {B}Code Snippets}{30}{appendix.B}%
+\contentsline {section}{\numberline {B}Code Snippets}{31}{appendix.B}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {C}Input Examples}{35}{appendix.C}%
+\contentsline {section}{\numberline {C}Input Examples}{36}{appendix.C}%

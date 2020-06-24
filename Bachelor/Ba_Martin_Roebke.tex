@@ -666,7 +666,7 @@ The internally used method \textit{svgjoin.append\_svg} joins two images horizon
 With default settings it will align the top of both images and apply no scaling to either of them.
 The possible parameters (in [unit])
 \begin{itemize}
-	\item centerpad: float = 0, [image coordinates]
+	\item centerpad: float = 0, [image coordinates], just "padding" in the JSON API
 	\item v\_bottom: float = None, [size of the \textit{first} image]
 	\item v\_top: float = None, [size of the \textit{first} image]
 	\item scale2: float = 1, [size of the \textit{second} image]
@@ -683,30 +683,44 @@ Possibilities for joining images with these four parameters include:
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=0.8\linewidth]{images/svgjoinpad200.png}
-	\caption{Joining the blue (right side) image to the left gray image with only one parameter \textit{centerpadding} set to 200. We see the default vertical position v\_top=0, and the implied coordinate system with an origin in the top left corner.}
+	\caption{Joining the blue (right side) image to the left gray image with only one parameter \textit{centerpad} set to 200. We see the default vertical position v\_top=0, and the implied coordinate system with an origin in the top left corner.}
 	\label{fig:svgjoinpad200}
 \end{figure}
 
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=0.6\linewidth]{images/svgjoinpad0.png}
-	\caption{Example f0r joining with no \textit{centerpadding}.}
+	\caption{Example f0r joining with no \textit{centerpad}.}
 	\label{fig:svgjoinpad0}
 \end{figure}
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=0.6\linewidth]{images/svgjoinpad0.png}
-	\caption{The second image gets scaled to the same size as the first image. This can be conveniently achieved by setting \textit{v\_top} to 0 and \textit{v\_bottom} to 1. Parameter \textit{centerpadding} is 200 as hinted.}
+	\includegraphics[width=0.8\linewidth]{images/svgjoinscale1.png}
+	\caption{The second image gets scaled to the same size as the first image. This can be conveniently achieved by setting \textit{v\_top} to 0 and \textit{v\_bottom} to 1. Parameter \textit{centerpad} is 200 as hinted.}
 	\label{fig:svgjoinscale1}
 \end{figure}
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=0.6\linewidth]{images/svgjoinpad0centered.png}
+	\includegraphics[width=0.8\linewidth]{images/svgjoinpad0centered.png}
 	\caption{Aligning both images to be vertically centered. \\
 		This can be achieved by setting $v\_bottom=v\_top=0.5$.}
 	\label{fig:svgjoinpad0centered}
+\end{figure}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.8\linewidth]{images/svgjoinscaled.png}
+	\caption{Setting \textit{scale2} to $1.3$ to scale the blue (right) image uniformly. Parameter \textit{centerpad} is 200 as hinted.}
+	\label{fig:svgjoinscaled}
+\end{figure}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.8\linewidth]{images/svgjoinscaledbottom.png}
+	\caption{As in figure \ref{fig:svgjoinscaled} we use \textit{scale2} to scale the blue rectangle. To align both images at the bottom edge, we use the value $v\_bottom=1$.}
+	\label{fig:svgjoinscaledbottom}
 \end{figure}
 % perspective 
 
