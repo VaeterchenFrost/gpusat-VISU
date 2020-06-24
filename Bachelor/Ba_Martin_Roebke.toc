@@ -30,7 +30,7 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {subsection}{\numberline {3.2}Initialization and Tree Decomposition}{12}{subsection.3.2}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {3.3}Create time steps for the underlying graph}{15}{subsection.3.3}%
+\contentsline {subsection}{\numberline {3.3}Create time steps for the underlying graph}{16}{subsection.3.3}%
 \defcounter {refsection}{0}\relax 
 \contentsline {subsection}{\numberline {3.4}Incidence Graph}{16}{subsection.3.4}%
 \defcounter {refsection}{0}\relax 
