@@ -347,16 +347,16 @@ Attributes (new site): http://www.graphviz.org/doc/info/attrs.html
 List specialized types for input used.
 rankdir "TB", "LR", "BT", "RL", corresponding to directed graphs drawn from top to bottom, from left to right, from bottom to top, and from right to left, respectively. 
 
-fillcolor  https://graphviz.org/doc/info/attrs.html#k:color https://graphviz.org/doc/info/colors.html 
+fillcolor  \url{https://graphviz.org/doc/info/attrs.html#k:color} \url{https://graphviz.org/doc/info/colors.html} 
 If the value is a colorList, a gradient fill is used. By default, this is a linear fill; setting style=radial will cause a radial fill. 
 
 fontcolor Color used for text. 
 
-style for nodes https://graphviz.org/doc/info/attrs.html#d:style
+style for nodes \url{https://graphviz.org/doc/info/attrs.html#d:style}
 At present, the recognized style names are "dashed", "dotted", "solid", "invis" and "bold" for nodes and edges,  and "filled", "striped", "wedged", "diagonals" and "rounded" for nodes only.
 
 
-margin not customizable, node attr margin='0.11,0.01' https://graphviz.org/doc/info/attrs.html#d:margin
+margin not customizable, node attr margin='0.11,0.01' \url{https://graphviz.org/doc/info/attrs.html#d:margin}
 
 fontsize Font size, in points, used for text. 
 
@@ -984,20 +984,32 @@ Beispiel
 % Open source Assistant for visualizing dynamic programming on tree decompositions
 % Small dataformat, highly adaptable svg format
 % Two example integrations in actively developed MSO solvers
+% Bags do provide the option to add arbitrary many/long labels for different debugging information
 \subsection{Summary}
 We could create and for the most part automate visualization of dynamic programming on tree decompositions.
-With SVG we support a human readable, highly adaptable data format.
-We defined and developed a data-exchange form to give the visualization the information it will need, and provide sensible default values for (almost) all parameters.
-During development we already found some improvements in the solvers and could easily identify possible bugs.
+With SVG we support a human readable, highly adaptable data format.\\
 
+We defined and developed a data-exchange form to give the visualization the information it will need, and provide sensible default values for (almost) all parameters.\\
+
+The visualization got implemented and tested for two actively developed solvers and for the problem types \textbf{SAT}, \textbf{\#SAT} and \textbf{minimal vertex cover}.\\
+
+During development we could already find some improvements in the solvers and easily identify possible bugs.
+All nodes are prepared to display arbitrary user defined strings that could include various debugging-information about the run.
 
 \subsection{Future Work}
 % Graphs could provide more options to the user
 % Generate multiple bipartite and general graphs
 % Operate on hypergraphs
 % Bring all timesteps into one file, e.g Animations
-% Bags do provide the option to add arbitrary many/long labels for different debugging information
+In the future the visualization could provide even more options to the user. \\
 
+Even different colors visualizing attributes of each node would be a consideration.\\
+
+The next step would be to expand the API to multiple bipartite or simple graphs, which right now is limited to one each with the option to create primal- and dual-graphs too.\\
+
+One addition could be the inclusion of hypergraphs (graphs where one edge does connect multiple nodes) which could be of interest to solvers of the future.\\
+
+Right now even with the \textit{svg-join} tool we need multiple files to represent all time steps. SVG however would be able to only create one file where the time steps will be animated. Animations might get toggled by the user or change over a specified time span.
 %==============================================================================
 %============== APPENDIX ======================================================
 %==============================================================================
