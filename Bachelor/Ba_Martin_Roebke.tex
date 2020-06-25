@@ -14,6 +14,19 @@
 \usepackage{xcolor}
 \usepackage{longtable} % breaks pages
 \usepackage{tabularx}
+\usepackage{thmtools}
+
+\declaretheoremstyle[
+headfont=\bfseries,
+notefont=\bfseries,
+notebraces={(}{)},
+qed=,
+headpunct=.,
+headformat={\mbox{\NAME{} \NUMBER\NOTE}}
+]{custom}
+
+\declaretheorem[style=custom, name=Theorem]{thm}
+\declaretheorem[style=custom, name=Example]{example}
 
 \usepackage[style=alphabetic,backend=biber]{biblatex}
 \addbibresource{bibtex.bib}
@@ -226,6 +239,18 @@ A set C of clauses is
 \end{itemize}
 
 % EXAMPLE 4.1?
+\begin{example}
+	We will mostly use the formula with the following clause set: $C=\{c_{1}=\{v_{1},v_{4},v_{6}\},
+	c_{2}=\{v_{1},\neg v_{5}\},
+	c_{3}=\{\neg v_{1},v_{7}\},
+	c_{4}=\{v_{2},v_{3}\},
+	c_{5}=\{v_{2},v_{5}\},
+	c_{6}=\{v_{2},\neg v_{6}\},
+	c_{7}=\{v_{3},\neg v_{8}\},
+	c_{8}=\{v_{4},\neg v_{8}\},
+	c_{9}=\{\neg v_{4},v_{6}\},
+	c_{10}=\{\neg v_{4},v_{7}\}\}$
+\end{example}
 
 Connection to graphs with \cite{DiplomarbeitZisser}
 
@@ -970,8 +995,11 @@ Beispiel
 \newpage
 \section{Application and Images }
 
-% Appl. SharpSat
 % Appl. Sat
+\subsection{SAT Example}
+For example 
+% Appl. SharpSat
+
 % Appl. VC
 % Appl. svgjoin with different options
 
