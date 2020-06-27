@@ -15,6 +15,7 @@
 \usepackage{longtable} % breaks pages
 \usepackage{tabularx}
 \usepackage{thmtools}
+\usepackage{booktabs}
 
 \declaretheoremstyle[
 headfont=\bfseries,
@@ -1002,7 +1003,27 @@ In this section we will visualize the process of checking the formula \ref{ex:ex
 \begin{figure}[H]
 	\centering
 	\includegraphics[height=0.6\textheight]{images/DA4SAT/results/TDStep1.pdf}
-	\caption{Tree decomposition for solving example \ref{ex:example41} . With yellow highlighting for the first leaf (bag 5) to solve.}
+	\caption{Tree decomposition for solving example \ref{ex:example41} . \\
+		With yellow highlighting for the first leaf (bag 5) to solve.}
+\end{figure}
+\begin{table}\sffamily
+\begin{tabular}{l*3{c}}
+	\toprule
+	2 & \includegraphics[height=0.46\textheight]{images/DA4SAT/results/TDStep2.pdf} &
+	3 & \includegraphics[height=0.46\textheight]{images/DA4SAT/results/TDStep3.pdf} \\ 
+	\midrule
+	4 & \includegraphics[height=0.46\textheight]{images/DA4SAT/results/TDStep4.pdf} &
+	5 & \includegraphics[height=0.46\textheight]{images/DA4SAT/results/TDStep5.pdf}\\
+	\bottomrule 
+\end{tabular}
+\caption{Tree decomposition for solving example \ref{ex:example41} . Images for steps two to five as labeled from top left to bottom right.}
+\end{table} 
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[height=0.6\textheight]{images/DA4SAT/results/TDStep6.pdf}
+	\caption{Tree decomposition for solving example \ref{ex:example41} . \\
+		Final result with yellow highlighting for the last bag (1) solved.}
 \end{figure}
 
 % Appl. SharpSat
