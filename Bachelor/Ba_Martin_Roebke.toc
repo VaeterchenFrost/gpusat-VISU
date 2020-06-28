@@ -50,20 +50,20 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {subsection}{\numberline {6.1}SAT Example}{27}{subsection.6.1}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {6.2}\#SAT Example}{29}{subsection.6.2}%
+\contentsline {subsection}{\numberline {6.2}\#SAT Example}{31}{subsection.6.2}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {6.3}Vertex Cover Example}{29}{subsection.6.3}%
+\contentsline {subsection}{\numberline {6.3}Vertex Cover Example}{31}{subsection.6.3}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {6.4}SVG Join Example}{29}{subsection.6.4}%
+\contentsline {subsection}{\numberline {6.4}SVG Join Example}{31}{subsection.6.4}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {7}Conclusion}{30}{section.7}%
+\contentsline {section}{\numberline {7}Conclusion}{32}{section.7}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {7.1}Summary}{30}{subsection.7.1}%
+\contentsline {subsection}{\numberline {7.1}Summary}{32}{subsection.7.1}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {7.2}Future Work}{30}{subsection.7.2}%
+\contentsline {subsection}{\numberline {7.2}Future Work}{32}{subsection.7.2}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {A}Images}{31}{appendix.A}%
+\contentsline {section}{\numberline {A}Images}{33}{appendix.A}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {B}Code Snippets}{34}{appendix.B}%
+\contentsline {section}{\numberline {B}Code Snippets}{36}{appendix.B}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {C}Input Examples}{39}{appendix.C}%
+\contentsline {section}{\numberline {C}Input Examples}{41}{appendix.C}%
