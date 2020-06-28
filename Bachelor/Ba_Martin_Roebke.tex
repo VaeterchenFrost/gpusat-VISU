@@ -16,6 +16,7 @@
 \usepackage{tabularx}
 \usepackage{thmtools}
 \usepackage{booktabs}
+\usepackage[export]{adjustbox}
 
 \declaretheoremstyle[
 headfont=\bfseries,
@@ -1029,8 +1030,8 @@ In this section we will visualize the process of checking the formula \ref{ex:ex
 \begin{figure}[H]
 	\setkeys{Gin}{width=\linewidth,height=0.45\textheight,keepaspectratio}
 	\begin{tabularx}{\textwidth}{ l X X }
-		step 1: &\includegraphics{images/DA4SAT/results/IncidenceGraphStep1.pdf} & \includegraphics{images/DA4SAT/results/PrimalGraphStep1.pdf} \\ 
-		step 2: &\includegraphics{images/DA4SAT/results/IncidenceGraphStep2.pdf} & \includegraphics{images/DA4SAT/results/PrimalGraphStep2.pdf} \\ 
+		step 1: &\includegraphics[valign=c]{images/DA4SAT/results/IncidenceGraphStep1.pdf} & \includegraphics[valign=c]{images/DA4SAT/results/PrimalGraphStep1.pdf} \\ 
+		step 2: &\includegraphics[valign=c]{images/DA4SAT/results/IncidenceGraphStep2.pdf} & \includegraphics[valign=c]{images/DA4SAT/results/PrimalGraphStep2.pdf} \\ 
 		&Visualization for the incidence graph including information of the sat formula & 
 		\centering Visualization for the primal graph \\
 	\end{tabularx}
