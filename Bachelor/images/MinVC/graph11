@@ -1,0 +1,25 @@
+strict graph "graph" {
+	graph [K=2 fontsize=20 outputorder=edgesfirst overlap=false]
+	node [fillcolor=white fontcolor=black penwidth=2.2 style=filled]
+	9 -- 10
+	1 -- 2
+	6 -- 15
+	3 -- 4
+	14 -- 7
+	4 -- 6
+	12 -- 13
+	2 -- 3
+	6 -- 7
+	4 -- 5
+	8 -- 9
+	11 -- 12
+	12 -- 14
+	7 -- 8
+	15 -- 16
+	9 -- 11
+	11 -- 14
+	3 -- 5
+	6 [fillcolor=yellow style=filled]
+	7 [fillcolor=yellow style=filled]
+	6 -- 7 [color=red penwidth=2.2]
+}
