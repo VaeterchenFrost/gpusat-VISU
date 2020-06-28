@@ -1,0 +1,737 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 8.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       157,          7]
+NotebookDataLength[     24744,        728]
+NotebookOptionsPosition[     23285,        672]
+NotebookOutlinePosition[     23643,        688]
+CellTagsIndexPosition[     23600,        685]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell["Tree Decomposition heuristics", "Title",
+ CellChangeTimes->{{3.503712962552765*^9, 3.503712966923365*^9}, {
+  3.504659040626684*^9, 3.504659042449026*^9}}],
+
+Cell[CellGroupData[{
+
+Cell["Heuristics", "Section",
+ CellChangeTimes->{{3.503711709888002*^9, 3.5037117164469748`*^9}, {
+  3.503712960235323*^9, 3.503712961455906*^9}}],
+
+Cell["\<\
+Tree decomposition uses primary heuristic to pick the nodes to eliminate, and \
+the secondary heuristic to pick between that look equally good to the primary \
+heuristic\
+\>", "Text",
+ CellChangeTimes->{{3.503711663462462*^9, 3.503711707719873*^9}, {
+  3.503712758113138*^9, 3.5037127592709913`*^9}, {3.5037129788705673`*^9, 
+  3.503712979706835*^9}}],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"SetDirectory", "[", 
+   RowBox[{"NotebookDirectory", "[", "]"}], "]"}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"<<", "Bulatov`treeDecomposition`"}], ";"}], 
+  "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{"primary", ",", "secondary"}], "}"}], "=", 
+   "findTreeDecompositionHeuristics"}], ";"}]}], "Input",
+ CellChangeTimes->{{3.5037117731000566`*^9, 3.503711778394217*^9}, {
+  3.50371298122056*^9, 3.503712982836101*^9}, {3.503755086776761*^9, 
+  3.5037550871155376`*^9}, {3.50375514291166*^9, 3.50375515828242*^9}, {
+  3.504640575537264*^9, 3.504640587770936*^9}, {3.5046406962144623`*^9, 
+  3.504640697028418*^9}, {3.504640899897403*^9, 3.5046409051676702`*^9}}],
+
+Cell["\<\
+Cost is measured in number of operations needed to evaluate decomposition. \
+Different heuristics can provide orders of magnitude difference in cost.\
+\>", "Text",
+ CellChangeTimes->{{3.5037551598783617`*^9, 3.5037551716467667`*^9}, {
+  3.503755235700695*^9, 3.5037552470797997`*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"gridGraph", "=", 
+   RowBox[{"GridGraph", "[", 
+    RowBox[{"{", 
+     RowBox[{"5", ",", "5"}], "}"}], "]"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"decomp", "=", 
+   RowBox[{"findTreeDecomposition", "[", 
+    RowBox[{"gridGraph", ",", 
+     RowBox[{"PrimaryHeuristic", "\[Rule]", "\"\<mincut\>\""}]}], "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{"getTreeCost", "[", "decomp", "]"}]}], "Input",
+ CellChangeTimes->{{3.503755096212543*^9, 3.503755129898307*^9}, {
+  3.504640930120508*^9, 3.504640938918747*^9}}],
+
+Cell[BoxData["1568"], "Output",
+ CellChangeTimes->{
+  3.5037551306258583`*^9, {3.504640924479007*^9, 3.504640941680923*^9}, 
+   3.504641402424406*^9}]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Evaluating goodness of tree decomposition", "Section",
+ CellChangeTimes->{{3.503712006303431*^9, 3.5037120239102592`*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(*", " ", 
+   RowBox[{
+   "Graphical", " ", "model", " ", "used", " ", "to", " ", "predict", " ", 
+    "barley", " ", "harvest"}], " ", "*)"}], "\[IndentingNewLine]", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"gridGraph", "=", 
+     RowBox[{"GridGraph", "[", 
+      RowBox[{"{", 
+       RowBox[{"5", ",", "5"}], "}"}], "]"}]}], ";"}], "\[IndentingNewLine]", 
+   
+   RowBox[{
+    RowBox[{"barleyGraph", "=", 
+     RowBox[{"Import", "[", "\"\<./barley.dgf\>\"", "]"}]}], ";"}], 
+   "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"hammingGraph", "=", 
+     RowBox[{"GraphData", "[", 
+      RowBox[{"{", 
+       RowBox[{"\"\<Hamming\>\"", ",", 
+        RowBox[{"{", 
+         RowBox[{"3", ",", "3"}], "}"}]}], "}"}], "]"}]}], ";"}], 
+   "\[IndentingNewLine]", "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"evalCost", "[", 
+      RowBox[{"g_", ",", "h1_", ",", "h2_"}], "]"}], ":=", 
+     RowBox[{"(", "\[IndentingNewLine]", 
+      RowBox[{
+       RowBox[{"decomp", "=", 
+        RowBox[{"findTreeDecomposition", "[", 
+         RowBox[{"g", ",", 
+          RowBox[{"PrimaryHeuristic", "\[Rule]", "h1"}], ",", 
+          RowBox[{"SecondaryHeuristic", "\[Rule]", "h2"}]}], "]"}]}], ";", 
+       "\[IndentingNewLine]", 
+       RowBox[{"getTreeCost", "[", "decomp", "]"}]}], "\[IndentingNewLine]", 
+      ")"}]}], ";"}], "\[IndentingNewLine]", "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"evalWidth", "[", 
+      RowBox[{"g_", ",", "h1_", ",", "h2_"}], "]"}], ":=", 
+     RowBox[{"(", "\[IndentingNewLine]", 
+      RowBox[{
+       RowBox[{"decomp", "=", 
+        RowBox[{"findTreeDecomposition", "[", 
+         RowBox[{"g", ",", 
+          RowBox[{"PrimaryHeuristic", "\[Rule]", "h1"}], ",", 
+          RowBox[{"SecondaryHeuristic", "\[Rule]", "h2"}]}], "]"}]}], ";", 
+       "\[IndentingNewLine]", 
+       RowBox[{"getTreeWidth", "[", "decomp", "]"}]}], "\[IndentingNewLine]", 
+      ")"}]}], ";"}], "\[IndentingNewLine]", "\[IndentingNewLine]", 
+   RowBox[{"(*", " ", 
+    RowBox[{
+    "show", " ", "cost", " ", "of", " ", "decomposition", " ", "for", " ", 
+     "every", " ", "combination", " ", "of", " ", "primary", " ", "and", " ", 
+     "secondary", " ", "heuristic"}], " ", "*)"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"costTable", "[", "g_", "]"}], ":=", 
+     RowBox[{"(", "\[IndentingNewLine]", 
+      RowBox[{"TableForm", "[", 
+       RowBox[{
+        RowBox[{"Table", "[", 
+         RowBox[{
+          RowBox[{"evalCost", "[", 
+           RowBox[{"g", ",", "p", ",", "s"}], "]"}], ",", 
+          RowBox[{"{", 
+           RowBox[{"p", ",", "primary"}], "}"}], ",", 
+          RowBox[{"{", 
+           RowBox[{"s", ",", "secondary"}], "}"}]}], "]"}], ",", 
+        RowBox[{"TableHeadings", "\[Rule]", 
+         RowBox[{"{", 
+          RowBox[{"primary", ",", "secondary"}], "}"}]}]}], "]"}], 
+      "\[IndentingNewLine]", ")"}]}], ";"}], "\[IndentingNewLine]", 
+   "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"widthTable", "[", "g_", "]"}], ":=", 
+     RowBox[{"(", "\[IndentingNewLine]", 
+      RowBox[{"TableForm", "[", 
+       RowBox[{
+        RowBox[{"Table", "[", 
+         RowBox[{
+          RowBox[{"evalWidth", "[", 
+           RowBox[{"g", ",", "p", ",", "s"}], "]"}], ",", 
+          RowBox[{"{", 
+           RowBox[{"p", ",", "primary"}], "}"}], ",", 
+          RowBox[{"{", 
+           RowBox[{"s", ",", "secondary"}], "}"}]}], "]"}], ",", 
+        RowBox[{"TableHeadings", "\[Rule]", 
+         RowBox[{"{", 
+          RowBox[{"primary", ",", "secondary"}], "}"}]}]}], "]"}], 
+      "\[IndentingNewLine]", ")"}]}], ";"}]}]}]], "Input",
+ CellChangeTimes->{{3.503712041410512*^9, 3.5037120941952333`*^9}, 
+   3.503712130478161*^9, {3.503755149663156*^9, 3.503755150751391*^9}, {
+   3.5046411646508904`*^9, 3.504641189276587*^9}, {3.504641550348832*^9, 
+   3.50464155072831*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"costTable", "[", "gridGraph", "]"}]], "Input",
+ CellChangeTimes->{{3.5037121355959187`*^9, 3.503712166568204*^9}, {
+  3.503712791946012*^9, 3.503712793583342*^9}}],
+
+Cell[BoxData[
+ TagBox[
+  TagBox[GridBox[{
+     {
+      StyleBox["\[Null]",
+       ShowStringCharacters->False], 
+      TagBox["\<\"accumulation\"\>",
+       HoldForm], 
+      TagBox["\<\"eccentricity\"\>",
+       HoldForm], 
+      TagBox["\<\"canonical\"\>",
+       HoldForm], 
+      TagBox["\<\"random\"\>",
+       HoldForm]},
+     {
+      TagBox["\<\"minfill\"\>",
+       HoldForm], "2000", "8032", "2216", "3480"},
+     {
+      TagBox["\<\"mincut\"\>",
+       HoldForm], "1568", "1568", "1568", "1568"},
+     {
+      TagBox["\<\"canonical\"\>",
+       HoldForm], "2216", "2216", "2216", "2216"},
+     {
+      TagBox["\<\"grid\"\>",
+       HoldForm], "1184", "1184", "1184", "1184"},
+     {
+      TagBox["\<\"eccentricity\"\>",
+       HoldForm], "1792", "1792", "1792", "1792"},
+     {
+      TagBox["\<\"random\"\>",
+       HoldForm], "7568", "5456", "7656", "2816"}
+    },
+    GridBoxAlignment->{
+     "Columns" -> {{Left}}, "ColumnsIndexed" -> {}, "Rows" -> {{Baseline}}, 
+      "RowsIndexed" -> {}},
+    GridBoxDividers->{
+     "Columns" -> {False, True, {False}, False}, "ColumnsIndexed" -> {}, 
+      "Rows" -> {False, True, {False}, False}, "RowsIndexed" -> {}},
+    GridBoxSpacings->{"Columns" -> {
+        Offset[0.27999999999999997`], {
+         Offset[2.0999999999999996`]}, 
+        Offset[0.27999999999999997`]}, "ColumnsIndexed" -> {}, "Rows" -> {
+        Offset[0.2], {
+         Offset[0.4]}, 
+        Offset[0.2]}, "RowsIndexed" -> {}}],
+   {OutputFormsDump`HeadedRows, OutputFormsDump`HeadedColumns}],
+  Function[BoxForm`e$, 
+   TableForm[
+   BoxForm`e$, 
+    TableHeadings -> {{
+      "minfill", "mincut", "canonical", "grid", "eccentricity", "random"}, {
+      "accumulation", "eccentricity", "canonical", "random"}}]]]], "Output",
+ CellChangeTimes->{{3.503712142175056*^9, 3.5037121592008333`*^9}, 
+   3.503712597128841*^9, 3.503712784648418*^9, 3.504640533745417*^9, 
+   3.504640963365397*^9, 3.5046414235472517`*^9, {3.504641461180151*^9, 
+   3.504641473680369*^9}}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"costTable", "[", "barleyGraph", "]"}]], "Input",
+ CellChangeTimes->{{3.503712831057324*^9, 3.503712841780993*^9}}],
+
+Cell[BoxData[
+ TagBox[
+  TagBox[GridBox[{
+     {
+      StyleBox["\[Null]",
+       ShowStringCharacters->False], 
+      TagBox["\<\"accumulation\"\>",
+       HoldForm], 
+      TagBox["\<\"eccentricity\"\>",
+       HoldForm], 
+      TagBox["\<\"canonical\"\>",
+       HoldForm], 
+      TagBox["\<\"random\"\>",
+       HoldForm]},
+     {
+      TagBox["\<\"minfill\"\>",
+       HoldForm], "5072", "7752", "6648", "7896"},
+     {
+      TagBox["\<\"mincut\"\>",
+       HoldForm], "44512", "44512", "44512", "44512"},
+     {
+      TagBox["\<\"canonical\"\>",
+       HoldForm], "667992", "667992", "667992", "667992"},
+     {
+      TagBox["\<\"grid\"\>",
+       HoldForm], "18608", "23312", "18928", "25488"},
+     {
+      TagBox["\<\"eccentricity\"\>",
+       HoldForm], "195856488", "195856488", "195856488", "195856488"},
+     {
+      TagBox["\<\"random\"\>",
+       HoldForm], "79721864", "44492392", "51131688", "650643744"}
+    },
+    GridBoxAlignment->{
+     "Columns" -> {{Left}}, "ColumnsIndexed" -> {}, "Rows" -> {{Baseline}}, 
+      "RowsIndexed" -> {}},
+    GridBoxDividers->{
+     "Columns" -> {False, True, {False}, False}, "ColumnsIndexed" -> {}, 
+      "Rows" -> {False, True, {False}, False}, "RowsIndexed" -> {}},
+    GridBoxSpacings->{"Columns" -> {
+        Offset[0.27999999999999997`], {
+         Offset[2.0999999999999996`]}, 
+        Offset[0.27999999999999997`]}, "ColumnsIndexed" -> {}, "Rows" -> {
+        Offset[0.2], {
+         Offset[0.4]}, 
+        Offset[0.2]}, "RowsIndexed" -> {}}],
+   {OutputFormsDump`HeadedRows, OutputFormsDump`HeadedColumns}],
+  Function[BoxForm`e$, 
+   TableForm[
+   BoxForm`e$, 
+    TableHeadings -> {{
+      "minfill", "mincut", "canonical", "grid", "eccentricity", "random"}, {
+      "accumulation", "eccentricity", "canonical", "random"}}]]]], "Output",
+ CellChangeTimes->{3.50371287516218*^9, 3.504640995962305*^9, 
+  3.504641482270578*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"costTable", "[", "hammingGraph", "]"}]], "Input",
+ CellChangeTimes->{{3.5037129086697474`*^9, 3.503712910306691*^9}}],
+
+Cell[BoxData[
+ TagBox[
+  TagBox[GridBox[{
+     {
+      StyleBox["\[Null]",
+       ShowStringCharacters->False], 
+      TagBox["\<\"accumulation\"\>",
+       HoldForm], 
+      TagBox["\<\"eccentricity\"\>",
+       HoldForm], 
+      TagBox["\<\"canonical\"\>",
+       HoldForm], 
+      TagBox["\<\"random\"\>",
+       HoldForm]},
+     {
+      TagBox["\<\"minfill\"\>",
+       HoldForm], "258176", "258176", "258176", "258176"},
+     {
+      TagBox["\<\"mincut\"\>",
+       HoldForm], "536832", "536832", "536832", "536832"},
+     {
+      TagBox["\<\"canonical\"\>",
+       HoldForm], "1558656", "1558656", "1558656", "1558656"},
+     {
+      TagBox["\<\"grid\"\>",
+       HoldForm], "290944", "290944", "290944", "280704"},
+     {
+      TagBox["\<\"eccentricity\"\>",
+       HoldForm], "1558656", "1558656", "1558656", "1558656"},
+     {
+      TagBox["\<\"random\"\>",
+       HoldForm], "1100416", "1325696", "692480", "1100032"}
+    },
+    GridBoxAlignment->{
+     "Columns" -> {{Left}}, "ColumnsIndexed" -> {}, "Rows" -> {{Baseline}}, 
+      "RowsIndexed" -> {}},
+    GridBoxDividers->{
+     "Columns" -> {False, True, {False}, False}, "ColumnsIndexed" -> {}, 
+      "Rows" -> {False, True, {False}, False}, "RowsIndexed" -> {}},
+    GridBoxSpacings->{"Columns" -> {
+        Offset[0.27999999999999997`], {
+         Offset[2.0999999999999996`]}, 
+        Offset[0.27999999999999997`]}, "ColumnsIndexed" -> {}, "Rows" -> {
+        Offset[0.2], {
+         Offset[0.4]}, 
+        Offset[0.2]}, "RowsIndexed" -> {}}],
+   {OutputFormsDump`HeadedRows, OutputFormsDump`HeadedColumns}],
+  Function[BoxForm`e$, 
+   TableForm[
+   BoxForm`e$, 
+    TableHeadings -> {{
+      "minfill", "mincut", "canonical", "grid", "eccentricity", "random"}, {
+      "accumulation", "eccentricity", "canonical", "random"}}]]]], "Output",
+ CellChangeTimes->{3.503712913726894*^9, 3.5046410094276*^9, 
+  3.504641498358103*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{"widthTable", "[", "gridGraph", "]"}], "\[IndentingNewLine]", 
+ RowBox[{"widthTable", "[", "barleyGraph", "]"}], "\[IndentingNewLine]", 
+ RowBox[{"widthTable", "[", "hammingGraph", "]"}]}], "Input",
+ CellChangeTimes->{{3.504641511592926*^9, 3.504641524472787*^9}}],
+
+Cell[BoxData[
+ TagBox[
+  TagBox[GridBox[{
+     {
+      StyleBox["\[Null]",
+       ShowStringCharacters->False], 
+      TagBox["\<\"accumulation\"\>",
+       HoldForm], 
+      TagBox["\<\"eccentricity\"\>",
+       HoldForm], 
+      TagBox["\<\"canonical\"\>",
+       HoldForm], 
+      TagBox["\<\"random\"\>",
+       HoldForm]},
+     {
+      TagBox["\<\"minfill\"\>",
+       HoldForm], "6", "10", "6", "7"},
+     {
+      TagBox["\<\"mincut\"\>",
+       HoldForm], "7", "7", "7", "7"},
+     {
+      TagBox["\<\"canonical\"\>",
+       HoldForm], "6", "6", "6", "6"},
+     {
+      TagBox["\<\"grid\"\>",
+       HoldForm], "6", "6", "6", "6"},
+     {
+      TagBox["\<\"eccentricity\"\>",
+       HoldForm], "7", "7", "7", "7"},
+     {
+      TagBox["\<\"random\"\>",
+       HoldForm], "11", "10", "9", "9"}
+    },
+    GridBoxAlignment->{
+     "Columns" -> {{Left}}, "ColumnsIndexed" -> {}, "Rows" -> {{Baseline}}, 
+      "RowsIndexed" -> {}},
+    GridBoxDividers->{
+     "Columns" -> {False, True, {False}, False}, "ColumnsIndexed" -> {}, 
+      "Rows" -> {False, True, {False}, False}, "RowsIndexed" -> {}},
+    GridBoxSpacings->{"Columns" -> {
+        Offset[0.27999999999999997`], {
+         Offset[2.0999999999999996`]}, 
+        Offset[0.27999999999999997`]}, "ColumnsIndexed" -> {}, "Rows" -> {
+        Offset[0.2], {
+         Offset[0.4]}, 
+        Offset[0.2]}, "RowsIndexed" -> {}}],
+   {OutputFormsDump`HeadedRows, OutputFormsDump`HeadedColumns}],
+  Function[BoxForm`e$, 
+   TableForm[
+   BoxForm`e$, 
+    TableHeadings -> {{
+      "minfill", "mincut", "canonical", "grid", "eccentricity", "random"}, {
+      "accumulation", "eccentricity", "canonical", "random"}}]]]], "Output",
+ CellChangeTimes->{{3.504641526456588*^9, 3.504641556030279*^9}}],
+
+Cell[BoxData[
+ TagBox[
+  TagBox[GridBox[{
+     {
+      StyleBox["\[Null]",
+       ShowStringCharacters->False], 
+      TagBox["\<\"accumulation\"\>",
+       HoldForm], 
+      TagBox["\<\"eccentricity\"\>",
+       HoldForm], 
+      TagBox["\<\"canonical\"\>",
+       HoldForm], 
+      TagBox["\<\"random\"\>",
+       HoldForm]},
+     {
+      TagBox["\<\"minfill\"\>",
+       HoldForm], "8", "9", "10", "9"},
+     {
+      TagBox["\<\"mincut\"\>",
+       HoldForm], "13", "13", "13", "13"},
+     {
+      TagBox["\<\"canonical\"\>",
+       HoldForm], "16", "16", "16", "16"},
+     {
+      TagBox["\<\"grid\"\>",
+       HoldForm], "11", "11", "11", "11"},
+     {
+      TagBox["\<\"eccentricity\"\>",
+       HoldForm], "25", "25", "25", "25"},
+     {
+      TagBox["\<\"random\"\>",
+       HoldForm], "22", "22", "22", "22"}
+    },
+    GridBoxAlignment->{
+     "Columns" -> {{Left}}, "ColumnsIndexed" -> {}, "Rows" -> {{Baseline}}, 
+      "RowsIndexed" -> {}},
+    GridBoxDividers->{
+     "Columns" -> {False, True, {False}, False}, "ColumnsIndexed" -> {}, 
+      "Rows" -> {False, True, {False}, False}, "RowsIndexed" -> {}},
+    GridBoxSpacings->{"Columns" -> {
+        Offset[0.27999999999999997`], {
+         Offset[2.0999999999999996`]}, 
+        Offset[0.27999999999999997`]}, "ColumnsIndexed" -> {}, "Rows" -> {
+        Offset[0.2], {
+         Offset[0.4]}, 
+        Offset[0.2]}, "RowsIndexed" -> {}}],
+   {OutputFormsDump`HeadedRows, OutputFormsDump`HeadedColumns}],
+  Function[BoxForm`e$, 
+   TableForm[
+   BoxForm`e$, 
+    TableHeadings -> {{
+      "minfill", "mincut", "canonical", "grid", "eccentricity", "random"}, {
+      "accumulation", "eccentricity", "canonical", "random"}}]]]], "Output",
+ CellChangeTimes->{3.504641526456588*^9, 3.504641559242792*^9}],
+
+Cell[BoxData[
+ TagBox[
+  TagBox[GridBox[{
+     {
+      StyleBox["\[Null]",
+       ShowStringCharacters->False], 
+      TagBox["\<\"accumulation\"\>",
+       HoldForm], 
+      TagBox["\<\"eccentricity\"\>",
+       HoldForm], 
+      TagBox["\<\"canonical\"\>",
+       HoldForm], 
+      TagBox["\<\"random\"\>",
+       HoldForm]},
+     {
+      TagBox["\<\"minfill\"\>",
+       HoldForm], "14", "14", "14", "14"},
+     {
+      TagBox["\<\"mincut\"\>",
+       HoldForm], "17", "17", "17", "17"},
+     {
+      TagBox["\<\"canonical\"\>",
+       HoldForm], "19", "19", "19", "19"},
+     {
+      TagBox["\<\"grid\"\>",
+       HoldForm], "15", "15", "15", "14"},
+     {
+      TagBox["\<\"eccentricity\"\>",
+       HoldForm], "19", "19", "19", "19"},
+     {
+      TagBox["\<\"random\"\>",
+       HoldForm], "17", "17", "19", "17"}
+    },
+    GridBoxAlignment->{
+     "Columns" -> {{Left}}, "ColumnsIndexed" -> {}, "Rows" -> {{Baseline}}, 
+      "RowsIndexed" -> {}},
+    GridBoxDividers->{
+     "Columns" -> {False, True, {False}, False}, "ColumnsIndexed" -> {}, 
+      "Rows" -> {False, True, {False}, False}, "RowsIndexed" -> {}},
+    GridBoxSpacings->{"Columns" -> {
+        Offset[0.27999999999999997`], {
+         Offset[2.0999999999999996`]}, 
+        Offset[0.27999999999999997`]}, "ColumnsIndexed" -> {}, "Rows" -> {
+        Offset[0.2], {
+         Offset[0.4]}, 
+        Offset[0.2]}, "RowsIndexed" -> {}}],
+   {OutputFormsDump`HeadedRows, OutputFormsDump`HeadedColumns}],
+  Function[BoxForm`e$, 
+   TableForm[
+   BoxForm`e$, 
+    TableHeadings -> {{
+      "minfill", "mincut", "canonical", "grid", "eccentricity", "random"}, {
+      "accumulation", "eccentricity", "canonical", "random"}}]]]], "Output",
+ CellChangeTimes->{3.504641526456588*^9, 3.504641560255734*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"costs", "=", 
+   RowBox[{"Table", "[", 
+    RowBox[{
+     RowBox[{"getTreeCost", "[", 
+      RowBox[{"findTreeDecomposition", "[", 
+       RowBox[{"barleyGraph", ",", 
+        RowBox[{"PrimaryHeuristic", "\[Rule]", "\"\<minfill\>\""}], ",", 
+        RowBox[{"SecondaryHeuristic", "\[Rule]", "\"\<random\>\""}]}], "]"}], 
+      "]"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"i", ",", "1", ",", "100"}], "}"}]}], "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"getTreeCost", "[", 
+   RowBox[{"findTreeDecomposition", "[", 
+    RowBox[{"barleyGraph", ",", 
+     RowBox[{"PrimaryHeuristic", "\[Rule]", "\"\<minfill\>\""}], ",", 
+     RowBox[{"SecondaryHeuristic", "\[Rule]", "\"\<accumulation\>\""}]}], 
+    "]"}], "]"}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"plot1", "=", 
+   RowBox[{"Plot", "[", 
+    RowBox[{"9432", ",", 
+     RowBox[{"{", 
+      RowBox[{"x", ",", "0", ",", "100"}], "}"}]}], "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"plot2", "=", 
+   RowBox[{"ListPlot", "[", 
+    RowBox[{"costs", ",", 
+     RowBox[{"PlotRange", "\[Rule]", 
+      RowBox[{"{", 
+       RowBox[{"0", ",", 
+        RowBox[{
+         RowBox[{"Max", "[", "costs", "]"}], "*", "1.1"}]}], "}"}]}]}], 
+    "]"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{"Show", "[", 
+  RowBox[{"plot1", ",", "plot2", ",", 
+   RowBox[{"PlotRange", "\[Rule]", 
+    RowBox[{"{", 
+     RowBox[{"0", ",", 
+      RowBox[{
+       RowBox[{"Max", "[", "costs", "]"}], "*", "1.1"}]}], "}"}]}]}], 
+  "]"}]}], "Input",
+ CellChangeTimes->{{3.5046548122418118`*^9, 3.5046548330861263`*^9}, {
+  3.504659119032473*^9, 3.5046591519657*^9}}],
+
+Cell[BoxData[
+ GraphicsBox[{{{}, {}, 
+    {Hue[0.67, 0.6, 0.6], LineBox[CompressedData["
+1:eJxTTMoPSmViYGAwAWIQrdT/d/E8uYN2DCCQc8jh1MTbhS/S39vD+F572f2e
+pf+H88/ymnGyxAo4wPhO/a4HlvtLwPmp+r94DXkV4HxfzdSPYu4qcP6mK7Wl
+Jy004HxrIa31LPU6cH7670lzl0YYwPn5x54br/c1gvO7othU/+aYwPnJx6vT
+DDPM4PyD7JKB2ZEWcL6hYMO0lyVWcH7CZ1sdvxwbOH/hvKMy33vt4PzNfVa3
+LwU5wPklu2wD5vo4wvn7Ty391BntBOdnulvuzYxwhvPnrDDcmp3lAudP/Ly3
+saDcFc5/tqq0LKPIDc4/4jZpRlOTO5zP6H/rUX+DB5zP4LiNcUGlJ5zfIf7d
+91K7F5xfEJV86HuzN5z/sNEkxX6qD5wvMnnmrc6FvnD+MgGtyuOz/RDhVSTv
+qr7aH86fp7BAxjYkAM7fW/OLIeMCgq/ozf5HOTwQzt9yXrP75hUEv+fYPwOF
+2CA4f3Lxy6yEOwh+jagcv1JkMJy/UpP1VMkDBJ/tC6PkwbgQOH+5wca6ec8R
+fM2kVX5/c0Ph/NueOzeFvkbwLy2u0rUvDoPzf2wOtFH6hOD/31G0tS0vHM73
+NnBzrfmK4B+P1c/MLo6A863YAzZs3Yngr9tQ8P3/fwQfAIezAKU=
+      "]]}}, 
+   {Hue[0.67, 0.6, 0.6], PointBox[CompressedData["
+1:eJxdlD1sjVEch9+YOolB5A7SXNKISCPq81LVg6K4qLp4bTfSRgeJJhbjGY2N
+xZ3kjh1MlH4oOS2qHVpisjEgwtKhQ4cOLb/n9w5ucvPkuf9z3vv/OO/Zcfte
+/+CmLMsGNr5/qc9y9z/UpwI/iKuTeIvYfIVvgdNwq9i3iJfEp+/x7WLtI14W
+l71+p3jX3iaOJHyXuO0Pvltcm8f3iKWXeLt4x+v3iu9+4fvYP4t3sN/17hdX
+x/EDYnkGPyjmL/BDYqf/77AYXc8RccheEYdd31Ge9xo/Jn79gXeKKwv4cbFl
+Ce8SG57fif/y6xaL+QVxlPURrzufk+xnfcQr7scpsTRHHH/yifhpyLwj3ub8
+e9j/mTg+6uefER/iES/mexanXxEvu3/nxCb1RDy5/l7qcf14w/Hz4vffxPGG
+53dBrJNPtL8hflFcoh8Rf/yTeFWsfiCOT7i+S6LPX8R73L/LxCeI4/kz4lfE
+SeePT+NZnxg47wGv8j5F3PdBwuc9n6viF/od8DLPi3g780940/3rp17uj4Bv
+9nnAx1if8JG37L8mDpBvwIt+4nPUm/Di/NdEzzPgjzwvPKeehN/3+31dLI2x
+H8+pJ+Lf6E/CK8/Zf0Mcdv54ze8TXiGfhBfn/ybu+dn9PuAZ91XCe11/Lvq+
+DngVj/gDzlfCW5lPdquodx0nZN48
+     "]]}},
+  AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+  Axes->True,
+  AxesOrigin->{0, 0},
+  PlotRange->{0, 61837.600000000006`},
+  PlotRangeClipping->True,
+  PlotRangePadding->{
+    Scaled[0.02], 
+    Scaled[0.02]}]], "Output",
+ CellChangeTimes->{{3.5046548157846212`*^9, 3.504654833847419*^9}}]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Conclusion", "Section",
+ CellChangeTimes->{{3.50465905124086*^9, 3.504659056314921*^9}}],
+
+Cell["\<\
+Mincut (p, 2) is better than minfill when graph has a natural binary \
+partition, otherwise it can be very bad. Minfill with accumulation heuristic \
+is best for single run, but still beaten by best random minfill over 20 runs\
+\>", "Text",
+ CellChangeTimes->{{3.504659057733674*^9, 3.504659086448141*^9}, {
+  3.5046591565707083`*^9, 3.5046591886402197`*^9}, {3.504659266941112*^9, 
+  3.504659305832939*^9}}]
+}, Open  ]]
+}, Open  ]]
+},
+WindowSize->{740, 752},
+WindowMargins->{{Automatic, 101}, {-80, Automatic}},
+FrontEndVersion->"8.0 for Mac OS X x86 (32-bit, 64-bit Kernel) (November 6, \
+2010)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[579, 22, 161, 2, 76, "Title"],
+Cell[CellGroupData[{
+Cell[765, 28, 146, 2, 67, "Section"],
+Cell[914, 32, 361, 7, 41, "Text"],
+Cell[1278, 41, 781, 18, 73, "Input"],
+Cell[2062, 61, 294, 5, 41, "Text"],
+Cell[CellGroupData[{
+Cell[2381, 70, 568, 14, 58, "Input"],
+Cell[2952, 86, 150, 3, 27, "Output"]
+}, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[3151, 95, 128, 1, 67, "Section"],
+Cell[3282, 98, 3899, 98, 403, "Input"],
+Cell[CellGroupData[{
+Cell[7206, 200, 187, 3, 27, "Input"],
+Cell[7396, 205, 1989, 56, 137, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[9422, 266, 138, 2, 27, "Input"],
+Cell[9563, 270, 1892, 54, 137, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[11492, 329, 141, 2, 27, "Input"],
+Cell[11636, 333, 1897, 54, 137, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[13570, 392, 288, 4, 58, "Input"],
+Cell[13861, 398, 1748, 53, 137, "Output"],
+Cell[15612, 453, 1764, 53, 137, "Output"],
+Cell[17379, 508, 1767, 53, 137, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[19183, 566, 1672, 47, 133, "Input"],
+Cell[20858, 615, 1835, 37, 234, "Output"]
+}, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[22742, 658, 94, 1, 67, "Section"],
+Cell[22839, 661, 418, 7, 41, "Text"]
+}, Open  ]]
+}, Open  ]]
+}
+]
+*)
+
+(* End of internal cache information *)

@@ -1,0 +1,719 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 8.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       157,          7]
+NotebookDataLength[     25550,        710]
+NotebookOptionsPosition[     23767,        654]
+NotebookOutlinePosition[     24125,        670]
+CellTagsIndexPosition[     24082,        667]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"<<", "Bulatov`treeDecomposition`"}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"On", "[", "Assert", "]"}], ";"}]}], "Input",
+ CellChangeTimes->{
+  3.5037552994474697`*^9, {3.504640289372911*^9, 3.504640289574493*^9}}],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"graph", "=", 
+   RowBox[{"GridGraph", "[", 
+    RowBox[{"{", 
+     RowBox[{"5", ",", "5"}], "}"}], "]"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"methods", "=", 
+   RowBox[{"{", 
+    RowBox[{
+    "\"\<minfill\>\"", ",", "\"\<mincut\>\"", ",", "\"\<eccentricity\>\"", 
+     ",", "\"\<canonical\>\"", ",", "\"\<grid\>\""}], "}"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"decomps", "=", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"findTreeDecomposition", "[", 
+      RowBox[{"graph", ",", 
+       RowBox[{"PrimaryHeuristic", "\[Rule]", "#"}], ",", 
+       RowBox[{"SecondaryHeuristic", "\[Rule]", "\"\<accumulation\>\""}], ",", 
+       RowBox[{"UseCombinatoricaSpanningTree", "\[Rule]", "True"}]}], "]"}], 
+     "&"}], "/@", "methods"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"costs", "=", 
+   RowBox[{"getTreeCost", "/@", "decomps"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"Assert", "[", 
+   RowBox[{"costs", "==", 
+    RowBox[{"{", 
+     RowBox[{"2000", ",", "1568", ",", "1792", ",", "2216", ",", "1184"}], 
+     "}"}]}], "]"}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"widths", "=", 
+   RowBox[{"getTreeWidth", "/@", "decomps"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"Assert", "[", 
+   RowBox[{"widths", "==", 
+    RowBox[{"{", 
+     RowBox[{"6", ",", "7", ",", "7", ",", "6", ",", "6"}], "}"}]}], "]"}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"Assert", "@@", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"(", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"checkTreeDecomposition", "[", 
+          RowBox[{"graph", ",", "#"}], "]"}], "&"}], "/@", "decomps"}], ")"}],
+       "\[Equal]", 
+      RowBox[{"{", 
+       RowBox[{"True", ",", "True", ",", "True", ",", "True", ",", "True"}], 
+       "}"}]}], "}"}]}], ";"}], 
+  "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"decomps", "=", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"findTreeDecomposition", "[", 
+      RowBox[{"graph", ",", 
+       RowBox[{"PrimaryHeuristic", "\[Rule]", "#"}], ",", 
+       RowBox[{"SecondaryHeuristic", "\[Rule]", "\"\<accumulation\>\""}], ",", 
+       RowBox[{"UseCombinatoricaSpanningTree", "\[Rule]", "False"}]}], "]"}], 
+     "&"}], "/@", "methods"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"costs", "=", 
+   RowBox[{"getTreeCost", "/@", "decomps"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"Assert", "[", 
+   RowBox[{"costs", "==", 
+    RowBox[{"{", 
+     RowBox[{"2000", ",", "1568", ",", "1792", ",", "2216", ",", "1184"}], 
+     "}"}]}], "]"}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"widths", "=", 
+   RowBox[{"getTreeWidth", "/@", "decomps"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"Assert", "[", 
+   RowBox[{"widths", "==", 
+    RowBox[{"{", 
+     RowBox[{"6", ",", "7", ",", "7", ",", "6", ",", "6"}], "}"}]}], "]"}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"Assert", "@@", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"(", 
+      RowBox[{
+       RowBox[{
+        RowBox[{"checkTreeDecomposition", "[", 
+         RowBox[{"graph", ",", "#"}], "]"}], "&"}], "/@", "decomps"}], ")"}], 
+     "\[Equal]", 
+     RowBox[{"ConstantArray", "[", 
+      RowBox[{"True", ",", 
+       RowBox[{"\[LeftBracketingBar]", "methods", "\[RightBracketingBar]"}]}],
+       "]"}]}], "}"}]}], ";"}]}], "Input",
+ CellChangeTimes->{{3.50375531867697*^9, 3.5037553194522*^9}, {
+  3.503755518303678*^9, 3.503755555515456*^9}, {3.503755722265964*^9, 
+  3.50375578677952*^9}, {3.503755818489707*^9, 3.503755821843889*^9}, {
+  3.503756109364809*^9, 3.5037561410103493`*^9}, {3.503756192177925*^9, 
+  3.5037562900434303`*^9}, {3.503756492999119*^9, 3.503756526344907*^9}, {
+  3.503770837682452*^9, 3.50377084105401*^9}, {3.503770924897491*^9, 
+  3.5037709669103727`*^9}, {3.504640099303636*^9, 3.504640100747759*^9}, {
+  3.5046402882287073`*^9, 3.504640291171124*^9}, {3.5046403586419067`*^9, 
+  3.504640364935705*^9}, {3.5046504534914494`*^9, 3.5046504542491713`*^9}, {
+  3.504650519815525*^9, 3.5046505992369347`*^9}, {3.504656193504323*^9, 
+  3.504656199570977*^9}, {3.5046562884440393`*^9, 3.5046563042543917`*^9}, {
+  3.504659361943184*^9, 3.504659368466317*^9}, {3.504659789867124*^9, 
+  3.504659793724182*^9}}],
+
+Cell[CellGroupData[{
+
+Cell["Testing failure checks", "Section",
+ CellChangeTimes->{{3.504628659345203*^9, 3.5046286714898167`*^9}, {
+  3.504640120135007*^9, 3.5046401222613983`*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"graph", "=", 
+   RowBox[{"GridGraph", "[", 
+    RowBox[{"{", 
+     RowBox[{"5", ",", "5"}], "}"}], "]"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"methods", "=", 
+   RowBox[{"First", "[", "findTreeDecompositionHeuristics", "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"decomps", "=", 
+    RowBox[{
+     RowBox[{
+      RowBox[{"findTreeDecomposition", "[", 
+       RowBox[{"graph", ",", 
+        RowBox[{"PrimaryHeuristic", "\[Rule]", "#"}]}], "]"}], "&"}], "/@", 
+     "methods"}]}], ";"}], "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"Assert", "[", 
+   RowBox[{
+    RowBox[{"(", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"checkTreeDecomposition", "[", 
+        RowBox[{"graph", ",", 
+         RowBox[{"{", 
+          RowBox[{
+           RowBox[{"First", "[", "#", "]"}], ",", 
+           RowBox[{"Rest", "[", 
+            RowBox[{"Last", "[", "#", "]"}], "]"}]}], "}"}]}], "]"}], "&"}], "/@",
+       "decomps"}], ")"}], "\[Equal]", 
+    RowBox[{"ConstantArray", "[", 
+     RowBox[{"False", ",", 
+      RowBox[{"\[LeftBracketingBar]", "methods", "\[RightBracketingBar]"}]}], 
+     "]"}]}], "]"}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"Assert", "[", 
+    RowBox[{
+     RowBox[{"(", 
+      RowBox[{
+       RowBox[{
+        RowBox[{"checkTreeDecomposition", "[", 
+         RowBox[{"graph", ",", 
+          RowBox[{"{", 
+           RowBox[{
+            RowBox[{"First", "[", "#", "]"}], ",", 
+            RowBox[{"Most", "[", 
+             RowBox[{"Last", "[", "#", "]"}], "]"}]}], "}"}]}], "]"}], "&"}], 
+       "/@", "decomps"}], ")"}], "\[Equal]", 
+     RowBox[{"ConstantArray", "[", 
+      RowBox[{"False", ",", 
+       RowBox[{"\[LeftBracketingBar]", "methods", "\[RightBracketingBar]"}]}],
+       "]"}]}], "]"}], ";"}], "\[IndentingNewLine]", "\[IndentingNewLine]", 
+  "\[IndentingNewLine]", 
+  RowBox[{"(*", " ", 
+   RowBox[{
+   "this", " ", "should", " ", "fail", " ", "connectedness", " ", "and", " ", 
+    "generalized", " ", "junction", " ", "tree", " ", "property"}], " ", 
+   "*)"}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"graph", "=", 
+   RowBox[{"GridGraph", "[", 
+    RowBox[{"{", 
+     RowBox[{"3", ",", "3"}], "}"}], "]"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{"jnodes", ",", "jedges"}], "}"}], "=", 
+   RowBox[{"findTreeDecomposition", "[", "graph", "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"Assert", "[", 
+   RowBox[{
+    RowBox[{"checkTreeDecomposition", "[", 
+     RowBox[{"graph", ",", 
+      RowBox[{"{", 
+       RowBox[{"jnodes", ",", 
+        RowBox[{"Rest", "[", "jedges", "]"}]}], "}"}]}], "]"}], "\[Equal]", 
+    "False"}], "]"}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"Assert", "[", 
+   RowBox[{
+    RowBox[{"checkTreeDecomposition", "[", 
+     RowBox[{"graph", ",", 
+      RowBox[{"{", 
+       RowBox[{"jnodes", ",", "jedges"}], "}"}]}], "]"}], "\[Equal]", 
+    "True"}], "]"}], ";"}], "\[IndentingNewLine]"}], "Input",
+ CellChangeTimes->{{3.504640026262946*^9, 3.504640112527525*^9}, {
+  3.504640167489209*^9, 3.504640186534712*^9}, {3.504640236808085*^9, 
+  3.504640278923348*^9}, {3.504650461407115*^9, 3.504650462295354*^9}, {
+  3.504659398967915*^9, 3.5046594111288033`*^9}, {3.504659764014646*^9, 
+  3.504659767542306*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"checkTreeDecomposition: tree not connected, have following cc \
+sizes \"\>", "\[InvisibleSpace]", 
+   RowBox[{"{", 
+    RowBox[{"1", ",", "19"}], "}"}]}],
+  SequenceForm[
+  "checkTreeDecomposition: tree not connected, have following cc sizes ", {1, 
+   19}],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.504640089922353*^9, 3.504640142336434*^9, 
+  3.5046402521624804`*^9, 3.504659379190394*^9, 3.504659412305067*^9, 
+  3.5046598045616817`*^9}],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"checkTreeDecomposition: generalized running intersection \
+violated for \"\>", "\[InvisibleSpace]", 
+   RowBox[{"{", 
+    RowBox[{"4", ",", "10"}], "}"}]}],
+  SequenceForm[
+  "checkTreeDecomposition: generalized running intersection violated for ", {
+   4, 10}],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.504640089922353*^9, 3.504640142336434*^9, 
+  3.5046402521624804`*^9, 3.504659379190394*^9, 3.504659412305067*^9, 
+  3.504659804564275*^9}],
+
+Cell[BoxData["\<\"nodes and edges don't match\"\>"], "Print",
+ CellChangeTimes->{3.504640089922353*^9, 3.504640142336434*^9, 
+  3.5046402521624804`*^9, 3.504659379190394*^9, 3.504659412305067*^9, 
+  3.50465980456701*^9}],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"checkTreeDecomposition: tree not connected, have following cc \
+sizes \"\>", "\[InvisibleSpace]", 
+   RowBox[{"{", 
+    RowBox[{"1", ",", "18"}], "}"}]}],
+  SequenceForm[
+  "checkTreeDecomposition: tree not connected, have following cc sizes ", {1, 
+   18}],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.504640089922353*^9, 3.504640142336434*^9, 
+  3.5046402521624804`*^9, 3.504659379190394*^9, 3.504659412305067*^9, 
+  3.504659804601973*^9}],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"checkTreeDecomposition: generalized running intersection \
+violated for \"\>", "\[InvisibleSpace]", 
+   RowBox[{"{", 
+    RowBox[{"2", ",", "6"}], "}"}]}],
+  SequenceForm[
+  "checkTreeDecomposition: generalized running intersection violated for ", {
+   2, 6}],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.504640089922353*^9, 3.504640142336434*^9, 
+  3.5046402521624804`*^9, 3.504659379190394*^9, 3.504659412305067*^9, 
+  3.504659804603857*^9}],
+
+Cell[BoxData["\<\"nodes and edges don't match\"\>"], "Print",
+ CellChangeTimes->{3.504640089922353*^9, 3.504640142336434*^9, 
+  3.5046402521624804`*^9, 3.504659379190394*^9, 3.504659412305067*^9, 
+  3.504659804605517*^9}],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"checkTreeDecomposition: tree not connected, have following cc \
+sizes \"\>", "\[InvisibleSpace]", 
+   RowBox[{"{", 
+    RowBox[{"1", ",", "19"}], "}"}]}],
+  SequenceForm[
+  "checkTreeDecomposition: tree not connected, have following cc sizes ", {1, 
+   19}],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.504640089922353*^9, 3.504640142336434*^9, 
+  3.5046402521624804`*^9, 3.504659379190394*^9, 3.504659412305067*^9, 
+  3.50465980460716*^9}],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"checkTreeDecomposition: generalized running intersection \
+violated for \"\>", "\[InvisibleSpace]", 
+   RowBox[{"{", 
+    RowBox[{"20", ",", "24"}], "}"}]}],
+  SequenceForm[
+  "checkTreeDecomposition: generalized running intersection violated for ", {
+   20, 24}],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.504640089922353*^9, 3.504640142336434*^9, 
+  3.5046402521624804`*^9, 3.504659379190394*^9, 3.504659412305067*^9, 
+  3.5046598046089163`*^9}],
+
+Cell[BoxData["\<\"nodes and edges don't match\"\>"], "Print",
+ CellChangeTimes->{3.504640089922353*^9, 3.504640142336434*^9, 
+  3.5046402521624804`*^9, 3.504659379190394*^9, 3.504659412305067*^9, 
+  3.504659804610931*^9}],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"checkTreeDecomposition: tree not connected, have following cc \
+sizes \"\>", "\[InvisibleSpace]", 
+   RowBox[{"{", 
+    RowBox[{"1", ",", "19"}], "}"}]}],
+  SequenceForm[
+  "checkTreeDecomposition: tree not connected, have following cc sizes ", {1, 
+   19}],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.504640089922353*^9, 3.504640142336434*^9, 
+  3.5046402521624804`*^9, 3.504659379190394*^9, 3.504659412305067*^9, 
+  3.504659804612946*^9}],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"checkTreeDecomposition: generalized running intersection \
+violated for \"\>", "\[InvisibleSpace]", 
+   RowBox[{"{", 
+    RowBox[{"2", ",", "6"}], "}"}]}],
+  SequenceForm[
+  "checkTreeDecomposition: generalized running intersection violated for ", {
+   2, 6}],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.504640089922353*^9, 3.504640142336434*^9, 
+  3.5046402521624804`*^9, 3.504659379190394*^9, 3.504659412305067*^9, 
+  3.504659804615013*^9}],
+
+Cell[BoxData["\<\"nodes and edges don't match\"\>"], "Print",
+ CellChangeTimes->{3.504640089922353*^9, 3.504640142336434*^9, 
+  3.5046402521624804`*^9, 3.504659379190394*^9, 3.504659412305067*^9, 
+  3.5046598046169767`*^9}],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"checkTreeDecomposition: tree not connected, have following cc \
+sizes \"\>", "\[InvisibleSpace]", 
+   RowBox[{"{", 
+    RowBox[{"1", ",", "18"}], "}"}]}],
+  SequenceForm[
+  "checkTreeDecomposition: tree not connected, have following cc sizes ", {1, 
+   18}],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.504640089922353*^9, 3.504640142336434*^9, 
+  3.5046402521624804`*^9, 3.504659379190394*^9, 3.504659412305067*^9, 
+  3.504659804651718*^9}],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"checkTreeDecomposition: generalized running intersection \
+violated for \"\>", "\[InvisibleSpace]", 
+   RowBox[{"{", 
+    RowBox[{"2", ",", "6"}], "}"}]}],
+  SequenceForm[
+  "checkTreeDecomposition: generalized running intersection violated for ", {
+   2, 6}],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.504640089922353*^9, 3.504640142336434*^9, 
+  3.5046402521624804`*^9, 3.504659379190394*^9, 3.504659412305067*^9, 
+  3.5046598046539793`*^9}],
+
+Cell[BoxData["\<\"nodes and edges don't match\"\>"], "Print",
+ CellChangeTimes->{3.504640089922353*^9, 3.504640142336434*^9, 
+  3.5046402521624804`*^9, 3.504659379190394*^9, 3.504659412305067*^9, 
+  3.504659804655982*^9}],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"checkTreeDecomposition: tree not connected, have following cc \
+sizes \"\>", "\[InvisibleSpace]", 
+   RowBox[{"{", 
+    RowBox[{"1", ",", "15"}], "}"}]}],
+  SequenceForm[
+  "checkTreeDecomposition: tree not connected, have following cc sizes ", {1, 
+   15}],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.504640089922353*^9, 3.504640142336434*^9, 
+  3.5046402521624804`*^9, 3.504659379190394*^9, 3.504659412305067*^9, 
+  3.504659804657995*^9}],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"checkTreeDecomposition: generalized running intersection \
+violated for \"\>", "\[InvisibleSpace]", 
+   RowBox[{"{", 
+    RowBox[{"4", ",", "10"}], "}"}]}],
+  SequenceForm[
+  "checkTreeDecomposition: generalized running intersection violated for ", {
+   4, 10}],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.504640089922353*^9, 3.504640142336434*^9, 
+  3.5046402521624804`*^9, 3.504659379190394*^9, 3.504659412305067*^9, 
+  3.504659804660179*^9}],
+
+Cell[BoxData["\<\"nodes and edges don't match\"\>"], "Print",
+ CellChangeTimes->{3.504640089922353*^9, 3.504640142336434*^9, 
+  3.5046402521624804`*^9, 3.504659379190394*^9, 3.504659412305067*^9, 
+  3.504659804662199*^9}],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"checkTreeDecomposition: tree not connected, have following cc \
+sizes \"\>", "\[InvisibleSpace]", 
+   RowBox[{"{", 
+    RowBox[{"16", ",", "4"}], "}"}]}],
+  SequenceForm[
+  "checkTreeDecomposition: tree not connected, have following cc sizes ", {16,
+    4}],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.504640089922353*^9, 3.504640142336434*^9, 
+  3.5046402521624804`*^9, 3.504659379190394*^9, 3.504659412305067*^9, 
+  3.504659804664373*^9}],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"checkTreeDecomposition: generalized running intersection \
+violated for \"\>", "\[InvisibleSpace]", 
+   RowBox[{"{", 
+    RowBox[{"16", ",", "17", ",", "18", ",", "19", ",", "25"}], "}"}]}],
+  SequenceForm[
+  "checkTreeDecomposition: generalized running intersection violated for ", {
+   16, 17, 18, 19, 25}],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.504640089922353*^9, 3.504640142336434*^9, 
+  3.5046402521624804`*^9, 3.504659379190394*^9, 3.504659412305067*^9, 
+  3.5046598046668*^9}],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"checkTreeDecomposition: tree not connected, have following cc \
+sizes \"\>", "\[InvisibleSpace]", 
+   RowBox[{"{", 
+    RowBox[{"13", ",", "6"}], "}"}]}],
+  SequenceForm[
+  "checkTreeDecomposition: tree not connected, have following cc sizes ", {13,
+    6}],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.504640089922353*^9, 3.504640142336434*^9, 
+  3.5046402521624804`*^9, 3.504659379190394*^9, 3.504659412305067*^9, 
+  3.5046598047019453`*^9}],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"checkTreeDecomposition: generalized running intersection \
+violated for \"\>", "\[InvisibleSpace]", 
+   RowBox[{"{", 
+    RowBox[{"11", ",", "12", ",", "13", ",", "19", ",", "24"}], "}"}]}],
+  SequenceForm[
+  "checkTreeDecomposition: generalized running intersection violated for ", {
+   11, 12, 13, 19, 24}],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.504640089922353*^9, 3.504640142336434*^9, 
+  3.5046402521624804`*^9, 3.504659379190394*^9, 3.504659412305067*^9, 
+  3.504659804703828*^9}],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"checkTreeDecomposition: tree not connected, have following cc \
+sizes \"\>", "\[InvisibleSpace]", 
+   RowBox[{"{", 
+    RowBox[{"4", ",", "16"}], "}"}]}],
+  SequenceForm[
+  "checkTreeDecomposition: tree not connected, have following cc sizes ", {4, 
+   16}],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.504640089922353*^9, 3.504640142336434*^9, 
+  3.5046402521624804`*^9, 3.504659379190394*^9, 3.504659412305067*^9, 
+  3.504659804705587*^9}],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"checkTreeDecomposition: generalized running intersection \
+violated for \"\>", "\[InvisibleSpace]", 
+   RowBox[{"{", 
+    RowBox[{"17", ",", "18", ",", "19", ",", "20", ",", "21"}], "}"}]}],
+  SequenceForm[
+  "checkTreeDecomposition: generalized running intersection violated for ", {
+   17, 18, 19, 20, 21}],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.504640089922353*^9, 3.504640142336434*^9, 
+  3.5046402521624804`*^9, 3.504659379190394*^9, 3.504659412305067*^9, 
+  3.504659804707242*^9}],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"checkTreeDecomposition: tree not connected, have following cc \
+sizes \"\>", "\[InvisibleSpace]", 
+   RowBox[{"{", 
+    RowBox[{"11", ",", "9"}], "}"}]}],
+  SequenceForm[
+  "checkTreeDecomposition: tree not connected, have following cc sizes ", {11,
+    9}],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.504640089922353*^9, 3.504640142336434*^9, 
+  3.5046402521624804`*^9, 3.504659379190394*^9, 3.504659412305067*^9, 
+  3.504659804732592*^9}],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"checkTreeDecomposition: generalized running intersection \
+violated for \"\>", "\[InvisibleSpace]", 
+   RowBox[{"{", 
+    RowBox[{"11", ",", "12", ",", "14", ",", "15", ",", "18"}], "}"}]}],
+  SequenceForm[
+  "checkTreeDecomposition: generalized running intersection violated for ", {
+   11, 12, 14, 15, 18}],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.504640089922353*^9, 3.504640142336434*^9, 
+  3.5046402521624804`*^9, 3.504659379190394*^9, 3.504659412305067*^9, 
+  3.504659804734479*^9}],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"checkTreeDecomposition: tree not connected, have following cc \
+sizes \"\>", "\[InvisibleSpace]", 
+   RowBox[{"{", 
+    RowBox[{"6", ",", "13"}], "}"}]}],
+  SequenceForm[
+  "checkTreeDecomposition: tree not connected, have following cc sizes ", {6, 
+   13}],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.504640089922353*^9, 3.504640142336434*^9, 
+  3.5046402521624804`*^9, 3.504659379190394*^9, 3.504659412305067*^9, 
+  3.504659804736145*^9}],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"checkTreeDecomposition: generalized running intersection \
+violated for \"\>", "\[InvisibleSpace]", 
+   RowBox[{"{", 
+    RowBox[{"3", ",", "9", ",", "11", ",", "12", ",", "14", ",", "18"}], 
+    "}"}]}],
+  SequenceForm[
+  "checkTreeDecomposition: generalized running intersection violated for ", {
+   3, 9, 11, 12, 14, 18}],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.504640089922353*^9, 3.504640142336434*^9, 
+  3.5046402521624804`*^9, 3.504659379190394*^9, 3.504659412305067*^9, 
+  3.5046598047655697`*^9}],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"checkTreeDecomposition: tree not connected, have following cc \
+sizes \"\>", "\[InvisibleSpace]", 
+   RowBox[{"{", 
+    RowBox[{"4", ",", "12"}], "}"}]}],
+  SequenceForm[
+  "checkTreeDecomposition: tree not connected, have following cc sizes ", {4, 
+   12}],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.504640089922353*^9, 3.504640142336434*^9, 
+  3.5046402521624804`*^9, 3.504659379190394*^9, 3.504659412305067*^9, 
+  3.5046598047674713`*^9}],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"checkTreeDecomposition: generalized running intersection \
+violated for \"\>", "\[InvisibleSpace]", 
+   RowBox[{"{", 
+    RowBox[{
+    "1", ",", "2", ",", "8", ",", "9", ",", "12", ",", "15", ",", "21", ",", 
+     "23"}], "}"}]}],
+  SequenceForm[
+  "checkTreeDecomposition: generalized running intersection violated for ", {
+   1, 2, 8, 9, 12, 15, 21, 23}],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.504640089922353*^9, 3.504640142336434*^9, 
+  3.5046402521624804`*^9, 3.504659379190394*^9, 3.504659412305067*^9, 
+  3.5046598047693872`*^9}],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"checkTreeDecomposition: tree not connected, have following cc \
+sizes \"\>", "\[InvisibleSpace]", 
+   RowBox[{"{", 
+    RowBox[{"1", ",", "5"}], "}"}]}],
+  SequenceForm[
+  "checkTreeDecomposition: tree not connected, have following cc sizes ", {1, 
+   5}],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.504640089922353*^9, 3.504640142336434*^9, 
+  3.5046402521624804`*^9, 3.504659379190394*^9, 3.504659412305067*^9, 
+  3.504659804771212*^9}],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"checkTreeDecomposition: generalized running intersection \
+violated for \"\>", "\[InvisibleSpace]", 
+   RowBox[{"{", 
+    RowBox[{"6", ",", "8"}], "}"}]}],
+  SequenceForm[
+  "checkTreeDecomposition: generalized running intersection violated for ", {
+   6, 8}],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.504640089922353*^9, 3.504640142336434*^9, 
+  3.5046402521624804`*^9, 3.504659379190394*^9, 3.504659412305067*^9, 
+  3.504659804772954*^9}],
+
+Cell[BoxData["\<\"nodes and edges don't match\"\>"], "Print",
+ CellChangeTimes->{3.504640089922353*^9, 3.504640142336434*^9, 
+  3.5046402521624804`*^9, 3.504659379190394*^9, 3.504659412305067*^9, 
+  3.504659804774536*^9}]
+}, Open  ]]
+}, Open  ]]
+}, Open  ]]
+},
+WindowSize->{1004, 764},
+WindowMargins->{{151, Automatic}, {11, Automatic}},
+FrontEndVersion->"8.0 for Mac OS X x86 (32-bit, 64-bit Kernel) (November 6, \
+2010)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[557, 20, 265, 7, 43, "Input"],
+Cell[825, 29, 4322, 112, 298, "Input"],
+Cell[CellGroupData[{
+Cell[5172, 145, 160, 2, 67, "Section"],
+Cell[CellGroupData[{
+Cell[5357, 151, 3378, 94, 223, "Input"],
+Cell[CellGroupData[{
+Cell[8760, 249, 499, 12, 20, "Print"],
+Cell[9262, 263, 501, 12, 20, "Print"],
+Cell[9766, 277, 220, 3, 20, "Print"],
+Cell[9989, 282, 497, 12, 20, "Print"],
+Cell[10489, 296, 499, 12, 20, "Print"],
+Cell[10991, 310, 221, 3, 20, "Print"],
+Cell[11215, 315, 496, 12, 20, "Print"],
+Cell[11714, 329, 505, 12, 20, "Print"],
+Cell[12222, 343, 221, 3, 20, "Print"],
+Cell[12446, 348, 497, 12, 20, "Print"],
+Cell[12946, 362, 499, 12, 20, "Print"],
+Cell[13448, 376, 223, 3, 20, "Print"],
+Cell[13674, 381, 497, 12, 20, "Print"],
+Cell[14174, 395, 501, 12, 20, "Print"],
+Cell[14678, 409, 221, 3, 20, "Print"],
+Cell[14902, 414, 497, 12, 20, "Print"],
+Cell[15402, 428, 501, 12, 20, "Print"],
+Cell[15906, 442, 221, 3, 20, "Print"],
+Cell[16130, 447, 497, 12, 20, "Print"],
+Cell[16630, 461, 546, 12, 20, "Print"],
+Cell[17179, 475, 499, 12, 20, "Print"],
+Cell[17681, 489, 548, 12, 20, "Print"],
+Cell[18232, 503, 497, 12, 20, "Print"],
+Cell[18732, 517, 548, 12, 20, "Print"],
+Cell[19283, 531, 497, 12, 20, "Print"],
+Cell[19783, 545, 548, 12, 20, "Print"],
+Cell[20334, 559, 497, 12, 20, "Print"],
+Cell[20834, 573, 566, 13, 20, "Print"],
+Cell[21403, 588, 499, 12, 20, "Print"],
+Cell[21905, 602, 598, 14, 20, "Print"],
+Cell[22506, 618, 495, 12, 20, "Print"],
+Cell[23004, 632, 499, 12, 20, "Print"],
+Cell[23506, 646, 221, 3, 20, "Print"]
+}, Open  ]]
+}, Open  ]]
+}, Open  ]]
+}
+]
+*)
+
+(* End of internal cache information *)
