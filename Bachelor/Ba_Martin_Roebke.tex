@@ -1062,10 +1062,21 @@ Like the previous example section we are interested in solutions to example \ref
 % Appl. VC
 \subsection{Vertex Cover Example}
 
-Now we take a look at one problem that is directly stated 
+Now we take a look at one problem that is inherently stated on a graph.\\
+
 Vertex Cover Problem: For a given input graph $G=(V,E)$, a \textit{vertex cover} is a set $C$ of vertices $C \subseteq V$ so that we have $\{u,v\} \cap C \neq \emptyset$ for each edge $\{u,v\}\in E$. The problem \textit{minimal vertex cover} asks to find the minimum cardinality among all vertex covers, i.e. $|C|$ is such that there is no vertex cover $C'$ with $|C'| < |C|$.
 
-An instance $G=(V,E)$ of \textit{minimal vertex cover} parametrized by treewidth \textit{tw} can be solved in time $\mathcal{O}(2^{tw(G)}|V|)$ \cite{HenningParamAlgo}.
+
+An instance $G=(V,E)$ of \textit{minimal vertex cover} parameterized by treewidth \textit{tw} can be solved in time $\mathcal{O}(2^{tw(G)}|V|)$ \cite{HenningParamAlgo}.
+
+As a very small example we will try to solve \textit{minimal vertex cover} for the following graph in figure \ref{fig:wheelgraph} with edges seen in listing \ref{lst:wheelgraph}.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[]{images/WheelGraph7/graph1.pdf}
+	\caption{Tree decomposition for solving example \ref{ex:example41} with yellow highlighting of the solution for the first leaf.}
+	\label{fig:wheelgraph}
+\end{figure}
 
 
 % Appl. svgjoin with different options
@@ -1271,45 +1282,7 @@ class SvgJoinData:
 \section{Input Examples}
 
 \lstset{numbers=none}
-\begin{lstlisting}[caption={Edge encoding of example graph with 16 vertices}, label={lst:minvc16}]
-p tw 16 36
-1 2
-2 1
-2 3
-3 2
-3 4
-4 3
-3 5
-5 3
-4 5
-5 4
-4 6
-6 4
-6 7
-7 6
-7 8
-8 7
-8 9
-9 8
-9 10
-10 9
-9 11
-11 9
-11 12
-12 11
-12 13
-13 12
-12 14
-14 12
-11 14
-14 11
-14 7
-7 14
-6 15
-15 6
-15 16
-16 15
-\end{lstlisting}
+
 \begin{lstlisting}[caption={CNF clauses from example 4.1 on page 27 \cite{DiplomarbeitZisser}}, label={lst:clausesDA41}]
 p cnf 8 10
 1 4 6 0
@@ -1352,7 +1325,7 @@ p cnf 18 24
 \end{lstlisting}
 \lstinputlisting[caption={DOT source for visualization of example 4.1}, label={lst:g41digraphdot}]{includes/g41digraphdot}
 \lstinputlisting[caption={stdout of program gpusat with call \textit{./gpusat -f ../examples/test\_da4\_1.cnf -v -p -d ../examples/td4p1.txt  -g ../examples/graphfileda41.txt -{}-visufile ../examples/visufileda41.json}}, label={lst:outputGpusat}]{includes/outputGpusat.txt}
-
+\lstinputlisting[caption={Edges for example \ref{fig:wheelgraph}}, label={lst:wheelgraph}]{images/WheelGraph7/wheelgraph7.col}
 %==============================================================================
 %============== BIBLIOGRAPHY ==================================================
 %==============================================================================
