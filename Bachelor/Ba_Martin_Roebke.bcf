@@ -2191,14 +2191,17 @@
     <bcf:citekey order="7">DiplomarbeitZisser</bcf:citekey>
     <bcf:citekey order="8">ROBERTSON198449</bcf:citekey>
     <bcf:citekey order="9">pcgp2019</bcf:citekey>
-    <bcf:citekey order="10">rapidPrototypingOvermyer</bcf:citekey>
-    <bcf:citekey order="11">ST99</bcf:citekey>
-    <bcf:citekey order="12">Hu05</bcf:citekey>
-    <bcf:citekey order="13">Himsolt2010GMLAP</bcf:citekey>
-    <bcf:citekey order="14">shortestPathAlgo</bcf:citekey>
-    <bcf:citekey order="15">SciPyProceedings_11</bcf:citekey>
-    <bcf:citekey order="16">DiplomarbeitZisser</bcf:citekey>
-    <bcf:citekey order="17">DiplomarbeitZisser</bcf:citekey>
+    <bcf:citekey order="10">ARNBORG1991308</bcf:citekey>
+    <bcf:citekey order="11">MSOQueriesGuillaume</bcf:citekey>
+    <bcf:citekey order="12">rapidPrototypingOvermyer</bcf:citekey>
+    <bcf:citekey order="13">ST99</bcf:citekey>
+    <bcf:citekey order="14">Hu05</bcf:citekey>
+    <bcf:citekey order="15">Himsolt2010GMLAP</bcf:citekey>
+    <bcf:citekey order="16">shortestPathAlgo</bcf:citekey>
+    <bcf:citekey order="17">SciPyProceedings_11</bcf:citekey>
+    <bcf:citekey order="18">HenningParamAlgo</bcf:citekey>
+    <bcf:citekey order="19">DiplomarbeitZisser</bcf:citekey>
+    <bcf:citekey order="20">DiplomarbeitZisser</bcf:citekey>
   </bcf:section>
   <!-- SORTING TEMPLATES -->
   <bcf:sortingtemplate name="anyt">

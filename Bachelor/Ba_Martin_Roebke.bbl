@@ -19,6 +19,97 @@
 
 \refsection{0}
   \datalist[entry]{anyt/global//global/global}
+    \entry{ARNBORG1991308}{article}{}
+      \name{author}{3}{}{%
+        {{hash=91f1ab1b38d3634e9fe137ce4e9b0255}{%
+           family={Arnborg},
+           familyi={A\bibinitperiod},
+           given={Stefan},
+           giveni={S\bibinitperiod}}}%
+        {{hash=9b4de7a660c3f45a9163e3c055689d69}{%
+           family={Lagergren},
+           familyi={L\bibinitperiod},
+           given={Jens},
+           giveni={J\bibinitperiod}}}%
+        {{hash=0621b974744ec4d6a23724942cddaf3a}{%
+           family={Seese},
+           familyi={S\bibinitperiod},
+           given={Detlef},
+           giveni={D\bibinitperiod}}}%
+      }
+      \strng{namehash}{c2196c128d9fba7ad9957beaf901c48a}
+      \strng{fullhash}{c2196c128d9fba7ad9957beaf901c48a}
+      \strng{bibnamehash}{c2196c128d9fba7ad9957beaf901c48a}
+      \strng{authorbibnamehash}{c2196c128d9fba7ad9957beaf901c48a}
+      \strng{authornamehash}{c2196c128d9fba7ad9957beaf901c48a}
+      \strng{authorfullhash}{c2196c128d9fba7ad9957beaf901c48a}
+      \field{labelalpha}{ALS91}
+      \field{sortinit}{A}
+      \field{sortinithash}{a3dcedd53b04d1adfd5ac303ecd5e6fa}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{Using a variation of the interpretability concept we show that all graph properties definable in monadic second-order logic (MS properties) with quantification over vertex and edge sets can be decided in linear time for classes of graphs of fixed bounded treewidth given a tree-decomposition. This gives an alternative proof of a recent result by Courcelle. We allow graphs with directed and/or undirected edges, labeled on edges and/or vertices with labels taken from a finite set. We extend MS properties to extended monadic second-order (EMS) problems involving counting or summing evaluations over sets definable in monadic second-order logic. Our technique allows us also to solve some EMS problems in linear time or in polynomial or pseudopolynomial time for classes of graphs of fixed bounded treewidth. Moreover, it is shown that each EMS problem is in NC for graphs of bounded treewidth. Most problems for which linear time algorithms for graphs of bounded treewidth were previously known to exist, and many others, are EMS problems.}
+      \field{issn}{0196-6774}
+      \field{journaltitle}{Journal of Algorithms}
+      \field{number}{2}
+      \field{title}{Easy problems for tree-decomposable graphs}
+      \field{volume}{12}
+      \field{year}{1991}
+      \field{pages}{308\bibrangedash 340}
+      \range{pages}{33}
+      \verb{doi}
+      \verb https://doi.org/10.1016/0196-6774(91)90006-K
+      \endverb
+      \verb{urlraw}
+      \verb http://www.sciencedirect.com/science/article/pii/019667749190006K
+      \endverb
+      \verb{url}
+      \verb http://www.sciencedirect.com/science/article/pii/019667749190006K
+      \endverb
+    \endentry
+    \entry{MSOQueriesGuillaume}{inproceedings}{}
+      \name{author}{1}{}{%
+        {{hash=27f3ec42bba9790588b4007b5a071eb7}{%
+           family={Bagan},
+           familyi={B\bibinitperiod},
+           given={Guillaume},
+           giveni={G\bibinitperiod}}}%
+      }
+      \name{editor}{1}{}{%
+        {{hash=78b636f23e0d6159d65a22a731069a39}{%
+           family={{É}sik},
+           familyi={É\bibinitperiod},
+           given={Zolt{á}n},
+           giveni={Z\bibinitperiod}}}%
+      }
+      \list{location}{1}{%
+        {Berlin, Heidelberg}%
+      }
+      \list{publisher}{1}{%
+        {Springer Berlin Heidelberg}%
+      }
+      \strng{namehash}{27f3ec42bba9790588b4007b5a071eb7}
+      \strng{fullhash}{27f3ec42bba9790588b4007b5a071eb7}
+      \strng{bibnamehash}{27f3ec42bba9790588b4007b5a071eb7}
+      \strng{authorbibnamehash}{27f3ec42bba9790588b4007b5a071eb7}
+      \strng{authornamehash}{27f3ec42bba9790588b4007b5a071eb7}
+      \strng{authorfullhash}{27f3ec42bba9790588b4007b5a071eb7}
+      \strng{editorbibnamehash}{78b636f23e0d6159d65a22a731069a39}
+      \strng{editornamehash}{78b636f23e0d6159d65a22a731069a39}
+      \strng{editorfullhash}{78b636f23e0d6159d65a22a731069a39}
+      \field{labelalpha}{Bag06}
+      \field{sortinit}{B}
+      \field{sortinithash}{8de16967003c7207dae369d874f1456e}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{Linear-Delaylinis the class of enumeration problems computable in two steps: the first step is a precomputation in linear time in the size of the input and the second step computes successively all the solutions with a delay between two consecutive solutions y1 and y2 that is linear in |y2|. We prove that evaluating a fixed monadic second order (MSO) query {\$}{\backslash}varphi({\backslash}bar{\{}X\}){\$}(i.e. computing all the tuples that satisfy the MSO formula) in a binary tree is a Linear-Delaylinproblem. More precisely, we show that given a binary tree T and a tree automaton $\Gamma$ representing an MSO query {\$}{\backslash}varphi({\backslash}bar{\{}X\}){\$}, we can evaluate $\Gamma$ on T with a preprocessing in time and space complexity O(|$\Gamma$|3|T|) and an enumeration phase with a delay O(|S|) and space O(max|S|) where |S| is the size of the next solution and max|S| is the size of the largest solution. We introduce a new kind of algorithm with nice complexity properties for some algebraic operations on enumeration problems. In addition, we extend the precomputation (with the same complexity) such that the ith(with respect to a certain order) solution S is produced directly in time O(|S|log(|T|)). Finally, we generalize these results to bounded treewidth structures.}
+      \field{booktitle}{Computer Science Logic}
+      \field{isbn}{978-3-540-45459-5}
+      \field{title}{MSO Queries on Tree Decomposable Structures Are Computable with Linear Delay}
+      \field{year}{2006}
+      \field{pages}{167\bibrangedash 181}
+      \range{pages}{15}
+    \endentry
     \entry{Courcelle2012}{book}{}
       \name{author}{2}{}{%
         {{hash=5eb043c6d579ba54ec303811f38c6bfe}{%
@@ -53,6 +144,31 @@
       \field{isbn}{978-0-521-89833-1}
       \field{title}{Graph Structure and Monadic Second-Order Logic - A Language-Theoretic Approach}
       \field{year}{2012}
+    \endentry
+    \entry{HenningParamAlgo}{article}{}
+      \name{author}{1}{}{%
+        {{hash=9c8d174d779060dfbfe96831ad8bda09}{%
+           family={Fernau},
+           familyi={F\bibinitperiod},
+           given={Henning},
+           giveni={H\bibinitperiod}}}%
+      }
+      \strng{namehash}{9c8d174d779060dfbfe96831ad8bda09}
+      \strng{fullhash}{9c8d174d779060dfbfe96831ad8bda09}
+      \strng{bibnamehash}{9c8d174d779060dfbfe96831ad8bda09}
+      \strng{authorbibnamehash}{9c8d174d779060dfbfe96831ad8bda09}
+      \strng{authornamehash}{9c8d174d779060dfbfe96831ad8bda09}
+      \strng{authorfullhash}{9c8d174d779060dfbfe96831ad8bda09}
+      \field{labelalpha}{Fer05}
+      \field{sortinit}{F}
+      \field{sortinithash}{fb0c0faa89eb6abae8213bf60e6799ea}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{month}{05}
+      \field{title}{Parameterized algorithmics: A graph-theoretic approach}
+      \field{year}{2005}
+      \field{pages}{310}
+      \range{pages}{1}
     \endentry
     \entry{pcgp2019}{report}{}
       \name{author}{1}{}{%
