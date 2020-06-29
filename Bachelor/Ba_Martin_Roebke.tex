@@ -311,6 +311,7 @@ This algorithm is then usable for small values of k. usually tree-width and cliq
 
 %============== Courcelle ====================================================
 \subsection{Courcelle's Theorem}
+% https://en.wikipedia.org/wiki/Parameterized_complexity
 \begin{quotation}
 	Every graph property definable in monadic second-order logic (MSO) is decidable in linear time on graphs of bounded tree-width.\\
 	{\small Courcelle, Bruno (1990)}\footnote{Courcelle, Bruno "The monadic second-order logic of graphs. I. Recognizable sets of finite graphs",\\ Information and Computation, 85 (1990) no. 1: 12-75}
@@ -350,6 +351,10 @@ The tree width of a graph is the \textit{minimal width} over all tree decomposit
 %Wiki: In this definition, the size of the largest set is diminished by one in order to make the treewidth of a tree equal to one. 
 
 !!!Example (can take one from the visualizations) also in \cite{pcgp2019} page 169
+
+\cite{ARNBORG1991308}
+
+\cite{MSOQueriesGuillaume}
 
 %============== DIMACS ====================================================
 \subsection{DIMACS format}
@@ -1057,7 +1062,10 @@ Like the previous example section we are interested in solutions to example \ref
 % Appl. VC
 \subsection{Vertex Cover Example}
 
-Vertex Cover Problem: For a given input graph $G=(V,E)$, a \textit{vertex cover} is a set $C$ of vertices $C \subseteq V$ so that we have $\{u,v\} \cap C \neq \emptyset$ for each edge $\{u,v\}\in E$. The problem \textit{minimal vertex cover} asks to find the minimum cardinality among all vertex covers, i.e. $C$ is such that there is no vertex cover $C'$ with $|C'| < |C|$.
+Now we take a look at one problem that is directly stated 
+Vertex Cover Problem: For a given input graph $G=(V,E)$, a \textit{vertex cover} is a set $C$ of vertices $C \subseteq V$ so that we have $\{u,v\} \cap C \neq \emptyset$ for each edge $\{u,v\}\in E$. The problem \textit{minimal vertex cover} asks to find the minimum cardinality among all vertex covers, i.e. $|C|$ is such that there is no vertex cover $C'$ with $|C'| < |C|$.
+
+
 
 % Appl. svgjoin with different options
 \subsection{SVG Join Example}
