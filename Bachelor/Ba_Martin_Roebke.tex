@@ -1057,6 +1057,8 @@ Like the previous example section we are interested in solutions to example \ref
 % Appl. VC
 \subsection{Vertex Cover Example}
 
+Vertex Cover Problem: For a given input graph $G=(V,E)$, a \textit{vertex cover} is a set $C$ of vertices $C \subseteq V$ so that we have $\{u,v\} \cap C \neq \emptyset$ for each edge $\{u,v\}\in E$. The problem \textit{minimal vertex cover} asks to find the minimum cardinality among all vertex covers, i.e. $C$ is such that there is no vertex cover $C'$ with $|C'| < |C|$.
+
 % Appl. svgjoin with different options
 \subsection{SVG Join Example}
 
@@ -1089,6 +1091,9 @@ All nodes are prepared to display arbitrary user defined strings that could incl
 In the future our graphs could provide even more parameters to the user. \\
 
 Different colors visualizing attributes of each node are a consideration.\\
+
+Show path of various solutions from leaf to bag. \\
+
 
 The next step would be to expand the API to multiple bipartite or simple graphs, which right now is limited to one each with the option to create primal- and dual-graphs too.\\
 

@@ -54,42 +54,6 @@
       \field{title}{Graph Structure and Monadic Second-Order Logic - A Language-Theoretic Approach}
       \field{year}{2012}
     \endentry
-    \entry{SAT1971}{inproceedings}{}
-      \name{author}{1}{}{%
-        {{hash=609a39905dc0e988c3b294dceecdb1e4}{%
-           family={Cook},
-           familyi={C\bibinitperiod},
-           given={Stephen\bibnamedelima A.},
-           giveni={S\bibinitperiod\bibinitdelim A\bibinitperiod}}}%
-      }
-      \list{location}{1}{%
-        {Shaker Heights, Ohio, USA}%
-      }
-      \list{publisher}{1}{%
-        {Association for Computing Machinery}%
-      }
-      \strng{namehash}{609a39905dc0e988c3b294dceecdb1e4}
-      \strng{fullhash}{609a39905dc0e988c3b294dceecdb1e4}
-      \strng{bibnamehash}{609a39905dc0e988c3b294dceecdb1e4}
-      \strng{authorbibnamehash}{609a39905dc0e988c3b294dceecdb1e4}
-      \strng{authornamehash}{609a39905dc0e988c3b294dceecdb1e4}
-      \strng{authorfullhash}{609a39905dc0e988c3b294dceecdb1e4}
-      \field{labelalpha}{Coo71}
-      \field{sortinit}{C}
-      \field{sortinithash}{4c244ceae61406cdc0cc2ce1cb1ff703}
-      \field{labelnamesource}{author}
-      \field{labeltitlesource}{title}
-      \field{booktitle}{Proceedings of the Third Annual ACM Symposium on Theory of Computing}
-      \field{isbn}{9781450374644}
-      \field{series}{STOC ’71}
-      \field{title}{The Complexity of Theorem-Proving Procedures}
-      \field{year}{1971}
-      \field{pages}{151\bibrangedash 158}
-      \range{pages}{8}
-      \verb{doi}
-      \verb 10.1145/800157.805047
-      \endverb
-    \endentry
     \entry{pcgp2019}{report}{}
       \name{author}{1}{}{%
         {{hash=b35881e116f0ff5e0da60dd6921c903d}{%
@@ -493,6 +457,45 @@
       \field{howpublished}{\url{http://katalog.ub.tuwien.ac.at/AC15055950}}
       \field{title}{Solving the \#SAT problem on the GPU with dynamic programming and OpenCL}
       \field{year}{2018}
+    \endentry
+    \entry{BioInfoTD1970}{inproceedings}{}
+      \name{author}{3}{}{%
+        {{hash=2891be0551878a3bc2eb7930b6d0b1d7}{%
+           family={Zhao},
+           familyi={Z\bibinitperiod},
+           given={Jizhen},
+           giveni={J\bibinitperiod}}}%
+        {{hash=6046a44aef72676e61677f4709969a48}{%
+           family={Malmberg},
+           familyi={M\bibinitperiod},
+           given={Russell},
+           giveni={R\bibinitperiod}}}%
+        {{hash=79d312239a234746632897639a3be1ff}{%
+           family={Cai},
+           familyi={C\bibinitperiod},
+           given={Liming},
+           giveni={L\bibinitperiod}}}%
+      }
+      \strng{namehash}{3149ded95b150857a41622816f70e55d}
+      \strng{fullhash}{3149ded95b150857a41622816f70e55d}
+      \strng{bibnamehash}{3149ded95b150857a41622816f70e55d}
+      \strng{authorbibnamehash}{3149ded95b150857a41622816f70e55d}
+      \strng{authornamehash}{3149ded95b150857a41622816f70e55d}
+      \strng{authorfullhash}{3149ded95b150857a41622816f70e55d}
+      \field{labelalpha}{ZMC70}
+      \field{sortinit}{Z}
+      \field{sortinithash}{8f7b480688e809b50b6f6577b16f3db5}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{month}{01}
+      \field{title}{Rapid ab initio RNA Folding Including Pseudoknots Via Graph Tree Decomposition}
+      \field{volume}{4175}
+      \field{year}{1970}
+      \field{pages}{262\bibrangedash 273}
+      \range{pages}{12}
+      \verb{doi}
+      \verb 10.1007/11851561_25
+      \endverb
     \endentry
   \enddatalist
 \endrefsection
