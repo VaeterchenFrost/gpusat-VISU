@@ -21,14 +21,16 @@
 \declaretheoremstyle[
 headfont=\bfseries,
 notefont=\bfseries,
-notebraces={(}{)},
+%notebraces={(}{)},
 qed=,
 headpunct=.,
-headformat={\mbox{\NAME{} \NUMBER\NOTE}}
+headformat={\mbox{\NAME{} \NUMBER}}
+%headformat={\mbox{\NAME{} \NUMBER\NOTE}}
 ]{custom}
 
 \declaretheorem[style=custom, name=Theorem]{thm}
 \declaretheorem[style=custom, name=Example]{example}
+\declaretheorem[name=Method call]{mycall}
 
 \usepackage[style=alphabetic,backend=biber]{biblatex}
 \addbibresource{bibtex.bib}
@@ -242,7 +244,7 @@ A set C of clauses is
 
 % EXAMPLE 4.1?
 \begin{example}[\label{ex:example41}]
-	We will mostly use the formula with the following clause set: $C=\{c_{1}=\{v_{1},v_{4},v_{6}\},
+	We will use the formula with the following clause set: $C=\{c_{1}=\{v_{1},v_{4},v_{6}\},
 	c_{2}=\{v_{1},\neg v_{5}\},
 	c_{3}=\{\neg v_{1},v_{7}\},
 	c_{4}=\{v_{2},v_{3}\},
@@ -1106,19 +1108,29 @@ As a very small example we will try to solve \textit{minimal vertex cover} for t
 
 After creating several images at each visualization step all images from this step can be automatically combined into one SVG. In this chapter we expand on section \ref{sec:svgjoin} with some practical applications of this concept.
 
-With the four parameters \textit{centerpad}, \textit{v\_bottom}, \textit{v\_top} and \textit{scale2} we can specify the order in which images will be placed next to each other. To explain some configurations
+With the four parameters \textit{centerpad}, \textit{v\_bottom}, \textit{v\_top} and \textit{scale2} we can specify the order in which images will be placed next to each other. To explain some configurations we will take the generated images from the previous chapter.
 
+In figure \ref{fig:joindefault} the two images are joined with default values for all parameters, in order (\textit{TDStep, graph}). 
+
+As we can see the solutions for bags other than 2 are still hidden and the right graph is aligned to the upper edge. The second \textit{graph} image is attached to the right edge of the first image visualizing the {tree decomposition}.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=\linewidth,height=0.9\textheight,keepaspectratio]{images/SVGJOIN/default2.pdf}
+	\caption{Joining results from section \ref{sec:minvc} with default parameters at step 2.}
+	\label{fig:joindefault}
+\end{figure}
 %svg_join(['TDStep', 'graph'],
 %'Archive/WheelGraph7',
 %outname="default_06",
 %padding=[0,0,0,40],
 %v_bottom=0.6,
 %num_images=5)
-\begin{figure}
+\begin{figure}[H]
 	\centering
-	\label{fig:joindefault}
-	\includegraphics[width=\linewidth,height=0.9\textheight,keepaspectratio]{images/SVGJOIN/default2.pdf}
-	\caption{Joining results from section \ref{sec:minvc} with default parameters at step 2.}
+	\includegraphics[width=\linewidth,height=0.9\textheight,keepaspectratio]{images/SVGJOIN/default_bottom2.pdf}
+	\caption{Joining results from section \ref{sec:minvc} at step 2 and shifting to bottom edge.}
+	\label{fig:joindefaultbot}
 \end{figure}
 %svg_join(['TDStep', 'graph'],
 %'Archive/WheelGraph7',
@@ -1127,14 +1139,24 @@ With the four parameters \textit{centerpad}, \textit{v\_bottom}, \textit{v\_top}
 %v_bottom=0.6,
 %scale2=1.5,
 %num_images=5)
-
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=\linewidth,height=0.9\textheight,keepaspectratio]{images/SVGJOIN/default_062.pdf}
+	\caption{Joining results from section \ref{sec:minvc} at step 2 and shifting bottom edge of second image to center of first image.}
+	\label{fig:joindefaultcen}
+\end{figure}
 %svg_join(['TDStep', 'graph'],
 %'Archive/WheelGraph7',
 %outname="default_06sc15_rise",
 %v_bottom=[1,.85,.7,.55,.4],
 %scale2=1.5,
 %num_images=5)
-
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=\linewidth,height=0.9\textheight,keepaspectratio]{images/SVGJOIN/default_center2.pdf}
+	\caption{Joining results from section \ref{sec:minvc} at step 2 and shifting bottom edge of second image to $60\%$ height of the first image.}
+	\label{fig:joindefault60}
+\end{figure}
  
 %==============================================================================
 %============== Conclusion ====================================================
