@@ -757,8 +757,8 @@ EXAMPLES
 In each case we create one image after the time step to provide the inside generated.
 
 %============== Joining SVG ====================================================
-\subsection{Joining SVG}{Joining each time step into one image}
-Once all user defined images for one timeline are created, it would be nice to have only one file for every step.
+\subsection{Joining SVG}\label{sec:svgjoin}
+Once all user defined images for one timeline are created, it would be nice to have all graphs combined in one file for each step.
 To support this functionality and some basic scaling and adjusting, there is a special key in the API for joining the svg-graphs. 
 The functionality is placed in the file \textit{svgjoin.py} and will be called with the specifications given in the optional dictionary \textbf{svgjoin} within the JsonAPI.
 
@@ -1109,6 +1109,9 @@ As a very small example we will try to solve \textit{minimal vertex cover} for t
 % Appl. svgjoin with different options
 \subsection{SVG Join Example}
 
+After creating several images at each visualization step all images from this step can be automatically combined into one SVG. In this chapter we expand on section \ref{sec:svgjoin} with some practical applications of this concept.
+
+With the four parameters \textit{centerpad}, \textit{v\_bottom}, \textit{v\_top} and \textit{scale2} we can specify the order in which images will be placed next to each other. To explain some configurations 
 %==============================================================================
 %============== Conclusion ====================================================
 %==============================================================================
