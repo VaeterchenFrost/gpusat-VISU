@@ -1,17 +1,17 @@
 [0] Config.pm:304> INFO - This is Biber 2.14
 [0] Config.pm:307> INFO - Logfile is 'Ba_Martin_Roebke.blg'
-[58] biber-MSWIN64:322> INFO - === 
-[77] Biber.pm:415> INFO - Reading 'Ba_Martin_Roebke.bcf'
-[168] Biber.pm:943> INFO - Found 16 citekeys in bib section 0
-[184] Biber.pm:4256> INFO - Processing section 0
-[184] Utils.pm:75> INFO - Globbing data source 'bibtex.bib'
-[192] Utils.pm:91> INFO - Globbed data source 'bibtex.bib' to bibtex.bib
-[207] Biber.pm:4455> INFO - Looking for bibtex format file 'bibtex.bib' for section 0
-[211] bibtex.pm:1653> INFO - LaTeX decoding ...
-[255] bibtex.pm:1471> INFO - Found BibTeX data source 'bibtex.bib'
-[373] UCollate.pm:68> INFO - Overriding locale 'en-US' defaults 'normalization = NFD' with 'normalization = prenormalized'
-[373] UCollate.pm:68> INFO - Overriding locale 'en-US' defaults 'variable = shifted' with 'variable = non-ignorable'
-[373] Biber.pm:4084> INFO - Sorting list 'anyt/global//global/global' of type 'entry' with template 'anyt' and locale 'en-US'
-[373] Biber.pm:4090> INFO - No sort tailoring available for locale 'en-US'
-[393] bbl.pm:652> INFO - Writing 'Ba_Martin_Roebke.bbl' with encoding 'UTF-8'
-[402] bbl.pm:755> INFO - Output to Ba_Martin_Roebke.bbl
+[60] biber-MSWIN64:322> INFO - === 
+[78] Biber.pm:415> INFO - Reading 'Ba_Martin_Roebke.bcf'
+[171] Biber.pm:943> INFO - Found 17 citekeys in bib section 0
+[187] Biber.pm:4256> INFO - Processing section 0
+[187] Utils.pm:75> INFO - Globbing data source 'bibtex.bib'
+[201] Utils.pm:91> INFO - Globbed data source 'bibtex.bib' to bibtex.bib
+[215] Biber.pm:4455> INFO - Looking for bibtex format file 'bibtex.bib' for section 0
+[221] bibtex.pm:1653> INFO - LaTeX decoding ...
+[264] bibtex.pm:1471> INFO - Found BibTeX data source 'bibtex.bib'
+[402] UCollate.pm:68> INFO - Overriding locale 'en-US' defaults 'normalization = NFD' with 'normalization = prenormalized'
+[402] UCollate.pm:68> INFO - Overriding locale 'en-US' defaults 'variable = shifted' with 'variable = non-ignorable'
+[402] Biber.pm:4084> INFO - Sorting list 'anyt/global//global/global' of type 'entry' with template 'anyt' and locale 'en-US'
+[402] Biber.pm:4090> INFO - No sort tailoring available for locale 'en-US'
+[429] bbl.pm:652> INFO - Writing 'Ba_Martin_Roebke.bbl' with encoding 'UTF-8'
+[438] bbl.pm:755> INFO - Output to Ba_Martin_Roebke.bbl

@@ -40,9 +40,9 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {section}{\numberline {4}Integration in GPUSAT}{23}{section.4}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{\numberline {4.0.1}Class Graphoutput}{25}{subsubsection.4.0.1}%
+\contentsline {subsection}{\numberline {4.1}Class Graphoutput}{25}{subsection.4.1}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{\numberline {4.0.2}Class SolverVisualization}{25}{subsubsection.4.0.2}%
+\contentsline {subsection}{\numberline {4.2}Class SolverVisualization}{25}{subsection.4.2}%
 \defcounter {refsection}{0}\relax 
 \contentsline {section}{\numberline {5}Integration in dpdb}{26}{section.5}%
 \defcounter {refsection}{0}\relax 

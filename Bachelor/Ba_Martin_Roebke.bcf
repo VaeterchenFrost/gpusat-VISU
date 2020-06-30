@@ -2200,8 +2200,9 @@
     <bcf:citekey order="16">shortestPathAlgo</bcf:citekey>
     <bcf:citekey order="17">SciPyProceedings_11</bcf:citekey>
     <bcf:citekey order="18">HenningParamAlgo</bcf:citekey>
-    <bcf:citekey order="19">DiplomarbeitZisser</bcf:citekey>
+    <bcf:citekey order="19">dpdbpadl2020</bcf:citekey>
     <bcf:citekey order="20">DiplomarbeitZisser</bcf:citekey>
+    <bcf:citekey order="21">DiplomarbeitZisser</bcf:citekey>
   </bcf:section>
   <!-- SORTING TEMPLATES -->
   <bcf:sortingtemplate name="anyt">

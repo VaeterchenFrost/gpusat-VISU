@@ -1055,7 +1055,7 @@ Like the previous example section we are interested in solutions to example \ref
 	\caption{Tree decomposition for solving example \ref{ex:example41}. The highlighted bag 1 points to the solution of the problem, containing 22 solutions and satisfying variable assignments for $v_{1},v_{2},v_{5}$ contained in \textit{sol bag 1}.}
 \end{figure}
 % Appl. VC
-\subsection{Vertex Cover Example}
+\subsection{Vertex Cover Example}\label{sec:minvc}
 
 Now we take a look at one problem that is inherently stated on a graph.\\
 
@@ -1113,15 +1113,20 @@ With the four parameters \textit{centerpad}, \textit{v\_bottom}, \textit{v\_top}
 %outname="default_06",
 %padding=[0,0,0,40],
 %v_bottom=0.6,
-%num_images=4)
-
+%num_images=5)
+\begin{figure}
+	\centering
+	\label{fig:joindefault}
+	\includegraphics[width=\linewidth,height=0.9\textheight,keepaspectratio]{images/SVGJOIN/default2.pdf}
+	\caption{Joining results from section \ref{sec:minvc} with default parameters at step 2.}
+\end{figure}
 %svg_join(['TDStep', 'graph'],
 %'Archive/WheelGraph7',
 %outname="default_06sc15",
 %padding=[0,0,0,40],
 %v_bottom=0.6,
 %scale2=1.5,
-%num_images=4)
+%num_images=5)
 
 %svg_join(['TDStep', 'graph'],
 %'Archive/WheelGraph7',

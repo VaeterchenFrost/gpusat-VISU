@@ -170,6 +170,50 @@
       \field{pages}{310}
       \range{pages}{1}
     \endentry
+    \entry{dpdbpadl2020}{inbook}{}
+      \name{author}{4}{}{%
+        {{hash=8a2adfe50964321e8edb3cf53dd1181c}{%
+           family={Fichte},
+           familyi={F\bibinitperiod},
+           given={Johannes},
+           giveni={J\bibinitperiod}}}%
+        {{hash=0d33b71325cc0a66b4d9784ed66bdaa7}{%
+           family={Hecher},
+           familyi={H\bibinitperiod},
+           given={Markus},
+           giveni={M\bibinitperiod}}}%
+        {{hash=533f2abdf8f9b2f443bda1bad31c6f19}{%
+           family={Thier},
+           familyi={T\bibinitperiod},
+           given={Patrick},
+           giveni={P\bibinitperiod}}}%
+        {{hash=4ad994329f9868dfe461f996d8afa795}{%
+           family={Woltran},
+           familyi={W\bibinitperiod},
+           given={Stefan},
+           giveni={S\bibinitperiod}}}%
+      }
+      \strng{namehash}{06f93d05c1d98898ff1ec903232cad97}
+      \strng{fullhash}{9ccc7f97018d80d7d72d4c81bf84d1f5}
+      \strng{bibnamehash}{06f93d05c1d98898ff1ec903232cad97}
+      \strng{authorbibnamehash}{06f93d05c1d98898ff1ec903232cad97}
+      \strng{authornamehash}{06f93d05c1d98898ff1ec903232cad97}
+      \strng{authorfullhash}{9ccc7f97018d80d7d72d4c81bf84d1f5}
+      \field{labelalpha}{Fic+20}
+      \field{sortinit}{F}
+      \field{sortinithash}{fb0c0faa89eb6abae8213bf60e6799ea}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{isbn}{978-3-030-39196-6}
+      \field{month}{01}
+      \field{title}{Exploiting Database Management Systems and Treewidth for Counting}
+      \field{year}{2020}
+      \field{pages}{151\bibrangedash 167}
+      \range{pages}{17}
+      \verb{doi}
+      \verb 10.1007/978-3-030-39197-3_10
+      \endverb
+    \endentry
     \entry{pcgp2019}{report}{}
       \name{author}{1}{}{%
         {{hash=b35881e116f0ff5e0da60dd6921c903d}{%
