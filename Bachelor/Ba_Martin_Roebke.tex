@@ -1074,8 +1074,28 @@ As a very small example we will try to solve \textit{minimal vertex cover} for t
 \begin{figure}[H]
 	\centering
 	\includegraphics[]{images/WheelGraph7/graph1.pdf}
-	\caption{Tree decomposition for solving example \ref{ex:example41} with yellow highlighting of the solution for the first leaf.}
+	\caption{Wheel graph with 8 vertices and edges from listing \ref{lst:wheelgraph}.}
 	\label{fig:wheelgraph}
+\end{figure}
+
+
+\begin{figure}[H]
+	\centering
+		First step solving \textbf{bag 2}
+	\includegraphics[width=0.9\linewidth]{images/WheelGraph7/combined2.pdf} \vspace{1em}\\
+	Second step solving \textbf{bag 4}\\
+	
+		\includegraphics[width=0.9\linewidth]{images/WheelGraph7/combined3.pdf}
+	\caption{First steps to solve \textit{minimal vertex cover} for example graph \ref{fig:wheelgraph} on it's tree decomposition.}
+	\label{fig:wheelgraphc23}
+\end{figure}
+\begin{figure}[H]
+	\centering Third step solving \textbf{bag 3}
+	\includegraphics[width=0.9\linewidth]{images/WheelGraph7/combined4.pdf} \vspace{0.2em}\\
+	Last step solving \textbf{bag 1} \vspace{0.5em}\\
+	\includegraphics[width=0.9\linewidth]{images/WheelGraph7/combined5.pdf}
+	\caption{Last steps to solve \textit{minimal vertex cover} for example graph \ref{fig:wheelgraph} on it's tree decomposition.}
+	\label{fig:wheelgraphc45}
 \end{figure}
 
 
@@ -1125,6 +1145,7 @@ Right now even with the \textit{svg-join} tool we need multiple files to represe
 %==============================================================================
 \newpage
 \appendix
+%============== Images ======================================================
 \section{Images}
 \begin{figure}[H]
 	\centering
@@ -1144,9 +1165,11 @@ Right now even with the \textit{svg-join} tool we need multiple files to represe
 	\caption{Example for an incidence graph from example 4.1}
 	\label{fig:incidencestep6}
 \end{figure}
+
+
+%============== Code Snippets ======================================================
 \newpage
 \section{Code Snippets}
-
 
 \lstinputlisting[caption={The JSON format used to describe MSOL visualization on tree decompositions}, label={lst:jsonapi}]{includes/JsonAPI.txt}
 
@@ -1279,6 +1302,8 @@ class SvgJoinData:
 	v_bottom: Union[None, float, str, 
 	                Iterable[Union[None, float, str]]] = None
 \end{lstlisting}
+
+%============== Input Examples ======================================================
 \section{Input Examples}
 
 \lstset{numbers=none}
