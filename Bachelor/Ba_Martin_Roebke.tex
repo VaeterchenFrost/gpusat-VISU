@@ -1066,8 +1066,9 @@ Now we take a look at one problem that is inherently stated on a graph.\\
 
 Vertex Cover Problem: For a given input graph $G=(V,E)$, a \textit{vertex cover} is a set $C$ of vertices $C \subseteq V$ so that we have $\{u,v\} \cap C \neq \emptyset$ for each edge $\{u,v\}\in E$. The problem \textit{minimal vertex cover} asks to find the minimum cardinality among all vertex covers, i.e. $|C|$ is such that there is no vertex cover $C'$ with $|C'| < |C|$.
 
-
 An instance $G=(V,E)$ of \textit{minimal vertex cover} parameterized by treewidth \textit{tw} can be solved in time $\mathcal{O}(2^{tw(G)}|V|)$ \cite{HenningParamAlgo}.
+
+.........Solving process with IF and size, min-size, filters.
 
 As a very small example we will try to solve \textit{minimal vertex cover} for the following graph in figure \ref{fig:wheelgraph} with edges seen in listing \ref{lst:wheelgraph}.
 
@@ -1090,10 +1091,16 @@ As a very small example we will try to solve \textit{minimal vertex cover} for t
 	\label{fig:wheelgraphc23}
 \end{figure}
 \begin{figure}[H]
-	\centering Third step solving \textbf{bag 3}
-	\includegraphics[width=0.9\linewidth]{images/WheelGraph7/combined4.pdf} \vspace{0.2em}\\
-	Last step solving \textbf{bag 1} \vspace{0.5em}\\
-	\includegraphics[width=0.9\linewidth]{images/WheelGraph7/combined5.pdf}
+	\centering
+	Third step solving \textbf{bag 3} \vspace{1em}\\
+	
+	\includegraphics[width=0.9\linewidth]{images/WheelGraph7/combined4.pdf}\\
+	\vspace{0.5em}
+	Fourth step solving \textbf{bag 1}\\
+	
+	\vspace{0.6em}
+	\includegraphics[width=0.9\linewidth]{images/WheelGraph7/combined5.pdf}\\
+	
 	\caption{Last steps to solve \textit{minimal vertex cover} for example graph \ref{fig:wheelgraph} on it's tree decomposition.}
 	\label{fig:wheelgraphc45}
 \end{figure}
