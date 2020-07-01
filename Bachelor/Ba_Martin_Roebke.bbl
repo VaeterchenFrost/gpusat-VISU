@@ -589,6 +589,31 @@
       \field{title}{{Course}: Graph Data Management and Analytics}
       \field{year}{2019}
     \endentry
+    \entry{SVGMozilla}{misc}{}
+      \name{author}{1}{}{%
+        {{hash=bf68f10697eaf29a89e253bab7c9125b}{%
+           family={Web\bibnamedelima Docs},
+           familyi={W\bibinitperiod\bibinitdelim D\bibinitperiod},
+           given={MDN},
+           giveni={M\bibinitperiod}}}%
+      }
+      \strng{namehash}{bf68f10697eaf29a89e253bab7c9125b}
+      \strng{fullhash}{bf68f10697eaf29a89e253bab7c9125b}
+      \strng{bibnamehash}{bf68f10697eaf29a89e253bab7c9125b}
+      \strng{authorbibnamehash}{bf68f10697eaf29a89e253bab7c9125b}
+      \strng{authornamehash}{bf68f10697eaf29a89e253bab7c9125b}
+      \strng{authorfullhash}{bf68f10697eaf29a89e253bab7c9125b}
+      \field{labelalpha}{Web20}
+      \field{sortinit}{W}
+      \field{sortinithash}{1af34bd8c148ffb32de1494636b49713}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{howpublished}{\url{https://developer.mozilla.org/en-US/docs/Web/SVG}}
+      \field{month}{4}
+      \field{note}{[Online; accessed 2-July-2020]}
+      \field{title}{SVG: Scalable Vector Graphics | MDN}
+      \field{year}{2020}
+    \endentry
     \entry{Mathematica}{misc}{}
       \name{author}{1}{}{%
         {{hash=ee82c41bd9fdbe2adafdbf5f5e0d6e3d}{%

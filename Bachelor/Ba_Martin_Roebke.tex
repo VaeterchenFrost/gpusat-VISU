@@ -152,7 +152,7 @@ As two reference implementations of dynamic programming on tree decompositions w
 \section{Introduction}
 \subsection{Motivation}
 Graphs are increasingly interesting in scientific work, as the applications of interconnected datasets grow.
-Some use cases for example outlined \href{http://neo4j.com/use-cases}{here} do include fields of interest like
+Some use cases include fields of interest like % (see also \url{neo4j.com/use-cases})
 \begin{itemize}
 	\item[-] Network and Database Infrastructure
 	\item[-] Recommendation Engines
@@ -160,7 +160,7 @@ Some use cases for example outlined \href{http://neo4j.com/use-cases}{here} do i
 \end{itemize}
 It defines a \href{https://www.json.org/json-en.html}{JSON}-format specification for portability and customization of the visualization combined in one human-readable file and two reference implementations in actual solvers.
 The implementation currently does not support hyper-graphs and assumes that each node in the tree decomposition has either one or two children.
-The visualization output consists by default of scalable-vector-graphics \href{https://developer.mozilla.org/en-US/docs/Web/SVG}{SVG}, a very flexible text-based that can be compressed and modified very easily without loss of quality.
+The visualization output consists by default of scalable-vector-graphics \href{https://developer.mozilla.org/en-US/docs/Web/SVG}{SVG} \cite{SVGMozilla}, a very flexible text-based standard for describing images that can be compressed and modified very easily without loss of quality.
 The images are split up into different views on the current state of the tree decomposition for consecutive user-defined time steps showing the progress of the dynamic programming.
 As illustrations of the possibilities for an application smaller examples from the problem-types "\#SAT" and "minimal vertex cover" are presented,
 as well as an example of a faulty tree-decomposition that occurred during development.

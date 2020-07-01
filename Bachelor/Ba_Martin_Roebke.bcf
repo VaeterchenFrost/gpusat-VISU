@@ -2182,28 +2182,29 @@
     <bcf:datasource type="file" datatype="bibtex">bibtex.bib</bcf:datasource>
   </bcf:bibdata>
   <bcf:section number="0">
-    <bcf:citekey order="1">Courcelle2012</bcf:citekey>
-    <bcf:citekey order="2">evaluationMSO</bcf:citekey>
-    <bcf:citekey order="3">VLGDMA</bcf:citekey>
-    <bcf:citekey order="4">Courcelle2012</bcf:citekey>
-    <bcf:citekey order="5">DiplomarbeitZisser</bcf:citekey>
-    <bcf:citekey order="6">BioInfoTD1970</bcf:citekey>
-    <bcf:citekey order="7">DiplomarbeitZisser</bcf:citekey>
-    <bcf:citekey order="8">ROBERTSON198449</bcf:citekey>
-    <bcf:citekey order="9">pcgp2019</bcf:citekey>
-    <bcf:citekey order="10">ARNBORG1991308</bcf:citekey>
-    <bcf:citekey order="11">MSOQueriesGuillaume</bcf:citekey>
-    <bcf:citekey order="12">rapidPrototypingOvermyer</bcf:citekey>
-    <bcf:citekey order="13">ST99</bcf:citekey>
-    <bcf:citekey order="14">Hu05</bcf:citekey>
-    <bcf:citekey order="15">Himsolt2010GMLAP</bcf:citekey>
-    <bcf:citekey order="16">shortestPathAlgo</bcf:citekey>
-    <bcf:citekey order="17">SciPyProceedings_11</bcf:citekey>
-    <bcf:citekey order="18">HenningParamAlgo</bcf:citekey>
-    <bcf:citekey order="19">dpdbpadl2020</bcf:citekey>
-    <bcf:citekey order="20">Mathematica</bcf:citekey>
-    <bcf:citekey order="21">DiplomarbeitZisser</bcf:citekey>
+    <bcf:citekey order="1">SVGMozilla</bcf:citekey>
+    <bcf:citekey order="2">Courcelle2012</bcf:citekey>
+    <bcf:citekey order="3">evaluationMSO</bcf:citekey>
+    <bcf:citekey order="4">VLGDMA</bcf:citekey>
+    <bcf:citekey order="5">Courcelle2012</bcf:citekey>
+    <bcf:citekey order="6">DiplomarbeitZisser</bcf:citekey>
+    <bcf:citekey order="7">BioInfoTD1970</bcf:citekey>
+    <bcf:citekey order="8">DiplomarbeitZisser</bcf:citekey>
+    <bcf:citekey order="9">ROBERTSON198449</bcf:citekey>
+    <bcf:citekey order="10">pcgp2019</bcf:citekey>
+    <bcf:citekey order="11">ARNBORG1991308</bcf:citekey>
+    <bcf:citekey order="12">MSOQueriesGuillaume</bcf:citekey>
+    <bcf:citekey order="13">rapidPrototypingOvermyer</bcf:citekey>
+    <bcf:citekey order="14">ST99</bcf:citekey>
+    <bcf:citekey order="15">Hu05</bcf:citekey>
+    <bcf:citekey order="16">Himsolt2010GMLAP</bcf:citekey>
+    <bcf:citekey order="17">shortestPathAlgo</bcf:citekey>
+    <bcf:citekey order="18">SciPyProceedings_11</bcf:citekey>
+    <bcf:citekey order="19">HenningParamAlgo</bcf:citekey>
+    <bcf:citekey order="20">dpdbpadl2020</bcf:citekey>
+    <bcf:citekey order="21">Mathematica</bcf:citekey>
     <bcf:citekey order="22">DiplomarbeitZisser</bcf:citekey>
+    <bcf:citekey order="23">DiplomarbeitZisser</bcf:citekey>
   </bcf:section>
   <!-- SORTING TEMPLATES -->
   <bcf:sortingtemplate name="anyt">
