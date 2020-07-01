@@ -2183,11 +2183,11 @@
   </bcf:bibdata>
   <bcf:section number="0">
     <bcf:citekey order="1">SVGMozilla</bcf:citekey>
-    <bcf:citekey order="2">Courcelle2012</bcf:citekey>
-    <bcf:citekey order="3">evaluationMSO</bcf:citekey>
-    <bcf:citekey order="4">VLGDMA</bcf:citekey>
-    <bcf:citekey order="5">Courcelle2012</bcf:citekey>
-    <bcf:citekey order="6">DiplomarbeitZisser</bcf:citekey>
+    <bcf:citekey order="2">evaluationMSO</bcf:citekey>
+    <bcf:citekey order="3">VLGDMA</bcf:citekey>
+    <bcf:citekey order="4">Courcelle2012</bcf:citekey>
+    <bcf:citekey order="5">DiplomarbeitZisser</bcf:citekey>
+    <bcf:citekey order="6">Courcelle2012</bcf:citekey>
     <bcf:citekey order="7">BioInfoTD1970</bcf:citekey>
     <bcf:citekey order="8">DiplomarbeitZisser</bcf:citekey>
     <bcf:citekey order="9">ROBERTSON198449</bcf:citekey>

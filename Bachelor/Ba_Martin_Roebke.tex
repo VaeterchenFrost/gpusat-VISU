@@ -160,9 +160,9 @@ Some use cases include fields of interest like % (see also \url{neo4j.com/use-ca
 \end{itemize}
 It defines a \href{https://www.json.org/json-en.html}{JSON}-format specification for portability and customization of the visualization combined in one human-readable file and two reference implementations in actual solvers.
 The implementation currently does not support hyper-graphs and assumes that each node in the tree decomposition has either one or two children.
-The visualization output consists by default of scalable-vector-graphics \href{https://developer.mozilla.org/en-US/docs/Web/SVG}{SVG} \cite{SVGMozilla}, a very flexible text-based standard for describing images that can be compressed and modified very easily without loss of quality.
-The images are split up into different views on the current state of the tree decomposition for consecutive user-defined time steps showing the progress of the dynamic programming.
-As illustrations of the possibilities for an application smaller examples from the problem-types "\#SAT" and "minimal vertex cover" are presented,
+The visualization output consists by default of scalable-vector-graphics (SVG), a very flexible text-based standard for describing images that can be compressed and modified very easily without loss of quality  \cite{SVGMozilla} .
+The images are split up into different views on the current state of the tree decomposition for consecutive user-defined time steps giving insights into the process of the dynamic programming.
+As illustrations of the possibilities for an application, smaller examples from the problem-types "SAT", "\#SAT" and "Minimal Vertex Cover" are presented,
 as well as an example of a faulty tree-decomposition that occurred during development.
 Intended audience: 
 \begin{itemize}
@@ -171,7 +171,7 @@ Intended audience:
 	\item Teachers or students looking for automatic visualization of their examples and the dynamic programming.
 \end{itemize} 
 
-The idea for this project comes from my supervisor Dr. Johannes Fichte, who works with many projects such as \href{https://github.com/hmarkus/dp_on_dbs}{dpdb} on solving monadic second order logic (MSOL\cite{Courcelle2012}) problems using highly parallelized architectures like graphics processing units or state of the art databases.
+The idea for this project comes from my supervisor Dr. Johannes Fichte, who works with many projects such as \href{https://github.com/hmarkus/dp_on_dbs}{dpdb} on solving monadic second order logic (MSOL) problems using highly parallelized architectures like graphics processing units or state of the art databases.
 One early implementation is published in \cite{evaluationMSO} where for different real world examples the results looked promising
 These projects are very competitive ????REF????? for solving even large instances of those problems.
 The source code for TDVisu is available under GPL3 license.
@@ -315,16 +315,13 @@ This algorithm is then usable for small values of k. usually tree-width and cliq
 \subsection{Courcelle's Theorem}
 % https://en.wikipedia.org/wiki/Parameterized_complexity
 \begin{quotation}
-	Every graph property definable in monadic second-order logic (MSO) is decidable in linear time on graphs of bounded tree-width.\\
-	{\small Courcelle, Bruno (1990)}\footnote{Courcelle, Bruno "The monadic second-order logic of graphs. I. Recognizable sets of finite graphs",\\ Information and Computation, 85 (1990) no. 1: 12-75}
+	Every graph property definable in monadic second-order logic (MSO) is decidable in linear time on graphs of bounded tree-width. \cite{Courcelle2012}
+%	{\small Courcelle, Bruno (1990)}\footnote{Courcelle, Bruno "The monadic second-order logic of graphs. I. Recognizable sets of finite graphs",\\ Information and Computation, 85 (1990) no. 1: 12-75}
 \end{quotation}
 
+\noindent
 For all $k \in \mathbb{N}$ and MSO-sentences F is the decision problem for a given graph G, whether $G \models F$ is true, in time $2^{p(tw(G))} \cdot |G|$ with a polynom p decidable.
-\begin{itemize}
-	
-	\item \emph{drawback:} still expensive ($2^{p(tw G)}$, $2^{2^{(\#Q)}}$, large constants) \smallskip 
-	
-\end{itemize}
+\emph{drawback:} still expensive ($2^{p(tw G)}$, $2^{2^{(\#Q)}}$, large constants) \smallskip 
 
 The workflow then looks like we see in figure~\ref{fig:UsageCourcelle}.
 
