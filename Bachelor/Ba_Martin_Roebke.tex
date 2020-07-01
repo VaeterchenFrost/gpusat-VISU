@@ -1179,7 +1179,16 @@ To further visualize the progress of the algorithm in the results one could use 
 	\caption{Bag 59 in the database table.}
 	\label{fig:bag59visu}
 \end{figure}
- 
+
+The bag 59 does not provide any rows with variables 
+The problem was located in the htd version used to create the tree decomposition, which in this instance and for the seed $0$ did not place bag 59 in the right place in the tree-decomposition on our Windows 10 machine. The proof that the provided tree is not a tree decomposition is visualized using Mathematica \cite{Mathematica} in figure \ref{fig:bag59td}.
+
+\begin{figure}
+	\centering
+	\includegraphics[width=0.9\linewidth,height=0.9\textheight,keepaspectratio]{images/stars100var100.png}
+	\caption{Bag 59 can be seen on the far right of the graphic.}
+	\label{fig:bag59td}
+\end{figure}
 %==============================================================================
 %============== Conclusion ====================================================
 %==============================================================================

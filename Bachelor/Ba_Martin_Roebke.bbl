@@ -589,6 +589,34 @@
       \field{title}{{Course}: Graph Data Management and Analytics}
       \field{year}{2019}
     \endentry
+    \entry{Mathematica}{misc}{}
+      \name{author}{1}{}{%
+        {{hash=ee82c41bd9fdbe2adafdbf5f5e0d6e3d}{%
+           family={Wolfram\bibnamedelima Research},
+           familyi={W\bibinitperiod\bibinitdelim R\bibinitperiod},
+           given={Inc.},
+           giveni={I\bibinitperiod}}}%
+      }
+      \strng{namehash}{ee82c41bd9fdbe2adafdbf5f5e0d6e3d}
+      \strng{fullhash}{ee82c41bd9fdbe2adafdbf5f5e0d6e3d}
+      \strng{bibnamehash}{ee82c41bd9fdbe2adafdbf5f5e0d6e3d}
+      \strng{authorbibnamehash}{ee82c41bd9fdbe2adafdbf5f5e0d6e3d}
+      \strng{authornamehash}{ee82c41bd9fdbe2adafdbf5f5e0d6e3d}
+      \strng{authorfullhash}{ee82c41bd9fdbe2adafdbf5f5e0d6e3d}
+      \field{labelalpha}{Wol}
+      \field{sortinit}{W}
+      \field{sortinithash}{1af34bd8c148ffb32de1494636b49713}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{note}{Champaign, IL, 2020}
+      \field{title}{Mathematica, {V}ersion 12.1}
+      \verb{urlraw}
+      \verb https://www.wolfram.com/mathematica
+      \endverb
+      \verb{url}
+      \verb https://www.wolfram.com/mathematica
+      \endverb
+    \endentry
     \entry{DiplomarbeitZisser}{book}{}
       \name{author}{1}{}{%
         {{hash=2af06efc6b5d9ea597dc054485d03436}{%
