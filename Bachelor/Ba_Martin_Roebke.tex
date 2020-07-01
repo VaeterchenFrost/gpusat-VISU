@@ -1112,7 +1112,7 @@ With the four parameters \textit{centerpad}, \textit{v\_bottom}, \textit{v\_top}
 
 In figure \ref{fig:joindefault} the two images are joined with default values for all parameters, in order (\textit{TDStep, graph}). 
 
-As we can see the solutions for bags other than 2 are still hidden in the output but included in image size. The right graph is aligned to the upper edge of the left image. With no padding between the images \textit{graph} image is attached to the right edge of the first image visualizing the {tree decomposition}.
+As we can see the solutions for bags other than 2 are hidden in the output but are taken into account in the image size. The right graph is aligned to the upper edge of the left image. With no padding between the images \textit{graph} image is attached to the right edge of the first image visualizing the {tree decomposition}.
 
 \begin{figure}[H]
 	\centering
@@ -1128,9 +1128,22 @@ As we can see the solutions for bags other than 2 are still hidden in the output
 %num_images=5)
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=\linewidth,height=0.9\textheight,keepaspectratio]{images/SVGJOIN/default_bottom2.pdf}
-	\caption{Joining results from section \ref{sec:minvc} at step 2 and shifting to bottom edge.}
+	\textbf{v\_bottom = "bottom"} \vspace{1em}\\
+	
+	\includegraphics[width=\linewidth]{images/SVGJOIN/default_bottom2.pdf}\\
+	\vspace{0.5em}
+	\textbf{v\_bottom = "center"}\\
+	
+	\vspace{0.6em}
+	\includegraphics[width=0.9\linewidth]{images/SVGJOIN/default_center2.pdf}
+	\caption{Joining results from section \ref{sec:minvc} at step 2 and setting v\_bottom. The invisible (empty) parts of the graphics is cropped from the top of each.}
 	\label{fig:joindefaultbot}
+\end{figure}
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.9\linewidth,height=0.9\textheight,keepaspectratio]{images/SVGJOIN/default_062.pdf}
+	\caption{Joining results from section \ref{sec:minvc} at step 2 and shifting bottom edge of second image to $60\%$ height of the first image.}
+	\label{fig:joindefault60}
 \end{figure}
 %svg_join(['TDStep', 'graph'],
 %'Archive/WheelGraph7',
@@ -1139,24 +1152,14 @@ As we can see the solutions for bags other than 2 are still hidden in the output
 %v_bottom=0.6,
 %scale2=1.5,
 %num_images=5)
-\begin{figure}[H]
-	\centering
-	\includegraphics[width=\linewidth,height=0.9\textheight,keepaspectratio]{images/SVGJOIN/default_center2.pdf}
-	\caption{Joining results from section \ref{sec:minvc} at step 2 and shifting bottom edge of second image to center of first image.}
-	\label{fig:joindefaultcen}
-\end{figure}
+
 %svg_join(['TDStep', 'graph'],
 %'Archive/WheelGraph7',
 %outname="default_06sc15_rise",
 %v_bottom=[1,.85,.7,.55,.4],
 %scale2=1.5,
 %num_images=5)
-\begin{figure}[H]
-	\centering
-	\includegraphics[width=\linewidth,height=0.9\textheight,keepaspectratio]{images/SVGJOIN/default_062.pdf}
-	\caption{Joining results from section \ref{sec:minvc} at step 2 and shifting bottom edge of second image to $60\%$ height of the first image.}
-	\label{fig:joindefault60}
-\end{figure}
+
  
 %==============================================================================
 %============== Conclusion ====================================================
