@@ -1155,21 +1155,10 @@ if we want the right graphic a bit larger compared to the default size, we can a
 	\item[] scale2 = 1.5
 \end{itemize}
 can be seen. \\
-To further visualize the progress of the algorithm in the results one could use the possibility to specify multiple values for all the transformation parameters \textit{centerpad}, \textit{v\_bottom}, \textit{v\_top} and \textit{scale2} and elevate the second image with the values for v\_bottom = [1, 0.85, 0.7, 0.55, 0.4]. This is done in images 
-%svg_join(['TDStep', 'graph'],
-%'Archive/WheelGraph7',
-%outname="default_06sc15",
-%padding=[0,0,0,40],
-%v_bottom=0.6,
-%scale2=1.5,
-%num_images=5)
+To further visualize the progress of the algorithm in the results one could use the possibility to specify multiple values for all the transformation parameters \textit{centerpad}, \textit{v\_bottom}, \textit{v\_top} and \textit{scale2} and elevate the second image with the values for\\
+ v\_bottom = [1, 0.85, 0.7, 0.55, 0.4]. \\
+ This is done in figures \ref{fig:joinscaledrise1} to \ref{fig:joinscaledrise5}.
 
-%svg_join(['TDStep', 'graph'],
-%'Archive/WheelGraph7',
-%outname="default_06sc15_rise",
-%v_bottom=[1,.85,.7,.55,.4],
-%scale2=1.5,
-%num_images=5)
 
  
 %==============================================================================
@@ -1235,35 +1224,80 @@ Right now even with the \textit{svg-join} tool we need multiple files to represe
 	\caption{Example for an incidence graph from example 4.1}
 	\label{fig:incidencestep6}
 \end{figure}
+%svg_join(['TDStep', 'graph'],
+%'Archive/WheelGraph7',
+%outname="default_06sc15",
+%padding=[0,0,0,40],
+%v_bottom=0.6,
+%scale2=1.5,
+%num_images=5)
+
+
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=0.9\linewidth,height=0.9\textheight,keepaspectratio]{images/SVGJOIN/default_06sc151.pdf}
-	\caption{Joining results from section \ref{sec:minvc} at step 1. Also shifting the second graphic to $60\%$ height of the first image and scaling with scale2 = 1.5 .}
+	\caption{Joining results from section \ref{sec:minvc} at step 1. Also shifting the second graphic to $40\%$ height of the first image and scaling with scale2 = 1.5 .}
 	\label{fig:joinscaled1}
 \end{figure}
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=0.9\linewidth,height=0.9\textheight,keepaspectratio]{images/SVGJOIN/default_06sc152.pdf}
-	\caption{Joining results from section \ref{sec:minvc} at step 2. Also shifting the second graphic to $60\%$ height of the first image and scaling with scale2 = 1.5 .}
+	\caption{Joining results from section \ref{sec:minvc} at step 2. Also shifting the second graphic to $40\%$ height of the first image and scaling with scale2 = 1.5 .}
 	\label{fig:joinscaled2}
 \end{figure}
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=0.9\linewidth,height=0.9\textheight,keepaspectratio]{images/SVGJOIN/default_06sc153.pdf}
-	\caption{Joining results from section \ref{sec:minvc} at step 3. Also shifting the second graphic to $60\%$ height of the first image and scaling with scale2 = 1.5 .}
+	\caption{Joining results from section \ref{sec:minvc} at step 3. Also shifting the second graphic to $40\%$ height of the first image and scaling with scale2 = 1.5 .}
 	\label{fig:joinscaled3}
 \end{figure}
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=0.9\linewidth,height=0.9\textheight,keepaspectratio]{images/SVGJOIN/default_06sc154.pdf}
-	\caption{Joining results from section \ref{sec:minvc} at step 4. Also shifting the second graphic to $60\%$ height of the first image and scaling with scale2 = 1.5 .}
+	\caption{Joining results from section \ref{sec:minvc} at step 4. Also shifting the second graphic to $40\%$ height of the first image and scaling with scale2 = 1.5 .}
 	\label{fig:joinscaled4}
 \end{figure}
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=0.9\linewidth,height=0.9\textheight,keepaspectratio]{images/SVGJOIN/default_06sc155.pdf}
-	\caption{Joining results from section \ref{sec:minvc} at step 5. Also shifting the second graphic to $60\%$ height of the first image and scaling with scale2 = 1.5 .}
+	\caption{Joining results from section \ref{sec:minvc} at step 5. Also shifting the second graphic to $40\%$ height of the first image and scaling with scale2 = 1.5 .}
 	\label{fig:joinscaled5}
+\end{figure}
+%svg_join(['TDStep', 'graph'],
+%'Archive/WheelGraph7',
+%outname="default_06sc15_rise",
+%v_bottom=[1,.85,.7,.55,.4],
+%scale2=1.5,
+%num_images=5)
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.9\linewidth,height=0.9\textheight,keepaspectratio]{images/SVGJOIN/default_06sc15_rise1.pdf}
+	\caption{Joining results from section \ref{sec:minvc} at step 5. Also shifting the second graphic to the bottom edge of the first image and scaling with scale2 = 1.5 .}
+	\label{fig:joinscaledrise1}
+\end{figure}
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.9\linewidth,height=0.9\textheight,keepaspectratio]{images/SVGJOIN/default_06sc15_rise1.pdf}
+	\caption{Joining results from section \ref{sec:minvc} at step 5. Also shifting the second graphic to $15\%$ of the height of the first image and scaling with scale2 = 1.5 .}
+	\label{fig:joinscaledrise2}
+\end{figure}
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.9\linewidth,height=0.9\textheight,keepaspectratio]{images/SVGJOIN/default_06sc15_rise1.pdf}
+	\caption{Joining results from section \ref{sec:minvc} at step 5. Also shifting the second graphic to $30\%$ of the height of the first image and scaling with scale2 = 1.5 .}
+	\label{fig:joinscaledrise3}
+\end{figure}
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.9\linewidth,height=0.9\textheight,keepaspectratio]{images/SVGJOIN/default_06sc15_rise1.pdf}
+	\caption{Joining results from section \ref{sec:minvc} at step 5. Also shifting the second graphic to $45\%$ of the height of the first image and scaling with scale2 = 1.5 .}
+	\label{fig:joinscaledrise4}
+\end{figure}
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.9\linewidth,height=0.9\textheight,keepaspectratio]{images/SVGJOIN/default_06sc15_rise1.pdf}
+	\caption{Joining results from section \ref{sec:minvc} at step 5. Also shifting the second graphic to to $60\%$ of the height of the first image and scaling with scale2 = 1.5 .}
+	\label{fig:joinscaledrise5}
 \end{figure}
 
 %============== Code Snippets ======================================================
