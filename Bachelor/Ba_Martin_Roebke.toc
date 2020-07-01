@@ -14,7 +14,7 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {subsection}{\numberline {2.1}Boolean satisfiability problem}{7}{subsection.2.1}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {2.2}Monadic Second Order Logic}{8}{subsection.2.2}%
+\contentsline {subsection}{\numberline {2.2}Monadic Second Order Logic}{7}{subsection.2.2}%
 \defcounter {refsection}{0}\relax 
 \contentsline {subsection}{\numberline {2.3}Courcelle's Theorem}{8}{subsection.2.3}%
 \defcounter {refsection}{0}\relax 
@@ -38,34 +38,36 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {subsection}{\numberline {3.6}Joining SVG}{18}{subsection.3.6}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {4}Integration in GPUSAT}{23}{section.4}%
+\contentsline {section}{\numberline {4}Integration in GPUSAT}{22}{section.4}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {4.1}Class Graphoutput}{25}{subsection.4.1}%
+\contentsline {subsection}{\numberline {4.1}Class Graphoutput}{24}{subsection.4.1}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {4.2}Class SolverVisualization}{25}{subsection.4.2}%
+\contentsline {subsection}{\numberline {4.2}Class SolverVisualization}{24}{subsection.4.2}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {5}Integration in dpdb}{26}{section.5}%
+\contentsline {section}{\numberline {5}Integration in dpdb}{25}{section.5}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {6}Application and Images}{27}{section.6}%
+\contentsline {section}{\numberline {6}Application and Images}{26}{section.6}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {6.1}SAT Example}{27}{subsection.6.1}%
+\contentsline {subsection}{\numberline {6.1}SAT Example}{26}{subsection.6.1}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {6.2}\#SAT Example}{31}{subsection.6.2}%
+\contentsline {subsection}{\numberline {6.2}\#SAT Example}{30}{subsection.6.2}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {6.3}Vertex Cover Example}{33}{subsection.6.3}%
+\contentsline {subsection}{\numberline {6.3}Vertex Cover Example}{32}{subsection.6.3}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {6.4}SVG Join Example}{36}{subsection.6.4}%
+\contentsline {subsection}{\numberline {6.4}SVG Join Example}{35}{subsection.6.4}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {6.5}Visualizing Errors}{39}{subsection.6.5}%
+\contentsline {subsection}{\numberline {6.5}Visualizing Errors}{37}{subsection.6.5}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {7}Conclusion}{40}{section.7}%
+\contentsline {section}{\numberline {7}Conclusion}{39}{section.7}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {7.1}Summary}{40}{subsection.7.1}%
+\contentsline {subsection}{\numberline {7.1}Summary}{39}{subsection.7.1}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {7.2}Future Work}{40}{subsection.7.2}%
+\contentsline {subsection}{\numberline {7.2}Future Work}{39}{subsection.7.2}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {A}Images}{42}{appendix.A}%
+\contentsline {section}{\numberline {A}Images}{41}{appendix.A}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {B}Code Snippets}{49}{appendix.B}%
+\contentsline {section}{\numberline {B}Code Snippets}{48}{appendix.B}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {C}Input Examples}{54}{appendix.C}%
+\contentsline {section}{\numberline {C}Input Examples}{53}{appendix.C}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\nonumberline References}{58}{section*.4}%

@@ -1,5 +1,6 @@
 % Paperformat
-\documentclass[a4paper, 12pt]{scrartcl}
+% https://tex.stackexchange.com/questions/428553/add-bibliography-as-part-instead-of-chapter-in-toc
+\documentclass[a4paper, 12pt, bibliography=totoc]{scrartcl}
 %\usepackage{cite}
 \usepackage{ragged2e}
 \usepackage{url}
@@ -39,7 +40,7 @@ headformat={\mbox{\NAME{} \NUMBER}}
 \lstset{tabsize=2, linewidth=1.05\textwidth, framextopmargin=1em, basicstyle=\small\ttfamily}
 \lstset{numbers=left,backgroundcolor=\color{light-gray}}
 \newtheorem{theorem}{Theorem}[section]
-
+\setlength{\textheight}{1.05\textheight}
 
 \begin{document}
 \def\myauthor{Martin Röbke} 
@@ -138,9 +139,8 @@ As two reference implementations of dynamic programming on tree decompositions w
 
 
 %  table
-{\setlength{\textheight}{1.02\textheight}
-	\newpage
-\tableofcontents}
+\newpage
+\tableofcontents
 
 % chapter on next page
 \newpage
