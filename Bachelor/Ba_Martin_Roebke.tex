@@ -1112,11 +1112,11 @@ With the four parameters \textit{centerpad}, \textit{v\_bottom}, \textit{v\_top}
 
 In figure \ref{fig:joindefault} the two images are joined with default values for all parameters, in order (\textit{TDStep, graph}). 
 
-As we can see the solutions for bags other than 2 are still hidden and the right graph is aligned to the upper edge. The second \textit{graph} image is attached to the right edge of the first image visualizing the {tree decomposition}.
+As we can see the solutions for bags other than 2 are still hidden in the output but included in image size. The right graph is aligned to the upper edge of the left image. With no padding between the images \textit{graph} image is attached to the right edge of the first image visualizing the {tree decomposition}.
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=\linewidth,height=0.9\textheight,keepaspectratio]{images/SVGJOIN/default2.pdf}
+	\includegraphics[width=\linewidth,height=0.6\textheight,keepaspectratio]{images/SVGJOIN/default2.pdf}
 	\caption{Joining results from section \ref{sec:minvc} with default parameters at step 2.}
 	\label{fig:joindefault}
 \end{figure}
@@ -1141,7 +1141,7 @@ As we can see the solutions for bags other than 2 are still hidden and the right
 %num_images=5)
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=\linewidth,height=0.9\textheight,keepaspectratio]{images/SVGJOIN/default_062.pdf}
+	\includegraphics[width=\linewidth,height=0.9\textheight,keepaspectratio]{images/SVGJOIN/default_center2.pdf}
 	\caption{Joining results from section \ref{sec:minvc} at step 2 and shifting bottom edge of second image to center of first image.}
 	\label{fig:joindefaultcen}
 \end{figure}
@@ -1153,7 +1153,7 @@ As we can see the solutions for bags other than 2 are still hidden and the right
 %num_images=5)
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=\linewidth,height=0.9\textheight,keepaspectratio]{images/SVGJOIN/default_center2.pdf}
+	\includegraphics[width=\linewidth,height=0.9\textheight,keepaspectratio]{images/SVGJOIN/default_062.pdf}
 	\caption{Joining results from section \ref{sec:minvc} at step 2 and shifting bottom edge of second image to $60\%$ height of the first image.}
 	\label{fig:joindefault60}
 \end{figure}

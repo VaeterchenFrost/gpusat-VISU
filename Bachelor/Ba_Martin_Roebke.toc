@@ -56,14 +56,14 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {subsection}{\numberline {6.4}SVG Join Example}{36}{subsection.6.4}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {7}Conclusion}{41}{section.7}%
+\contentsline {section}{\numberline {7}Conclusion}{40}{section.7}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {7.1}Summary}{41}{subsection.7.1}%
+\contentsline {subsection}{\numberline {7.1}Summary}{40}{subsection.7.1}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {7.2}Future Work}{41}{subsection.7.2}%
+\contentsline {subsection}{\numberline {7.2}Future Work}{40}{subsection.7.2}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {A}Images}{42}{appendix.A}%
+\contentsline {section}{\numberline {A}Images}{41}{appendix.A}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {B}Code Snippets}{45}{appendix.B}%
+\contentsline {section}{\numberline {B}Code Snippets}{44}{appendix.B}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {C}Input Examples}{50}{appendix.C}%
+\contentsline {section}{\numberline {C}Input Examples}{49}{appendix.C}%
