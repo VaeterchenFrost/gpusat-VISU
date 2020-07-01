@@ -1159,7 +1159,26 @@ To further visualize the progress of the algorithm in the results one could use 
  v\_bottom = [1, 0.85, 0.7, 0.55, 0.4]. \\
  This is done in figures \ref{fig:joinscaledrise1} to \ref{fig:joinscaledrise5}.
 
+% Finding a bug using visualization
+\subsection{Visualizing Errors}
+ 
+ One call did not give the expected result for \textit{vertex cover}. The problem was first found expecting the immediate output from the \textit{dpdb.py} program reporting the wrong set size. The underlying problem could found using the visualization in figure \ref{fig:starsbag59}
 
+\begin{figure}[H]
+	\centering
+	\vspace{1em}
+	\includegraphics[width=0.9\linewidth,height=0.9\textheight,keepaspectratio]{images/starsbag59.png}
+		\vspace{1em}
+	\caption{Part of interest to find a problem with bag 59 in visualization. }
+	\label{fig:starsbag59}
+\end{figure}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.9\linewidth,height=0.9\textheight,keepaspectratio]{images/Found bag 59 in stars100 with seed0.png}
+	\caption{Bag 59 in the database table.}
+	\label{fig:bag59visu}
+\end{figure}
  
 %==============================================================================
 %============== Conclusion ====================================================
