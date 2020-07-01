@@ -1137,14 +1137,18 @@ As we can see the solutions for bags other than 2 are hidden in the output but a
 	\vspace{0.6em}
 	\includegraphics[width=0.9\linewidth]{images/SVGJOIN/default_center2.pdf}
 	\caption{Joining results from section \ref{sec:minvc} at step 2 and setting v\_bottom. The invisible (empty) parts of the graphics is cropped from the top of each.}
-	\label{fig:joindefaultbot}
+	\label{fig:joinbotcenter}
 \end{figure}
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=0.9\linewidth,height=0.9\textheight,keepaspectratio]{images/SVGJOIN/default_062.pdf}
 	\caption{Joining results from section \ref{sec:minvc} at step 2 and shifting bottom edge of second image to $60\%$ height of the first image.}
-	\label{fig:joindefault60}
+	\label{fig:join60}
 \end{figure}
+
+In figure \ref{fig:joinbotcenter} the parameter v\_bottom is set to "bottom" to align both graphics on the bottom edge; set to "center" elevates the right image to 50\% of the height of the first. It is also possible to provide arbitraty floating-point values for vertical adjustment as presented in figure \ref{fig:join60} with v\_bottom = 0.6 .
+
+
 %svg_join(['TDStep', 'graph'],
 %'Archive/WheelGraph7',
 %outname="default_06sc15",
