@@ -244,8 +244,27 @@ We use the word \textbf{graph} for a pair $G=(V_{G},E_{G})$, where $V_{G}$ is a 
 	\item The zeta set $\mathrm {Z}$ is a finite set of transformation rules that are called inference rules when they receive logical applications.
 	
 	\item The iota set $\mathrm {I}$ is a countable set of initial points that are called axioms when they receive logical interpretations.
-	
 \end{itemize}
+
+\textbf{First-order logic} further adds relations and quantifiers to the propositional logic.
+As a short description of both concepts we say that
+quantifier symbols add
+\begin{itemize}
+	\item $\exists$ for the existential quantification and
+	\item $\forall$ that expresses that a propositional function can be satisfied by every member of of a domain.
+\end{itemize}
+The non-logical symbols now represent relations, functions and constants on the domain of discourse. 
+
+
+A relation symbol with some arity (number of arguments) $\in \mathbb{N}$.
+Relations of arity 0 can be identified with propositional variables.
+Examples for practical interpretations for 2-ary (binary) relations are
+\textit{\textbf{x} greater than \textbf{y}, \textbf{x} less than \textbf{y}, \textbf{x} divides \textbf{y}, \textbf{x} subset of \textbf{y}} depending on the current domain.
+
+A function symbol, with some valence greater than or equal to 0. These are often denoted by lowercase letters f, g, h,... .
+Examples: f(x) may be interpreted as for "the father of x". In arithmetic, it may stand for "-x". In set theory, it may stand for "the power set of x". In arithmetic, g(x,y) may stand for "x+y". In set theory, it may stand for "the union of x and y".
+Function symbols of valence 0 are called constant symbols, and are often denoted by lowercase letters at the beginning of the alphabet a, b, c,... . The symbol a may stand for Socrates. In arithmetic, it may stand for 0. In set theory, such a constant may stand for the empty set.
+
 
 % Implications
 There are efficient enumeration algorithms \cite{MSOQueriesGuillaume} and counting the number of solutions \cite{ARNBORG1991308} of a MSO formula, if it is ensured that the input data is preprocessed in linear time and that each solution is then produced in a delay linear in the size of each solution.
