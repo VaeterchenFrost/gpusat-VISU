@@ -356,7 +356,7 @@ The tree width of a graph is the \textit{minimal width} over all tree decomposit
 \cite{MSOQueriesGuillaume}
 
 %============== DIMACS ====================================================
-\subsection{DIMACS format - WIP}
+\subsection{DIMACS format}
 
 Inputs for solvers and in some cases for preparing the visualization of dpdb are usually in a DIMACS format. There exist several standardized formats for different cases, for example CNF clauses, graph edges and graph decompositions.
 File formats for these purposes were developed at "DIMACS" (the Center for Discrete Mathematics and Theoretical Computer Science) in 1993 at Rutgers University.
@@ -365,14 +365,15 @@ They are partly supported in several math-related software.
 The underlying concept is one line-based ASCII file and for all different formats specifies comments as lines starting with the character "c", a problem line starting with "p" (rarely with "s") and following the problem line usually multiple lines specifying the data in a format depending on the problem type.
 The formats used for this work are:
 
-\textbf{DIMACS CNF}: This format is used to define a Boolean expression, written in conjunctive normal form. The problem line specifies \textbf{number of variables} and \textbf{number of clauses}. The following lines specify the clauses a positive literal is denoted by the corresponding number, and a negative literal is denoted by the corresponding negative number. Each clause is followed by the character zero, so 0 should not occur as a variable. Instead variables are expected to start at one.
+\textbf{DIMACS CNF}: This format is used to define a Boolean expression, written in conjunctive normal form. The problem line specifies the type, \textbf{number of variables} and \textbf{number of clauses}. The following lines specify the clauses a positive literal is denoted by the corresponding number, and a negative literal is denoted by the corresponding negative number. Each clause is followed by the character zero, so 0 should not occur as a variable. Instead variables are expected to start at one.\\
 
-Other formats for WMC, different graphs...
+\textbf{DIMACS tw}: This format is used to describe a single undirected graph. The problem line specifies the type, \textbf{number of nodes} and \textbf{number of edges}. The following lines specify the edges with two nodes separated by a space.\\
 
-Supported also in Maple \url{https://www.maplesoft.com/support/help/maple/view.aspx?path=Formats/CNF}
+\textbf{DIMACS td}: This format is used to describe a tree decomposition. The problem line specifies the type, \textbf{number of bags}, \textbf{maximum size of the bags} and \textbf{number of nodes}. The following lines describe the bags starting for each with "b", the \textbf{bag number} and \textbf{nodes in this bag}. Following these bags are lines not prefixed with a "b". Now each line describes one \textbf{edge between the bags} as two bag numbers separated by a space.\\
 
-Examples in appendix
+%Supported also in Maple \url{https://www.maplesoft.com/support/help/maple/view.aspx?path=Formats/CNF}
 
+Some examples of this format can be seen in the appendix at \ref{app:input}.
 %============== DOT ====================================================
 \subsection{DOT format}
 The graph description language DOT can be used to describe directed or undirected graphs and specify layout details and various attributes for graphs, edges and nodes. It is similar to the Graph Modeling Language as a text based file format for describing graphs, and the Graphviz project includes gml2gv and gv2gml as two tools that can convert between GML and DOT files.
@@ -1463,7 +1464,7 @@ class SvgJoinData:
 \end{lstlisting}
 
 %============== Input Examples ======================================================
-\section{Input Examples}
+\section{Input Examples}\label{app:input}
 
 \lstset{numbers=none}
 
