@@ -357,11 +357,11 @@ The tree width of a graph is the \textit{minimal width} over all tree decomposit
 
 %============== DIMACS ====================================================
 \subsection{DIMACS format - WIP}
-Developed in 1993 at Rutgers University.
-DIMACS (the Center for Discrete Mathematics and Theoretical Computer Science)
 
-Wolfram Language fully supports the DIMACS format for storing a single undirected graph.
-\url{https://reference.wolfram.com/language/ref/format/DIMACS.html}
+Inputs for solvers and in some cases for preparing the visualization of dpdb are expected to be in a DIMACS format. It exist several standardized formats for different cases, for example CNF clauses, graph edges and graph decomposition.
+File formats for these purposes were developed at "DIMACS" (the Center for Discrete Mathematics and Theoretical Computer Science) in 1993 at Rutgers University.
+They are supported in math software such as \href{https://reference.wolfram.com/language/ref/format/DIMACS.html}{"Wolfram Language"} for storing a single undirected graph and maple .
+
 
 DIMACS CNF: This format is used to define a Boolean expression, written in conjunctive normal form.
 \url{https://people.sc.fsu.edu/~jburkardt/data/cnf/cnf.html}
@@ -942,7 +942,7 @@ To simplify the creation of valid json I selected the actively developed c++ lib
 %============== DPDB ==========================================================
 %==============================================================================
 \newpage
-\section{Integration in dpdb}
+\section{Integration in dpdb - WIP}
 The integration of the API with dpdb was easier to implement after the solving process instead of
 hooking into the solving, 
 provided that all necessary information got persisted in the database.
