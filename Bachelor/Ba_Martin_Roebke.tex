@@ -218,8 +218,17 @@ Finally we shortly discuss Courcelle's Theorem~\cite{Courcelle2012} as a related
 %============== MSOL ====================================================
 \subsection{Monadic Second Order Logic - WIP}
 
+% Theory
+
 Explain graphs?Node, Edge
 
+FPT for model checking:
+An algorithm is FPT if it takes time $f(k)\cdot n^{c}$ for some fixed function f and constant c. The size of the input is n. 
+The value k is a parameter of the input. 
+This algorithm is then usable for small values of k. usually tree-width and clique width.
+
+
+% Implications
 MSO graph properties are "fixed-parameter-tractable" with respect to clique-width and tree-width. 
 \url{https://www.youtube.com/watch?v=hZI-wANHO1w} 5th workshop on Graph Classes, Optimization, and Width Parameters (GROW 2011)
 2011-10-28.
@@ -242,6 +251,8 @@ Two types of MSO formulas \textit{or logical graph representations}.
 \end{itemize}
 This can also be done for directed graphs!
 
+% Applications
+
 Typical MSO$_{2}$ graph properties:
 
 has a perfect matching
@@ -253,11 +264,6 @@ The expressions have the form: "There exists a \textbf{set of edges} that is..."
 \url{https://youtu.be/Wyn3djrYg7c?t=1385} Bruno Courcelle: Recognizable sets of graphs: algebraic and logical aspects 
 \url{https://library.cirm-math.fr/Record.htm?idlist=2&record=19276851124910940339}
 Recording during the thematic meeting: "Frontiers of reconnaissability" the April 29, 2014 at the Centre International de Rencontres Mathématiques (Marseille, France)
-
-FPT for model checking:
-An algorithm is FPT if it takes time $f(k)\cdot n^{c}$ for some fixed function f and constant c. The size of the input is n. 
-The value k is a parameter of the input. 
-This algorithm is then usable for small values of k. usually tree-width and clique width.
 
 %============== SAT ====================================================
 \subsection{Boolean satisfiability problem - WIP}
