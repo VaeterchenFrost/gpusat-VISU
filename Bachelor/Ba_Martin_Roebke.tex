@@ -218,9 +218,16 @@ Finally we shortly discuss Courcelle's Theorem~\cite{Courcelle2012} as a related
 %============== MSOL ====================================================
 \subsection{Monadic Second Order Logic - WIP}
 
+
+Monadic Second-Order (MSO) logic is a logical language that is suitable for expressing numerous graph properties \cite{Courcelle2012}. 
 % Theory
 
-Explain graphs?Node, Edge
+We use the word graph for a pair $G=(V_{G},E_{G})$, where $V_{G}$ is a nonempty set of vertices also called "nodes" and $E_{G}$ is the binary relation $E_{G} \subseteq V_{G} \times V_{G}$, such that $(x,y)\in E_{G}$ if and only if there exists an edge from $x$ to $y$ if $G$ is directed, and an edge between $x$ and $y$ if $G$ is undirected. For further information on graphs we refer to the common literature, for example \cite{HandbookMathGraph}. 
+
+
+% Implications
+There are efficient enumeration algorithms \cite{MSOQueriesGuillaume} and counting the number of solutions \cite{ARNBORG1991308} of a MSO formula, if it is ensured that the input data is preprocessed in linear time and that each solution is then produced in a delay linear in the size of each solution.
+MSO graph properties are "fixed-parameter-tractable" with respect to clique-width and tree-width. So are MSO counting and optimizing functions.
 
 FPT for model checking:
 An algorithm is FPT if it takes time $f(k)\cdot n^{c}$ for some fixed function f and constant c. The size of the input is n. 
@@ -228,42 +235,38 @@ The value k is a parameter of the input.
 This algorithm is then usable for small values of k. usually tree-width and clique width.
 
 
-% Implications
-MSO graph properties are "fixed-parameter-tractable" with respect to clique-width and tree-width. 
-\url{https://www.youtube.com/watch?v=hZI-wANHO1w} 5th workshop on Graph Classes, Optimization, and Width Parameters (GROW 2011)
-2011-10-28.
-MSO counting (k-colorings )and optimizing (distance between two vertices...) functions.
-Interested in MSO logic over graphs.
+%Interested in MSO logic over graphs.
 
-Two types of MSO formulas \textit{or logical graph representations}.
-\begin{itemize}
-	\item MSO formulas
-	\item MSO$_{2}$ formulas with edge quantification $\equiv$ MSO formulas over incidence graphs
-\end{itemize}
-\begin{itemize}
-	\item G=(vertices, edges as binary relation)
-	\item INC(G) = (vertices and edges, Inc)
-	for G undirected: Inc(e,v) <-> v is a vertex of edge e
-\end{itemize}
-\begin{itemize}
-	\item FPT for clique width
-	\item FPT for tree-width
-\end{itemize}
-This can also be done for directed graphs!
+%Two types of MSO formulas \textit{or logical graph representations}.
+%The expressions have the form: "There exists a \textbf{set of edges} that is..." can not be transferred into "set of vertices".
+%
+%\begin{itemize}
+%	\item MSO formulas
+%	\item MSO$_{2}$ formulas with edge quantification $\equiv$ MSO formulas over incidence graphs
+%\end{itemize}
+%\begin{itemize}
+%	\item G=(vertices, edges as binary relation)
+%	\item INC(G) = (vertices and edges, Inc)
+%	for G undirected: Inc(e,v) <-> v is a vertex of edge e
+%\end{itemize}
+%\begin{itemize}
+%	\item FPT for clique width
+%	\item FPT for tree-width
+%\end{itemize}
+%This can also be done for directed graphs!
 
 % Applications
+MSO logic can express graph properties and mappings from (labeled) graphs to (labeled) graphs \cite{CourcelleGROW}.
 
-Typical MSO$_{2}$ graph properties:
-
-has a perfect matching
-has a Hamiltonian circuit
-spanning tree of degree $\le$ 3
-
-The expressions have the form: "There exists a \textbf{set of edges} that is..." can not be transferred into "set of vertices"
-
-\url{https://youtu.be/Wyn3djrYg7c?t=1385} Bruno Courcelle: Recognizable sets of graphs: algebraic and logical aspects 
-\url{https://library.cirm-math.fr/Record.htm?idlist=2&record=19276851124910940339}
-Recording during the thematic meeting: "Frontiers of reconnaissability" the April 29, 2014 at the Centre International de Rencontres Mathématiques (Marseille, France)
+%Typical MSO$_{2}$ graph properties:
+%
+%has a perfect matching
+%has a Hamiltonian circuit
+%spanning tree of degree $\le$ 3
+%
+%\url{https://youtu.be/Wyn3djrYg7c?t=1385} Bruno Courcelle: Recognizable sets of graphs: algebraic and logical aspects 
+%\url{https://library.cirm-math.fr/Record.htm?idlist=2&record=19276851124910940339}
+%Recording during the thematic meeting: "Frontiers of reconnaissability" the April 29, 2014 at the Centre International de Rencontres Mathématiques (Marseille, France)
 
 %============== SAT ====================================================
 \subsection{Boolean satisfiability problem - WIP}

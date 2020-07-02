@@ -19,6 +19,20 @@
 
 \refsection{0}
   \datalist[entry]{anyt/global//global/global}
+    \entry{CourcelleGROW}{misc}{}
+      \list{location}{1}{%
+        {Daejeon, Korea}%
+      }
+      \field{labelalpha}{11}
+      \field{sortinit}{1}
+      \field{sortinithash}{50c6687d7fc80f50136d75228e3c59ba}
+      \field{labeltitlesource}{title}
+      \field{howpublished}{\url{https://www.youtube.com/watch?v=hZI-wANHO1w}}
+      \field{month}{10}
+      \field{note}{[Online; accessed 11-June-2020]}
+      \field{title}{On the constructive power of monadic second-order logic}
+      \field{year}{2011}
+    \endentry
     \entry{ARNBORG1991308}{article}{}
       \name{author}{3}{}{%
         {{hash=91f1ab1b38d3634e9fe137ce4e9b0255}{%
@@ -109,6 +123,65 @@
       \field{year}{2006}
       \field{pages}{167\bibrangedash 181}
       \range{pages}{15}
+    \endentry
+    \entry{HandbookMathGraph}{book}{}
+      \name{author}{4}{}{%
+        {{hash=100271af4ff759bd0549cfc1771c407b}{%
+           family={Bronshtein},
+           familyi={B\bibinitperiod},
+           given={I.N.},
+           giveni={I\bibinitperiod}}}%
+        {{hash=a6799191b3c453fad95eb00c0f3a09dc}{%
+           family={Semendyayev},
+           familyi={S\bibinitperiod},
+           given={K.A.},
+           giveni={K\bibinitperiod}}}%
+        {{hash=ca90565672fff206abb043828675b925}{%
+           family={Musiol},
+           familyi={M\bibinitperiod},
+           given={Gerhard},
+           giveni={G\bibinitperiod}}}%
+        {{hash=c144da914abb951808e409fc432a2377}{%
+           family={Mühlig},
+           familyi={M\bibinitperiod},
+           given={Heiner},
+           giveni={H\bibinitperiod}}}%
+      }
+      \list{language}{1}{%
+        {English}%
+      }
+      \list{location}{1}{%
+        {Berlin}%
+      }
+      \list{publisher}{1}{%
+        {Springer Verlag Berlin Heidelberg}%
+      }
+      \strng{namehash}{d580c840f9da2465286ed695c909190d}
+      \strng{fullhash}{313dbeecfc0814abebb0b3015de73491}
+      \strng{bibnamehash}{d580c840f9da2465286ed695c909190d}
+      \strng{authorbibnamehash}{d580c840f9da2465286ed695c909190d}
+      \strng{authornamehash}{d580c840f9da2465286ed695c909190d}
+      \strng{authorfullhash}{313dbeecfc0814abebb0b3015de73491}
+      \field{labelalpha}{Bro+15}
+      \field{sortinit}{B}
+      \field{sortinithash}{8de16967003c7207dae369d874f1456e}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{chapter}{5.8}
+      \field{edition}{6}
+      \field{isbn}{978-3-662-46220-1}
+      \field{pagetotal}{1207}
+      \field{title}{Handbook of Mathematics}
+      \field{year}{2015}
+      \field{dateera}{ce}
+      \field{pages}{401\bibrangedash 412}
+      \range{pages}{12}
+      \verb{doi}
+      \verb 10.1007/978-3-662-46221-8
+      \endverb
+      \verb{eprint}
+      \verb 978-3-662-46221-8
+      \endverb
     \endentry
     \entry{Courcelle2012}{book}{}
       \name{author}{2}{}{%
@@ -468,49 +541,6 @@
       \field{pages}{303\bibrangedash 308}
       \range{pages}{6}
     \endentry
-    \entry{ROBERTSON198449}{article}{}
-      \name{author}{2}{}{%
-        {{hash=30004d929a781bee1262997e1b576502}{%
-           family={Robertson},
-           familyi={R\bibinitperiod},
-           given={Neil},
-           giveni={N\bibinitperiod}}}%
-        {{hash=9c86b2da84f8e18c3c5e6194460cbfbb}{%
-           family={Seymour},
-           familyi={S\bibinitperiod},
-           given={P.D},
-           giveni={P\bibinitperiod}}}%
-      }
-      \strng{namehash}{1c46a51d3b7bab4f1b95f280f231547e}
-      \strng{fullhash}{1c46a51d3b7bab4f1b95f280f231547e}
-      \strng{bibnamehash}{1c46a51d3b7bab4f1b95f280f231547e}
-      \strng{authorbibnamehash}{1c46a51d3b7bab4f1b95f280f231547e}
-      \strng{authornamehash}{1c46a51d3b7bab4f1b95f280f231547e}
-      \strng{authorfullhash}{1c46a51d3b7bab4f1b95f280f231547e}
-      \field{labelalpha}{RS84}
-      \field{sortinit}{R}
-      \field{sortinithash}{b9c68a358aea118dfa887b6e902414a7}
-      \field{labelnamesource}{author}
-      \field{labeltitlesource}{title}
-      \field{abstract}{The “tree-width” of a graph is defined and it is proved that for any fixed planar graph H, every planar graph with sufficiently large tree-width has a minor isomorphic to H. This result has several applications which are described in other papers in this series.}
-      \field{issn}{0095-8956}
-      \field{journaltitle}{Journal of Combinatorial Theory, Series B}
-      \field{number}{1}
-      \field{title}{Graph minors. III. Planar tree-width}
-      \field{volume}{36}
-      \field{year}{1984}
-      \field{pages}{49\bibrangedash 64}
-      \range{pages}{16}
-      \verb{doi}
-      \verb https://doi.org/10.1016/0095-8956(84)90013-3
-      \endverb
-      \verb{urlraw}
-      \verb http://www.sciencedirect.com/science/article/pii/0095895684900133
-      \endverb
-      \verb{url}
-      \verb http://www.sciencedirect.com/science/article/pii/0095895684900133
-      \endverb
-    \endentry
     \entry{ST99}{inproceedings}{}
       \name{author}{2}{}{%
         {{hash=ba3c7e965cb924666fe02501a886b422}{%
@@ -670,45 +700,6 @@
       \field{howpublished}{\url{http://katalog.ub.tuwien.ac.at/AC15055950}}
       \field{title}{Solving the \#SAT problem on the GPU with dynamic programming and OpenCL}
       \field{year}{2018}
-    \endentry
-    \entry{BioInfoTD1970}{inproceedings}{}
-      \name{author}{3}{}{%
-        {{hash=2891be0551878a3bc2eb7930b6d0b1d7}{%
-           family={Zhao},
-           familyi={Z\bibinitperiod},
-           given={Jizhen},
-           giveni={J\bibinitperiod}}}%
-        {{hash=6046a44aef72676e61677f4709969a48}{%
-           family={Malmberg},
-           familyi={M\bibinitperiod},
-           given={Russell},
-           giveni={R\bibinitperiod}}}%
-        {{hash=79d312239a234746632897639a3be1ff}{%
-           family={Cai},
-           familyi={C\bibinitperiod},
-           given={Liming},
-           giveni={L\bibinitperiod}}}%
-      }
-      \strng{namehash}{3149ded95b150857a41622816f70e55d}
-      \strng{fullhash}{3149ded95b150857a41622816f70e55d}
-      \strng{bibnamehash}{3149ded95b150857a41622816f70e55d}
-      \strng{authorbibnamehash}{3149ded95b150857a41622816f70e55d}
-      \strng{authornamehash}{3149ded95b150857a41622816f70e55d}
-      \strng{authorfullhash}{3149ded95b150857a41622816f70e55d}
-      \field{labelalpha}{ZMC70}
-      \field{sortinit}{Z}
-      \field{sortinithash}{8f7b480688e809b50b6f6577b16f3db5}
-      \field{labelnamesource}{author}
-      \field{labeltitlesource}{title}
-      \field{month}{01}
-      \field{title}{Rapid ab initio RNA Folding Including Pseudoknots Via Graph Tree Decomposition}
-      \field{volume}{4175}
-      \field{year}{1970}
-      \field{pages}{262\bibrangedash 273}
-      \range{pages}{12}
-      \verb{doi}
-      \verb 10.1007/11851561_25
-      \endverb
     \endentry
   \enddatalist
 \endrefsection
