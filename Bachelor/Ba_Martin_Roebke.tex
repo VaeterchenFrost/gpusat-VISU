@@ -255,22 +255,25 @@ quantifier symbols add
 \end{itemize}
 The non-logical symbols now represent relations, functions and constants on the domain of discourse. 
 
-
-A relation symbol with some arity (number of arguments) $\in \mathbb{N}$.
+A \textbf{relation symbol} with some arity (number of arguments) $\in \mathbb{N}$.
 Relations of arity 0 can be identified with propositional variables.
 Examples for practical interpretations for 2-ary (binary) relations are
 \textit{\textbf{x} greater than \textbf{y}, \textbf{x} less than \textbf{y}, \textbf{x} divides \textbf{y}, \textbf{x} subset of \textbf{y}} depending on the current domain.
 
-A function symbol, with some valence greater than or equal to 0. These are often denoted by lowercase letters f, g, h,... .
-Examples: f(x) may be interpreted as for "the father of x". In arithmetic, it may stand for "-x". In set theory, it may stand for "the power set of x". In arithmetic, g(x,y) may stand for "x+y". In set theory, it may stand for "the union of x and y".
-Function symbols of valence 0 are called constant symbols, and are often denoted by lowercase letters at the beginning of the alphabet a, b, c,... . The symbol a may stand for Socrates. In arithmetic, it may stand for 0. In set theory, such a constant may stand for the empty set.
 
+A \textbf{function symbol}, with some arity $\in \mathbb{N}$. Any function $f(t_{1},...,t_{n})$ of n arguments (where each argument $t_{i}$ is a term and $f$ is a function symbol of arity $n$) is a term. 
+Function symbols of valence 0 are called constant symbols, and are often denoted by lowercase letters from the beginning of the alphabet a, b, c,... . \\
+
+
+\textbf{First-order logic quantifies only variables that range over individuals (elements of the domain of discourse); second-order logic, in addition, also quantifies over relations.}
+
+\textbf{Monadic second-order logic (MSO) is a restriction of second-order logic in which only quantification over unary relations (i.e. sets) is allowed. Quantification over functions, owing to the equivalence to relations as described above, is thus also not allowed.}
 
 % Implications
 There are efficient enumeration algorithms \cite{MSOQueriesGuillaume} and counting the number of solutions \cite{ARNBORG1991308} of a MSO formula, if it is ensured that the input data is preprocessed in linear time and that each solution is then produced in a delay linear in the size of each solution.
 MSO graph properties are "fixed-parameter-tractable" with respect to clique-width and tree-width. So are MSO counting and optimizing functions.
 
-FPT for model checking:
+\textbf{FPT for model checking}:
 An algorithm is FPT if it takes time $f(k)\cdot n^{c}$ for some fixed function f and constant c. The size of the input is n. 
 The value k is a parameter of the input. 
 This algorithm is then usable for small values of k. usually tree-width and clique width.
