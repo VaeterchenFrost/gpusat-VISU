@@ -22,7 +22,7 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {subsection}{\numberline {2.5}DIMACS format}{9}{subsection.2.5}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {2.6}DOT format}{10}{subsection.2.6}%
+\contentsline {subsection}{\numberline {2.6}DOT format - WIP}{10}{subsection.2.6}%
 \defcounter {refsection}{0}\relax 
 \contentsline {section}{\numberline {3}My Visualization Project}{12}{section.3}%
 \defcounter {refsection}{0}\relax 
@@ -44,7 +44,7 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {subsection}{\numberline {4.2}Class SolverVisualization}{25}{subsection.4.2}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {5}Integration in dpdb - WIP}{26}{section.5}%
+\contentsline {section}{\numberline {5}Integration in dpdb}{26}{section.5}%
 \defcounter {refsection}{0}\relax 
 \contentsline {section}{\numberline {6}Application and Images}{27}{section.6}%
 \defcounter {refsection}{0}\relax 

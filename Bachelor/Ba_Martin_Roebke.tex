@@ -954,9 +954,8 @@ To simplify the creation of valid json I selected the actively developed c++ lib
 %============== DPDB ==========================================================
 %==============================================================================
 \newpage
-\section{Integration in dpdb - WIP}
-The integration of the API with dpdb was easier to implement after the solving process instead of
-hooking into the solving, 
+\section{Integration in dpdb}
+The integration of the API with dpdb was easier to implement after the solving process instead of hooking into the solving, 
 provided that all necessary information got persisted in the database.
 The integration is included in the TDVisu project as a separate python file.
 A complete workflow can be accomplished using the arguments
@@ -991,19 +990,13 @@ the main parameters
 	 
 	\item
 	\textbf{-{}-inter-nodes}
-	Calculate and animate the shortest path between successive bags in the order of evaluation. To accomplish this task, an efficient implementation of the bidirectional Dijkstra's algorithm \cite{shortestPathAlgo} based on the implementation by NetworkX \cite{SciPyProceedings_11} in \href{https://networkx.github.io/documentation/networkx-2.1/reference/algorithms/generated/networkx.algorithms.shortest_paths.weighted.bidirectional_dijkstra.html#networkx.algorithms.shortest_paths.weighted.bidirectional_dijkstra}{bidirectional\_dijkstra}.
-	in our case the weight function is always one, as the edges have no weight associated with them.
+	Calculate and animate the shortest path between successive bags in the order of evaluation. To accomplish this task, an efficient implementation of the bidirectional Dijkstra's algorithm \cite{shortestPathAlgo} based on the implementation by NetworkX \cite{SciPyProceedings_11} in \href{https://networkx.github.io/documentation/networkx-2.1/reference/algorithms/generated/networkx.algorithms.shortest_paths.weighted.bidirectional_dijkstra.html#networkx.algorithms.shortest_paths.weighted.bidirectional_dijkstra}{bidirectional\_dijkstra} was adapted.
+	In our use case the weight function is always one, as the edges have no weight associated with them.
 \end{itemize}
 After the arguments are parsed by \href{https://docs.python.org/3/library/argparse.html}{pythons argparse} it is possible to adjust logging output by either providing a configuration file (\href{https://github.com/VaeterchenFrost/tdvisu/blob/master/tdvisu/logging.yml}{template} provided) or giving a minimal logging level per program argument.
 
-!!! Database Config!!!
-
-Next the \textit{create\_json}~\ref{lst:create-json} function connects to the database driver with 
-the number of the stored problem. 
-The "problem type" is available as a string in table \emph{public.problem}, and the appropriate class to prepare the json will be instantiated. At this time the solver handles the problems of \textit{satisfiability} (Sat), \textit{count solutions to a Boolean formula} (SharpSat) as well as \textit{minimum vertex cover} (VertexCover).
-
-
-Beispiel
+Next the \textit{create\_json}~\ref{lst:create-json} function connects to the database driver with the number of the stored problem. 
+The "problem type" is available as a string in table \emph{public.problem}, and the appropriate class to prepare the json will be instantiated. Currently the solver handles the problems of \textit{satisfiability} (Sat), \textit{count solutions to a Boolean formula} (SharpSat) as well as \textit{minimum vertex cover} (VertexCover).
 
 %==============================================================================
 %============== APPLICATION ===================================================
