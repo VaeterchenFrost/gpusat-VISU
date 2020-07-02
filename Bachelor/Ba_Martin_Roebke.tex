@@ -334,7 +334,7 @@ The workflow then looks like we see in figure~\ref{fig:UsageCourcelle}.
 %============== TD ====================================================
 \subsection{Tree Decomposition - WIP}
 %Used in RNA Folding: Novel prediction techniques are developed based on graph tree decomposition. \cite{BioInfoTD1970}
-See also chapter 2.2 of \cite{DiplomarbeitZisser}.
+%See also chapter 2.2 of \cite{DiplomarbeitZisser}.
 %Tree decompositions were originally introduced by Robertson and Seymour \cite{ROBERTSON198449} in 1984.
 A \textit{tree decomposition} (TD) of a graph G is a pair $(T, \chi)$. $T$ is a tree and $\chi$ is a mapping which assigns each node $n~\in~V(T)$ 
 a set $\chi(n) \subseteq V(G)$ called a \textit{bag}. Then $(T, \chi)$. $T$ is a TD if the following conditions hold:
@@ -349,13 +349,11 @@ The tree width of a graph is the \textit{minimal width} over all tree decomposit
 
 %Wiki: In this definition, the size of the largest set is diminished by one in order to make the treewidth of a tree equal to one. 
 
-MSO queries on tree decomposable structures are computable with linear delay \cite{MSOQueriesGuillaume}. There are many "easy" problems on tree decomposable graphs \cite{ARNBORG1991308}.
+MSO queries on tree decomposable structures are computable with linear delay \cite{MSOQueriesGuillaume}. There exist many "easy" problems on tree decomposable graphs \cite{ARNBORG1991308}.
 
-
-!!!Example (can take one from the visualizations) also in \cite{pcgp2019} page 169
-
-
-
+% Examples
+We use tree decompositions throughout our visualizations in this thesis. One detailed explanation is also introduced in \cite{pcgp2019} at page 169.
+The tree decomposition for our example "wheelgraph" \ref{fig:wheelgraph} can be viewed as a listing in \ref{lst:wheelgraphtd}. The conditions for tree decompositions outlined above are easy to verify for this small example, and we get a tree width $width(T)=3$ for this graph.
 
 
 %============== DIMACS ====================================================
@@ -1514,6 +1512,7 @@ p cnf 18 24
 \lstinputlisting[caption={DOT source for visualization of example 4.1}, label={lst:g41digraphdot}]{includes/g41digraphdot}
 \lstinputlisting[caption={stdout of program gpusat with call \textit{./gpusat -f ../examples/test\_da4\_1.cnf -v -p -d ../examples/td4p1.txt  -g ../examples/graphfileda41.txt -{}-visufile ../examples/visufileda41.json}}, label={lst:outputGpusat}]{includes/outputGpusat.txt}
 \lstinputlisting[caption={Edges for example \ref{fig:wheelgraph}}, label={lst:wheelgraph}]{images/WheelGraph7/wheelgraph7.tw}
+\lstinputlisting[caption={Tree decomposition for example \ref{fig:wheelgraph}}, label={lst:wheelgraphtd}]{images/WheelGraph7/wheelgraph7.td}
 %==============================================================================
 %============== BIBLIOGRAPHY ==================================================
 %==============================================================================
