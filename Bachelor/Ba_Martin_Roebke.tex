@@ -219,11 +219,33 @@ Finally we shortly discuss Courcelle's Theorem~\cite{Courcelle2012} as a related
 \subsection{Monadic Second Order Logic - WIP}
 
 
-Monadic Second-Order (MSO) logic is a logical language that is suitable for expressing numerous graph properties \cite{Courcelle2012}. 
+\textbf{Monadic Second-Order (MSO) logic} is a logical language that is suitable for expressing numerous graph properties \cite{Courcelle2012}. 
 % Theory
 
-We use the word graph for a pair $G=(V_{G},E_{G})$, where $V_{G}$ is a nonempty set of vertices also called "nodes" and $E_{G}$ is the binary relation $E_{G} \subseteq V_{G} \times V_{G}$, such that $(x,y)\in E_{G}$ if and only if there exists an edge from $x$ to $y$ if $G$ is directed, and an edge between $x$ and $y$ if $G$ is undirected. For further information on graphs we refer to the common literature, for example \cite{HandbookMathGraph}. 
+We use the word \textbf{graph} for a pair $G=(V_{G},E_{G})$, where $V_{G}$ is a nonempty set of vertices also called "nodes" and $E_{G}$ is the binary relation $E_{G} \subseteq V_{G} \times V_{G}$, such that $(x,y)\in E_{G}$ if and only if there exists an edge from $x$ to $y$ if $G$ is directed, and an edge between $x$ and $y$ if $G$ is undirected. For further information on graphs we refer to the common literature, for example \cite{HandbookMathGraph}. 
 
+\textbf{Propositional logic}, also called propositional calculus or zeroth-order logic, is a formal system $\mathcal{L} = \mathcal{L}(\mathrm {A},\Omega, \mathrm{Z}, \mathrm{I})$ with
+\begin{itemize}
+	\item the alpha set $\mathrm {A}$ as a countably infinite set of elements called proposition symbols or propositional variables. These are also called terminal elements.
+	\item The omega set $\Omega$ is a finite set of elements called operator symbols or logical connectives. It is partitioned into disjoint subsets as follows:
+	
+	$\Omega =\Omega _{0}\cup \Omega _{1}\cup \ldots \cup \Omega _{j}\cup \ldots \cup \Omega _{m}.$.
+	
+	In this partition, $\Omega _{j}$ is the set of operator symbols of arity j.
+	
+	In the more familiar propositional calculi, $\Omega$ is typically partitioned as follows:
+	
+	${ \Omega _{0}=\{\bot ,\top \}.}$ 
+	
+	${\Omega _{1}=\{\lnot \},}$
+	
+	${ \Omega _{2}\subseteq \{\land ,\lor ,\to ,\leftrightarrow \}.}$
+
+	\item The zeta set $\mathrm {Z}$ is a finite set of transformation rules that are called inference rules when they receive logical applications.
+	
+	\item The iota set $\mathrm {I}$ is a countable set of initial points that are called axioms when they receive logical interpretations.
+	
+\end{itemize}
 
 % Implications
 There are efficient enumeration algorithms \cite{MSOQueriesGuillaume} and counting the number of solutions \cite{ARNBORG1991308} of a MSO formula, if it is ensured that the input data is preprocessed in linear time and that each solution is then produced in a delay linear in the size of each solution.
