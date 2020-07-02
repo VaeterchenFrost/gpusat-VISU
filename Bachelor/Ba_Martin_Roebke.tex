@@ -358,13 +358,14 @@ The tree width of a graph is the \textit{minimal width} over all tree decomposit
 %============== DIMACS ====================================================
 \subsection{DIMACS format - WIP}
 
-Inputs for solvers and in some cases for preparing the visualization of dpdb are expected to be in a DIMACS format. It exist several standardized formats for different cases, for example CNF clauses, graph edges and graph decomposition.
+Inputs for solvers and in some cases for preparing the visualization of dpdb are usually in a DIMACS format. There exist several standardized formats for different cases, for example CNF clauses, graph edges and graph decompositions.
 File formats for these purposes were developed at "DIMACS" (the Center for Discrete Mathematics and Theoretical Computer Science) in 1993 at Rutgers University.
-They are supported in math software such as \href{https://reference.wolfram.com/language/ref/format/DIMACS.html}{"Wolfram Language"} for storing a single undirected graph and maple .
+They are partly supported in several math-related software.
 
+The underlying concept is one line-based ASCII file and for all different formats specifies comments as lines starting with the character "c", a problem line starting with "p" (rarely with "s") and following the problem line usually multiple lines specifying the data in a format depending on the problem type.
+The formats used for this work are:
 
-DIMACS CNF: This format is used to define a Boolean expression, written in conjunctive normal form.
-\url{https://people.sc.fsu.edu/~jburkardt/data/cnf/cnf.html}
+\textbf{DIMACS CNF}: This format is used to define a Boolean expression, written in conjunctive normal form. The problem line specifies \textbf{number of variables} and \textbf{number of clauses}. The following lines specify the clauses a positive literal is denoted by the corresponding number, and a negative literal is denoted by the corresponding negative number. Each clause is followed by the character zero, so 0 should not occur as a variable. Instead variables are expected to start at one.
 
 Other formats for WMC, different graphs...
 
