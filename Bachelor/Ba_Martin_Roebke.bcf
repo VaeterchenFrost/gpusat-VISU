@@ -2188,23 +2188,21 @@
     <bcf:citekey order="4">Courcelle2012</bcf:citekey>
     <bcf:citekey order="5">DiplomarbeitZisser</bcf:citekey>
     <bcf:citekey order="6">Courcelle2012</bcf:citekey>
-    <bcf:citekey order="7">BioInfoTD1970</bcf:citekey>
-    <bcf:citekey order="8">DiplomarbeitZisser</bcf:citekey>
-    <bcf:citekey order="9">ROBERTSON198449</bcf:citekey>
+    <bcf:citekey order="7">DiplomarbeitZisser</bcf:citekey>
+    <bcf:citekey order="8">MSOQueriesGuillaume</bcf:citekey>
+    <bcf:citekey order="9">ARNBORG1991308</bcf:citekey>
     <bcf:citekey order="10">pcgp2019</bcf:citekey>
-    <bcf:citekey order="11">ARNBORG1991308</bcf:citekey>
-    <bcf:citekey order="12">MSOQueriesGuillaume</bcf:citekey>
-    <bcf:citekey order="13">rapidPrototypingOvermyer</bcf:citekey>
-    <bcf:citekey order="14">ST99</bcf:citekey>
-    <bcf:citekey order="15">Hu05</bcf:citekey>
-    <bcf:citekey order="16">Himsolt2010GMLAP</bcf:citekey>
-    <bcf:citekey order="17">shortestPathAlgo</bcf:citekey>
-    <bcf:citekey order="18">SciPyProceedings_11</bcf:citekey>
-    <bcf:citekey order="19">HenningParamAlgo</bcf:citekey>
-    <bcf:citekey order="20">dpdbpadl2020</bcf:citekey>
-    <bcf:citekey order="21">Mathematica</bcf:citekey>
-    <bcf:citekey order="22">DiplomarbeitZisser</bcf:citekey>
-    <bcf:citekey order="23">DiplomarbeitZisser</bcf:citekey>
+    <bcf:citekey order="11">rapidPrototypingOvermyer</bcf:citekey>
+    <bcf:citekey order="12">ST99</bcf:citekey>
+    <bcf:citekey order="13">Hu05</bcf:citekey>
+    <bcf:citekey order="14">Himsolt2010GMLAP</bcf:citekey>
+    <bcf:citekey order="15">shortestPathAlgo</bcf:citekey>
+    <bcf:citekey order="16">SciPyProceedings_11</bcf:citekey>
+    <bcf:citekey order="17">HenningParamAlgo</bcf:citekey>
+    <bcf:citekey order="18">dpdbpadl2020</bcf:citekey>
+    <bcf:citekey order="19">Mathematica</bcf:citekey>
+    <bcf:citekey order="20">DiplomarbeitZisser</bcf:citekey>
+    <bcf:citekey order="21">DiplomarbeitZisser</bcf:citekey>
   </bcf:section>
   <!-- SORTING TEMPLATES -->
   <bcf:sortingtemplate name="anyt">

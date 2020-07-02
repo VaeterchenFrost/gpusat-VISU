@@ -333,27 +333,30 @@ The workflow then looks like we see in figure~\ref{fig:UsageCourcelle}.
 
 %============== TD ====================================================
 \subsection{Tree Decomposition - WIP}
-Used in RNA Folding: Novel prediction techniques are developed based on graph tree decomposition. \cite{BioInfoTD1970}
-\cite{DiplomarbeitZisser}chapter 2.2
-Tree decompositions were originally introduced by Robertson and Seymour \cite{ROBERTSON198449} in 1984.
+%Used in RNA Folding: Novel prediction techniques are developed based on graph tree decomposition. \cite{BioInfoTD1970}
+See also chapter 2.2 of \cite{DiplomarbeitZisser}.
+%Tree decompositions were originally introduced by Robertson and Seymour \cite{ROBERTSON198449} in 1984.
 A \textit{tree decomposition} (TD) of a graph G is a pair $(T, \chi)$. $T$ is a tree and $\chi$ is a mapping which assigns each node $n~\in~V(T)$ 
 a set $\chi(n) \subseteq V(G)$ called a \textit{bag}. Then $(T, \chi)$. $T$ is a TD if the following conditions hold:
 
 \begin{itemize}
 	\item[1.] for each vertex $v(n) \in V(G)$ there is a node $n \in V(T)$ such that $v \in \chi(n)$
 	\item[2.] for each edge $(x,y) \in E(G)$ there is a node $n\in V(T)$ such that $x,y \in\chi(n)$
-	\item[3.] if $x,y,z \in V(T)$ and $y$ lies on the path from x to z then $\chi(x) \cap \chi(z) \subseteq \chi(y)$.
+	\item[3.] if $x,y,z \in V(T)$ and $y$ lies on the path from x to z then $\chi(x) \cap \chi(z) \subseteq \chi(y)$. The set of bags that contain the variable v induce a connected sub-graph of T.
 \end{itemize}
 The width $width(T)$ of a tree decomposition $T$ is $max_{n\in V(T)}(|\chi(n)|)-1$.
-The tree width of a graph is the \textit{minimal width} over all tree decompositions of the graph.
+The tree width of a graph is the \textit{minimal width} over all tree decompositions of the graph. 
 
 %Wiki: In this definition, the size of the largest set is diminished by one in order to make the treewidth of a tree equal to one. 
 
+MSO queries on tree decomposable structures are computable with linear delay \cite{MSOQueriesGuillaume}. There are many "easy" problems on tree decomposable graphs \cite{ARNBORG1991308}.
+
+
 !!!Example (can take one from the visualizations) also in \cite{pcgp2019} page 169
 
-\cite{ARNBORG1991308}
 
-\cite{MSOQueriesGuillaume}
+
+
 
 %============== DIMACS ====================================================
 \subsection{DIMACS format}
@@ -1071,7 +1074,7 @@ As a very small example we will try to solve \textit{minimal vertex cover} for t
 \begin{figure}[H]
 	\centering
 	\includegraphics[]{images/WheelGraph7/graph1.pdf}
-	\caption{Wheel graph with 8 vertices and edges from listing \ref{lst:wheelgraph}.}
+	\caption{Wheel graph with 7 vertices.}
 	\label{fig:wheelgraph}
 \end{figure}
 
@@ -1510,7 +1513,7 @@ p cnf 18 24
 \end{lstlisting}
 \lstinputlisting[caption={DOT source for visualization of example 4.1}, label={lst:g41digraphdot}]{includes/g41digraphdot}
 \lstinputlisting[caption={stdout of program gpusat with call \textit{./gpusat -f ../examples/test\_da4\_1.cnf -v -p -d ../examples/td4p1.txt  -g ../examples/graphfileda41.txt -{}-visufile ../examples/visufileda41.json}}, label={lst:outputGpusat}]{includes/outputGpusat.txt}
-\lstinputlisting[caption={Edges for example \ref{fig:wheelgraph}}, label={lst:wheelgraph}]{images/WheelGraph7/wheelgraph7.col}
+\lstinputlisting[caption={Edges for example \ref{fig:wheelgraph}}, label={lst:wheelgraph}]{images/WheelGraph7/wheelgraph7.tw}
 %==============================================================================
 %============== BIBLIOGRAPHY ==================================================
 %==============================================================================
