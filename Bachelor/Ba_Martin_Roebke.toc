@@ -2,25 +2,25 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {section}{\numberline {1}Introduction}{5}{section.1}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {1.1}Motivation}{5}{subsection.1.1}%
+\contentsline {subsection}{\numberline {1.1}Motivation - WIP}{5}{subsection.1.1}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {1.2}Concept}{5}{subsection.1.2}%
+\contentsline {subsection}{\numberline {1.2}Concept - WIP}{5}{subsection.1.2}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {1.3}Related Work}{6}{subsection.1.3}%
+\contentsline {subsection}{\numberline {1.3}Related Work - WIP}{6}{subsection.1.3}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {1.4}Thesis Outline}{6}{subsection.1.4}%
+\contentsline {subsection}{\numberline {1.4}Thesis Outline - WIP}{6}{subsection.1.4}%
 \defcounter {refsection}{0}\relax 
 \contentsline {section}{\numberline {2}Background}{7}{section.2}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {2.1}Boolean satisfiability problem}{7}{subsection.2.1}%
+\contentsline {subsection}{\numberline {2.1}Boolean satisfiability problem - WIP}{7}{subsection.2.1}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {2.2}Monadic Second Order Logic}{7}{subsection.2.2}%
+\contentsline {subsection}{\numberline {2.2}Monadic Second Order Logic - WIP}{7}{subsection.2.2}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {2.3}Courcelle's Theorem}{8}{subsection.2.3}%
+\contentsline {subsection}{\numberline {2.3}Courcelle's Theorem - WIP}{8}{subsection.2.3}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {2.4}Tree Decomposition}{9}{subsection.2.4}%
+\contentsline {subsection}{\numberline {2.4}Tree Decomposition - WIP}{9}{subsection.2.4}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {2.5}DIMACS format}{9}{subsection.2.5}%
+\contentsline {subsection}{\numberline {2.5}DIMACS format - WIP}{9}{subsection.2.5}%
 \defcounter {refsection}{0}\relax 
 \contentsline {subsection}{\numberline {2.6}DOT format}{10}{subsection.2.6}%
 \defcounter {refsection}{0}\relax 
