@@ -216,8 +216,7 @@ The following section describes Tree Decompositions (TDs) which are the basis fo
 Finally we shortly discuss Courcelle's Theorem~\cite{Courcelle2012} as a related method of solving these problems.
 
 %============== MSOL ====================================================
-\subsection{Monadic Second Order Logic - WIP}
-
+\subsection{Monadic Second Order Logic}
 
 \textbf{Monadic Second-Order (MSO) logic} is a logical language that is suitable for expressing numerous graph properties \cite{Courcelle2012}. 
 % Theory
@@ -272,12 +271,15 @@ Function symbols of valence 0 are called constant symbols, and are often denoted
 % Implications
 There are efficient enumeration algorithms \cite{MSOQueriesGuillaume} and counting the number of solutions \cite{ARNBORG1991308} of a MSO formula, if it is ensured that the input data is preprocessed in linear time and that each solution is then produced in a delay linear in the size of each solution.
 MSO graph properties are "fixed-parameter-tractable" with respect to clique-width and tree-width. So are MSO counting and optimizing functions.
+MSO logic can express graph properties and mappings from (labeled) graphs to (labeled) graphs \cite{CourcelleGROW}.
 
 \textbf{FPT for model checking}:
-An algorithm is FPT if it takes time $f(k)\cdot n^{c}$ for some fixed function f and constant c. The size of the input is n. 
-The value k is a parameter of the input. 
-This algorithm is then usable for small values of k. usually tree-width and clique width.
-
+Some problems can be solved by algorithms that are exponential only in the size of a fixed parameter while polynomial in the size of the input. Such an algorithm is called a fixed-parameter tractable (FTP-)algorithm, and the problem can be solved efficiently for small values of the fixed parameter.
+\begin{thm}
+	An algorithm is FPT if it takes time $f(k)\cdot n^{c}$ for some constant $c$ and a fixed function f depending only on $k \in \mathbb{N}$. The size of the input is n. 
+	The value k is a parameter of the input, in our case usually tree-width. 
+	This algorithm is then usable for small values of k.
+\end{thm}
 
 %Interested in MSO logic over graphs.
 
@@ -300,7 +302,7 @@ This algorithm is then usable for small values of k. usually tree-width and cliq
 %This can also be done for directed graphs!
 
 % Applications
-MSO logic can express graph properties and mappings from (labeled) graphs to (labeled) graphs \cite{CourcelleGROW}.
+
 
 %Typical MSO$_{2}$ graph properties:
 %
@@ -313,7 +315,7 @@ MSO logic can express graph properties and mappings from (labeled) graphs to (la
 %Recording during the thematic meeting: "Frontiers of reconnaissability" the April 29, 2014 at the Centre International de Rencontres Mathématiques (Marseille, France)
 
 %============== SAT ====================================================
-\subsection{Boolean satisfiability problem - WIP}
+\subsection{Boolean satisfiability problem}
 % https://en.wikipedia.org/wiki/Boolean_satisfiability_problem
 
 %SAT was the first known NP-complete problem, shown by Stephen Cook at the University of Toronto in 1971 \cite{SAT1971}
@@ -329,7 +331,7 @@ MSO logic can express graph properties and mappings from (labeled) graphs to (la
 %\text{satisfiedform}&\equiv \text{each clause in the formula is satisfied by assignment} \\
 %\end{align*}
 
-A literal is a boolean variable $v$ or its negation $\neg v$. A $clause$ is a finite set of literals interpreted as their disjunction. A clause $c$ is called $unit$ if $|c|=1$. A CNF $formula$ is a set of clauses and is interpreted as the conjunction of its clauses. We define $var(C)$ as the set of variables contained in the clause or clause set C. As $assignment \alpha$ maps variables in a formula to 0 or 1, $\alpha : var(C)\rightarrow 0,1$. A clause is satisfied by an assignment if for some variable $v \in var(c)$ we have $v \in c \land \alpha (v)=1$ {or} $\neg v \in c \land \alpha(v)=0$. Otherwise the assignment falsifies the clause. An assignment satisfies a formula if each clause in the formula os satisfied by the assignment. \\
+A literal is a Boolean variable $v$ or its negation $\neg v$. A $clause$ is a finite set of literals interpreted as their disjunction. A clause $c$ is called $unit$ if $|c|=1$. A CNF $formula$ is a set of clauses and is interpreted as the conjunction of its clauses. We define $var(C)$ as the set of variables contained in the clause or clause set C. As $assignment \alpha$ maps variables in a formula to 0 or 1, $\alpha : var(C)\rightarrow 0,1$. A clause is satisfied by an assignment if for some variable $v \in var(c)$ we have $v \in c \land \alpha (v)=1$ {or} $\neg v \in c \land \alpha(v)=0$. Otherwise the assignment falsifies the clause. An assignment satisfies a formula if each clause in the formula os satisfied by the assignment. \\
 A set C of clauses is 
 \begin{itemize}
 	\renewcommand{\labelitemi}{-}
@@ -339,9 +341,25 @@ A set C of clauses is
 	\item \textit{unsatisfiable} if there does not exist an assignment that safisfies all clauses in C.
 \end{itemize}
 
+The \textit{primal graph} of a SAT formula contains a vertex for each variable of the SAT formula, and only has an edge between two vertices if they both occur in one clause together.
+
+The \textit{incidence graph} of a SAT formula if bipartite and contains a node for each variable and clause in the SAT formula. It only has edges between a variable node and a clause node if the variable occurs in the clause.
+
+The \textit{dual graph} of a SAT formula contains a node for each clause in the SAT formula. This graph only has an edge between two vertices if the two clauses have at least one common variable.
+
+For more details see for example chapter 2.1 of \cite{DiplomarbeitZisser}.
+
+%SAT Handbook:
+%Even finding a single solution can be a challenge
+%for such problems; counting the number of solutions is much harder.Not
+%surprisingly, the largest formulas we can solve for the model counting problem
+%with state - of - the - art model counters are orders of magnitude smaller than the
+%formulas we can solve with the best SAT solvers. Generally speaking, current
+%exact counting methods can tackle problems with a couple of hundred variables, while approximate counting methods push this to around 1, 000 variables.
+
 % EXAMPLE 4.1?
 \begin{example}[\label{ex:example41}]
-	We will use the formula with the following clause set: $C=\{c_{1}=\{v_{1},v_{4},v_{6}\},
+	For visualization samples we will use the formula with the following clause set: $C=\{c_{1}=\{v_{1},v_{4},v_{6}\},
 	c_{2}=\{v_{1},\neg v_{5}\},
 	c_{3}=\{\neg v_{1},v_{7}\},
 	c_{4}=\{v_{2},v_{3}\},
@@ -352,17 +370,6 @@ A set C of clauses is
 	c_{9}=\{\neg v_{4},v_{6}\},
 	c_{10}=\{\neg v_{4},v_{7}\}\}$
 \end{example}
-
-Connection to graphs with \cite{DiplomarbeitZisser}
-
-SAT Handbook:
-Even finding a single solution can be a challenge
-for such problems; counting the number of solutions is much harder.Not
-surprisingly, the largest formulas we can solve for the model counting problem
-with state - of - the - art model counters are orders of magnitude smaller than the
-formulas we can solve with the best SAT solvers. Generally speaking, current
-exact counting methods can tackle problems with a couple of hundred variables, while approximate counting methods push this to around 1, 000 variables.
-
 
 %============== Courcelle ====================================================
 \subsection{Courcelle's Theorem - WIP}
