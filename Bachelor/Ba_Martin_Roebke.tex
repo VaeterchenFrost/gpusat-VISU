@@ -208,12 +208,56 @@ Visualization Pipeline
 %==============================================================================
 \newpage
 \section{Background}
-\textit{In this chapter we provide a brief background on }.
+\textit{In this chapter we provide a brief background for this work.}
 
 We begin with a description on SAT and \#SAT as examples for a very general problem that can be described with monadic second order logic (MSOL).
 Furthermore the general case of MSOL will be described, as well as the \textit{DIMACS}-file-format used in the projects.
 The following section describes Tree Decompositions (TDs) which are the basis for our visualization. 
 Finally we shortly discuss Courcelle's Theorem~\cite{Courcelle2012} as a related method of solving these problems.
+
+%============== MSOL ====================================================
+\subsection{Monadic Second Order Logic - WIP}
+
+Explain graphs?Node, Edge
+
+MSO graph properties are "fixed-parameter-tractable" with respect to clique-width and tree-width. 
+\url{https://www.youtube.com/watch?v=hZI-wANHO1w} 5th workshop on Graph Classes, Optimization, and Width Parameters (GROW 2011)
+2011-10-28.
+MSO counting (k-colorings )and optimizing (distance between two vertices...) functions.
+Interested in MSO logic over graphs.
+
+Two types of MSO formulas \textit{or logical graph representations}.
+\begin{itemize}
+	\item MSO formulas
+	\item MSO$_{2}$ formulas with edge quantification $\equiv$ MSO formulas over incidence graphs
+\end{itemize}
+\begin{itemize}
+	\item G=(vertices, edges as binary relation)
+	\item INC(G) = (vertices and edges, Inc)
+	for G undirected: Inc(e,v) <-> v is a vertex of edge e
+\end{itemize}
+\begin{itemize}
+	\item FPT for clique width
+	\item FPT for tree-width
+\end{itemize}
+This can also be done for directed graphs!
+
+Typical MSO$_{2}$ graph properties:
+
+has a perfect matching
+has a Hamiltonian circuit
+spanning tree of degree $\le$ 3
+
+The expressions have the form: "There exists a \textbf{set of edges} that is..." can not be transferred into "set of vertices"
+
+\url{https://youtu.be/Wyn3djrYg7c?t=1385} Bruno Courcelle: Recognizable sets of graphs: algebraic and logical aspects 
+\url{https://library.cirm-math.fr/Record.htm?idlist=2&record=19276851124910940339}
+Recording during the thematic meeting: "Frontiers of reconnaissability" the April 29, 2014 at the Centre International de Rencontres Mathématiques (Marseille, France)
+
+FPT for model checking:
+An algorithm is FPT if it takes time $f(k)\cdot n^{c}$ for some fixed function f and constant c. The size of the input is n. 
+The value k is a parameter of the input. 
+This algorithm is then usable for small values of k. usually tree-width and clique width.
 
 %============== SAT ====================================================
 \subsection{Boolean satisfiability problem - WIP}
@@ -266,50 +310,6 @@ with state - of - the - art model counters are orders of magnitude smaller than 
 formulas we can solve with the best SAT solvers. Generally speaking, current
 exact counting methods can tackle problems with a couple of hundred variables, while approximate counting methods push this to around 1, 000 variables.
 
-%============== MSOL ====================================================
-\subsection{Monadic Second Order Logic - WIP}
-See also figure~\ref{fig:logictheory}.
-
-Explain graphs?Node, Edge
-
-MSO graph properties are "fixed-parameter-tractable" with respect to clique-width and tree-width. 
-\url{https://www.youtube.com/watch?v=hZI-wANHO1w} 5th workshop on Graph Classes, Optimization, and Width Parameters (GROW 2011)
-2011-10-28.
-MSO counting (k-colorings )and optimizing (distance between two vertices...) functions.
-Interested in MSO logic over graphs.
-
-Two types of MSO formulas \textit{or logical graph representations}.
-\begin{itemize}
-	\item MSO formulas
-	\item MSO$_{2}$ formulas with edge quantification $\equiv$ MSO formulas over incidence graphs
-\end{itemize}
-\begin{itemize}
-	\item G=(vertices, edges as binary relation)
-	\item INC(G) = (vertices and edges, Inc)
-		for G undirected: Inc(e,v) <-> v is a vertex of edge e
-\end{itemize}
-\begin{itemize}
-	\item FPT for clique width
-	\item FPT for tree-width
-\end{itemize}
-This can also be done for directed graphs!
-
-Typical MSO$_{2}$ graph properties:
-
-has a perfect matching
-has a Hamiltonian circuit
-spanning tree of degree $\le$ 3
-
-The expressions have the form: "There exists a \textbf{set of edges} that is..." can not be transferred into "set of vertices"
-
-\url{https://youtu.be/Wyn3djrYg7c?t=1385} Bruno Courcelle: Recognizable sets of graphs: algebraic and logical aspects 
-\url{https://library.cirm-math.fr/Record.htm?idlist=2&record=19276851124910940339}
-Recording during the thematic meeting: "Frontiers of reconnaissability" the April 29, 2014 at the Centre International de Rencontres Mathématiques (Marseille, France)
-
-FPT for model checking:
-An algorithm is FPT if it takes time $f(k)\cdot n^{c}$ for some fixed function f and constant c. The size of the input is n. 
-The value k is a parameter of the input. 
-This algorithm is then usable for small values of k. usually tree-width and clique width.
 
 %============== Courcelle ====================================================
 \subsection{Courcelle's Theorem - WIP}
@@ -331,8 +331,10 @@ The workflow then looks like we see in figure~\ref{fig:UsageCourcelle}.
 	\label{fig:UsageCourcelle}
 \end{figure}
 
+See also figure~\ref{fig:logictheory}.
+
 %============== TD ====================================================
-\subsection{Tree Decomposition - WIP}
+\subsection{Tree Decomposition}
 %Used in RNA Folding: Novel prediction techniques are developed based on graph tree decomposition. \cite{BioInfoTD1970}
 %See also chapter 2.2 of \cite{DiplomarbeitZisser}.
 %Tree decompositions were originally introduced by Robertson and Seymour \cite{ROBERTSON198449} in 1984.
