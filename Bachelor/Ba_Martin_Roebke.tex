@@ -176,10 +176,7 @@ Some use cases include fields of interest like % (see also \url{neo4j.com/use-ca
 	\item[-] Recommendation Engines
 	\item[-] Artificial Intelligence and Analytics
 \end{itemize}
-It defines a \href{https://www.json.org/json-en.html}{JSON}-format specification for portability and customization of the visualization combined in one human-readable file and two reference implementations in actual solvers.
-The implementation currently does not support hyper-graphs and assumes that each node in the tree decomposition has either one or two children.
-The visualization output consists by default of scalable-vector-graphics (SVG), a very flexible text-based standard for describing images that can be compressed and modified very easily without loss of quality  \cite{SVGMozilla} .
-The images are split up into different views on the current state of the tree decomposition for consecutive user-defined time steps giving insights into the process of the dynamic programming.
+
 As illustrations of the possibilities for an application, smaller examples from the problem-types "SAT", "\#SAT" and "Minimal Vertex Cover" are presented,
 as well as an example of a faulty tree-decomposition that occurred during development.
 Intended audience: 
@@ -230,9 +227,11 @@ The code is written in python and published on pypi.\\
 %Research: language (python - explain) graph-construction (graphviz vs networkX), examples (diploma at first). 
 The source code for TDVisu is available under GPL3 license.
 
-We chose \href{https://graphviz.org/}{Graphviz} as an open source graph visualization software that provides
-customizable visualization for directed and undirected graphs and has good interfaces with various programming languages. 
+We chose \href{https://graphviz.org/}{Graphviz} as an open source graph visualization software which offers customizable visualization for directed and undirected graphs and has good interfaces to different programming languages.
 
+We defined a \href{https://www.json.org/json-en.html}{JSON}-format specification for portability and customization of the visualization combined in one human-readable file and two reference implementations in practical solvers.
+The implementation currently does not support hyper-graphs and assumes that each node in the tree decomposition has either one or two children.
+The visualization output consists by default of scalable-vector-graphics (SVG), a very flexible text-based standard for describing images that can be compressed and modified very easily without loss of quality \cite{SVGMozilla}.
 
 %============== Rel Work ====================================================
 \subsection{Related Work  - WIP}
@@ -495,47 +494,40 @@ Some examples of this format can be seen in the appendix at \ref{app:input}.
 
 %============== DOT ====================================================
 \subsection{DOT format - WIP}
-The graph description language DOT can be used to describe directed or undirected graphs and specify layout details and various attributes for graphs, edges and nodes. It is similar to the Graph Modeling Language as a text based file format for describing graphs, and the Graphviz project includes gml2gv and gv2gml as two tools that can convert between GML and DOT files.
-
-Attributes (new site): http://www.graphviz.org/doc/info/attrs.html
-
-List specialized types for input used.
-rankdir "TB", "LR", "BT", "RL", corresponding to directed graphs drawn from top to bottom, from left to right, from bottom to top, and from right to left, respectively. 
-
-fillcolor  \url{https://graphviz.org/doc/info/attrs.html#k:color} \url{https://graphviz.org/doc/info/colors.html} 
-If the value is a colorList, a gradient fill is used. By default, this is a linear fill; setting style=radial will cause a radial fill. 
-
-fontcolor Color used for text. 
-
-style for nodes \url{https://graphviz.org/doc/info/attrs.html#d:style}
-At present, the recognized style names are "dashed", "dotted", "solid", "invis" and "bold" for nodes and edges,  and "filled", "striped", "wedged", "diagonals" and "rounded" for nodes only.
-
-
-margin not customizable, node attr margin='0.11,0.01' \url{https://graphviz.org/doc/info/attrs.html#d:margin}
-
-fontsize Font size, in points, used for text. 
-
-
-penwidth Specifies the width of the pen, in points, used to draw lines and curves, including the boundaries of edges and clusters. 
-
-nodesep In dot, this specifies the minimum space between two adjacent nodes in the same rank, in inches. 
-
-shape https://graphviz.org/doc/info/shapes.html
+The graph description language DOT can be used to describe directed or undirected graphs and specify layout details and various attributes for graphs, edges and nodes. It is similar to the Graph Modeling Language that was used in the first experiments as a text based file format for describing graphs, and the Graphviz project includes gml2gv and gv2gml as two tools that can convert between GML and DOT files.
 
 %=========================== DOT Language ====================================
 
-Dot Language: http://www.graphviz.org/doc/info/lang.html
+%Dot Language: http://www.graphviz.org/doc/info/lang.html
 
-The nodes in the dot-language are \emph{labeled}, so creating a node takes one string identifier and
-can additionally be provided a string label. Valid examples for IDs include: a, b, A1, node1.
-The complete abstract grammar for DOT can be viewed at \href{https://graphviz.gitlab.io/_pages/doc/info/lang.html}{the DOT language}.
+The nodes in the dot-language are \emph{labeled}, so creating a node takes one string identifier and can additionally be provided with a text label. Valid examples for IDs include: "a", "b", "A1", "node1", "1", "10002".
+The complete abstract grammar for DOT can be viewed at the website of the DOT language \url{https://graphviz.gitlab.io/_pages/doc/info/lang.html}.
 
 It supports directed (\textit{digraph} with edges indicated by '->') an undirected (\textit{graph} with edges indicated by '-{}-') graphs.
 The visualizations presented here are constructed as undirected graphs, but would be easily extendable to directed representations since almost all operations keep the order of edge-endpoints given as input.
 
 Another concept utilized were the sub-graphs and clusters available in DOT.
-To get a well structured (bipartite) incidence graph, each partition is placed in an individual cluster
-and sorted by node-label to easier find single nodes in potentially large clusters.
+To get a well structured (bipartite) incidence graph, each partition is placed in an individual cluster and sorted by node label to make it easier to find single nodes in large clusters.
+
+%Attributes (new site): http://www.graphviz.org/doc/info/attrs.html
+DOT has different components that can be modified with attributes: edges, nodes, the root graph, subgraphs and cluster subgraphs, respectively.
+
+In the following we want to specify the attributes we used the most in TDVisu.
+
+\begin{itemize}
+	\item rankdir "TB", "LR", "BT", "RL", corresponding to directed graphs drawn from top to bottom, from left to right, from bottom to top, and from right to left, respectively. 
+	\item fillcolor  \url{https://graphviz.org/doc/info/attrs.html#k:color} \url{https://graphviz.org/doc/info/colors.html} 
+	If the value is a colorList, a gradient fill is used. By default, this is a linear fill; setting style=radial will cause a radial fill. 
+	\item fontcolor Color used for text. 
+	\item style for nodes \url{https://graphviz.org/doc/info/attrs.html#d:style}
+	At present, the recognized style names are "dashed", "dotted", "solid", "invis" and "bold" for nodes and edges,  and "filled", "striped", "wedged", "diagonals" and "rounded" for nodes only.
+	\item 
+	margin not customizable, node attr margin='0.11,0.01' \url{https://graphviz.org/doc/info/attrs.html#d:margin}
+	\item 	fontsize Font size, in points, used for text. 
+	\item penwidth Specifies the width of the pen, in points, used to draw lines and curves, including the boundaries of edges and clusters. 
+	\item nodesep In dot, this specifies the minimum space between two adjacent nodes in the same rank, in inches. 
+	\item shape https://graphviz.org/doc/info/shapes.html
+\end{itemize}
 
 
 %==============================================================================
