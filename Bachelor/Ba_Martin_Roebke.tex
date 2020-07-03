@@ -201,9 +201,18 @@ The information processed by graphviz
 %============== Concept ====================================================
 \subsection{Concept  - WIP}
 
-Stand Umsetzung, Tools: Slack, Trello, GitHub, Presentations
+Our main research question we want to answer with this thesis was:
+\begin{itemize}
+	\item[] How could a prototype visualization for solvers of MSO logic problems using dynamic programming on tree decompositions look like?
+	\item[] How could an implementation of visualization in existing solvers look like?
+\end{itemize}
 
-Research: language (python - explain) graph-construction (graphviz vs networkX), examples (diploma at first). 
+To answer these questions we have implemented TDVisu, a visualization software based on Graphviz. 
+
+
+%Stand Umsetzung, Tools: Slack, Trello, GitHub, Presentations
+%The software produced for this thesis was originally managed in 
+%Research: language (python - explain) graph-construction (graphviz vs networkX), examples (diploma at first). 
 
 My experience with the topics of this work comes mainly from the two courses:
 \begin{itemize}
@@ -416,7 +425,7 @@ A generic workflow implementing Courcelle's theorem looks like we see in figure~
 
 Even if linear in the size of the input, naive implementations are still expensive and 
 %($2^{p(tw G)}$, $2^{2^{(\#Q)}}$,  
-the constant factor can be very significant. An efficient implementation will still require several tricks to make this approach practical. To develop and debug these "tricks" might not always be that straight forward so that visualization can help at this point.\smallskip 
+the constant factor can be very significant. An efficient implementation will still require several tricks to make this approach practical. Developing and debugging these "tricks" is not always that easy, so a visualization can help at this point.\smallskip 
 
 
 % See also figure~\ref{fig:logictheory}.
