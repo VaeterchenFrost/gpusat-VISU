@@ -139,21 +139,24 @@ Dresden,  ............................. \hfill .............................
 \section*{Abstract}
 \vspace{4ex}
 
-"A picture is worth a 100 spreadsheets" - better Analysis
- 
 Answering questions that be expressed using graph theory is increasingly interesting in scientific work.
 Many problems such as Boolean satisfiability or problems related to traffic can be translated to and solved on a graph.
 We think that the use of graph structures can help to further develop algorithms in different areas.
 
-The algorithms we visualize in this thesis use dynamic programming on tree decompositions.
+The algorithms we visualize in this thesis use dynamic programming on tree decompositions of graphs.
 We preprocess the input graph into a customized tree-decomposition of small tree-width.
 This gives us a description of the processing sequence for the algorithm, and allows 
-with right hindsight for good parallelization and allows for faster solving times on larger instances.
+with right hindsight for good parallelization while keeping the solving times competitive even on on larger instances.
+
+Since the design of dynamic programming can be quite error-prone, a fast and uncomplicated visualization is needed for the solution process.
 
 To help further refine and visualize the dynamic programming,
 we specified a JSON template for communication between solvers and the newly created visualization tool \href{https://github.com/VaeterchenFrost/tdvisu}{TDVisu}.
 
-As two reference implementations of dynamic programming on tree decompositions we selected the existing solvers \href{https://github.com/daajoe/GPUSAT}{GPUSAT} and \href{https://github.com/hmarkus/dp_on_dbs}{dpdb}.
+As two reference implementations of dynamic programming on tree decompositions we selected the existing solvers \href{https://github.com/daajoe/GPUSAT}{GPUSAT} and \href{https://github.com/hmarkus/dp_on_dbs}{dpdb}.\\
+
+
+Of course the information we visualize is mostly in the solver and could be read out as text, but as they say: "a picture is worth a 100 spreadsheets".
 
 
 %  table
@@ -556,7 +559,7 @@ In this section we want to give a thorough insight into the functionalities of T
 
 The programming language chosen is Python because of it's rich dependency environment, fast prototyping, simple tooling for debugging with pdb, optional static analysis with mypy, easy to follow code-style using pylint and autopep8, and modern packaging with pip and pypi.
 
-Python 3.8 was the newest python version at the beginning of the project, released on October 14th 2019. The innovation most frequently applied in this project was the f-string support for shorter and easier to read string-building.%\href{https://docs.python.org/3/whatsnew/3.8.html}{summary of release highlights}.
+Python 3.8 was the newest python version at the beginning of the project, released on October 14th 2019. The innovation most frequently applied in this project was the f-string support for shorter and easier to read string-building. %\href{https://docs.python.org/3/whatsnew/3.8.html}{summary of release highlights}.
 
 The development process was for most parts of the final software driven by evolutionary prototyping with the help of small and well understood examples such as \ref{fig:g41Digraph}. It helped to understand the possibilities of visualization in this domain and gather user input and requirements early \cite{rapidPrototypingOvermyer}. Some artifacts of the early prototypes with different graph-description languages can be still seen in the class \textit{Graphoutput} in \ref{chagraphoutput}.
 
