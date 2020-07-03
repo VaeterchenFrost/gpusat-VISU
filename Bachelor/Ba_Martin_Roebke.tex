@@ -504,7 +504,7 @@ The nodes in the dot-language are \emph{labeled}, so creating a node takes one s
 The complete abstract grammar for DOT can be viewed at the website of the DOT language \url{https://graphviz.gitlab.io/_pages/doc/info/lang.html}.
 
 It supports directed (\textit{digraph} with edges indicated by '->') an undirected (\textit{graph} with edges indicated by '-{}-') graphs.
-The visualizations presented here are constructed as undirected graphs, but would be easily extendable to directed representations since almost all operations keep the order of edge-endpoints given as input.
+The visualizations presented in the thesis are constructed as undirected graphs, but would be easily extendable to directed representations since almost all operations keep the order of edge endpoints from the input.
 
 Another concept utilized were the sub-graphs and clusters available in DOT.
 To get a well structured (bipartite) incidence graph, each partition is placed in an individual cluster and sorted by node label to make it easier to find single nodes in large clusters.
@@ -512,21 +512,29 @@ To get a well structured (bipartite) incidence graph, each partition is placed i
 %Attributes (new site): http://www.graphviz.org/doc/info/attrs.html
 DOT has different components that can be modified with attributes: edges, nodes, the root graph, subgraphs and cluster subgraphs, respectively.
 
-In the following we want to specify the attributes we used the most in TDVisu.
+In the following we want to shortly describe the attributes we used the most in TDVisu.
 
 \begin{itemize}
-	\item rankdir "TB", "LR", "BT", "RL", corresponding to directed graphs drawn from top to bottom, from left to right, from bottom to top, and from right to left, respectively. 
-	\item fillcolor  \url{https://graphviz.org/doc/info/attrs.html#k:color} \url{https://graphviz.org/doc/info/colors.html} 
-	If the value is a colorList, a gradient fill is used. By default, this is a linear fill; setting style=radial will cause a radial fill. 
-	\item fontcolor Color used for text. 
-	\item style for nodes \url{https://graphviz.org/doc/info/attrs.html#d:style}
+	\item \textbf{rankdir} "TB", "LR", "BT", "RL", corresponding to directed graphs drawn from top to bottom, from left to right, from bottom to top, and from right to left, respectively.
+	 
+	\item \textbf{fillcolor} the color used as a node-background in different situations, for different values see \url{https://graphviz.org/doc/info/attrs.html#k:color}. \url{https://graphviz.org/doc/info/colors.html} 
+	By default, this is a linear fill; If the value is a colorList, a gradient fill is used. 
+	
+	\item \textbf{fontcolor} Color used for text in nodes or graphs. 
+	
+	\item \textbf{style} for nodes \url{https://graphviz.org/doc/info/attrs.html#d:style}
 	At present, the recognized style names are "dashed", "dotted", "solid", "invis" and "bold" for nodes and edges,  and "filled", "striped", "wedged", "diagonals" and "rounded" for nodes only.
+	
 	\item 
-	margin not customizable, node attr margin='0.11,0.01' \url{https://graphviz.org/doc/info/attrs.html#d:margin}
-	\item 	fontsize Font size, in points, used for text. 
-	\item penwidth Specifies the width of the pen, in points, used to draw lines and curves, including the boundaries of edges and clusters. 
-	\item nodesep In dot, this specifies the minimum space between two adjacent nodes in the same rank, in inches. 
-	\item shape https://graphviz.org/doc/info/shapes.html
+	\textbf{margin} Used for horizontal and vertical margins around graphs. Set to: margin='0.11,0.01'
+	
+	\item \textbf{fontsize} Font size, in points, used for text. 
+
+	\item \textbf{penwidth} Specifies the width of the pen, in points, used to draw lines and curves, including the boundaries of edges and clusters. 
+
+	\item \textbf{nodesep} In dot, this specifies the minimum space between two adjacent nodes in the same rank, in inches. 
+
+	\item \textbf{shape} Controls how nodes are drawn. There are three main ways of specifying shapes. The first is polygon-based; for example as a box, ellipse or diamond. The second is record-based nodes that are basically boxes stacked vertically and horizontally and each filled with text. HTML-like labels are specified in a own grammar and can contain tables, text-styles like italic, sub- and superscript, vertical and horizontal rules. For a full list of shapes see \url{https://graphviz.org/doc/info/shapes.html}.
 \end{itemize}
 
 
