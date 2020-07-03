@@ -16,7 +16,7 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {subsection}{\numberline {2.2}Boolean satisfiability problem}{8}{subsection.2.2}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {2.3}Courcelle's Theorem - WIP}{9}{subsection.2.3}%
+\contentsline {subsection}{\numberline {2.3}Courcelle's Theorem}{9}{subsection.2.3}%
 \defcounter {refsection}{0}\relax 
 \contentsline {subsection}{\numberline {2.4}Tree Decomposition}{10}{subsection.2.4}%
 \defcounter {refsection}{0}\relax 
