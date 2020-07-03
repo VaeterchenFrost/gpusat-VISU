@@ -169,6 +169,9 @@ As two reference implementations of dynamic programming on tree decompositions w
 
 \section{Introduction}
 \subsection{Motivation - WIP}
+
+The objective of this thesis is to help improve the development efforts of dynamic programming on tree decompositions via visualization. The techniques 
+
 Graphs are increasingly interesting in scientific work, as the applications of interconnected datasets grow.
 Some use cases include fields of interest like % (see also \url{neo4j.com/use-cases})
 \begin{itemize}
@@ -197,6 +200,7 @@ My experience with the topics of this work comes mainly from the two courses:
 	chair of computational physics, TU Dresden 2016
 	\item algorithms and various manipulations on graphs from the lecture "Graph Data Management and Analytics" by Hannes Voigt. \cite{VLGDMA}
 \end{itemize}
+
 
 %============== Concept ====================================================
 \subsection{Concept  - WIP}
@@ -233,6 +237,8 @@ We defined a \href{https://www.json.org/json-en.html}{JSON}-format specification
 The implementation currently does not support hyper-graphs and assumes that each node in the tree decomposition has either one or two children.
 The visualization output consists by default of scalable-vector-graphics (SVG), a very flexible text-based standard for describing images that can be compressed and modified very easily without loss of quality \cite{SVGMozilla}.
 
+The tree decompositions in every tested application were provided by the utility \url{https://github.com/mabseher/htd} (small but efficient C++ library for computing (customized) tree and hypertree decompositions).
+
 %============== Rel Work ====================================================
 \subsection{Related Work  - WIP}
 intro. mit motivation und related work, state of the art, advancements.
@@ -245,14 +251,16 @@ intro. mit motivation und related work, state of the art, advancements.
 
 Visualization Pipeline
 %============== Outline ====================================================
-\subsection{Thesis Outline  - WIP}
+\subsection{Thesis Outline}
 
+The rest of the thesis is structured as follows: chapter \ref{sec:bg} gives the reader the necessary background for this thesis. In chapter \ref{sec:project} we describe our approach to the visualization and the functionalities of the software. Next chapter \ref{sec:gpusat} describes the integration of \textit{TDVisu} in the solver \textit{GPUSAT}. In chapter \ref{sec:dpdb} we describe the integration with the database-based solver \textit{dpdb}.
+Chapter \ref{sec:appl} shows limited by the page size quite small examples for the tested use cases of visualization, starting with a \textit{SAT} example, then the similar \textit{\#SAT} problem visualized, followed by a \textit{minimal-vertex-cover} example. After these three use cases we show the possibilities of joining single result images together. Finally the chapter closes with a subsection on an example error we caught and identified with the help of \textit{TDVisu}. In chapter \ref{sec:conclusion} of this thesis we give a summary of our work and hints for future progress.
 
 %==============================================================================
 %============== BACKGROUND ====================================================
 %==============================================================================
 \newpage
-\section{Background}
+\section{Background}\label{sec:bg}
 \textit{In this chapter we provide a brief background for this work.}\\
 
 
@@ -542,28 +550,23 @@ In the following we want to shortly describe the attributes we used the most in 
 %============== PROJECT =======================================================
 %==============================================================================
 \newpage
-\section{My Visualization Project}
+\section{My Visualization Project}\label{sec:project}
 
+In this section we want to give a thorough insight into the functionalities of TDVisu.\\
 
-Python because: Rich dependency environment. Fast prototyping. Simple tooling for debugging (pdb), static analysis (mypy), code-style (pylint, autopep8), packaging (pip, pypi).
+The programming language chosen is Python because of it's rich dependency environment, fast prototyping, simple tooling for debugging with pdb, optional static analysis with mypy, easy to follow code-style using pylint and autopep8, and modern packaging with pip and pypi.
 
-Python 3.8 because: Python 3.8 was the newest python version at the beginning of the project, released on October 14th 2019. The change applied most times in this project would be \href{https://docs.python.org/3/whatsnew/3.8.html#f-strings-support-for-self-documenting-expressions-and-debugging}{f-string support} for shorter and easier to read string-building - for a longer list see \href{https://docs.python.org/3/whatsnew/3.8.html}{summary of release highlights}.
+Python 3.8 was the newest python version at the beginning of the project, released on October 14th 2019. The innovation most frequently applied in this project was the f-string support for shorter and easier to read string-building.%\href{https://docs.python.org/3/whatsnew/3.8.html}{summary of release highlights}.
 
 The development process was for most parts of the final software driven by evolutionary prototyping with the help of small and well understood examples such as \ref{fig:g41Digraph}. It helped to understand the possibilities of visualization in this domain and gather user input and requirements early \cite{rapidPrototypingOvermyer}. Some artifacts of the early prototypes with different graph-description languages can be still seen in the class \textit{Graphoutput} in \ref{chagraphoutput}.
 
-The first steps were in \url{https://github.com/VaeterchenFrost/gpusat-VISU} and the first releases of the source code outsourced to\url{https://github.com/VaeterchenFrost/tdvisu}
-
-The objective of this project was/is to support the visualization mainly to document and improve the development efforts of dynamic programming on tree decompositions.
-
-The tree decompositions in every tested application were provided by the utility \url{https://github.com/mabseher/htd} (small but efficient C++ library for computing (customized) tree and hypertree decompositions).
-
+The first versions were developed in the repository \url{https://github.com/VaeterchenFrost/gpusat-VISU} and the first releases and later development of the source code was outsourced to the \url{https://github.com/VaeterchenFrost/tdvisu} repository.
 
 % License
 
 % Files / Classes / Methods
 %============== CMD Config ====================================================
 \subsection{Commandline and Configuration}
-
 
 The \textit{tdvisu.visualization} expects the command line parameters in a format described by table~\ref{tab:optionstdvisu}.
 
@@ -955,7 +958,7 @@ The list can be of different length for each parameter - if it is exhausted the 
 %============== GPUSAT ========================================================
 %==============================================================================
 \newpage
-\section{Integration in GPUSAT}
+\section{Integration in GPUSAT}\label{sec:gpusat}
 To study and improve the handling of the C++ program was chronologically the first task I experimented with.
 Getting the program up and running proved to be more difficult than we envisioned due to a probable bug in the driver when running OpenCL Drivers from CUDA on the Windows OS.
 
@@ -1063,7 +1066,7 @@ To simplify the creation of valid json I selected the actively developed c++ lib
 %============== DPDB ==========================================================
 %==============================================================================
 \newpage
-\section{Integration in dpdb}
+\section{Integration in dpdb}\label{sec:dpdb}
 The integration of the API with dpdb was easier to implement after the solving process instead of hooking into the solving, 
 provided that all necessary information got persisted in the database.
 The integration is included in the TDVisu project as a separate python file.
@@ -1111,7 +1114,7 @@ The "problem type" is available as a string in table \emph{public.problem}, and 
 %============== APPLICATION ===================================================
 %==============================================================================
 \newpage
-\section{Application and Images }
+\section{Application and Images}\label{sec:appl}
 
 % Appl. Sat
 \subsection{SAT Example}
@@ -1304,7 +1307,7 @@ The problem was located in the htd version used to create the tree decomposition
 %============== Conclusion ====================================================
 %==============================================================================
 \newpage
-\section{Conclusion}
+\section{Conclusion}\label{sec:conclusion}
 %What is achieved?
 % Open source Assistant for visualizing dynamic programming on tree decompositions
 % Small dataformat, highly adaptable svg format
