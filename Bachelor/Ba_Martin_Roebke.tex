@@ -493,7 +493,7 @@ The formats used for this work are:
 Some examples of this format can be seen in the appendix at \ref{app:input}.
 
 %============== DOT ====================================================
-\subsection{DOT format - WIP}
+\subsection{DOT format}
 The graph description language DOT can be used to describe directed or undirected graphs and specify layout details and various attributes for graphs, edges and nodes. It is similar to the Graph Modeling Language that was used in the first experiments as a text based file format for describing graphs, and the Graphviz project includes gml2gv and gv2gml as two tools that can convert between GML and DOT files.
 
 %=========================== DOT Language ====================================
@@ -515,26 +515,26 @@ DOT has different components that can be modified with attributes: edges, nodes,
 In the following we want to shortly describe the attributes we used the most in TDVisu.
 
 \begin{itemize}
-	\item \textbf{rankdir} "TB", "LR", "BT", "RL", corresponding to directed graphs drawn from top to bottom, from left to right, from bottom to top, and from right to left, respectively.
+	\item \textbf{rankdir -} "TB", "LR", "BT", "RL", corresponding to directed graphs drawn from top to bottom, from left to right, from bottom to top, and from right to left, respectively.
 	 
-	\item \textbf{fillcolor} the color used as a node-background in different situations, for different values see \url{https://graphviz.org/doc/info/attrs.html#k:color}. \url{https://graphviz.org/doc/info/colors.html} 
+	\item \textbf{fillcolor -} The color used as a node-background in different situations, for different values see \url{https://graphviz.org/doc/info/attrs.html#k:color}. \url{https://graphviz.org/doc/info/colors.html} 
 	By default, this is a linear fill; If the value is a colorList, a gradient fill is used. 
 	
-	\item \textbf{fontcolor} Color used for text in nodes or graphs. 
+	\item \textbf{fontcolor -} Color for text in nodes or graphs. 
 	
-	\item \textbf{style} for nodes \url{https://graphviz.org/doc/info/attrs.html#d:style}
+	\item \textbf{style -} Drawing style of the nodes.
 	At present, the recognized style names are "dashed", "dotted", "solid", "invis" and "bold" for nodes and edges,  and "filled", "striped", "wedged", "diagonals" and "rounded" for nodes only.
 	
 	\item 
-	\textbf{margin} Used for horizontal and vertical margins around graphs. Set to: margin='0.11,0.01'
+	\textbf{margin -} Used for horizontal and vertical margins around graphs. Set to: margin='0.11,0.01'
 	
-	\item \textbf{fontsize} Font size, in points, used for text. 
+	\item \textbf{fontsize -} Font size, in points, used for text. 
 
-	\item \textbf{penwidth} Specifies the width of the pen, in points, used to draw lines and curves, including the boundaries of edges and clusters. 
+	\item \textbf{penwidth -} Specifies the width of the pen, in points, used to draw lines and curves, including the boundaries of edges and clusters. 
 
-	\item \textbf{nodesep} In dot, this specifies the minimum space between two adjacent nodes in the same rank, in inches. 
+	\item \textbf{nodesep -} In dot, this specifies the minimum space between two adjacent nodes in the same rank, in inches. 
 
-	\item \textbf{shape} Controls how nodes are drawn. There are three main ways of specifying shapes. The first is polygon-based; for example as a box, ellipse or diamond. The second is record-based nodes that are basically boxes stacked vertically and horizontally and each filled with text. HTML-like labels are specified in a own grammar and can contain tables, text-styles like italic, sub- and superscript, vertical and horizontal rules. For a full list of shapes see \url{https://graphviz.org/doc/info/shapes.html}.
+	\item \textbf{shape -} Controls how nodes are drawn. There are three main ways of specifying shapes. The first is polygon-based; for example as a box, ellipse or diamond. The second is record-based nodes that are basically boxes stacked vertically and horizontally and each filled with text. HTML-like labels are specified in a own grammar and can contain tables, text-styles like italic, sub- and superscript, vertical and horizontal rules. For a full list of shapes see \url{https://graphviz.org/doc/info/shapes.html}.
 \end{itemize}
 
 
