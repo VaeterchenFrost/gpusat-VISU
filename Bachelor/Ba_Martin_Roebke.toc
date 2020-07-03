@@ -4,7 +4,7 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {subsection}{\numberline {1.1}Motivation - WIP}{5}{subsection.1.1}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {1.2}Concept - WIP}{5}{subsection.1.2}%
+\contentsline {subsection}{\numberline {1.2}Concept - WIP}{6}{subsection.1.2}%
 \defcounter {refsection}{0}\relax 
 \contentsline {subsection}{\numberline {1.3}Related Work - WIP}{6}{subsection.1.3}%
 \defcounter {refsection}{0}\relax 
@@ -12,7 +12,7 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {section}{\numberline {2}Background}{7}{section.2}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {2.1}Monadic Second Order Logic}{7}{subsection.2.1}%
+\contentsline {subsection}{\numberline {2.1}Monadic Second-Order Logic}{7}{subsection.2.1}%
 \defcounter {refsection}{0}\relax 
 \contentsline {subsection}{\numberline {2.2}Boolean satisfiability problem}{8}{subsection.2.2}%
 \defcounter {refsection}{0}\relax 

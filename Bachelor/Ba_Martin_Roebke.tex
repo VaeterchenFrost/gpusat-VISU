@@ -192,25 +192,28 @@ Intended audience:
 The idea for this project comes from my supervisor Dr. Johannes Fichte, who works with many projects such as \href{https://github.com/hmarkus/dp_on_dbs}{dpdb} on solving monadic second order logic (MSOL) problems using highly parallelized architectures like graphics processing units or state of the art databases.
 One early implementation is published in \cite{evaluationMSO} where for different real world examples the results looked promising
 These projects are very competitive ????REF????? for solving even large instances of those problems.
-The source code for TDVisu is available under GPL3 license.
 
-\href{https://graphviz.org/}{Graphviz} is open source graph visualization software that provides
-customizable visualization for directed and undirected graphs.
-The information processed by graphviz 
+
+My experience with the topics of this work comes mainly from the two courses:
+\begin{itemize}
+	\item Visualization with python from the lecture "Computational Physics" by Prof. Dr. A. Bäcker,
+	chair of computational physics, TU Dresden 2016
+	\item algorithms and various manipulations on graphs from the lecture "Graph Data Management and Analytics" by Hannes Voigt. \cite{VLGDMA}
+\end{itemize}
 
 %============== Concept ====================================================
 \subsection{Concept  - WIP}
 
 Our main research questions we want to answer with this thesis are:
-\begin{itemize}
-	\item[] How could a prototype visualization for solvers of MSO logic problems using dynamic programming on tree decompositions look like?
-	\item[] How could an implementation of visualization in existing solvers look like?
-\end{itemize}
-
+\begin{enumerate}
+	\item How could a prototype visualization for solvers of MSO logic problems using dynamic programming on tree decompositions look like?
+	\item How could an implementation of visualization in existing solvers look like?
+\end{enumerate}
+\noindent
 To answer these questions we have implemented TDVisu, a visualization software based on Graphviz. 
 The code is written in python and published on pypi.\\
 
-TDVisu works as follows:
+\noindent Our software TDVisu works as follows:
 
 \begin{enumerate}
 	\item We generate data using the solver or extra software like the one provided in our construct\_dpdb\_visu.py and arguments for the visualization into one file.
@@ -222,17 +225,14 @@ TDVisu works as follows:
 \end{enumerate}
 
 
-
 %Stand Umsetzung, Tools: Slack, Trello, GitHub, Presentations
 %The software produced for this thesis was originally managed in 
 %Research: language (python - explain) graph-construction (graphviz vs networkX), examples (diploma at first). 
+The source code for TDVisu is available under GPL3 license.
 
-My experience with the topics of this work comes mainly from the two courses:
-\begin{itemize}
-	\item Visualization with python from the lecture "Computational Physics" by Prof. Dr. A. Bäcker,
-	chair of computational physics, TU Dresden 2016
-	\item algorithms and various manipulations on graphs from the lecture "Graph Data Management and Analytics" by Hannes Voigt. \cite{VLGDMA}
-\end{itemize}
+We chose \href{https://graphviz.org/}{Graphviz} as an open source graph visualization software that provides
+customizable visualization for directed and undirected graphs and has good interfaces with various programming languages. 
+
 
 %============== Rel Work ====================================================
 \subsection{Related Work  - WIP}
@@ -254,15 +254,20 @@ Visualization Pipeline
 %==============================================================================
 \newpage
 \section{Background}
-\textit{In this chapter we provide a brief background for this work.}
+\textit{In this chapter we provide a brief background for this work.}\\
 
-We begin with a description on SAT and \#SAT as examples for a very general problem that can be described with monadic second order logic (MSOL).
-Furthermore the general case of MSOL will be described, as well as the \textit{DIMACS}-file-format used in the projects.
-The following section describes Tree Decompositions (TDs) which are the basis for our visualization. 
-Finally we shortly discuss Courcelle's Theorem~\cite{Courcelle2012} as a related method of solving these problems.
+
+We will start with a short introduction to MSO. Then we describe BFS as a basis for SAT and SSAT problems which are a popular application for solvers.
+Then we introduce Courcelle's theorem, which describes important properties of the problems and thus possibilities of the solvers.
+Tree decompositions are also described as a basis for dynamic programming in this domain.
+At the end of the chapter the input and intermediate formats DIMACS and DOT are briefly described.
+%We begin with a description on SAT and \#SAT as examples for a very general problem that can be described with monadic second order logic (MSOL).
+%Furthermore the general case of MSOL will be described, as well as the \textit{DIMACS}-file-format used in the projects.
+%The following section describes Tree Decompositions (TDs) which are the basis for our visualization. 
+%Finally we shortly discuss Courcelle's Theorem~\cite{Courcelle2012} as a related method of solving these problems.
 
 %============== MSOL ====================================================
-\subsection{Monadic Second Order Logic}
+\subsection{Monadic Second-Order Logic}
 
 \textbf{Monadic Second-Order (MSO) logic} is a logical language that is suitable for expressing numerous graph properties \cite{Courcelle2012}. 
 % Theory
