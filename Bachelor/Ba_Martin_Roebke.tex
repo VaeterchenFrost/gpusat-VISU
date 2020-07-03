@@ -201,13 +201,26 @@ The information processed by graphviz
 %============== Concept ====================================================
 \subsection{Concept  - WIP}
 
-Our main research question we want to answer with this thesis was:
+Our main research questions we want to answer with this thesis are:
 \begin{itemize}
 	\item[] How could a prototype visualization for solvers of MSO logic problems using dynamic programming on tree decompositions look like?
 	\item[] How could an implementation of visualization in existing solvers look like?
 \end{itemize}
 
 To answer these questions we have implemented TDVisu, a visualization software based on Graphviz. 
+The code is written in python and published on pypi.\\
+
+TDVisu works as follows:
+
+\begin{enumerate}
+	\item We generate data using the solver or extra software like the one provided in our construct\_dpdb\_visu.py and arguments for the visualization into one file.
+	\item We read the data and parameters specified in a JsonAPI.md conform file.
+	\item The program creates a graph-layout for the bags of the tree decomposition and calculates which parts are to be shown at each step of the provided solving process.
+	\item It creates a graph-layout for each additional graph to visualize alongside the steps in the tree decomposition.
+	\item Each graph for individual time steps is saved as a SVG file.
+	\item If desired, the individual parts of a time step can be merged into a single SVG file.
+\end{enumerate}
+
 
 
 %Stand Umsetzung, Tools: Slack, Trello, GitHub, Presentations
