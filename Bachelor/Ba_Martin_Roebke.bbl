@@ -163,6 +163,58 @@
       \field{pages}{167\bibrangedash 181}
       \range{pages}{15}
     \endentry
+    \entry{ImplCourcelleDP16}{article}{}
+      \name{author}{3}{}{%
+        {{hash=8c2a83c2aa17067aec82aff80751491f}{%
+           family={Bliem},
+           familyi={B\bibinitperiod},
+           given={Bernhard},
+           giveni={B\bibinitperiod}}}%
+        {{hash=cadffb5409dc893418959e24b79ea72c}{%
+           family={Pichler},
+           familyi={P\bibinitperiod},
+           given={Reinhard},
+           giveni={R\bibinitperiod}}}%
+        {{hash=4ad994329f9868dfe461f996d8afa795}{%
+           family={Woltran},
+           familyi={W\bibinitperiod},
+           given={Stefan},
+           giveni={S\bibinitperiod}}}%
+      }
+      \strng{namehash}{b9100d927d4ab99e48859eefe4d8e245}
+      \strng{fullhash}{b9100d927d4ab99e48859eefe4d8e245}
+      \strng{bibnamehash}{b9100d927d4ab99e48859eefe4d8e245}
+      \strng{authorbibnamehash}{b9100d927d4ab99e48859eefe4d8e245}
+      \strng{authornamehash}{b9100d927d4ab99e48859eefe4d8e245}
+      \strng{authorfullhash}{b9100d927d4ab99e48859eefe4d8e245}
+      \field{labelalpha}{BPW16}
+      \field{sortinit}{B}
+      \field{sortinithash}{8de16967003c7207dae369d874f1456e}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{{Many computationally hard problems become tractable if the graph structure underlying the problem instance exhibits small treewidth. A recent approach to put this idea into practice is based on a declarative interface to Answer Set Programming that allows us to specify dynamic programming over tree decompositions in this language, delegating the computation to dedicated solvers. In this article, we prove that this method can be applied to any problem whose fixed-parameter tractability follows from Courcelle's Theorem.}}
+      \field{issn}{0955-792X}
+      \field{journaltitle}{Journal of Logic and Computation}
+      \field{month}{01}
+      \field{number}{4}
+      \field{title}{{Implementing Courcelle's Theorem in a declarative framework for dynamic programming}}
+      \field{volume}{27}
+      \field{year}{2016}
+      \field{pages}{1067\bibrangedash 1094}
+      \range{pages}{28}
+      \verb{doi}
+      \verb 10.1093/logcom/exv089
+      \endverb
+      \verb{eprint}
+      \verb https://academic.oup.com/logcom/article-pdf/27/4/1067/17659880/exv089.pdf
+      \endverb
+      \verb{urlraw}
+      \verb https://doi.org/10.1093/logcom/exv089
+      \endverb
+      \verb{url}
+      \verb https://doi.org/10.1093/logcom/exv089
+      \endverb
+    \endentry
     \entry{HandbookMathGraph}{book}{}
       \name{author}{4}{}{%
         {{hash=100271af4ff759bd0549cfc1771c407b}{%
@@ -256,6 +308,76 @@
       \field{isbn}{978-0-521-89833-1}
       \field{title}{Graph Structure and Monadic Second-Order Logic - A Language-Theoretic Approach}
       \field{year}{2012}
+    \endentry
+    \entry{VisuTDinGP}{article}{}
+      \name{author}{4}{}{%
+        {{hash=f23bf3b1af19418f68d2b5250db62f05}{%
+           family={Daida},
+           familyi={D\bibinitperiod},
+           given={Jason},
+           giveni={J\bibinitperiod}}}%
+        {{hash=beb4f1df8c1163cbbd0a3b1c1763bc0b}{%
+           family={Hilss},
+           familyi={H\bibinitperiod},
+           given={Adam},
+           giveni={A\bibinitperiod}}}%
+        {{hash=e80b988514ff08146f831b706b994a6a}{%
+           family={Ward},
+           familyi={W\bibinitperiod},
+           given={David},
+           giveni={D\bibinitperiod}}}%
+        {{hash=483f994c8abb4032044fb01596b79dec}{%
+           family={Long},
+           familyi={L\bibinitperiod},
+           given={Stephen},
+           giveni={S\bibinitperiod}}}%
+      }
+      \strng{namehash}{9fb19a8188c65651d1afa050f0c96d03}
+      \strng{fullhash}{ed2c94a53c96adba37879ce3f54e166d}
+      \strng{bibnamehash}{9fb19a8188c65651d1afa050f0c96d03}
+      \strng{authorbibnamehash}{9fb19a8188c65651d1afa050f0c96d03}
+      \strng{authornamehash}{9fb19a8188c65651d1afa050f0c96d03}
+      \strng{authorfullhash}{ed2c94a53c96adba37879ce3f54e166d}
+      \field{labelalpha}{Dai+05}
+      \field{sortinit}{D}
+      \field{sortinithash}{c438b3d5d027251ba63f5ed538d98af5}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Genetic Programming and Evolvable Machines}
+      \field{month}{03}
+      \field{title}{Visualizing Tree Structures in Genetic Programming}
+      \field{volume}{6}
+      \field{year}{2005}
+      \verb{doi}
+      \verb 10.1007/s10710-005-7621-2
+      \endverb
+    \endentry
+    \entry{SoftwareVisualization}{book}{}
+      \name{author}{1}{}{%
+        {{hash=591a5a74eb885a715250635d3efb5673}{%
+           family={Diehl},
+           familyi={D\bibinitperiod},
+           given={Stephan},
+           giveni={S\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Springer}%
+      }
+      \strng{namehash}{591a5a74eb885a715250635d3efb5673}
+      \strng{fullhash}{591a5a74eb885a715250635d3efb5673}
+      \strng{bibnamehash}{591a5a74eb885a715250635d3efb5673}
+      \strng{authorbibnamehash}{591a5a74eb885a715250635d3efb5673}
+      \strng{authornamehash}{591a5a74eb885a715250635d3efb5673}
+      \strng{authorfullhash}{591a5a74eb885a715250635d3efb5673}
+      \field{labelalpha}{Die07}
+      \field{sortinit}{D}
+      \field{sortinithash}{c438b3d5d027251ba63f5ed538d98af5}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{isbn}{978-3540465041}
+      \field{subtitle}{Visualizing the Structure, Behaviour, and Evolution of Software}
+      \field{title}{Software Visualization}
+      \field{year}{2007}
     \endentry
     \entry{HenningParamAlgo}{article}{}
       \name{author}{1}{}{%
@@ -422,6 +544,43 @@
       \field{labeltitlesource}{title}
       \field{title}{GML: A portable Graph File Format}
       \field{year}{2010}
+    \endentry
+    \entry{ELVIZ}{article}{}
+      \name{author}{3}{}{%
+        {{hash=9fb3fe5fe140ae3d4de6f3cf792de347}{%
+           family={Harre},
+           familyi={H\bibinitperiod},
+           given={Marie-Christin},
+           giveni={M\bibinithyphendelim C\bibinitperiod}}}%
+        {{hash=05b79e70a250b0f9baad0e01b025cb26}{%
+           family={Jelschen},
+           familyi={J\bibinitperiod},
+           given={Jan},
+           giveni={J\bibinitperiod}}}%
+        {{hash=5c89b6062e88d9d71cbcf213a288a5b4}{%
+           family={Winter},
+           familyi={W\bibinitperiod},
+           given={Andreas},
+           giveni={A\bibinitperiod}}}%
+      }
+      \strng{namehash}{29a6e2112f0aa4c3fa6da5bb42b5445f}
+      \strng{fullhash}{29a6e2112f0aa4c3fa6da5bb42b5445f}
+      \strng{bibnamehash}{29a6e2112f0aa4c3fa6da5bb42b5445f}
+      \strng{authorbibnamehash}{29a6e2112f0aa4c3fa6da5bb42b5445f}
+      \strng{authornamehash}{29a6e2112f0aa4c3fa6da5bb42b5445f}
+      \strng{authorfullhash}{29a6e2112f0aa4c3fa6da5bb42b5445f}
+      \field{labelalpha}{HJW14}
+      \field{sortinit}{H}
+      \field{sortinithash}{6db6145dae8dc9e1271a8d556090b50a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{{Visualization is an important technique for understanding and exploring complex models. To be useful, visualizations have to be specifically tailored towards the visualization task and the analyzed model. Many standard charts or graph-based visualizations exist, but need to be mapped to the concepts of the model under study. Existing model visualization tools often have predetermined visualization kinds and content, impeding reuse of standard visualizations for various purposes, or lacking the ability to flexibly map source model concepts to different visualization elements. This paper presents ELVIZ (Every Language Visualization"), an approach to vi-" sualization, generic regarding both the source model, and the kind and content of the visualization. ELVIZ applies model-driven engineering techniques both to transform arbitrary source models into the desired visualization models, and to generate said model transformations from a query-based mapping of source model concepts to visualization concepts. This cleanly decouples source and visualization meta-models, allowing to reuse and combine standard visualizations for various source models. The ELVIZ approach is applied to scenarios from software visualization in software evolution and measuring energy consumption of mobile applications, using different kinds of visualizations.}}
+      \field{journaltitle}{Lecture Notes in Informatics (LNI), Proceedings - Series of the Gesellschaft fur Informatik (GI)}
+      \field{month}{01}
+      \field{title}{ELVIZ: A query-based approach to model visualization}
+      \field{year}{2014}
+      \field{pages}{105\bibrangedash 120}
+      \range{pages}{16}
     \endentry
     \entry{SciPyProceedings_11}{inproceedings}{}
       \name{author}{3}{}{%

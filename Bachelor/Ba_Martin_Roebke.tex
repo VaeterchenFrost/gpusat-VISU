@@ -245,16 +245,30 @@ The tree decompositions in every tested application were provided by the utility
 %============== Rel Work ====================================================
 \subsection{Related Work  - WIP}
 
-Many computationally hard problems become tractable if the graph structure underlying the problem instance exhibits small treewidth. A recent approach to put this idea into practice is based on a declarative interface to Answer Set Programming that allows us to specify dynamic programming over tree decompositions in this language, delegating the computation to dedicated solvers. In this article, we prove that this method can be applied to any problem whose fixed-parameter tractability follows from Courcelle's Theorem. \cite{ImplCourcelleDP16}
-% Journal of Logic and Computation, Volume 27, Issue 4, June 2017, Pages 1067–1094, https://doi.org/10.1093/logcom/exv089
-%Published:
-%07 January 2016
+To the best of our knowledge no comparable tool exists that is capable of out-of-the-box visualization of dynamic programming on tree decompositions.
+In this chapter, however, we would like to mention works that deal with the surroundings of our problem.
 
-A fundamental theorem of Courcelle states that every problem definable in Monadic Second-Order Logic (MSO) is solvable in linear time on graphs of bounded treewidth. In this paper, we report on our ongoing effort to develop a general purpose software tool designed to solve MSO-definable optimization and decision problems on graphs of small treewidth. We discuss the theoretical underpinnings of our tool and present experimental results, which indicate that for some natural optimization problems MSO based approaches might be a suitable alternative to ILP solvers
-\cite{evaluationMSO}. 
+First two papers dealing with additional solvers exploiting small tree-width and Courcelle's Theorem:
+\begin{itemize}
+	\item "Implementing Courcelle's Theorem in a declarative framework for dynamic programming" in \cite{ImplCourcelleDP16} \\
+	and
+	\item "Evaluation of an MSO-solver" from \cite{evaluationMSO}
+\end{itemize}
+%Many computationally hard problems become tractable if the graph structure underlying the problem instance exhibits small treewidth. A recent approach to put this idea into practice is based on a declarative interface to Answer Set Programming that allows us to specify dynamic programming over tree decompositions in this language, delegating the computation to dedicated solvers. In this article, we prove that this method can be applied to any problem whose fixed-parameter tractability follows from Courcelle's Theorem. \cite{ImplCourcelleDP16}
+%% Journal of Logic and Computation, Volume 27, Issue 4, June 2017, Pages 1067–1094, https://doi.org/10.1093/logcom/exv089
+%%Published:
+%%07 January 2016
+%
+%A fundamental theorem of Courcelle states that every problem definable in Monadic Second-Order Logic (MSO) is solvable in linear time on graphs of bounded treewidth. In this paper, we report on our ongoing effort to develop a general purpose software tool designed to solve MSO-definable optimization and decision problems on graphs of small treewidth. We discuss the theoretical underpinnings of our tool and present experimental results, which indicate that for some natural optimization problems MSO based approaches might be a suitable alternative to ILP solvers
+%\cite{evaluationMSO}. 
 
 %--------- Other Visualization ----------
 
+And also some information on algorithm visualization and visual debugging from
+\begin{itemize}
+	\item "ELVIZ: A query-based approach to model visualization" about an approach to visualization, generic regarding both the source model, and the kind and content of the visualization \cite{ELVIZ},
+	\item "ELVIZ: A query-based approach to model visualization" about methods to visualize the structure of trees that occur in genetic programming \cite{ELVIZ},
+\end{itemize}
 \cite{ELVIZ}
 
 This paper presents methods to visualize the structure of trees that occur in genetic programming. These methods allow for the inspection of structure of entire trees even though several thousands of nodes may be involved. The methods also scale to allow for the inspection of structure for entire populations and for complete trials even though millions of nodes may be involved. Examples are given that demonstrate how this new way of “seeing” can afford a potentially rich way of understanding dynamics that underpin genetic programming. The examples indicate further studies that might be enabled by visualizing structure at these scales. \cite{VisuTDinGP}
