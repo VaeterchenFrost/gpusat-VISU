@@ -2,7 +2,7 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {section}{\numberline {1}Introduction}{5}{section.1}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {1.1}Motivation - WIP}{5}{subsection.1.1}%
+\contentsline {subsection}{\numberline {1.1}Motivation}{5}{subsection.1.1}%
 \defcounter {refsection}{0}\relax 
 \contentsline {subsection}{\numberline {1.2}Concept}{5}{subsection.1.2}%
 \defcounter {refsection}{0}\relax 
