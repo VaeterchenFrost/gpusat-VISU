@@ -360,6 +360,9 @@
            given={Stephan},
            giveni={S\bibinitperiod}}}%
       }
+      \list{language}{1}{%
+        {English}%
+      }
       \list{publisher}{1}{%
         {Springer}%
       }
@@ -375,6 +378,7 @@
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{isbn}{978-3540465041}
+      \field{pagetotal}{199}
       \field{subtitle}{Visualizing the Structure, Behaviour, and Evolution of Software}
       \field{title}{Software Visualization}
       \field{year}{2007}

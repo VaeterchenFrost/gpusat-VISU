@@ -1,17 +1,17 @@
 [0] Config.pm:304> INFO - This is Biber 2.14
 [0] Config.pm:307> INFO - Logfile is 'Ba_Martin_Roebke.blg'
-[56] biber-MSWIN64:322> INFO - === 
+[61] biber-MSWIN64:322> INFO - === 
 [78] Biber.pm:415> INFO - Reading 'Ba_Martin_Roebke.bcf'
-[166] Biber.pm:943> INFO - Found 24 citekeys in bib section 0
-[181] Biber.pm:4256> INFO - Processing section 0
-[181] Utils.pm:75> INFO - Globbing data source 'bibtex.bib'
-[189] Utils.pm:91> INFO - Globbed data source 'bibtex.bib' to bibtex.bib
-[202] Biber.pm:4455> INFO - Looking for bibtex format file 'bibtex.bib' for section 0
-[207] bibtex.pm:1653> INFO - LaTeX decoding ...
-[267] bibtex.pm:1471> INFO - Found BibTeX data source 'bibtex.bib'
-[420] UCollate.pm:68> INFO - Overriding locale 'en-US' defaults 'normalization = NFD' with 'normalization = prenormalized'
-[420] UCollate.pm:68> INFO - Overriding locale 'en-US' defaults 'variable = shifted' with 'variable = non-ignorable'
-[420] Biber.pm:4084> INFO - Sorting list 'anyt/global//global/global' of type 'entry' with template 'anyt' and locale 'en-US'
-[420] Biber.pm:4090> INFO - No sort tailoring available for locale 'en-US'
+[173] Biber.pm:943> INFO - Found 24 citekeys in bib section 0
+[188] Biber.pm:4256> INFO - Processing section 0
+[189] Utils.pm:75> INFO - Globbing data source 'bibtex.bib'
+[199] Utils.pm:91> INFO - Globbed data source 'bibtex.bib' to bibtex.bib
+[212] Biber.pm:4455> INFO - Looking for bibtex format file 'bibtex.bib' for section 0
+[217] bibtex.pm:1653> INFO - LaTeX decoding ...
+[278] bibtex.pm:1471> INFO - Found BibTeX data source 'bibtex.bib'
+[422] UCollate.pm:68> INFO - Overriding locale 'en-US' defaults 'variable = shifted' with 'variable = non-ignorable'
+[422] UCollate.pm:68> INFO - Overriding locale 'en-US' defaults 'normalization = NFD' with 'normalization = prenormalized'
+[422] Biber.pm:4084> INFO - Sorting list 'anyt/global//global/global' of type 'entry' with template 'anyt' and locale 'en-US'
+[422] Biber.pm:4090> INFO - No sort tailoring available for locale 'en-US'
 [450] bbl.pm:652> INFO - Writing 'Ba_Martin_Roebke.bbl' with encoding 'UTF-8'
 [462] bbl.pm:755> INFO - Output to Ba_Martin_Roebke.bbl
