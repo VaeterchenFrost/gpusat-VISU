@@ -19,20 +19,6 @@
 
 \refsection{0}
   \datalist[entry]{anyt/global//global/global}
-    \entry{CourcelleGROW}{misc}{}
-      \list{location}{1}{%
-        {Daejeon, Korea}%
-      }
-      \field{labelalpha}{11}
-      \field{sortinit}{1}
-      \field{sortinithash}{50c6687d7fc80f50136d75228e3c59ba}
-      \field{labeltitlesource}{title}
-      \field{howpublished}{\url{https://www.youtube.com/watch?v=hZI-wANHO1w}}
-      \field{month}{10}
-      \field{note}{[Online; accessed 11-June-2020]}
-      \field{title}{On the constructive power of monadic second-order logic}
-      \field{year}{2011}
-    \endentry
     \entry{ARNBORG1991308}{article}{}
       \name{author}{3}{}{%
         {{hash=91f1ab1b38d3634e9fe137ce4e9b0255}{%
@@ -274,6 +260,39 @@
       \verb 978-3-662-46221-8
       \endverb
     \endentry
+    \entry{britannicagraphs}{online}{}
+      \name{author}{1}{}{%
+        {{hash=d29e15a1eaae3938b743eb055c894692}{%
+           family={Carlson},
+           familyi={C\bibinitperiod},
+           given={Stephan\bibnamedelima C.},
+           giveni={S\bibinitperiod\bibinitdelim C\bibinitperiod}}}%
+      }
+      \strng{namehash}{d29e15a1eaae3938b743eb055c894692}
+      \strng{fullhash}{d29e15a1eaae3938b743eb055c894692}
+      \strng{bibnamehash}{d29e15a1eaae3938b743eb055c894692}
+      \strng{authorbibnamehash}{d29e15a1eaae3938b743eb055c894692}
+      \strng{authornamehash}{d29e15a1eaae3938b743eb055c894692}
+      \strng{authorfullhash}{d29e15a1eaae3938b743eb055c894692}
+      \field{labelalpha}{Car17}
+      \field{sortinit}{C}
+      \field{sortinithash}{4c244ceae61406cdc0cc2ce1cb1ff703}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{month}{5}
+      \field{title}{graph theory | Problems & Applications | Britannica}
+      \field{urlday}{2}
+      \field{urlmonth}{7}
+      \field{urlyear}{2020}
+      \field{year}{2017}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb https://www.britannica.com/topic/graph-theory
+      \endverb
+      \verb{url}
+      \verb https://www.britannica.com/topic/graph-theory
+      \endverb
+    \endentry
     \entry{Courcelle2012}{book}{}
       \name{author}{2}{}{%
         {{hash=5eb043c6d579ba54ec303811f38c6bfe}{%
@@ -382,6 +401,36 @@
       \field{subtitle}{Visualizing the Structure, Behaviour, and Evolution of Software}
       \field{title}{Software Visualization}
       \field{year}{2007}
+    \endentry
+    \entry{dimacsimplcha}{online}{}
+      \name{author}{1}{}{%
+        {{hash=be39b16c2f60af24dc781002eb331981}{%
+           family={DIMACS},
+           familyi={D\bibinitperiod}}}%
+      }
+      \strng{namehash}{be39b16c2f60af24dc781002eb331981}
+      \strng{fullhash}{be39b16c2f60af24dc781002eb331981}
+      \strng{bibnamehash}{be39b16c2f60af24dc781002eb331981}
+      \strng{authorbibnamehash}{be39b16c2f60af24dc781002eb331981}
+      \strng{authornamehash}{be39b16c2f60af24dc781002eb331981}
+      \strng{authorfullhash}{be39b16c2f60af24dc781002eb331981}
+      \field{labelalpha}{DIM20}
+      \field{sortinit}{D}
+      \field{sortinithash}{c438b3d5d027251ba63f5ed538d98af5}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{DIMACS :: Implementation Challenge}
+      \field{urlday}{11}
+      \field{urlmonth}{6}
+      \field{urlyear}{2020}
+      \field{year}{2020}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb http://dimacs.rutgers.edu/programs/challenge/
+      \endverb
+      \verb{url}
+      \verb http://dimacs.rutgers.edu/programs/challenge/
+      \endverb
     \endentry
     \entry{HenningParamAlgo}{article}{}
       \name{author}{1}{}{%
@@ -671,6 +720,43 @@
       \field{pages}{37\bibrangedash 71}
       \range{pages}{35}
     \endentry
+    \entry{CourcelleGROW}{online}{}
+      \name{author}{1}{}{%
+        {{hash=eba12517b1eaa0552a14abf582540dbd}{%
+           family={KAIST},
+           familyi={K\bibinitperiod}}}%
+      }
+      \list{language}{1}{%
+        {English}%
+      }
+      \list{location}{1}{%
+        {Daejeon, Korea}%
+      }
+      \strng{namehash}{eba12517b1eaa0552a14abf582540dbd}
+      \strng{fullhash}{eba12517b1eaa0552a14abf582540dbd}
+      \strng{bibnamehash}{eba12517b1eaa0552a14abf582540dbd}
+      \strng{authorbibnamehash}{eba12517b1eaa0552a14abf582540dbd}
+      \strng{authornamehash}{eba12517b1eaa0552a14abf582540dbd}
+      \strng{authorfullhash}{eba12517b1eaa0552a14abf582540dbd}
+      \field{labelalpha}{KAI11}
+      \field{sortinit}{K}
+      \field{sortinithash}{d3edc18d54b9438a72c24c925bfb38f4}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{month}{10}
+      \field{title}{On the constructive power of monadic second-order logic}
+      \field{urlday}{11}
+      \field{urlmonth}{6}
+      \field{urlyear}{2020}
+      \field{year}{2011}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb https://www.youtube.com/watch?v=hZI-wANHO1w
+      \endverb
+      \verb{url}
+      \verb https://www.youtube.com/watch?v=hZI-wANHO1w
+      \endverb
+    \endentry
     \entry{evaluationMSO}{article}{}
       \name{author}{4}{}{%
         {{hash=ed01e6237f996f5f339053e2c2041bb0}{%
@@ -854,7 +940,7 @@
       \field{title}{{Course}: Graph Data Management and Analytics}
       \field{year}{2019}
     \endentry
-    \entry{SVGMozilla}{misc}{}
+    \entry{SVGMozilla}{online}{}
       \name{author}{1}{}{%
         {{hash=bf68f10697eaf29a89e253bab7c9125b}{%
            family={Web\bibnamedelima Docs},
@@ -873,11 +959,19 @@
       \field{sortinithash}{1af34bd8c148ffb32de1494636b49713}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
-      \field{howpublished}{\url{https://developer.mozilla.org/en-US/docs/Web/SVG}}
       \field{month}{4}
-      \field{note}{[Online; accessed 2-July-2020]}
       \field{title}{SVG: Scalable Vector Graphics | MDN}
+      \field{urlday}{2}
+      \field{urlmonth}{7}
+      \field{urlyear}{2020}
       \field{year}{2020}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb https://developer.mozilla.org/en-US/docs/Web/SVG
+      \endverb
+      \verb{url}
+      \verb https://developer.mozilla.org/en-US/docs/Web/SVG
+      \endverb
     \endentry
     \entry{Mathematica}{misc}{}
       \name{author}{1}{}{%
