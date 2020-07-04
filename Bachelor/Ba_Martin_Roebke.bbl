@@ -81,6 +81,45 @@
       \verb http://www.sciencedirect.com/science/article/pii/019667749190006K
       \endverb
     \endentry
+    \entry{htd}{inproceedings}{}
+      \name{author}{3}{}{%
+        {{hash=86ac1b36bae95da52c34dfaf64e4984e}{%
+           family={Abseher},
+           familyi={A\bibinitperiod},
+           given={Michael},
+           giveni={M\bibinitperiod}}}%
+        {{hash=8564d1e27b165a6f134b710377be4bc6}{%
+           family={Musliu},
+           familyi={M\bibinitperiod},
+           given={Nysret},
+           giveni={N\bibinitperiod}}}%
+        {{hash=4ad994329f9868dfe461f996d8afa795}{%
+           family={Woltran},
+           familyi={W\bibinitperiod},
+           given={Stefan},
+           giveni={S\bibinitperiod}}}%
+      }
+      \strng{namehash}{8c4699904613fd0d16e70f91ae99131e}
+      \strng{fullhash}{8c4699904613fd0d16e70f91ae99131e}
+      \strng{bibnamehash}{8c4699904613fd0d16e70f91ae99131e}
+      \strng{authorbibnamehash}{8c4699904613fd0d16e70f91ae99131e}
+      \strng{authornamehash}{8c4699904613fd0d16e70f91ae99131e}
+      \strng{authorfullhash}{8c4699904613fd0d16e70f91ae99131e}
+      \field{labelalpha}{AMW17}
+      \field{sortinit}{A}
+      \field{sortinithash}{a3dcedd53b04d1adfd5ac303ecd5e6fa}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{isbn}{978-3-319-59775-1}
+      \field{month}{05}
+      \field{title}{htd – A Free, Open-Source Framework for (Customized) Tree Decompositions and Beyond}
+      \field{year}{2017}
+      \field{pages}{376\bibrangedash 386}
+      \range{pages}{11}
+      \verb{doi}
+      \verb 10.1007/978-3-319-59776-8_30
+      \endverb
+    \endentry
     \entry{MSOQueriesGuillaume}{inproceedings}{}
       \name{author}{1}{}{%
         {{hash=27f3ec42bba9790588b4007b5a071eb7}{%
