@@ -713,6 +713,39 @@
       \verb 10.1137/1.9781611972924.5
       \endverb
     \endentry
+    \entry{graphUseCases}{online}{}
+      \name{author}{1}{}{%
+        {{hash=b91d20fe47cad9e636a3670f7d2f8b8f}{%
+           family={Neo4j},
+           familyi={N\bibinitperiod},
+           given={Inc.},
+           giveni={I\bibinitperiod}}}%
+      }
+      \strng{namehash}{b91d20fe47cad9e636a3670f7d2f8b8f}
+      \strng{fullhash}{b91d20fe47cad9e636a3670f7d2f8b8f}
+      \strng{bibnamehash}{b91d20fe47cad9e636a3670f7d2f8b8f}
+      \strng{authorbibnamehash}{b91d20fe47cad9e636a3670f7d2f8b8f}
+      \strng{authornamehash}{b91d20fe47cad9e636a3670f7d2f8b8f}
+      \strng{authorfullhash}{b91d20fe47cad9e636a3670f7d2f8b8f}
+      \field{labelalpha}{Neo16}
+      \field{sortinit}{N}
+      \field{sortinithash}{98cf339a479c0454fe09153a08675a15}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{month}{8}
+      \field{title}{Graph Database Use Cases and Solutions}
+      \field{urlday}{11}
+      \field{urlmonth}{6}
+      \field{urlyear}{2020}
+      \field{year}{2016}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb http://neo4j.com/use-cases
+      \endverb
+      \verb{url}
+      \verb http://neo4j.com/use-cases
+      \endverb
+    \endentry
     \entry{rapidPrototypingOvermyer}{inproceedings}{}
       \name{author}{1}{}{%
         {{hash=4112ca859ff71ff59f1f5484c365c845}{%
