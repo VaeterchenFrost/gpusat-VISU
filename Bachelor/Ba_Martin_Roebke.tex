@@ -513,7 +513,22 @@ MSO queries on tree decomposable structures are computable with linear delay \ci
 We use tree decompositions throughout our visualizations in this thesis. One detailed explanation is also introduced in \cite{pcgp2019} at page 169.
 The tree decomposition for our example "wheelgraph" \ref{fig:wheelgraph} can be viewed as a listing in \ref{lst:wheelgraphtd}. The conditions for tree decompositions outlined above are easy to verify for this small example, and we get a tree width $width(T)=3$ for this graph.
 
+%============== TD ====================================================
+\subsubsection{Dynamic Programming on Tree Decompositions}
+In this chapter we want to give a short overview of the process of dynamic programming, that we visualize on the tree decompositions. For specific information on the used algorithms for \#SAT we refer to \cite{DiplomarbeitZisser} ch. 3 or \cite{samermodelcounting}. \\
 
+With dynamic programming, a problem is broken down into parts and the parts are then solved individually. The solving algorithm then evaluates the formula along the path of the tree decomposition in a bottom up order starting in one of the leafs. The solution for each assignment in the bag is then stored in a table. The size of the table is exponential to the size of the bag. The tables of the child nodes can be deleted as soon as the table of the current node is generated. \textit{from \cite{DiplomarbeitZisser} ch. 3.1}.\\
+The dynamic programming approach for a given graph works as follows:
+\begin{enumerate}
+	\item Create a tree decomposition $\sc{T}$ of the graph.
+	\item Apply dynamic programming for each bag in bottom up order
+	\begin{itemize}
+		\item[a)] visit the next node \textit{n} of the tree decomposition,
+		\item[b)] apply the solving algorithm to the bag, and
+		\item[c)] store the results in a table.
+	\end{itemize}
+	\item Output the result based on the table of the root node of the tree decomposition.
+\end{enumerate}
 %============== DIMACS ====================================================
 \subsection{DIMACS format}
 
