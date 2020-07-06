@@ -520,11 +520,11 @@ In this chapter we want to give a short overview of the process of dynamic progr
 With dynamic programming, a problem is broken down into parts and the parts are then solved individually. The solving algorithm then evaluates the formula along the path of the tree decomposition in a bottom up order starting in one of the leafs. The solution for each assignment in the bag is then stored in a table. The size of the table is exponential to the size of the bag. The tables of the child nodes can be deleted as soon as the table of the current node is generated. \textit{from \cite{DiplomarbeitZisser} ch. 3.1}.\\
 The dynamic programming approach for a given graph works as follows:
 \begin{enumerate}
-	\item Create a tree decomposition $\sc{T}$ of the graph.
-	\item Apply dynamic programming for each bag in bottom up order
+	\item Create a tree decomposition ${T}$ of the graph.
+	\item Apply dynamic programming for each bag in bottom up order of ${T}$
 	\begin{itemize}
-		\item[a)] visit the next node \textit{n} of the tree decomposition,
-		\item[b)] apply the solving algorithm to the bag, and
+		\item[a)] visit the next node \textit{n} of ${T}$,
+		\item[b)] apply the solving algorithm to the bag and
 		\item[c)] store the results in a table.
 	\end{itemize}
 	\item Output the result based on the table of the root node of the tree decomposition.
@@ -1503,18 +1503,22 @@ def create_json(problem: int, tw_file=None, intermed_nodes=False):
 	with connect() as connection:
 		# get type of problem
 		with connection.cursor() as cur:
-			query = """SELECT name,type,num_bags 
-			FROM public.problem WHERE id=%s"""
-			cur.execute(query, (problem,))
-			(name, ptype, num_bags) = cur.fetchone()
+				cur.execute("SELECT name,type,num_bags FROM "
+				"public.problem WHERE id=%s", (problem,))
+				(name, ptype, num_bags) = cur.fetchone()	
+		# select the valid constructor for the problem
+		constructor: IDpdbVisuConstruct
 		
-		constructor: IDpdbVisuConstruct  
-		if ptype == 'SharpSat':
+		if ptype == 'Sat':
+			constructor = DpdbSatVisu(
+				connection, problem, intermed_nodes)
+		elif ptype == 'SharpSat':
 			constructor = DpdbSharpSatVisu(
-						 connection, problem, intermed_nodes)
+				connection, problem, intermed_nodes)
 		elif ptype == 'VertexCover':
 			constructor = DpdbMinVcVisu(
-						 connection, problem, intermed_nodes, tw_file)
+				connection, problem, intermed_nodes, tw_file)
+		
 		return constructor.construct()
 	return {} 
 \end{lstlisting}
@@ -1524,7 +1528,7 @@ def forward_iterate_tdg(self, joinpre, solpre, soljoinpre) -> None:
 """Create the final positions of all nodes with solutions."""
 	tdg = self.tree_dec_digraph                 # shorten name
 	
-	for i, node in enumerate(self.timeline):    # Create the positions
+	for i, node in enumerate(self.timeline):
 		if len(node) > 1:
 			# solution to be displayed
 			id_inv_bags = node[0]
@@ -1575,12 +1579,8 @@ def backwards_iterate_tdg(self, joinpre, solpre, soljoinpre,
 		if i > 0:
 			# Delete previous emphasis
 			prevhead = self.timeline[len(self.timeline) - i][0]
-			bag = (
-				self.bagpre %
-				prevhead if isinstance(
-				prevhead,
-				int) else joinpre %
-				tuple(prevhead))
+			bag = (self.bagpre % prevhead if isinstance(prevhead,int) 
+					else joinpre % tuple(prevhead))
 			base_style(tdg, bag)
 			if last_sol:
 				style_hide_node(tdg, last_sol)
@@ -1599,8 +1599,7 @@ def backwards_iterate_tdg(self, joinpre, solpre, soljoinpre,
 				emphasise_node(tdg, last_sol)
 			
 		emphasise_node(tdg,
-			self.bagpre %
-			id_inv_bags if isinstance(id_inv_bags, int) else 
+			self.bagpre % id_inv_bags if isinstance(id_inv_bags, int) else 
 			joinpre % id_inv_bags)
 		_filename = self.outfolder + self.data.td_file + '%d'
 		tdg.render(
@@ -1632,7 +1631,7 @@ class SvgJoinData:
 
 \lstset{numbers=none}
 
-\begin{lstlisting}[caption={CNF clauses from example 4.1 on page 27 \cite{DiplomarbeitZisser}}, label={lst:clausesDA41}]
+\begin{lstlisting}[caption={CNF clauses from example 4.1 in \cite{DiplomarbeitZisser} page 27}, label={lst:clausesDA41}]
 p cnf 8 10
 1 4 6 0
 1 -5 0

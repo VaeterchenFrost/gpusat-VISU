@@ -862,6 +862,38 @@
       \field{pages}{303\bibrangedash 308}
       \range{pages}{6}
     \endentry
+    \entry{samermodelcounting}{article}{}
+      \name{author}{2}{}{%
+        {{hash=14e6b783c0e3ffd50ff75da599fe1bdd}{%
+           family={Samer},
+           familyi={S\bibinitperiod},
+           given={Marko},
+           giveni={M\bibinitperiod}}}%
+        {{hash=bc1ac5443283d9c1021f64467bd1ad77}{%
+           family={Szeider},
+           familyi={S\bibinitperiod},
+           given={Stefan},
+           giveni={S\bibinitperiod}}}%
+      }
+      \strng{namehash}{639eec53a030163a23304d89ac5bbb74}
+      \strng{fullhash}{639eec53a030163a23304d89ac5bbb74}
+      \strng{bibnamehash}{639eec53a030163a23304d89ac5bbb74}
+      \strng{authorbibnamehash}{639eec53a030163a23304d89ac5bbb74}
+      \strng{authornamehash}{639eec53a030163a23304d89ac5bbb74}
+      \strng{authorfullhash}{639eec53a030163a23304d89ac5bbb74}
+      \field{labelalpha}{SS10}
+      \field{sortinit}{S}
+      \field{sortinithash}{c319cff79d99c853d775f88277d4e45f}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{J. Discrete Algorithms}
+      \field{month}{01}
+      \field{title}{Algorithms for propositional model counting.}
+      \field{volume}{8}
+      \field{year}{2010}
+      \field{pages}{50\bibrangedash 64}
+      \range{pages}{15}
+    \endentry
     \entry{ST99}{inproceedings}{}
       \name{author}{2}{}{%
         {{hash=ba3c7e965cb924666fe02501a886b422}{%
