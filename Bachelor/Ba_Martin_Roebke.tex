@@ -211,7 +211,7 @@ The target audience for this work includes:
 
 %============== Concept ====================================================
 \subsection{Research Question}\\
-The development of techniques for dynamic programming for various problems or platforms that have not yet been implemented can in principle be theoretically demonstrated. However, there can be errors in actual implementations that are not always easy to pin down.
+The development of techniques for dynamic programming for various problems or platforms that have not yet been implemented can in principle be theoretically demonstrated. However, there can be errors in actual implementations that are not always easy to pin down. As there were no tailored tools for this yet, one should be created and integrated into existing tools with a minimum of additional effort.
 Our main research questions we want to answer with this thesis are:
 \begin{enumerate}
 	\item How could a prototype visualization for solvers of MSO logic problems using dynamic programming on tree decompositions look like?
@@ -221,26 +221,14 @@ Our main research questions we want to answer with this thesis are:
 To answer these questions we have implemented TDVisu, a visualization software based on Graphviz. 
 The code is written in python and published on pypi.\\
 
-\noindent Our software TDVisu works as follows:
-
-\begin{enumerate}
-	\item We generate data using the solver or extra software like the one provided in our construct\_dpdb\_visu.py and arguments for the visualization into one file.
-	\item We read the data and parameters specified in a JsonAPI.md conform file.
-	\item The program creates a graph-layout for the bags of the tree decomposition and calculates which parts are to be shown at each step of the provided solving process.
-	\item It creates a graph-layout for each additional graph to visualize alongside the steps in the tree decomposition.
-	\item Each graph for individual time steps is saved as a SVG file.
-	\item If desired, the individual parts of a time step can be merged into a single SVG file.
-\end{enumerate}
-
-
 %Stand Umsetzung, Tools: Slack, Trello, GitHub, Presentations
 %The software produced for this thesis was originally managed in 
 %Research: language (python - explain) graph-construction (graphviz vs networkX), examples (diploma at first). 
-The source code for TDVisu is available under GPL3 license.
+The source code for TDVisu is available under the GPL3 license on \url{github.com/VaeterchenFrost/tdvisu}.
 
-We chose \href{https://graphviz.org/}{Graphviz} as an open source graph visualization software which offers customizable visualization for directed and undirected graphs and has good interfaces to different programming languages.
+We chose \href{https://graphviz.org/}{Graphviz} as an open source graph visualization software, which offers customizable visualization for directed and undirected graphs.
 
-We defined a \href{https://www.json.org/json-en.html}{JSON}-format specification for portability and customization of the visualization combined in one human-readable file and two reference implementations in practical solvers.
+We defined a \href{https://www.json.org/json-en.html}{JSON}-format specification for portability and customization of the visualization in one file and two reference implementations in practical solvers.
 The implementation currently does not support hyper-graphs and assumes that each node in the tree decomposition has either one or two children.
 The visualization output consists by default of scalable-vector-graphics (SVG), a very flexible text-based standard for describing images that can be compressed and modified very easily without loss of quality \cite{SVGMozilla}.
 
@@ -605,6 +593,17 @@ In the following we want to shortly describe the attributes we used the most in 
 \section{My Visualization Project}\label{sec:project}
 
 In this section we want to give a thorough insight into the functionalities of TDVisu.\\
+
+\noindent As a rough overview our software TDVisu works as follows:
+
+\begin{enumerate}
+	\item We generate data using a special solver extension or extra programs and extract arguments for the visualization into one file following our JSON schema.
+	\item We read the data and parameters into the visualization.
+	\item The program creates a graph-layout for the bags of the tree decomposition and calculates which parts are to be shown at each step of the provided solving process.
+	\item It creates a graph-layout for each additional graph to visualize alongside the steps in the tree decomposition.
+	\item Each graph for individual time steps is saved as a SVG file.
+	\item If desired, the individual parts of a time step can be merged into a single SVG file.
+\end{enumerate}
 
 The programming language chosen is Python because of it's rich dependency environment, fast prototyping, simple tooling for debugging with pdb, optional static analysis with mypy, easy to follow code-style using pylint and autopep8, and modern packaging with pip and pypi.
 
