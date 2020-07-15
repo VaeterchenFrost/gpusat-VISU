@@ -693,6 +693,45 @@
       \field{pages}{11\bibrangedash 15}
       \range{pages}{5}
     \endentry
+    \entry{taminghightw}{inbook}{}
+      \name{author}{3}{}{%
+        {{hash=0d33b71325cc0a66b4d9784ed66bdaa7}{%
+           family={Hecher},
+           familyi={H\bibinitperiod},
+           given={Markus},
+           giveni={M\bibinitperiod}}}%
+        {{hash=533f2abdf8f9b2f443bda1bad31c6f19}{%
+           family={Thier},
+           familyi={T\bibinitperiod},
+           given={Patrick},
+           giveni={P\bibinitperiod}}}%
+        {{hash=4ad994329f9868dfe461f996d8afa795}{%
+           family={Woltran},
+           familyi={W\bibinitperiod},
+           given={Stefan},
+           giveni={S\bibinitperiod}}}%
+      }
+      \strng{namehash}{e36633cc65023e3933d616de5d653488}
+      \strng{fullhash}{e36633cc65023e3933d616de5d653488}
+      \strng{bibnamehash}{e36633cc65023e3933d616de5d653488}
+      \strng{authorbibnamehash}{e36633cc65023e3933d616de5d653488}
+      \strng{authornamehash}{e36633cc65023e3933d616de5d653488}
+      \strng{authorfullhash}{e36633cc65023e3933d616de5d653488}
+      \field{labelalpha}{HTW20}
+      \field{sortinit}{H}
+      \field{sortinithash}{6db6145dae8dc9e1271a8d556090b50a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{isbn}{978-3-030-51824-0}
+      \field{month}{06}
+      \field{title}{Taming High Treewidth with Abstraction, Nested Dynamic Programming, and Database Technology}
+      \field{year}{2020}
+      \field{pages}{343\bibrangedash 360}
+      \range{pages}{18}
+      \verb{doi}
+      \verb 10.1007/978-3-030-51825-7_25
+      \endverb
+    \endentry
     \entry{Hu05}{article}{}
       \name{author}{1}{}{%
         {{hash=855f3b81b4485b5f0dcd527f5803bb66}{%
