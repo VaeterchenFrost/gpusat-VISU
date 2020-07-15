@@ -210,8 +210,10 @@ The target audience for this work includes:
 
 
 %============== Concept ====================================================
-\subsection{Research Question}\\
-The development of techniques for dynamic programming for various problems or platforms that have not yet been implemented can in principle be theoretically demonstrated. However, there can be errors in actual implementations that are not always easy to pin down. As there were no tailored tools for this yet, one should be created and integrated into existing tools with a minimum of additional effort.
+\subsection{Research Question}
+The development of techniques for dynamic programming for various problems or platforms that have not yet been implemented can in principle be shown theoretically. However, there can be errors in actual implementations that are hard to pin down. 
+
+As there were no tailored tools for this yet, it should be created and integrated into existing tools with a minimum of additional effort.
 Our main research questions we want to answer with this thesis are:
 \begin{enumerate}
 	\item How could a prototype visualization for solvers of MSO logic problems using dynamic programming on tree decompositions look like?
@@ -219,6 +221,17 @@ Our main research questions we want to answer with this thesis are:
 \end{enumerate}
 \noindent
 To answer these questions we have implemented TDVisu, a visualization software based on Graphviz. 
+Our proposed solution is inspired by previous manual visualizations like the two examples in figure \ref{fig:prevvisus}.
+\begin{figure}[h]
+	\label{fig:prevvisus}
+	\centering
+	\begin{tabularx}{\textwidth}{ X X }
+		\includegraphics[width=1.05\linewidth,valign=c]{images/DualDA43.png} &  
+		\includegraphics[width=1.02\linewidth,valign=c]{images/dpdbVisuSat.png}\\ 
+		
+	\end{tabularx}	
+	\caption{Two templates from published project documentations which show similar visualizations as TDVisu. Left from \cite{DiplomarbeitZisser} figure 4.3 page 29 and the right graphic from \cite{dpdbpadl2020} figure 2, page 4.}
+\end{figure}
 The code is written in python and published on pypi.\\
 
 %Stand Umsetzung, Tools: Slack, Trello, GitHub, Presentations
