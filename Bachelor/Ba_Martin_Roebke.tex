@@ -121,7 +121,7 @@ Das Gleiche gilt für graphische Darstellungen und Bilder sowie für alle Intern
 \myauthor \\
 Matrikelnummer \mymatriculation\\
 Geburtsdatum \mybirthday\\\\
-TU Dresden E-Mail-Adresse:\\
+E-Mail-Adresse:\\
  \myemail\\[40pt]
 
 
@@ -223,27 +223,35 @@ Our main research questions we want to answer with this thesis are:
 To answer these questions we have implemented TDVisu, a visualization software based on Graphviz. 
 Our proposed solution is inspired by previous manual visualizations like the two examples in Figure \ref{fig:prevvisus}.
 \begin{figure}[h]
-	\label{fig:prevvisus}
+	
 	\centering
 	\begin{tabularx}{\textwidth}{ X X }
 		\includegraphics[width=1.05\linewidth,valign=c]{images/DualDA43.png} &  
 		\includegraphics[width=1.02\linewidth,valign=c]{images/dpdbVisuSat.png}\\ 
 		
 	\end{tabularx}	
+	\label{fig:prevvisus}
 	\caption{Two templates from published project documentations which show similar visualizations as TDVisu. The left graphic from \cite{DiplomarbeitZisser} Figure 4.3 on page 29 and the right graphic from \cite{dpdbpadl2020} Figure 2, page 4.}
+	
 \end{figure}
 The code is written in python and published on pypi.\\
+The Figure \ref{fig:overviewprog} shows a draft of the process creating the visualization with TDVisu.
+\begin{figure}
+	
+	\centering
+		\includegraphics[width=1\linewidth]{images/OverviewProgram.png}
+		\label{fig:overviewprog}
+	\caption{An overview of the intended use of the visualization. Starting with a solver for DP on TD, over the extraction of the desired data, labels and parameters to the result files.}
+	
+\end{figure}
 
-%Stand Umsetzung, Tools: Slack, Trello, GitHub, Presentations
-%The software produced for this thesis was originally managed in 
-%Research: language (python - explain) graph-construction (graphviz vs networkX), examples (diploma at first). 
 The source code for TDVisu is available under the GPL3 license on \url{github.com/VaeterchenFrost/tdvisu}.
 
 We chose \href{https://graphviz.org/}{Graphviz} as an open source graph visualization software, which offers customizable visualization for directed and undirected graphs.
 
 We defined a \href{https://www.json.org/json-en.html}{JSON}-format specification for portability and customization of the visualization in one file and two reference implementations in practical solvers.
 The implementation currently does not support hyper-graphs and assumes that each node in the tree decomposition has either one or two children.
-The visualization output consists by default of scalable-vector-graphics (SVG), a very flexible text-based standard for describing images that can be compressed and modified very easily without loss of quality \cite{SVGMozilla}.
+The visualization output consists by default of scalable-vector-graphics (SVG), a very flexible text-based standard for describing images that can be easily compressed (and modified) without loss of quality \cite{SVGMozilla}.
 
 The tree decompositions in every tested application were provided by the utility \href{https://github.com/mabseher/htd}{htd} (small but efficient C++ library for computing (customized) tree and hypertree decompositions) \cite{htd}.
 
@@ -632,7 +640,7 @@ The first versions were developed in the repository \url{https://github.com/Vaet
 %============== CMD Config ====================================================
 \subsection{Commandline and Configuration}
 
-The \textit{tdvisu.visualization} expects the command line parameters in a format described by table~\ref{tab:optionstdvisu}.
+The \textit{tdvisu.visualization} expects the command line parameters in a format described by Table~\ref{tab:optionstdvisu}.
 
 \def\arraystretch{1.2}%  1 is the default
 \begin{longtable}{|ll|}
