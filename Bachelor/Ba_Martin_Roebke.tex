@@ -234,13 +234,13 @@ Our proposed solution is inspired by previous manual visualizations like the two
 \end{figure}
 The code is written in python and published on pypi.\\
 The Figure \ref{fig:overviewprog} shows a draft of the process creating the visualization with TDVisu.
+
 \begin{figure}
-	
 	\centering
 		\includegraphics[width=1\linewidth]{images/OverviewProgram.png}
 		\label{fig:overviewprog}
 	\caption{An overview of the intended use of the visualization. Starting with a solver for DP on TD, over the extraction of the desired data, labels and parameters to the result files.}
-	
+		
 \end{figure}
 
 The source code for TDVisu is available under the GPL3 license on \url{github.com/VaeterchenFrost/tdvisu}.
@@ -292,7 +292,7 @@ Additional some references on algorithm visualization and visual debugging can b
 	\item The book "Software Visualization: Visualizing the Structure, Behaviour, and Evolution of Software" - the first textbook on software visualization, Stephan Diehl, Springer 2007 \cite{SoftwareVisualization}
 \end{itemize}
 
-And current advancements in dynamic programming on tree-decompositions itself can be found in \cite{dpdbpadl2020} and \cite{taminghightw}.
+Current advancements in dynamic programming on tree-decompositions itself can be found in \cite{dpdbpadl2020} and \cite{taminghightw}.
 %\cite{ELVIZ}
 %
 %This paper presents methods to visualize the structure of trees that occur in genetic programming. These methods allow for the inspection of structure of entire trees even though several thousands of nodes may be involved. The methods also scale to allow for the inspection of structure for entire populations and for complete trials even though millions of nodes may be involved. Examples are given that demonstrate how this new way of “seeing” can afford a potentially rich way of understanding dynamics that underpin genetic programming. The examples indicate further studies that might be enabled by visualizing structure at these scales. \cite{VisuTDinGP}
@@ -304,7 +304,8 @@ And current advancements in dynamic programming on tree-decompositions itself ca
 
 %============== Outline ====================================================
 \subsection{Thesis Outline}
-The rest of the thesis is structured as follows: Chapter \ref{sec:bg} gives the reader the necessary background for this thesis. In Chapter \ref{sec:project}, we describe our approach to the visualization and the functionalities of the software. Next, Chapter \ref{sec:gpusat} describes the integration of \textit{tdvisu} in the solver \textit{gpusat}~\cite{DiplomarbeitZisser}. In Chapter \ref{sec:dpdb}, we describe the integration with the database-based solver \textit{dpdb}~\cite{dpdbpadl2020}.
+The rest of the thesis is structured as follows: \\
+Chapter \ref{sec:bg} gives the reader the necessary background for this thesis. In Chapter \ref{sec:project}, we describe our approach to the visualization and the functionalities of the software. Next, Chapter \ref{sec:gpusat} describes the integration of \textit{tdvisu} in the solver \textit{gpusat}~\cite{DiplomarbeitZisser}. In Chapter \ref{sec:dpdb}, we describe the integration with the database-based solver \textit{dpdb}~\cite{dpdbpadl2020}.
 Chapter \ref{sec:appl} shows, limited by the page size, small examples for the tested use cases of visualization, starting with a \textit{SAT} example, then a \textit{\#SAT} problem visualized, followed by a \textit{minimal-vertex-cover} example. After these three use cases we show the possibilities of joining single result images together. Finally the chapter closes with a subsection on how our tool can be used for successful debugging. In Chapter \ref{sec:conclusion} of this thesis we give a summary of our work and hints for future progress.
 
 %==============================================================================
@@ -322,13 +323,13 @@ At the end of the chapter, we briefly describe the input and intermediate format
 %The following section describes Tree Decompositions (TDs) which are the basis for our visualization. 
 %Finally we shortly discuss Courcelle's Theorem~\cite{Courcelle2012} as a related method of solving these problems.
 
+In this thesis we use the word \textbf{graph} for a pair $G=(V_{G},E_{G})$, where $V_{G}$ is a nonempty set of vertices also called \textbf{nodes} and $E_{G}$ is the binary relation $E_{G} \subseteq V_{G} \times V_{G}$, such that $(x,y)\in E_{G}$ if and only if there exists an edge from $x$ to $y$ if $G$ is directed, and an edge between $x$ and $y$ if $G$ is undirected. For further information on graphs we refer to the common literature, for example \cite{HandbookMathGraph} or more casually in \cite{britannicagraphs}. 
+
 %============== MSOL ====================================================
 \subsection{Monadic Second-Order Logic}\label{sec:MSO}
 
 \textbf{Monadic Second-Order (MSO) logic} is a logical language that is suitable for expressing numerous graph properties \cite{Courcelle2012}. 
 % Theory
-
-We use the word \textbf{graph} for a pair $G=(V_{G},E_{G})$, where $V_{G}$ is a nonempty set of vertices also called "nodes" and $E_{G}$ is the binary relation $E_{G} \subseteq V_{G} \times V_{G}$, such that $(x,y)\in E_{G}$ if and only if there exists an edge from $x$ to $y$ if $G$ is directed, and an edge between $x$ and $y$ if $G$ is undirected. For further information on graphs we refer to the common literature, for example \cite{HandbookMathGraph} or more casually in \cite{britannicagraphs}. 
 
 \textbf{Propositional logic}, also called propositional calculus or zeroth-order logic, is a formal system $\mathcal{L} = \mathcal{L}(\mathrm {A},\Omega, \mathrm{Z}, \mathrm{I})$ with
 \begin{itemize}
@@ -1034,7 +1035,7 @@ The list can be of different length for each parameter - if it is exhausted the 
 %==============================================================================
 \newpage
 \section{Integration in GPUSAT}\label{sec:gpusat}
-To study and improve the handling of the C++ program was chronologically the first task I experimented with.
+To study and improve the handling of the C++ program was chronologically the first task we experimented with.
 Getting the program up and running proved to be more difficult than we envisioned due to a probable bug in the driver when running OpenCL Drivers from CUDA on the Windows OS.
 
 %=================Performance=======================
@@ -1134,8 +1135,8 @@ Two additional functions generate a \href{https://neo4j.com/docs/cypher-refcard/
 %============== SolverVisualization ====================================================
 \subsection{Class SolverVisualization}
 
-To include the extraction of all necessary visualization information into the solver I created a separate fork.
-To simplify the creation of valid json I selected the actively developed c++ library JsonCpp \url{https://github.com/open-source-parsers/jsoncpp} version 1.9.2 from the open-source-parsers repository.
+To include the extraction of all necessary visualization information into the solver we created a separate fork.
+To simplify the creation of valid json we selected the actively developed c++ library JsonCpp \url{https://github.com/open-source-parsers/jsoncpp} version 1.9.2 from the open-source-parsers repository.
 
 %==============================================================================
 %============== DPDB ==========================================================
