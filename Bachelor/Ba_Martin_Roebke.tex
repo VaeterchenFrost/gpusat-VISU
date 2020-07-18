@@ -255,14 +255,12 @@ The tree decompositions in every tested application were provided by the utility
 
 
 %============== Outline ====================================================
-\subsection{Methodology and Outline}
+\subsection{Methodology}
 DP
 Visualization Techniques
 Integration durch API in Source Code
 
-The rest of the thesis is structured as follows: Chapter \ref{sec:bg} gives the reader the necessary background for this thesis. In Chapter \ref{sec:project}, we describe our approach to the visualization and the functionalities of the software. Next, Chapter \ref{sec:gpusat} describes the integration of \textit{tdvisu} in the solver \textit{gpusat}~\cite{DiplomarbeitZisser}. In Chapter \ref{sec:dpdb}, we describe the integration with the database-based solver \textit{dpdb}~\cite{dpdbpadl2020}.
-Chapter \ref{sec:appl} shows, limited by the page size, small examples for the tested use cases of visualization, starting with a \textit{SAT} example, then a \textit{\#SAT} problem visualized, followed by a \textit{minimal-vertex-cover} example. After these three use cases we show the possibilities of joining single result images together. Finally the chapter closes with a subsection on how our tool can be used for successful debugging. In Chapter \ref{sec:conclusion} of this thesis we give a summary of our work and hints for future progress.
-
+Contributions
 %============== Rel Work ====================================================
 \subsection{Related Work}
 
@@ -304,26 +302,28 @@ And current advancements in dynamic programming on tree-decompositions itself ca
 %
 %INCLUDE: NEO4J - Bloom ???????
 
+%============== Outline ====================================================
+\subsection{Thesis Outline}
+The rest of the thesis is structured as follows: Chapter \ref{sec:bg} gives the reader the necessary background for this thesis. In Chapter \ref{sec:project}, we describe our approach to the visualization and the functionalities of the software. Next, Chapter \ref{sec:gpusat} describes the integration of \textit{tdvisu} in the solver \textit{gpusat}~\cite{DiplomarbeitZisser}. In Chapter \ref{sec:dpdb}, we describe the integration with the database-based solver \textit{dpdb}~\cite{dpdbpadl2020}.
+Chapter \ref{sec:appl} shows, limited by the page size, small examples for the tested use cases of visualization, starting with a \textit{SAT} example, then a \textit{\#SAT} problem visualized, followed by a \textit{minimal-vertex-cover} example. After these three use cases we show the possibilities of joining single result images together. Finally the chapter closes with a subsection on how our tool can be used for successful debugging. In Chapter \ref{sec:conclusion} of this thesis we give a summary of our work and hints for future progress.
 
 %==============================================================================
 %============== BACKGROUND ====================================================
 %==============================================================================
 \newpage
 \section{Background}\label{sec:bg}
-\textit{In this chapter we provide a brief background for this work.}\\
-
-
-We will start with a short introduction to MSO. Then we describe BFS as a basis for SAT and SSAT problems which are a popular application for solvers.
-Then we introduce Courcelle's theorem, which describes important properties of the problems and thus possibilities of the solvers.
-Tree decompositions are also described as a basis for dynamic programming in this domain.
-At the end of the chapter the input and intermediate formats DIMACS and DOT are briefly described.
+In this chapter we provide a brief background for this work.\\
+We will start with a short introduction to MSO in \ref{sec:MSO}. Then we describe BFS as the basis for SAT and \#SAT problems, which are a popular application for solvers.
+Then we introduce Courcelle's theorem, which describes important properties of the problems and related bounds for the solvers.
+Eventually, tree decompositions are described as a basis for dynamic programming in the next section.
+At the end of the chapter, we briefly describe the input and intermediate formats DIMACS and DOT.
 %We begin with a description on SAT and \#SAT as examples for a very general problem that can be described with monadic second order logic (MSOL).
 %Furthermore the general case of MSOL will be described, as well as the \textit{DIMACS}-file-format used in the projects.
 %The following section describes Tree Decompositions (TDs) which are the basis for our visualization. 
 %Finally we shortly discuss Courcelle's Theorem~\cite{Courcelle2012} as a related method of solving these problems.
 
 %============== MSOL ====================================================
-\subsection{Monadic Second-Order Logic}
+\subsection{Monadic Second-Order Logic}\label{sec:MSO}
 
 \textbf{Monadic Second-Order (MSO) logic} is a logical language that is suitable for expressing numerous graph properties \cite{Courcelle2012}. 
 % Theory
