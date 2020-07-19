@@ -1390,15 +1390,22 @@ The problem was located in the htd version used to create the tree decomposition
 % Two example integrations in actively developed MSO solvers
 % Bags do provide the option to add arbitrary many/long labels for different debugging information
 \subsection{Summary}
-We created and could for the most part automate visualization of dynamic programming on tree decompositions.
-With SVG we by default do support a human readable, highly adaptable data format.\\
+We created a program which can automate the visualization of dynamic programming on tree decompositions.
+With SVG we support by default a scalable and easily editable image format.\\
 
-We defined and developed a data-exchange form to give the visualization the information it will need and provide sensible default values for (almost) all parameters.\\
+We have defined a data exchange API to give the visualization the information it needs and provided meaningful default values for (almost) all parameters. The API supports the communication of:
+\begin{itemize}
+	\item One tree decomposition
+	\item Time steps that add solutions to the TD
+	\item Incidence graphs for problems on boolean formulas, from which primal and dual graphs can be created automatically
+	\item Simple graphs for general graph problems
+	\item The merging of several visualizations of a time step into one image
+\end{itemize}
 
-The visualization got implemented and tested in two actively developed solvers for the problem types \textbf{SAT}, \textbf{\#SAT} and \textbf{minimal vertex cover}.\\
+The visualization is implemented in two actively developed solvers for the problem types {SAT}, {\#SAT} and {minimal vertex cover}. We have tested the visualization of each problem type with graphs of different sizes - with nodes in the order of $10^{0..2}$ for MinVC and $10^{0..3}$ for SAT and \#SAT.
 
-During development we already found some improvements in the solvers and easily identified possible bugs.
-All nodes are prepared to display arbitrary user defined strings that could include various debugging-information about the run.
+During the development we could already find some errors in the solvers.
+All tree decomposition nodes are ready to display multiple user-defined strings, which can contain various debugging information about the run.
 
 \subsection{Future Work}
 % Graphs could provide more options to the user
