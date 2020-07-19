@@ -1120,11 +1120,12 @@ The console output produced by this example call is listed in \ref{lst:outputGpu
 
 %============== Graphoutput ====================================================
 \subsection{Class Graphoutput}\label{chagraphoutput}
-First steps to automatically visualize the tree decomposition of the solving process with its solutions.
-Outputs a graph specified in gml\cite{Himsolt2010GMLAP} (Graph Modeling Language).
-For our example for \#SAT~\ref{lst:g41digraphdot} with the bags and respective solutions as nodes connected to the bag they solve.
+This class does include the first steps to automatically visualize the tree decomposition of the solving process with its solutions.
+It's main funcionality can output visualizations specified in gml (Graph Modeling Language)~\cite{Himsolt2010GMLAP}.
+%For our example for \#SAT~\ref{lst:g41digraphdot} with the bags and respective solutions as nodes connected to the bag they solve.
 
-Two additional functions generate a \href{https://neo4j.com/docs/cypher-refcard/current/}{Neo4j Cypher} query with:
+Additional functions evaluate the possibilities of using Graph-Databases like Neo4j~\cite{graphdatabases}.
+It is possible to create visualizations of the initial situation for CNF Clauses and the computed tree decomposition of the primal graph as two \href{https://neo4j.com/docs/cypher-refcard/current/}{Neo4j Cypher} queries with:
 \begin{itemize}
 	\item one graph representing the SAT formula and  queries to construct incidence, dual and primal representations.
 	output as satFile = "cypherSatFormula.txt"
