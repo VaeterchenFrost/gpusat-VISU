@@ -329,7 +329,7 @@ At the end of the chapter, we briefly describe the input and intermediate format
 %============== MSOL ====================================================
 \subsection{Monadic Second-Order Logic}\label{sec:MSO}
 
-\textbf{Monadic Second-Order (MSO) logic} is a logical language that is suitable for expressing numerous graph properties \cite[p.~41]{Courcelle2012}. In the following summary we would like to introduce propositional logic and the extensions first order logic and MSO. The concepts and notations from propositional logic are needed for the example problems around SAT; MSO will be used as the language that describes the possibilities of the dynamic programming on tree decompositions.
+\textbf{Monadic Second-Order (MSO) logic} is a logical language that is suitable for expressing numerous graph properties \cite[p.~41]{Courcelle2012}. In the following summary we would like to introduce propositional logic and the extensions first order logic and MSO. The concepts and notations from propositional logic are needed for the example problems around Boolean satisfiability; MSO will be used as the language that describes the possibilities of the dynamic programming on tree decompositions.
 % Theory
 
 \textbf{Propositional logic} is a formal system $\mathcal{L} = \mathcal{L}(\mathrm {A},\Omega, \mathrm{Z}, \mathrm{I})$ with
@@ -427,7 +427,8 @@ A literal is a Boolean variable $v$ or its negation $\neg v$. A $clause$ is a fi
 %	\item \textit{falsifiable} if there is an assignment that falsifies all clauses in C.
 %	\item \textit{satisfiable} if there is an assignment that safisfies all clauses in C.
 %	\item \textit{unsatisfiable} if there does not exist an assignment that safisfies all clauses in C.
-%\end{itemize}
+%\end{itemize}\\
+
 Boolean satisfiability problem \textbf{SAT}: Given a propositional formula $\phi$, is there an assignment of the variables in $\phi$ for which $\phi$ is satisfied?
 
 \textbf{\#SAT}: Given a propositional formula $\pi$, for how many assignments of the variables in $\pi$ is $\pi$ satisfied?
@@ -454,7 +455,7 @@ Boolean satisfiability problem \textbf{SAT}: Given a propositional formula $\phi
 	c_{10}=\{\neg v_{4},v_{7}\}\}$
 \end{example}
 
-The formula $C$ is satisfied by the assignment that maps all variables $var(C)\rightarrow 1$ to $1$. 
+The formula $C$ is for example satisfied by the assignment that maps all variables $var(C)\rightarrow 1$ to $1$. 
 All 22 satisfying assignments can be seen in Table~\ref{tab:ex41tabx} on page \pageref{tab:ex41tabx}.
 
 %====================================================================
@@ -463,6 +464,8 @@ All 22 satisfying assignments can be seen in Table~\ref{tab:ex41tabx} on page \p
 
 In this thesis we use the word \textbf{graph} for a pair $G=(V_{G},E_{G})$, where $V_{G}$ is a nonempty set of vertices also called \textbf{nodes} and $E_{G}$ is the binary relation $E_{G} \subseteq V_{G} \times V_{G}$, such that $(x,y)\in E_{G}$ if and only if there exists an edge from $x$ to $y$ if $G$ is directed, and an edge between $x$ and $y$ if $G$ is undirected. For further information on graphs we refer to the common literature, for example \cite[p. {401--412}]{HandbookMathGraph} or more casually in \cite{britannicagraphs}. 
 
+To later create a tree decomposition for Boolean formulas, solvers use the structure of the clause set to compute one of the three following graphs.
+For more details see for example \cite[Chapter~2.1]{DiplomarbeitZisser}.
 
 The \textit{primal graph} of a SAT formula contains a vertex for each variable of the SAT formula, and only has an edge between two vertices if they both occur in one clause together.
 
@@ -470,7 +473,7 @@ The \textit{incidence graph} of a SAT formula if bipartite and contains a node f
 
 The \textit{dual graph} of a SAT formula contains a node for each clause in the SAT formula. This graph only has an edge between two vertices if the two clauses have at least one common variable.
 
-For more details see for example Chapter 2.1 of \cite{DiplomarbeitZisser}.
+
 
 %============== TD ====================================================
 \subsection{Tree Decomposition}
