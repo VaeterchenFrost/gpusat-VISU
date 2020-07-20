@@ -329,7 +329,7 @@ At the end of the chapter, we briefly describe the input and intermediate format
 %============== MSOL ====================================================
 \subsection{Monadic Second-Order Logic}\label{sec:MSO}
 
-\textbf{Monadic Second-Order (MSO) logic} is a logical language that is suitable for expressing numerous graph properties \cite{Courcelle2012}. In the following summary we would like to present MSO as an extension of propositional logic and first order logic. The concepts and notations from propositional logic are needed for the example problems around SAT; MSO will be used as the language that describes the possibilities of the dynamic programming on tree decompositions.
+\textbf{Monadic Second-Order (MSO) logic} is a logical language that is suitable for expressing numerous graph properties \cite[p.~41]{Courcelle2012}. In the following summary we would like to present MSO as an extension of propositional logic and first order logic. The concepts and notations from propositional logic are needed for the example problems around SAT; MSO will be used as the language that describes the possibilities of the dynamic programming on tree decompositions.
 % Theory
 
 \textbf{Propositional logic} is a formal system $\mathcal{L} = \mathcal{L}(\mathrm {A},\Omega, \mathrm{Z}, \mathrm{I})$ with
@@ -355,16 +355,16 @@ At the end of the chapter, we briefly describe the input and intermediate format
 \end{itemize}
 
 \textbf{First-order logic} adds relations and quantifiers to propositional logic.
-As a short description of both concepts we say that
+The non-logical symbols now represent relations, functions and constants on the domain of discourse. 
+As a short description of the new concepts we say that
 quantifier symbols add
 \begin{itemize}
 	\item $\exists$ for the existential quantification and
 	\item $\forall$ which expresses that a propositional function can be fulfilled by any member of a domain.
 \end{itemize}
-The non-logical symbols now represent relations, functions and constants on the domain of discourse. 
 
-A \textbf{relation symbol} with some arity (number of arguments) $\in \mathbb{N}$.
-Relations of arity 0 can be identified with propositional variables.
+A \textbf{relation symbol} with some \textbf{arity} (number of arguments) $\in \mathbb{N}$.
+Relations of \textbf{arity 0} can be identified with propositional variables.
 Examples for practical interpretations for 2-ary (binary) relations are
 \textit{\textbf{x} greater than \textbf{y}, \textbf{x} less than \textbf{y}, \textbf{x} divides \textbf{y}, \textbf{x} subset of \textbf{y}} depending on the current domain.
 
@@ -372,10 +372,9 @@ Examples for practical interpretations for 2-ary (binary) relations are
 A \textbf{function symbol}, with some arity $\in \mathbb{N}$. Any function $f(t_{1},...,t_{n})$ of n arguments (where each argument $t_{i}$ is a term and $f$ is a function symbol of arity $n$) is a term. 
 Function symbols of arity 0 are called constant symbols, and are often denoted by lowercase letters from the beginning of the alphabet a, b, c,... . \\
 
+{First-order logic quantifies only variables that range over individuals (elements of the domain of discourse); \textbf{second-order logic}, in addition, also quantifies over relations.}
 
-\textbf{First-order logic quantifies only variables that range over individuals (elements of the domain of discourse); second-order logic, in addition, also quantifies over relations.}
-
-\textbf{Monadic second-order logic (MSO) is a restriction of second-order logic in which only quantification over unary relations (i.e. sets) is allowed. Quantification over functions, owing to the equivalence to relations as described above, is thus also not allowed.}
+\textbf{Monadic second-order logic (MSO)} is a restriction of second-order logic in which only quantification over unary relations (i.e. sets) is allowed. Quantification over functions, owing to the equivalence to relations as described above, is thus also not allowed.
 
 
 %Interested in MSO logic over graphs.
