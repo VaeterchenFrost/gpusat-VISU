@@ -355,24 +355,16 @@ At the end of the chapter, we briefly describe the input and intermediate format
 \end{itemize}
 
 \textbf{First-order logic} adds relations and quantifiers to propositional logic.
-The non-logical symbols now represent relations, functions and constants on the domain of discourse. 
-As a short description of the new concepts we say that
-quantifier symbols add
+The quantifier symbols are
 \begin{itemize}
 	\item $\exists$ for the existential quantification and
 	\item $\forall$ which expresses that a propositional function can be fulfilled by any member of a domain.
 \end{itemize}
 
-A \textbf{relation symbol} with some \textbf{arity} (number of arguments) $\in \mathbb{N}$.
-Relations of \textbf{arity 0} can be identified with propositional variables.
-Examples for practical interpretations for 2-ary (binary) relations are
-\textit{\textbf{x} greater than \textbf{y}, \textbf{x} less than \textbf{y}, \textbf{x} divides \textbf{y}, \textbf{x} subset of \textbf{y}} depending on the current domain.
+For further information on logic see for example \cite[Chapter~5]{HandbookMathGraph}. \\
 
-
-A \textbf{function symbol}, with some arity $\in \mathbb{N}$. Any function $f(t_{1},...,t_{n})$ of n arguments (where each argument $t_{i}$ is a term and $f$ is a function symbol of arity $n$) is a term. 
-Function symbols of arity 0 are called constant symbols, and are often denoted by lowercase letters from the beginning of the alphabet a, b, c,... . \\
-
-{First-order logic quantifies only variables that range over individuals (elements of the domain of discourse); \textbf{second-order logic}, in addition, also quantifies over relations.}
+{First-order logic quantifies only variables that range over individuals (elements of the domain of discourse); 
+	\textbf{Second-order logic}, in addition, also quantifies over relations.}
 
 \textbf{Monadic second-order logic (MSO)} is a restriction of second-order logic in which only quantification over unary relations (i.e. sets) is allowed. Quantification over functions, owing to the equivalence to relations as described above, is thus also not allowed.
 
@@ -465,7 +457,7 @@ Boolean satisfiability problem \textbf{SAT}: Given a propositional formula $\phi
 \subsection{Graphs}
 
 
-In this thesis we use the word \textbf{graph} for a pair $G=(V_{G},E_{G})$, where $V_{G}$ is a nonempty set of vertices also called \textbf{nodes} and $E_{G}$ is the binary relation $E_{G} \subseteq V_{G} \times V_{G}$, such that $(x,y)\in E_{G}$ if and only if there exists an edge from $x$ to $y$ if $G$ is directed, and an edge between $x$ and $y$ if $G$ is undirected. For further information on graphs we refer to the common literature, for example \cite{HandbookMathGraph} or more casually in \cite{britannicagraphs}. 
+In this thesis we use the word \textbf{graph} for a pair $G=(V_{G},E_{G})$, where $V_{G}$ is a nonempty set of vertices also called \textbf{nodes} and $E_{G}$ is the binary relation $E_{G} \subseteq V_{G} \times V_{G}$, such that $(x,y)\in E_{G}$ if and only if there exists an edge from $x$ to $y$ if $G$ is directed, and an edge between $x$ and $y$ if $G$ is undirected. For further information on graphs we refer to the common literature, for example \cite[p. {401--412}]{HandbookMathGraph} or more casually in \cite{britannicagraphs}. 
 
 
 The \textit{primal graph} of a SAT formula contains a vertex for each variable of the SAT formula, and only has an edge between two vertices if they both occur in one clause together.
