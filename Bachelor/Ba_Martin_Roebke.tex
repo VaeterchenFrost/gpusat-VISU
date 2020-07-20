@@ -453,6 +453,10 @@ Boolean satisfiability problem \textbf{SAT}: Given a propositional formula $\phi
 	c_{9}=\{\neg v_{4},v_{6}\},
 	c_{10}=\{\neg v_{4},v_{7}\}\}$
 \end{example}
+
+The formula $C$ is satisfied by the assignment that maps all variables $var(C)\rightarrow 1$ to $1$. 
+All 22 satisfying assignments can be seen in Table~\ref{tab:ex41tabx} on page \pageref{tab:ex41tabx}.
+
 %====================================================================
 \subsection{Graphs}
 
@@ -1543,6 +1547,7 @@ Right now even with the \textit{svg-join} tool we need multiple files to represe
 
 \lstinputlisting[caption={The JSON format used to describe MSOL visualization on tree decompositions}, label={lst:jsonapi}]{includes/JsonAPI.txt}
 
+
 \begin{lstlisting}[language={Python}, caption={Construct\_dpdb\_visu.py}, label={lst:create-json}]
 def create_json(problem: int, tw_file=None, intermed_nodes=False):
 	"""Create the JSON for the specified problem instance."""
@@ -1673,9 +1678,44 @@ class SvgJoinData:
 \end{lstlisting}
 
 %============== Input Examples ======================================================
-\section{Input Examples}\label{app:input}
+\section{Further Examples}\label{app:input}
 
 \lstset{numbers=none}
+
+\begin{table}[ht]
+	\centering
+	\begin{tabular}{|c|c|c|c|c|c|c|c|}
+		
+		\hline
+		$v_{1}$ & $v_{2}$ & $v_{3}$ & $v_{4}$ & $v_{5}$ & $v_{6}$ & $v_{7}$ & $v_{8}$ \\
+		\hline 
+		1 & 1 & 1 & 1 & 1 & 1 & 1 & 1 \\
+		1 & 1 & 1 & 1 & 1 & 1 & 1 & 0 \\
+		1 & 1 & 1 & 1 & 0 & 1 & 1 & 1 \\
+		1 & 1 & 1 & 1 & 0 & 1 & 1 & 0 \\
+		1 & 1 & 1 & 0 & 1 & 1 & 1 & 0 \\
+		1 & 1 & 1 & 0 & 1 & 0 & 1 & 0 \\
+		1 & 1 & 1 & 0 & 0 & 1 & 1 & 0 \\
+		1 & 1 & 1 & 0 & 0 & 0 & 1 & 0 \\
+		1 & 1 & 0 & 1 & 1 & 1 & 1 & 0 \\
+		1 & 1 & 0 & 1 & 0 & 1 & 1 & 0 \\
+		1 & 1 & 0 & 0 & 1 & 1 & 1 & 0 \\
+		1 & 1 & 0 & 0 & 1 & 0 & 1 & 0 \\
+		1 & 1 & 0 & 0 & 0 & 1 & 1 & 0 \\
+		1 & 1 & 0 & 0 & 0 & 0 & 1 & 0 \\
+		1 & 0 & 1 & 0 & 0 & 0 & 1 & 0 \\
+		0 & 1 & 1 & 1 & 0 & 1 & 1 & 1 \\
+		0 & 1 & 1 & 1 & 0 & 1 & 1 & 0 \\
+		0 & 1 & 1 & 0 & 0 & 1 & 1 & 0 \\
+		0 & 1 & 1 & 0 & 0 & 1 & 0 & 0 \\
+		0 & 1 & 0 & 1 & 0 & 1 & 1 & 0 \\
+		0 & 1 & 0 & 0 & 0 & 1 & 1 & 0 \\
+		0 & 1 & 0 & 0 & 0 & 1 & 0 & 0 \\
+		\hline
+	\end{tabular}
+\caption{The satisfying assignments for the formula from Example~\ref{ex:example41}.}
+\label{tab:ex41tabx}
+\end{table}
 
 \begin{lstlisting}[caption={CNF clauses from example 4.1 in \cite{DiplomarbeitZisser} page 27}, label={lst:clausesDA41}]
 p cnf 8 10
