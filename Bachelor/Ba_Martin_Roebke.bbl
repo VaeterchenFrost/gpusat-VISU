@@ -244,15 +244,12 @@
       \field{sortinithash}{8de16967003c7207dae369d874f1456e}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
-      \field{chapter}{5.8}
       \field{edition}{6}
       \field{isbn}{978-3-662-46220-1}
       \field{pagetotal}{1207}
       \field{title}{Handbook of Mathematics}
       \field{year}{2015}
       \field{dateera}{ce}
-      \field{pages}{401\bibrangedash 412}
-      \range{pages}{12}
       \verb{doi}
       \verb 10.1007/978-3-662-46221-8
       \endverb

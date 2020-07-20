@@ -133,3 +133,10 @@ dmypy.json
 *.stats
 tdvisualization_repo/tdvisu/Archive/*
 
+# LaTeX help files
+
+*.aux
+*.bbl
+*.bcf
+*.blg
+*.synctex.gz
