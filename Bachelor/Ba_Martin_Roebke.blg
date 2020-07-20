@@ -1,17 +1,19 @@
 [0] Config.pm:304> INFO - This is Biber 2.14
 [0] Config.pm:307> INFO - Logfile is 'Ba_Martin_Roebke.blg'
-[69] biber-MSWIN64:322> INFO - === 
-[91] Biber.pm:415> INFO - Reading 'Ba_Martin_Roebke.bcf'
-[241] Biber.pm:943> INFO - Found 29 citekeys in bib section 0
-[256] Biber.pm:4256> INFO - Processing section 0
-[256] Utils.pm:75> INFO - Globbing data source 'bibtex.bib'
-[269] Utils.pm:91> INFO - Globbed data source 'bibtex.bib' to bibtex.bib
-[287] Biber.pm:4455> INFO - Looking for bibtex format file 'bibtex.bib' for section 0
-[290] bibtex.pm:1653> INFO - LaTeX decoding ...
-[351] bibtex.pm:1471> INFO - Found BibTeX data source 'bibtex.bib'
-[529] UCollate.pm:68> INFO - Overriding locale 'en-US' defaults 'normalization = NFD' with 'normalization = prenormalized'
-[529] UCollate.pm:68> INFO - Overriding locale 'en-US' defaults 'variable = shifted' with 'variable = non-ignorable'
-[529] Biber.pm:4084> INFO - Sorting list 'anyt/global//global/global' of type 'entry' with template 'anyt' and locale 'en-US'
-[529] Biber.pm:4090> INFO - No sort tailoring available for locale 'en-US'
-[564] bbl.pm:652> INFO - Writing 'Ba_Martin_Roebke.bbl' with encoding 'UTF-8'
-[577] bbl.pm:755> INFO - Output to Ba_Martin_Roebke.bbl
+[57] biber-MSWIN64:322> INFO - === 
+[75] Biber.pm:415> INFO - Reading 'Ba_Martin_Roebke.bcf'
+[164] Biber.pm:943> INFO - Found 30 citekeys in bib section 0
+[178] Biber.pm:4256> INFO - Processing section 0
+[178] Utils.pm:75> INFO - Globbing data source 'bibtex.bib'
+[187] Utils.pm:91> INFO - Globbed data source 'bibtex.bib' to bibtex.bib
+[200] Biber.pm:4455> INFO - Looking for bibtex format file 'bibtex.bib' for section 0
+[203] bibtex.pm:1653> INFO - LaTeX decoding ...
+[262] bibtex.pm:1471> INFO - Found BibTeX data source 'bibtex.bib'
+[263] Utils.pm:304> WARN - Possible typo (case mismatch) between datasource keys: 'GraphDatabases' and 'graphdatabases' in file 'bibtex.bib'
+[441] UCollate.pm:68> INFO - Overriding locale 'en-US' defaults 'variable = shifted' with 'variable = non-ignorable'
+[441] UCollate.pm:68> INFO - Overriding locale 'en-US' defaults 'normalization = NFD' with 'normalization = prenormalized'
+[441] Biber.pm:4084> INFO - Sorting list 'anyt/global//global/global' of type 'entry' with template 'anyt' and locale 'en-US'
+[441] Biber.pm:4090> INFO - No sort tailoring available for locale 'en-US'
+[473] bbl.pm:652> INFO - Writing 'Ba_Martin_Roebke.bbl' with encoding 'UTF-8'
+[487] bbl.pm:755> INFO - Output to Ba_Martin_Roebke.bbl
+[488] Biber.pm:128> INFO - WARNINGS: 1

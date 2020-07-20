@@ -901,6 +901,51 @@
       \field{pages}{303\bibrangedash 308}
       \range{pages}{6}
     \endentry
+    \entry{graphdatabases}{book}{}
+      \name{author}{3}{}{%
+        {{hash=eaed36ba79bb2c6095773ccc079ca1d0}{%
+           family={Robinson},
+           familyi={R\bibinitperiod},
+           given={Ian},
+           giveni={I\bibinitperiod}}}%
+        {{hash=de1f6562412a8121370e1b6d96e5e72d}{%
+           family={Webber},
+           familyi={W\bibinitperiod},
+           given={Jim},
+           giveni={J\bibinitperiod}}}%
+        {{hash=8e02fdf202c686f3aed04d71fb9f821c}{%
+           family={Eifrém},
+           familyi={E\bibinitperiod},
+           given={Emil},
+           giveni={E\bibinitperiod}}}%
+      }
+      \list{language}{1}{%
+        {English}%
+      }
+      \list{publisher}{1}{%
+        {O'Reilly Media}%
+      }
+      \strng{namehash}{b9fad80bde9fd636b8a7c53fd7211881}
+      \strng{fullhash}{b9fad80bde9fd636b8a7c53fd7211881}
+      \strng{bibnamehash}{b9fad80bde9fd636b8a7c53fd7211881}
+      \strng{authorbibnamehash}{b9fad80bde9fd636b8a7c53fd7211881}
+      \strng{authornamehash}{b9fad80bde9fd636b8a7c53fd7211881}
+      \strng{authorfullhash}{b9fad80bde9fd636b8a7c53fd7211881}
+      \field{labelalpha}{RWE15}
+      \field{sortinit}{R}
+      \field{sortinithash}{b9c68a358aea118dfa887b6e902414a7}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{day}{10}
+      \field{edition}{2}
+      \field{isbn}{978-1491930892}
+      \field{month}{6}
+      \field{pagetotal}{365}
+      \field{subtitle}{New Opportunities for Connected Data}
+      \field{title}{Graph Databases}
+      \field{year}{2015}
+      \field{dateera}{ce}
+    \endentry
     \entry{samermodelcounting}{article}{}
       \name{author}{2}{}{%
         {{hash=14e6b783c0e3ffd50ff75da599fe1bdd}{%

@@ -2218,13 +2218,14 @@
     <bcf:citekey order="34">ST99</bcf:citekey>
     <bcf:citekey order="35">Hu05</bcf:citekey>
     <bcf:citekey order="36">Himsolt2010GMLAP</bcf:citekey>
-    <bcf:citekey order="37">shortestPathAlgo</bcf:citekey>
-    <bcf:citekey order="38">SciPyProceedings_11</bcf:citekey>
-    <bcf:citekey order="39">HenningParamAlgo</bcf:citekey>
-    <bcf:citekey order="40">dpdbpadl2020</bcf:citekey>
-    <bcf:citekey order="41">Mathematica</bcf:citekey>
-    <bcf:citekey order="42">DiplomarbeitZisser</bcf:citekey>
+    <bcf:citekey order="37">graphdatabases</bcf:citekey>
+    <bcf:citekey order="38">shortestPathAlgo</bcf:citekey>
+    <bcf:citekey order="39">SciPyProceedings_11</bcf:citekey>
+    <bcf:citekey order="40">HenningParamAlgo</bcf:citekey>
+    <bcf:citekey order="41">dpdbpadl2020</bcf:citekey>
+    <bcf:citekey order="42">Mathematica</bcf:citekey>
     <bcf:citekey order="43">DiplomarbeitZisser</bcf:citekey>
+    <bcf:citekey order="44">DiplomarbeitZisser</bcf:citekey>
   </bcf:section>
   <!-- SORTING TEMPLATES -->
   <bcf:sortingtemplate name="anyt">
