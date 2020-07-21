@@ -316,10 +316,9 @@ Chapter \ref{sec:appl} shows, limited by the page size, small examples for the t
 \newpage
 \section{Background}\label{sec:bg}
 In this chapter we provide a brief background for this work.\\
-We will start with a short introduction to MSO in \ref{sec:MSO}. Then we describe BFS as the basis for SAT and \#SAT problems, which are a popular application for solvers.
+We will start with a short introduction to logic and MSO in \ref{sec:MSO}. Then we describe the Boolean satisfiability problem which in it's variants is a popular application for solvers.
 Then we introduce Courcelle's theorem, which describes important properties of the problems and related bounds for the solvers.
 Eventually, tree decompositions are described as a basis for dynamic programming in the next section.
-At the end of the chapter, we briefly describe the input and intermediate formats DIMACS and DOT.
 %We begin with a description on SAT and \#SAT as examples for a very general problem that can be described with monadic second order logic (MSOL).
 %Furthermore the general case of MSOL will be described, as well as the \textit{DIMACS}-file-format used in the projects.
 %The following section describes Tree Decompositions (TDs) which are the basis for our visualization. 
@@ -355,18 +354,18 @@ At the end of the chapter, we briefly describe the input and intermediate format
 \end{itemize}
 
 \textbf{First-order logic} adds relations and quantifiers to propositional logic.
+For further information on logic see for example \cite[Chapter~5]{HandbookMathGraph}. \\
 The quantifier symbols are
 \begin{itemize}
 	\item $\exists$ for the existential quantification and
 	\item $\forall$ which expresses that a propositional function can be fulfilled by any member of a domain.
 \end{itemize}
 
-For further information on logic see for example \cite[Chapter~5]{HandbookMathGraph}. \\
+While first-order logic only quantifies variables that range over individuals (elements of the domain of discourse),
+\textbf{Second-order logic}, in addition, also quantifies over relations.
 
-{First-order logic quantifies only variables that range over individuals (elements of the domain of discourse); 
-	\textbf{Second-order logic}, in addition, also quantifies over relations.}
-
-\textbf{Monadic second-order logic (MSO)} is a restriction of second-order logic in which only quantification over unary relations (i.e. sets) is allowed. Quantification over functions, owing to the equivalence to relations as described above, is thus also not allowed.
+\textbf{Monadic second-order logic (MSO)} is a restriction of second-order logic in which only quantification over unary relations (i.e. sets) is allowed. 
+%A quantification over functions is therefore also not allowed due to the equivalence to relations.
 
 
 %Interested in MSO logic over graphs.
@@ -502,7 +501,7 @@ The tree decomposition for our example "wheelgraph" \ref{fig:wheelgraph} can be 
 
 %============== Reference on Algo and Param Complexity ====================================================
 \subsection{Dynamic Programming on Tree Decompositions}
-In this chapter we want to give a short overview of the process of dynamic programming, that we visualize on the tree decompositions. For specific information on the used algorithms for \#SAT we refer to \cite{DiplomarbeitZisser} ch. 3 or \cite{samermodelcounting}. \\
+In this chapter we want to give a short overview of the process of dynamic programming, which we visualize on the tree decompositions. For specific information on the used algorithms for \#SAT we refer to \cite{DiplomarbeitZisser} ch. 3 or \cite{samermodelcounting}. \\
 
 With dynamic programming, a problem is broken down into parts and the parts are then solved individually. The solving algorithm then evaluates the formula along the path of the tree decomposition in a bottom up order starting in one of the leafs. The solution for each assignment in the bag is then stored in a table. The size of the table is exponential to the size of the bag. The tables of the child nodes can be deleted as soon as the table of the current node is generated. \textit{from \cite{DiplomarbeitZisser} ch. 3.1}.\\
 The dynamic programming approach for a given graph works as follows:
@@ -519,7 +518,7 @@ The dynamic programming approach for a given graph works as follows:
 
 % Implications
 There are efficient enumeration algorithms \cite{MSOQueriesGuillaume} and counting the number of solutions \cite{ARNBORG1991308} of a MSO formula, if it is ensured that the input data is preprocessed in linear time and that each solution is then produced in a delay linear in the size of each solution.
-MSO graph properties are "fixed-parameter-tractable" with respect to clique-width and tree-width. So are MSO counting and optimizing functions.
+MSO graph properties are "fixed-parameter-tractable" with respect to tree-width. So are MSO counting and optimizing functions.
 MSO logic can express graph properties and mappings from (labeled) graphs to (labeled) graphs \cite{CourcelleGROW}.
 % https://en.wikipedia.org/wiki/Parameterized_complexity
 \textbf{FPT for model checking}:
