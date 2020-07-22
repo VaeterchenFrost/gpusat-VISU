@@ -330,7 +330,7 @@ Eventually, tree decompositions are described as a basis for dynamic programming
 In this thesis we use the word \textbf{graph} for a pair $G=(V_{G},E_{G})$, where $V_{G}$ is a nonempty set of vertices also called \textbf{nodes} and $E_{G}$ is the binary relation $E_{G} \subseteq V_{G} \times V_{G}$, such that $(x,y)\in E_{G}$ if and only if there exists an edge from $x$ to $y$ if $G$ is directed, and an edge between $x$ and $y$ if $G$ is undirected. For further information on graphs we refer to the common literature, for example \cite[p. {401--412}]{HandbookMathGraph} or more casually in \cite{britannicagraphs}. 
 
 \begin{example}\label{ex:wheelgraph}
-	As an example of an undirected graph we take $G$ with
+	$G$ is an undirected graph with
 	\begin{align*}
 	 G&=(V_{G},E_{G})\\
 	 	 V_{G} &= \{1,2,3,4,5,6,7\}\\
@@ -391,7 +391,17 @@ ${\Omega _{1}=\{\lnot \},}$
 ${ \Omega _{2}= \{\land ,\lor \}.}$\\
 
 
-A propositional logic formula, or Boolean expression, is then built from variables, the logical values $\Omega _{0}$, the operators $\Omega _{1}$ and $\Omega _{2}$ as well as parentheses.
+A propositional logic formula, or Boolean expression, is then built from variables, the logical values $\Omega _{0}$, the operators $\Omega _{1}$ and $\Omega _{2}$ as well as parentheses.\\
+
+
+\begin{example}\label{ex:booleanform}
+	$B$ is a Boolean expression with\\
+	
+	$B = (\text{v1}\lor \text{v4}\lor \text{v6})\land (\neg \text{v5}\lor \text{v1})\land (\neg \text{v1}\lor \text{v7})\land (\text{v2}\lor \text{v3})\land (\text{v2}\lor \neg \text{v5})
+	\land (\neg \text{v6}\lor \text{v2})\land \\
+	(\text{v3}\lor \neg \text{v8})\land (\text{v4}\lor \neg \text{v8})\land (\neg \text{v4}\lor \text{v6})\land (\neg \text{v4}\lor \text{v7})$
+
+\end{example}
 
 To describe the usual notation used in solvers for Boolean satisfiability we also use the following definitions to describe the problem instances denoted in conjunctive normal form (CNF).
 
@@ -418,7 +428,7 @@ The \textbf{\#SAT} problem consists of the question: Given a propositional formu
 
 % EXAMPLE 4.1?
 \begin{example}\label{ex:example41}
-	For visualization samples we will use the formula with the following clause set: $C=\{c_{1}=\{v_{1},v_{4},v_{6}\},
+	For visualization samples we will use the formula from ex. \ref{ex:booleanform} with the following clause set: $C=\{c_{1}=\{v_{1},v_{4},v_{6}\},
 	c_{2}=\{v_{1},\neg v_{5}\},
 	c_{3}=\{\neg v_{1},v_{7}\},
 	c_{4}=\{v_{2},v_{3}\},
