@@ -324,13 +324,20 @@ Eventually, tree decompositions are described as a basis for dynamic programming
 %The following section describes Tree Decompositions (TDs) which are the basis for our visualization. 
 %Finally we shortly discuss Courcelle's Theorem~\cite{Courcelle2012} as a related method of solving these problems.
 
+%====================================================================
+\subsection{Graphs}
+
+In this thesis we use the word \textbf{graph} for a pair $G=(V_{G},E_{G})$, where $V_{G}$ is a nonempty set of vertices also called \textbf{nodes} and $E_{G}$ is the binary relation $E_{G} \subseteq V_{G} \times V_{G}$, such that $(x,y)\in E_{G}$ if and only if there exists an edge from $x$ to $y$ if $G$ is directed, and an edge between $x$ and $y$ if $G$ is undirected. For further information on graphs we refer to the common literature, for example \cite[p. {401--412}]{HandbookMathGraph} or more casually in \cite{britannicagraphs}. 
+
+EXAMPLE DIRECTED + UNDIRECTED
 
 %============== MSOL ====================================================
-\subsection{Monadic Second-Order Logic}\label{sec:MSO}
+\subsection{(Monadic Second-Order) Logic}\label{sec:MSO}
 
 \textbf{Monadic Second-Order (MSO) logic} is a logical language that is suitable for expressing numerous graph properties \cite[p.~41]{Courcelle2012}. In the following summary we would like to introduce propositional logic and the extensions first order logic and MSO. The concepts and notations from propositional logic are needed for the example problems around Boolean satisfiability; MSO will be used as the language that describes the possibilities of the dynamic programming on tree decompositions.
 % Theory
 
+\subsubsection{Propositional Logic}
 \textbf{Propositional logic} is a formal system $\mathcal{L} = \mathcal{L}(\mathrm {A},\Omega, \mathrm{Z}, \mathrm{I})$ with
 \begin{itemize}
 	\item the set $\mathrm {A}$ as a countably infinite set of elements called proposition symbols or propositional variables. These are also called terminal elements.
@@ -352,57 +359,8 @@ Eventually, tree decompositions are described as a basis for dynamic programming
 	
 	\item The set $\mathrm {I}$ is a countable set of initial points that are called axioms when they receive logical interpretations.
 \end{itemize}
-
-\textbf{First-order logic} adds relations and quantifiers to propositional logic.
-For further information on logic see for example \cite[Chapter~5]{HandbookMathGraph}. \\
-The quantifier symbols are
-\begin{itemize}
-	\item $\exists$ for the existential quantification and
-	\item $\forall$ which expresses that a propositional function can be fulfilled by any member of a domain.
-\end{itemize}
-
-While first-order logic only quantifies variables that range over individuals (elements of the domain of discourse),
-\textbf{Second-order logic}, in addition, also quantifies over relations.
-
-\textbf{Monadic second-order logic (MSO)} is a restriction of second-order logic in which only quantification over unary relations (i.e. sets) is allowed. 
-%A quantification over functions is therefore also not allowed due to the equivalence to relations.
-
-
-%Interested in MSO logic over graphs.
-
-%Two types of MSO formulas \textit{or logical graph representations}.
-%The expressions have the form: "There exists a \textbf{set of edges} that is..." can not be transferred into "set of vertices".
-%
-%\begin{itemize}
-%	\item MSO formulas
-%	\item MSO$_{2}$ formulas with edge quantification $\equiv$ MSO formulas over incidence graphs
-%\end{itemize}
-%\begin{itemize}
-%	\item G=(vertices, edges as binary relation)
-%	\item INC(G) = (vertices and edges, Inc)
-%	for G undirected: Inc(e,v) <-> v is a vertex of edge e
-%\end{itemize}
-%\begin{itemize}
-%	\item FPT for clique width
-%	\item FPT for tree-width
-%\end{itemize}
-%This can also be done for directed graphs!
-
-% Applications
-
-
-%Typical MSO$_{2}$ graph properties:
-%
-%has a perfect matching
-%has a Hamiltonian circuit
-%spanning tree of degree $\le$ 3
-%
-%\url{https://youtu.be/Wyn3djrYg7c?t=1385} Bruno Courcelle: Recognizable sets of graphs: algebraic and logical aspects 
-%\url{https://library.cirm-math.fr/Record.htm?idlist=2&record=19276851124910940339}
-%Recording during the thematic meeting: "Frontiers of reconnaissability" the April 29, 2014 at the Centre International de Rencontres Mathématiques (Marseille, France)
-
 %============== SAT ====================================================
-\subsection{Boolean satisfiability problem}
+\subsection{Boolean Satisfiability Problem}
 % https://en.wikipedia.org/wiki/Boolean_satisfiability_problem
 
 %SAT was the first known NP-complete problem, shown by Stephen Cook at the University of Toronto in 1971 \cite{SAT1971}
@@ -457,11 +415,7 @@ Boolean satisfiability problem \textbf{SAT}: Given a propositional formula $\phi
 The formula $C$ is for example satisfied by the assignment that maps all variables $var(C)\rightarrow 1$ to $1$. 
 All 22 satisfying assignments can be seen in Table~\ref{tab:ex41tabx} on page \pageref{tab:ex41tabx}.
 
-%====================================================================
-\subsection{Graphs}
 
-
-In this thesis we use the word \textbf{graph} for a pair $G=(V_{G},E_{G})$, where $V_{G}$ is a nonempty set of vertices also called \textbf{nodes} and $E_{G}$ is the binary relation $E_{G} \subseteq V_{G} \times V_{G}$, such that $(x,y)\in E_{G}$ if and only if there exists an edge from $x$ to $y$ if $G$ is directed, and an edge between $x$ and $y$ if $G$ is undirected. For further information on graphs we refer to the common literature, for example \cite[p. {401--412}]{HandbookMathGraph} or more casually in \cite{britannicagraphs}. 
 
 To later create a tree decomposition for Boolean formulas, solvers use the structure of the clause set to compute one of the three following graphs.
 For more details see for example \cite[Chapter~2.1]{DiplomarbeitZisser}.
@@ -472,6 +426,65 @@ The \textit{incidence graph} of a SAT formula if bipartite and contains a node f
 
 The \textit{dual graph} of a SAT formula contains a node for each clause in the SAT formula. This graph only has an edge between two vertices if the two clauses have at least one common variable.
 
+\subsubsection{From Propositional Logic to MSO Logic}
+\textbf{First-order logic} adds relations and quantifiers to propositional logic.
+For further information on logic see for example \cite[Chapter~5]{HandbookMathGraph}. \\
+The quantifier symbols are
+\begin{itemize}
+	\item $\exists$ for the existential quantification and
+	\item $\forall$ which expresses that a propositional function can be fulfilled by any member of a domain.
+\end{itemize}
+
+While first-order logic only quantifies variables that range over individuals (elements of the domain of discourse),
+\textbf{Second-order logic}, in addition, also quantifies over relations.
+
+\textbf{Monadic second-order logic (MSO)} is a restriction of second-order logic in which only quantification over unary relations (i.e. sets) is allowed. 
+%A quantification over functions is therefore also not allowed due to the equivalence to relations.
+
+%Interested in MSO logic over graphs.
+
+%Two types of MSO formulas \textit{or logical graph representations}.
+%The expressions have the form: "There exists a \textbf{set of edges} that is..." can not be transferred into "set of vertices".
+%
+%\begin{itemize}
+%	\item MSO formulas
+%	\item MSO$_{2}$ formulas with edge quantification $\equiv$ MSO formulas over incidence graphs
+%\end{itemize}
+%\begin{itemize}
+%	\item G=(vertices, edges as binary relation)
+%	\item INC(G) = (vertices and edges, Inc)
+%	for G undirected: Inc(e,v) <-> v is a vertex of edge e
+%\end{itemize}
+%\begin{itemize}
+%	\item FPT for clique width
+%	\item FPT for tree-width
+%\end{itemize}
+%This can also be done for directed graphs!
+
+% Applications
+
+\subsubsection{MSO (Graph) Properties}
+Typical MSO properties:
+
+k-colorability
+Example graph is 3-colorable
+$\exists X,Y (X \Cap Y = \emptyset \land \forall u,v (edg(u,v) \implies [(u\in X \implies v\notin X)\land (u\in Y \implies v\notin Y)\land (u\notin X \Cup Y \implies c \in X \Cup Y)]))$
+
+connectivity
+Example graph is \textbf{not} connected
+$\exists Z(\exists x \in Z \land \exists y \notin Z \land (\forall u,v [u\in Z \land edg(u,v) \implies v \in Z]))$
+
+planarity
+
+has a perfect matching
+
+has a Hamiltonian circuit
+
+spanning tree of degree $\le$ 3
+
+%\url{https://youtu.be/Wyn3djrYg7c?t=1385} Bruno Courcelle: Recognizable sets of graphs: algebraic and logical aspects 
+%\url{https://library.cirm-math.fr/Record.htm?idlist=2&record=19276851124910940339}
+%Recording during the thematic meeting: "Frontiers of reconnaissability" the April 29, 2014 at the Centre International de Rencontres Mathématiques (Marseille, France)
 
 
 %============== TD ====================================================
@@ -503,7 +516,7 @@ The tree decomposition for our example "wheelgraph" \ref{fig:wheelgraph} can be 
 \subsection{Dynamic Programming on Tree Decompositions}
 In this chapter we want to give a short overview of the process of dynamic programming, which we visualize on the tree decompositions. For specific information on the used algorithms for \#SAT we refer to \cite{DiplomarbeitZisser} ch. 3 or \cite{samermodelcounting}. \\
 
-With dynamic programming, a problem is broken down into parts and the parts are then solved individually. The solving algorithm then evaluates the formula along the path of the tree decomposition in a bottom up order starting in one of the leafs. The solution for each assignment in the bag is then stored in a table. The size of the table is exponential to the size of the bag. The tables of the child nodes can be deleted as soon as the table of the current node is generated. \textit{from \cite{DiplomarbeitZisser} ch. 3.1}.\\
+With dynamic programming, a problem is broken down into parts and the parts are then solved individually. The solving algorithm evaluates the formula along the path of the tree decomposition in a bottom up order starting in one of the leafs. The solution for each assignment in the bag is then stored in a table. The size of the table is exponential to the size of the bag. The tables of the child nodes can be deleted as soon as the table of the current node is generated. \textit{from \cite{DiplomarbeitZisser} ch. 3.1}.\\
 The dynamic programming approach for a given graph works as follows:
 \begin{enumerate}
 	\item Create a tree decomposition ${T}$ of the graph.
@@ -517,7 +530,7 @@ The dynamic programming approach for a given graph works as follows:
 \end{enumerate}
 
 % Implications
-There are efficient enumeration algorithms \cite{MSOQueriesGuillaume} and counting the number of solutions \cite{ARNBORG1991308} of a MSO formula, if it is ensured that the input data is preprocessed in linear time and that each solution is then produced in a delay linear in the size of each solution.
+There are efficient enumeration algorithms \cite{MSOQueriesGuillaume} and for counting the number of solutions \cite{ARNBORG1991308} of a MSO formula, if it is ensured that the input data is preprocessed in linear time, and that each solution is then produced in a delay linear in the size of each solution.
 MSO graph properties are "fixed-parameter-tractable" with respect to tree-width. So are MSO counting and optimizing functions.
 MSO logic can express graph properties and mappings from (labeled) graphs to (labeled) graphs \cite{CourcelleGROW}.
 % https://en.wikipedia.org/wiki/Parameterized_complexity
@@ -529,6 +542,7 @@ Some problems can be solved by algorithms that are exponential only in the size 
 	This algorithm is then usable for small values of k.
 \end{thm}
 
+DETAILS MinVC: https://en.wikipedia.org/wiki/Vertex\_cover\#Fixed-parameter\_tractability
 
 %============== Courcelle ====================================================
 \subsection{Courcelle's Theorem}
@@ -553,9 +567,7 @@ Even if linear in the size of the input, naive implementations are still expensi
 %($2^{p(tw G)}$, $2^{2^{(\#Q)}}$,  
 the constant factor can be very significant. An efficient implementation will still require several tricks to make this approach practical. Developing and debugging these "tricks" is not always that easy, so a visualization can help at this point.\smallskip 
 
-
 % See also figure~\ref{fig:logictheory}.
-
 
 %==============================================================================
 %============== Practical Requirements ========================================
@@ -1686,33 +1698,33 @@ class SvgJoinData:
 
 \begin{table}[ht]
 	\centering
-	\begin{tabular}{|c|c|c|c|c|c|c|c|}
+	\begin{tabular}{|l||c|c|c|c|c|c|c|c|}
 		
 		\hline
-		$v_{1}$ & $v_{2}$ & $v_{3}$ & $v_{4}$ & $v_{5}$ & $v_{6}$ & $v_{7}$ & $v_{8}$ \\
+		&$v_{1}$ & $v_{2}$ & $v_{3}$ & $v_{4}$ & $v_{5}$ & $v_{6}$ & $v_{7}$ & $v_{8}$ \\
 		\hline 
-		1 & 1 & 1 & 1 & 1 & 1 & 1 & 1 \\
-		1 & 1 & 1 & 1 & 1 & 1 & 1 & 0 \\
-		1 & 1 & 1 & 1 & 0 & 1 & 1 & 1 \\
-		1 & 1 & 1 & 1 & 0 & 1 & 1 & 0 \\
-		1 & 1 & 1 & 0 & 1 & 1 & 1 & 0 \\
-		1 & 1 & 1 & 0 & 1 & 0 & 1 & 0 \\
-		1 & 1 & 1 & 0 & 0 & 1 & 1 & 0 \\
-		1 & 1 & 1 & 0 & 0 & 0 & 1 & 0 \\
-		1 & 1 & 0 & 1 & 1 & 1 & 1 & 0 \\
-		1 & 1 & 0 & 1 & 0 & 1 & 1 & 0 \\
-		1 & 1 & 0 & 0 & 1 & 1 & 1 & 0 \\
-		1 & 1 & 0 & 0 & 1 & 0 & 1 & 0 \\
-		1 & 1 & 0 & 0 & 0 & 1 & 1 & 0 \\
-		1 & 1 & 0 & 0 & 0 & 0 & 1 & 0 \\
-		1 & 0 & 1 & 0 & 0 & 0 & 1 & 0 \\
-		0 & 1 & 1 & 1 & 0 & 1 & 1 & 1 \\
-		0 & 1 & 1 & 1 & 0 & 1 & 1 & 0 \\
-		0 & 1 & 1 & 0 & 0 & 1 & 1 & 0 \\
-		0 & 1 & 1 & 0 & 0 & 1 & 0 & 0 \\
-		0 & 1 & 0 & 1 & 0 & 1 & 1 & 0 \\
-		0 & 1 & 0 & 0 & 0 & 1 & 1 & 0 \\
-		0 & 1 & 0 & 0 & 0 & 1 & 0 & 0 \\
+		1&1 & 1 & 1 & 1 & 1 & 1 & 1 & 1 \\
+		2&1 & 1 & 1 & 1 & 1 & 1 & 1 & 0 \\
+		3&1 & 1 & 1 & 1 & 0 & 1 & 1 & 1 \\
+		4&1 & 1 & 1 & 1 & 0 & 1 & 1 & 0 \\
+		5&1 & 1 & 1 & 0 & 1 & 1 & 1 & 0 \\
+		6&1 & 1 & 1 & 0 & 1 & 0 & 1 & 0 \\
+		7&1 & 1 & 1 & 0 & 0 & 1 & 1 & 0 \\
+		8&1 & 1 & 1 & 0 & 0 & 0 & 1 & 0 \\
+		9&1 & 1 & 0 & 1 & 1 & 1 & 1 & 0 \\
+		10&1 & 1 & 0 & 1 & 0 & 1 & 1 & 0 \\
+		11&1 & 1 & 0 & 0 & 1 & 1 & 1 & 0 \\
+		12&1 & 1 & 0 & 0 & 1 & 0 & 1 & 0 \\
+		13&1 & 1 & 0 & 0 & 0 & 1 & 1 & 0 \\
+		14&1 & 1 & 0 & 0 & 0 & 0 & 1 & 0 \\
+		15&1 & 0 & 1 & 0 & 0 & 0 & 1 & 0 \\
+		16&0 & 1 & 1 & 1 & 0 & 1 & 1 & 1 \\
+		17&0 & 1 & 1 & 1 & 0 & 1 & 1 & 0 \\
+		18&0 & 1 & 1 & 0 & 0 & 1 & 1 & 0 \\
+		19&0 & 1 & 1 & 0 & 0 & 1 & 0 & 0 \\
+		20&0 & 1 & 0 & 1 & 0 & 1 & 1 & 0 \\
+		21&0 & 1 & 0 & 0 & 0 & 1 & 1 & 0 \\
+		22&0 & 1 & 0 & 0 & 0 & 1 & 0 & 0 \\
 		\hline
 	\end{tabular}
 \caption{The satisfying assignments for the formula from Example~\ref{ex:example41}.}
