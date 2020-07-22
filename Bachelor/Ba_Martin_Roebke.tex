@@ -327,7 +327,7 @@ Eventually, tree decompositions are described as a basis for dynamic programming
 %====================================================================
 \subsection{Graphs}
 
-In this thesis we use the word \textbf{graph} for a pair $G=(V_{G},E_{G})$, where $V_{G}$ is a nonempty set of vertices also called \textbf{nodes} and $E_{G}$ is the binary relation $E_{G} \subseteq V_{G} \times V_{G}$, such that $(x,y)\in E_{G}$ if and only if there exists an edge from $x$ to $y$ if $G$ is directed, and an edge between $x$ and $y$ if $G$ is undirected. For further information on graphs we refer to the common literature, for example \cite[p. {401--412}]{HandbookMathGraph} or more casually in \cite{britannicagraphs}. 
+In this thesis we use the word \textbf{graph} for a pair $G=(V_{G},E_{G})$, where $V_{G}$ is a nonempty set of vertices also called \textbf{nodes} and $edg_{G} = E_{G}$ is the binary relation $E_{G} \subseteq V_{G} \times V_{G}$, such that $(x,y)\in E_{G}$ if and only if there exists an edge from $x$ to $y$ if $G$ is directed, and an edge between $x$ and $y$ if $G$ is undirected. For further information on graphs we refer to the common literature, for example \cite[p. {401--412}]{HandbookMathGraph} or more casually in \cite{britannicagraphs}. 
 
 \begin{example}\label{ex:wheelgraph}
 	$G$ is an undirected graph with
@@ -501,23 +501,22 @@ While first-order logic only quantifies variables that range over individuals (e
 
 \subsubsection{MSO (Graph) Properties}
 MSO logic can express graph properties and mappings from (labeled) graphs to (labeled) graphs \cite{CourcelleGROW}.
-Typical MSO properties:
+Typical MSO properties include:
 
-k-colorability
-Example graph is 3-colorable
-$\exists X,Y (X \Cap Y = \emptyset \land \forall u,v (edg(u,v) \implies [(u\in X \implies v\notin X)\land (u\in Y \implies v\notin Y)\land (u\notin X \Cup Y \implies c \in X \Cup Y)]))$
-
-connectivity
-Example graph is \textbf{not} connected
-$\exists Z(\exists x \in Z \land \exists y \notin Z \land (\forall u,v [u\in Z \land edg(u,v) \implies v \in Z]))$
-
-planarity
-
-has a perfect matching
-
-has a Hamiltonian circuit
-
-spanning tree of degree $\le$ 3
+\begin{itemize}
+	\item \textbf{K-colorability}\\
+	Example graph is 3-colorable:\\	
+	$\exists X,Y~(X \cap Y = \emptyset \land \forall u,v~(edg(u,v) \implies [(u\in X \implies v\notin X)\land (u\in Y \implies v\notin Y)\land (u\notin X \cup Y \implies c \in X \cup Y)]))$
+	
+	\item \textbf{Connectivity}\\
+	Example graph is \textbf{not} connected:\\	
+	$\exists Z~(\exists x \in Z \land \exists y \notin Z \land (\forall u,v~[u\in Z \land edg(u,v) \implies v \in Z]))$
+	
+	\item \textbf{Vertex Cover} \cite[Ch. 4.2]{dpdbpadl2020}\\
+	Given a graph $G=(V,E)$ a vertex cover is a set\\
+	$C \subseteq V:\forall (u,v)\in E~({u,v}\cap C \neq \emptyset)$\\
+	Then minimal vertex cover (MinVC) asks to find the minimum cardinality $|C|$ among all vertex covers of $G$. 
+\end{itemize}
 
 %\url{https://youtu.be/Wyn3djrYg7c?t=1385} Bruno Courcelle: Recognizable sets of graphs: algebraic and logical aspects 
 %\url{https://library.cirm-math.fr/Record.htm?idlist=2&record=19276851124910940339}
@@ -548,7 +547,8 @@ MSO queries on tree decomposable structures are computable with linear delay \ci
 We use tree decompositions throughout our visualizations in this thesis. One detailed explanation is also introduced in \cite{pcgp2019} at page 169.
 The tree decomposition for our "wheelgraph" example \ref{fig:wheelgraph} can be viewed in listing~\ref{lst:wheelgraphtd}. The conditions for tree decompositions outlined above are easy to verify for this small example, and we get a tree width $width(T)=3$ for this graph.
 
-\begin{figure}[H]
+\begin{figure}
+	\centering
 	\includegraphics[]{images/TDWheelgraph7.png}
 	\caption{Tree decomposition of a wheelgraph with 7 nodes and node 1 in the center.}
 	\label{fig:tdweelgraph7}
