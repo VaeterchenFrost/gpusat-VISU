@@ -375,14 +375,16 @@ EXAMPLE DIRECTED + UNDIRECTED
 %\text{satisfiedclause}&\equiv \text{if $\exists $v $\in $ var(c), v$\in $c and $\alpha $(v)=1 or $\neg $v$\in $c and $\alpha $(v)= 0. Otherwise falsified}\\ 
 %\text{satisfiedform}&\equiv \text{each clause in the formula is satisfied by assignment} \\
 %\end{align*}
-In this thesis we use the following symbols for expressions of Boolean algebra:
+In this thesis we use the following symbols for expressions of Boolean algebra:\\
+
 ${ \Omega _{0}=\{0 ,1 \}.}$ 
 
 ${\Omega _{1}=\{\lnot \},}$
 
-${ \Omega _{2}= \{\land ,\lor \}.}$
+${ \Omega _{2}= \{\land ,\lor \}.}$\\
 
-Now a propositional logic formula, or Boolean expression, is built from variables, the logical values $\Omega _{0}$, the operators ${\Omega _{1}$ and ${\Omega _{2}$ as well as parentheses.
+
+A propositional logic formula, or Boolean expression, is then built from variables, the logical values $\Omega _{0}$, the operators $\Omega _{1}$ and $\Omega _{2}$ as well as parentheses.
 
 To describe the usual notation used in solvers for Boolean satisfiability we also use the following definitions to describe the problem instances denoted in conjunctive normal form (CNF).
 
@@ -393,12 +395,11 @@ A literal is a Boolean variable $v$ or its negation $\neg v$. A $clause$ is a fi
 %	\item \textit{unfalsifiable if there is an assignment that falsifies all clauses in it}. This can only exist when there exists a variable $v \in var(C)$ such that $v \in C$ and $\neg a \in C$. 
 %	\item \textit{falsifiable} if there is an assignment that falsifies all clauses in C.
 %	\item \textit{satisfiable} if there is an assignment that safisfies all clauses in C.
-%	\item \textit{unsatisfiable} if there does not exist an assignment that safisfies all clauses in C.
+%	\item \textit{unsatisfiable} if there does not exist an assignment that safisfies all clauses in C.consists in
 %\end{itemize}\\
 
-Boolean satisfiability problem \textbf{SAT}: Given a propositional formula $\phi$, is there an assignment of the variables in $\phi$ for which $\phi$ is satisfied?
-
-\textbf{\#SAT}: Given a propositional formula $\pi$, for how many assignments of the variables in $\pi$ is $\pi$ satisfied?
+The Boolean satisfiability problem \textbf{SAT} consists of the question: Given a propositional formula $\phi$, is there an assignment of the variables in $\phi$ for which $\phi$ is satisfied?
+The \textbf{\#SAT} problem consists of the question: Given a propositional formula $\pi$, for how many assignments of the variables in $\pi$ is $\pi$ satisfied?
 
 %SAT Handbook:
 %Even finding a single solution can be a challenge
@@ -423,8 +424,7 @@ Boolean satisfiability problem \textbf{SAT}: Given a propositional formula $\phi
 \end{example}
 
 The formula $C$ is for example satisfied by the assignment that maps all variables $var(C)\rightarrow 1$ to $1$. 
-All 22 satisfying assignments can be seen in Table~\ref{tab:ex41tabx} on page \pageref{tab:ex41tabx}.
-
+All 22 satisfying assignments can be seen in Table~\ref{tab:ex41tabx} on page \pageref{tab:ex41tabx}.\\
 
 To later create a tree decomposition for Boolean formulas, solvers use the structure of the clause set to compute one of the three following graphs.
 For more details see for example \cite[Chapter~2.1]{DiplomarbeitZisser}.
@@ -519,8 +519,13 @@ MSO queries on tree decomposable structures are computable with linear delay \ci
 
 % Examples
 We use tree decompositions throughout our visualizations in this thesis. One detailed explanation is also introduced in \cite{pcgp2019} at page 169.
-The tree decomposition for our example "wheelgraph" \ref{fig:wheelgraph} can be viewed as a listing in \ref{lst:wheelgraphtd}. The conditions for tree decompositions outlined above are easy to verify for this small example, and we get a tree width $width(T)=3$ for this graph.
+The tree decomposition for our "wheelgraph" example \ref{fig:wheelgraph} can be viewed in listing~\ref{lst:wheelgraphtd}. The conditions for tree decompositions outlined above are easy to verify for this small example, and we get a tree width $width(T)=3$ for this graph.
 
+\begin{figure}[H]
+	\includegraphics[]{images/TDWheelgraph7.png}
+	\caption{Tree decomposition of a wheelgraph with 7 nodes and node 1 in the center.}
+	\label{fig:tdweelgraph7}
+\end{figure}
 
 %============== Reference on Algo and Param Complexity ====================================================
 \subsection{Dynamic Programming on Tree Decompositions}
