@@ -1,3 +1,4 @@
+% !TeX spellcheck = en_US
 % Paperformat
 % https://tex.stackexchange.com/questions/428553/add-bibliography-as-part-instead-of-chapter-in-toc
 \documentclass[a4paper, 12pt, bibliography=totoc]{scrartcl}
@@ -894,11 +895,22 @@ with its set of clauses $\{c_{1}=\{-a,-b,-c,-d\},c_{2}=\{b,c,d\},c_{3}=\{g\}\}$ 
 
 %============== Incid ====================================================
 \subsection{Incidence Graph}\label{sec:incid}
-The incidence graph is a bipartite graph that we present in a way that creates a one to one correspondence with the 
-Boolean formula it does represent. For an example of an incidence graph visualization see \ref{fig:incidencestep6}
 
-This bipartite graph is prepared with good default values, but is customizable in many parameters.
-Those values are:
+The idea is to visualize the incidence graph as a bipartite graph that can represent the formula for which it was created.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.4\linewidth]{images/IncidenceStep6.png}
+	\caption{Example for the incidence graph constructed from Ex. \ref{ex:example41}.}
+	\label{fig:incidencestep6}
+\end{figure}
+
+ We can see the incidence graph visualization for our example Boolean formula in Figure~\ref{fig:incidencestep6}. On the left side of it we see the clauses ordered by their lable.  
+
+
+
+The representation of the bipartite graphs can be adjusted in many parameters.
+Those values include:
 
 \begin{enumerate}
 	\item \textit{colors}, an iterable of colors that is used to color different nodes
@@ -1455,12 +1467,7 @@ Right now even with the \textit{svg-join} tool we need multiple files to represe
 	\caption{Created scalable-vector-graphic directly from \ref{lst:g41digraphdot}}
 	\label{fig:g41Digraph}
 \end{figure}
-\begin{figure}
-	\centering
-	\includegraphics[width=0.4\linewidth]{images/IncidenceStep6.png}
-	\caption{Example for an incidence graph from example 4.1}
-	\label{fig:incidencestep6}
-\end{figure}
+
 %svg_join(['TDStep', 'graph'],
 %'Archive/WheelGraph7',
 %outname="default_06sc15",
