@@ -84,11 +84,14 @@ mdframed={
 			
 		
 		{\Large 
-		\begin{tabular}{p{0.4\textwidth}r}
+		\begin{tabular}{p{0.47\textwidth}l}
 		
 			\textit{Author:}&  \textit{Supervisor:}\\
 			
-			\myauthor &  Dr. Johannes Fichte\\[20ex]
+			\myauthor &  Dr. Johannes Fichte\\
+			
+			& \textit{Second Supervisor:}\\
+			&  Prof. Dr. Stefan Gumhold\\[20ex]
 		
 		\end{tabular}
 		}
@@ -316,33 +319,45 @@ Chapter \ref{sec:appl} shows, limited by the page size, small examples for the t
 \newpage
 \section{Background}\label{sec:bg}
 In this chapter we provide a brief background for this work.\\
-We will start with a short introduction to MSO in \ref{sec:MSO}. Then we describe BFS as the basis for SAT and \#SAT problems, which are a popular application for solvers.
+We will start with a short introduction to logic and MSO in \ref{sec:MSO}. Then we describe the Boolean satisfiability problem which in it's variants is a popular application for solvers.
 Then we introduce Courcelle's theorem, which describes important properties of the problems and related bounds for the solvers.
 Eventually, tree decompositions are described as a basis for dynamic programming in the next section.
-At the end of the chapter, we briefly describe the input and intermediate formats DIMACS and DOT.
 %We begin with a description on SAT and \#SAT as examples for a very general problem that can be described with monadic second order logic (MSOL).
 %Furthermore the general case of MSOL will be described, as well as the \textit{DIMACS}-file-format used in the projects.
 %The following section describes Tree Decompositions (TDs) which are the basis for our visualization. 
 %Finally we shortly discuss Courcelle's Theorem~\cite{Courcelle2012} as a related method of solving these problems.
 
-In this thesis we use the word \textbf{graph} for a pair $G=(V_{G},E_{G})$, where $V_{G}$ is a nonempty set of vertices also called \textbf{nodes} and $E_{G}$ is the binary relation $E_{G} \subseteq V_{G} \times V_{G}$, such that $(x,y)\in E_{G}$ if and only if there exists an edge from $x$ to $y$ if $G$ is directed, and an edge between $x$ and $y$ if $G$ is undirected. For further information on graphs we refer to the common literature, for example \cite{HandbookMathGraph} or more casually in \cite{britannicagraphs}. 
+%====================================================================
+\subsection{Graphs}
+
+In this thesis we use the word \textbf{graph} for a pair $G=(V_{G},E_{G})$, where $V_{G}$ is a nonempty set of vertices also called \textbf{nodes} and $edg_{G} = E_{G}$ is the binary relation $E_{G} \subseteq V_{G} \times V_{G}$, such that $(x,y)\in E_{G}$ if and only if there exists an edge from $x$ to $y$ if $G$ is directed, and an edge between $x$ and $y$ if $G$ is undirected. For further information on graphs we refer to the common literature, for example \cite[p. {401--412}]{HandbookMathGraph} or more casually in \cite{britannicagraphs}. 
+
+\begin{example}\label{ex:wheelgraph}
+	$G$ is an undirected graph with
+	\begin{align*}
+	 G&=(V_{G},E_{G})\\
+	 	 V_{G} &= \{1,2,3,4,5,6,7\}\\
+	   E_{G} &= \{(1,2),(1,3), (1,4), (1,5),(1,6), (1,7), (2,3), (3,4), (4,5), (5,6), (6,7), (7,2)\}
+	\end{align*}
+\end{example}
 
 %============== MSOL ====================================================
-\subsection{Monadic Second-Order Logic}\label{sec:MSO}
+\subsection{(Monadic Second-Order) Logic}\label{sec:MSO}
 
-\textbf{Monadic Second-Order (MSO) logic} is a logical language that is suitable for expressing numerous graph properties \cite{Courcelle2012}. 
+\textbf{Monadic Second-Order (MSO) logic} is a logical language that is suitable for expressing numerous graph properties \cite[p.~41]{Courcelle2012}. In the following summary we would like to introduce propositional logic and the extensions first order logic and MSO. The concepts and notations from propositional logic are needed for the example problems around Boolean satisfiability; MSO will be used as the language that describes the possibilities of the dynamic programming on tree decompositions.
 % Theory
 
-\textbf{Propositional logic}, also called propositional calculus or zeroth-order logic, is a formal system $\mathcal{L} = \mathcal{L}(\mathrm {A},\Omega, \mathrm{Z}, \mathrm{I})$ with
+\subsubsection{Propositional Logic}
+\textbf{Propositional logic} is a formal system $\mathcal{L} = \mathcal{L}(\mathrm {A},\Omega, \mathrm{Z}, \mathrm{I})$ with
 \begin{itemize}
-	\item the alpha set $\mathrm {A}$ as a countably infinite set of elements called proposition symbols or propositional variables. These are also called terminal elements.
-	\item The omega set $\Omega$ is a finite set of elements called operator symbols or logical connectives. It is partitioned into disjoint subsets as follows:
+	\item the set $\mathrm {A}$ as a countably infinite set of elements called proposition symbols or propositional variables. These are also called terminal elements.
+	\item The set $\Omega$ is a finite set of elements called operator symbols or logical connectives. It is partitioned into disjoint subsets as follows:
 	
 	$\Omega =\Omega _{0}\cup \Omega _{1}\cup \ldots \cup \Omega _{j}\cup \ldots \cup \Omega _{m}.$.
 	
 	In this partition, $\Omega _{j}$ is the set of operator symbols of arity j.
 	
-	In the more familiar propositional calculi, $\Omega$ is typically partitioned as follows:
+	$\Omega$ is typically partitioned as follows:
 	
 	${ \Omega _{0}=\{\bot ,\top \}.}$ 
 	
@@ -350,46 +365,120 @@ In this thesis we use the word \textbf{graph} for a pair $G=(V_{G},E_{G})$, wher
 	
 	${ \Omega _{2}\subseteq \{\land ,\lor ,\to ,\leftrightarrow \}.}$
 
-	\item The zeta set $\mathrm {Z}$ is a finite set of transformation rules that are called inference rules when they receive logical applications.
+	\item The set $\mathrm {Z}$ is a finite set of transformation rules that are called inference rules when they receive logical applications.
 	
-	\item The iota set $\mathrm {I}$ is a countable set of initial points that are called axioms when they receive logical interpretations.
+	\item The set $\mathrm {I}$ is a countable set of initial points that are called axioms when they receive logical interpretations.
 \end{itemize}
+%============== SAT ====================================================
+\subsubsection{Boolean Satisfiability Problem}
+% https://en.wikipedia.org/wiki/Boolean_satisfiability_problem
 
-\textbf{First-order logic} further adds relations and quantifiers to the propositional logic.
-As a short description of both concepts we say that
-quantifier symbols add
+%SAT was the first known NP-complete problem, shown by Stephen Cook at the University of Toronto in 1971 \cite{SAT1971}
+
+%\begin{align*}
+%\text{literal}&\equiv \text{boolean variable v or its negation} \\
+%\text{clause}&\equiv \text{finite set of literals, interpreted as the disjunction} \\
+%\text{unit}&\equiv \text{clause with $|$c$|$=1} \\
+%\text{CNF formula}&\equiv \text{set of clauses, interpreted as their conjunction} \\
+%\text{var}&\equiv \text{set of variables contained in the clause or clause set C} \\
+%\text{assignment}&\equiv \text{$\alpha $:var(C) $\to $ \{0,1\}} \\
+%\text{satisfiedclause}&\equiv \text{if $\exists $v $\in $ var(c), v$\in $c and $\alpha $(v)=1 or $\neg $v$\in $c and $\alpha $(v)= 0. Otherwise falsified}\\ 
+%\text{satisfiedform}&\equiv \text{each clause in the formula is satisfied by assignment} \\
+%\end{align*}
+In this thesis we use the following symbols for expressions of Boolean algebra:\\
+
+${ \Omega _{0}=\{0 ,1 \}.}$ 
+
+${\Omega _{1}=\{\lnot \},}$
+
+${ \Omega _{2}= \{\land ,\lor \}.}$\\
+
+
+A propositional logic formula, or Boolean expression, is then built from variables, the logical values $\Omega _{0}$, the operators $\Omega _{1}$ and $\Omega _{2}$ as well as parentheses.\\
+
+
+\begin{example}\label{ex:booleanform}
+	$B$ is a Boolean expression with\\
+	
+	$B = (\text{v1}\lor \text{v4}\lor \text{v6})\land (\neg \text{v5}\lor \text{v1})\land (\neg \text{v1}\lor \text{v7})\land (\text{v2}\lor \text{v3})\land (\text{v2}\lor \neg \text{v5})
+	\land (\neg \text{v6}\lor \text{v2})\land \\
+	(\text{v3}\lor \neg \text{v8})\land (\text{v4}\lor \neg \text{v8})\land (\neg \text{v4}\lor \text{v6})\land (\neg \text{v4}\lor \text{v7})$
+
+\end{example}
+
+To describe the usual notation used in solvers for Boolean satisfiability we also use the following definitions to describe the problem instances denoted in conjunctive normal form (CNF).
+
+A literal is a Boolean variable $v$ or its negation $\neg v$. A $clause$ is a finite set of literals interpreted as their disjunction. A clause $c$ is called $unit$ if $|c|=1$. A CNF $formula$ is a set of clauses and is interpreted as the conjunction of its clauses. We define $var(C)$ as the set of variables contained in the clause or clause set C. As $assignment \alpha$ maps variables in a formula to 0 or 1, $\alpha : var(C)\rightarrow 0,1$. A clause is satisfied by an assignment if for some variable $v \in var(c)$ we have $v \in c \land \alpha (v)=1$ {or} $\neg v \in c \land \alpha(v)=0$. Otherwise the assignment falsifies the clause. An assignment satisfies a formula if each clause in the formula is satisfied by the assignment. \\
+%A set C of clauses is 
+%\begin{itemize}
+%	\renewcommand{\labelitemi}{-}
+%	\item \textit{unfalsifiable if there is an assignment that falsifies all clauses in it}. This can only exist when there exists a variable $v \in var(C)$ such that $v \in C$ and $\neg a \in C$. 
+%	\item \textit{falsifiable} if there is an assignment that falsifies all clauses in C.
+%	\item \textit{satisfiable} if there is an assignment that safisfies all clauses in C.
+%	\item \textit{unsatisfiable} if there does not exist an assignment that safisfies all clauses in C.consists in
+%\end{itemize}\\
+\begin{example}\label{ex:example41}
+	For visualization samples we will use the formula from Ex. \ref{ex:booleanform} with the following clause set: $C=\{c_{1}=\{v_{1},v_{4},v_{6}\},
+	c_{2}=\{v_{1},\neg v_{5}\},
+	c_{3}=\{\neg v_{1},v_{7}\},
+	c_{4}=\{v_{2},v_{3}\},
+	c_{5}=\{v_{2},v_{5}\},
+	c_{6}=\{v_{2},\neg v_{6}\},
+	c_{7}=\{v_{3},\neg v_{8}\},
+	c_{8}=\{v_{4},\neg v_{8}\},
+	c_{9}=\{\neg v_{4},v_{6}\},
+	c_{10}=\{\neg v_{4},v_{7}\}\}$
+\end{example}
+\vskip 12pt
+The formula $C$ is for example satisfied by the assignment that maps all variables $var(C)\rightarrow 1$ to $1$. 
+All 22 satisfying assignments can be seen in Table~\ref{tab:ex41tabx} on page \pageref{tab:ex41tabx}.\\
+
+The Boolean satisfiability problem \textbf{SAT} consists of the question: Given a propositional formula $\phi$, is there an assignment of the variables in $\phi$ for which $\phi$ is satisfied?
+The \textbf{\#SAT} problem consists of the question: Given a propositional formula $\pi$, for how many assignments of the variables in $\pi$ is $\pi$ satisfied?\\
+
+%SAT Handbook:
+%Even finding a single solution can be a challenge
+%for such problems; counting the number of solutions is much harder.Not
+%surprisingly, the largest formulas we can solve for the model counting problem
+%with state - of - the - art model counters are orders of magnitude smaller than the
+%formulas we can solve with the best SAT solvers. Generally speaking, current
+%exact counting methods can tackle problems with a couple of hundred variables, while approximate counting methods push this to around 1, 000 variables.
+
+% EXAMPLE 4.1?
+To later create a tree decomposition for Boolean formulas, solvers use the structure of the clause set to compute at least one of the three following graphs.
+For more details see for example \cite[Chapter~2.1]{DiplomarbeitZisser}.
+
+The \textit{primal graph} of a SAT formula contains a vertex for each variable of the SAT formula, and only has an edge between two vertices if they both occur in one clause together.
+
+The \textit{incidence graph} of a SAT formula if bipartite and contains a node for each variable and clause in the SAT formula. It only has edges between a variable node and a clause node if the variable occurs in the clause.
+
+The \textit{dual graph} of a SAT formula contains a node for each clause in the SAT formula. This graph only has an edge between two vertices if the two clauses have at least one common variable.
+
+Those three graphs for our Example \ref{ex:example41} are shown in Fig.~\ref{fig:primalgraph41} .
+
+\begin{figure}
+	\includegraphics[width=0.33\linewidth]{images/primalgraph41.png}
+	\includegraphics[width=0.32\linewidth]{images/incgraph41.png}
+	\includegraphics[width=0.33\linewidth]{images/dualgraph41.png}
+	\caption{From left to right: primal, incidence and dual graph}
+	\label{fig:primalgraph41}
+\end{figure}
+
+\subsubsection{From Propositional Logic to MSO Logic}
+
+\textbf{First-order logic} adds relations and quantifiers to propositional logic.
+For further information on logic see for example \cite[Chapter~5]{HandbookMathGraph}. \\
+The quantifier symbols are
 \begin{itemize}
 	\item $\exists$ for the existential quantification and
-	\item $\forall$ that expresses that a propositional function can be satisfied by every member of of a domain.
+	\item $\forall$ which expresses that a propositional function can be fulfilled by any member of a domain.
 \end{itemize}
-The non-logical symbols now represent relations, functions and constants on the domain of discourse. 
 
-A \textbf{relation symbol} with some arity (number of arguments) $\in \mathbb{N}$.
-Relations of arity 0 can be identified with propositional variables.
-Examples for practical interpretations for 2-ary (binary) relations are
-\textit{\textbf{x} greater than \textbf{y}, \textbf{x} less than \textbf{y}, \textbf{x} divides \textbf{y}, \textbf{x} subset of \textbf{y}} depending on the current domain.
+While first-order logic only quantifies variables that range over individuals (elements of the domain of discourse),
+\textbf{Second-order logic}, in addition, also quantifies over relations.
 
-
-A \textbf{function symbol}, with some arity $\in \mathbb{N}$. Any function $f(t_{1},...,t_{n})$ of n arguments (where each argument $t_{i}$ is a term and $f$ is a function symbol of arity $n$) is a term. 
-Function symbols of valence 0 are called constant symbols, and are often denoted by lowercase letters from the beginning of the alphabet a, b, c,... . \\
-
-
-\textbf{First-order logic quantifies only variables that range over individuals (elements of the domain of discourse); second-order logic, in addition, also quantifies over relations.}
-
-\textbf{Monadic second-order logic (MSO) is a restriction of second-order logic in which only quantification over unary relations (i.e. sets) is allowed. Quantification over functions, owing to the equivalence to relations as described above, is thus also not allowed.}
-
-% Implications
-There are efficient enumeration algorithms \cite{MSOQueriesGuillaume} and counting the number of solutions \cite{ARNBORG1991308} of a MSO formula, if it is ensured that the input data is preprocessed in linear time and that each solution is then produced in a delay linear in the size of each solution.
-MSO graph properties are "fixed-parameter-tractable" with respect to clique-width and tree-width. So are MSO counting and optimizing functions.
-MSO logic can express graph properties and mappings from (labeled) graphs to (labeled) graphs \cite{CourcelleGROW}.
-% https://en.wikipedia.org/wiki/Parameterized_complexity
-\textbf{FPT for model checking}:
-Some problems can be solved by algorithms that are exponential only in the size of a fixed parameter while polynomial in the size of the input. Such an algorithm is called a fixed-parameter tractable (FTP-)algorithm, and the problem can be solved efficiently for small values of the fixed parameter.
-\begin{thm}
-	An algorithm is FPT if it takes time $f(k)\cdot n^{c}$ for some constant $c$ and a fixed function f depending only on $k \in \mathbb{N}$. The size of the input is n. 
-	The value k is a parameter of the input, in our case usually tree-width. 
-	This algorithm is then usable for small values of k.
-\end{thm}
+\textbf{Monadic second-order logic (MSO)} is a restriction of second-order logic in which only quantification over unary relations (i.e. sets) is allowed. 
+%A quantification over functions is therefore also not allowed due to the equivalence to relations.
 
 %Interested in MSO logic over graphs.
 
@@ -413,99 +502,29 @@ Some problems can be solved by algorithms that are exponential only in the size 
 
 % Applications
 
+\subsubsection{MSO (Graph) Properties}
+MSO logic can express graph properties and mappings from (labeled) graphs to (labeled) graphs \cite{CourcelleGROW}.
+Typical MSO properties include:
 
-%Typical MSO$_{2}$ graph properties:
-%
-%has a perfect matching
-%has a Hamiltonian circuit
-%spanning tree of degree $\le$ 3
-%
+\begin{itemize}
+	\item \textbf{K-colorability}\\
+	Example graph is 3-colorable:\\	
+	$\exists X,Y~(X \cap Y = \emptyset \land \forall u,v~(edg(u,v) \implies [(u\in X \implies v\notin X)\land (u\in Y \implies v\notin Y)\land (u\notin X \cup Y \implies c \in X \cup Y)]))$
+	
+	\item \textbf{Connectivity}\\
+	Example graph is \textbf{not} connected:\\	
+	$\exists Z~(\exists x \in Z \land \exists y \notin Z \land (\forall u,v~[u\in Z \land edg(u,v) \implies v \in Z]))$
+	
+	\item \textbf{Vertex Cover} \cite[Ch. 4.2]{dpdbpadl2020}\\
+	Given a graph $G=(V,E)$ a vertex cover is a set\\
+	$C \subseteq V:edg(u,v)\implies \{u,v\}\cap C \neq \emptyset)$\\
+	Then minimal vertex cover (MinVC) asks to find the minimum cardinality $|C|$ among all vertex covers of $G$. 
+\end{itemize}
+
 %\url{https://youtu.be/Wyn3djrYg7c?t=1385} Bruno Courcelle: Recognizable sets of graphs: algebraic and logical aspects 
 %\url{https://library.cirm-math.fr/Record.htm?idlist=2&record=19276851124910940339}
 %Recording during the thematic meeting: "Frontiers of reconnaissability" the April 29, 2014 at the Centre International de Rencontres Mathématiques (Marseille, France)
 
-%============== SAT ====================================================
-\subsection{Boolean satisfiability problem}
-% https://en.wikipedia.org/wiki/Boolean_satisfiability_problem
-
-%SAT was the first known NP-complete problem, shown by Stephen Cook at the University of Toronto in 1971 \cite{SAT1971}
-
-%\begin{align*}
-%\text{literal}&\equiv \text{boolean variable v or its negation} \\
-%\text{clause}&\equiv \text{finite set of literals, interpreted as the disjunction} \\
-%\text{unit}&\equiv \text{clause with $|$c$|$=1} \\
-%\text{CNF formula}&\equiv \text{set of clauses, interpreted as their conjunction} \\
-%\text{var}&\equiv \text{set of variables contained in the clause or clause set C} \\
-%\text{assignment}&\equiv \text{$\alpha $:var(C) $\to $ \{0,1\}} \\
-%\text{satisfiedclause}&\equiv \text{if $\exists $v $\in $ var(c), v$\in $c and $\alpha $(v)=1 or $\neg $v$\in $c and $\alpha $(v)= 0. Otherwise falsified}\\ 
-%\text{satisfiedform}&\equiv \text{each clause in the formula is satisfied by assignment} \\
-%\end{align*}
-
-A literal is a Boolean variable $v$ or its negation $\neg v$. A $clause$ is a finite set of literals interpreted as their disjunction. A clause $c$ is called $unit$ if $|c|=1$. A CNF $formula$ is a set of clauses and is interpreted as the conjunction of its clauses. We define $var(C)$ as the set of variables contained in the clause or clause set C. As $assignment \alpha$ maps variables in a formula to 0 or 1, $\alpha : var(C)\rightarrow 0,1$. A clause is satisfied by an assignment if for some variable $v \in var(c)$ we have $v \in c \land \alpha (v)=1$ {or} $\neg v \in c \land \alpha(v)=0$. Otherwise the assignment falsifies the clause. An assignment satisfies a formula if each clause in the formula os satisfied by the assignment. \\
-A set C of clauses is 
-\begin{itemize}
-	\renewcommand{\labelitemi}{-}
-	\item \textit{unfalsifiable if there is an assignment that falsifies all clauses in it}. This can only exist when there exists a variable $v \in var(C)$ such that $v \in C$ and $\neg a \in C$. 
-	\item \textit{falsifiable} if there is an assignment that falsifies all clauses in C.
-	\item \textit{satisfiable} if there is an assignment that safisfies all clauses in C.
-	\item \textit{unsatisfiable} if there does not exist an assignment that safisfies all clauses in C.
-\end{itemize}
-
-The \textit{primal graph} of a SAT formula contains a vertex for each variable of the SAT formula, and only has an edge between two vertices if they both occur in one clause together.
-
-The \textit{incidence graph} of a SAT formula if bipartite and contains a node for each variable and clause in the SAT formula. It only has edges between a variable node and a clause node if the variable occurs in the clause.
-
-The \textit{dual graph} of a SAT formula contains a node for each clause in the SAT formula. This graph only has an edge between two vertices if the two clauses have at least one common variable.
-
-For more details see for example Chapter 2.1 of \cite{DiplomarbeitZisser}.
-
-%SAT Handbook:
-%Even finding a single solution can be a challenge
-%for such problems; counting the number of solutions is much harder.Not
-%surprisingly, the largest formulas we can solve for the model counting problem
-%with state - of - the - art model counters are orders of magnitude smaller than the
-%formulas we can solve with the best SAT solvers. Generally speaking, current
-%exact counting methods can tackle problems with a couple of hundred variables, while approximate counting methods push this to around 1, 000 variables.
-
-% EXAMPLE 4.1?
-\begin{example}\label{ex:example41}
-	For visualization samples we will use the formula with the following clause set: $C=\{c_{1}=\{v_{1},v_{4},v_{6}\},
-	c_{2}=\{v_{1},\neg v_{5}\},
-	c_{3}=\{\neg v_{1},v_{7}\},
-	c_{4}=\{v_{2},v_{3}\},
-	c_{5}=\{v_{2},v_{5}\},
-	c_{6}=\{v_{2},\neg v_{6}\},
-	c_{7}=\{v_{3},\neg v_{8}\},
-	c_{8}=\{v_{4},\neg v_{8}\},
-	c_{9}=\{\neg v_{4},v_{6}\},
-	c_{10}=\{\neg v_{4},v_{7}\}\}$
-\end{example}
-
-%============== Courcelle ====================================================
-\subsection{Courcelle's Theorem}
-Courcelle's theorem - see also \cite{Courcelle2012} page 54:
-\begin{thm}
-	Every graph property definable in monadic second-order logic (MSO) is decidable in linear time on graphs of bounded tree-width. 
-%	{\small Courcelle, Bruno (1990)}\footnote{Courcelle, Bruno "The monadic second-order logic of graphs. I. Recognizable sets of finite graphs",\\ Information and Computation, 85 (1990) no. 1: 12-75}
-\end{thm}
-
-\noindent
-To be more specific: It holds that for all $k \in \mathbb{N}$ and MSO-formulas F is the decision problem for a given graph G, whether $G \models F$ is true, in time $2^{p(tw(G))} \cdot |G|$ with a polynom p decidable.\smallskip 
-
-\noindent
-A generic workflow implementing Courcelle's theorem looks like we see in Figure~\ref{fig:UsageCourcelle}.
-\begin{figure}[H]
-	\includegraphics[height=0.2\textheight]{images/UsageCourcelle.gv.png}
-	\caption{Implementation of the theorem}
-	\label{fig:UsageCourcelle}
-\end{figure}
-
-Even if linear in the size of the input, naive implementations are still expensive and 
-%($2^{p(tw G)}$, $2^{2^{(\#Q)}}$,  
-the constant factor can be very significant. An efficient implementation will still require several tricks to make this approach practical. Developing and debugging these "tricks" is not always that easy, so a visualization can help at this point.\smallskip 
-
-
-% See also figure~\ref{fig:logictheory}.
 
 %============== TD ====================================================
 \subsection{Tree Decomposition}
@@ -529,13 +548,20 @@ MSO queries on tree decomposable structures are computable with linear delay \ci
 
 % Examples
 We use tree decompositions throughout our visualizations in this thesis. One detailed explanation is also introduced in \cite{pcgp2019} at page 169.
-The tree decomposition for our example "wheelgraph" \ref{fig:wheelgraph} can be viewed as a listing in \ref{lst:wheelgraphtd}. The conditions for tree decompositions outlined above are easy to verify for this small example, and we get a tree width $width(T)=3$ for this graph.
+The tree decomposition for our "wheelgraph" example \ref{fig:wheelgraph} can be viewed in listing~\ref{lst:wheelgraphtd}. The conditions for tree decompositions outlined above are easy to verify for this small example, and we get a tree width $width(T)=3$ for this graph.
 
-%============== TD ====================================================
-\subsubsection{Dynamic Programming on Tree Decompositions}
-In this chapter we want to give a short overview of the process of dynamic programming, that we visualize on the tree decompositions. For specific information on the used algorithms for \#SAT we refer to \cite{DiplomarbeitZisser} ch. 3 or \cite{samermodelcounting}. \\
+\begin{figure}
+	\centering
+	\includegraphics[]{images/TDWheelgraph7.png}
+	\caption{Tree decomposition of a wheelgraph with 7 nodes and node 1 in the center.}
+	\label{fig:tdweelgraph7}
+\end{figure}
 
-With dynamic programming, a problem is broken down into parts and the parts are then solved individually. The solving algorithm then evaluates the formula along the path of the tree decomposition in a bottom up order starting in one of the leafs. The solution for each assignment in the bag is then stored in a table. The size of the table is exponential to the size of the bag. The tables of the child nodes can be deleted as soon as the table of the current node is generated. \textit{from \cite{DiplomarbeitZisser} ch. 3.1}.\\
+%============== Reference on Algo and Param Complexity ====================================================
+\subsection{Dynamic Programming on Tree Decompositions}
+In this chapter we want to give a short overview of the process of dynamic programming, which we visualize on the tree decompositions. For specific information on the used algorithms for \#SAT we refer to \cite{DiplomarbeitZisser} ch. 3 or \cite{samermodelcounting}. \\
+
+With dynamic programming, a problem is broken down into parts and the parts are then solved individually. The solving algorithm evaluates the formula along the path of the tree decomposition in a bottom up order starting in one of the leafs. The solution for each assignment in the bag is then stored in a table. The size of the table is exponential to the size of the bag. The tables of the child nodes can be deleted as soon as the table of the current node is generated. \textit{from \cite{DiplomarbeitZisser} ch. 3.1}.\\
 The dynamic programming approach for a given graph works as follows:
 \begin{enumerate}
 	\item Create a tree decomposition ${T}$ of the graph.
@@ -548,6 +574,53 @@ The dynamic programming approach for a given graph works as follows:
 	\item Output the result based on the table of the root node of the tree decomposition.
 \end{enumerate}
 
+
+\subsection{Parametrized Complexity}
+In the following two sections we want to introduce the reader with some computational bounds for the underlying concept of solving MSO-problems with the current approaches.
+
+\subsubsection{Fixed-Parameter Tractable (FTP-)Algorithm}
+
+% https://en.wikipedia.org/wiki/Parameterized_complexity
+\textbf{FPT for model checking}:
+Some problems can be solved by algorithms that are exponential only in the size of a fixed parameter while polynomial in the size of the input. Such an algorithm is called a fixed-parameter tractable (FTP-)algorithm, and the problem can be solved efficiently for small values of the fixed parameter. \cite{ParamCompGrohe}
+\begin{thm}
+	An algorithm is FPT if it takes time $f(k)\cdot n^{c}$ for some constant $c$ and a fixed function f depending only on $k \in \mathbb{N}$. The size of the input is n. 
+	The value k is a parameter of the input, in our case usually tree-width. 
+	This algorithm is then usable for small values of k.
+\end{thm}
+
+% Implications
+There are efficient algorithms for enumerating and for counting the number of solutions of a MSO formula, if it is ensured that the input data is preprocessed in linear time, and that each solution is then produced in a delay linear in the size of each solution \cite{MSOQueriesGuillaume, ARNBORG1991308}.
+MSO graph properties are "fixed-parameter-tractable" with respect to tree-width. So are MSO counting and optimizing functions. \cite{CourcelleGROW}
+
+DETAILS MinVC: 
+%https://en.wikipedia.org/wiki/Vertex_cover#Fixed-parameter_tractability
+
+%============== Courcelle ====================================================
+\subsubsection{Courcelle's Theorem}
+ Courcelle's theorem is a constructive meta-theorem and thus does provide algorithms for evaluating MSO formulas over graphs of bounded treewidth.
+Courcelle's theorem \cite[p. 54]{Courcelle2012}:
+\begin{thm}
+	Every graph property definable in monadic second-order logic (MSO) is decidable in linear time on graphs of bounded tree-width. 
+
+\end{thm}
+
+\noindent
+To be more specific: It holds that for all $k \in \mathbb{N}$ and MSO-formulas F is the decision problem for a given graph G, whether $G \models F$ is true, in time $2^{p(tw(G))} \cdot |G|$ with a polynom p decidable.\smallskip 
+
+\noindent
+A generic workflow implementing Courcelle's theorem looks like we see in Figure~\ref{fig:UsageCourcelle}.
+\begin{figure}[H]
+	\includegraphics[height=0.2\textheight]{images/UsageCourcelle.gv.png}
+	\caption{Implementation of the theorem}
+	\label{fig:UsageCourcelle}
+\end{figure}
+
+Even if linear in the size of the input, naive implementations are still expensive and 
+%($2^{p(tw G)}$, $2^{2^{(\#Q)}}$,  
+the constant factor can be very significant. An efficient implementation will still require several tricks to make this approach practical. Developing and debugging these "tricks" is not always that easy, so a visualization can help at this point.\smallskip 
+
+% See also figure~\ref{fig:logictheory}.
 
 %==============================================================================
 %============== Practical Requirements ========================================
@@ -1259,13 +1332,13 @@ Like the previous example section we are interested in solutions to example \ref
 % Appl. VC
 \subsection{Vertex Cover Example}\label{sec:minvc}
 
-Now we take a look at one problem that is inherently stated on a graph.\\
+Here we take a look at a problem that is itself formulated directly on a graph.\\
+%
+%Vertex Cover Problem: For a given input graph $G=(V,E)$, a \textit{vertex cover} is a set $C$ of vertices $C \subseteq V$ so that we have $\{u,v\} \cap C \neq \emptyset$ for each edge $\{u,v\}\in E$. The problem \textit{minimal vertex cover} asks to find the minimum cardinality among all vertex covers, i.e. $|C|$ is such that there is no vertex cover $C'$ with $|C'| < |C|$.
 
-Vertex Cover Problem: For a given input graph $G=(V,E)$, a \textit{vertex cover} is a set $C$ of vertices $C \subseteq V$ so that we have $\{u,v\} \cap C \neq \emptyset$ for each edge $\{u,v\}\in E$. The problem \textit{minimal vertex cover} asks to find the minimum cardinality among all vertex covers, i.e. $|C|$ is such that there is no vertex cover $C'$ with $|C'| < |C|$.
+%An instance $G=(V,E)$ of \textit{minimal vertex cover} parameterized by treewidth \textit{tw} can be solved in time $\mathcal{O}(2^{tw(G)}|V|)$ \cite{HenningParamAlgo}.
 
-An instance $G=(V,E)$ of \textit{minimal vertex cover} parameterized by treewidth \textit{tw} can be solved in time $\mathcal{O}(2^{tw(G)}|V|)$ \cite{HenningParamAlgo}.
-
-For details on the algorithms used see also \cite{dpdbpadl2020} on MinVC and listing 3 for a template.
+For details on the algorithms used by the solvers see also \cite[Ch. 4.2]{dpdbpadl2020} on MinVC and its Listing 3 for a template for general problems.
 
 As a very small example we will try to solve \textit{minimal vertex cover} for the following graph in Figure \ref{fig:wheelgraph} with edges seen in listing \ref{lst:wheelgraph}.
 
@@ -1541,6 +1614,7 @@ Right now even with the \textit{svg-join} tool we need multiple files to represe
 
 \lstinputlisting[caption={The JSON format used to describe MSOL visualization on tree decompositions}, label={lst:jsonapi}]{includes/JsonAPI.txt}
 
+
 \begin{lstlisting}[language={Python}, caption={Construct\_dpdb\_visu.py}, label={lst:create-json}]
 def create_json(problem: int, tw_file=None, intermed_nodes=False):
 	"""Create the JSON for the specified problem instance."""
@@ -1671,9 +1745,44 @@ class SvgJoinData:
 \end{lstlisting}
 
 %============== Input Examples ======================================================
-\section{Input Examples}\label{app:input}
+\section{Further Examples}\label{app:input}
 
 \lstset{numbers=none}
+
+\begin{table}[ht]
+	\centering
+	\begin{tabular}{|l||c|c|c|c|c|c|c|c|}
+		
+		\hline
+		&$v_{1}$ & $v_{2}$ & $v_{3}$ & $v_{4}$ & $v_{5}$ & $v_{6}$ & $v_{7}$ & $v_{8}$ \\
+		\hline 
+		1&1 & 1 & 1 & 1 & 1 & 1 & 1 & 1 \\
+		2&1 & 1 & 1 & 1 & 1 & 1 & 1 & 0 \\
+		3&1 & 1 & 1 & 1 & 0 & 1 & 1 & 1 \\
+		4&1 & 1 & 1 & 1 & 0 & 1 & 1 & 0 \\
+		5&1 & 1 & 1 & 0 & 1 & 1 & 1 & 0 \\
+		6&1 & 1 & 1 & 0 & 1 & 0 & 1 & 0 \\
+		7&1 & 1 & 1 & 0 & 0 & 1 & 1 & 0 \\
+		8&1 & 1 & 1 & 0 & 0 & 0 & 1 & 0 \\
+		9&1 & 1 & 0 & 1 & 1 & 1 & 1 & 0 \\
+		10&1 & 1 & 0 & 1 & 0 & 1 & 1 & 0 \\
+		11&1 & 1 & 0 & 0 & 1 & 1 & 1 & 0 \\
+		12&1 & 1 & 0 & 0 & 1 & 0 & 1 & 0 \\
+		13&1 & 1 & 0 & 0 & 0 & 1 & 1 & 0 \\
+		14&1 & 1 & 0 & 0 & 0 & 0 & 1 & 0 \\
+		15&1 & 0 & 1 & 0 & 0 & 0 & 1 & 0 \\
+		16&0 & 1 & 1 & 1 & 0 & 1 & 1 & 1 \\
+		17&0 & 1 & 1 & 1 & 0 & 1 & 1 & 0 \\
+		18&0 & 1 & 1 & 0 & 0 & 1 & 1 & 0 \\
+		19&0 & 1 & 1 & 0 & 0 & 1 & 0 & 0 \\
+		20&0 & 1 & 0 & 1 & 0 & 1 & 1 & 0 \\
+		21&0 & 1 & 0 & 0 & 0 & 1 & 1 & 0 \\
+		22&0 & 1 & 0 & 0 & 0 & 1 & 0 & 0 \\
+		\hline
+	\end{tabular}
+\caption{The satisfying assignments for the formula from Example~\ref{ex:example41}.}
+\label{tab:ex41tabx}
+\end{table}
 
 \begin{lstlisting}[caption={CNF clauses from example 4.1 in \cite{DiplomarbeitZisser} page 27}, label={lst:clausesDA41}]
 p cnf 8 10
