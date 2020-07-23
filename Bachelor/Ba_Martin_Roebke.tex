@@ -905,9 +905,9 @@ The idea is to visualize the incidence graph as a bipartite graph that can repre
 	\label{fig:incidencestep6}
 \end{figure}
 
- We can see the incidence graph visualization for our example Boolean formula in Figure~\ref{fig:incidencestep6}. On the left side of it we see the clauses ordered by their lable.  
-
-
+ We can see the incidence graph visualization for our example Boolean formula in Figure~\ref{fig:incidencestep6}. On the left side we see the clauses ordered by their label, each in an ellipse-shaped node. The other partition does contain the sorted variables in diamond-shaped nodes. As an addition to its visualization we did include the negations as the little circles on the left end of each edge where a negated variable is included in the respective clause. The right-hand partition does get the different \textit{colors} applied to its nodes and their adjacent edges.
+ 
+ We emphasize the clauses their nodes used in each timestep with a changing background and the not used dotted edges. This allows the correlation of the  parts of the formula with the bags.  
 
 The representation of the bipartite graphs can be adjusted in many parameters.
 Those values include:
@@ -925,13 +925,13 @@ Those values include:
 	\item \textit{column\_distance}, the distance between both partitions
 \end{enumerate}
 
-We create the graph, add the necessary arguments and two sub-graphs. 
-The first subgraph is called \textit{cluster\_clause} with it's label \textit{clauses}.
-We add the clauses with their clause-ids starting at one sorted in ascending order from top to bottom.
+%We create the graph, add the necessary arguments and two sub-graphs. 
+%The first subgraph is called \textit{cluster\_clause} with it's label \textit{clauses}.
+%We add the clauses with their clause-ids starting at one sorted in ascending order from top to bottom.
 
-The second sub-graph we call \textit{cluster\_ivar} labeled \textit{variables} gets all variables added to it, 
-starting from variable-id one. 
-This sub-graph does get the different provided \textit{colors} applied to its nodes and their adjacent edges.
+%The second sub-graph we call \textit{cluster\_ivar} labeled \textit{variables} gets all variables added to it, 
+%starting from variable-id one. 
+%This sub-graph does get the different provided \textit{colors} applied to its nodes and their adjacent edges.
 
 The last step in this method is the highlighting of "active" parts in each time step beeing processed during it's dynamic programming. To accomplish this with as small overhead as possible, we apply and remove additional lines to the body of its graph source code. 
 For highlighting there are two main cases:
