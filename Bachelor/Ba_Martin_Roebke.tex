@@ -84,11 +84,14 @@ mdframed={
 			
 		
 		{\Large 
-		\begin{tabular}{p{0.4\textwidth}r}
+		\begin{tabular}{p{0.47\textwidth}l}
 		
 			\textit{Author:}&  \textit{Supervisor:}\\
 			
-			\myauthor &  Dr. Johannes Fichte\\[20ex]
+			\myauthor &  Dr. Johannes Fichte\\
+			
+			& \textit{Second Supervisor:}\\
+			&  Prof. Dr. Stefan Gumhold\\[20ex]
 		
 		\end{tabular}
 		}
@@ -1329,13 +1332,13 @@ Like the previous example section we are interested in solutions to example \ref
 % Appl. VC
 \subsection{Vertex Cover Example}\label{sec:minvc}
 
-Now we take a look at one problem that is inherently stated on a graph.\\
+Here we take a look at a problem that is itself formulated directly on a graph.\\
+%
+%Vertex Cover Problem: For a given input graph $G=(V,E)$, a \textit{vertex cover} is a set $C$ of vertices $C \subseteq V$ so that we have $\{u,v\} \cap C \neq \emptyset$ for each edge $\{u,v\}\in E$. The problem \textit{minimal vertex cover} asks to find the minimum cardinality among all vertex covers, i.e. $|C|$ is such that there is no vertex cover $C'$ with $|C'| < |C|$.
 
-Vertex Cover Problem: For a given input graph $G=(V,E)$, a \textit{vertex cover} is a set $C$ of vertices $C \subseteq V$ so that we have $\{u,v\} \cap C \neq \emptyset$ for each edge $\{u,v\}\in E$. The problem \textit{minimal vertex cover} asks to find the minimum cardinality among all vertex covers, i.e. $|C|$ is such that there is no vertex cover $C'$ with $|C'| < |C|$.
+%An instance $G=(V,E)$ of \textit{minimal vertex cover} parameterized by treewidth \textit{tw} can be solved in time $\mathcal{O}(2^{tw(G)}|V|)$ \cite{HenningParamAlgo}.
 
-An instance $G=(V,E)$ of \textit{minimal vertex cover} parameterized by treewidth \textit{tw} can be solved in time $\mathcal{O}(2^{tw(G)}|V|)$ \cite{HenningParamAlgo}.
-
-For details on the algorithms used see also \cite{dpdbpadl2020} on MinVC and listing 3 for a template.
+For details on the algorithms used by the solvers see also \cite[Ch. 4.2]{dpdbpadl2020} on MinVC and its Listing 3 for a template for general problems.
 
 As a very small example we will try to solve \textit{minimal vertex cover} for the following graph in Figure \ref{fig:wheelgraph} with edges seen in listing \ref{lst:wheelgraph}.
 
