@@ -909,21 +909,7 @@ The idea is to visualize the incidence graph as a bipartite graph that can repre
  
  We emphasize the clauses their nodes used in each timestep with a changing background and the not used dotted edges. This allows the correlation of the  parts of the formula with the bags.  
 
-The representation of the bipartite graphs can be adjusted in many parameters.
-Those values include:
-
-\begin{enumerate}
-	\item \textit{colors}, an iterable of colors that is used to color different nodes
-	\item \textit{inc\_file}, basis for the file created that gets appended with the step number
-	\item \textit{view}, could automatically open the generated files with the default program
-	\item \textit{fontsize}, the size of all text in this graph
-	\item \textit{penwidth}, width of the lines around nodes
-	\item \textit{basefill}, filling of the background for nodes
-	\item \textit{sndshape}, shape of the nodes with variables
-	\item \textit{neg\_tail}, the shape of the edge-tail indicating a negated variable
-	\item \textit{var\_name\_one/two}, prefix for nodes in the left (right) partition
-	\item \textit{column\_distance}, the distance between both partitions
-\end{enumerate}
+The representation of the bipartite graphs can be adjusted in many parameters; including colors, fontsize, fillcolor and more, Listing \ref{lst:incidencedata} on page \pageref{lst:incidencedata}.
 
 %We create the graph, add the necessary arguments and two sub-graphs. 
 %The first subgraph is called \textit{cluster\_clause} with it's label \textit{clauses}.
@@ -933,17 +919,17 @@ Those values include:
 %starting from variable-id one. 
 %This sub-graph does get the different provided \textit{colors} applied to its nodes and their adjacent edges.
 
-The last step in this method is the highlighting of "active" parts in each time step beeing processed during it's dynamic programming. To accomplish this with as small overhead as possible, we apply and remove additional lines to the body of its graph source code. 
-For highlighting there are two main cases:
-\begin{itemize}
-	\item There is no active clause in this step: we only reset highlighting
-	\item Else: we also create new highlighting for clauses, variables and edges
-\end{itemize}
-In each case we create one image after the step to provide the inside generated.
+%The last step in this method is the highlighting of "active" parts in each time step beeing processed during it's dynamic programming. To accomplish this with as small overhead as possible, we apply and remove additional lines to the body of its graph source code. 
+%For highlighting there are two main cases:
+%\begin{itemize}
+%	\item There is no active clause in this step: we only reset highlighting
+%	\item Else: we also create new highlighting for clauses, variables and edges
+%\end{itemize}
+%In each case we create one image after the step to provide the inside generated.
 
 %============== General Graph ====================================================
 \subsection{General Graph}
-The so called "general graph" can represent the underlying graph for different problems, as well as primal and dual graph for Boolean formulas.
+This type of graph can represent the underlying graph for different problems, as well as primal and dual graph for Boolean formulas.
 Because of its larger area of application the general graph was not as easy to layout as the incidence graph.
 We did prepare two different layouts that should cover most cases and are toggled by the parameter \textit{do\_sort\_nodes}.
 For smaller and dense graphs of up to 20 vertices it might be helpful to sort the nodes on a circle, while for larger or sparse graphs an organic layout may be more appropriate.
@@ -1628,20 +1614,20 @@ Iterable[Union[None, float, str]]] = None
 @dataclass
 class IncidenceGraphData:
 """Class holding different parameters for the incidence graph."""
-edges: list
-subgraph_name_one: str = 'clauses'
-subgraph_name_two: str = 'variables'
-var_name_one: str = ''
-var_name_two: str = ''
-infer_primal: bool = False
-infer_dual: bool = False
-primal_file: str = 'PrimalGraphStep'
-inc_file: str = 'IncidenceGraphStep'
-dual_file: str = 'DualGraphStep'
-fontsize: int = 16
-penwidth: Union[float, str] = 2.2
-second_shape: str = 'diamond'
-column_distance: float = 0.5	
+	edges: list
+	subgraph_name_one: str = 'clauses'
+	subgraph_name_two: str = 'variables'
+	var_name_one: str = ''
+	var_name_two: str = ''
+	infer_primal: bool = False
+	infer_dual: bool = False
+	primal_file: str = 'PrimalGraphStep'
+	inc_file: str = 'IncidenceGraphStep'
+	dual_file: str = 'DualGraphStep'
+	fontsize: int = 16
+	penwidth: float = 2.2
+	second_shape: str = 'diamond'
+	column_distance: float = 0.5
 \end{lstlisting}
 
 \begin{lstlisting}[language={Python}, caption={GeneralGraphData}, label={lst:gengraphdata}]
