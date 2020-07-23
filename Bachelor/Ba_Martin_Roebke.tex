@@ -561,7 +561,8 @@ The tree decomposition for our "wheelgraph" example \ref{fig:wheelgraph} can be 
 \subsection{Dynamic Programming on Tree Decompositions}
 In this chapter we want to give a short overview of the process of dynamic programming, which we visualize on the tree decompositions. For specific information on the used algorithms for \#SAT we refer to \cite{DiplomarbeitZisser} ch. 3 or \cite{samermodelcounting}. \\
 
-With dynamic programming, a problem is broken down into parts and the parts are then solved individually. The solving algorithm evaluates the formula along the path of the tree decomposition in a bottom up order starting in one of the leafs. The solution for each assignment in the bag is then stored in a table. The size of the table is exponential to the size of the bag. The tables of the child nodes can be deleted as soon as the table of the current node is generated. \textit{from \cite{DiplomarbeitZisser} ch. 3.1}.\\
+With dynamic programming, a problem is broken down into parts and the parts are then solved individually. The solving algorithm evaluates the formula along the path of the tree decomposition in a bottom up order starting in one of the leafs. The solution for each assignment in the bag is then stored in a table. The size of the table is exponential to the size of the bag. The tables of the child nodes can be deleted as soon as the table of the current node is generated. \cite[Ch. 3.1]{DiplomarbeitZisser}.\\
+
 The dynamic programming approach for a given graph works as follows:
 \begin{enumerate}
 	\item Create a tree decomposition ${T}$ of the graph.
@@ -573,6 +574,14 @@ The dynamic programming approach for a given graph works as follows:
 	\end{itemize}
 	\item Output the result based on the table of the root node of the tree decomposition.
 \end{enumerate}
+
+The basic algorithmic procedure is presented in Fig.~\ref{fig:dpalgo}. It does include a step one to build a graph in case the type of problem (like SAT) requires it.
+\begin{figure}[h]
+	\centering
+	\includegraphics{images/DPAlgo31.png}
+	\caption{ Basic procedure for dynamic programming on TD. \cite[Figure~3.1]{DiplomarbeitZisser} }
+	\label{fig:dpalgo}
+\end{figure}
 
 
 \subsection{Parametrized Complexity}
@@ -618,7 +627,7 @@ A generic workflow implementing Courcelle's theorem looks like we see in Figure~
 
 Even if linear in the size of the input, naive implementations are still expensive and 
 %($2^{p(tw G)}$, $2^{2^{(\#Q)}}$,  
-the constant factor can be very significant. An efficient implementation will still require several tricks to make this approach practical. Developing and debugging these "tricks" is not always that easy, so a visualization can help at this point.\smallskip 
+the constant factor can be very significant. An efficient implementation will require several tricks to make this approach practical. Developing and debugging these "tricks" is not always that easy, so a visualization can help at this point.\smallskip 
 
 % See also figure~\ref{fig:logictheory}.
 
