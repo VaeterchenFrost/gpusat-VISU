@@ -181,7 +181,7 @@ of course the information we visualize is mostly in the solver and could be read
 
 The goal of this thesis is to improve the progress in developing dynamic programming solutions on tree decomposition through visualization.
 
-Graph-algorithms and problems regarding graph-related data are increasingly interesting in scientific work, as the applications of interconnected datasets grow.
+Graph-algorithms and problems regarding graph-related data are increasingly interesting in scientific work, as the applications of interconnected datasets grow. One interesting paper about graphs in (natural) language processing is \cite{jones-etal-2013-modeling}.
 Some use cases include fields of interest like cited in \cite{graphUseCases}: % (see also \url{neo4j.com/use-cases})
 \begin{itemize}
 	\item[-] Network and Database Infrastructure
@@ -189,15 +189,9 @@ Some use cases include fields of interest like cited in \cite{graphUseCases}: % 
 	\item[-] Artificial Intelligence and Analytics
 \end{itemize}
 
-As illustrations of the possibilities for an application, smaller examples from the problem-types Boolean satisfiability "SAT", model counting SAT "\#SAT" and "Minimal Vertex Cover" are presented.
+As illustrations of the possibilities for an application, smaller examples from the problem types Boolean satisfiability \textbf{SAT}, model counting SAT \textbf{\#SAT} and \textbf{minimal vertex cover} are presented.
 We also show an example of finding  and visualizing a faulty tree-decomposition that occurred during development.
 
-My previous experience regarding the topic of this work comes mainly from these two courses:
-\begin{itemize}
-	\item "Computational Physics" - visualizing with python and matplotlib, by Prof. Dr. A. Bäcker,
-	chair of computational physics, TU Dresden 2016
-	\item "Graph Data Management and Analytics" - algorithms and various manipulations on graphs, by Hannes Voigt in 2019. \cite{VLGDMA}
-\end{itemize}
 
 The target audience for this work includes: 
 \begin{itemize}
@@ -212,16 +206,19 @@ The target audience for this work includes:
 
 %============== Concept ====================================================
 \subsection{Research Question}
-The development of techniques for dynamic programming for various problems or platforms that have not yet been implemented can in principle be shown theoretically. However, there can be errors in actual implementations that are hard to pin down. 
+When developing techniques for dynamic programming for various problems or platforms there can be errors in actual implementations that will be hard to pin down. 
 
-As there were no tailored tools for this yet, it should be created and integrated into existing tools with a minimum of additional effort.
-Our main research questions we want to answer with this thesis are:
+There is some evidence and experience in e.g. \cite{SoftwareVisualization, ELVIZ} that visualization of intermediate and final results can help to understand various issues - such as correctness and efficiency of the algorithms.
+
+As there was no tailored tool for our use case yet, it should be created and integrated into existing tools with a minimum of additional effort.
+
+So our main research questions we want to answer with this thesis are:
 \begin{enumerate}
 	\item How could a prototype visualization for solvers of MSO logic problems using dynamic programming on tree decompositions look like?
 	\item How could an implementation of visualization in existing solvers look like?
 \end{enumerate}
 \noindent
-To answer these questions we have implemented TDVisu, a visualization software based on Graphviz. 
+To answer these questions we have implemented TDVisu, a visualization software based on \href{https://graphviz.org/}{Graphviz}. 
 Our proposed solution is inspired by previous manual visualizations like the two examples in Figure \ref{fig:prevvisus}.
 \begin{figure}[h]
 	
@@ -231,22 +228,29 @@ Our proposed solution is inspired by previous manual visualizations like the two
 		\includegraphics[width=1.02\linewidth,valign=c]{images/dpdbVisuSat.png}\\ 
 		
 	\end{tabularx}	
-	\label{fig:prevvisus}
-	\caption{Two templates from published project documentations which show similar visualizations as TDVisu. The left graphic from \cite{DiplomarbeitZisser} Figure 4.3 on page 29 and the right graphic from \cite{dpdbpadl2020} Figure 2, page 4.}
 	
+	\caption{Two templates from published project documentations which show similar visualizations as TDVisu. The left graphic from \cite{DiplomarbeitZisser} Figure 4.3 on page 29 and the right graphic from \cite{dpdbpadl2020} Figure 2, page 4.}
+	\label{fig:prevvisus}
 \end{figure}
-The code is written in python and published on pypi.\\
+
 The Figure \ref{fig:overviewprog} shows a draft of the process creating the visualization with TDVisu.
 
 \begin{figure}
 	\centering
 		\includegraphics[width=1\linewidth]{images/OverviewProgram.png}
-		\label{fig:overviewprog}
-	\caption{An overview of the intended use of the visualization. Starting with a solver for DP on TD, over the extraction of the desired data, labels and parameters to the result files.}
 		
+	\caption{An overview of the intended use of the visualization. Starting with a solver for DP on TD, over the extraction of the desired data, labels and parameters to the result files.}
+	\label{fig:overviewprog}
 \end{figure}
 
-The source code for TDVisu is available under the GPL3 license on \url{github.com/VaeterchenFrost/tdvisu}.
+
+%============== Outline ====================================================
+\subsection{Methodology}
+DP
+Visualization Techniques
+Integration durch API in Source Code
+
+The source code for TDVisu is available under the GPL3 license on \url{github.com/VaeterchenFrost/tdvisu}. The tool is written in python and published on pypi.\\
 
 We chose \href{https://graphviz.org/}{Graphviz} as an open source graph visualization software, which offers customizable visualization for directed and undirected graphs.
 
@@ -257,13 +261,13 @@ The visualization output consists by default of scalable-vector-graphics (SVG), 
 The tree decompositions in every tested application were provided by the utility \href{https://github.com/mabseher/htd}{htd} (small but efficient C++ library for computing (customized) tree and hypertree decompositions) \cite{htd}.
 
 
-%============== Outline ====================================================
-\subsection{Methodology}
-DP
-Visualization Techniques
-Integration durch API in Source Code
+My previous experiences with the topic of this work mainly come from these two courses:
+\begin{itemize}
+	\item "Computational Physics" - visualizing with python and matplotlib, by Prof. Dr. A. Bäcker,
+	chair of computational physics, TU Dresden 2016
+	\item "Graph Data Management and Analytics" - algorithms and various manipulations on graphs, by Hannes Voigt in 2019. \cite{VLGDMA}
+\end{itemize}
 
-Contributions
 %============== Rel Work ====================================================
 \subsection{Related Work}
 
@@ -660,7 +664,7 @@ Some examples of this format can be seen in the appendix at \ref{app:input}.
 
 %============== DOT ====================================================
 \subsection{DOT format}
-The graph description language DOT can be used to describe directed or undirected graphs and specify layout details and various attributes for graphs, edges and nodes. It is similar to the Graph Modeling Language that was used in the first experiments as a text based file format for describing graphs, and the Graphviz project includes gml2gv and gv2gml as two tools that can convert between GML and DOT files.
+The graph description language DOT can be used to describe directed or undirected graphs and specify layout details and various attributes for graphs, edges and nodes. It is similar to the Graph Modeling Language that was used in the first experiments as a text based file format for describing graphs, and the \href{https://graphviz.org/}{Graphviz} project includes gml2gv and gv2gml as two tools that can convert between GML and DOT files.
 
 %=========================== DOT Language ====================================
 
