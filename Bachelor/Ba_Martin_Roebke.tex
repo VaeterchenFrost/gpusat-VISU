@@ -868,22 +868,22 @@ For rendering the tree decomposition we have added a convenience option to \text
 \subsection{Create time steps for the underlying graph}
 To get a more comprehensive insight into the solving process we decided to also highlight the parts of graphs that best describe the problem instance the solver worked on.
 
-Because the data in the API does not directly include details about highlights in those graphs, we will construct this information on the fly.
+Because the data in the API does not directly include details about highlights in those graphs, we will construct this information on the fly by referencing with the tree decomposition.
 
-First we select only bag ids from the timeline provided that represent an IF-operation.
-With additional data from \textit{IncidenceGraphData} we are able to reconstruct the
+With additional data from the \textit{IncidenceGraphData} class we are further able to reconstruct the
 \begin{itemize}
 	\item incidence graph,
 	\item primal graph,
 	\item dual graph
 \end{itemize}
 for Boolean formulas.
-With input from \textit{GeneralGraphData} we can construct a simple graph that should include the nodes we find in the bags of the TD.
+
+For general problems and with the data from the \textit{GeneralGraphData} class we can construct a simple graph that logically should include the nodes which are in the bags of the TD.
 
 % ----- Example for isolated nodes -------
-Because graph representations of Boolean formulas are not necessarily connected, we make sure to include potentially isolated nodes into the graph as well.
+Because graph representations of Boolean formulas are not necessarily connected, we make sure to include potentially isolated nodes into our graphs as well and not only draw some components of it.
 For example the formula $(\neg a\lor \neg b\lor \neg c\lor \neg d)\land (b\lor c\lor d)\land g$
-with its set of clauses $\{c_{1}=\{-a,-b,-c,-d\},c_{2}=\{b,c,d\},c_{3}=\{g\}\}$ will create the dual graph \ref{fig:disconnected123}. This happens with no pre-processing and if the variable g is only included in the unit $c_{3}$.
+with its set of clauses $\{c_{1}=\{-a,-b,-c,-d\},c_{2}=\{b,c,d\},c_{3}=\{g\}\}$ will create the dual graph in Fig. \ref{fig:disconnected123}. This happens with no pre-processing and if the variable g is only included in the unit $c_{3}$.
 
 \begin{figure}[H]
 	\centering
