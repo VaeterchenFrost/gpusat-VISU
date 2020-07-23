@@ -12,80 +12,80 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {subsection}{\numberline {1.5}Thesis Outline}{8}{subsection.1.5}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {2}Background}{10}{section.2}%
+\contentsline {section}{\numberline {2}Background}{9}{section.2}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {2.1}Graphs}{10}{subsection.2.1}%
+\contentsline {subsection}{\numberline {2.1}Graphs}{9}{subsection.2.1}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {2.2}(Monadic Second-Order) Logic}{10}{subsection.2.2}%
+\contentsline {subsection}{\numberline {2.2}(Monadic Second-Order) Logic}{9}{subsection.2.2}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{\numberline {2.2.1}Propositional Logic}{10}{subsubsection.2.2.1}%
+\contentsline {subsubsection}{\numberline {2.2.1}Propositional Logic}{9}{subsubsection.2.2.1}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{\numberline {2.2.2}Boolean Satisfiability Problem}{11}{subsubsection.2.2.2}%
+\contentsline {subsubsection}{\numberline {2.2.2}Boolean Satisfiability Problem}{10}{subsubsection.2.2.2}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{\numberline {2.2.3}From Propositional Logic to MSO Logic}{12}{subsubsection.2.2.3}%
+\contentsline {subsubsection}{\numberline {2.2.3}From Propositional Logic to MSO Logic}{11}{subsubsection.2.2.3}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{\numberline {2.2.4}MSO (Graph) Properties}{13}{subsubsection.2.2.4}%
+\contentsline {subsubsection}{\numberline {2.2.4}MSO (Graph) Properties}{12}{subsubsection.2.2.4}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {2.3}Tree Decomposition}{13}{subsection.2.3}%
+\contentsline {subsection}{\numberline {2.3}Tree Decomposition}{12}{subsection.2.3}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {2.4}Dynamic Programming on Tree Decompositions}{14}{subsection.2.4}%
+\contentsline {subsection}{\numberline {2.4}Dynamic Programming on Tree Decompositions}{13}{subsection.2.4}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {2.5}Parametrized Complexity}{14}{subsection.2.5}%
+\contentsline {subsection}{\numberline {2.5}Parametrized Complexity}{13}{subsection.2.5}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{\numberline {2.5.1}Fixed-Parameter Tractable (FTP-)Algorithm}{15}{subsubsection.2.5.1}%
+\contentsline {subsubsection}{\numberline {2.5.1}Fixed-Parameter Tractable (FTP-)Algorithm}{14}{subsubsection.2.5.1}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{\numberline {2.5.2}Courcelle's Theorem}{15}{subsubsection.2.5.2}%
+\contentsline {subsubsection}{\numberline {2.5.2}Courcelle's Theorem}{14}{subsubsection.2.5.2}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {3}Practical Requirements}{17}{section.3}%
+\contentsline {section}{\numberline {3}Practical Requirements}{16}{section.3}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {3.1}DIMACS format}{17}{subsection.3.1}%
+\contentsline {subsection}{\numberline {3.1}DIMACS format}{16}{subsection.3.1}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {3.2}DOT format}{17}{subsection.3.2}%
+\contentsline {subsection}{\numberline {3.2}DOT format}{16}{subsection.3.2}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {4}My Visualization Project}{19}{section.4}%
+\contentsline {section}{\numberline {4}Implementation}{18}{section.4}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {4.1}Commandline and Configuration}{19}{subsection.4.1}%
+\contentsline {subsection}{\numberline {4.1}Commandline and Configuration}{18}{subsection.4.1}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {4.2}Initialization and Tree Decomposition}{20}{subsection.4.2}%
+\contentsline {subsection}{\numberline {4.2}Initialization and Tree Decomposition}{19}{subsection.4.2}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {4.3}Create time steps for the underlying graph}{24}{subsection.4.3}%
+\contentsline {subsection}{\numberline {4.3}Create time steps for the underlying graph}{21}{subsection.4.3}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {4.4}Incidence Graph}{24}{subsection.4.4}%
+\contentsline {subsection}{\numberline {4.4}Incidence Graph}{22}{subsection.4.4}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {4.5}General Graph}{25}{subsection.4.5}%
+\contentsline {subsection}{\numberline {4.5}General Graph}{23}{subsection.4.5}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {4.6}Joining SVG}{26}{subsection.4.6}%
+\contentsline {subsection}{\numberline {4.6}Joining SVG}{24}{subsection.4.6}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {5}Integration in GPUSAT}{31}{section.5}%
+\contentsline {section}{\numberline {5}Integration in GPUSAT}{28}{section.5}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {5.1}Class Graphoutput}{33}{subsection.5.1}%
+\contentsline {subsection}{\numberline {5.1}Class Graphoutput}{30}{subsection.5.1}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {5.2}Class SolverVisualization}{33}{subsection.5.2}%
+\contentsline {subsection}{\numberline {5.2}Class SolverVisualization}{30}{subsection.5.2}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {6}Integration in dpdb}{34}{section.6}%
+\contentsline {section}{\numberline {6}Integration in dpdb}{31}{section.6}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {7}Application and Images}{35}{section.7}%
+\contentsline {section}{\numberline {7}Application and Images}{32}{section.7}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {7.1}SAT Example}{35}{subsection.7.1}%
+\contentsline {subsection}{\numberline {7.1}SAT Example}{32}{subsection.7.1}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {7.2}\#SAT Example}{39}{subsection.7.2}%
+\contentsline {subsection}{\numberline {7.2}\#SAT Example}{36}{subsection.7.2}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {7.3}Vertex Cover Example}{41}{subsection.7.3}%
+\contentsline {subsection}{\numberline {7.3}Vertex Cover Example}{38}{subsection.7.3}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {7.4}SVG Join Example}{44}{subsection.7.4}%
+\contentsline {subsection}{\numberline {7.4}SVG Join Example}{41}{subsection.7.4}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {7.5}Visualizing Errors}{46}{subsection.7.5}%
+\contentsline {subsection}{\numberline {7.5}Visualizing Errors}{43}{subsection.7.5}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {8}Conclusion}{48}{section.8}%
+\contentsline {section}{\numberline {8}Conclusion}{45}{section.8}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {8.1}Summary}{48}{subsection.8.1}%
+\contentsline {subsection}{\numberline {8.1}Summary}{45}{subsection.8.1}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {8.2}Future Work}{49}{subsection.8.2}%
+\contentsline {subsection}{\numberline {8.2}Future Work}{46}{subsection.8.2}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {A}Images}{50}{appendix.A}%
+\contentsline {section}{\numberline {A}Images}{47}{appendix.A}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {B}Code Snippets}{57}{appendix.B}%
+\contentsline {section}{\numberline {B}Code Snippets}{54}{appendix.B}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {C}Further Examples}{62}{appendix.C}%
+\contentsline {section}{\numberline {C}Further Examples}{61}{appendix.C}%
 \defcounter {refsection}{0}\relax 
 \contentsline {section}{\nonumberline References}{68}{section*.4}%
