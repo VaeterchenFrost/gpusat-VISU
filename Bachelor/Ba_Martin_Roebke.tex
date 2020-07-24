@@ -8,6 +8,7 @@
 \usepackage{bm} % bold math
 \usepackage{nccmath} % medium fraction with mfrac 
 \usepackage{amssymb}
+\usepackage{enumitem}
 \usepackage{graphicx}
 \usepackage{amsthm} % theorems
 \usepackage{hyperref}
@@ -703,24 +704,41 @@ We want to introduce the reader with the attributes that are modifiable in sever
 	\item \textbf{rankdir -} ``TB", ``LR", ``BT", ``RL", corresponding to directed graphs drawn from top to bottom, from left to right, from bottom to top, and from right to left, respectively.
 	
 	\item \textbf{fillcolor -} The color used as a node-background in different situations, for different values see \url{https://graphviz.org/doc/info/attrs.html#k:color}. \url{https://graphviz.org/doc/info/colors.html} 
-	By default, this is a linear fill; If the value is a colorList, a gradient fill is used. 
+	By default this is a linear fill; If the value is a colorList, a gradient fill is used. 
 	
 	\item \textbf{fontcolor -} Color for text in nodes or graphs. 
 	
 	\item \textbf{style -} Drawing style of the nodes.
-	At present, the recognized style names are ``dashed", ``dotted", ``solid", ``invis" and ``bold" for nodes and edges,  and ``filled", ``striped", ``wedged", ``diagonals" and ``rounded" for nodes only.
+	At present, the recognized style names are ``dashed", ``dotted", ``solid", ``invis" and ``bold" \textbf{for nodes and edges},  and ``filled", ``striped", ``wedged", ``diagonals" and ``rounded" \textbf{for nodes} only.
 	
 	\item 
-	\textbf{margin -} Used for horizontal and vertical margins around graphs. Set to: margin='0.11,0.01'
+	\textbf{margin -} Used for horizontal and vertical margins around graphs.
 	
-	\item \textbf{fontsize -} Font size, in points, used for text. 
+	\item \textbf{fontsize -} Font size, in points. 
 	
-	\item \textbf{penwidth -} Specifies the width of the pen, in points, used to draw lines and curves, including the boundaries of edges and clusters. 
+	\item \textbf{penwidth -} Specifies the width of the pen in points. This is used to draw lines and curves, including the boundaries of edges and clusters. 
 	
-	\item \textbf{nodesep -} In dot, this specifies the minimum space between two adjacent nodes in the same rank, in inches. 
+	\item \textbf{nodesep -} In dot, this specifies the minimum space between two adjacent nodes in the same rank in inches. 
 	
-	\item \textbf{shape -} Controls how nodes are drawn. There are three main ways of specifying shapes. The first is polygon-based; for example as a box, ellipse or diamond. The second is record-based nodes that are basically boxes stacked vertically and horizontally and each filled with text. HTML-like labels are specified in a own grammar and can contain tables, text-styles like italic, sub- and superscript, vertical and horizontal rules. For a full list of shapes see \url{https://graphviz.org/doc/info/shapes.html}.
+	\item \textbf{shape -} Controls how nodes are drawn. For a full list of shapes see \url{https://graphviz.org/doc/info/shapes.html}. There are three main ways of specifying shapes, and all are applied in our visualization: 
+	\begin{enumerate}[label=(\arabic*)]
+		\item \textbf{polygon-based}; for example as a box, ellipse or diamond.\vspace{10pt}\\		
+		\textbf{Example}: shape~=~diamond label~=~v\_1
+		
+		\item \textbf{record-based} nodes that are basically boxes stacked vertically and horizontally and each filled with text.\vspace{10pt}\\
+		\textbf{Example}: shape~=~record label~=~$\{\text{sol bag 2}|\{\{v1|1|1|1|1|0\}|\{v3|1|0|0|1|1\}$ \\
+		\hspace*{0pt}\hfill $|\{v5|0|1|0|1|1\}|
+		\{\text{size}|3|3|2|3|3\}\}|\text{min-size: 2}\}$
+		
+		\item \textbf{HTML-like} labels are specified in a own grammar and can contain tables, text-styles like italic, sub- and superscript, vertical and horizontal rules.\vspace{10pt}\\		
+		\textbf{Example}: shape~=~box label~=\vspace{5pt}\\
+		$<<$TABLE BORDER="0" CELLBORDER="0" CELLSPACING="0"$>$\\
+		$<$TR$><$TD BGCOLOR="white"$>$bag 1$<$/TD$><$/TR$>$\\
+		$<$TR$><$TD PORT="anchor"$>$$<$/TD$><$/TR$><$TR$><$TD$>$[1, 3, 5, 6]$<$/TD$>$\\ $<$/TR$><$TR$><$TD$>$dtime=0.0009s$<$/TD$><$/TR$><$/TABLE$>>$
+	\end{enumerate}
 \end{itemize}
+
+
 %==============================================================================
 %============== PROJECT =======================================================
 %==============================================================================
