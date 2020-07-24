@@ -54,19 +54,19 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {subsection}{\numberline {4.5}General Graph}{24}{subsection.4.5}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {4.6}Joining SVG}{24}{subsection.4.6}%
+\contentsline {subsection}{\numberline {4.6}Joining SVG}{25}{subsection.4.6}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {5}Integration in GPUSAT}{27}{section.5}%
+\contentsline {section}{\numberline {5}Integration in GPUSAT}{30}{section.5}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {5.1}Class Graphoutput}{30}{subsection.5.1}%
+\contentsline {subsection}{\numberline {5.1}Class Graphoutput}{32}{subsection.5.1}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {5.2}Class SolverVisualization}{30}{subsection.5.2}%
+\contentsline {subsection}{\numberline {5.2}Class Visualization}{32}{subsection.5.2}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {6}Integration in dpdb}{31}{section.6}%
+\contentsline {section}{\numberline {6}Integration in dpdb}{33}{section.6}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {7}Application and Images}{33}{section.7}%
+\contentsline {section}{\numberline {7}Application and Images}{34}{section.7}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {7.1}SAT Example}{33}{subsection.7.1}%
+\contentsline {subsection}{\numberline {7.1}SAT Example}{34}{subsection.7.1}%
 \defcounter {refsection}{0}\relax 
 \contentsline {subsection}{\numberline {7.2}\#SAT Example}{38}{subsection.7.2}%
 \defcounter {refsection}{0}\relax 

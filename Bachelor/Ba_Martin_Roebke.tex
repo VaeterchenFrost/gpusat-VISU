@@ -998,13 +998,13 @@ A more detailed presentation of the results with these visualizations is present
 Figure \ref{fig:minvc16graph9} shows a graph visualization for a graph with 16 nodes and the subgraph $\{11,12,14\}$ emphasized.\\
 Figure \ref{fig:minvc16graph9sorted} shows the same graph and emphasis visualized with the nodes sorted and placed on a circular layout. In this layout we find it easier to identify individual nodes by their position and to cross-reference them with further representations.
 
-\begin{figure}[h]
+\begin{figure}[H]
 	\includegraphics[width=\linewidth]{images/minvc16graph9.png}
 	\caption{A graph with 16 nodes and highlights for the subgraph $\{11,12,14\}$ in yellow and red edges.}
 	\label{fig:minvc16graph9}
 \end{figure}
 
-\begin{figure}[h]
+\begin{figure}[H]
 	\centering
 	\includegraphics[width=0.6\linewidth]{images/minvc16graph9sorted.png}
 	\caption{A graph with 16 nodes and highlights for the subgraph $\{11,12,14\}$ in yellow and red edges. The nodes are arranged in a circular layout and sorted by their labels.}
@@ -1046,28 +1046,28 @@ Possibilities for joining images with these four parameters include joining with
 	\item scaling and aligning at the bottom edge of the image, Fig. \ref{fig:svgjoinscaledbottom}.
 \end{itemize}
 
-\begin{figure}[h]
+\begin{figure}[H]
 	\centering
 	\includegraphics[width=0.6\linewidth]{images/svgjoinpad0.png}
 	\caption{Example for joining with no \textit{centerpad}.}
 	\label{fig:svgjoinpad0}
 \end{figure}
 
-\begin{figure}[h]
+\begin{figure}[H]
 	\centering
 	\includegraphics[width=0.8\linewidth]{images/svgjoinpad200.png}
 	\caption{Joining the blue (right side) image to the left gray image with only one parameter \textit{centerpad} set to 200. We see the default vertical position v\_top=0, and the implied coordinate system with an origin in the top left corner.}
 	\label{fig:svgjoinpad200}
 \end{figure}
 
-\begin{figure}[h]
+\begin{figure}[H]
 	\centering
 	\includegraphics[width=0.8\linewidth]{images/svgjoinscale1.png}
 	\caption{The second image is scaled to the same size as the first image. This can be conveniently achieved by setting \textit{v\_top} to 0 and \textit{v\_bottom} to 1. Parameter \textit{centerpad} is 200 as hinted.}
 	\label{fig:svgjoinscale1}
 \end{figure}
 
-\begin{figure}[h]
+\begin{figure}[H]
 	\centering
 	\includegraphics[width=0.8\linewidth]{images/svgjoinpad0centered.png}
 	\caption{Align both images for vertical centering. \\
@@ -1075,14 +1075,14 @@ Possibilities for joining images with these four parameters include joining with
 	\label{fig:svgjoinpad0centered}
 \end{figure}
 
-\begin{figure}[h]
+\begin{figure}[H]
 	\centering
 	\includegraphics[width=0.8\linewidth]{images/svgjoinscaled.png}
 	\caption{Setting \textit{scale2} to $1.3$ to scale the blue (right) image uniformly. Parameter \textit{centerpad} is 200 as hinted.}
 	\label{fig:svgjoinscaled}
 \end{figure}
 
-\begin{figure}[h]
+\begin{figure}[H]
 	\centering
 	\includegraphics[width=0.8\linewidth]{images/svgjoinscaledbottom.png}
 	\caption{As in figure \ref{fig:svgjoinscaled} we use \textit{scale2} to scale the blue rectangle. To align both images at the bottom edge, we use the value $v\_bottom=1$.}
@@ -1097,8 +1097,14 @@ The list can be of different length for each parameter - if it is exhausted, the
 %==============================================================================
 \newpage
 \section{Integration in GPUSAT}\label{sec:gpusat}
-To study and improve the handling of the C++ program was chronologically the first task we experimented with.
-Getting the program up and running proved to be more difficult than we envisioned due to a probable bug in the driver when running OpenCL Drivers from CUDA on the Windows OS.
+%To study and improve the handling of the C++ program was chronologically the first task we experimented with.
+%Getting the program up and running proved to be more difficult than we envisioned due to a probable bug in the driver when running OpenCL Drivers from CUDA on the Windows OS.
+
+The integration of visualization into C++ \url{https://github.com/daajoe/GPUSAT} did happen in two parts. \\
+
+The first part is mostly included in the class \textit{Graphoutput}, and includes several experimental steps into visualization. This class has 186 lines of code in its source file, and 44 lines of code in its header file.
+
+The second part was done in the class \textit{SolverVisualization}, and includes several experimental steps into visualization. This class has 186 lines of code in its source file, and 44 lines of code in its header file.
 
 %=================Performance=======================
 Impact on performance:
@@ -1195,8 +1201,8 @@ It is possible to create visualizations of the initial situation for CNF Clauses
 	output as tdFile = ``cypherTreedec.txt"
 \end{itemize}
 
-%============== SolverVisualization ====================================================
-\subsection{Class SolverVisualization}
+%============== Visualization ====================================================
+\subsection{Class Visualization}
 
 To include the extraction of all necessary visualization information into the solver we created a separate fork.
 To simplify the creation of valid json we selected the actively developed c++ library JsonCpp \url{https://github.com/open-source-parsers/jsoncpp} version 1.9.2 from the open-source-parsers repository.
