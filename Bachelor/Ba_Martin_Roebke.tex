@@ -990,18 +990,26 @@ Additional parameters used in both layouts are used to not overlap nodes, as wel
 The highlighting for each time step is basically the same as in the incidence graph previously.\\
 
 We allow an additional option, which depends on the concrete algorithm to be visualized, namely the flag \textit{do\_adj\_nodes}.
-In case the algorithm uses adjacent nodes they can be visualized with this flag using a third color for emphasis.
+In case the algorithm uses adjacent nodes they can be visualized with this flag using a third color for emphasis.\\
+
 
 % --- EXAMPLE
-A full display of the results is presented in Section \ref{sec:minvc}.
-Figure \ref{fig:minvc16graph9}
+A more detailed presentation of the results with these visualizations is presented in Section \ref{sec:minvc}.
+Figure \ref{fig:minvc16graph9} shows a graph visualization for a graph with 16 nodes and the subgraph $\{11,12,14\}$ emphasized.\\
+Figure \ref{fig:minvc16graph9sorted} shows the same graph and emphasis visualized with the nodes sorted and placed on a circular layout. In this layout we find it easier to identify individual nodes by their position and to cross-reference them with further representations.
 
-\begin{figure}
-	\includegraphics{images/minvc16graph9.png}
+\begin{figure}[h]
+	\includegraphics[width=\linewidth]{images/minvc16graph9.png}
 	\caption{A graph with 16 nodes and highlights for the subgraph $\{11,12,14\}$ in yellow and red edges.}
 	\label{fig:minvc16graph9}
 \end{figure}
 
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=0.6\linewidth]{images/minvc16graph9sorted.png}
+	\caption{A graph with 16 nodes and highlights for the subgraph $\{11,12,14\}$ in yellow and red edges. The nodes are arranged in a circular layout and sorted by their labels.}
+	\label{fig:minvc16graph9sorted}
+\end{figure}
 
 %============== Joining SVG ====================================================
 \subsection{Joining SVG}\label{sec:svgjoin}
