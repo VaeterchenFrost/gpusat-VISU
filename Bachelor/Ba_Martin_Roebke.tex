@@ -960,7 +960,7 @@ The representation of the bipartite graphs can be adjusted in many parameters; i
 %============== General Graph ====================================================
 \subsection{General Graph}
 This type of graph can represent the underlying graph for different problems, as well as primal and dual graph for Boolean formulas.
-Because of its larger area of application the general graph was not as easy to layout as the incidence graph.
+Because of its wider scope, the layout for the general graph was not as simple to create as for the incidence graph.
 We did prepare two different layouts that should cover most cases and are toggled by the parameter \textit{do\_sort\_nodes}.
 For smaller and dense graphs of up to 20 vertices it might be helpful to sort the nodes on a circle, while for larger or sparse graphs an organic layout may be more appropriate.
 
@@ -970,29 +970,38 @@ To layout these two options we chose the engine
 	\item \textit{do\_sort\_nodes} false: sfdp (see \cite{Hu05}) with the spring constant 'K' set to 2.
 \end{itemize}
 
-Additional parameters used in both layouts are set to not overlap nodes and easily identify each node, as well as drawing the edges first. This should provide a minimally cluttered layout compared to the defaults, but could make edges ambiguous in some cases. Of course these layouts could use even more configuration than what was set for this version, a complete overview is provided in the \href{https://graphviz.org/doc/info/attrs.html}{graphviz-doc}. 
+Additional parameters used in both layouts are used to not overlap nodes, as well as drawing the edges first. This should provide a minimally cluttered layout compared to the defaults, but could make edges ambiguous in some cases. \\
+%
+%Of course these layouts could process even more configuration, a complete overview can be found in the \href{https://graphviz.org/doc/info/attrs.html}{graphviz-doc}. 
 
-Only if the option to sort the nodes was chosen with \textit{do\_sort\_nodes} the method
-\begin{enumerate}
-	\item saves the current graph source 
-	\item sets the layout engine to \textit{circo}
-	\item adds edges between successive node-ids to form a closed circle
-	\item runs the layout and reads back the output in plain dot-format
-	\item reads the calculated positions for each node in the graph
-	\item resets the source to step one, removing all temporary additions
-	\item writes the calculated positions into each node
-	\item sets the layout engine to an engine that uses those calculated positions later.
-\end{enumerate}
+%Only if the option to sort the nodes was chosen with \textit{do\_sort\_nodes} the method
+%\begin{enumerate}
+%	\item saves the current graph source 
+%	\item sets the layout engine to \textit{circo}
+%	\item adds edges between successive node-ids to form a closed circle
+%	\item runs the layout and reads back the output in plain dot-format
+%	\item reads the calculated positions for each node in the graph
+%	\item resets the source to step one, removing all temporary additions
+%	\item writes the calculated positions into each node
+%	\item sets the layout engine to an engine that uses those calculated positions later.
+%\end{enumerate}
 
-We add the edges, and eventually the isolated nodes also, to the graph.
-Then the highlighting for each time-step is done basically like in the incidence graph \ref{sec:incid}.
-We allow one additional option that would depend on the concrete algorithm being visualized, and that is \textit{do\_adj\_nodes}.
-In case the algorithm uses adjacent nodes they can be visualized with this flag using a third color.
+%We add the edges and eventually the isolated nodes to the graph.
+The highlighting for each time step is basically the same as in the incidence graph previously.\\
+
+We allow an additional option, which depends on the concrete algorithm to be visualized, namely the flag \textit{do\_adj\_nodes}.
+In case the algorithm uses adjacent nodes they can be visualized with this flag using a third color for emphasis.
 
 % --- EXAMPLE
-EXAMPLES
+A full display of the results is presented in Section \ref{sec:minvc}.
+Figure \ref{fig:minvc16graph9}
 
-In each case we create one image after the time step to provide the inside generated.
+\begin{figure}
+	\includegraphics{images/minvc16graph9.png}
+	\caption{A graph with 16 nodes and highlights for the subgraph $\{11,12,14\}$ in yellow and red edges.}
+	\label{fig:minvc16graph9}
+\end{figure}
+
 
 %============== Joining SVG ====================================================
 \subsection{Joining SVG}\label{sec:svgjoin}
