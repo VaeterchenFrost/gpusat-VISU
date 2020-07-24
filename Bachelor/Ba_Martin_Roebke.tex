@@ -161,7 +161,7 @@ As two reference implementations of dynamic programming on tree decompositions w
 
 
 As a side note: \\
-of course the information we visualize is mostly in the solver and could be read out as text, but as they say: "a picture is worth a 100 spreadsheets".
+Of course the information we visualize is mostly in the solver and could be read out as text. But as the saying goes: ``a picture is worth a 100 spreadsheets".
 
 
 %  table
@@ -266,9 +266,9 @@ The tree decompositions in every tested application were provided by the utility
 
 %My previous experiences with the topic of this work mainly come from these two courses:
 %\begin{itemize}
-%	\item "Computational Physics" - visualizing with python and matplotlib, by Prof. Dr. A. Bäcker,
+%	\item ``Computational Physics" - visualizing with python and matplotlib, by Prof. Dr. A. Bäcker,
 %	chair of computational physics, TU Dresden 2016
-%	\item "Graph Data Management and Analytics" - algorithms and various manipulations on graphs, by Hannes Voigt in 2019. \cite{VLGDMA}
+%	\item ``Graph Data Management and Analytics" - algorithms and various manipulations on graphs, by Hannes Voigt in 2019. \cite{VLGDMA}
 %\end{itemize}
 
 %============== Rel Work ====================================================
@@ -279,9 +279,9 @@ In this chapter, however, we would like to mention works that deal with the surr
 
 First two papers dealing with additional solvers exploiting small tree-width and Courcelle's Theorem:
 \begin{itemize}
-	\item "Implementing Courcelle's Theorem in a declarative framework for dynamic programming" in \cite{ImplCourcelleDP16} \\
+	\item ``Implementing Courcelle's Theorem in a declarative framework for dynamic programming" in \cite{ImplCourcelleDP16} \\
 	and
-	\item "Evaluation of an MSO-solver" from \cite{evaluationMSO}
+	\item ``Evaluation of an MSO-solver" from \cite{evaluationMSO}
 \end{itemize}
 %Many computationally hard problems become tractable if the graph structure underlying the problem instance exhibits small treewidth. A recent approach to put this idea into practice is based on a declarative interface to Answer Set Programming that allows us to specify dynamic programming over tree decompositions in this language, delegating the computation to dedicated solvers. In this article, we prove that this method can be applied to any problem whose fixed-parameter tractability follows from Courcelle's Theorem. \cite{ImplCourcelleDP16}
 %% Journal of Logic and Computation, Volume 27, Issue 4, June 2017, Pages 1067–1094, https://doi.org/10.1093/logcom/exv089
@@ -295,11 +295,11 @@ First two papers dealing with additional solvers exploiting small tree-width and
 
 Additional some references on algorithm visualization and visual debugging can be found in
 \begin{itemize}
-	\item "ELVIZ: A query-based approach to model visualization" about an approach to visualization, generic regarding both the source model, and the kind and content of the visualization \cite{ELVIZ},
+	\item ``ELVIZ: A query-based approach to model visualization" about an approach to visualization, generic regarding both the source model, and the kind and content of the visualization \cite{ELVIZ},
 	
-	\item "Visualizing Tree Structures in Genetic Programming" about methods to visualize the structure of trees that occur in genetic programming \cite{VisuTDinGP},
+	\item ``Visualizing Tree Structures in Genetic Programming" about methods to visualize the structure of trees that occur in genetic programming \cite{VisuTDinGP},
 	
-	\item The book "Software Visualization: Visualizing the Structure, Behaviour, and Evolution of Software" - the first textbook on software visualization, Stephan Diehl, Springer 2007 \cite{SoftwareVisualization}
+	\item The book ``Software Visualization: Visualizing the Structure, Behaviour, and Evolution of Software" - the first textbook on software visualization, Stephan Diehl, Springer 2007 \cite{SoftwareVisualization}
 	
 	\item the overview on 
 \end{itemize}
@@ -490,7 +490,7 @@ While first-order logic only quantifies variables that range over individuals (e
 %Interested in MSO logic over graphs.
 
 %Two types of MSO formulas \textit{or logical graph representations}.
-%The expressions have the form: "There exists a \textbf{set of edges} that is..." can not be transferred into "set of vertices".
+%The expressions have the form: ``There exists a \textbf{set of edges} that is..." can not be transferred into ``set of vertices".
 %
 %\begin{itemize}
 %	\item MSO formulas
@@ -530,7 +530,7 @@ Typical MSO properties include:
 
 %\url{https://youtu.be/Wyn3djrYg7c?t=1385} Bruno Courcelle: Recognizable sets of graphs: algebraic and logical aspects 
 %\url{https://library.cirm-math.fr/Record.htm?idlist=2&record=19276851124910940339}
-%Recording during the thematic meeting: "Frontiers of reconnaissability" the April 29, 2014 at the Centre International de Rencontres Mathématiques (Marseille, France)
+%Recording during the thematic meeting: ``Frontiers of reconnaissability" the April 29, 2014 at the Centre International de Rencontres Mathématiques (Marseille, France)
 
 
 %============== TD ====================================================
@@ -551,11 +551,11 @@ The tree width of a graph is the \textit{minimal width} over all tree decomposit
 
 %Wiki: In this definition, the size of the largest set is diminished by one in order to make the treewidth of a tree equal to one. 
 
-MSO queries on tree decomposable structures are computable with linear delay \cite{MSOQueriesGuillaume}. There exist many "easy" problems on tree decomposable graphs \cite{ARNBORG1991308}.
+MSO queries on tree decomposable structures are computable with linear delay \cite{MSOQueriesGuillaume}. There exist many ``easy" problems on tree decomposable graphs \cite{ARNBORG1991308}.
 
 % Examples
 We use tree decompositions throughout our visualizations in this thesis. One detailed explanation is also introduced in \cite{pcgp2019} at page 169.
-The tree decomposition for our "wheelgraph" example \ref{fig:wheelgraph} can be viewed in listing~\ref{lst:wheelgraphtd}. The conditions for tree decompositions outlined above are easy to verify for this small example, and we get a tree width $width(T)=3$ for this graph.
+The tree decomposition for our ``wheelgraph" example \ref{fig:wheelgraph} can be viewed in listing~\ref{lst:wheelgraphtd}. The conditions for tree decompositions outlined above are easy to verify for this small example, and we get a tree width $width(T)=3$ for this graph.
 
 \begin{figure}
 	\centering
@@ -613,7 +613,7 @@ Some problems can be solved by algorithms that are exponential only in the size 
 
 % Implications
 There are efficient algorithms for enumerating and for counting the number of solutions of a MSO formula, if it is ensured that the input data is preprocessed in linear time, and that each solution is then produced in a delay linear in the size of each solution \cite{MSOQueriesGuillaume, ARNBORG1991308}.
-MSO graph properties are "fixed-parameter-tractable" with respect to tree-width. So are MSO counting and optimizing functions. \cite{CourcelleGROW}
+MSO graph properties are ``fixed-parameter-tractable" with respect to tree-width. So are MSO counting and optimizing functions. \cite{CourcelleGROW}
 
 DETAILS MinVC: 
 %https://en.wikipedia.org/wiki/Vertex_cover#Fixed-parameter_tractability
@@ -640,7 +640,7 @@ A generic workflow implementing Courcelle's theorem looks like we see in Figure~
 
 Even if linear in the size of the input, naive implementations are still expensive and 
 %($2^{p(tw G)}$, $2^{2^{(\#Q)}}$,  
-the constant factor can be very significant. An efficient implementation will require several tricks to make this approach practical. Developing and debugging these "tricks" is not always that easy, so a visualization can help at this point.\smallskip 
+the constant factor can be very significant. An efficient implementation will require several tricks to make this approach practical. Developing and debugging these ``tricks" is not always that easy, so a visualization can help at this point.\smallskip 
 
 % See also figure~\ref{fig:logictheory}.
 
@@ -655,17 +655,17 @@ The exchange of intermediate results of solvers and parts of the visualization i
 \subsection{DIMACS format}
 
 Inputs for solvers and in some cases for preparing the visualization of dpdb are usually in a DIMACS format. There exist several standardized formats for different cases, for example CNF clauses, graph edges and graph decompositions.
-Several file formats for these purposes were developed at "DIMACS" (the Center for Discrete Mathematics and Theoretical Computer Science) \cite{dimacsimplcha} beginning in 1993 at Rutgers University.
+Several file formats for these purposes were developed at ``DIMACS" (the Center for Discrete Mathematics and Theoretical Computer Science) \cite{dimacsimplcha} beginning in 1993 at Rutgers University.
 They are partly supported in several math-related software.
 
-The underlying concept is one line-based ASCII file and for all different formats specifies comments as lines starting with the character "c", a problem line starting with "p" (rarely with "s") and following the problem line usually multiple lines specifying the data in a format depending on the problem type.
+The underlying concept is one line-based ASCII file and for all different formats specifies comments as lines starting with the character ``c", a problem line starting with ``p" (rarely with ``s") and following the problem line usually multiple lines specifying the data in a format depending on the problem type.
 The formats used for this work are:
 
 \textbf{DIMACS CNF}: This format is used to define a Boolean expression, written in conjunctive normal form. The problem line specifies the type, \textbf{number of variables} and \textbf{number of clauses}. The following lines specify the clauses a positive literal is denoted by the corresponding number, and a negative literal is denoted by the corresponding negative number. Each clause is followed by the character zero, so 0 should not occur as a variable. Instead variables are expected to start at one.\\
 
 \textbf{DIMACS tw}: This format is used to describe a single undirected graph. The problem line specifies the type, \textbf{number of nodes} and \textbf{number of edges}. The following lines specify the edges with two nodes separated by a space.\\
 
-\textbf{DIMACS td}: This format is used to describe a tree decomposition. The problem line specifies the type, \textbf{number of bags}, \textbf{maximum size of the bags} and \textbf{number of nodes}. The following lines describe the bags starting for each with "b", the \textbf{bag number} and \textbf{nodes in this bag}. Following these bags are lines not prefixed with a "b". Now each line describes one \textbf{edge between the bags} as two bag numbers separated by a space.\\
+\textbf{DIMACS td}: This format is used to describe a tree decomposition. The problem line specifies the type, \textbf{number of bags}, \textbf{maximum size of the bags} and \textbf{number of nodes}. The following lines describe the bags starting for each with ``b", the \textbf{bag number} and \textbf{nodes in this bag}. Following these bags are lines not prefixed with a ``b". Now each line describes one \textbf{edge between the bags} as two bag numbers separated by a space.\\
 
 %Supported also in Maple \url{https://www.maplesoft.com/support/help/maple/view.aspx?path=Formats/CNF}
 
@@ -700,7 +700,7 @@ DOT has different components (see \url{http://www.graphviz.org/doc/info/attrs.ht
 We want to introduce the reader with the attributes that are modifiable in several places of the visualization:
 
 \begin{itemize}
-	\item \textbf{rankdir -} "TB", "LR", "BT", "RL", corresponding to directed graphs drawn from top to bottom, from left to right, from bottom to top, and from right to left, respectively.
+	\item \textbf{rankdir -} ``TB", ``LR", ``BT", ``RL", corresponding to directed graphs drawn from top to bottom, from left to right, from bottom to top, and from right to left, respectively.
 	
 	\item \textbf{fillcolor -} The color used as a node-background in different situations, for different values see \url{https://graphviz.org/doc/info/attrs.html#k:color}. \url{https://graphviz.org/doc/info/colors.html} 
 	By default, this is a linear fill; If the value is a colorList, a gradient fill is used. 
@@ -708,7 +708,7 @@ We want to introduce the reader with the attributes that are modifiable in sever
 	\item \textbf{fontcolor -} Color for text in nodes or graphs. 
 	
 	\item \textbf{style -} Drawing style of the nodes.
-	At present, the recognized style names are "dashed", "dotted", "solid", "invis" and "bold" for nodes and edges,  and "filled", "striped", "wedged", "diagonals" and "rounded" for nodes only.
+	At present, the recognized style names are ``dashed", ``dotted", ``solid", ``invis" and ``bold" for nodes and edges,  and ``filled", ``striped", ``wedged", ``diagonals" and ``rounded" for nodes only.
 	
 	\item 
 	\textbf{margin -} Used for horizontal and vertical margins around graphs. Set to: margin='0.11,0.01'
@@ -849,7 +849,7 @@ Our next step is to begin visualizing the time-steps on the tree decomposition i
 First, a quick setup is performed for the tree decomposition as a directed graph that 
 \begin{itemize}
 	\item is \textit{strict}, meaning a simple graph where equal edges are merged into one
-	\item has an orientation where it grows with each "rank" of the nodes
+	\item has an orientation where it grows with each ``rank" of the nodes
 	\item has a shape and a fill-color for it's nodes
 	\item has a margin around it's bounding box.
 \end{itemize}
@@ -931,7 +931,7 @@ The representation of the bipartite graphs can be adjusted in many parameters; i
 %starting from variable-id one. 
 %This sub-graph does get the different provided \textit{colors} applied to its nodes and their adjacent edges.
 
-%The last step in this method is the highlighting of "active" parts in each time step beeing processed during it's dynamic programming. To accomplish this with as small overhead as possible, we apply and remove additional lines to the body of its graph source code. 
+%The last step in this method is the highlighting of ``active" parts in each time step beeing processed during it's dynamic programming. To accomplish this with as small overhead as possible, we apply and remove additional lines to the body of its graph source code. 
 %For highlighting there are two main cases:
 %\begin{itemize}
 %	\item There is no active clause in this step: we only reset highlighting
@@ -988,7 +988,7 @@ The internally used method \textit{svgjoin.append\_svg} joins two images horizon
 With default settings it will align the top of both images and apply no scaling to either of them.
 The possible parameters (in [unit])
 \begin{itemize}
-	\item centerpad: float = 0, [image coordinates], just "padding" in the JSON API
+	\item centerpad: float = 0, [image coordinates], just ``padding" in the JSON API
 	\item v\_bottom: float = None, [size of the \textit{first} image]
 	\item v\_top: float = None, [size of the \textit{first} image]
 	\item scale2: float = 1, [size of the \textit{second} image]
@@ -1149,9 +1149,9 @@ Additional functions evaluate the possibilities of using Graph-Databases like Ne
 It is possible to create visualizations of the initial situation for CNF Clauses and the computed tree decomposition of the primal graph as two \href{https://neo4j.com/docs/cypher-refcard/current/}{Neo4j Cypher} queries with:
 \begin{itemize}
 	\item One graph representing the SAT formula and  queries to construct incidence, dual and primal representations.
-	output as satFile = "cypherSatFormula.txt"
+	output as satFile = ``cypherSatFormula.txt"
 	\item one graph representing the tree decomposition of the primal graph with it's bags containing variables.
-	output as tdFile = "cypherTreedec.txt"
+	output as tdFile = ``cypherTreedec.txt"
 \end{itemize}
 
 %============== SolverVisualization ====================================================
@@ -1206,7 +1206,7 @@ the main parameters
 After the arguments are parsed by \href{https://docs.python.org/3/library/argparse.html}{pythons argparse} it is possible to adjust logging output by either providing a configuration file (\href{https://github.com/VaeterchenFrost/tdvisu/blob/master/tdvisu/logging.yml}{template} provided) or giving a minimal logging level per program argument.
 
 Next the \textit{create\_json}~\ref{lst:create-json} function connects to the database driver with the number of the stored problem. 
-The "problem type" is available as a string in table \emph{public.problem}, and the appropriate class to prepare the json will be instantiated. Currently the solver handles the problems of \textit{satisfiability} (Sat), \textit{count solutions to a Boolean formula} (SharpSat) as well as \textit{minimum vertex cover} (VertexCover).
+The ``problem type" is available as a string in table \emph{public.problem}, and the appropriate class to prepare the json will be instantiated. Currently the solver handles the problems of \textit{satisfiability} (Sat), \textit{count solutions to a Boolean formula} (SharpSat) as well as \textit{minimum vertex cover} (VertexCover).
 
 %==============================================================================
 %============== APPLICATION ===================================================
@@ -1340,11 +1340,11 @@ As we can see the solutions for bags other than 2 are hidden in the output but a
 %num_images=5)
 \begin{figure}[H]
 	\centering
-	\textbf{v\_bottom = "bottom"} \vspace{1em}\\
+	\textbf{v\_bottom = ``bottom"} \vspace{1em}\\
 	
 	\includegraphics[width=\linewidth]{images/SVGJOIN/default_bottom2.pdf}\\
 	\vspace{0.5em}
-	\textbf{v\_bottom = "center"}\\
+	\textbf{v\_bottom = ``center"}\\
 	
 	\vspace{0.6em}
 	\includegraphics[width=0.9\linewidth]{images/SVGJOIN/default_center2.pdf}
@@ -1358,7 +1358,7 @@ As we can see the solutions for bags other than 2 are hidden in the output but a
 	\label{fig:join60}
 \end{figure}
 
-In Figure \ref{fig:joinbotcenter} the parameter v\_bottom is set to "bottom" to align both graphics on the bottom edge; set to "center" elevates the right image to 50\% of the height of the first. It is also possible to provide arbitraty floating-point values for vertical adjustment as presented in Figure \ref{fig:join60} with v\_bottom = 0.6 .\\
+In Figure \ref{fig:joinbotcenter} the parameter v\_bottom is set to ``bottom" to align both graphics on the bottom edge; set to ``center" elevates the right image to 50\% of the height of the first. It is also possible to provide arbitraty floating-point values for vertical adjustment as presented in Figure \ref{fig:join60} with v\_bottom = 0.6 .\\
 \\
 if we want the right graphic a bit larger compared to the default size, we can add additional scaling by providing the argument \textbf{scale2}. In figures \ref{fig:joinscaled1} to \ref{fig:joinscaled5} the complete time series for solving \textit{minimal vertex cover} for example \ref{lst:wheelgraph} with join-parameters
 \begin{itemize}
