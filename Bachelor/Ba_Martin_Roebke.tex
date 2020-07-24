@@ -673,25 +673,31 @@ Some examples of this format can be seen in the appendix at \ref{app:input}.
 
 %============== DOT ====================================================
 \subsection{DOT format}
-The graph description language DOT can be used to describe directed or undirected graphs and specify layout details and various attributes for graphs, edges and nodes. It is similar to the Graph Modeling Language that was used in the first experiments as a text based file format for describing graphs, and the \href{https://graphviz.org/}{Graphviz} project includes gml2gv and gv2gml as two tools that can convert between GML and DOT files.
+The graph description language DOT can be used to describe directed or undirected graphs and specify layout details and various attributes for graphs, edges and nodes. It is similar to the Graph Modeling Language that is used in Chapter \ref{chagraphoutput} as a text based file format for describing graphs. The \href{https://graphviz.org/}{Graphviz} project includes gml2gv and gv2gml as two tools that can convert between GML and DOT files. Keeping this in mind, in this chapter we restrict ourselves to a short introduction of the DOT properties that were used the most.
 
 %=========================== DOT Language ====================================
 
 %Dot Language: http://www.graphviz.org/doc/info/lang.html
 
-The nodes in the dot-language are \emph{labeled}, so creating a node takes one string identifier and can additionally be provided with a text label. Valid examples for IDs include: "a", "b", "A1", "node1", "1", "10002".
-The complete abstract grammar for DOT can be viewed at the website of the DOT language \url{https://graphviz.gitlab.io/_pages/doc/info/lang.html}.
+The complete abstract grammar for DOT can be viewed at the website of the DOT language \url{https://graphviz.gitlab.io/_pages/doc/info/lang.html}.\\
 
-It supports directed (\textit{digraph} with edges indicated by '->') an undirected (\textit{graph} with edges indicated by '-{}-') graphs.
-The visualizations presented in the thesis are constructed as undirected graphs, but would be easily extendable to directed representations since almost all operations keep the order of edge endpoints from the input.
+
+The nodes in the DOT-language are \emph{labeled}, so creating a node takes one string identifier and might additionally be provided with a text label. Valid examples for IDs include all combinations of letters and digits.
+
+The optional text labels an have various formats. One example with the setting ``shape=box''
+
+%It supports directed (\textit{digraph} with edges indicated by '->') an undirected (\textit{graph} with edges indicated by '-{}-') graphs.
+The visualizations presented in the thesis are constructed as undirected graphs, but would be easily extendable to directed representations, since the order of the edge endpoints remains intact in almost all operations.
 
 Another concept utilized were the sub-graphs and clusters available in DOT.
-To get a well structured (bipartite) incidence graph, each partition is placed in an individual cluster and sorted by node label to make it easier to find single nodes in large clusters.
+To get a well structured (bipartite) incidence graph, each partition is placed in an individual cluster, making adjustments to various distances simple.\\
+
 
 %Attributes (new site): http://www.graphviz.org/doc/info/attrs.html
-DOT has different components that can be modified with attributes: edges, nodes, the root graph, subgraphs and cluster subgraphs, respectively.
+DOT has different components (see \url{http://www.graphviz.org/doc/info/attrs.html}) which can be modified with attributes: edges, nodes, the root graph, subgraphs and cluster subgraphs, respectively.\\
 
-In the following we want to shortly describe the attributes we used the most in TDVisu.
+
+We want to introduce the reader with the attributes that are modifiable in several places of the visualization:
 
 \begin{itemize}
 	\item \textbf{rankdir -} "TB", "LR", "BT", "RL", corresponding to directed graphs drawn from top to bottom, from left to right, from bottom to top, and from right to left, respectively.
