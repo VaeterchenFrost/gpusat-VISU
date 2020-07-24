@@ -564,6 +564,11 @@ The tree decomposition for our "wheelgraph" example \ref{fig:wheelgraph} can be 
 	\label{fig:tdweelgraph7}
 \end{figure}
 
+Some projects might use so called \textit{nice} tree decompositions in order to simplify the cases in the used algorithm \cite[Ch.~2.2]{DiplomarbeitZisser}.
+
+As stated in \cite[Ch.~2.2]{DiplomarbeitZisser}, Arnborg et. al. \cite{arnborgtd} have shown that finding a tree decompositions of minimal width is only feasible for small graphs.  There are exact methods for obtaining minimal width tree decompositions,  e.g. \cite{gogatetw, bachoore06}. The solvers for which we implemented the visualization use heuristics  for  generating tree decompositions, therefore  the width of larger examples than shown in this thesis might not be minimal. 
+
+
 %============== Reference on Algo and Param Complexity ====================================================
 \subsection{Dynamic Programming on Tree Decompositions}
 In this chapter we want to give a short overview of the process of dynamic programming, which we visualize on the tree decompositions. For specific information on the used algorithms for \#SAT we refer to \cite{DiplomarbeitZisser} ch. 3 or \cite{samermodelcounting}. \\
