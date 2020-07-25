@@ -74,13 +74,13 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {subsection}{\numberline {7.4}SVG Join Example}{43}{subsection.7.4}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {7.5}Visualizing Errors}{45}{subsection.7.5}%
+\contentsline {subsection}{\numberline {7.5}Visualization of Defects}{45}{subsection.7.5}%
 \defcounter {refsection}{0}\relax 
 \contentsline {section}{\numberline {8}Conclusion}{47}{section.8}%
 \defcounter {refsection}{0}\relax 
 \contentsline {subsection}{\numberline {8.1}Summary}{47}{subsection.8.1}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {8.2}Future Work}{48}{subsection.8.2}%
+\contentsline {subsection}{\numberline {8.2}Future Work}{47}{subsection.8.2}%
 \defcounter {refsection}{0}\relax 
 \contentsline {section}{\numberline {A}Images}{49}{appendix.A}%
 \defcounter {refsection}{0}\relax 

@@ -1426,7 +1426,7 @@ As stated in the introduction, most of the data we visualize is already present 
 Given the right testing frameworks it is possible to produce a report for structural or even randomly occurring defects in the solver. As the software we used for our experimental visualizations shown in this work does not itself contain a test environment, we were able to reproduce some undiscovered ``bugs" using and developing our visualization tool.
 
 
- One specific program invocation did not give the expected result solving a \textit{vertex cover} with one hundred nodes. The problem was first found when inspecting the immediate output of the program \textit{dpdb.py}, which did report the wrong result size. The problem could be localized in the tree decomposition, seeing the part of the visualization in Figure \ref{fig:starsbag59}. It is obvious that ``bag 59" is disconnected from its parent ``bag 57", even tho its nodes did appear in other bags in the tree. This violates rule 3 of the TD (``the set of bags that contain the variable v induce a connected sub-graph of T.").  This particular bug occurred only with a specific seed and on the windows operating system. 
+ One specific program invocation did not give the expected result solving a \textit{vertex cover} with one hundred nodes. The problem was first found when inspecting the immediate output of the program \textit{dpdb.py}, which did report the wrong result size. The problem could be localized in the tree decomposition, leading to the whole result table being pruned - see the visualization in Figure \ref{fig:starsbag59}. It is obvious that ``bag 59" is disconnected from its parent ``bag 57", even if its nodes occurred in other bags in the tree. This violates our rule $3$ of the TD (``the set of bags that contain the variable v induce a connected sub-graph of T.").  This particular bug occurred only with a specific seed and on the windows operating system. 
 
 \begin{figure}[H]
 	\centering
@@ -1438,15 +1438,14 @@ Given the right testing frameworks it is possible to produce a report for struct
 	\label{fig:starsbag59}
 \end{figure}
 
-\begin{figure}[H]
-	\centering
-	\includegraphics[width=0.9\linewidth,height=0.9\textheight,keepaspectratio]{images/Found bag 59 in stars100 with seed0.png}
-	\caption{Bag 59 in the database table.}
-	\label{fig:bag59visu}
-\end{figure}
+%\begin{figure}[H]
+%	\centering
+%	\includegraphics[width=0.9\linewidth,height=0.9\textheight,keepaspectratio]{images/Found bag 59 in stars100 with seed0.png}
+%	\caption{Bag 59 in the database table.}
+%	\label{fig:bag59visu}
+%\end{figure}
 
-The bag 59 does not provide any rows with variables 
-The problem was located in the htd version used to create the tree decomposition, which in this instance and for the seed $0$ did not place bag 59 in the right place in the tree-decomposition on our Windows 10 machine. The proof that the provided tree is not a tree decomposition is visualized using Mathematica \cite{Mathematica} in Figure \ref{fig:bag59td}.
+The problem was located in the version of \url{https://github.com/TU-Wien-DBAI/htd} used to create the tree decomposition, which in this instance and for the seed $0$ did not place bag 59 in the right place in the tree-decomposition on our Windows 10 machine. We can see the bags of the tree decomposition in Figure \ref{fig:bag59td}, where the bags containing variable 100 are indicated in red. 
 
 \begin{figure}
 	\centering
@@ -1465,10 +1464,14 @@ The problem was located in the htd version used to create the tree decomposition
 % Two example integrations in actively developed MSO solvers
 % Bags do provide the option to add arbitrary many/long labels for different debugging information
 \subsection{Summary}
-We created a program which can automate the visualization of dynamic programming on tree decompositions.
-With SVG we support by default a scalable and easily editable image format.\\
+We created a program which can automate the visualization of dynamic programming on tree decompositions. All tree decomposition nodes are prepared to display multiple user-defined strings, which can contain various debugging information about the run.
+With SVG we support by default a fast and easily editable image format.\\
 
-We have defined a data exchange API to give the visualization the information it needs and provided meaningful default values for (almost) all parameters. The API supports the communication of:
+The visualization is implemented in two actively developed solvers for the problem types {SAT}, {\#SAT} and {minimal vertex cover}. We have tested the visualization of each problem type with graphs of different sizes - with nodes in the order of $10^{0..2}$ for MinVC and $10^{0..3}$ for SAT and \#SAT.
+
+During the development we could already find some bugs in the solvers.
+
+We have defined a data exchange API to give the visualization the information it needs and provided meaningful default values for most parameters. The API supports the interchange of:
 \begin{itemize}
 	\item One tree decomposition
 	\item Time steps that add solutions to the TD
@@ -1477,10 +1480,6 @@ We have defined a data exchange API to give the visualization the information it
 	\item The merging of several visualizations of a time step into one image
 \end{itemize}
 
-The visualization is implemented in two actively developed solvers for the problem types {SAT}, {\#SAT} and {minimal vertex cover}. We have tested the visualization of each problem type with graphs of different sizes - with nodes in the order of $10^{0..2}$ for MinVC and $10^{0..3}$ for SAT and \#SAT.
-
-During the development we could already find some errors in the solvers.
-All tree decomposition nodes are ready to display multiple user-defined strings, which can contain various debugging information about the run.
 
 \subsection{Future Work}
 % Graphs could provide more options to the user
@@ -1492,7 +1491,6 @@ In the future our graphs could provide even more parameters to the user. \\
 Different colors visualizing attributes of each node are a consideration.\\
 
 Show path of various solutions from leaf to bag. \\
-
 
 The next step would be to expand the API to multiple bipartite or simple graphs, which right now is limited to one each with the option to create primal- and dual-graphs too.\\
 
