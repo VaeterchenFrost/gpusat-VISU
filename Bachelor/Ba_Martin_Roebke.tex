@@ -1494,7 +1494,7 @@ Show path of various solutions from leaf to bag. \\
 
 The next step would be to expand the API to multiple bipartite or simple graphs, which right now is limited to one each with the option to create primal- and dual-graphs too.\\
 
-One addition could be the inclusion of hypergraphs (graphs where one edge does connect multiple nodes) which could be of interest to solvers of the future.\\
+One addition would be the inclusion of hypergraphs (graphs where one edge does connect multiple nodes) which could be of great interest for future solvers.\\
 
 Right now even with the \textit{svg-join} tool we need multiple files to represent all time steps. SVG however would be able to only create one file where the time steps will be animated. Animations might get toggled by the user or change over a specified time span.
 %==============================================================================
@@ -1920,10 +1920,11 @@ p cnf 18 24
 15 -16 -17 -18 0
 15 16 17 -18 0
 \end{lstlisting}
-\lstinputlisting[caption={DOT source for visualization of example 4.1}, label={lst:g41digraphdot}]{includes/g41digraphdot}
-\lstinputlisting[caption={stdout of program gpusat with call \textit{./gpusat -f ../examples/test\_da4\_1.cnf -v -p -d ../examples/td4p1.txt  -g ../examples/graphfileda41.txt -{}-visufile ../examples/visufileda41.json}}, label={lst:outputGpusat}]{includes/outputGpusat.txt}
 \lstinputlisting[caption={Edges for example \ref{fig:wheelgraph}}, label={lst:wheelgraph}]{images/WheelGraph7/wheelgraph7.tw}
 \lstinputlisting[caption={Tree decomposition for example \ref{fig:wheelgraph}}, label={lst:wheelgraphtd}]{images/WheelGraph7/wheelgraph7.td}
+\lstinputlisting[caption={DOT source for visualization of example 4.1}, label={lst:g41digraphdot}]{includes/g41digraphdot}
+\lstinputlisting[caption={stdout of program gpusat with call \textit{./gpusat -f ../examples/test\_da4\_1.cnf -v -p -d ../examples/td4p1.txt  -g ../examples/graphfileda41.txt -{}-visufile ../examples/visufileda41.json}}, label={lst:outputGpusat}]{includes/outputGpusat.txt}
+
 %==============================================================================
 %============== BIBLIOGRAPHY ==================================================
 %==============================================================================
