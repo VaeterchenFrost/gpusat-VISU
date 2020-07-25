@@ -86,6 +86,6 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {section}{\numberline {B}Code Snippets}{56}{appendix.B}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {C}Further Examples}{63}{appendix.C}%
+\contentsline {section}{\numberline {C}More Examples}{63}{appendix.C}%
 \defcounter {refsection}{0}\relax 
 \contentsline {section}{\nonumberline References}{69}{section*.4}%
