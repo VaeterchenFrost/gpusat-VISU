@@ -1091,58 +1091,58 @@ The integration into the existing classes from \textit{gpusat} is listed in Tab.
 
 
 %=================Performance=======================
-Impact on performance:
-Utilizing small classes and \href{http://www.cplusplus.com/reference/sstream/stringstream/}{streams} we tried to keep the impact on performance during the solving process low. However running on the same thread especially for larger problem instances 
+%Impact on performance:
+With utilizing {streams}\footnote{\url{http://www.cplusplus.com/reference/sstream/stringstream}} for all string operations we tried to keep the impact on performance during the solving process small. When running on the same thread, especially for larger problem instances, the creation of the visualization files could impact the performance of the run. With the relatively small examples we used to visualize during our development process this was not noticeable.
 
-Some non-functional changes made to the source were 
-\begin{itemize}
-	\item[a)] some adjustments to satisfy the local compiler (shortening kernel string, replacing '\emph{and}' with '\&\&')
-	\item[b)] some explicit casts
-	\item[c)] fixed documentation of command line arguments
-\end{itemize}
-
-The functional changes were:
-\begin{enumerate}
-	\item allow tabs instead of spaces in input files
-	\item output more information about the hardware used (device\_query)
-	\item add verbose output globally toggled by a flag 
-	\item decide on \url{https://en.wikipedia.org/wiki/DOT_\%28graph_description_language\%29} 
-		as the intermediate format for storing graphs.
-	\item start collecting information that might be needed for a visualization
-		\emph{graphfile} for saving the decomposition graph
-	\item add \emph{graphout }to solver flow to get automated insight into the structure of a run.
-	
-	\item add function \emph{solutiontable} to extract tables of variable assignments as a string
-	\item add labels to each node (bags and solutions at this point)
-	\item encapsulating the previous functions into gpusat::Graphoutput class and instantiate it in main.
-	\item using the class functionality in the Solver
-	\item changing enum to the \href{https://coders-corner.net/2017/08/13/scoped-vs-unscoped-enum/}{scoped enum class} for better encapsulation and strongly typed.
-	\item with \href{https://github.com/daajoe/GPUSAT/commit/cfb310}{inlining gpusatutils} the current functionality of creating raw dot was completed.
-	
-	\item Experimented with Neo4j, but found the visualization in particular not that presentable. The functionality to create \href{https://neo4j.com/developer/cypher-resources/}{cypher-queries} for the SAT formula with primal, incidence and dual graph is still present in the class.
-	\item The functionality to create the cypher-query for the graph of the tree-decomposition was added.
-	\item Rename \textit{visualisierung} into \textit{visualization}
-	\item Using \href{https://github.com/open-source-parsers/jsoncpp}{JsonCPP} for processing and formatting json objects in C++
-	\item Setting format to {BasedOnStyle: LLVM, UseTab: Never, IndentWidth: 4, TabWidth: 4, ColumnLimit: 0}
-	\item Creating a \emph{Grid} class for efficiently storing unsigned integer values in a two-dimensional structure
-	based on ideas from \href{https://stackoverflow.com/questions/936687}{this thread}
-	\item create \href{https://github.com/VaeterchenFrost/GPUSAT/blob/master/VisualCodeUsage.md}{guide} for remote development with \emph{Visual Code}
-	\item Converted intermediate string operations to string-streams instead of files
-	\item Updated README.md
-	\item Added Doxygen for docbook, html, latex	
-\end{enumerate}
+%Some non-functional changes made to the source were 
+%\begin{itemize}
+%	\item[a)] some adjustments to satisfy the local compiler (shortening kernel string, replacing '\emph{and}' with '\&\&')
+%	\item[b)] some explicit casts
+%	\item[c)] fixed documentation of command line arguments
+%\end{itemize}
+%
+%The functional changes were:
+%\begin{enumerate}
+%	\item allow tabs instead of spaces in input files
+%	\item output more information about the hardware used (device\_query)
+%	\item add verbose output globally toggled by a flag 
+%	\item decide on \url{https://en.wikipedia.org/wiki/DOT_\%28graph_description_language\%29} 
+%		as the intermediate format for storing graphs.
+%	\item start collecting information that might be needed for a visualization
+%		\emph{graphfile} for saving the decomposition graph
+%	\item add \emph{graphout }to solver flow to get automated insight into the structure of a run.
+%	
+%	\item add function \emph{solutiontable} to extract tables of variable assignments as a string
+%	\item add labels to each node (bags and solutions at this point)
+%	\item encapsulating the previous functions into gpusat::Graphoutput class and instantiate it in main.
+%	\item using the class functionality in the Solver
+%	\item changing enum to the \href{https://coders-corner.net/2017/08/13/scoped-vs-unscoped-enum/}{scoped enum class} for better encapsulation and strongly typed.
+%	\item with \href{https://github.com/daajoe/GPUSAT/commit/cfb310}{inlining gpusatutils} the current functionality of creating raw dot was completed.
+%	
+%	\item Experimented with Neo4j, but found the visualization in particular not that presentable. The functionality to create \href{https://neo4j.com/developer/cypher-resources/}{cypher-queries} for the SAT formula with primal, incidence and dual graph is still present in the class.
+%	\item The functionality to create the cypher-query for the graph of the tree-decomposition was added.
+%	\item Rename \textit{visualisierung} into \textit{visualization}
+%	\item Using \href{https://github.com/open-source-parsers/jsoncpp}{JsonCPP} for processing and formatting json objects in C++
+%	\item Setting format to {BasedOnStyle: LLVM, UseTab: Never, IndentWidth: 4, TabWidth: 4, ColumnLimit: 0}
+%	\item Creating a \emph{Grid} class for efficiently storing unsigned integer values in a two-dimensional structure
+%	based on ideas from \href{https://stackoverflow.com/questions/936687}{this thread}
+%	\item create \href{https://github.com/VaeterchenFrost/GPUSAT/blob/master/VisualCodeUsage.md}{guide} for remote development with \emph{Visual Code}
+%	\item Converted intermediate string operations to string-streams instead of files
+%	\item Updated README.md
+%	\item Added Doxygen for docbook, html, latex	
+%\end{enumerate}
 Programm \url{https://github.com/VaeterchenFrost/GPUSAT} \\
 Differences: \url{https://github.com/daajoe/GPUSAT/compare/master...VaeterchenFrost:master}  Commits 142 Files changed 94 
 Nagoya talk:
 Graphs for performance are Ordered by used time per algorithm - gpusat quite good
 
-Working with cmake remotly. ssh @(sg1.)dbai.tuwien.ac.at
-CPU branch wasn't working.
-Only AMD/Nvidia graphics  with respective flags.
+%Working with cmake remotly. ssh @(sg1.)dbai.tuwien.ac.at
+%CPU branch wasn't working.
+%Only AMD/Nvidia graphics  with respective flags.
 
-Manual configuration with the include options from \href{https://cmake.org/}{cmake} in \href{https://github.com/VaeterchenFrost/GPUSAT/blob/master/CMakeLists.txt}{CMakeLists.txt}
-or with help from \url{https://marketplace.visualstudio.com/items?itemName=ms-vscode.cmake-tools}
-to set up for the (potentially remote) environment.
+%Manual configuration with the include options from \href{https://cmake.org/}{cmake} in \href{https://github.com/VaeterchenFrost/GPUSAT/blob/master/CMakeLists.txt}{CMakeLists.txt}
+%or with help from \url{https://marketplace.visualstudio.com/items?itemName=ms-vscode.cmake-tools}
+%to set up for the (potentially remote) environment.
 
 
 \begin{longtable}{ll}
