@@ -578,8 +578,6 @@ Similar techniques regarding non-nice TD are also used in the solver dpdb, see \
 As stated in \cite[Ch.~2.2]{DiplomarbeitZisser}, Arnborg et. al. \cite{arnborgtd} have shown that finding a tree decompositions of minimal width is only feasible for small graphs.  There are exact methods for obtaining minimal width tree decompositions,  e.g. \cite{gogatetw, bachoore06}. The solvers for which we implemented the visualization use heuristics  for  generating tree decompositions, therefore  the width of larger examples than shown in this thesis might not be minimal. 
 
 
-
-
 %============== Reference on Algo and Param Complexity ====================================================
 \subsection{Dynamic Programming on Tree Decompositions}
 In this chapter we want to give a short overview over the basics of dynamic programming. For specific information on the visualized algorithms we refer to \cite{DiplomarbeitZisser, samermodelcounting, dpdbpadl2020}. \\
@@ -1030,27 +1028,28 @@ Figure \ref{fig:minvc16graph9sorted} shows the same graph and emphasis visualize
 %============== Joining SVG ====================================================
 \subsection{Joining SVG}\label{sec:svgjoin}
 Once all user defined images for one timeline are created, it would be nice to have all graphs combined in one file for each step.
-To support this functionality and some basic scaling and adjusting, we prepared a section in the API for joining the resulting SVG graphs. 
-This functionality is placed in the file \textit{svgjoin.py} and will be called with the specifications given in the optional dictionary \textbf{svgjoin} within the JsonAPI.
+The currently implemented functionality could be further extended upon using SVG animations\footnote{\url{https://www.w3.org/TR/SVG11/animate.html}}. To provide some basic scaling and adjusting, we prepared a section in the API for joining the resulting SVG graphics.
+Its parameters can be viewed in \textit{SvgJoinData} in Listing \ref{lst:svgjoindata} on page \pageref{lst:svgjoindata}. \\
+We have prepared some examples at the end of this section.\\
 
-The parameters can be viewed in \textit{SvgJoinData} in Listing \ref{lst:svgjoindata} on page \pageref{lst:svgjoindata}.\\
+%The functionality is placed in the file \textit{svgjoin.py} and will be called with the specifications given in the optional dictionary \textbf{svgjoin} within the JsonAPI.
+
 
 % Show example with description of parameters 
 %The internally used method \textit{svgjoin.append\_svg} joins two images horizontally in each step.
-With default settings it will align the top of both images and apply no scaling to either of them.
-The possible parameters (in [unit])
-\begin{itemize}
-	\item centerpad: float = 0, [image coordinates], just ``padding" in the JSON API
+With the default settings, it aligns the top edge of both images and applies no scaling to either image.
+The four parameters, each with its expected type and default value in [unit]
+\begin{itemize}[label=$\ast$, left=40pt]
+	\item ``padding": int = 0, [image coordinates]
 	\item v\_bottom: float = None, [size of the \textit{first} image]
 	\item v\_top: float = None, [size of the \textit{first} image]
 	\item scale2: float = 1, [size of the \textit{second} image]
 \end{itemize}
 allow flexible \textbf{vertical}, \textbf{horizontal} and \textbf{scaling} transformations.
 Note that the images are placed in a Cartesian coordinate system and their origin is the upper left corner of their bounding box. All images fill a rectangle in this coordinate system with height and width respectively.
-
 Since the order of the parameters \textit{v\_bottom} and \textit{v\_top} could be confused due to the inverted y-axis, we make sure that \textit{v\_top} is correctly set to the smaller and \textit{v\_bottom} to the larger value whenever possible.
 
-A special case is achieved by setting both parameters to the same number. Then they are interpreted as the position of the vertical centerline for the second image in units of the first. So setting both parameters to $\dfrac{1}{2}$ would result in both images being vertically centered.\\
+A special case is obtained by setting both parameters \textit{v\_bottom} and \textit{v\_top} to the same number. Then they are interpreted as the position of the vertical centerline for the second image in units of the first. So setting both parameters to $\dfrac{1}{2}$ would result in both images being vertically centered.\\
 
 Possibilities for joining images with these four parameters include joining with:
 \begin{itemize}[label=-, left=40pt]
