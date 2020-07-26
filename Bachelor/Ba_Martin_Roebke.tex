@@ -570,8 +570,14 @@ The tree decomposition for our ``wheelgraph" example \ref{fig:wheelgraph} can be
 \end{figure}
 
 Some projects might use so called \textit{nice} tree decompositions in order to simplify the cases in the used algorithm \cite[Ch.~2.2]{DiplomarbeitZisser}.
+For every tree decomposition a nice tree decomposition can be computed within linear time without increasing the width \cite{klokstw}.
+Non-nice tree decomposition, however, have advantages in terms of solving time. In the application \textit{gpusat} for example they combined three single operations into one introduce forget (IF) operation. Thereby, reducing the overhead for memory operations on the device and the overhead for copying and retrieving tables between devices. Another advantage is that this reduces the size of the tables they need to store by forgetting the variables which do not occur in the next bag after each introduce operation \cite[Ch.~4.2.1]{DiplomarbeitZisser}. 
+We see the results of this combined IF operation throughout our visualizations, where for the most part only the results needed for the next bag are included.\\
+Similar techniques regarding non-nice TD are also used in the solver dpdb, see \cite[Ch.~4.1]{dpdbpadl2020}.\\
 
 As stated in \cite[Ch.~2.2]{DiplomarbeitZisser}, Arnborg et. al. \cite{arnborgtd} have shown that finding a tree decompositions of minimal width is only feasible for small graphs.  There are exact methods for obtaining minimal width tree decompositions,  e.g. \cite{gogatetw, bachoore06}. The solvers for which we implemented the visualization use heuristics  for  generating tree decompositions, therefore  the width of larger examples than shown in this thesis might not be minimal. 
+
+
 
 
 %============== Reference on Algo and Param Complexity ====================================================
