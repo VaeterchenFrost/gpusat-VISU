@@ -249,9 +249,9 @@ The Figure \ref{fig:overviewprog} shows a draft of the process creating the visu
 
 %============== Outline ====================================================
 \subsection{Methodology}
-DP
 
-Integration durch API in Source Code
+The algorithms whose runs we visualize basically work so that the input graph is used to find the best possible processing sequence adapted to the hardware.
+With this order it is known which parts of the problem can be solved separately, and which intermediate results have to be stored and for how long. To visualize these algorithms for different problem types, we need to be flexible enough with the data we process for visualization. To accomplish this, we almost everywhere expect simple text to be included in various places. Only the internal ids for nodes or variables in Boolean formulas are processed based on positive integers.
 
 For our visualizations we chose {Graphviz}\footnote{\url{https://graphviz.org/}} as an open source graph visualization software, which offers customizable visualization for directed and undirected graphs.
 
