@@ -56,36 +56,36 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {subsection}{\numberline {4.6}Joining SVG}{27}{subsection.4.6}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {5}Integration in GPUSAT}{32}{section.5}%
+\contentsline {section}{\numberline {5}Integration in GPUSAT}{29}{section.5}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {5.1}Class Graphoutput}{34}{subsection.5.1}%
+\contentsline {subsection}{\numberline {5.1}Class Graphoutput}{31}{subsection.5.1}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {5.2}Class Visualization}{34}{subsection.5.2}%
+\contentsline {subsection}{\numberline {5.2}Class Visualization}{31}{subsection.5.2}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {6}Integration in dpdb}{35}{section.6}%
+\contentsline {section}{\numberline {6}Integration in dpdb}{32}{section.6}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {7}Application and Images}{36}{section.7}%
+\contentsline {section}{\numberline {7}Application and Images}{33}{section.7}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {7.1}SAT Example}{36}{subsection.7.1}%
+\contentsline {subsection}{\numberline {7.1}SAT Example}{33}{subsection.7.1}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {7.2}\#SAT Example}{40}{subsection.7.2}%
+\contentsline {subsection}{\numberline {7.2}\#SAT Example}{37}{subsection.7.2}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {7.3}Vertex Cover Example}{42}{subsection.7.3}%
+\contentsline {subsection}{\numberline {7.3}Vertex Cover Example}{39}{subsection.7.3}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {7.4}SVG Join Example}{45}{subsection.7.4}%
+\contentsline {subsection}{\numberline {7.4}SVG Join Example}{42}{subsection.7.4}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {7.5}Visualization of Defects}{47}{subsection.7.5}%
+\contentsline {subsection}{\numberline {7.5}Visualization of Defects}{48}{subsection.7.5}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {8}Conclusion}{49}{section.8}%
+\contentsline {section}{\numberline {8}Conclusion}{50}{section.8}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {8.1}Summary}{49}{subsection.8.1}%
+\contentsline {subsection}{\numberline {8.1}Summary}{50}{subsection.8.1}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {8.2}Future Work}{49}{subsection.8.2}%
+\contentsline {subsection}{\numberline {8.2}Future Work}{50}{subsection.8.2}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {A}Images}{51}{appendix.A}%
+\contentsline {section}{\numberline {A}Images}{52}{appendix.A}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {B}Code Snippets}{58}{appendix.B}%
+\contentsline {section}{\numberline {B}Code Snippets}{59}{appendix.B}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {C}More Examples}{65}{appendix.C}%
+\contentsline {section}{\numberline {C}More Examples}{66}{appendix.C}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\nonumberline References}{71}{section*.4}%
+\contentsline {section}{\nonumberline References}{72}{section*.4}%

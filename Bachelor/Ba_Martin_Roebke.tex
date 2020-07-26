@@ -1047,59 +1047,6 @@ Since the order of the parameters \textit{v\_bottom} and \textit{v\_top} could b
 
 A special case is obtained by setting both parameters \textit{v\_bottom} and \textit{v\_top} to the same number. Then they are interpreted as the position of the vertical centerline for the second image in units of the first. So setting both parameters to $\dfrac{1}{2}$ would result in both images being vertically centered.\\
 
-Possibilities for joining images with these four parameters include joining with:
-\begin{itemize}[label=-, left=40pt]
-	\item default \textit{centerpad}, Fig. \ref{fig:svgjoinpad0}.
-	\item \textit{centerpad} set to 200, Fig. \ref{fig:svgjoinpad200}.
-	\item scaling both images to the same size, Fig. \ref{fig:svgjoinscale1}.
-	\item aligning both images for vertical centering, Fig. \ref{fig:svgjoinpad0centered}.
-	\item uniformly scaling the second image, Fig. \ref{fig:svgjoinscaled}.
-	\item scaling and aligning at the bottom edge of the image, Fig. \ref{fig:svgjoinscaledbottom}.
-\end{itemize}
-
-\begin{figure}[H]
-	\centering
-	\includegraphics[width=0.6\linewidth]{images/svgjoinpad0.png}
-	\caption{Example for joining with no \textit{centerpad}.}
-	\label{fig:svgjoinpad0}
-\end{figure}
-
-\begin{figure}[H]
-	\centering
-	\includegraphics[width=0.8\linewidth]{images/svgjoinpad200.png}
-	\caption{Joining the blue (right side) image to the left gray image with only one parameter \textit{centerpad} set to 200. We see the default vertical position v\_top=0, and the implied coordinate system with an origin in the top left corner.}
-	\label{fig:svgjoinpad200}
-\end{figure}
-
-\begin{figure}[H]
-	\centering
-	\includegraphics[width=0.8\linewidth]{images/svgjoinscale1.png}
-	\caption{The second image is scaled to the same size as the first image. This can be conveniently achieved by setting \textit{v\_top} to 0 and \textit{v\_bottom} to 1. Parameter \textit{centerpad} is 200 as hinted.}
-	\label{fig:svgjoinscale1}
-\end{figure}
-
-\begin{figure}[H]
-	\centering
-	\includegraphics[width=0.8\linewidth]{images/svgjoinpad0centered.png}
-	\caption{Align both images for vertical centering. \\
-		This can be achieved by setting $v\_bottom=v\_top=0.5$.}
-	\label{fig:svgjoinpad0centered}
-\end{figure}
-
-\begin{figure}[H]
-	\centering
-	\includegraphics[width=0.8\linewidth]{images/svgjoinscaled.png}
-	\caption{Setting \textit{scale2} to $1.3$ to scale the blue (right) image uniformly. Parameter \textit{centerpad} is 200 as hinted.}
-	\label{fig:svgjoinscaled}
-\end{figure}
-
-\begin{figure}[H]
-	\centering
-	\includegraphics[width=0.8\linewidth]{images/svgjoinscaledbottom.png}
-	\caption{As in figure \ref{fig:svgjoinscaled} we use \textit{scale2} to scale the blue rectangle. To align both images at the bottom edge, we use the value $v\_bottom=1$.}
-	\label{fig:svgjoinscaledbottom}
-\end{figure}
-
 If we want to position more than two images, it is possible to specify the parameters in a list.
 The list can be of different length for each parameter - if it is exhausted, the last parameter in the list will be repeatedly used until all images are joined together.
 
@@ -1400,9 +1347,65 @@ As a very small example we will try to solve \textit{minimal vertex cover} for t
 
 After creating several images at each visualization step all images from this step can be automatically combined into one SVG. In this chapter we expand on Section \ref{sec:svgjoin} with some practical applications of this concept.
 
-With the four parameters \textit{centerpad}, \textit{v\_bottom}, \textit{v\_top} and \textit{scale2} we can specify the order in which images will be placed next to each other. To explain some configurations we will take the generated images from the previous chapter.
+With the four parameters \textit{padding}, \textit{v\_bottom}, \textit{v\_top} and \textit{scale2} we can specify the order in which images will be placed next to each other. To explain some configurations we will take the generated images from the previous chapter.\\
+\noindent
+We will first look at some constructed examples using rectangles in the Figures \ref{fig:svgjoinpad0}-\ref{fig:svgjoinscaledbottom}. Then we see some actual applications in Figures~\ref{fig:joindefault}-\ref{fig:join60} at page \pageref{fig:joindefault}.\noindent\\
 
-In Figure \ref{fig:joindefault} the two images are joined with default values for all parameters, in order (\textit{TDStep, graph}). 
+\medskip\noindent
+Possibilities for joining images with these four parameters include joining with:
+\begin{itemize}[label=-, left=40pt]
+	\item default \textit{padding}, Fig. \ref{fig:svgjoinpad0}.
+	\item \textit{padding} set to 200, Fig. \ref{fig:svgjoinpad200}.
+	\item scaling both images to the same size, Fig. \ref{fig:svgjoinscale1}.
+	\item aligning both images for vertical centering, Fig. \ref{fig:svgjoinpad0centered}.
+	\item uniformly scaling the second image, Fig. \ref{fig:svgjoinscaled}.
+	\item scaling and aligning at the bottom edge of the image, Fig. \ref{fig:svgjoinscaledbottom}.
+\end{itemize}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.6\linewidth]{images/svgjoinpad0.png}
+	\caption{Example for joining with no \textit{padding}.}
+	\label{fig:svgjoinpad0}
+\end{figure}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.8\linewidth]{images/svgjoinpad200.png}
+	\caption{Joining the blue (right side) image to the left gray image with only one parameter \textit{padding} set to 200. We see the default vertical position v\_top=0, and the implied coordinate system with an origin in the top left corner.}
+	\label{fig:svgjoinpad200}
+\end{figure}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.8\linewidth]{images/svgjoinscale1.png}
+	\caption{The second image is scaled to the same size as the first image. This can be conveniently achieved by setting \textit{v\_top} to 0 and \textit{v\_bottom} to 1. Parameter \textit{padding} is 200 as hinted.}
+	\label{fig:svgjoinscale1}
+\end{figure}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.8\linewidth]{images/svgjoinpad0centered.png}
+	\caption{Align both images for vertical centering. \\
+		This can be achieved by setting $v\_bottom=v\_top=0.5$.}
+	\label{fig:svgjoinpad0centered}
+\end{figure}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.8\linewidth]{images/svgjoinscaled.png}
+	\caption{Setting \textit{scale2} to $1.3$ to scale the blue (right) image uniformly. Parameter \textit{padding} is 200 as hinted.}
+	\label{fig:svgjoinscaled}
+\end{figure}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.8\linewidth]{images/svgjoinscaledbottom.png}
+	\caption{As in figure \ref{fig:svgjoinscaled} we use \textit{scale2} to scale the blue rectangle. To align both images at the bottom edge, we use the value $v\_bottom=1$.}
+	\label{fig:svgjoinscaledbottom}
+\end{figure}
+
+Now for the applied examples we see in Figure \ref{fig:joindefault} the two images are joined with default values for all parameters, in order (\textit{TDStep, graph}). 
 
 As we can see the solutions for bags other than 2 are hidden in the output but are taken into account in the image size. The right graph is aligned to the upper edge of the left image. With no padding between the images \textit{graph} image is attached to the right edge of the first image visualizing the {tree decomposition}.
 
@@ -1447,9 +1450,9 @@ if we want the right graphic a bit larger compared to the default size, we can a
 	\item[] scale2 = 1.5
 \end{itemize}
 can be seen. \\
-To further visualize the progress of the algorithm in the results one could use the possibility to specify multiple values for all the transformation parameters \textit{centerpad}, \textit{v\_bottom}, \textit{v\_top} and \textit{scale2} and elevate the second image with the values for\\
+To further visualize the progress of the algorithm in the results one could use the possibility to specify multiple values for all the transformation parameters \textit{padding}, \textit{v\_bottom}, \textit{v\_top} and \textit{scale2} and elevate the second image with the values for\\
  v\_bottom = [1, 0.85, 0.7, 0.55, 0.4]. \\
- This is done in figures \ref{fig:joinscaledrise1} to \ref{fig:joinscaledrise5}.
+ This is done in figures \ref{fig:joinscaledrise1} to \ref{fig:joinscaledrise5} on page \pageref{fig:joinscaledrise1}.
 
 % Finding a bug using visualization
 \subsection{Visualization of Defects}
