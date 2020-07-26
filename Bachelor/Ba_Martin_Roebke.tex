@@ -825,9 +825,10 @@ With the command line parameter \textit{-{}-loglevel} we can modify the level of
 %============== Init ====================================================
 \subsection{Initialization and Tree Decomposition}
 
-To get a small overview of the type and structure of the data processed in the software, let's take a quick look at the initialization with the API. We instantiate a Visualization object as shown in Listing~\ref{lst:visuinitsmall} , which parses the \textit{VisualizationData} with the help from our \textit{inspect\_json} method. 
-
 The main purpose of the initialization is parsing the input file containing visualization information.
+
+To get a small overview of the type and structure of the data processed in the software, let us take a quick look at the initialization with the API. We instantiate a \textit{Visualization} object as shown in Listing~\ref{lst:visuinitsmall} , which parses the \textit{VisualizationData} with the help from our \textit{inspect\_json} method. 
+
 %This is encapsulated in \textit{read\_json}.
 
 Next we want to extract information into several objects: 
@@ -871,7 +872,7 @@ def inspect_json(self, infile) -> VisualizationData:
 \end{lstlisting}
 
 
-Our next step is to begin visualizing the time-steps on the tree decomposition in \textit{Visualization.tree\_dec\_timeline}.\\
+Our next step is to begin visualizing the time-steps on the tree decomposition. Direct results of this task can be seen in Chapter~\ref{sec:applsat}, Fig. \ref{fig:DA4SAT_TDStep1}, Tab. \ref{tab:DA4SAT_TDStep2345} and Figure \ref{fig:DA4SAT_TDStep6}.\\
 
 First, a quick setup is performed for the tree decomposition as a directed graph that 
 \begin{itemize}
@@ -883,14 +884,11 @@ First, a quick setup is performed for the tree decomposition as a directed graph
 
 Second, it creates the basic bag structure by adding nodes and edges for all bags of the provided tree decomposition.
 
-Next comes the iteration over the time steps, adding the provided solutions and the edges connecting them to the existing bags. We do this in two passes.  A first in which we move all the nodes into their final position. And one in which we create the actual time step images backwards by masking later calculated solutions. The goal is to have all parts of the graph in optimal position when they first appear and not to move when additional features are added. Details of this pass can be seen in listing \ref{lst:backward-iterate} on page \pageref{lst:backward-iterate}.\\
+Next comes the iteration over the requested time steps, adding the provided solutions and the edges connecting them to the existing bags. We do this in two passes.  A first one in which we move all nodes to their final position. A special case occurs when two bags are joined together.
+In this case, we remove all old edges between the children and the parent node, add the result to the graph, and add edges from the children to the result and from the result to the parent node. Details of this step can be seen in Listing~\ref{lst:forward-iterate} on page \pageref{lst:forward-iterate}. And one in which we create the actual time step images backwards by masking solutions calculated later. The goal is to have all parts of the graph in optimal position when they first appear, and not to move when additional features are added. For details of these steps, see the Listing \ref{lst:backward-iterate} on page \pageref{lst:backward-iterate}.\\
 
-A special case occurs when two bags are joined together.
-
-In this case, we remove all old edges between the children and the parent node, add the link result to the graph, and add edges from the children to the link result and from the link result to the parent node. Details of this function can be seen in Listing~\ref{lst:forward-iterate} on page \pageref{lst:forward-iterate}.
-
-An automatically inserted join node is shown in Figure~\ref{fig:g41Digraph} p. \pageref{fig:g41Digraph}.
-The provided data for this example to layout the bags can be seen in Listing\ref{lst:edgearray41} on page \pageref{lst:edgearray41}. Here we see that bags 2 and 3 have an edge to bag 1 and therefore a join-operation will occur between the results of bags 2 and 3:
+An automatically inserted join node is shown in Figure~\ref{fig:g41Digraph} on page \pageref{fig:g41Digraph}.
+The provided data for this example to layout the bags can be seen in Listing\ref{lst:edgearray41} on page \pageref{lst:edgearray41}. There we see that bags 2 and 3 have an edge to bag 1 and therefore a join-operation will occur between the results of bags 2 and 3:
 
 \begin{lstlisting}[caption={Structure provided for bags of example \ref{fig:g41Digraph} },label={lst:edgearray41},numbers=none,backgroundcolor=\color{white}]
 "edgearray" : 
@@ -902,7 +900,7 @@ The provided data for this example to layout the bags can be seen in Listing\ref
 ]
 \end{lstlisting}
 
-For rendering the tree decomposition we have added a convenience option to \textit{view} the result files automatically (disabled by default).
+For rendering the tree decomposition we have added a convenience option to \textit{view} the result files automatically, which is disabled by default.
 
 %============== Timesteps ====================================================
 \subsection{Create time steps for the underlying graph}
@@ -1296,14 +1294,15 @@ The ``problem type" is available as a string in table \emph{public.problem}, and
 \section{Application and Images}\label{sec:appl}
 
 % Appl. Sat
-\subsection{SAT Example}
-In this section we will visualize the process of checking the formula \ref{ex:example41} for solvability. We have six time steps included in this visualization. First we will look at the bags in the tree-decomposition. As some simple debugging information we added the time to solve each bag individually into the labels.
+\subsection{SAT Example}\label{sec:applsat}
+In this section we will visualize the process of checking the formula \ref{ex:example41} for solvability. We have six time steps included in this visualization. First we will look at the bags in the tree-decomposition. As some simple debugging information we added the time to solve each bag individually into the labels. See Fig. \ref{fig:DA4SAT_TDStep1}, Tab. \ref{tab:DA4SAT_TDStep2345} and Figure \ref{fig:DA4SAT_TDStep6}.
 
 \begin{figure}[H]
 	\centering
 	\includegraphics[height=0.6\textheight]{images/DA4SAT/results/TDStep1.pdf}
 	\caption{Tree decomposition for solving example \ref{ex:example41} . \\
 		With yellow highlighting for the first leaf (bag 5) to solve.}
+	\label{fig:DA4SAT_TDStep1}
 \end{figure}
 \begin{table}\sffamily
 \begin{tabular}{l*3{c}}
@@ -1316,6 +1315,7 @@ In this section we will visualize the process of checking the formula \ref{ex:ex
 	\bottomrule 
 \end{tabular}
 \caption{Tree decomposition for solving example \ref{ex:example41} . Images for steps two to five as labeled from top left to bottom right.}
+\label{tab:DA4SAT_TDStep2345}
 \end{table} 
 
 \begin{figure}[H]
@@ -1323,6 +1323,7 @@ In this section we will visualize the process of checking the formula \ref{ex:ex
 	\includegraphics[height=0.6\textheight]{images/DA4SAT/results/TDStep6.pdf}
 	\caption{Tree decomposition for solving example \ref{ex:example41} . \\
 		Final result with yellow highlighting for the last bag (1) solved.}
+	\label{fig:DA4SAT_TDStep6}
 \end{figure}
 
 \begin{figure}[H]
