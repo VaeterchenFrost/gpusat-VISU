@@ -687,7 +687,7 @@ Some examples of this format can be seen in the appendix on page \pageref{app:in
 
 %============== DOT ====================================================
 \subsection{DOT format}
-The graph description language DOT can be used to describe directed or undirected graphs and specify layout details and various attributes for graphs, edges and nodes. It is similar to the Graph Modeling Language that is used in Chapter \ref{chagraphoutput} as a text based file format for describing graphs. The \href{https://graphviz.org/}{Graphviz} project includes gml2gv and gv2gml as two tools that can convert between GML and DOT files. Keeping this in mind, in this chapter we restrict ourselves to a short introduction of the DOT properties that were used the most.
+The graph description language DOT can be used to describe directed or undirected graphs and specify layout details and various attributes for graphs, edges and nodes. It is similar to the Graph Modeling Language \footnote{https://gephi.org/users/supported-graph-formats/gml-format} that is used in Chapter \ref{chagraphoutput} as a text based file format for describing graphs. Keeping this in mind, in this chapter we restrict ourselves to a short introduction of the DOT properties that were used the most.
 
 %=========================== DOT Language ====================================
 
@@ -1131,10 +1131,9 @@ With utilizing {streams}\footnote{\url{http://www.cplusplus.com/reference/sstrea
 %	\item Updated README.md
 %	\item Added Doxygen for docbook, html, latex	
 %\end{enumerate}
-Programm \url{https://github.com/VaeterchenFrost/GPUSAT} \\
-Differences: \url{https://github.com/daajoe/GPUSAT/compare/master...VaeterchenFrost:master}  Commits 142 Files changed 94 
-Nagoya talk:
-Graphs for performance are Ordered by used time per algorithm - gpusat quite good
+The forked repository, with visualization and some minor fixes included, can be seen on \url{https://github.com/VaeterchenFrost/GPUSAT}. \\
+The changes in 142 commits made when developing this project can be seen on \url{https://github.com/daajoe/GPUSAT/compare/master...VaeterchenFrost:master}.
+
 
 %Working with cmake remotly. ssh @(sg1.)dbai.tuwien.ac.at
 %CPU branch wasn't working.
@@ -1171,13 +1170,19 @@ An example call with \textit{./gpusat -f ../examples/test\_da4\_1.cnf -v -p -d .
 The console output produced by this example call is listed in \ref{lst:outputGpusat}.
 
 %============== Graphoutput ====================================================
-\subsection{Class Graphoutput}\label{chagraphoutput}
+\subsection{Class Graphoutput}\label{sec:chagraphoutput}
 This class does include the first steps to automatically visualize the tree decomposition of the solving process with its solutions.
-It's main funcionality can output visualizations specified in gml (Graph Modeling Language)~\cite{Himsolt2010GMLAP}.
+It's main funcionality can output visualizations specified in gml (Graph Modeling Language)~\cite{Himsolt2010GMLAP}. We see one small example output in Listing \ref{lst:g41digraphgml} p. \pageref{lst:g41digraphgml} with labeled nodes and two edges. The output can be seen in Figure~\ref{fig:gmlexamplepic}.
 %For our example for \#SAT~\ref{lst:g41digraphdot} with the bags and respective solutions as nodes connected to the bag they solve.
 
-Additional functions evaluate the possibilities of using Graph-Databases like Neo4j~\cite{graphdatabases}.
-It is possible to create visualizations of the initial situation for CNF Clauses and the computed tree decomposition of the primal graph as two \href{https://neo4j.com/docs/cypher-refcard/current/}{Neo4j Cypher} queries with:
+\begin{figure}[h]
+	\centering
+	\includegraphics[]{images/gmlexamplepic.png}
+	\caption{GML source from Listing \ref{lst:g41digraphgml} when plotted with yEd {\url{https://www.yworks.com/products/yed} Version 3.20 powered by the yFiles Graph Visualization Library \url{http://www.yWorks.com}} }
+	\label{fig:gmlexamplepic}
+\end{figure}
+Additional methods exist to evaluate the possibilities of using Graph-Databases like Neo4j~\cite{graphdatabases}.
+It is possible to create visualizations of the initial situation for CNF Clauses and the computed tree decomposition of the primal graph as two \textit{Neo4j Cypher}\footnote{\url{https://neo4j.com/docs/cypher-refcard/current/}} queries with:
 \begin{itemize}
 	\item One graph representing the SAT formula and  queries to construct incidence, dual and primal representations.
 %	output as satFile = ``cypherSatFormula.txt"
@@ -1964,7 +1969,7 @@ p cnf 18 24
 \end{lstlisting}
 \lstinputlisting[caption={Edges for example \ref{fig:wheelgraph}}, label={lst:wheelgraph}]{images/WheelGraph7/wheelgraph7.tw}
 \lstinputlisting[caption={DOT source for visualization of example 4.1}, label={lst:g41digraphdot}]{includes/g41digraphdot}
-\lstinputlisting[caption={stdout of program gpusat with call \textit{./gpusat -f ../examples/test\_da4\_1.cnf -v -p -d ../examples/td4p1.txt  -g ../examples/graphfileda41.txt -{}-visufile ../examples/visufileda41.json}}, label={lst:outputGpusat}]{includes/outputGpusat.txt}
+\lstinputlisting[caption={Small GML output from class \textit{Graphoutput}, Section \ref{sec:chagraphoutput}}, label={lst:g41digraphgml}]{includes/graphml.gml}
 
 %==============================================================================
 %============== BIBLIOGRAPHY ==================================================
