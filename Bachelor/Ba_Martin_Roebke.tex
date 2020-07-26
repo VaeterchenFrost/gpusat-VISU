@@ -250,15 +250,15 @@ The Figure \ref{fig:overviewprog} shows a draft of the process creating the visu
 %============== Outline ====================================================
 \subsection{Methodology}
 DP
-Visualization Techniques
+
 Integration durch API in Source Code
 
-We chose \href{https://graphviz.org/}{Graphviz} as an open source graph visualization software, which offers customizable visualization for directed and undirected graphs.
+For our visualizations we chose {Graphviz}\footnote{\url{https://graphviz.org/}} as an open source graph visualization software, which offers customizable visualization for directed and undirected graphs.
 
 The source code for TDVisu is available under the GPL3 license on \url{github.com/VaeterchenFrost/tdvisu}. The tool is written in python and published on pypi.\\
 
-
-We defined a \href{https://www.json.org/json-en.html}{JSON}-format specification for portability and customization of the visualization in one file and two reference implementations in practical solvers.
+We defined a \href{https://www.json.org/json-en.html}{JSON}-format specification for portability and customization of the visualization in one file and two reference implementations in practical solvers.\\
+It is explained in more detail in the implementation chapter, or directly in the \textit{tdvisu/TDVisu.schema.json} file, a JSON-schema \footnote{\url{http://json-schema.org/draft-07/schema}} with examples and an almost complete validation of the format.
 
 The implementation currently does not support hyper-graphs and assumes that each node in the tree decomposition has either one or two children.
 The visualization output consists by default of scalable-vector-graphics (SVG), a very flexible text-based standard for describing images that can be easily compressed (and modified) without loss of quality \cite{SVGMozilla}.
