@@ -7,6 +7,7 @@
 \usepackage{url}
 \usepackage{bm} % bold math
 \usepackage{nccmath} % medium fraction with mfrac 
+\usepackage{caption}
 \usepackage{amssymb}
 \usepackage{enumitem}
 \usepackage{graphicx}
@@ -62,6 +63,7 @@ mdframed={
 \newtheorem{theorem}{Theorem}[section]
 \setlength{\textheight}{1.05\textheight}
 \newcolumntype{Y}{>{\centering\arraybackslash}X}
+\captionsetup{justification=raggedright}
 
 \begin{document}
 \def\myauthor{Martin Röbke} 
@@ -561,11 +563,16 @@ The tree decomposition for our ``wheelgraph" example \ref{fig:wheelgraph} can be
 
 \begin{figure}
 	\centering
-	\includegraphics[]{images/TDWheelgraph7.png}
-	\caption{Tree decomposition of a wheelgraph with 7 nodes and node 1 in the center.}
+	\caption{Tree decomposition of a wheel graph (Fig. \ref{fig:wheelgraph}) \\
+		with seven nodes and one node in the center:}
 	\label{fig:tdweelgraph7}
+	\includegraphics[]{images/TDWheelgraph7.png}
+	
 \end{figure}
 
+\lstinputlisting[caption={Tree decomposition in DIMACS format for Figure \ref{fig:tdweelgraph7}}, label={lst:wheelgraphtd},backgroundcolor=\color{white},numbers=none,linewidth=0.3\textwidth,xleftmargin=200pt]{images/WheelGraph7/wheelgraph7.td}
+
+\medskip\noindent
 Some projects might use so called \textit{nice} tree decompositions in order to simplify the cases in the used algorithm \cite[Ch.~2.2]{DiplomarbeitZisser}.
 For every tree decomposition a nice tree decomposition can be computed within linear time without increasing the width \cite{klokstw}.
 Non-nice tree decomposition, however, have advantages in terms of solving time. In the application \textit{gpusat} for example they combined three single operations into one introduce forget (IF) operation. Thereby, reducing the overhead for memory operations on the device and the overhead for copying and retrieving tables between devices. Another advantage is that this reduces the size of the tables they need to store by forgetting the variables which do not occur in the next bag after each introduce operation \cite[Ch.~4.2.1]{DiplomarbeitZisser}. 
@@ -885,7 +892,7 @@ Next comes the iteration over the requested time steps, adding the provided solu
 In this case, we remove all old edges between the children and the parent node, add the result to the graph, and add edges from the children to the result and from the result to the parent node. Details of this step can be seen in Listing~\ref{lst:forward-iterate} on page \pageref{lst:forward-iterate}. And one in which we create the actual time step images backwards by masking solutions calculated later. The goal is to have all parts of the graph in optimal position when they first appear, and not to move when additional features are added. For details of these steps, see the Listing \ref{lst:backward-iterate} on page \pageref{lst:backward-iterate}.\\
 
 An automatically inserted join node is shown in Figure~\ref{fig:g41Digraph} on page \pageref{fig:g41Digraph}.
-The provided data for this example to layout the bags can be seen in Listing\ref{lst:edgearray41} on page \pageref{lst:edgearray41}. There we see that bags 2 and 3 have an edge to bag 1 and therefore a join-operation will occur between the results of bags 2 and 3:
+The provided data for this example to layout the bags can be seen in Listing\ref{lst:edgearray41}. There we see that bags 2 and 3 have an edge to bag 1 and therefore a join-operation will occur between the results of bags 2 and 3:
 
 \begin{lstlisting}[caption={Structure provided for bags of example \ref{fig:g41Digraph} },label={lst:edgearray41},numbers=none,backgroundcolor=\color{white}]
 "edgearray" : 
@@ -900,10 +907,10 @@ The provided data for this example to layout the bags can be seen in Listing\ref
 For rendering the tree decomposition we have added a convenience option to \textit{view} the result files automatically, which is disabled by default.
 
 %============== Timesteps ====================================================
-\subsection{Create time steps for the underlying graph}
-To gain a more comprehensive insight into the solution process, we have illustrated in the same way the diagrams that best describe the problem instance the solver has been working on.
+\subsection{Visualizing Additional Graphs}
+To gain a more comprehensive insight into the solution process, we want to see the graphs that best describe the problem instance that the solver has been working on.
 
-Because the data in the API does not directly include details about highlights in those graphs, we will construct this information on the fly by referencing with the tree decomposition.
+Because the data in the API does not directly include details about highlights corresponding to time steps in additional graphs, we will construct this information on the fly by referencing with the tree decomposition.
 
 With additional data from the \textit{IncidenceGraphData} class we are further able to reconstruct the
 \begin{itemize}
@@ -935,7 +942,7 @@ will create the dual graph in Fig. \ref{fig:disconnected123}. This happens with 
 %============== Incid ====================================================
 \subsection{Incidence Graph}\label{sec:incid}
 
-The idea is to visualize the incidence graph as a bipartite graph that can represent the formula for which it was created.
+The idea is to visualize the incidence graph as a bipartite graph for clauses and variables that can represent the formula the solver did work on in those problem instances.
 
 \begin{figure}[H]
 	\centering
@@ -1956,7 +1963,6 @@ p cnf 18 24
 15 16 17 -18 0
 \end{lstlisting}
 \lstinputlisting[caption={Edges for example \ref{fig:wheelgraph}}, label={lst:wheelgraph}]{images/WheelGraph7/wheelgraph7.tw}
-\lstinputlisting[caption={Tree decomposition for example \ref{fig:wheelgraph}}, label={lst:wheelgraphtd}]{images/WheelGraph7/wheelgraph7.td}
 \lstinputlisting[caption={DOT source for visualization of example 4.1}, label={lst:g41digraphdot}]{includes/g41digraphdot}
 \lstinputlisting[caption={stdout of program gpusat with call \textit{./gpusat -f ../examples/test\_da4\_1.cnf -v -p -d ../examples/td4p1.txt  -g ../examples/graphfileda41.txt -{}-visufile ../examples/visufileda41.json}}, label={lst:outputGpusat}]{includes/outputGpusat.txt}
 
