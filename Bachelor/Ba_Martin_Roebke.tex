@@ -251,19 +251,22 @@ The Figure \ref{fig:overviewprog} shows a draft of the process creating the visu
 \subsection{Methodology}
 
 The algorithms whose runs we visualize basically work so that the input graph is used to find the best possible processing sequence adapted to the hardware.
-With this order it is known which parts of the problem can be solved separately, and which intermediate results have to be stored and for how long. To visualize these algorithms for different problem types, we need to be flexible enough with the data we process for visualization. To accomplish this, we almost everywhere expect simple text to be included in various places. Only the internal ids for nodes or variables in Boolean formulas are processed based on positive integers.
+With this order it is known which parts of the problem can be solved separately, and which intermediate results have to be stored and for how long. To visualize these algorithms for different problem types, we need to be flexible enough with the data we process for visualization. To accomplish this, we almost everywhere expect simple text to be included in various places. Mostly the internal identifiers for nodes or variables in Boolean formulas are not processed based on strings, but on integers.\\
 
-For our visualizations we chose {Graphviz}\footnote{\url{https://graphviz.org/}} as an open source graph visualization software, which offers customizable visualization for directed and undirected graphs.
+The graphs are assembled using the object-oriented style of the Python interface \footnote{\url{https://pypi.org/project/graphviz/}} to Graphviz.\\
 
-The source code for TDVisu is available under the GPL3 license on \url{github.com/VaeterchenFrost/tdvisu}. The tool is written in python and published on pypi.\\
+For our visualizations we chose {Graphviz}\footnote{\url{https://graphviz.org/}} as an open source graph visualization software, which offers customizable visualization for directed and undirected graphs.\\
+
+The tree decompositions in every tested application were provided by the utility \href{https://github.com/mabseher/htd}{htd} (small but efficient C++ library for computing (customized) tree and hypertree decompositions) \cite{htd}.\\
+
+The source code for TDVisu is available under the GPL3 license \\on
+\mbox{ \url{github.com/VaeterchenFrost/tdvisu}}. Our tool is written in python and published on pypi.\\
 
 We defined a \href{https://www.json.org/json-en.html}{JSON}-format specification for portability and customization of the visualization in one file and two reference implementations in practical solvers.\\
-It is explained in more detail in the implementation chapter, or directly in the \textit{tdvisu/TDVisu.schema.json} file, a JSON-schema \footnote{\url{http://json-schema.org/draft-07/schema}} with examples and an almost complete validation of the format.
+It is explained in more detail in the implementation chapter, or directly in the \textit{tdvisu/TDVisu.schema.json} file, a JSON-schema \footnote{\url{http://json-schema.org/draft-07/schema}} with examples and an almost complete validation of the format.\\
 
 The implementation currently does not support hyper-graphs and assumes that each node in the tree decomposition has either one or two children.
 The visualization output consists by default of scalable-vector-graphics (SVG), a very flexible text-based standard for describing images that can be easily compressed (and modified) without loss of quality \cite{SVGMozilla}.
-
-The tree decompositions in every tested application were provided by the utility \href{https://github.com/mabseher/htd}{htd} (small but efficient C++ library for computing (customized) tree and hypertree decompositions) \cite{htd}.
 
 
 %My previous experiences with the topic of this work mainly come from these two courses:
