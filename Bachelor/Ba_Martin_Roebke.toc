@@ -8,39 +8,51 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {subsection}{\numberline {1.1}Motivation}{8}{subsection.1.1}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {1.2}Research Question}{8}{subsection.1.2}%
+\contentsline {subsection}{\numberline {1.2}Research Question}{9}{subsection.1.2}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {1.3}Methodology}{9}{subsection.1.3}%
+\contentsline {subsection}{\numberline {1.3}Methodology}{10}{subsection.1.3}%
 \defcounter {refsection}{0}\relax 
 \contentsline {subsection}{\numberline {1.4}Related Work}{11}{subsection.1.4}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {1.5}Thesis Outline}{11}{subsection.1.5}%
+\contentsline {subsection}{\numberline {1.5}Thesis Outline}{12}{subsection.1.5}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {2}Background}{12}{section.2}%
+\contentsline {section}{\numberline {2}Background}{13}{section.2}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {2.1}Graphs}{12}{subsection.2.1}%
+\contentsline {subsection}{\numberline {2.1}Graphs}{13}{subsection.2.1}%
 \defcounter {refsection}{0}\relax 
 \contentsline {subsection}{\numberline {2.2}(Monadic Second-Order) Logic}{13}{subsection.2.2}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{\numberline {2.2.1}Propositional Logic}{13}{subsubsection.2.2.1}%
+\contentsline {paragraph}{\nonumberline Propositional Logic}{13}{section*.10}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{\numberline {2.2.2}Boolean Satisfiability Problem}{13}{subsubsection.2.2.2}%
+\contentsline {paragraph}{\nonumberline Boolean Satisfiability Problem}{14}{section*.11}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{\numberline {2.2.3}From Propositional Logic to MSO Logic}{15}{subsubsection.2.2.3}%
+\contentsline {paragraph}{\nonumberline SAT}{15}{section*.12}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{\numberline {2.2.4}MSO (Graph) Properties}{16}{subsubsection.2.2.4}%
+\contentsline {paragraph}{\nonumberline \#SAT}{15}{section*.13}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {2.3}Tree Decomposition}{16}{subsection.2.3}%
+\contentsline {subsubsection}{\numberline {2.2.1}From Propositional Logic to MSO Logic}{16}{subsubsection.2.2.1}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {2.4}Dynamic Programming on Tree Decompositions}{18}{subsection.2.4}%
+\contentsline {paragraph}{\nonumberline First-order logic}{16}{section*.15}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {2.5}Parametrized Complexity}{19}{subsection.2.5}%
+\contentsline {paragraph}{\nonumberline Second-order logic}{16}{section*.16}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{\numberline {2.5.1}Fixed-Parameter Tractable (FTP-)Algorithm}{19}{subsubsection.2.5.1}%
+\contentsline {paragraph}{\nonumberline Monadic second-order logic (MSO)}{16}{section*.17}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{\numberline {2.5.2}Courcelle's Theorem}{20}{subsubsection.2.5.2}%
+\contentsline {subsubsection}{\numberline {2.2.2}MSO (Graph) Properties}{17}{subsubsection.2.2.2}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {3}Practical Requirements}{20}{section.3}%
+\contentsline {subsection}{\numberline {2.3}Tree Decomposition}{17}{subsection.2.3}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {2.4}Dynamic Programming on Tree Decompositions}{19}{subsection.2.4}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {2.5}Parametrized Complexity}{20}{subsection.2.5}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {2.5.1}Fixed-Parameter Tractable (FTP-)Algorithm}{20}{subsubsection.2.5.1}%
+\defcounter {refsection}{0}\relax 
+\contentsline {paragraph}{\nonumberline FPT for model checking}{20}{section*.20}%
+\defcounter {refsection}{0}\relax 
+\contentsline {paragraph}{\nonumberline Courcelle's Theorem}{20}{section*.21}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {3}Practical Requirements}{21}{section.3}%
 \defcounter {refsection}{0}\relax 
 \contentsline {subsection}{\numberline {3.1}DIMACS format}{21}{subsection.3.1}%
 \defcounter {refsection}{0}\relax 
@@ -48,9 +60,9 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {section}{\numberline {4}Implementation}{24}{section.4}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {4.1}Commandline and Configuration}{24}{subsection.4.1}%
+\contentsline {subsection}{\numberline {4.1}Commandline and Configuration}{25}{subsection.4.1}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {4.2}Initialization and Tree Decomposition}{25}{subsection.4.2}%
+\contentsline {subsection}{\numberline {4.2}Initialization and Tree Decomposition}{26}{subsection.4.2}%
 \defcounter {refsection}{0}\relax 
 \contentsline {subsection}{\numberline {4.3}Visualizing Additional Graphs}{28}{subsection.4.3}%
 \defcounter {refsection}{0}\relax 
@@ -58,13 +70,13 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {subsection}{\numberline {4.5}General Graph}{30}{subsection.4.5}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {4.6}Joining SVG}{31}{subsection.4.6}%
+\contentsline {subsection}{\numberline {4.6}Joining SVG}{32}{subsection.4.6}%
 \defcounter {refsection}{0}\relax 
 \contentsline {section}{\numberline {5}Integration in gpusat}{33}{section.5}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {5.1}Class Graphoutput}{34}{subsection.5.1}%
+\contentsline {subsection}{\numberline {5.1}Class Graphoutput}{35}{subsection.5.1}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {5.2}Class Visualization}{35}{subsection.5.2}%
+\contentsline {subsection}{\numberline {5.2}Class Visualization}{36}{subsection.5.2}%
 \defcounter {refsection}{0}\relax 
 \contentsline {section}{\numberline {6}Integration in dpdb}{36}{section.6}%
 \defcounter {refsection}{0}\relax 
@@ -92,4 +104,4 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {section}{\numberline {C}More Examples}{73}{appendix.C}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\nonumberline References}{81}{section*.55}%
+\contentsline {section}{\nonumberline References}{81}{section*.64}%

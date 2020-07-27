@@ -98,7 +98,7 @@ mdframed={
 				
 				\myauthor &  Dr. Johannes Fichte\\
 				
-			{\normalsize Matrikel-Nr. 3949819}& \textit{Second Supervisor:}\\
+			{\normalsize Matrikel-Nr. 3949819}& \textit{Examiner:}\\
 				&  Prof. Dr. Stefan Gumhold\\[20ex]
 				
 			\end{tabular}
@@ -247,7 +247,10 @@ The target audience for this work includes:
 %The idea for this project comes from my supervisor Dr. Johannes Fichte, who works with many projects such as \href{github.com/hmarkus/dp_on_dbs}{dpdb} on solving monadic second order logic (MSOL) problems using highly parallelized architectures like graphics processing units or state of the art databases.
 %One early implementation is published in \cite{evaluationMSO} where for different real world examples the results looked promising
 %These projects are very competitive ????REF????? for solving even large instances of those problems.
-
+\vspace{2cm}
+{\small{Side remark:}
+	Of course the information we visualize could be extracted as text from the respective solver and . But as the saying goes, ``one picture is worth 100 spreadsheets". }
+\newpage
 %============== Concept ====================================================
 \subsection{Research Question}
 When developing techniques for dynamic programming for various problems or platforms there can be errors in actual implementations that will be hard to pin down. 
@@ -287,7 +290,7 @@ The Figure \ref{fig:overviewprog} shows a draft of the process creating the visu
 	\label{fig:overviewprog}
 \end{figure}
 
-
+\newpage
 %============== Outline ====================================================
 \subsection{Methodology}
 
@@ -300,11 +303,8 @@ The algorithms whose runs we visualize basically work so that the input graph is
 With this description it is known which parts of the problem can be solved separately, and which intermediate results have to be stored and for how long. To visualize these algorithms for different problem types, we need to be flexible enough with the data we process for visualization. To accomplish this task, we almost everywhere expect simple text to be included in various places. Only the internal identifiers for nodes or variables in Boolean formulas are not processed based on strings, but on integers.\\
 
 For our visualizations we chose {Graphviz}\footnote{\url{graphviz.org/}} as an open source graph visualization software, which offers customizable visualization for directed and undirected graphs.
-
 The graphs that were used in solving the problem are assembled using the object-oriented style of the Python interface\footnote{\url{pypi.org/project/graphviz/}} to Graphviz.
-
 The tree decompositions in each tested application were provided by the utility {htd} (small but efficient C++ library for computing (customized) tree and hypertree decompositions) \cite{htd}.
-
 The source code for \textit{tdvisu} is available under the GPLv3 license \\on
 \mbox{ \url{github.com/VaeterchenFrost/tdvisu}}. Our tool is written in Python and published on pypi.
 
@@ -368,15 +368,14 @@ Current advancements in dynamic programming on tree-decompositions itself can be
 %============== Outline ====================================================
 \subsection{Thesis Outline}
 The rest of the thesis is structured as follows: \\
-Chapter \ref{sec:bg} gives the reader the necessary background for this thesis. In Chapter \ref{sec:project}, we describe our approach to the visualization and the functionalities of the software. Next, Chapter \ref{sec:gpusat} describes the integration of \textit{tdvisu} in the solver \textit{gpusat}~\cite{DiplomarbeitZisser}. In Chapter \ref{sec:dpdb}, we describe the integration with the database-based solver \textit{dpdb}~\cite{dpdbpadl2020}.
-Chapter \ref{sec:appl} shows, limited by the page size, small examples for the tested use cases of visualization, starting with a \textit{SAT} example, then a \textit{\#SAT} problem visualized, followed by a \textit{minimal-vertex-cover} example. After these three use cases we show the possibilities of joining single result images together. Finally the chapter closes with a subsection on how our tool can be used for successful debugging. In Chapter \ref{sec:conclusion} of this thesis we give a summary of our work and hints for future progress.
+Chapters~\ref{sec:bg}~and~\ref{sec:practicalreq} give the reader the necessary background for this thesis. In Chapter \ref{sec:project} we describe our approach to the visualization and the main functionalities of the software. Next, Chapter \ref{sec:gpusat} describes the integration of \textit{tdvisu} into the solver \textit{gpusat}~\cite{DiplomarbeitZisser}. In Chapter \ref{sec:dpdb} we describe the integration with the database-based solver \textit{dpdb}~\cite{dpdbpadl2020}.
+Chapter \ref{sec:appl} shows, limited by the page size, small examples for the tested use cases of visualization, starting with a \textit{SAT} example, then a \textit{\#SAT} problem visualized, followed by a \textit{minimal-vertex-cover} example. After these three use cases we show the possibilities of joining single result images together. Finally, the chapter closes with a subsection on how our tool can be used as a support for successful debugging. In Chapter \ref{sec:conclusion} we give a summary of our work and hints for future progress.
 
-{\small{Side note:}
-	Of course, the information we visualize is located in the respective solver and could be extracted as text. But as the saying goes, ``one picture is worth 100 spreadsheets". }
 
 %==============================================================================
 %============== BACKGROUND ====================================================
 %==============================================================================
+\newpage
 \section{Background}\label{sec:bg}
 In this chapter we provide a brief background for this work.\\
 We will start with a short introduction to logic and MSO in \ref{sec:MSO}. Then we describe the Boolean satisfiability problem which in its variants is a popular application for solvers.
@@ -407,8 +406,8 @@ In this thesis we use the word \textbf{graph} for a pair $G=(V_{G},E_{G})$, wher
 \textbf{Monadic Second-Order (MSO) logic} is a logical language that is suitable for expressing numerous graph properties \cite[p.~41]{Courcelle2012}. In the following summary we would like to introduce propositional logic and the extensions first order logic and MSO. The concepts and notations from propositional logic are needed for the example problems around Boolean satisfiability; MSO will be used as the language that describes the possibilities of the dynamic programming on tree decompositions.
 % Theory
 
-\subsubsection{Propositional Logic}
-\textbf{Propositional logic} is a formal system $\mathcal{L} = \mathcal{L}(\mathrm {A},\Omega, \mathrm{Z}, \mathrm{I})$ with
+\paragraph{Propositional Logic}
+ is a formal system $\mathcal{L} = \mathcal{L}(\mathrm {A},\Omega, \mathrm{Z}, \mathrm{I})$ with
 \begin{itemize}
 	\item the set $\mathrm {A}$ as a countably infinite set of elements called proposition symbols or propositional variables. These are also called terminal elements.
 	\item The set $\Omega$ is a finite set of elements called operator symbols or logical connectives. It is partitioned into disjoint subsets as follows:
@@ -430,7 +429,8 @@ In this thesis we use the word \textbf{graph} for a pair $G=(V_{G},E_{G})$, wher
 	\item The set $\mathrm {I}$ is a countable set of initial points that are called axioms when they receive logical interpretations.
 \end{itemize}
 %============== SAT ====================================================
-\subsubsection{Boolean Satisfiability Problem}\label{sec:BSP}
+\paragraph{Boolean Satisfiability Problem}\label{sec:BSP}
+\mbox{}\\
 % en.wikipedia.org/wiki/Boolean_satisfiability_problem
 
 %SAT was the first known NP-complete problem, shown by Stephen Cook at the University of Toronto in 1971 \cite{SAT1971}
@@ -445,6 +445,8 @@ In this thesis we use the word \textbf{graph} for a pair $G=(V_{G},E_{G})$, wher
 %\text{satisfiedclause}&\equiv \text{if $\exists $v $\in $ var(c), v$\in $c and $\alpha $(v)=1 or $\neg $v$\in $c and $\alpha $(v)= 0. Otherwise falsified}\\ 
 %\text{satisfiedform}&\equiv \text{each clause in the formula is satisfied by assignment} \\
 %\end{align*}
+
+
 In this thesis we use the following symbols for expressions of Boolean algebra:\\
 
 ${ \Omega _{0}=\{0 ,1 \}.}$ 
@@ -493,8 +495,8 @@ A literal is a Boolean variable $v$ or its negation $\neg v$. A $clause$ is a fi
 The formula $C$ is for example satisfied by the assignment that maps all variables $var(C)\rightarrow 1$ to $1$. 
 All 22 satisfying assignments can be seen in Table~\ref{tab:ex41tabx} on page~\pageref{tab:ex41tabx}.\\
 
-The Boolean satisfiability problem \textbf{SAT} consists of the question: Given a propositional formula $\phi$, is there an assignment of the variables in $\phi$ for which $\phi$ is satisfied?
-The \textbf{\#SAT} problem consists of the question: Given a propositional formula $\pi$, for how many assignments of the variables in $\pi$ is $\pi$ satisfied?\\
+The Boolean satisfiability problem \paragraph{SAT} consists of the question: Given a propositional formula $\phi$, is there an assignment of the variables in $\phi$ for which $\phi$ is satisfied, and
+\paragraph{\#SAT} consists of the question: Given a propositional formula $\pi$, for how many assignments of the variables in $\pi$ is $\pi$ satisfied?\\
 
 %SAT Handbook:
 %Even finding a single solution can be a challenge
@@ -526,7 +528,7 @@ Those three graphs for our Example \ref{ex:example41} are shown in Fig.~\ref{fig
 
 \subsubsection{From Propositional Logic to MSO Logic}
 
-\textbf{First-order logic} adds relations and quantifiers to propositional logic.
+\paragraph{First-order logic} adds relations and quantifiers to propositional logic.
 For further information on logic see for example \cite[Chapter~5]{HandbookMathGraph}. \\
 The quantifier symbols are
 \begin{itemize}
@@ -534,10 +536,9 @@ The quantifier symbols are
 	\item $\forall$ which expresses that a propositional function can be fulfilled by any member of a domain.
 \end{itemize}
 
-While \textbf{first-order logic} only quantifies variables that range over individuals (elements of the domain of discourse),
-\textbf{Second-order logic}, in addition, also quantifies over relations.
+While \textbf{first-order logic} only quantifies variables that range over individuals (elements of the domain of discourse), \paragraph{Second-order logic}in addition also quantifies over relations.
 
-\textbf{Monadic second-order logic (MSO)} is a restriction of second-order logic in which only quantification over unary relations (i.e. sets) is allowed. 
+\paragraph{Monadic second-order logic (MSO)} is a restriction of second-order logic in which only quantification over unary relations (i.e. sets) is allowed. 
 %A quantification over functions is therefore also not allowed due to the equivalence to relations.
 
 %Interested in MSO logic over graphs.
@@ -592,12 +593,12 @@ Typical MSO properties include:
 %See also chapter 2.2 of \cite{DiplomarbeitZisser}.
 %Tree decompositions were originally introduced by Robertson and Seymour \cite{ROBERTSON198449} in 1984.
 A \textit{tree decomposition} (TD) of a graph G is a pair $(T, \chi)$. $T$ is a tree and $\chi$ is a mapping which assigns each node $n~\in~V(T)$ 
-a set $\chi(n) \subseteq V(G)$ called a \textit{bag}. Then $(T, \chi)$. $T$ is a TD if the following conditions hold:
+a set $\chi(n) \subseteq V(G)$ called a \textit{bag}. Then $(T, \chi)$. $T$ is a TD if the following three conditions hold:
 
 \begin{itemize}
-	\item[1.] for each vertex $v(n) \in V(G)$ there is a node $n \in V(T)$ such that $v \in \chi(n)$
-	\item[2.] for each edge $(x,y) \in E(G)$ there is a node $n\in V(T)$ such that $x,y \in\chi(n)$
-	\item[3.] if $x,y,z \in V(T)$ and $y$ lies on the path from x to z then $\chi(x) \cap \chi(z) \subseteq \chi(y)$. The set of bags that contain the variable v induce a connected sub-graph of T.
+	\item[1)] for each vertex $v(n) \in V(G)$ there is a node $n \in V(T)$ such that $v \in \chi(n)$
+	\item[2)] for each edge $(x,y) \in E(G)$ there is a node $n\in V(T)$ such that $x,y \in\chi(n)$
+	\item[3)] if $x,y,z \in V(T)$ and $y$ lies on the path from x to z then $\chi(x) \cap \chi(z) \subseteq \chi(y)$. The set of bags that contain the variable v induce a connected sub-graph of T.
 \end{itemize}
 The width $width(T)$ of a tree decomposition $T$ is $max_{n\in V(T)}(|\chi(n)|)-1$.
 The tree width of a graph is the \textit{minimal width} over all tree decompositions of the graph. 
@@ -659,12 +660,12 @@ The basic algorithmic procedure is presented in Fig.~\ref{fig:dpalgo}. It does i
 
 
 \subsection{Parametrized Complexity}
-In the following two sections we want to introduce the reader with some computational bounds for the underlying concept of solving MSO-problems with the current approaches.
+In the following two section we want to introduce the reader with some computational bounds for the underlying concept and problems of solving MSO-problems with the current approaches.
 
 \subsubsection{Fixed-Parameter Tractable (FTP-)Algorithm}
 
 % en.wikipedia.org/wiki/Parameterized_complexity
-\textbf{FPT for model checking}:
+\paragraph{FPT for model checking}
 Some problems can be solved by algorithms that are exponential only in the size of a fixed parameter while polynomial in the size of the input. Such an algorithm is called a fixed-parameter tractable (FTP-)algorithm, and the problem can be solved efficiently for small values of the fixed parameter. \cite{ParamCompGrohe}
 %\begin{thm}
 %	An algorithm is FPT if it takes time $f(k)\cdot n^{c}$ for some constant $c$ and a fixed function f depending only on $k \in \mathbb{N}$. The size of the input is n. 
@@ -680,13 +681,16 @@ DETAILS MinVC:
 %en.wikipedia.org/wiki/Vertex_cover#Fixed-parameter_tractability
 
 %============== Courcelle ====================================================
-\subsubsection{Courcelle's Theorem}
+\paragraph{Courcelle's Theorem}
  Courcelle's theorem is a constructive meta-theorem and thus does provide algorithms for evaluating MSO formulas over graphs of bounded treewidth.
 Courcelle's theorem \cite[p. 54]{Courcelle2012}:
-\begin{thm}
-	Every graph property definable in monadic second-order logic (MSO) is decidable in linear time on graphs of bounded tree-width. 
 
-\end{thm}
+\smallskip\noindent
+\textit{
+	Every graph property definable in monadic second-order logic (MSO) is decidable in linear time on graphs of bounded tree-width. }\leftskip=1cm
+
+\leftskip=0cm\smallskip
+
 
 \noindent
 To be more specific: It holds that for all $k \in \mathbb{N}$ and MSO-formulas F is the decision problem for a given graph G, whether $G \models F$ is true, in time $2^{p(tw(G))} \cdot |G|$ with a polynomial p decidable.\smallskip 
@@ -703,22 +707,20 @@ Even if linear in the size of the input, naive implementations are still expensi
 %($2^{p(tw G)}$, $2^{2^{(\#Q)}}$,  
 the constant factor can be very significant. An efficient implementation will require several tricks to make this approach practical. Developing and debugging these ``tricks" is not always that easy, so a visualization can help at this point.\smallskip 
 
-% See also figure~\ref{fig:logictheory}.
-Auswirkung, Aktuelle Grenzen.
 
 %==============================================================================
 %============== Practical Requirements ========================================
 %==============================================================================
 
 \section{Practical Requirements}\label{sec:practicalreq}
-The exchange of intermediate results of solvers and parts of the visualization is done via two defined file formats. In the following two chapters we want to introduce the reader with the concepts of the DIMACS and DOT format. These formats are either produced or required as input at various stages of the application.
+The exchange of intermediate results from solvers and parts of the visualization utilizes two defined file formats. In the following two chapters we want to introduce the reader with the concepts of the DIMACS and DOT format. These formats are either produced or required as input at various stages of the application.
   
 %============== DIMACS ====================================================
 \subsection{DIMACS format}
 
 Inputs for solvers and in some cases for preparing the visualization of dpdb are usually in a DIMACS format. There exist several standardized formats for different cases, for example CNF clauses, graph edges and graph decompositions.
 Several file formats for these purposes were developed at ``DIMACS" (the Center for Discrete Mathematics and Theoretical Computer Science) \cite{dimacsimplcha} beginning in 1993 at Rutgers University.
-They are partly supported in several math-related software.
+They are also partly supported in several math-related software.
 
 The underlying concept is one line-based ASCII file and for all different formats specifies comments as lines starting with the character ``c", a problem line starting with ``p" (rarely with ``s") and following the problem line usually multiple lines specifying the data in a format depending on the problem type.
 The formats used for this work are:
