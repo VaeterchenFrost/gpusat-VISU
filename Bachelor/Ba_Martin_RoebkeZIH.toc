@@ -1,0 +1,102 @@
+\boolfalse {citerequest}\boolfalse {citetracker}\boolfalse {pagetracker}\boolfalse {backtracker}\relax 
+\babel@toc {american}{}
+\babel@toc {ngerman}{}
+\babel@toc {american}{}
+\babel@toc {ngerman}{}
+\babel@toc {american}{}
+\babel@toc {ngerman}{}
+\babel@toc {american}{}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {0.1}Introduction}{7}{section.0.1}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {0.1.1}Motivation}{7}{subsection.0.1.1}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {0.1.2}Research Question}{7}{subsection.0.1.2}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {0.1.3}Methodology}{8}{subsection.0.1.3}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {0.1.4}Related Work}{9}{subsection.0.1.4}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {0.1.5}Thesis Outline}{10}{subsection.0.1.5}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {0.2}Background}{11}{section.0.2}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {0.2.1}Graphs}{11}{subsection.0.2.1}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {0.2.2}(Monadic Second-Order) Logic}{11}{subsection.0.2.2}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {0.2.2.1}Propositional Logic}{11}{subsubsection.0.2.2.1}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {0.2.2.2}Boolean Satisfiability Problem}{12}{subsubsection.0.2.2.2}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {0.2.2.3}From Propositional Logic to MSO Logic}{13}{subsubsection.0.2.2.3}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {0.2.2.4}MSO (Graph) Properties}{13}{subsubsection.0.2.2.4}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {0.2.3}Tree Decomposition}{14}{subsection.0.2.3}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {0.2.4}Dynamic Programming on Tree Decompositions}{15}{subsection.0.2.4}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {0.2.5}Parametrized Complexity}{16}{subsection.0.2.5}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {0.2.5.1}Fixed-Parameter Tractable (FTP-)Algorithm}{16}{subsubsection.0.2.5.1}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {0.2.5.2}Courcelle's Theorem}{16}{subsubsection.0.2.5.2}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {0.3}Practical Requirements}{18}{section.0.3}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {0.3.1}DIMACS format}{18}{subsection.0.3.1}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {0.3.2}DOT format}{18}{subsection.0.3.2}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {0.4}Implementation}{21}{section.0.4}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {0.4.1}Commandline and Configuration}{21}{subsection.0.4.1}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {0.4.2}Initialization and Tree Decomposition}{22}{subsection.0.4.2}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {0.4.3}Visualizing Additional Graphs}{24}{subsection.0.4.3}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {0.4.4}Incidence Graph}{25}{subsection.0.4.4}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {0.4.5}General Graph}{25}{subsection.0.4.5}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {0.4.6}Joining SVG}{27}{subsection.0.4.6}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {0.5}Integration in GPUSAT}{29}{section.0.5}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {0.5.1}Class Graphoutput}{30}{subsection.0.5.1}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {0.5.2}Class Visualization}{31}{subsection.0.5.2}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {0.6}Integration in dpdb}{32}{section.0.6}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {0.7}Application and Images}{33}{section.0.7}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {0.7.1}SAT Example}{33}{subsection.0.7.1}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {0.7.2}\#SAT Example}{37}{subsection.0.7.2}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {0.7.3}Vertex Cover Example}{39}{subsection.0.7.3}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {0.7.4}SVG Join Example}{42}{subsection.0.7.4}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {0.7.5}Visualization of Defects}{48}{subsection.0.7.5}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {0.8}Conclusion}{50}{section.0.8}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {0.8.1}Summary}{50}{subsection.0.8.1}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {0.8.2}Future Work}{50}{subsection.0.8.2}%
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{\nonumberline List of Figures}{52}{chapter*.38}%
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{\nonumberline List of Tables}{54}{chapter*.39}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {.1}Images}{55}{section.Alph0.1}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {.2}Code Snippets}{62}{section.Alph0.2}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {.3}More Examples}{69}{section.Alph0.3}%
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{\nonumberline Bibliography}{75}{chapter*.52}%
