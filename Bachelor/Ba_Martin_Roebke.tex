@@ -164,7 +164,7 @@ Since the design of dynamic programming can be quite error-prone, a fast and unc
 To help further refine and visualize the dynamic programming,
 we specified a JSON template for communication between solvers and the newly created visualization tool \href{github.com/VaeterchenFrost/tdvisu}{TDVisu}.
 
-As two reference implementations of dynamic programming on tree decompositions we selected the existing solvers \href{github.com/daajoe/GPUSAT}{GPUSAT} and \href{github.com/hmarkus/dp_on_dbs}{dpdb}.\\
+As two reference implementations of dynamic programming on tree decompositions we selected the existing solvers \href{github.com/daajoe/GPUSAT}{gpusat} and \href{github.com/hmarkus/dp_on_dbs}{dpdb}.\\
 
 
 As a side note: \\
@@ -1068,7 +1068,7 @@ The list can be of different length for each parameter - if it is exhausted, the
 %============== GPUSAT ========================================================
 %==============================================================================
 \newpage
-\section{Integration in GPUSAT}\label{sec:gpusat}
+\section{Integration in gpusat}\label{sec:gpusat}
 %To study and improve the handling of the C++ program was chronologically the first task we experimented with.
 %Getting the program up and running proved to be more difficult than we envisioned due to a probable bug in the driver when running OpenCL Drivers from CUDA on the Windows OS.
 
@@ -1084,7 +1084,7 @@ The integration into the existing classes from \textit{gpusat} is listed in Tab.
 	\centering
 	\begin{tabularx}{0.4\textwidth}{|Y|c|c|}
 		\hline
-		{\centering GPUSAT} & main & Solver \\
+		{\centering gpusat} & main & Solver \\
 		\hline
 		Graphoutput & 6 & 10 \\
 		\hline
