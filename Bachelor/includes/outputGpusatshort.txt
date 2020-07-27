@@ -1,0 +1,97 @@
+Seed: 1592417295
+Platform - 1
+  1.1 CL_PLATFORM_NAME: AMD Accelerated Parallel Processing
+  1.2 CL_PLATFORM_VENDOR: Advanced Micro Devices, Inc.
+  1.3 CL_PLATFORM_VERSION: OpenCL 2.1 AMD-APP (2671.3)
+  1.4 CL_PLATFORM_PROFILE: FULL_PROFILE
+  1.5 CL_PLATFORM_EXTENSIONS: cl_khr_icd cl_amd_event_callback 
+ 			      cl_amd_offline_devices 
+  Device - 1:
+    CL_DEVICE_NAME: Ellesmere
+    CL_DEVICE_VENDOR: Advanced Micro Devices, Inc.
+    CL_DRIVER_VERSION: 2671.3
+    CL_DEVICE_VERSION: OpenCL 1.2 AMD-APP (2671.3)
+    CL_DEVICE_MAX_COMPUTE_UNITS: 32
+    CL_DEVICE_MAX_CONSTANT_BUFFER_SIZE : 3422266572
+    CL_DEVICE_MAX_CONSTANT_ARGS : 8
+
+-- treeDecomp Before --
+bags: 5
+0 : [1 4 7 ]-(1 )-
+1 : [1 2 4 6 ]-(2 3 )-
+2 : [1 2 5 ]()
+3 : [2 4 8 ]-(4 )-
+4 : [2 3 8 ]()
+
+-- treeDecomp after preprocessFacts--
+bags: 5
+0 : [1 4 7 ]-(1 )-
+1 : [1 2 4 6 ]-(2 3 )-
+2 : [1 2 5 ]()
+3 : [2 4 8 ]-(4 )-
+4 : [2 3 8 ]()
+---Determining datastructure---
+input:
+SOLUTIONTYPE : TREE
+treeDecomp.width : 4
+------
+Opened visualization with file ../examples/visufileda41.json true
+----------
+==> Entering solveProblem on id 0 <==
+==> Entering solveProblem on id 1 <==
+==> Entering solveProblem on id 2 <==
+solveIF 1 + 0 => 2
+  bag(2): bags= 0 , exp= 0 , correction= 0
+  var= [1, 2, 5, ]
+Solved IF-0 on node 2
+  bag(2): bags= 1 , exp= 1 , correction= 0
+  var= [1, 2, ]
+==> Entering solveProblem on id 3 <==
+==> Entering solveProblem on id 4 <==
+solveIF 3 + 0 => 4
+  bag(4): bags= 0 , exp= 0 , correction= 0
+  var= [2, 3, 8, ]
+...(Example shortened)
+Solved IF-1 on node 3
+  bag(3): bags= 1 , exp= 0 , correction= 1
+  var= [2, 4, ]
+  edges to [4, ]
+Solved JOIN-1 on nodes 2~3
+  bag(0): bags= 1 , exp= 0 , correction= 2
+  var= [1, 2, 4, ]
+...(Example shortened)
+solveIF 0 + 1 => 0
+  bag(0): bags= 0 , exp= 0 , correction= 0
+  var= [1, 4, 7, ]
+  edges to [1, ]
+Solved IF-1 on node 0
+  bag(0): bags= 1 , exp= 0 , correction= 3
+  var= [1, 4, 7, ]
+  edges to [1, ]
+
+==== GRAPH END ====
+Entering writeJsonFile, enabled 1
+
+--- Solutions: ---
+bag 0   (from 0 to 7)
+id: 0 count: 0.25
+id: 1 count: 0
+id: 2 count: 0
+id: 3 count: 0
+id: 4 count: 0.25
+id: 5 count: 1.125
+id: 6 count: 0.375
+id: 7 count: 0.75
+...
+
+{
+    "Num Join": 1
+    ,"Num Introduce Forget": 5
+    ,"max Table Size": 13
+    ,"Model Count": 22
+    ,"Time":{
+        "Decomposing": 0
+        ,"Solving": 0.006
+        ,"Total": 0.383
+    }
+}
