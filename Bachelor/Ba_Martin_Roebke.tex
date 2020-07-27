@@ -370,7 +370,7 @@ Chapter \ref{sec:appl} shows, limited by the page size, small examples for the t
 %==============================================================================
 \section{Background}\label{sec:bg}
 In this chapter we provide a brief background for this work.\\
-We will start with a short introduction to logic and MSO in \ref{sec:MSO}. Then we describe the Boolean satisfiability problem which in it's variants is a popular application for solvers.
+We will start with a short introduction to logic and MSO in \ref{sec:MSO}. Then we describe the Boolean satisfiability problem which in its variants is a popular application for solvers.
 Then we introduce Courcelle's theorem, which describes important properties of the problems and related bounds for the solvers.
 Eventually, tree decompositions are described as a basis for dynamic programming in the next section.
 %We begin with a description on SAT and \#SAT as examples for a very general problem that can be described with monadic second order logic (MSOL).
@@ -810,9 +810,10 @@ In this section we want to give a thorough insight into the functionalities of \
 	\item If desired, the individual parts of a time step can be merged into a single SVG file.
 \end{enumerate}
 
-The programming language chosen is Python because of it's rich dependency environment, fast prototyping, simple tooling for debugging with pdb, optional static analysis with mypy, easy to follow code-style using pylint and autopep8, and modern packaging with pip and pypi.
+As a programming language we chose Python because of its rich dependency environment, fast prototyping, simple tooling for debugging with pdb, optional static analysis with mypy, easy to follow code-style using pylint and autopep8, and modern packaging with pip and pypi.
 
-Python 3.8 was the newest Python version at the beginning of the project, released on October 14th 2019. The innovation most frequently applied in this project was the f-string support for shorter and easier to read string-building. %\href{docs.python.org/3/whatsnew/3.8.html}{summary of release highlights}.
+Python 3.8 was the newest Python version at the beginning of the project. 
+%The innovation most frequently applied in this project was the f-string support for shorter and easier to read string-building. %\href{docs.python.org/3/whatsnew/3.8.html}{summary of release highlights}.
 
 The development process was for most parts of the final software driven by evolutionary prototyping with the help of small and well understood examples such as \ref{fig:g41Digraph}. It helped to understand the possibilities of visualization in this domain and gather user input and requirements early \cite{rapidPrototypingOvermyer}. Some artifacts of the early prototypes with different graph-description languages can be still seen in the class \textit{Graphoutput} in \ref{sec:chagraphoutput}.
 
@@ -865,7 +866,7 @@ The \textbf{loggers} we use in our project
 %	\item utilities.py, NOTSET
 %\end{itemize} and
 can be individually customized using a configuration file.
-%With the command line parameter \textit{-{}-loglevel} we can modify the level of \textit{root} and it's associated handlers.
+%With the command line parameter \textit{-{}-loglevel} we can modify the level of \textit{root} and its associated handlers.
 
 %============== Init ====================================================
 \subsection{Initialization and Tree Decomposition}
@@ -923,8 +924,8 @@ First, a quick setup is performed for the tree decomposition as a directed graph
 \begin{itemize}
 	\item is \textit{strict}, meaning a simple graph where equal edges are merged into one
 	\item has an orientation where it grows with each ``rank" of the nodes
-	\item has a shape and a fill-color for it's nodes
-	\item has a margin around it's bounding box.
+	\item has a shape and a fill-color for its nodes
+	\item has a margin around its bounding box.
 \end{itemize}
 
 Second, it creates the basic bag structure by adding nodes and edges for all bags of the provided tree decomposition.
@@ -999,14 +1000,14 @@ The idea is to visualize the incidence graph as a bipartite graph for clauses an
 The representation of the bipartite graphs can be adjusted in many parameters; including colors, fontsize, fillcolor and more, Listing \ref{lst:incidencedata} on page~\pageref{lst:incidencedata}.
 
 %We create the graph, add the necessary arguments and two sub-graphs. 
-%The first subgraph is called \textit{cluster\_clause} with it's label \textit{clauses}.
+%The first subgraph is called \textit{cluster\_clause} with its label \textit{clauses}.
 %We add the clauses with their clause-ids starting at one sorted in ascending order from top to bottom.
 
 %The second sub-graph we call \textit{cluster\_ivar} labeled \textit{variables} gets all variables added to it, 
 %starting from variable-id one. 
 %This sub-graph does get the different provided \textit{colors} applied to its nodes and their adjacent edges.
 
-%The last step in this method is the highlighting of ``active" parts in each time step beeing processed during it's dynamic programming. To accomplish this with as small overhead as possible, we apply and remove additional lines to the body of its graph source code. 
+%The last step in this method is the highlighting of ``active" parts in each time step beeing processed during its dynamic programming. To accomplish this with as small overhead as possible, we apply and remove additional lines to the body of its graph source code. 
 %For highlighting there are two main cases:
 %\begin{itemize}
 %	\item There is no active clause in this step: we only reset highlighting
@@ -1212,7 +1213,7 @@ The example console output produced by this call is included in \ref{lst:outputg
 %============== Graphoutput ====================================================
 \subsection{Class Graphoutput}\label{sec:chagraphoutput}
 This class does include the first steps to automatically visualize the tree decomposition of the solving process with its solutions.
-It's main funcionality can output visualizations specified in gml (Graph Modeling Language)~\cite{Himsolt2010GMLAP}. We see one small example output in Listing \ref{lst:g41digraphgml} on page~\pageref{lst:g41digraphgml} with labeled nodes and two edges. The output can be seen in Figure~\ref{fig:gmlexamplepic}.
+Its main funcionality can output visualizations specified in gml (Graph Modeling Language)~\cite{Himsolt2010GMLAP}. We see one small example output in Listing \ref{lst:g41digraphgml} on page~\pageref{lst:g41digraphgml} with labeled nodes and two edges. The output can be seen in Figure~\ref{fig:gmlexamplepic}.
 %For our example for \#SAT~\ref{lst:g41digraphdot} with the bags and respective solutions as nodes connected to the bag they solve.
 
 \begin{figure}[h]
@@ -1401,7 +1402,7 @@ To the right of each time step is the currently used subgraph marked with yellow
 	Second step solving \textbf{bag 4}\\
 	
 		\includegraphics[width=0.9\linewidth]{images/WheelGraph7/combined3.pdf}
-	\caption{First steps to solve \textit{minimal vertex cover} for example graph \ref{fig:wheelgraph} on it's TD.}
+	\caption{First steps to solve \textit{minimal vertex cover} for example graph \ref{fig:wheelgraph} on its TD.}
 	\label{fig:wheelgraphc23}
 \end{figure}
 \begin{figure}[H]
@@ -1415,7 +1416,7 @@ To the right of each time step is the currently used subgraph marked with yellow
 	\vspace{0.6em}
 	\includegraphics[width=0.9\linewidth]{images/WheelGraph7/combined5.pdf}\\
 	
-	\caption{Last steps to solve \textit{minimal vertex cover} for example graph \ref{fig:wheelgraph} on it's TD.}
+	\caption{Last steps to solve \textit{minimal vertex cover} for example graph \ref{fig:wheelgraph} on its TD.}
 	\label{fig:wheelgraphc45}
 \end{figure}
 
