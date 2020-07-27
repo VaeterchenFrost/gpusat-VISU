@@ -144,10 +144,19 @@ Dresden,  ............................. \hfill .............................
 
 
 \newpage
-
+%==============================================================================
+%============== Acknowledgments ======================================================
+%==============================================================================
+\newpage
+\section*{Acknowledgments}
+\vspace{5ex}
+I would like to thank my advisor Johannes Klaus Fichte for his professional help and introduction to the field. Together with Markus Hecher from the TU Wien they provided material, access to hardware and constructive comments during the course of the project.
+ I would like to thank my grandfather Walter Heß, who advised me in mathematical questions all my life, and my father, who brought me on the path of computer science. Last but not least I want to thank my mother, who supported me during my bachelor thesis and throughout my life. 
+ \newpage
 %==============================================================================
 %============== ABSTRACT ======================================================
 %==============================================================================
+\newpage
 \section*{Kurzfassung}
 
 \vspace{4ex}
@@ -156,7 +165,7 @@ Die Beantwortung von Fragestellungen, die sich mit Hilfe von Graphentheorie ausd
 Viele Probleme wie die boolesche Erfüllbarkeit oder Probleme im Zusammenhang mit  Verkehrsfluss können in Verbindungen und Knoten übersetzt werden.
 Wir denken, dass die Verwendung von Graph-Strukturen helfen kann, Algorithmen in diesen und anderen Bereichen weiterzuentwickeln.
 
-In den letzten Jahren hat die dynamische Programmierung auf Baumzerlegungen dazu geführt, dass neue Algorithmen und Architekturen entwickelt wurden, als in den Jahrzehnten zuvor. Dieser Ansatz erwies sich als sehr erfolgreich, wie in \cite{fichtegpusat2} diskutiert wird. Die Problemstellungen werden hier mittels Techniken aus der "parametrisierten Komplexitätstheorie" \cite[S. 2]{dpdbpadl2020} effizient gelöst.
+In den letzten Jahren hat die dynamische Programmierung auf Baumzerlegungen dazu geführt, dass neue Algorithmen und Architekturen entwickelt wurden. Dieser Ansatz erwies sich als sehr erfolgreich, wie in \cite{fichtegpusat2} diskutiert wird. Die Problemstellungen werden hier mittels Techniken aus der "parametrisierten Komplexitätstheorie" \cite[S. 2]{dpdbpadl2020} effizient gelöst.
 Da der Entwurf dynamischer Programmierung recht fehleranfällig sein kann, ist eine schnelle und unkomplizierte Visualisierung hilfreich für weitere Verbesserungen und eine Verbreitung der Methodik.\\
 
 Zur Kommunikation der Daten aus der dynamischen Programmierung
@@ -700,7 +709,7 @@ Auswirkung, Aktuelle Grenzen.
 %==============================================================================
 %============== Practical Requirements ========================================
 %==============================================================================
-\newpage
+
 \section{Practical Requirements}\label{sec:practicalreq}
 The exchange of intermediate results of solvers and parts of the visualization is done via two defined file formats. In the following two chapters we want to introduce the reader with the concepts of the DIMACS and DOT format. These formats are either produced or required as input at various stages of the application.
   
@@ -794,7 +803,7 @@ We want to introduce the reader with the attributes that are modifiable in sever
 %==============================================================================
 %============== PROJECT =======================================================
 %==============================================================================
-\newpage
+
 \section{Implementation}\label{sec:project}
 
 In this section we want to give a thorough insight into the functionalities of \textit{tdvisu}.\\
@@ -1115,7 +1124,7 @@ The list can be of different length for each parameter - if it is exhausted, the
 %==============================================================================
 %============== GPUSAT ========================================================
 %==============================================================================
-\newpage
+
 \section{Integration in gpusat}\label{sec:gpusat}
 %To study and improve the handling of the C++ program was chronologically the first task we experimented with.
 %Getting the program up and running proved to be more difficult than we envisioned due to a probable bug in the driver when running OpenCL Drivers from CUDA on the Windows OS.
@@ -1264,7 +1273,7 @@ From the main method of \textit{gpusat} we call its constructor, as well as its 
 %==============================================================================
 %============== DPDB ==========================================================
 %==============================================================================
-\newpage
+
 \section{Integration in dpdb}\label{sec:dpdb}
 {Dpdb} as a project provides a framework that allows many different problems to be solved using dynamic programming on TDs. It utilizes relational databases, and currently provided reference implementations for the problem types SAT, \#SAT and MinVC, one which is not implemented in \textit{gpusat}.
 The integration of the API with dpdb is only minimally invasive when implemented after the solving process instead of running parallel to the solver. 
@@ -1315,7 +1324,7 @@ For further details on the implementation we refer the reader to the source code
 %==============================================================================
 %============== APPLICATION ===================================================
 %==============================================================================
-\newpage
+
 \section{Application and Images}\label{sec:appl}
 
 % Appl. Sat
@@ -1584,7 +1593,6 @@ The problem was located in the version of \url{github.com/TU-Wien-DBAI/htd} used
 %==============================================================================
 %============== Conclusion ====================================================
 %==============================================================================
-\newpage
 \section{Conclusion}\label{sec:conclusion}
 %What is achieved?
 % Open source Assistant for visualizing dynamic programming on tree decompositions
@@ -1628,7 +1636,6 @@ Right now even with the \textit{svg-join} tool we need multiple files to represe
 %==============================================================================
 %============== APPENDIX ======================================================
 %==============================================================================
-\newpage
 \singlespacing
 \appendix
 %============== Images ======================================================
@@ -1641,7 +1648,7 @@ Right now even with the \textit{svg-join} tool we need multiple files to represe
 %\end{figure}
 \begin{figure}[H]
 	\centering
-	\includegraphics[height=\textheight]{images/g41digraphdot.png}
+	\includegraphics[height=0.93\textheight]{images/g41digraphdot.png}
 	\caption{Created scalable-vector-graphic directly from \ref{lst:g41digraphdot}}
 	\label{fig:g41Digraph}
 \end{figure}
