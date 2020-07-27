@@ -1199,6 +1199,14 @@ It  should be noted that this can be useful in interactively querying properties
 The integration with the API of \textit{tdvisu} is handled by this class.
 To help with the creation of valid \textit{JSON} we used the c++ library JsonCpp~\footnote{\url{github.com/open-source-parsers/jsoncpp} version 1.9.2}  from the open-source-parsers repository. 
 
+\medskip\noindent
+This class provides the generation of the required parts for the schema with only little customization. The reader is welcome to add optional parts of the schema on the basis of the existing implementation.
+We provide the API with the basic incidence graph specification and request that the primal graph is computed from it. The tree decomposition, as well as the timeline of the solver, is also added without special configuration.
+
+We call its method \textit{Visualization::tdTimelineAppend} six times in the solver with different parameters according to the state in which the solver is currently in.
+
+From the main method of \textit{gpusat} we call its constructor, as well as its methods \textit{visuClauses} to create the incidence graph and \textit{visuTreeDec} to provide the tree decomposition for the visualization. After the solving process is finished, the method \textit{writeJsonFile} is called to write the result on the disk.
+
 %==============================================================================
 %============== DPDB ==========================================================
 %==============================================================================
