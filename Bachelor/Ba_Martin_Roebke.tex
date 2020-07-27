@@ -1301,9 +1301,10 @@ Its command to collect the needed data for visualization after a \textit{dpdb} r
 	 pretty-print the JSON
 	 
 	\item
-	\textbf{-{}-inter-nodes},
-	Calculate and animate the shortest path between successive bags in the order of evaluation. To accomplish this task, an efficient implementation of the bidirectional Dijkstra's algorithm \cite{shortestPathAlgo} based on the implementation by NetworkX \cite{SciPyProceedings_11} in {bidirectional\_dijkstra}\footnote{\url{networkx.github.io/documentation/networkx-2.1/\_modules/networkx/algorithms/shortest\_paths/weighted.html\#bidirectional\_dijkstra}} was adapted.
-	In our use case the weight function is always one, as the edges have no weight associated with them.
+	\textbf{-{}-inter-nodes}
+	Calculate and animate the shortest path between successive bags in the order of evaluation. 
+%	To accomplish this task, an efficient implementation of the bidirectional Dijkstra's algorithm \cite{shortestPathAlgo} based on the implementation by NetworkX \cite{SciPyProceedings_11} in {bidirectional\_dijkstra}\footnote{\url{networkx.github.io/documentation/networkx-2.1/\_modules/networkx/algorithms/shortest\_paths/weighted.html\#bidirectional\_dijkstra}} was adapted.
+%	In our use case the weight function is always one, as the edges have no weight associated with them.
 \end{itemize}
 %After the arguments are parsed by \href{docs.python.org/3/library/argparse.html}{Pythons argparse} it is possible to adjust logging output by either providing a configuration file (\href{github.com/VaeterchenFrost/tdvisu/blob/master/tdvisu/logging.yml}{template} provided) or giving a minimal logging level per program argument.
 
