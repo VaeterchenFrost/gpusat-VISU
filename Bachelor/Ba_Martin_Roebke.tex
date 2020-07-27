@@ -152,20 +152,16 @@ Dresden,  ............................. \hfill .............................
 
 Answering questions that can be expressed using graph theory is increasingly interesting in scientific work.
 Many problems like Boolean satisfiability or traffic related problems can be translated into connections and nodes.
-We think that the use of graph structures can help to further develop algorithms in different areas.
+We think that the use of graph structures can help to further develop algorithms in those and other areas.
 
-The algorithms we visualize in this thesis use dynamic programming on tree decompositions of graphs.
-We preprocess the input graph into a customized tree-decomposition of small tree-width.
-This gives us a description of the processing sequence for the algorithm, and allows 
-with right hindsight for good parallelization while keeping the solving times competitive even on on larger instances.
+In the recent years with dynamic programming on tree decompositions, new algorithms and architectures were used than in the decades before. This approach proved to be very successful as discussed in \cite{fichtegpusat2} tackling the problems with techniques from parameterized complexity \cite[p. 2]{dpdbpadl2020}.
 
-Since the design of dynamic programming can be quite error-prone, a fast and uncomplicated visualization is needed for the solution process.
+Since the design of dynamic programming can be quite error-prone, a fast and uncomplicated visualization is helpful for further improvements and wider adoption.
 
 To help further refine and visualize the dynamic programming,
-we specified a JSON template for communication between solvers and the newly created visualization tool {tdvisu}.
+we specified a JSON template for communication between solvers and the newly created visualization tool \textit{tdvisu}.
 
 As two reference implementations of dynamic programming on tree decompositions we selected the existing solvers {gpusat}\footnote{gpusat is available under GPL3 license at \url{github.com/Budddy/GPUSAT}} and {dpdb}\footnote{dpdb is available under GPL3 license at \url{github.com/hmarkus/dpondbs}}.\\
-
 
 As a side note: \\
 Of course, the information we visualize is located in the respective solver and could be extracted as text. But as the saying goes, ``one picture is worth 100 spreadsheets".
@@ -227,7 +223,7 @@ So our main research questions we want to answer with this thesis are:
 	\item How could an implementation of visualization in existing solvers look like?
 \end{enumerate}
 \noindent
-To answer these questions we have implemented TDVisu, a visualization software based on {Graphviz}. 
+To answer these questions we have implemented \textit{tdvisu}, a visualization software based on {Graphviz}. 
 Our proposed solution is inspired by previous manual visualizations like the two examples in Figure \ref{fig:prevvisus}.
 \begin{figure}[h]
 	
@@ -242,7 +238,7 @@ Our proposed solution is inspired by previous manual visualizations like the two
 	\label{fig:prevvisus}
 \end{figure}
 
-The Figure \ref{fig:overviewprog} shows a draft of the process creating the visualization with TDVisu.
+The Figure \ref{fig:overviewprog} shows a draft of the process creating the visualization with \textit{tdvisu}.
 
 \begin{figure}
 	\centering
@@ -256,16 +252,21 @@ The Figure \ref{fig:overviewprog} shows a draft of the process creating the visu
 %============== Outline ====================================================
 \subsection{Methodology}
 
-The algorithms whose runs we visualize basically work so that the input graph is used to find the best possible processing sequence adapted to the hardware.
-With this order it is known which parts of the problem can be solved separately, and which intermediate results have to be stored and for how long. To visualize these algorithms for different problem types, we need to be flexible enough with the data we process for visualization. To accomplish this, we almost everywhere expect simple text to be included in various places. Mostly the internal identifiers for nodes or variables in Boolean formulas are not processed based on strings, but on integers.\\
+The algorithms we visualize in this thesis use dynamic programming on tree decompositions of graphs.
+They preprocess the input graph into a customized tree-decomposition of small tree-width.
+This gives the solvers a description of the processing sequence, and allows 
+with right hindsight for good parallelization.
 
-The graphs are assembled using the object-oriented style of the Python interface\footnote{\url{pypi.org/project/graphviz/}} to Graphviz.
+The algorithms whose runs we visualize basically work so that the input graph is used to find the best possible processing sequence adapted to the hardware.
+With this description it is known which parts of the problem can be solved separately, and which intermediate results have to be stored and for how long. To visualize these algorithms for different problem types, we need to be flexible enough with the data we process for visualization. To accomplish this task, we almost everywhere expect simple text to be included in various places. Only the internal identifiers for nodes or variables in Boolean formulas are not processed based on strings, but on integers.\\
 
 For our visualizations we chose {Graphviz}\footnote{\url{graphviz.org/}} as an open source graph visualization software, which offers customizable visualization for directed and undirected graphs.
 
-The tree decompositions in every tested application were provided by the utility {htd} (small but efficient C++ library for computing (customized) tree and hypertree decompositions) \cite{htd}.
+The graphs that were used in solving the problem are assembled using the object-oriented style of the Python interface\footnote{\url{pypi.org/project/graphviz/}} to Graphviz.
 
-The source code for TDVisu is available under the GPL3 license \\on
+The tree decompositions in each tested application were provided by the utility {htd} (small but efficient C++ library for computing (customized) tree and hypertree decompositions) \cite{htd}.
+
+The source code for \textit{tdvisu} is available under the GPL3 license \\on
 \mbox{ \url{github.com/VaeterchenFrost/tdvisu}}. Our tool is written in Python and published on pypi.
 
 We defined a {JSON}-format specification for portability and customization of the visualization in one file and two reference implementations in practical solvers.\\
@@ -763,9 +764,9 @@ We want to introduce the reader with the attributes that are modifiable in sever
 \newpage
 \section{Implementation}\label{sec:project}
 
-In this section we want to give a thorough insight into the functionalities of TDVisu.\\
+In this section we want to give a thorough insight into the functionalities of \textit{tdvisu}.\\
 
-\noindent As a rough overview our software TDVisu works as follows:
+\noindent As a rough overview our software \textit{tdvisu} works as follows:
 
 \begin{enumerate}
 	\item We generate data using a special solver extension or extra programs and extract arguments for the visualization into one file following our JSON schema.
@@ -1076,7 +1077,7 @@ The integration of visualization into the C++ based \url{github.com/daajoe/GPUSA
 
 The first part is mostly included in the class \textit{Graphoutput}, and includes several experimental steps into visualization. This class has 186 lines of code (LOC) in its source file, and 44 lines of code in its header file.
 
-The second part was done in the class \textit{Visualization}, and fulfills the API to \textit{TDVisu}. This class consists of 203 LOC in its source file, and 86 LOC in its header file.
+The second part was done in the class \textit{Visualization}, and fulfills the API to \textit{tdvisu}. This class consists of 203 LOC in its source file, and 86 LOC in its header file.
 
 The integration into the existing classes from \textit{gpusat} is listed in Tab.~\ref{tab:loc}. 
 \begin{table}[h]
