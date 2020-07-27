@@ -1,11 +1,12 @@
 % !TeX spellcheck = en_US
 % Paperformat
 % tex.stackexchange.com/questions/428553/add-bibliography-as-part-instead-of-chapter-in-toc
-\documentclass[a4paper, 12pt, bibliography=totoc]{scrartcl}
+\documentclass[a4paper, 12pt, bibliography=totoc, times]{scrartcl}
 \usepackage{setspace}
 \renewcommand{\baselinestretch}{1.3} 
 %\usepackage{cite}
 \usepackage{ragged2e}
+
 \usepackage{url}
 \usepackage{bm} % bold math
 \usepackage{nccmath} % medium fraction with mfrac 
@@ -148,23 +149,28 @@ Dresden,  ............................. \hfill .............................
 %============== ABSTRACT ======================================================
 %==============================================================================
 \section*{Abstract}
+
 \vspace{4ex}
 
 Answering questions that can be expressed using graph theory is increasingly interesting in scientific work.
 Many problems like Boolean satisfiability or traffic related problems can be translated into connections and nodes.
 We think that the use of graph structures can help to further develop algorithms in those and other areas.
 
-In the recent years with dynamic programming on tree decompositions, new algorithms and architectures were used than in the decades before. This approach proved to be very successful as discussed in \cite{fichtegpusat2} tackling the problems with techniques from parameterized complexity \cite[p. 2]{dpdbpadl2020}.
-
-Since the design of dynamic programming can be quite error-prone, a fast and uncomplicated visualization is helpful for further improvements and wider adoption.
+In recent years, dynamic programming on tree decompositions has resulted in the development of new algorithms and architectures than those developed in the decades before. This approach proved to be very successful as discussed in \cite{fichtegpusat2} tackling the problems with techniques from parameterized complexity \cite[p. 2]{dpdbpadl2020}.
+Since the design of dynamic programming can be quite error-prone, a fast and uncomplicated visualization is helpful for further improvements and wider adoption.\\
 
 To help further refine and visualize the dynamic programming,
-we specified a JSON template for communication between solvers and the newly created visualization tool \textit{tdvisu}.
+we specified a JSON template for communication between solvers and the newly created visualization tool \textit{tdvisu}.\\
 
-As two reference implementations of dynamic programming on tree decompositions we selected the existing solvers {gpusat}\footnote{gpusat is available under GPL3 license at \url{github.com/Budddy/GPUSAT}} and {dpdb}\footnote{dpdb is available under GPL3 license at \url{github.com/hmarkus/dpondbs}}.\\
+For two reference implementations of dynamic programming of tree decompositions we chose {gpusat}\footnote{gpusat is available under GPL3 license at \url{github.com/Budddy/GPUSAT}} and {dpdb}\footnote{dpdb is available under GPL3 license at \url{github.com/hmarkus/dpondbs}} as modern solvers on two very different architectures.\\
 
-As a side note: \\
-Of course, the information we visualize is located in the respective solver and could be extracted as text. But as the saying goes, ``one picture is worth 100 spreadsheets".
+
+\paragraph{Keywords:}
+\textit{Dynamic Programming, Visualization, Graphs, \\
+Tree Decomposition, JSON-Schema, Parameterized Algorithmics 
+}\leftskip=1.6cm \rightskip=1cm
+
+\leftskip=0pt\rightskip=0pt
 
 
 %  table
@@ -331,6 +337,9 @@ Current advancements in dynamic programming on tree-decompositions itself can be
 The rest of the thesis is structured as follows: \\
 Chapter \ref{sec:bg} gives the reader the necessary background for this thesis. In Chapter \ref{sec:project}, we describe our approach to the visualization and the functionalities of the software. Next, Chapter \ref{sec:gpusat} describes the integration of \textit{tdvisu} in the solver \textit{gpusat}~\cite{DiplomarbeitZisser}. In Chapter \ref{sec:dpdb}, we describe the integration with the database-based solver \textit{dpdb}~\cite{dpdbpadl2020}.
 Chapter \ref{sec:appl} shows, limited by the page size, small examples for the tested use cases of visualization, starting with a \textit{SAT} example, then a \textit{\#SAT} problem visualized, followed by a \textit{minimal-vertex-cover} example. After these three use cases we show the possibilities of joining single result images together. Finally the chapter closes with a subsection on how our tool can be used for successful debugging. In Chapter \ref{sec:conclusion} of this thesis we give a summary of our work and hints for future progress.
+
+{\small{Side note:}
+	Of course, the information we visualize is located in the respective solver and could be extracted as text. But as the saying goes, ``one picture is worth 100 spreadsheets". }
 
 %==============================================================================
 %============== BACKGROUND ====================================================
