@@ -720,20 +720,20 @@ The exchange of intermediate results from solvers and parts of the visualization
 
 Inputs for solvers and in some cases for preparing the visualization of dpdb are usually in a DIMACS format. There exist several standardized formats for different cases, for example CNF clauses, graph edges and graph decompositions.
 Several file formats for these purposes were developed at ``DIMACS" (the Center for Discrete Mathematics and Theoretical Computer Science) \cite{dimacsimplcha} beginning in 1993 at Rutgers University.
-They are also partly supported in several math-related software.
+They are also partly supported in several math-related software like \textit{MATLAB}~\cite{matlabcnf}, \textit{Maple}\footnote{\url{www.maplesoft.com/support/help/maple/view.aspx?path=Formats/CNF}} or \textit{Mathematica}\footnote{\url{reference.wolfram.com/language/ref/format/DIMACS.html}}.
 
-The underlying concept is one line-based ASCII file and for all different formats specifies comments as lines starting with the character ``c", a problem line starting with ``p" (rarely with ``s") and following the problem line usually multiple lines specifying the data in a format depending on the problem type.
+The underlying concept is a line-based ASCII file. For all different formats we read comments as lines starting with the character ``c", a problem line starting with ``p" (rarely with ``s"). Following then the problem line and usually multiple lines specifying the data in a format depending on the problem type.
 The formats used for this work are:
 
-\textbf{DIMACS CNF}: This format is used to define a Boolean expression, written in conjunctive normal form. The problem line specifies the type, \textbf{number of variables} and \textbf{number of clauses}. The following lines specify the clauses a positive literal is denoted by the corresponding number, and a negative literal is denoted by the corresponding negative number. Each clause is followed by the character zero, so 0 should not occur as a variable. Instead variables are expected to start at one.\\
+\paragraph{DIMACS CNF}: This format is used to define a Boolean expression, written in conjunctive normal form. The problem line specifies the type, \textbf{number of variables} and \textbf{number of clauses}. The following lines specify the clauses a positive literal is denoted by the corresponding number, and a negative literal is denoted by the corresponding negative number. Each clause is followed by the character zero, so 0 should not occur as a variable. Instead variables are expected to start at one.
 
-\textbf{DIMACS tw}: This format is used to describe a single undirected graph. The problem line specifies the type, \textbf{number of nodes} and \textbf{number of edges}. The following lines specify the edges with two nodes separated by a space.\\
+\paragraph{DIMACS tw}: This format is used to describe a single undirected graph. The problem line specifies the type, \textbf{number of nodes} and \textbf{number of edges}. The following lines specify the edges with two nodes separated by a space.
 
-\textbf{DIMACS td}: This format is used to describe a tree decomposition. The problem line specifies the type, \textbf{number of bags}, \textbf{maximum size of the bags} and \textbf{number of nodes}. The following lines describe the bags starting for each with ``b", the \textbf{bag number} and \textbf{nodes in this bag}. Following these bags are lines not prefixed with a ``b". Now each line describes one \textbf{edge between the bags} as two bag numbers separated by a space.\\
+\paragraph{DIMACS td}: This format is used to describe a tree decomposition. The problem line specifies the type, \textbf{number of bags}, \textbf{maximum size of the bags} and \textbf{number of nodes}. The following lines describe the bags starting for each with ``b", the \textbf{bag number} and \textbf{nodes in this bag}. Following these bags are lines not prefixed with a ``b". Now each line describes one \textbf{edge between the bags} as two bag numbers separated by a space.\\
 
 %Supported also in Maple \url{www.maplesoft.com/support/help/maple/view.aspx?path=Formats/CNF}
-
-Some examples of this format can be seen in the appendix on page~\pageref{app:input}.
+\noindent
+Examples of this format can be seen in the appendix on page~\pageref{app:input}.
 
 %============== DOT ====================================================
 \subsection{DOT format}
@@ -805,7 +805,7 @@ We want to introduce the reader with the attributes that are modifiable in sever
 %==============================================================================
 %============== PROJECT =======================================================
 %==============================================================================
-
+\newpage
 \section{Implementation}\label{sec:project}
 
 In this section we want to give a thorough insight into the functionalities of \textit{tdvisu}.\\

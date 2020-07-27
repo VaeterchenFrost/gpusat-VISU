@@ -56,52 +56,58 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {subsection}{\numberline {3.1}DIMACS format}{21}{subsection.3.1}%
 \defcounter {refsection}{0}\relax 
+\contentsline {paragraph}{\nonumberline DIMACS CNF}{22}{section*.23}%
+\defcounter {refsection}{0}\relax 
+\contentsline {paragraph}{\nonumberline DIMACS tw}{22}{section*.24}%
+\defcounter {refsection}{0}\relax 
+\contentsline {paragraph}{\nonumberline DIMACS td}{22}{section*.25}%
+\defcounter {refsection}{0}\relax 
 \contentsline {subsection}{\numberline {3.2}DOT format}{22}{subsection.3.2}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {4}Implementation}{24}{section.4}%
+\contentsline {section}{\numberline {4}Implementation}{25}{section.4}%
 \defcounter {refsection}{0}\relax 
 \contentsline {subsection}{\numberline {4.1}Commandline and Configuration}{25}{subsection.4.1}%
 \defcounter {refsection}{0}\relax 
 \contentsline {subsection}{\numberline {4.2}Initialization and Tree Decomposition}{26}{subsection.4.2}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {4.3}Visualizing Additional Graphs}{28}{subsection.4.3}%
+\contentsline {subsection}{\numberline {4.3}Visualizing Additional Graphs}{29}{subsection.4.3}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {4.4}Incidence Graph}{29}{subsection.4.4}%
+\contentsline {subsection}{\numberline {4.4}Incidence Graph}{30}{subsection.4.4}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {4.5}General Graph}{30}{subsection.4.5}%
+\contentsline {subsection}{\numberline {4.5}General Graph}{31}{subsection.4.5}%
 \defcounter {refsection}{0}\relax 
 \contentsline {subsection}{\numberline {4.6}Joining SVG}{32}{subsection.4.6}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {5}Integration in gpusat}{33}{section.5}%
+\contentsline {section}{\numberline {5}Integration in gpusat}{34}{section.5}%
 \defcounter {refsection}{0}\relax 
 \contentsline {subsection}{\numberline {5.1}Class Graphoutput}{35}{subsection.5.1}%
 \defcounter {refsection}{0}\relax 
 \contentsline {subsection}{\numberline {5.2}Class Visualization}{36}{subsection.5.2}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {6}Integration in dpdb}{36}{section.6}%
+\contentsline {section}{\numberline {6}Integration in dpdb}{37}{section.6}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {7}Application and Images}{37}{section.7}%
+\contentsline {section}{\numberline {7}Application and Images}{38}{section.7}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {7.1}SAT Example}{37}{subsection.7.1}%
+\contentsline {subsection}{\numberline {7.1}SAT Example}{38}{subsection.7.1}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {7.2}\#SAT Example}{43}{subsection.7.2}%
+\contentsline {subsection}{\numberline {7.2}\#SAT Example}{44}{subsection.7.2}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {7.3}Vertex Cover Example}{45}{subsection.7.3}%
+\contentsline {subsection}{\numberline {7.3}Vertex Cover Example}{46}{subsection.7.3}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {7.4}SVG Join Example}{48}{subsection.7.4}%
+\contentsline {subsection}{\numberline {7.4}SVG Join Example}{49}{subsection.7.4}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {7.5}Visualization of Defects}{55}{subsection.7.5}%
+\contentsline {subsection}{\numberline {7.5}Visualization of Defects}{56}{subsection.7.5}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {8}Conclusion}{56}{section.8}%
+\contentsline {section}{\numberline {8}Conclusion}{57}{section.8}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {8.1}Summary}{56}{subsection.8.1}%
+\contentsline {subsection}{\numberline {8.1}Summary}{57}{subsection.8.1}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {8.2}Future Work}{57}{subsection.8.2}%
+\contentsline {subsection}{\numberline {8.2}Future Work}{58}{subsection.8.2}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {A}Images}{59}{appendix.A}%
+\contentsline {section}{\numberline {A}Images}{60}{appendix.A}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {B}Code Snippets}{66}{appendix.B}%
+\contentsline {section}{\numberline {B}Code Snippets}{67}{appendix.B}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {C}More Examples}{73}{appendix.C}%
+\contentsline {section}{\numberline {C}More Examples}{74}{appendix.C}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\nonumberline References}{81}{section*.64}%
+\contentsline {section}{\nonumberline References}{82}{section*.67}%
