@@ -259,7 +259,7 @@ For our visualizations we chose {Graphviz}\footnote{\url{https://graphviz.org/}}
 The tree decompositions in every tested application were provided by the utility \href{https://github.com/mabseher/htd}{htd} (small but efficient C++ library for computing (customized) tree and hypertree decompositions) \cite{htd}.\\
 
 The source code for TDVisu is available under the GPL3 license \\on
-\mbox{ \url{github.com/VaeterchenFrost/tdvisu}}. Our tool is written in python and published on pypi.\\
+\mbox{ \url{github.com/VaeterchenFrost/tdvisu}}. Our tool is written in Python and published on pypi.\\
 
 We defined a \href{https://www.json.org/json-en.html}{JSON}-format specification for portability and customization of the visualization in one file and two reference implementations in practical solvers.\\
 It is explained in more detail in the implementation chapter, or directly in the \textit{tdvisu/TDVisu.schema.json} file, a JSON-schema \footnote{\url{http://json-schema.org/draft-07/schema}} with examples and an almost complete validation of the format.\\
@@ -270,7 +270,7 @@ The visualization output consists by default of scalable-vector-graphics (SVG), 
 
 %My previous experiences with the topic of this work mainly come from these two courses:
 %\begin{itemize}
-%	\item ``Computational Physics" - visualizing with python and matplotlib, by Prof. Dr. A. Bäcker,
+%	\item ``Computational Physics" - visualizing with Python and matplotlib, by Prof. Dr. A. Bäcker,
 %	chair of computational physics, TU Dresden 2016
 %	\item ``Graph Data Management and Analytics" - algorithms and various manipulations on graphs, by Hannes Voigt in 2019. \cite{VLGDMA}
 %\end{itemize}
@@ -773,7 +773,7 @@ In this section we want to give a thorough insight into the functionalities of T
 
 The programming language chosen is Python because of it's rich dependency environment, fast prototyping, simple tooling for debugging with pdb, optional static analysis with mypy, easy to follow code-style using pylint and autopep8, and modern packaging with pip and pypi.
 
-Python 3.8 was the newest python version at the beginning of the project, released on October 14th 2019. The innovation most frequently applied in this project was the f-string support for shorter and easier to read string-building. %\href{https://docs.python.org/3/whatsnew/3.8.html}{summary of release highlights}.
+Python 3.8 was the newest Python version at the beginning of the project, released on October 14th 2019. The innovation most frequently applied in this project was the f-string support for shorter and easier to read string-building. %\href{https://docs.python.org/3/whatsnew/3.8.html}{summary of release highlights}.
 
 The development process was for most parts of the final software driven by evolutionary prototyping with the help of small and well understood examples such as \ref{fig:g41Digraph}. It helped to understand the possibilities of visualization in this domain and gather user input and requirements early \cite{rapidPrototypingOvermyer}. Some artifacts of the early prototypes with different graph-description languages can be still seen in the class \textit{Graphoutput} in \ref{chagraphoutput}.
 
@@ -806,7 +806,7 @@ The \textit{tdvisu.visualization} expects the command line parameters in a forma
 
 We see that this input is very simple, and that the heavy lifting is done with the input file given in \textit{infile}.
 
-One extra possibility for configuration comes with the method \textbf{logging\_cfg} from {tdvisu.utilities}. There are two example configurations provided with our project, one in the .yml, one in the .ini format. The implementation is very flexible in detecting which parser has to be applied - either via a dictionary-like or a configuration-like function. Both possibilities are documented in python's \href{https://docs.python.org/3/library/logging.config.html#logging-config-api}{logging configuration}.
+One extra possibility for configuration comes with the method \textbf{logging\_cfg} from {tdvisu.utilities}. There are two example configurations provided with our project, one in the .yml, one in the .ini format. The implementation is very flexible in detecting which parser has to be applied - either via a dictionary-like or a configuration-like function. Both possibilities are documented in Python's \href{https://docs.python.org/3/library/logging.config.html#logging-config-api}{logging configuration}.
 
 Our default configuration in tdvisu/logging.yml and tdvisu/logging.ini provides one handler, two formatters and six loggers.
 
@@ -1201,16 +1201,17 @@ To simplify the creation of valid json we selected the actively developed c++ li
 %==============================================================================
 \newpage
 \section{Integration in dpdb}\label{sec:dpdb}
-The integration of the API with dpdb was easier to implement after the solving process instead of hooking into the solving, 
-provided that all necessary information got persisted in the database.
-The integration is included in the TDVisu project as a separate python file.
-A complete workflow can be accomplished using the arguments
+\textit{Dpdb} as a project provides a framework that allows many different problems to be solved using dynamic programming on TDs. It utilizes relational databases, and currently provided reference implementations for the problem types SAT, \#SAT and MinVC, one which is not implemented in \textit{gpusat}.
+The integration of the API with dpdb is only minimally invasive when implemented after the solving process instead of running parallel to the solver. 
+The only interference to the solving process is, that all necessary information has to be persisted in the database.
+The integration is included in our \textit{tdvisu} project as a separate Python file.
+A complete workflow was accomplished using the arguments
 \begin{itemize}
 	\item -{}-store-formula as a problem specific option for Sat and SharpSat
 	\item -{}-gr-file GR\_FILE for problems like VertexCover with graph input 
 \end{itemize}
-when calling dpdb.py\\
-The integration for SharpSat was the first implemented in the file \textit{construct\_dpdb\_visu.py} with
+when calling \textit{dpdb.py}.\\
+Our program consists of the file \textit{construct\_dpdb\_visu.py} with the Postgres
 the main parameters
 
 \begin{itemize}
@@ -1239,7 +1240,7 @@ the main parameters
 	Calculate and animate the shortest path between successive bags in the order of evaluation. To accomplish this task, an efficient implementation of the bidirectional Dijkstra's algorithm \cite{shortestPathAlgo} based on the implementation by NetworkX \cite{SciPyProceedings_11} in \href{https://networkx.github.io/documentation/networkx-2.1/reference/algorithms/generated/networkx.algorithms.shortest_paths.weighted.bidirectional_dijkstra.html#networkx.algorithms.shortest_paths.weighted.bidirectional_dijkstra}{bidirectional\_dijkstra} was adapted.
 	In our use case the weight function is always one, as the edges have no weight associated with them.
 \end{itemize}
-After the arguments are parsed by \href{https://docs.python.org/3/library/argparse.html}{pythons argparse} it is possible to adjust logging output by either providing a configuration file (\href{https://github.com/VaeterchenFrost/tdvisu/blob/master/tdvisu/logging.yml}{template} provided) or giving a minimal logging level per program argument.
+After the arguments are parsed by \href{https://docs.python.org/3/library/argparse.html}{Pythons argparse} it is possible to adjust logging output by either providing a configuration file (\href{https://github.com/VaeterchenFrost/tdvisu/blob/master/tdvisu/logging.yml}{template} provided) or giving a minimal logging level per program argument.
 
 Next the \textit{create\_json}~\ref{lst:create-json} function connects to the database driver with the number of the stored problem. 
 The ``problem type" is available as a string in table \emph{public.problem}, and the appropriate class to prepare the json will be instantiated. Currently the solver handles the problems of \textit{satisfiability} (Sat), \textit{count solutions to a Boolean formula} (SharpSat) as well as \textit{minimum vertex cover} (VertexCover).
