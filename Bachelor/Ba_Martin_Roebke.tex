@@ -1283,7 +1283,7 @@ As a first complete visualization output we show the full output of checking the
 	\label{fig:DA4SAT_TDStep6}
 \end{figure}
 \medskip\noindent
-In the following Figure~\ref{fig:DA4SATadditional} we see the first two visualizations for incidence and primal graph with highlights corresponding to the same run as before. The first step has no highlighting, but we can compare the processed Boolean formula indicated with the clauses as nodes sorted on the left-hand side. The edges either are solid lines or starting with a little circle that indicates the negation of the connected variable at the right-hand side in this clause. The nodes in the variables have three states. As this run operated on the primal graph, there are only variables collected in the bags. When calculating the solutions we do however need whole clauses to be processed together, so additional variables are emphasized. \\
+In the following Figure~\ref{fig:DA4SATadditional} we see the first two visualizations for incidence and primal graph with highlights corresponding to the same run as before. The first step has no highlighting, but we can compare the processed Boolean formula indicated with the clauses as nodes sorted on the left-hand side. The edges either are solid lines or starting with a little circle that indicates the negation of the connected variable at the right-hand side in this clause. The nodes in the variables have three states. As this run operated on the primal graph, there are only variables collected in the bags. When calculating the solutions we do however need whole clauses to be processed together, so additional variables are emphasized. The three states are \textit{1) not included} in any clause needed, \textit{2) indirectly included} emphasized with a dotted border and yellow highlighting in the incidence graph, and \textit{3) directly included} in the bag emphasized in yellow and solid border. \\
 The primal graph is also calculated directly from the Boolean formula and shows one of the same three states for each variable in its own layout.
 \begin{figure}[H]
 	\setkeys{Gin}{width=\linewidth,height=0.45\textheight,keepaspectratio}
@@ -1299,16 +1299,16 @@ The primal graph is also calculated directly from the Boolean formula and shows 
 
 % Appl. SharpSat
 \subsection{\#SAT Example}
-Like the previous example section we are interested in solutions to example \ref{ex:example41}. This time we want to solve \#SAT and count the number of solutions, that is the number of satisfying assignments. While the tree decomposition and SAT formula stay the same, we can add one column to our solution-tables compared to pure SAT solving and label this column \textit{mc} for "\textit{model-count}". We also included a footer with the API to display the sum of all models considered up to this bag.
+Like the previous example section we are interested in solutions to example \ref{ex:example41}. This time we want to solve \#SAT and count the number of solutions, that is the number of satisfying assignments. While the tree decomposition and SAT formula stay the same, the solver added one column to our solution-tables and label this column \textit{mc} for "\textit{model-count}", compared to pure SAT solving. It also included a footer with the API to display the sum of all models considered up to this bag. We see two time steps, beginning and end of the run, in Figures~\ref{fig:DA4TDStep2}, \ref{fig:DA4TDStep6}. Again, the empty top of the reserved space is cut out of the images compared to the direct output.
 \begin{figure}[H]
 	\centering
 	\includegraphics[height=0.6\textheight]{images/DA4/TDStep2.pdf}
-	\caption{Tree decomposition for solving example \ref{ex:example41} with yellow highlighting of the solution for the first leaf.}
+	\caption{Tree decomposition for solving example \ref{ex:example41} with yellow highlighting of the solution for the first leaf.}\label{fig:DA4TDStep2}
 \end{figure}
 \begin{figure}[H]
 	\centering
 	\includegraphics[height=0.9\textheight]{images/DA4/TDStep6.pdf}
-	\caption{Tree decomposition for solving example \ref{ex:example41}. The highlighted bag 1 points to the solution of the problem, containing 22 solutions and satisfying variable assignments for $v_{1},v_{2},v_{5}$ contained in \textit{sol bag 1}.}
+	\caption{Tree decomposition for solving example \ref{ex:example41}. The highlighted bag 1 points to the solution of the problem, containing 22 solutions and satisfying variable assignments for $v_{1},v_{2},v_{5}$ contained in \textit{sol bag 1}.}\label{fig:DA4TDStep6}
 \end{figure}
 % Appl. VC
 \subsection{Vertex Cover Example}\label{sec:minvc}
