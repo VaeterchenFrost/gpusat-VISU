@@ -1184,17 +1184,20 @@ It's main funcionality can output visualizations specified in gml (Graph Modelin
 Additional methods exist so we could evaluate the possibilities of using graph-databases like Neo4j~\cite{graphdatabases}.
 It is possible to create visualizations of the initial situation for CNF Clauses and the computed tree decomposition of the primal graph as two \textit{Neo4j Cypher}\footnote{\url{neo4j.com/docs/cypher-refcard/current/}} queries constructing:
 \begin{itemize}[label=-]
-	\item one graph representing the SAT formula and queries to construct incidence, dual and primal representations
+	\item one graph representing the SAT formula and queries to construct incidence, dual and primal representations in method \textit{Graphoutput::neo4jSat}
 %	output as satFile = ``cypherSatFormula.txt"
-	\item one graph representing the tree decomposition of the primal graph.
+	\item one graph representing the tree decomposition of the primal graph. This happens in method \textit{Graphoutput::neo4jTD}.
 %	output as tdFile = ``cypherTreedec.txt"
 \end{itemize}
+
+While these representations can be helpful in visualizing small parts of the results using the tools available, we did prefer more direct access to the layout and style via the methods described in this thesis.\\
+It  should be noted that this can be useful in interactively querying properties of the results, something that our current solution using DOT and SVG as output does not provide.
 
 %============== Visualization ====================================================
 \subsection{Class Visualization}
 
-To include the extraction of all necessary visualization information into the solver we created a separate fork.
-To simplify the creation of valid json we selected the actively developed c++ library JsonCpp \url{github.com/open-source-parsers/jsoncpp} version 1.9.2 from the open-source-parsers repository.
+The integration with the API of \textit{tdvisu} is handled by this class.
+To help with the creation of valid \textit{JSON} we used the c++ library JsonCpp~\footnote{\url{github.com/open-source-parsers/jsoncpp} version 1.9.2}  from the open-source-parsers repository. 
 
 %==============================================================================
 %============== DPDB ==========================================================
