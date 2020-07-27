@@ -442,7 +442,7 @@ A literal is a Boolean variable $v$ or its negation $\neg v$. A $clause$ is a fi
 \end{example}
 \vskip 12pt
 The formula $C$ is for example satisfied by the assignment that maps all variables $var(C)\rightarrow 1$ to $1$. 
-All 22 satisfying assignments can be seen in Table~\ref{tab:ex41tabx} on page \pageref{tab:ex41tabx}.\\
+All 22 satisfying assignments can be seen in Table~\ref{tab:ex41tabx} on page~\pageref{tab:ex41tabx}.\\
 
 The Boolean satisfiability problem \textbf{SAT} consists of the question: Given a propositional formula $\phi$, is there an assignment of the variables in $\phi$ for which $\phi$ is satisfied?
 The \textbf{\#SAT} problem consists of the question: Given a propositional formula $\pi$, for how many assignments of the variables in $\pi$ is $\pi$ satisfied?\\
@@ -683,7 +683,7 @@ The formats used for this work are:
 
 %Supported also in Maple \url{https://www.maplesoft.com/support/help/maple/view.aspx?path=Formats/CNF}
 
-Some examples of this format can be seen in the appendix on page \pageref{app:input}.
+Some examples of this format can be seen in the appendix on page~\pageref{app:input}.
 
 %============== DOT ====================================================
 \subsection{DOT format}
@@ -845,9 +845,9 @@ Next we want to extract information into several objects:
 	\end{itemize}
 	\item The \textit{VisualizationData} object containing the data for 
 	\begin{itemize}
-		\item IncidenceGraphData in Listing~\ref{lst:incidencedata} p. \pageref{lst:incidencedata}
-		\item GeneralGraphData in \ref{lst:gengraphdata} p. \pageref{lst:gengraphdata}
-		\item SvgJoinData in \ref{lst:svgjoindataclass} p. \pageref{lst:svgjoindataclass}
+		\item IncidenceGraphData in Listing~\ref{lst:incidencedata} p.~\pageref{lst:incidencedata}
+		\item GeneralGraphData in \ref{lst:gengraphdata} p.~\pageref{lst:gengraphdata}
+		\item SvgJoinData in \ref{lst:svgjoindataclass} p.~\pageref{lst:svgjoindataclass}
 		\item adjustable parameters, which influence additional aspects of the visualization
 	\end{itemize}
 \end{itemize}
@@ -889,9 +889,9 @@ First, a quick setup is performed for the tree decomposition as a directed graph
 Second, it creates the basic bag structure by adding nodes and edges for all bags of the provided tree decomposition.
 
 Next comes the iteration over the requested time steps, adding the provided solutions and the edges connecting them to the existing bags. We do this in two passes.  A first one in which we move all nodes to their final position. A special case occurs when two bags are joined together.
-In this case, we remove all old edges between the children and the parent node, add the result to the graph, and add edges from the children to the result and from the result to the parent node. Details of this step can be seen in Listing~\ref{lst:forward-iterate} on page \pageref{lst:forward-iterate}. And one in which we create the actual time step images backwards by masking solutions calculated later. The goal is to have all parts of the graph in optimal position when they first appear, and not to move when additional features are added. For details of these steps, see the Listing \ref{lst:backward-iterate} on page \pageref{lst:backward-iterate}.\\
+In this case, we remove all old edges between the children and the parent node, add the result to the graph, and add edges from the children to the result and from the result to the parent node. Details of this step can be seen in Listing~\ref{lst:forward-iterate} on page~\pageref{lst:forward-iterate}. And one in which we create the actual time step images backwards by masking solutions calculated later. The goal is to have all parts of the graph in optimal position when they first appear, and not to move when additional features are added. For details of these steps, see the Listing \ref{lst:backward-iterate} on page~\pageref{lst:backward-iterate}.\\
 
-An automatically inserted join node is shown in Figure~\ref{fig:g41Digraph} on page \pageref{fig:g41Digraph}.
+An automatically inserted join node is shown in Figure~\ref{fig:g41Digraph} on page~\pageref{fig:g41Digraph}.
 The provided data for this example to layout the bags can be seen in Listing\ref{lst:edgearray41}. There we see that bags 2 and 3 have an edge to bag 1 and therefore a join-operation will occur between the results of bags 2 and 3:
 
 \begin{lstlisting}[caption={Structure provided for bags of example \ref{fig:g41Digraph} },label={lst:edgearray41},numbers=none,backgroundcolor=\color{white}]
@@ -955,7 +955,7 @@ The idea is to visualize the incidence graph as a bipartite graph for clauses an
  
  We emphasize the clauses their nodes used in each timestep with a changing background and the not used dotted edges. This allows the correlation of the  parts of the formula with the bags.  
 
-The representation of the bipartite graphs can be adjusted in many parameters; including colors, fontsize, fillcolor and more, Listing \ref{lst:incidencedata} on page \pageref{lst:incidencedata}.
+The representation of the bipartite graphs can be adjusted in many parameters; including colors, fontsize, fillcolor and more, Listing \ref{lst:incidencedata} on page~\pageref{lst:incidencedata}.
 
 %We create the graph, add the necessary arguments and two sub-graphs. 
 %The first subgraph is called \textit{cluster\_clause} with it's label \textit{clauses}.
@@ -1031,7 +1031,7 @@ Figure \ref{fig:minvc16graph9sorted} shows the same graph and emphasis visualize
 \subsection{Joining SVG}\label{sec:svgjoin}
 Once all user defined images for one timeline are created, it would be nice to have all graphs combined in one file for each step. All created graphs for each time step together create a overall impression of the work done during solving this step. It showed to be inconvenient to manually open and view the tree decomposition along the primal, dual, incidence or fundamental graph for each time step and problem instance, so we automated this task.
  To provide some basic scaling and adjusting, we prepared a section in the API for joining the resulting SVG graphics.
-Its parameters can be viewed in \textit{SvgJoinData} in Listing \ref{lst:svgjoindata} on page \pageref{lst:svgjoindata}. \\
+Its parameters can be viewed in \textit{SvgJoinData} in Listing \ref{lst:svgjoindata} on page~\pageref{lst:svgjoindata}. \\
 We have prepared some examples at the end of this section.
 The currently implemented functionality could be further extended upon using SVG animations\footnote{\url{https://www.w3.org/TR/SVG11/animate.html}}.\\
 
@@ -1172,7 +1172,7 @@ The console output produced by this example call is listed in \ref{lst:outputGpu
 %============== Graphoutput ====================================================
 \subsection{Class Graphoutput}\label{sec:chagraphoutput}
 This class does include the first steps to automatically visualize the tree decomposition of the solving process with its solutions.
-It's main funcionality can output visualizations specified in gml (Graph Modeling Language)~\cite{Himsolt2010GMLAP}. We see one small example output in Listing \ref{lst:g41digraphgml} p. \pageref{lst:g41digraphgml} with labeled nodes and two edges. The output can be seen in Figure~\ref{fig:gmlexamplepic}.
+It's main funcionality can output visualizations specified in gml (Graph Modeling Language)~\cite{Himsolt2010GMLAP}. We see one small example output in Listing \ref{lst:g41digraphgml} on page~\pageref{lst:g41digraphgml} with labeled nodes and two edges. The output can be seen in Figure~\ref{fig:gmlexamplepic}.
 %For our example for \#SAT~\ref{lst:g41digraphdot} with the bags and respective solutions as nodes connected to the bag they solve.
 
 \begin{figure}[h]
@@ -1181,7 +1181,7 @@ It's main funcionality can output visualizations specified in gml (Graph Modelin
 	\caption{GML source from Listing \ref{lst:g41digraphgml} when plotted (\textit{layout modified}) with yEd {\url{https://www.yworks.com/products/yed} Version 3.20 powered by the yFiles Graph Visualization Library \url{http://www.yWorks.com}} }
 	\label{fig:gmlexamplepic}
 \end{figure}
-Additional methods exist to evaluate the possibilities of using Graph-Databases like Neo4j~\cite{graphdatabases}.
+Additional methods exist so we could evaluate the possibilities of using graph-databases like Neo4j~\cite{graphdatabases}.
 It is possible to create visualizations of the initial situation for CNF Clauses and the computed tree decomposition of the primal graph as two \textit{Neo4j Cypher}\footnote{\url{https://neo4j.com/docs/cypher-refcard/current/}} queries with:
 \begin{itemize}
 	\item One graph representing the SAT formula and  queries to construct incidence, dual and primal representations.
@@ -1376,7 +1376,7 @@ After creating several images at each visualization step all images from this st
 
 With the four parameters \textit{padding}, \textit{v\_bottom}, \textit{v\_top} and \textit{scale2} we can specify the order in which images will be placed next to each other. To explain some configurations we will take the generated images from the previous chapter.\\
 \noindent
-We will first look at some constructed examples using rectangles in the Figures \ref{fig:svgjoinpad0}-\ref{fig:svgjoinscaledbottom}. Then we see some actual applications in Figures~\ref{fig:joindefault}-\ref{fig:join60} at page \pageref{fig:joindefault}.\noindent\\
+We will first look at some constructed examples using rectangles in the Figures \ref{fig:svgjoinpad0}-\ref{fig:svgjoinscaledbottom}. Then we see some actual applications in Figures~\ref{fig:joindefault}-\ref{fig:join60} at page~\pageref{fig:joindefault}.\noindent\\
 
 \medskip\noindent
 Possibilities for joining images with these four parameters include joining with:
@@ -1479,7 +1479,7 @@ if we want the right graphic a bit larger compared to the default size, we can a
 can be seen. \\
 To further visualize the progress of the algorithm in the results one could use the possibility to specify multiple values for all the transformation parameters \textit{padding}, \textit{v\_bottom}, \textit{v\_top} and \textit{scale2} and elevate the second image with the values for\\
  v\_bottom = [1, 0.85, 0.7, 0.55, 0.4]. \\
- This is done in figures \ref{fig:joinscaledrise1} to \ref{fig:joinscaledrise5} on page \pageref{fig:joinscaledrise1}.
+ This is done in figures \ref{fig:joinscaledrise1} to \ref{fig:joinscaledrise5} on page~\pageref{fig:joinscaledrise1}.
 
 % Finding a bug using visualization
 \subsection{Visualization of Defects}
