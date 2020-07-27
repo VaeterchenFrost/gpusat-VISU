@@ -252,7 +252,7 @@ The Figure \ref{fig:overviewprog} shows a draft of the process creating the visu
 The algorithms whose runs we visualize basically work so that the input graph is used to find the best possible processing sequence adapted to the hardware.
 With this order it is known which parts of the problem can be solved separately, and which intermediate results have to be stored and for how long. To visualize these algorithms for different problem types, we need to be flexible enough with the data we process for visualization. To accomplish this, we almost everywhere expect simple text to be included in various places. Mostly the internal identifiers for nodes or variables in Boolean formulas are not processed based on strings, but on integers.\\
 
-The graphs are assembled using the object-oriented style of the Python interface \footnote{\url{https://pypi.org/project/graphviz/}} to Graphviz.\\
+The graphs are assembled using the object-oriented style of the Python interface\footnote{\url{https://pypi.org/project/graphviz/}} to Graphviz.\\
 
 For our visualizations we chose {Graphviz}\footnote{\url{https://graphviz.org/}} as an open source graph visualization software, which offers customizable visualization for directed and undirected graphs.\\
 
@@ -262,7 +262,7 @@ The source code for TDVisu is available under the GPL3 license \\on
 \mbox{ \url{github.com/VaeterchenFrost/tdvisu}}. Our tool is written in Python and published on pypi.\\
 
 We defined a \href{https://www.json.org/json-en.html}{JSON}-format specification for portability and customization of the visualization in one file and two reference implementations in practical solvers.\\
-It is explained in more detail in the implementation chapter, or directly in the \textit{tdvisu/TDVisu.schema.json} file, a JSON-schema \footnote{\url{http://json-schema.org/draft-07/schema}} with examples and an almost complete validation of the format.\\
+It is explained in more detail in the implementation chapter, or directly in the \textit{tdvisu/TDVisu.schema.json} file, a JSON-schema\footnote{\url{http://json-schema.org/draft-07/schema}} with examples and an almost complete validation of the format.\\
 
 The implementation currently does not support hyper-graphs and assumes that each node in the tree decomposition has either one or two children.
 The visualization output consists by default of scalable-vector-graphics (SVG), a very flexible text-based standard for describing images that can be easily compressed (and modified) without loss of quality \cite{SVGMozilla}.
@@ -687,7 +687,7 @@ Some examples of this format can be seen in the appendix on page \pageref{app:in
 
 %============== DOT ====================================================
 \subsection{DOT format}
-The graph description language DOT can be used to describe directed or undirected graphs and specify layout details and various attributes for graphs, edges and nodes. It is similar to the Graph Modeling Language \footnote{https://gephi.org/users/supported-graph-formats/gml-format} that is used in Chapter \ref{chagraphoutput} as a text based file format for describing graphs. Keeping this in mind, in this chapter we restrict ourselves to a short introduction of the DOT properties that were used the most.
+The graph description language DOT can be used to describe directed or undirected graphs and specify layout details and various attributes for graphs, edges and nodes. It is similar to the Graph Modeling Language\footnote{https://gephi.org/users/supported-graph-formats/gml-format} that is used in Chapter \ref{chagraphoutput} as a text based file format for describing graphs. Keeping this in mind, in this chapter we restrict ourselves to a short introduction of the DOT properties that were used the most.
 
 %=========================== DOT Language ====================================
 
@@ -1211,39 +1211,40 @@ A complete workflow was accomplished using the arguments
 	\item -{}-gr-file GR\_FILE for problems like VertexCover with graph input 
 \end{itemize}
 when calling \textit{dpdb.py}.\\
-Our program consists of the file \textit{construct\_dpdb\_visu.py} with the Postgres
-the main parameters
+Our program consists of the file \textit{construct\_dpdb\_visu.py} with the PostgreSQL database adapter Psycopg\footnote{\url{www.psycopg.org}} and few additional internal dependencies.
 
+Its command to collect the needed data for visualization after a \textit{dpdb} run accepts the following flags:
 \begin{itemize}
 	\item
-	\textbf{problemnumber}
+	\textbf{problemnumber},
 	 the problem-id to select in the database
 	 
 	\item
-	\textbf{-{}-twfile }TWFILE
+	\textbf{-{}-twfile }\textit{TWFILE},
 	tw-file containing the edges of the graph 
 	
 	\item
-	\textbf{-{}-outfile }OUTFILE
+	\textbf{-{}-outfile }\textit{OUTFILE},
 	 file to write the output to, default 'dbjson\%d.json'
 	 
 	\item
-	\textbf{-{}-loglevel }LOGLEVEL
+	\textbf{-{}-loglevel }\textit{LOGLEVEL},
 	 set the minimal loglevel for the root logger
 	 
 	\item
-	\textbf{-{}-pretty}
+	\textbf{-{}-pretty},
 	 pretty-print the JSON
 	 
 	\item
-	\textbf{-{}-inter-nodes}
-	Calculate and animate the shortest path between successive bags in the order of evaluation. To accomplish this task, an efficient implementation of the bidirectional Dijkstra's algorithm \cite{shortestPathAlgo} based on the implementation by NetworkX \cite{SciPyProceedings_11} in \href{https://networkx.github.io/documentation/networkx-2.1/reference/algorithms/generated/networkx.algorithms.shortest_paths.weighted.bidirectional_dijkstra.html#networkx.algorithms.shortest_paths.weighted.bidirectional_dijkstra}{bidirectional\_dijkstra} was adapted.
+	\textbf{-{}-inter-nodes},
+	Calculate and animate the shortest path between successive bags in the order of evaluation. To accomplish this task, an efficient implementation of the bidirectional Dijkstra's algorithm \cite{shortestPathAlgo} based on the implementation by NetworkX \cite{SciPyProceedings_11} in {bidirectional\_dijkstra}\footnote{\url{networkx.github.io/documentation/networkx-2.1/\_modules/networkx/algorithms/shortest\_paths/weighted.html\#bidirectional\_dijkstra}} was adapted.
 	In our use case the weight function is always one, as the edges have no weight associated with them.
 \end{itemize}
-After the arguments are parsed by \href{https://docs.python.org/3/library/argparse.html}{Pythons argparse} it is possible to adjust logging output by either providing a configuration file (\href{https://github.com/VaeterchenFrost/tdvisu/blob/master/tdvisu/logging.yml}{template} provided) or giving a minimal logging level per program argument.
+%After the arguments are parsed by \href{https://docs.python.org/3/library/argparse.html}{Pythons argparse} it is possible to adjust logging output by either providing a configuration file (\href{https://github.com/VaeterchenFrost/tdvisu/blob/master/tdvisu/logging.yml}{template} provided) or giving a minimal logging level per program argument.
 
-Next the \textit{create\_json}~\ref{lst:create-json} function connects to the database driver with the number of the stored problem. 
-The ``problem type" is available as a string in table \emph{public.problem}, and the appropriate class to prepare the json will be instantiated. Currently the solver handles the problems of \textit{satisfiability} (Sat), \textit{count solutions to a Boolean formula} (SharpSat) as well as \textit{minimum vertex cover} (VertexCover).
+%Next the \textit{create\_json}~\ref{lst:create-json} function connects to the database driver with the number of the stored problem. 
+While we only input the number of the run stored in the database, the value ``problem type" is available as a string in its table \emph{public.problem}, and the appropriate class to prepare the data will be instantiated. Currently the solver handles the problems of \textit{satisfiability} (Sat), \textit{count solutions to a Boolean formula} (SharpSat) as well as \textit{minimum vertex cover} (VertexCover).
+For further details on the implementation we refer the reader to the source code in \textit{tdvisu}\footnote{\url{github.com/VaeterchenFrost/tdvisu/blob/master/tdvisu/construct_dpdb_visu.py}}.
 
 %==============================================================================
 %============== APPLICATION ===================================================
