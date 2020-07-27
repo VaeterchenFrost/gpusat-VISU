@@ -162,9 +162,9 @@ with right hindsight for good parallelization while keeping the solving times co
 Since the design of dynamic programming can be quite error-prone, a fast and uncomplicated visualization is needed for the solution process.
 
 To help further refine and visualize the dynamic programming,
-we specified a JSON template for communication between solvers and the newly created visualization tool \href{github.com/VaeterchenFrost/tdvisu}{TDVisu}.
+we specified a JSON template for communication between solvers and the newly created visualization tool {tdvisu}.
 
-As two reference implementations of dynamic programming on tree decompositions we selected the existing solvers \href{github.com/daajoe/GPUSAT}{gpusat} and \href{github.com/hmarkus/dp_on_dbs}{dpdb}.\\
+As two reference implementations of dynamic programming on tree decompositions we selected the existing solvers {gpusat}\footnote{gpusat is available under GPL3 license at \url{github.com/Budddy/GPUSAT}} and {dpdb}\footnote{dpdb is available under GPL3 license at \url{github.com/hmarkus/dpondbs}}.\\
 
 
 As a side note: \\
@@ -227,7 +227,7 @@ So our main research questions we want to answer with this thesis are:
 	\item How could an implementation of visualization in existing solvers look like?
 \end{enumerate}
 \noindent
-To answer these questions we have implemented TDVisu, a visualization software based on \href{graphviz.org/}{Graphviz}. 
+To answer these questions we have implemented TDVisu, a visualization software based on {Graphviz}. 
 Our proposed solution is inspired by previous manual visualizations like the two examples in Figure \ref{fig:prevvisus}.
 \begin{figure}[h]
 	
@@ -238,7 +238,7 @@ Our proposed solution is inspired by previous manual visualizations like the two
 		
 	\end{tabularx}	
 	
-	\caption{Two templates from published project documentations which show similar visualizations as TDVisu. The left graphic from \cite{DiplomarbeitZisser} Figure 4.3 on page 29 and the right graphic from \cite{dpdbpadl2020} Figure 2, page 4.}
+	\caption[Examples from previous manual visualization]{Two templates from published project documentations which show similar visualizations as \textit{tdvisu}. The left graphic from \cite[Figure 4.3, page 29]{DiplomarbeitZisser} and the right graphic from \cite[Figure 2, page 4]{dpdbpadl2020}.}
 	\label{fig:prevvisus}
 \end{figure}
 
@@ -248,7 +248,7 @@ The Figure \ref{fig:overviewprog} shows a draft of the process creating the visu
 	\centering
 		\includegraphics[width=1\linewidth]{images/OverviewProgram.png}
 		
-	\caption{An overview of the intended use of the visualization. Starting with a solver for DP on TD, over the extraction of the desired data, labels and parameters to the result files.}
+	\caption[Visualization Overview]{An overview of the intended use of the visualization. Starting with a solver for DP on TD, over the extraction of the desired data, labels and parameters to the result files.}
 	\label{fig:overviewprog}
 \end{figure}
 
@@ -259,17 +259,17 @@ The Figure \ref{fig:overviewprog} shows a draft of the process creating the visu
 The algorithms whose runs we visualize basically work so that the input graph is used to find the best possible processing sequence adapted to the hardware.
 With this order it is known which parts of the problem can be solved separately, and which intermediate results have to be stored and for how long. To visualize these algorithms for different problem types, we need to be flexible enough with the data we process for visualization. To accomplish this, we almost everywhere expect simple text to be included in various places. Mostly the internal identifiers for nodes or variables in Boolean formulas are not processed based on strings, but on integers.\\
 
-The graphs are assembled using the object-oriented style of the Python interface\footnote{\url{pypi.org/project/graphviz/}} to Graphviz.\\
+The graphs are assembled using the object-oriented style of the Python interface\footnote{\url{pypi.org/project/graphviz/}} to Graphviz.
 
-For our visualizations we chose {Graphviz}\footnote{\url{graphviz.org/}} as an open source graph visualization software, which offers customizable visualization for directed and undirected graphs.\\
+For our visualizations we chose {Graphviz}\footnote{\url{graphviz.org/}} as an open source graph visualization software, which offers customizable visualization for directed and undirected graphs.
 
-The tree decompositions in every tested application were provided by the utility \href{github.com/mabseher/htd}{htd} (small but efficient C++ library for computing (customized) tree and hypertree decompositions) \cite{htd}.\\
+The tree decompositions in every tested application were provided by the utility {htd} (small but efficient C++ library for computing (customized) tree and hypertree decompositions) \cite{htd}.
 
 The source code for TDVisu is available under the GPL3 license \\on
-\mbox{ \url{github.com/VaeterchenFrost/tdvisu}}. Our tool is written in Python and published on pypi.\\
+\mbox{ \url{github.com/VaeterchenFrost/tdvisu}}. Our tool is written in Python and published on pypi.
 
-We defined a \href{www.json.org/json-en.html}{JSON}-format specification for portability and customization of the visualization in one file and two reference implementations in practical solvers.\\
-It is explained in more detail in the implementation chapter, or directly in the \textit{tdvisu/TDVisu.schema.json} file, a JSON-schema\footnote{\url{json-schema.org/draft-07/schema}} with examples and an almost complete validation of the format.\\
+We defined a {JSON}-format specification for portability and customization of the visualization in one file and two reference implementations in practical solvers.\\
+It is explained in more detail in the implementation chapter, or directly in the \textit{tdvisu/TDVisu.schema.json} file, a JSON-schema\footnote{\url{json-schema.org/draft-07/schema}} with examples and an almost complete validation of the format.
 
 The implementation currently does not support hyper-graphs and assumes that each node in the tree decomposition has either one or two children.
 The visualization output consists by default of scalable-vector-graphics (SVG), a very flexible text-based standard for describing images that can be easily compressed (and modified) without loss of quality \cite{SVGMozilla}.
@@ -334,7 +334,6 @@ Chapter \ref{sec:appl} shows, limited by the page size, small examples for the t
 %==============================================================================
 %============== BACKGROUND ====================================================
 %==============================================================================
-\newpage
 \section{Background}\label{sec:bg}
 In this chapter we provide a brief background for this work.\\
 We will start with a short introduction to logic and MSO in \ref{sec:MSO}. Then we describe the Boolean satisfiability problem which in it's variants is a popular application for solvers.
@@ -478,7 +477,7 @@ Those three graphs for our Example \ref{ex:example41} are shown in Fig.~\ref{fig
 	\includegraphics[width=0.33\linewidth]{images/primalgraph41.png}
 	\includegraphics[width=0.32\linewidth]{images/incgraph41.png}
 	\includegraphics[width=0.33\linewidth]{images/dualgraph41.png}
-	\caption{From left to right: primal, incidence and dual graph}
+	\caption[Primal Incidence and Dual Graph]{From left to right: primal, incidence and dual graph}
 	\label{fig:primalgraph41}
 \end{figure}
 
@@ -492,7 +491,7 @@ The quantifier symbols are
 	\item $\forall$ which expresses that a propositional function can be fulfilled by any member of a domain.
 \end{itemize}
 
-While first-order logic only quantifies variables that range over individuals (elements of the domain of discourse),
+While \textbf{first-order logic} only quantifies variables that range over individuals (elements of the domain of discourse),
 \textbf{Second-order logic}, in addition, also quantifies over relations.
 
 \textbf{Monadic second-order logic (MSO)} is a restriction of second-order logic in which only quantification over unary relations (i.e. sets) is allowed. 
@@ -568,16 +567,15 @@ MSO queries on tree decomposable structures are computable with linear delay \ci
 We use tree decompositions throughout our visualizations in this thesis. One detailed explanation is also introduced in \cite{pcgp2019} at page 169.
 The tree decomposition for our ``wheelgraph" example \ref{fig:wheelgraph} can be viewed in listing~\ref{lst:wheelgraphtd}. The conditions for tree decompositions outlined above are easy to verify for this small example, and we get a tree width $width(T)=3$ for this graph.
 
-\begin{figure}
+\begin{figure}[h]
 	\centering
-	\caption{Tree decomposition of a wheel graph (Fig. \ref{fig:wheelgraph}) \\
-		with seven nodes and one node in the center:}
+	\includegraphics[height=6cm]{images/TDWheelgraph7.png}
+		\caption[Tree decomposition of the wheel graph]{Tree decomposition of a wheel graph (Fig. \ref{fig:wheelgraph}) \\
+		with seven nodes and one node in the center.}
 	\label{fig:tdweelgraph7}
-	\includegraphics[]{images/TDWheelgraph7.png}
-	
 \end{figure}
-
-\lstinputlisting[caption={Tree decomposition in DIMACS format for Figure \ref{fig:tdweelgraph7}}, label={lst:wheelgraphtd},backgroundcolor=\color{white},numbers=none,linewidth=0.3\textwidth,xleftmargin=200pt]{images/WheelGraph7/wheelgraph7.td}
+\mbox{
+\lstinputlisting[caption={Tree decomposition in DIMACS format for Figure \ref{fig:tdweelgraph7}}, label={lst:wheelgraphtd},backgroundcolor=\color{white},numbers=none,linewidth=0.3\textwidth,xleftmargin=200pt]{images/WheelGraph7/wheelgraph7.td}}
 
 \medskip\noindent
 Some projects might use so called \textit{nice} tree decompositions in order to simplify the cases in the used algorithm \cite[Ch.~2.2]{DiplomarbeitZisser}.
@@ -654,7 +652,7 @@ To be more specific: It holds that for all $k \in \mathbb{N}$ and MSO-formulas F
 A generic workflow implementing Courcelle's theorem looks like we see in Figure~\ref{fig:UsageCourcelle}.
 \begin{figure}[H]
 	\includegraphics[height=0.2\textheight]{images/UsageCourcelle.gv.png}
-	\caption{Implementation of the theorem}
+	\caption{Implementation sketch of Courcelle's Theorem}
 	\label{fig:UsageCourcelle}
 \end{figure}
 
@@ -795,43 +793,45 @@ The first versions were developed in the repository \url{github.com/VaeterchenFr
 The \textit{tdvisu.visualization} expects the command line parameters in a format described by Table~\ref{tab:optionstdvisu}.
 
 \def\arraystretch{1.2}%  1 is the default
-\begin{longtable}{|ll|}
-	\caption{Usage visualization.py 
-		\label{tab:optionstdvisu}}\\
-	\hline 
-	\multicolumn{2}{|c|}{[-h] [--version] [--loglevel LOGLEVEL] [infile] outfolder}
-	\\[2ex]
-	\endfirsthead
+
+\begin{longtable}{|r|p{10cm}|}
+	\hline
+	Option & Description\\
+	\hline\hline
+	\endhead
 
 	infile=stdin &  Input file for the visualization must conform with the JsonAPI.md\\
 	outfolder &  Foldername to output the visualization results to\\
 	-{}-loglevel  &   set the minimal loglevel for the root logger\\
 	-{}-version & show program's version number and exit\\
 	-h, -{}-help & show the help message and exit\\
-	\hline
+	\hline\hline
+	\caption{Usage of \textit{visualization.py}
+		\label{tab:optionstdvisu}}
 \end{longtable}
 
-We see that this input is very simple, and that the heavy lifting is done with the input file given in \textit{infile}.
+We see that this input is very simple, while the heavy lifting is done with the input file given in \textit{infile}.
 
-One extra possibility for configuration comes with the method \textbf{logging\_cfg} from {tdvisu.utilities}. There are two example configurations provided with our project, one in the .yml, one in the .ini format. The implementation is very flexible in detecting which parser has to be applied - either via a dictionary-like or a configuration-like function. Both possibilities are documented in Python's \href{docs.python.org/3/library/logging.config.html#logging-config-api}{logging configuration}.
+One extra possibility for configuration comes with the method \textbf{logging\_cfg} from {tdvisu.utilities}. There are two example configurations provided with our project, one in the .yml, one in the .ini format. The implementation is very flexible in detecting which parser has to be applied - either via a dictionary-like or a configuration-like function. Both possibilities are documented in Python's {logging configuration}\footnote{\url{docs.python.org/3/library/logging.config.html\#logging-config-api}}.
 
-Our default configuration in tdvisu/logging.yml and tdvisu/logging.ini provides one handler, two formatters and six loggers.
-
-The \textbf{handler} is a stream handler to sys.stdout with level \textit{WARNING} and the the 'full'-formatter to format messages.
+%Our default configuration in \textit{tdvisu/logging.yml} and \textit{tdvisu/logging.ini} provides one handler, two formatters and six loggers.
+%
+%The \textbf{handler} is a stream handler to sys.stdout with level \textit{WARNING} and the the 'full'-formatter to format messages.
 
 The \textbf{full-formatter} includes the full date and time up to milliseconds. After that we can expect the logging-level, filename and line where it was generated, and the message itself.
 
-The \textbf{loggers} we use in our project are located in 
-\begin{itemize}
-	\item root, level: WARNING
-	\item visualization.py, NOTSET
-	\item svgjoin.py, NOTSET
-    \item reader.py, NOTSET
-	\item construct\_dpdb\_visu.py, NOTSET
-	\item utilities.py, NOTSET
-\end{itemize}
-and can be individually customized using one configuration file.
-With the command line parameter \textit{-{}-loglevel} we can modify the level of \textit{root} and it's associated handlers.
+The \textbf{loggers} we use in our project 
+%are located in 
+%\begin{itemize}
+%	\item root, level: WARNING
+%	\item visualization.py, NOTSET
+%	\item svgjoin.py, NOTSET
+%    \item reader.py, NOTSET
+%	\item construct\_dpdb\_visu.py, NOTSET
+%	\item utilities.py, NOTSET
+%\end{itemize} and
+can be individually customized using a configuration file.
+%With the command line parameter \textit{-{}-loglevel} we can modify the level of \textit{root} and it's associated handlers.
 
 %============== Init ====================================================
 \subsection{Initialization and Tree Decomposition}
@@ -1023,14 +1023,14 @@ Figure \ref{fig:minvc16graph9sorted} shows the same graph and emphasis visualize
 
 \begin{figure}[H]
 	\includegraphics[width=\linewidth]{images/minvc16graph9.png}
-	\caption{A graph with 16 nodes and highlights for the subgraph $\{11,12,14\}$ in yellow and red edges.}
+	\caption[Graph with 16 nodes]{A graph with 16 nodes and highlights for the subgraph $\{11,12,14\}$ in yellow and red edges.}
 	\label{fig:minvc16graph9}
 \end{figure}
 
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=0.6\linewidth]{images/minvc16graph9sorted.png}
-	\caption{A graph with 16 nodes and highlights for the subgraph $\{11,12,14\}$ in yellow and red edges. The nodes are arranged in a circular layout and sorted by their labels.}
+	\caption[Graph with 16 nodes on a circle]{A graph with 16 nodes and highlights for the subgraph $\{11,12,14\}$ in yellow and red edges. The nodes are arranged in a circular layout and sorted by their labels.}
 	\label{fig:minvc16graph9sorted}
 \end{figure}
 
@@ -1078,8 +1078,7 @@ The first part is mostly included in the class \textit{Graphoutput}, and include
 
 The second part was done in the class \textit{Visualization}, and fulfills the API to \textit{TDVisu}. This class consists of 203 LOC in its source file, and 86 LOC in its header file.
 
-The integration into the existing classes from \textit{gpusat} is listed in Tab.~\ref{tab:loc}. \\
-
+The integration into the existing classes from \textit{gpusat} is listed in Tab.~\ref{tab:loc}. 
 \begin{table}[h]
 	\centering
 	\begin{tabularx}{0.4\textwidth}{|Y|c|c|}
@@ -1092,7 +1091,7 @@ The integration into the existing classes from \textit{gpusat} is listed in Tab.
 		\hline
 		
 	\end{tabularx}
-		\caption{Lines of code referencing the classes Graphoutput and Visualization \\
+		\caption[LOC needed for implementation of visualization in \textit{gpusat}]{Lines of code referencing the classes Graphoutput and Visualization \\
 			from the main-method or the Solver class.}\label{tab:loc}
 \end{table}
 
@@ -1185,7 +1184,7 @@ It's main funcionality can output visualizations specified in gml (Graph Modelin
 \begin{figure}[h]
 	\centering
 	\includegraphics[]{images/gmlexamplepic.png}
-	\caption{GML source from Listing \ref{lst:g41digraphgml} when plotted (\textit{layout modified}) with yEd {\url{yworks.com/products/yed} Version 3.20 powered by the yFiles Graph Visualization Library \url{www.yWorks.com}} }
+	\caption[GML example plotted with yEd]{GML source from Listing \ref{lst:g41digraphgml} when plotted (\textit{layout modified}) with yEd {\url{yworks.com/products/yed} Version 3.20 powered by the yFiles Graph Visualization Library \url{www.yWorks.com}} }
 	\label{fig:gmlexamplepic}
 \end{figure}
 Additional methods exist so we could evaluate the possibilities of using graph-databases like Neo4j~\cite{graphdatabases}.
@@ -1277,7 +1276,7 @@ As a first complete visualization output we show the full output of checking the
 \begin{figure}[H]
 	\centering
 	\includegraphics[height=0.6\textheight]{images/DA4SAT/results/TDStep1.pdf}
-	\caption{Tree decomposition for solving Example \ref{ex:example41}. \\
+	\caption[Tree decomposition for SAT step 1]{Tree decomposition for solving Example \ref{ex:example41}. \\
 		We see a yellow highlighting for the first leaf (bag 5) to solve.}
 	\label{fig:DA4SAT_TDStep1}
 \end{figure}
@@ -1291,14 +1290,14 @@ As a first complete visualization output we show the full output of checking the
 	5 & \includegraphics[height=0.46\textheight]{images/DA4SAT/results/TDStep5.pdf}\\
 	\bottomrule 
 \end{tabular}
-\caption{Tree decomposition for solving example \ref{ex:example41} . Images for steps two to five as labeled from top left to bottom right.}
+\caption[Tree decomposition for SAT, steps 2-5]{Tree decomposition for solving example \ref{ex:example41} . Images for steps two to five as labeled from top left to bottom right.}
 \label{tab:DA4SAT_TDStep2345}
 \end{table} 
 
 \begin{figure}[H]
 	\centering
 	\includegraphics[height=0.6\textheight]{images/DA4SAT/results/TDStep6.pdf}
-	\caption{Tree decomposition for solving example \ref{ex:example41} . \\
+	\caption[Tree decomposition for SAT final result]{Tree decomposition for solving example \ref{ex:example41} . \\
 		Final result with yellow highlighting for the last bag (1) solved.}
 	\label{fig:DA4SAT_TDStep6}
 \end{figure}
@@ -1323,12 +1322,12 @@ Like the previous example section we are interested in solutions to example \ref
 \begin{figure}[H]
 	\centering
 	\includegraphics[height=0.6\textheight]{images/DA4/TDStep2.pdf}
-	\caption{Tree decomposition for solving example \ref{ex:example41} with yellow highlighting of the solution for the first leaf.}\label{fig:DA4TDStep2}
+	\caption[TD for \#Sat with highlighting]{Tree decomposition for solving example \ref{ex:example41} with yellow highlighting of the solution for the first leaf.}\label{fig:DA4TDStep2}
 \end{figure}
 \begin{figure}[H]
 	\centering
 	\includegraphics[height=0.9\textheight]{images/DA4/TDStep6.pdf}
-	\caption{Tree decomposition for solving example \ref{ex:example41}. The highlighted bag 1 points to the solution of the problem, containing 22 solutions and satisfying variable assignments for $v_{1},v_{2},v_{5}$ contained in \textit{sol bag 1}.}\label{fig:DA4TDStep6}
+	\caption[Result on TD for \#Sat]{Tree decomposition for solving example \ref{ex:example41}. The highlighted bag 1 points to the solution of the problem, containing 22 solutions and satisfying variable assignments for $v_{1},v_{2},v_{5}$ contained in \textit{sol bag 1}.}\label{fig:DA4TDStep6}
 \end{figure}
 % Appl. VC
 
@@ -1368,7 +1367,7 @@ To the right of each time step is the currently used subgraph marked with yellow
 	Second step solving \textbf{bag 4}\\
 	
 		\includegraphics[width=0.9\linewidth]{images/WheelGraph7/combined3.pdf}
-	\caption{First steps to solve \textit{minimal vertex cover} for example graph \ref{fig:wheelgraph} on it's tree decomposition.}
+	\caption{First steps to solve \textit{minimal vertex cover} for example graph \ref{fig:wheelgraph} on it's TD.}
 	\label{fig:wheelgraphc23}
 \end{figure}
 \begin{figure}[H]
@@ -1382,7 +1381,7 @@ To the right of each time step is the currently used subgraph marked with yellow
 	\vspace{0.6em}
 	\includegraphics[width=0.9\linewidth]{images/WheelGraph7/combined5.pdf}\\
 	
-	\caption{Last steps to solve \textit{minimal vertex cover} for example graph \ref{fig:wheelgraph} on it's tree decomposition.}
+	\caption{Last steps to solve \textit{minimal vertex cover} for example graph \ref{fig:wheelgraph} on it's TD.}
 	\label{fig:wheelgraphc45}
 \end{figure}
 
@@ -1417,21 +1416,21 @@ Possibilities for joining images with these four parameters include joining with
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=0.8\linewidth]{images/svgjoinpad200.png}
-	\caption{Joining the blue (right side) image to the left gray image with only one parameter \textit{padding} set to 200. We see the default vertical position v\_top=0, and the implied coordinate system with an origin in the top left corner.}
+	\caption[Joining with padding]{Joining the blue (right side) image to the left gray image with only one parameter \textit{padding} set to 200. We see the default vertical position v\_top=0, and the implied coordinate system with an origin in the top left corner.}
 	\label{fig:svgjoinpad200}
 \end{figure}
 
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=0.8\linewidth]{images/svgjoinscale1.png}
-	\caption{The second image is scaled to the same size as the first image. This can be conveniently achieved by setting \textit{v\_top} to 0 and \textit{v\_bottom} to 1. Parameter \textit{padding} is 200 as hinted.}
+	\caption[Joining with same size]{The second image is scaled to the same size as the first image. This can be conveniently achieved by setting \textit{v\_top} to 0 and \textit{v\_bottom} to 1. Parameter \textit{padding} is 200 as hinted.}
 	\label{fig:svgjoinscale1}
 \end{figure}
 
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=0.8\linewidth]{images/svgjoinpad0centered.png}
-	\caption{Align both images for vertical centering. \\
+	\caption[Align both images for vertical centering]{Align both images for vertical centering. \\
 		This can be achieved by setting $v\_bottom=v\_top=0.5$.}
 	\label{fig:svgjoinpad0centered}
 \end{figure}
@@ -1439,14 +1438,14 @@ Possibilities for joining images with these four parameters include joining with
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=0.8\linewidth]{images/svgjoinscaled.png}
-	\caption{Setting \textit{scale2} to $1.3$ to scale the blue (right) image uniformly. Parameter \textit{padding} is 200 as hinted.}
+	\caption[Joining with scaling of $1.3$]{Setting \textit{scale2} to $1.3$ to scale the blue (right) image uniformly. Parameter \textit{padding} is 200 as hinted.}
 	\label{fig:svgjoinscaled}
 \end{figure}
 
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=0.8\linewidth]{images/svgjoinscaledbottom.png}
-	\caption{As in figure \ref{fig:svgjoinscaled} we use \textit{scale2} to scale the blue rectangle. To align both images at the bottom edge, we use the value $v\_bottom=1$.}
+	\caption[Joining a scaled image aligned at the bottom edge]{As in figure \ref{fig:svgjoinscaled} we use \textit{scale2} to scale the blue rectangle. To align both images at the bottom edge, we use the value $v\_bottom=1$.}
 	\label{fig:svgjoinscaledbottom}
 \end{figure}
 
@@ -1476,13 +1475,13 @@ As we can see the solutions for bags other than 2 are hidden in the output but a
 	
 	\vspace{0.6em}
 	\includegraphics[width=0.9\linewidth]{images/SVGJOIN/default_center2.pdf}
-	\caption{Joining results from Section \ref{sec:minvc} at step 2 and setting v\_bottom. The invisible (empty) parts of the graphics is cropped from the top of each.}
+	\caption[Joining results and shifting vertically to bottom and center]{Joining results from Section \ref{sec:minvc} at step 2 and setting v\_bottom. The invisible (empty) parts of the graphics is cropped from the top of each.}
 	\label{fig:joinbotcenter}
 \end{figure}
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=0.9\linewidth,height=0.9\textheight,keepaspectratio]{images/SVGJOIN/default_062.pdf}
-	\caption{Joining results from Section \ref{sec:minvc} at step 2 and shifting bottom edge of second image to $60\%$ height of the first image.}
+	\caption[Joining results and shifting vertically to 60\%]{Joining results from Section \ref{sec:minvc} at step 2 and shifting bottom edge of second image to $60\%$ height of the first image.}
 	\label{fig:join60}
 \end{figure}
 
@@ -1591,7 +1590,7 @@ Right now even with the \textit{svg-join} tool we need multiple files to represe
 %	\caption{From propositional logic to monadic second order logic and Courcelle's Theorem}
 %	\label{fig:logictheory}
 %\end{figure}
-\begin{figure}
+\begin{figure}[H]
 	\centering
 	\includegraphics[height=\textheight]{images/g41digraphdot.png}
 	\caption{Created scalable-vector-graphic directly from \ref{lst:g41digraphdot}}
@@ -1607,34 +1606,34 @@ Right now even with the \textit{svg-join} tool we need multiple files to represe
 %num_images=5)
 
 
-\begin{figure}
+\begin{figure}[H]
 	\centering
 	\includegraphics[width=0.9\linewidth,height=0.9\textheight,keepaspectratio]{images/SVGJOIN/default_06sc151.pdf}
-	\caption{Joining results from Section \ref{sec:minvc} at step 1. Also shifting the second graphic to $40\%$ height of the first image and scaling with scale2 = 1.5 .}
+	\caption[Joining results from Section \ref{sec:minvc} at step 1/5]{Joining results from Section \ref{sec:minvc} at step 1. Also shifting the second graphic to $40\%$ height of the first image and scaling with scale2 = 1.5 .}
 	\label{fig:joinscaled1}
 \end{figure}
-\begin{figure}
+\begin{figure}[H]
 	\centering
 	\includegraphics[width=0.9\linewidth,height=0.9\textheight,keepaspectratio]{images/SVGJOIN/default_06sc152.pdf}
-	\caption{Joining results from Section \ref{sec:minvc} at step 2. Also shifting the second graphic to $40\%$ height of the first image and scaling with scale2 = 1.5 .}
+	\caption[Joining results from Section \ref{sec:minvc} at step 2/5]{Joining results from Section \ref{sec:minvc} at step 2. Also shifting the second graphic to $40\%$ height of the first image and scaling with scale2 = 1.5 .}
 	\label{fig:joinscaled2}
 \end{figure}
-\begin{figure}
+\begin{figure}[H]
 	\centering
 	\includegraphics[width=0.9\linewidth,height=0.9\textheight,keepaspectratio]{images/SVGJOIN/default_06sc153.pdf}
-	\caption{Joining results from Section \ref{sec:minvc} at step 3. Also shifting the second graphic to $40\%$ height of the first image and scaling with scale2 = 1.5 .}
+	\caption[Joining results from Section \ref{sec:minvc} at step 3/5]{Joining results from Section \ref{sec:minvc} at step 3. Also shifting the second graphic to $40\%$ height of the first image and scaling with scale2 = 1.5 .}
 	\label{fig:joinscaled3}
 \end{figure}
-\begin{figure}
+\begin{figure}[H]
 	\centering
 	\includegraphics[width=0.9\linewidth,height=0.9\textheight,keepaspectratio]{images/SVGJOIN/default_06sc154.pdf}
-	\caption{Joining results from Section \ref{sec:minvc} at step 4. Also shifting the second graphic to $40\%$ height of the first image and scaling with scale2 = 1.5 .}
+	\caption[Joining results from Section \ref{sec:minvc} at step 4/5]{Joining results from Section \ref{sec:minvc} at step 4. Also shifting the second graphic to $40\%$ height of the first image and scaling with scale2 = 1.5 .}
 	\label{fig:joinscaled4}
 \end{figure}
-\begin{figure}
+\begin{figure}[H]
 	\centering
 	\includegraphics[width=0.9\linewidth,height=0.9\textheight,keepaspectratio]{images/SVGJOIN/default_06sc155.pdf}
-	\caption{Joining results from Section \ref{sec:minvc} at step 5. Also shifting the second graphic to $40\%$ height of the first image and scaling with scale2 = 1.5 .}
+	\caption[Joining results from Section \ref{sec:minvc} at step 5]{Joining results from Section \ref{sec:minvc} at step 5. Also shifting the second graphic to $40\%$ height of the first image and scaling with scale2 = 1.5 .}
 	\label{fig:joinscaled5}
 \end{figure}
 %svg_join(['TDStep', 'graph'],
@@ -1643,34 +1642,34 @@ Right now even with the \textit{svg-join} tool we need multiple files to represe
 %v_bottom=[1,.85,.7,.55,.4],
 %scale2=1.5,
 %num_images=5)
-\begin{figure}
+\begin{figure}[H]
 	\centering
 	\includegraphics[width=0.9\linewidth,height=0.9\textheight,keepaspectratio]{images/SVGJOIN/default_06sc15_rise1.pdf}
-	\caption{Joining results from Section \ref{sec:minvc} at the first step. Also shifting the second graphic to the bottom edge of the first image and scaling with scale2 = 1.5 .}
+	\caption[Comprehensive example joining results together step 1/5]{Joining results from Section \ref{sec:minvc} at the first step. Also shifting the second graphic to the bottom edge of the first image and scaling with scale2 = 1.5 .}
 	\label{fig:joinscaledrise1}
 \end{figure}
-\begin{figure}
+\begin{figure}[H]
 	\centering
-	\includegraphics[width=0.9\linewidth,height=0.9\textheight,keepaspectratio]{images/SVGJOIN/default_06sc15_rise1.pdf}
-	\caption{Joining results from Section \ref{sec:minvc} at the second step. Also shifting the second graphic to $15\%$ of the height of the first image and scaling with scale2 = 1.5 .}
+	\includegraphics[width=0.9\linewidth,height=0.9\textheight,keepaspectratio]{images/SVGJOIN/default_06sc15_rise2.pdf}
+	\caption[Comprehensive example joining results together step 2/5]{Joining results from Section \ref{sec:minvc} at the second step. Also shifting the second graphic to $15\%$ of the height of the first image and scaling with scale2 = 1.5 .}
 	\label{fig:joinscaledrise2}
 \end{figure}
-\begin{figure}
+\begin{figure}[H]
 	\centering
-	\includegraphics[width=0.9\linewidth,height=0.9\textheight,keepaspectratio]{images/SVGJOIN/default_06sc15_rise1.pdf}
-	\caption{Joining results from Section \ref{sec:minvc} at the third step. Also shifting the second graphic to $30\%$ of the height of the first image and scaling with scale2 = 1.5 .}
+	\includegraphics[width=0.9\linewidth,height=0.9\textheight,keepaspectratio]{images/SVGJOIN/default_06sc15_rise3.pdf}
+	\caption[Comprehensive example joining results together step 3/5]{Joining results from Section \ref{sec:minvc} at the third step. Also shifting the second graphic to $30\%$ of the height of the first image and scaling with scale2 = 1.5 .}
 	\label{fig:joinscaledrise3}
 \end{figure}
-\begin{figure}
+\begin{figure}[H]
 	\centering
-	\includegraphics[width=0.9\linewidth,height=0.9\textheight,keepaspectratio]{images/SVGJOIN/default_06sc15_rise1.pdf}
-	\caption{Joining results from Section \ref{sec:minvc} at the fourth step. Also shifting the second graphic to $45\%$ of the height of the first image and scaling with scale2 = 1.5 .}
+	\includegraphics[width=0.9\linewidth,height=0.9\textheight,keepaspectratio]{images/SVGJOIN/default_06sc15_rise4.pdf}
+	\caption[Comprehensive example joining results together step 4/5]{Joining results from Section \ref{sec:minvc} at the fourth step. Also shifting the second graphic to $45\%$ of the height of the first image and scaling with scale2 = 1.5 .}
 	\label{fig:joinscaledrise4}
 \end{figure}
-\begin{figure}
+\begin{figure}[H]
 	\centering
-	\includegraphics[width=0.9\linewidth,height=0.9\textheight,keepaspectratio]{images/SVGJOIN/default_06sc15_rise1.pdf}
-	\caption{Joining results from Section \ref{sec:minvc} at the final step. Also shifting the second graphic to to $60\%$ of the height of the first image and scaling with scale2 = 1.5 .}
+	\includegraphics[width=0.9\linewidth,height=0.9\textheight,keepaspectratio]{images/SVGJOIN/default_06sc15_rise5.pdf}
+	\caption[Comprehensive example joining results together final image]{Joining results from Section \ref{sec:minvc} at the final step. Also shifting the second graphic to to $60\%$ of the height of the first image and scaling with scale2 = 1.5 .}
 	\label{fig:joinscaledrise5}
 \end{figure}
 
