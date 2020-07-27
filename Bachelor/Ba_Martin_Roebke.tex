@@ -2,6 +2,8 @@
 % Paperformat
 % tex.stackexchange.com/questions/428553/add-bibliography-as-part-instead-of-chapter-in-toc
 \documentclass[a4paper, 12pt, bibliography=totoc]{scrartcl}
+\usepackage{setspace}
+\renewcommand{\baselinestretch}{1.3} 
 %\usepackage{cite}
 \usepackage{ragged2e}
 \usepackage{url}
@@ -113,11 +115,15 @@ mdframed={
 %==============================================================================
 \section*{ }
 \thispagestyle{empty}
-{\huge\bfseries{Erklärung zur Urheberschaft}\vspace{20pt}}
+{\huge\bfseries{Selbstständigkeitserklärung}\vspace{20pt}}
 
 \noindent
-Hiermit versichere ich, dass diese Arbeit von mir persönlich verfasst ist und dass ich
-keinerlei fremde Hilfe in Anspruch genommen habe. Ebenso versichere ich, dass diese Arbeit
+ Hiermit erkl\"{a}re ich, dass ich die von mir am heutigen Tag dem Pr\"{u}fungsausschuss der Fakult\"{a}t Informatik~eingereichte Bachelor-Arbeit~zum Thema:
+\begin{center}
+	\textit{\mytitle}
+\end{center}
+
+vollkommen selbstst\"{a}ndig verfasst und keine anderen als die angegebenen Quellen und Hilfsmittel benutzt sowie Zitate kenntlich gemacht habe. Ebenso versichere ich, dass diese Arbeit
 oder Teile daraus weder von mir selbst noch von anderen als Leistungsnachweis oder als Leistung, die als Prüfungsvoraussetzung
 zu erbringen war, andernorts bereits eingereicht wurden. Wörtliche oder sinngemäße Übernahmen aus anderen Schriften
 oder Veröffentlichungen in gedruckter oder elektronischer Form sind gekennzeichnet.
@@ -162,7 +168,7 @@ As two reference implementations of dynamic programming on tree decompositions w
 
 
 As a side note: \\
-Of course the information we visualize is mostly in the solver and could be read out as text. But as the saying goes: ``a picture is worth a 100 spreadsheets".
+Of course, the information we visualize is located in the respective solver and could be extracted as text. But as the saying goes, ``one picture is worth 100 spreadsheets".
 
 
 %  table
@@ -1574,6 +1580,7 @@ Right now even with the \textit{svg-join} tool we need multiple files to represe
 %============== APPENDIX ======================================================
 %==============================================================================
 \newpage
+\singlespacing
 \appendix
 %============== Images ======================================================
 \section{Images}
@@ -1920,6 +1927,7 @@ class SvgJoinData:
 
 \begin{table}[ht]
 	\centering
+	
 	\begin{tabular}{|l||c|c|c|c|c|c|c|c|}
 		
 		\hline
