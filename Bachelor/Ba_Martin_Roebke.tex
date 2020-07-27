@@ -1,6 +1,6 @@
 % !TeX spellcheck = en_US
 % Paperformat
-% https://tex.stackexchange.com/questions/428553/add-bibliography-as-part-instead-of-chapter-in-toc
+% tex.stackexchange.com/questions/428553/add-bibliography-as-part-instead-of-chapter-in-toc
 \documentclass[a4paper, 12pt, bibliography=totoc]{scrartcl}
 %\usepackage{cite}
 \usepackage{ragged2e}
@@ -156,9 +156,9 @@ with right hindsight for good parallelization while keeping the solving times co
 Since the design of dynamic programming can be quite error-prone, a fast and uncomplicated visualization is needed for the solution process.
 
 To help further refine and visualize the dynamic programming,
-we specified a JSON template for communication between solvers and the newly created visualization tool \href{https://github.com/VaeterchenFrost/tdvisu}{TDVisu}.
+we specified a JSON template for communication between solvers and the newly created visualization tool \href{github.com/VaeterchenFrost/tdvisu}{TDVisu}.
 
-As two reference implementations of dynamic programming on tree decompositions we selected the existing solvers \href{https://github.com/daajoe/GPUSAT}{GPUSAT} and \href{https://github.com/hmarkus/dp_on_dbs}{dpdb}.\\
+As two reference implementations of dynamic programming on tree decompositions we selected the existing solvers \href{github.com/daajoe/GPUSAT}{GPUSAT} and \href{github.com/hmarkus/dp_on_dbs}{dpdb}.\\
 
 
 As a side note: \\
@@ -202,7 +202,7 @@ The target audience for this work includes:
 	\item Teachers and students looking for automatic visualization of their problem instances and the solving process.
 \end{itemize} 
 
-%The idea for this project comes from my supervisor Dr. Johannes Fichte, who works with many projects such as \href{https://github.com/hmarkus/dp_on_dbs}{dpdb} on solving monadic second order logic (MSOL) problems using highly parallelized architectures like graphics processing units or state of the art databases.
+%The idea for this project comes from my supervisor Dr. Johannes Fichte, who works with many projects such as \href{github.com/hmarkus/dp_on_dbs}{dpdb} on solving monadic second order logic (MSOL) problems using highly parallelized architectures like graphics processing units or state of the art databases.
 %One early implementation is published in \cite{evaluationMSO} where for different real world examples the results looked promising
 %These projects are very competitive ????REF????? for solving even large instances of those problems.
 
@@ -220,7 +220,7 @@ So our main research questions we want to answer with this thesis are:
 	\item How could an implementation of visualization in existing solvers look like?
 \end{enumerate}
 \noindent
-To answer these questions we have implemented TDVisu, a visualization software based on \href{https://graphviz.org/}{Graphviz}. 
+To answer these questions we have implemented TDVisu, a visualization software based on \href{graphviz.org/}{Graphviz}. 
 Our proposed solution is inspired by previous manual visualizations like the two examples in Figure \ref{fig:prevvisus}.
 \begin{figure}[h]
 	
@@ -252,17 +252,17 @@ The Figure \ref{fig:overviewprog} shows a draft of the process creating the visu
 The algorithms whose runs we visualize basically work so that the input graph is used to find the best possible processing sequence adapted to the hardware.
 With this order it is known which parts of the problem can be solved separately, and which intermediate results have to be stored and for how long. To visualize these algorithms for different problem types, we need to be flexible enough with the data we process for visualization. To accomplish this, we almost everywhere expect simple text to be included in various places. Mostly the internal identifiers for nodes or variables in Boolean formulas are not processed based on strings, but on integers.\\
 
-The graphs are assembled using the object-oriented style of the Python interface\footnote{\url{https://pypi.org/project/graphviz/}} to Graphviz.\\
+The graphs are assembled using the object-oriented style of the Python interface\footnote{\url{pypi.org/project/graphviz/}} to Graphviz.\\
 
-For our visualizations we chose {Graphviz}\footnote{\url{https://graphviz.org/}} as an open source graph visualization software, which offers customizable visualization for directed and undirected graphs.\\
+For our visualizations we chose {Graphviz}\footnote{\url{graphviz.org/}} as an open source graph visualization software, which offers customizable visualization for directed and undirected graphs.\\
 
-The tree decompositions in every tested application were provided by the utility \href{https://github.com/mabseher/htd}{htd} (small but efficient C++ library for computing (customized) tree and hypertree decompositions) \cite{htd}.\\
+The tree decompositions in every tested application were provided by the utility \href{github.com/mabseher/htd}{htd} (small but efficient C++ library for computing (customized) tree and hypertree decompositions) \cite{htd}.\\
 
 The source code for TDVisu is available under the GPL3 license \\on
 \mbox{ \url{github.com/VaeterchenFrost/tdvisu}}. Our tool is written in Python and published on pypi.\\
 
-We defined a \href{https://www.json.org/json-en.html}{JSON}-format specification for portability and customization of the visualization in one file and two reference implementations in practical solvers.\\
-It is explained in more detail in the implementation chapter, or directly in the \textit{tdvisu/TDVisu.schema.json} file, a JSON-schema\footnote{\url{http://json-schema.org/draft-07/schema}} with examples and an almost complete validation of the format.\\
+We defined a \href{www.json.org/json-en.html}{JSON}-format specification for portability and customization of the visualization in one file and two reference implementations in practical solvers.\\
+It is explained in more detail in the implementation chapter, or directly in the \textit{tdvisu/TDVisu.schema.json} file, a JSON-schema\footnote{\url{json-schema.org/draft-07/schema}} with examples and an almost complete validation of the format.\\
 
 The implementation currently does not support hyper-graphs and assumes that each node in the tree decomposition has either one or two children.
 The visualization output consists by default of scalable-vector-graphics (SVG), a very flexible text-based standard for describing images that can be easily compressed (and modified) without loss of quality \cite{SVGMozilla}.
@@ -288,7 +288,7 @@ First two papers dealing with additional solvers exploiting small tree-width and
 	\item ``Evaluation of an MSO-solver" from \cite{evaluationMSO}
 \end{itemize}
 %Many computationally hard problems become tractable if the graph structure underlying the problem instance exhibits small treewidth. A recent approach to put this idea into practice is based on a declarative interface to Answer Set Programming that allows us to specify dynamic programming over tree decompositions in this language, delegating the computation to dedicated solvers. In this article, we prove that this method can be applied to any problem whose fixed-parameter tractability follows from Courcelle's Theorem. \cite{ImplCourcelleDP16}
-%% Journal of Logic and Computation, Volume 27, Issue 4, June 2017, Pages 1067–1094, https://doi.org/10.1093/logcom/exv089
+%% Journal of Logic and Computation, Volume 27, Issue 4, June 2017, Pages 1067–1094, doi.org/10.1093/logcom/exv089
 %%Published:
 %%07 January 2016
 %
@@ -382,7 +382,7 @@ In this thesis we use the word \textbf{graph} for a pair $G=(V_{G},E_{G})$, wher
 \end{itemize}
 %============== SAT ====================================================
 \subsubsection{Boolean Satisfiability Problem}\label{sec:BSP}
-% https://en.wikipedia.org/wiki/Boolean_satisfiability_problem
+% en.wikipedia.org/wiki/Boolean_satisfiability_problem
 
 %SAT was the first known NP-complete problem, shown by Stephen Cook at the University of Toronto in 1971 \cite{SAT1971}
 
@@ -532,8 +532,8 @@ Typical MSO properties include:
 	Then minimal vertex cover (MinVC) asks to find the minimum cardinality $|C|$ among all vertex covers of $G$. 
 \end{itemize}
 
-%\url{https://youtu.be/Wyn3djrYg7c?t=1385} Bruno Courcelle: Recognizable sets of graphs: algebraic and logical aspects 
-%\url{https://library.cirm-math.fr/Record.htm?idlist=2&record=19276851124910940339}
+%\url{youtu.be/Wyn3djrYg7c?t=1385} Bruno Courcelle: Recognizable sets of graphs: algebraic and logical aspects 
+%\url{library.cirm-math.fr/Record.htm?idlist=2&record=19276851124910940339}
 %Recording during the thematic meeting: ``Frontiers of reconnaissability" the April 29, 2014 at the Centre International de Rencontres Mathématiques (Marseille, France)
 
 
@@ -615,7 +615,7 @@ In the following two sections we want to introduce the reader with some computat
 
 \subsubsection{Fixed-Parameter Tractable (FTP-)Algorithm}
 
-% https://en.wikipedia.org/wiki/Parameterized_complexity
+% en.wikipedia.org/wiki/Parameterized_complexity
 \textbf{FPT for model checking}:
 Some problems can be solved by algorithms that are exponential only in the size of a fixed parameter while polynomial in the size of the input. Such an algorithm is called a fixed-parameter tractable (FTP-)algorithm, and the problem can be solved efficiently for small values of the fixed parameter. \cite{ParamCompGrohe}
 %\begin{thm}
@@ -629,7 +629,7 @@ There are efficient algorithms for enumerating and for counting the number of so
 MSO graph properties are ``fixed-parameter-tractable" with respect to tree-width. So are MSO counting and optimizing functions. \cite{CourcelleGROW}
 
 DETAILS MinVC: 
-%https://en.wikipedia.org/wiki/Vertex_cover#Fixed-parameter_tractability
+%en.wikipedia.org/wiki/Vertex_cover#Fixed-parameter_tractability
 
 %============== Courcelle ====================================================
 \subsubsection{Courcelle's Theorem}
@@ -681,19 +681,19 @@ The formats used for this work are:
 
 \textbf{DIMACS td}: This format is used to describe a tree decomposition. The problem line specifies the type, \textbf{number of bags}, \textbf{maximum size of the bags} and \textbf{number of nodes}. The following lines describe the bags starting for each with ``b", the \textbf{bag number} and \textbf{nodes in this bag}. Following these bags are lines not prefixed with a ``b". Now each line describes one \textbf{edge between the bags} as two bag numbers separated by a space.\\
 
-%Supported also in Maple \url{https://www.maplesoft.com/support/help/maple/view.aspx?path=Formats/CNF}
+%Supported also in Maple \url{www.maplesoft.com/support/help/maple/view.aspx?path=Formats/CNF}
 
 Some examples of this format can be seen in the appendix on page~\pageref{app:input}.
 
 %============== DOT ====================================================
 \subsection{DOT format}
-The graph description language DOT can be used to describe directed or undirected graphs and specify layout details and various attributes for graphs, edges and nodes. It is similar to the Graph Modeling Language\footnote{https://gephi.org/users/supported-graph-formats/gml-format} that is used in Chapter \ref{chagraphoutput} as a text based file format for describing graphs. Keeping this in mind, in this chapter we restrict ourselves to a short introduction of the DOT properties that were used the most.
+The graph description language DOT can be used to describe directed or undirected graphs and specify layout details and various attributes for graphs, edges and nodes. It is similar to the Graph Modeling Language\footnote{gephi.org/users/supported-graph-formats/gml-format} that is used in Chapter \ref{chagraphoutput} as a text based file format for describing graphs. Keeping this in mind, in this chapter we restrict ourselves to a short introduction of the DOT properties that were used the most.
 
 %=========================== DOT Language ====================================
 
-%Dot Language: http://www.graphviz.org/doc/info/lang.html
+%Dot Language: www.graphviz.org/doc/info/lang.html
 
-The complete abstract grammar for DOT can be viewed at the website of the DOT language \url{https://graphviz.gitlab.io/_pages/doc/info/lang.html}.\\
+The complete abstract grammar for DOT can be viewed at the website of the DOT language \url{graphviz.gitlab.io/_pages/doc/info/lang.html}.\\
 
 
 The nodes in the DOT-language are \emph{labeled}, so creating a node takes one string identifier and might additionally be provided with a text label. Valid examples for IDs include all combinations of letters and digits.
@@ -707,8 +707,8 @@ Another concept utilized were the sub-graphs and clusters available in DOT.
 To get a well structured (bipartite) incidence graph, each partition is placed in an individual cluster, making adjustments to various distances simple.\\
 
 
-%Attributes (new site): http://www.graphviz.org/doc/info/attrs.html
-DOT has different components (see \url{http://www.graphviz.org/doc/info/attrs.html}) which can be modified with attributes: edges, nodes, the root graph, subgraphs and cluster subgraphs, respectively.\\
+%Attributes (new site): www.graphviz.org/doc/info/attrs.html
+DOT has different components (see \url{www.graphviz.org/doc/info/attrs.html}) which can be modified with attributes: edges, nodes, the root graph, subgraphs and cluster subgraphs, respectively.\\
 
 
 We want to introduce the reader with the attributes that are modifiable in several places of the visualization:
@@ -716,7 +716,7 @@ We want to introduce the reader with the attributes that are modifiable in sever
 \begin{itemize}
 	\item \textbf{rankdir -} ``TB", ``LR", ``BT", ``RL", corresponding to directed graphs drawn from top to bottom, from left to right, from bottom to top, and from right to left, respectively.
 	
-	\item \textbf{fillcolor -} The color used as a node-background in different situations, for different values see \url{https://graphviz.org/doc/info/attrs.html#k:color}. \url{https://graphviz.org/doc/info/colors.html} 
+	\item \textbf{fillcolor -} The color used as a node-background in different situations, for different values see \url{graphviz.org/doc/info/attrs.html#k:color}. \url{graphviz.org/doc/info/colors.html} 
 	By default this is a linear fill; If the value is a colorList, a gradient fill is used. 
 	
 	\item \textbf{fontcolor -} Color for text in nodes or graphs. 
@@ -733,7 +733,7 @@ We want to introduce the reader with the attributes that are modifiable in sever
 	
 	\item \textbf{nodesep -} In dot, this specifies the minimum space between two adjacent nodes in the same rank in inches. 
 	
-	\item \textbf{shape -} Controls how nodes are drawn. For a full list of shapes see \url{https://graphviz.org/doc/info/shapes.html}. There are three main ways of specifying shapes, and all are applied in our visualization: 
+	\item \textbf{shape -} Controls how nodes are drawn. For a full list of shapes see \url{graphviz.org/doc/info/shapes.html}. There are three main ways of specifying shapes, and all are applied in our visualization: 
 	\begin{enumerate}[label=(\arabic*)]
 		\item \textbf{polygon-based}; for example as a box, ellipse or diamond.\vspace{10pt}\\		
 		\textbf{Example}: shape~=~diamond label~=~v\_1
@@ -773,11 +773,11 @@ In this section we want to give a thorough insight into the functionalities of T
 
 The programming language chosen is Python because of it's rich dependency environment, fast prototyping, simple tooling for debugging with pdb, optional static analysis with mypy, easy to follow code-style using pylint and autopep8, and modern packaging with pip and pypi.
 
-Python 3.8 was the newest Python version at the beginning of the project, released on October 14th 2019. The innovation most frequently applied in this project was the f-string support for shorter and easier to read string-building. %\href{https://docs.python.org/3/whatsnew/3.8.html}{summary of release highlights}.
+Python 3.8 was the newest Python version at the beginning of the project, released on October 14th 2019. The innovation most frequently applied in this project was the f-string support for shorter and easier to read string-building. %\href{docs.python.org/3/whatsnew/3.8.html}{summary of release highlights}.
 
 The development process was for most parts of the final software driven by evolutionary prototyping with the help of small and well understood examples such as \ref{fig:g41Digraph}. It helped to understand the possibilities of visualization in this domain and gather user input and requirements early \cite{rapidPrototypingOvermyer}. Some artifacts of the early prototypes with different graph-description languages can be still seen in the class \textit{Graphoutput} in \ref{chagraphoutput}.
 
-The first versions were developed in the repository \url{https://github.com/VaeterchenFrost/gpusat-VISU} and the first releases and later development of the source code was outsourced to the \url{https://github.com/VaeterchenFrost/tdvisu} repository.
+The first versions were developed in the repository \url{github.com/VaeterchenFrost/gpusat-VISU} and the first releases and later development of the source code was outsourced to the \url{github.com/VaeterchenFrost/tdvisu} repository.
 
 % License
 
@@ -806,7 +806,7 @@ The \textit{tdvisu.visualization} expects the command line parameters in a forma
 
 We see that this input is very simple, and that the heavy lifting is done with the input file given in \textit{infile}.
 
-One extra possibility for configuration comes with the method \textbf{logging\_cfg} from {tdvisu.utilities}. There are two example configurations provided with our project, one in the .yml, one in the .ini format. The implementation is very flexible in detecting which parser has to be applied - either via a dictionary-like or a configuration-like function. Both possibilities are documented in Python's \href{https://docs.python.org/3/library/logging.config.html#logging-config-api}{logging configuration}.
+One extra possibility for configuration comes with the method \textbf{logging\_cfg} from {tdvisu.utilities}. There are two example configurations provided with our project, one in the .yml, one in the .ini format. The implementation is very flexible in detecting which parser has to be applied - either via a dictionary-like or a configuration-like function. Both possibilities are documented in Python's \href{docs.python.org/3/library/logging.config.html#logging-config-api}{logging configuration}.
 
 Our default configuration in tdvisu/logging.yml and tdvisu/logging.ini provides one handler, two formatters and six loggers.
 
@@ -988,7 +988,7 @@ To layout these two options we chose the engine
 
 Additional parameters used in both layouts are used to not overlap nodes, as well as drawing the edges first. This should provide a minimally cluttered layout compared to the defaults, but could make edges ambiguous in some cases. \\
 %
-%Of course these layouts could process even more configuration, a complete overview can be found in the \href{https://graphviz.org/doc/info/attrs.html}{graphviz-doc}. 
+%Of course these layouts could process even more configuration, a complete overview can be found in the \href{graphviz.org/doc/info/attrs.html}{graphviz-doc}. 
 
 %Only if the option to sort the nodes was chosen with \textit{do\_sort\_nodes} the method
 %\begin{enumerate}
@@ -1033,7 +1033,7 @@ Once all user defined images for one timeline are created, it would be nice to h
  To provide some basic scaling and adjusting, we prepared a section in the API for joining the resulting SVG graphics.
 Its parameters can be viewed in \textit{SvgJoinData} in Listing \ref{lst:svgjoindata} on page~\pageref{lst:svgjoindata}. \\
 We have prepared some examples at the end of this section.
-The currently implemented functionality could be further extended upon using SVG animations\footnote{\url{https://www.w3.org/TR/SVG11/animate.html}}.\\
+The currently implemented functionality could be further extended upon using SVG animations\footnote{\url{www.w3.org/TR/SVG11/animate.html}}.\\
 
 %The functionality is placed in the file \textit{svgjoin.py} and will be called with the specifications given in the optional dictionary \textbf{svgjoin} within the JsonAPI.
 
@@ -1065,7 +1065,7 @@ The list can be of different length for each parameter - if it is exhausted, the
 %To study and improve the handling of the C++ program was chronologically the first task we experimented with.
 %Getting the program up and running proved to be more difficult than we envisioned due to a probable bug in the driver when running OpenCL Drivers from CUDA on the Windows OS.
 
-The integration of visualization into the C++ based \url{https://github.com/daajoe/GPUSAT} did happen in two parts. \\
+The integration of visualization into the C++ based \url{github.com/daajoe/GPUSAT} did happen in two parts. \\
 
 The first part is mostly included in the class \textit{Graphoutput}, and includes several experimental steps into visualization. This class has 186 lines of code (LOC) in its source file, and 44 lines of code in its header file.
 
@@ -1092,7 +1092,7 @@ The integration into the existing classes from \textit{gpusat} is listed in Tab.
 
 %=================Performance=======================
 %Impact on performance:
-With utilizing {streams}\footnote{\url{http://www.cplusplus.com/reference/sstream/stringstream}} for all string operations we tried to keep the impact on performance during the solving process small. When running on the same thread, especially for larger problem instances, the creation of the visualization files could impact the performance of the run. With the relatively small examples we used to visualize during our development process this was not noticeable.
+With utilizing {streams}\footnote{\url{www.cplusplus.com/reference/sstream/stringstream}} for all string operations we tried to keep the impact on performance during the solving process small. When running on the same thread, especially for larger problem instances, the creation of the visualization files could impact the performance of the run. With the relatively small examples we used to visualize during our development process this was not noticeable.
 
 %Some non-functional changes made to the source were 
 %\begin{itemize}
@@ -1106,7 +1106,7 @@ With utilizing {streams}\footnote{\url{http://www.cplusplus.com/reference/sstrea
 %	\item allow tabs instead of spaces in input files
 %	\item output more information about the hardware used (device\_query)
 %	\item add verbose output globally toggled by a flag 
-%	\item decide on \url{https://en.wikipedia.org/wiki/DOT_\%28graph_description_language\%29} 
+%	\item decide on \url{en.wikipedia.org/wiki/DOT_\%28graph_description_language\%29} 
 %		as the intermediate format for storing graphs.
 %	\item start collecting information that might be needed for a visualization
 %		\emph{graphfile} for saving the decomposition graph
@@ -1116,54 +1116,54 @@ With utilizing {streams}\footnote{\url{http://www.cplusplus.com/reference/sstrea
 %	\item add labels to each node (bags and solutions at this point)
 %	\item encapsulating the previous functions into gpusat::Graphoutput class and instantiate it in main.
 %	\item using the class functionality in the Solver
-%	\item changing enum to the \href{https://coders-corner.net/2017/08/13/scoped-vs-unscoped-enum/}{scoped enum class} for better encapsulation and strongly typed.
-%	\item with \href{https://github.com/daajoe/GPUSAT/commit/cfb310}{inlining gpusatutils} the current functionality of creating raw dot was completed.
+%	\item changing enum to the \href{coders-corner.net/2017/08/13/scoped-vs-unscoped-enum/}{scoped enum class} for better encapsulation and strongly typed.
+%	\item with \href{github.com/daajoe/GPUSAT/commit/cfb310}{inlining gpusatutils} the current functionality of creating raw dot was completed.
 %	
-%	\item Experimented with Neo4j, but found the visualization in particular not that presentable. The functionality to create \href{https://neo4j.com/developer/cypher-resources/}{cypher-queries} for the SAT formula with primal, incidence and dual graph is still present in the class.
+%	\item Experimented with Neo4j, but found the visualization in particular not that presentable. The functionality to create \href{neo4j.com/developer/cypher-resources/}{cypher-queries} for the SAT formula with primal, incidence and dual graph is still present in the class.
 %	\item The functionality to create the cypher-query for the graph of the tree-decomposition was added.
 %	\item Rename \textit{visualisierung} into \textit{visualization}
-%	\item Using \href{https://github.com/open-source-parsers/jsoncpp}{JsonCPP} for processing and formatting json objects in C++
+%	\item Using \href{github.com/open-source-parsers/jsoncpp}{JsonCPP} for processing and formatting json objects in C++
 %	\item Setting format to {BasedOnStyle: LLVM, UseTab: Never, IndentWidth: 4, TabWidth: 4, ColumnLimit: 0}
 %	\item Creating a \emph{Grid} class for efficiently storing unsigned integer values in a two-dimensional structure
-%	based on ideas from \href{https://stackoverflow.com/questions/936687}{this thread}
-%	\item create \href{https://github.com/VaeterchenFrost/GPUSAT/blob/master/VisualCodeUsage.md}{guide} for remote development with \emph{Visual Code}
+%	based on ideas from \href{stackoverflow.com/questions/936687}{this thread}
+%	\item create \href{github.com/VaeterchenFrost/GPUSAT/blob/master/VisualCodeUsage.md}{guide} for remote development with \emph{Visual Code}
 %	\item Converted intermediate string operations to string-streams instead of files
 %	\item Updated README.md
 %	\item Added Doxygen for docbook, html, latex	
 %\end{enumerate}
-The forked repository, with visualization and some minor fixes included, can be seen on \url{https://github.com/VaeterchenFrost/GPUSAT}. \\
-The changes in 142 commits made when developing this project can be seen on \url{https://github.com/daajoe/GPUSAT/compare/master...VaeterchenFrost:master}.
-
+The forked repository, with visualization and some minor fixes included, can be seen on \url{github.com/VaeterchenFrost/GPUSAT}. \\
+The changes in 142 commits made when developing this project can be seen here\footnote{\url{github.com/daajoe/GPUSAT/compare/master...VaeterchenFrost:master}}.
 
 %Working with cmake remotly. ssh @(sg1.)dbai.tuwien.ac.at
 %CPU branch wasn't working.
 %Only AMD/Nvidia graphics  with respective flags.
 
-%Manual configuration with the include options from \href{https://cmake.org/}{cmake} in \href{https://github.com/VaeterchenFrost/GPUSAT/blob/master/CMakeLists.txt}{CMakeLists.txt}
-%or with help from \url{https://marketplace.visualstudio.com/items?itemName=ms-vscode.cmake-tools}
+%Manual configuration with the include options from \href{cmake.org/}{cmake} in \href{github.com/VaeterchenFrost/GPUSAT/blob/master/CMakeLists.txt}{CMakeLists.txt}
+%or with help from \url{marketplace.visualstudio.com/items?itemName=ms-vscode.cmake-tools}
 %to set up for the (potentially remote) environment.
-
-
-\begin{longtable}{ll}
-	\caption{Usage: ./gpusat [OPTIONS]
-		\label{tab:optionsgpusat}}\\
+\begin{longtable}{|r|p{10cm}|}
 	\hline
-	\vspace{0.5ex}
-	\endfirsthead
--s, -{}-seed INT&  number used to initialize the pseudorandom number generator\\
-	-f, -{}-formula TEXT &  path to the file containing the sat formula\\
-	-d, -{}-decomposition TEXT  &   path to the file containing the tree decomposition\\
-	-{}-CPU                   &    run the solver on a cpu\\
-	-{}-NVIDIA                &    run the solver on an NVIDIA device\\
-	-{}-AMD                   &    run the solver on an AMD device\\
-	-{}-weighted              &   use weighted model count\\
-	-{}-noExp                 &    don't use extended exponents\\
-	-v, -{}-verbose            &    print additional program information\\
-	-p, -{}-nopreprocess       &    skips the preprocessing step for debugging and visualization-purposes\\
-	-w, -{}-combineWidth INT=20&    maximum width to combine bags of the decomposition\\
-	-g, -{}-graph TEXT         &    filename for saving the decomposition graph\\
-	-{}-visufile TEXT         &    filename for saving the visualization file\\
+	Option & Description\\
+	\hline\hline
 
+	\endhead
+	
+-s, -{}-seed INT&  number used to initialize the pseudorandom number generator\\\hline
+	-f, -{}-formula TEXT &  path to the file containing the sat formula\\\hline
+	-d, -{}-decomposition TEXT  &   path to the file containing the tree decomposition\\\hline
+	-{}-CPU                   &    run the solver on a cpu\\\hline
+	-{}-NVIDIA                &    run the solver on an NVIDIA device\\\hline
+	-{}-AMD                   &    run the solver on an AMD device\\\hline
+	-{}-weighted              &   use weighted model count\\\hline
+	-{}-noExp                 &    don't use extended exponents\\\hline
+	-v, -{}-verbose            &    print additional program information\\\hline
+	-p, -{}-nopreprocess       &    skips the pre-processing step for debugging and visualization purposes\\\hline
+	-w, -{}-combineWidth (20) &    maximum width to combine bags of the decomposition\\\hline
+	-g, -{}-graph TEXT        &    filename for saving the decomposition graph\\\hline
+	-{}-visufile TEXT         &    filename for saving the visualization file\\\hline
+	\hline
+	\caption{Usage: ./gpusat [OPTIONS]
+		\label{tab:optionsgpusat}}
 \end{longtable}      
         
 An example call with \textit{./gpusat -f ../examples/test\_da4\_1.cnf -v -p -d ../examples/td4p1.txt  -g ../examples/graphfileda41.txt -{}-visufile ../examples/visufileda41.json} enabled verbose output, disabled pre-processing to prevent the creation of bags with too many variables at once to be visualized, and creates full visualization output. 
@@ -1178,15 +1178,15 @@ It's main funcionality can output visualizations specified in gml (Graph Modelin
 \begin{figure}[h]
 	\centering
 	\includegraphics[]{images/gmlexamplepic.png}
-	\caption{GML source from Listing \ref{lst:g41digraphgml} when plotted (\textit{layout modified}) with yEd {\url{https://www.yworks.com/products/yed} Version 3.20 powered by the yFiles Graph Visualization Library \url{http://www.yWorks.com}} }
+	\caption{GML source from Listing \ref{lst:g41digraphgml} when plotted (\textit{layout modified}) with yEd {\url{yworks.com/products/yed} Version 3.20 powered by the yFiles Graph Visualization Library \url{www.yWorks.com}} }
 	\label{fig:gmlexamplepic}
 \end{figure}
 Additional methods exist so we could evaluate the possibilities of using graph-databases like Neo4j~\cite{graphdatabases}.
-It is possible to create visualizations of the initial situation for CNF Clauses and the computed tree decomposition of the primal graph as two \textit{Neo4j Cypher}\footnote{\url{https://neo4j.com/docs/cypher-refcard/current/}} queries with:
+It is possible to create visualizations of the initial situation for CNF Clauses and the computed tree decomposition of the primal graph as two \textit{Neo4j Cypher}\footnote{\url{neo4j.com/docs/cypher-refcard/current/}} queries constructing:
 \begin{itemize}
-	\item One graph representing the SAT formula and  queries to construct incidence, dual and primal representations.
+	\item one graph representing the SAT formula and queries to construct incidence, dual and primal representations
 %	output as satFile = ``cypherSatFormula.txt"
-	\item one graph representing the tree decomposition of the primal graph with it's bags containing variables.
+	\item one graph representing the tree decomposition of the primal graph.
 %	output as tdFile = ``cypherTreedec.txt"
 \end{itemize}
 
@@ -1194,7 +1194,7 @@ It is possible to create visualizations of the initial situation for CNF Clauses
 \subsection{Class Visualization}
 
 To include the extraction of all necessary visualization information into the solver we created a separate fork.
-To simplify the creation of valid json we selected the actively developed c++ library JsonCpp \url{https://github.com/open-source-parsers/jsoncpp} version 1.9.2 from the open-source-parsers repository.
+To simplify the creation of valid json we selected the actively developed c++ library JsonCpp \url{github.com/open-source-parsers/jsoncpp} version 1.9.2 from the open-source-parsers repository.
 
 %==============================================================================
 %============== DPDB ==========================================================
@@ -1240,7 +1240,7 @@ Its command to collect the needed data for visualization after a \textit{dpdb} r
 	Calculate and animate the shortest path between successive bags in the order of evaluation. To accomplish this task, an efficient implementation of the bidirectional Dijkstra's algorithm \cite{shortestPathAlgo} based on the implementation by NetworkX \cite{SciPyProceedings_11} in {bidirectional\_dijkstra}\footnote{\url{networkx.github.io/documentation/networkx-2.1/\_modules/networkx/algorithms/shortest\_paths/weighted.html\#bidirectional\_dijkstra}} was adapted.
 	In our use case the weight function is always one, as the edges have no weight associated with them.
 \end{itemize}
-%After the arguments are parsed by \href{https://docs.python.org/3/library/argparse.html}{Pythons argparse} it is possible to adjust logging output by either providing a configuration file (\href{https://github.com/VaeterchenFrost/tdvisu/blob/master/tdvisu/logging.yml}{template} provided) or giving a minimal logging level per program argument.
+%After the arguments are parsed by \href{docs.python.org/3/library/argparse.html}{Pythons argparse} it is possible to adjust logging output by either providing a configuration file (\href{github.com/VaeterchenFrost/tdvisu/blob/master/tdvisu/logging.yml}{template} provided) or giving a minimal logging level per program argument.
 
 %Next the \textit{create\_json}~\ref{lst:create-json} function connects to the database driver with the number of the stored problem. 
 While we only input the number of the run stored in the database, the value ``problem type" is available as a string in its table \emph{public.problem}, and the appropriate class to prepare the data will be instantiated. Currently the solver handles the problems of \textit{satisfiability} (Sat), \textit{count solutions to a Boolean formula} (SharpSat) as well as \textit{minimum vertex cover} (VertexCover).
@@ -1507,7 +1507,7 @@ Given the right testing frameworks it is possible to produce a report for struct
 %	\label{fig:bag59visu}
 %\end{figure}
 
-The problem was located in the version of \url{https://github.com/TU-Wien-DBAI/htd} used to create the tree decomposition, which in this instance and for the seed $0$ did not place bag 59 in the right place in the tree-decomposition on our Windows 10 machine. We can see the bags of the tree decomposition in Figure \ref{fig:bag59td}, where the bags containing variable 100 are indicated in red. 
+The problem was located in the version of \url{github.com/TU-Wien-DBAI/htd} used to create the tree decomposition, which in this instance and for the seed $0$ did not place bag 59 in the right place in the tree-decomposition on our Windows 10 machine. We can see the bags of the tree decomposition in Figure \ref{fig:bag59td}, where the bags containing variable 100 are indicated in red. 
 
 \begin{figure}
 	\centering
