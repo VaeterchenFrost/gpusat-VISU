@@ -877,7 +877,7 @@ To get a small overview of the type and structure of the data processed in the s
 
 %This is encapsulated in \textit{read\_json}.
 
-Next we want to extract information into several objects: 
+Next, we want to extract information into the following places: 
 \begin{itemize}
 	\item the instance variables 
 	\begin{itemize}
@@ -890,7 +890,7 @@ Next we want to extract information into several objects:
 		\item IncidenceGraphData in Listing~\ref{lst:incidencedata} p.~\pageref{lst:incidencedata}
 		\item GeneralGraphData in \ref{lst:gengraphdata} p.~\pageref{lst:gengraphdata}
 		\item SvgJoinData in \ref{lst:svgjoindataclass} p.~\pageref{lst:svgjoindataclass}
-		\item adjustable parameters, which influence additional aspects of the visualization
+		\item further parameters, which influence additional aspects of the visualization
 	\end{itemize}
 \end{itemize}
 
@@ -1022,13 +1022,13 @@ Because of its wider scope, the layout for the general graph was not as simple t
 We did prepare two different layouts that should cover most cases and are toggled by the parameter \textit{do\_sort\_nodes}.
 For smaller and dense graphs of up to 20 vertices it might be helpful to sort the nodes on a circle, while for larger or sparse graphs an organic layout may be more appropriate.
 
-To layout these two options we chose the engine 
+To layout these two variants, we selected the engine depending on
 \begin{itemize}
 	\item \textit{do\_sort\_nodes} true: circo (see \cite{ST99})
 	\item \textit{do\_sort\_nodes} false: sfdp (see \cite{Hu05}) with the spring constant 'K' set to 2.
 \end{itemize}
 
-Additional parameters used in both layouts are used to not overlap nodes, as well as drawing the edges first. This should provide a minimally cluttered layout compared to the defaults, but could make edges ambiguous in some cases. \\
+Additional parameters used in both layouts are used to not overlap nodes, as well as drawing the edges first. This should provide a minimally cluttered layout compared to the defaults, but could make edges ambiguous in some cases - thus far this was not a problem.\\
 %
 %Of course these layouts could process even more configuration, a complete overview can be found in the \href{graphviz.org/doc/info/attrs.html}{graphviz-doc}. 
 
@@ -1045,7 +1045,7 @@ Additional parameters used in both layouts are used to not overlap nodes, as wel
 %\end{enumerate}
 
 %We add the edges and eventually the isolated nodes to the graph.
-The highlighting for each time step is basically the same as in the incidence graph previously.\\
+The highlighting for each time step is basically the same as in the incidence graph before.\\
 
 We allow an additional option, which depends on the concrete algorithm to be visualized, namely the flag \textit{do\_adj\_nodes}.
 In case the algorithm uses adjacent nodes they can be visualized with this flag using a third color for emphasis.\\
@@ -1083,18 +1083,31 @@ The currently implemented functionality could be further extended upon using SVG
 % Show example with description of parameters 
 %The internally used method \textit{svgjoin.append\_svg} joins two images horizontally in each step.
 With the default settings, it aligns the top edge of both images and applies no scaling to either image.
-The four parameters, each with its expected type and default value in [unit]
-\begin{itemize}[label=$\ast$, left=40pt]
-	\item ``padding": int = 0, [image coordinates]
-	\item v\_bottom: float = None, [size of the \textit{first} image]
-	\item v\_top: float = None, [size of the \textit{first} image]
-	\item scale2: float = 1, [size of the \textit{second} image]
-\end{itemize}
-allow flexible \textbf{vertical}, \textbf{horizontal} and \textbf{scaling} transformations.
+The four parameters, each with its expected type and default value in Table~\ref{tab:svgjoin} allow flexible \textbf{vertical}, \textbf{horizontal} and \textbf{scaling} transformations.
+\begin{table}[h]
+	\centering
+	\begin{tabular}{|lllc|}
+		
+		\hline
+	   parameter& type & default & unit\\
+		\hline\hline
+		 padding& int & 0&  [image coordinates]\\
+		 
+		  v\_bottom& float & None & [size of the \textit{first} image]\\
+		  
+		  v\_top& float & None & [size of the \textit{first} image]\\
+		  
+		 scale2& float & 1 & [size of the \textit{second} image]\\
+		 
+		 \hline\hline
+	\end{tabular}
+	\caption{The four parameter allowing free transformations when joining images.}\label{tab:svgjoin}
+\end{table}
+
 Note that the images are placed in a Cartesian coordinate system and their origin is the upper left corner of their bounding box. All images fill a rectangle in this coordinate system with height and width respectively.
 Since the order of the parameters \textit{v\_bottom} and \textit{v\_top} could be confused due to the inverted y-axis, we make sure that \textit{v\_top} is correctly set to the smaller and \textit{v\_bottom} to the larger value whenever possible.
 
-A special case is obtained by setting both parameters \textit{v\_bottom} and \textit{v\_top} to the same number. Then they are interpreted as the position of the vertical centerline for the second image in units of the first. So setting both parameters to $\dfrac{1}{2}$ would result in both images being vertically centered.\\
+A special case is obtained by setting both parameters \textit{v\_bottom} and \textit{v\_top} to the same number. Then they are interpreted as the position of the vertical centerline for the second image in units of the first. So setting both parameters to $\frac{1}{2}$ would result in both images being vertically centered.\\
 
 If we want to position more than two images, it is possible to specify the parameters in a list.
 The list can be of different length for each parameter - if it is exhausted, the last parameter in the list will be repeatedly used until all images are joined together.

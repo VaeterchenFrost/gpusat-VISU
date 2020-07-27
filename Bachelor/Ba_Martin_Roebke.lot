@@ -2,10 +2,12 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {table}{\numberline {1}{\ignorespaces Usage of \textit {visualization.py} \relax }}{24}{table.1}%
 \defcounter {refsection}{0}\relax 
-\contentsline {table}{\numberline {2}{\ignorespaces LOC needed for implementation of visualization in \textit {gpusat}}}{32}{table.caption.17}%
+\contentsline {table}{\numberline {2}{\ignorespaces The four parameter allowing free transformations when joining images.\relax }}{31}{table.caption.17}%
 \defcounter {refsection}{0}\relax 
-\contentsline {table}{\numberline {3}{\ignorespaces Usage: ./gpusat [OPTIONS] \relax }}{33}{table.3}%
+\contentsline {table}{\numberline {3}{\ignorespaces LOC needed for implementation of visualization in \textit {gpusat}}}{32}{table.caption.18}%
 \defcounter {refsection}{0}\relax 
-\contentsline {table}{\numberline {4}{\ignorespaces Tree decomposition for SAT, steps 2-5}}{39}{table.caption.20}%
+\contentsline {table}{\numberline {4}{\ignorespaces Usage: ./gpusat [OPTIONS] \relax }}{33}{table.4}%
 \defcounter {refsection}{0}\relax 
-\contentsline {table}{\numberline {5}{\ignorespaces The satisfying assignments for the formula from Example\nobreakspace {}\ref {ex:example41}.\relax }}{74}{table.caption.50}%
+\contentsline {table}{\numberline {5}{\ignorespaces Tree decomposition for SAT, steps 2-5}}{39}{table.caption.21}%
+\defcounter {refsection}{0}\relax 
+\contentsline {table}{\numberline {6}{\ignorespaces The satisfying assignments for the formula from Example\nobreakspace {}\ref {ex:example41}.\relax }}{74}{table.caption.51}%

@@ -48,7 +48,7 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {section}{\numberline {4}Implementation}{23}{section.4}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {4.1}Commandline and Configuration}{24}{subsection.4.1}%
+\contentsline {subsection}{\numberline {4.1}Commandline and Configuration}{23}{subsection.4.1}%
 \defcounter {refsection}{0}\relax 
 \contentsline {subsection}{\numberline {4.2}Initialization and Tree Decomposition}{24}{subsection.4.2}%
 \defcounter {refsection}{0}\relax 
@@ -92,4 +92,4 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {section}{\numberline {C}More Examples}{74}{appendix.C}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\nonumberline References}{82}{section*.53}%
+\contentsline {section}{\nonumberline References}{82}{section*.54}%
