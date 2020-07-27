@@ -1186,7 +1186,7 @@ With utilizing {streams}\footnote{\url{www.cplusplus.com/reference/sstream/strin
 %	\item Added Doxygen for docbook, html, latex	
 %\end{enumerate}
 The forked repository, with visualization and some minor fixes included, can be seen on \url{github.com/VaeterchenFrost/GPUSAT}. \\
-The changes made when developing this project can be seen here\footnote{\url{github.com/daajoe/GPUSAT/compare/master...VaeterchenFrost:master}}.
+The changes made when developing this integration can be seen here\footnote{\url{github.com/daajoe/GPUSAT/compare/master...VaeterchenFrost:master}}.
 
 %Working with cmake remotly. ssh @(sg1.)dbai.tuwien.ac.at
 %CPU branch wasn't working.
@@ -1266,7 +1266,7 @@ From the main method of \textit{gpusat} we call its constructor, as well as its 
 %==============================================================================
 \newpage
 \section{Integration in dpdb}\label{sec:dpdb}
-\textit{Dpdb} as a project provides a framework that allows many different problems to be solved using dynamic programming on TDs. It utilizes relational databases, and currently provided reference implementations for the problem types SAT, \#SAT and MinVC, one which is not implemented in \textit{gpusat}.
+{Dpdb} as a project provides a framework that allows many different problems to be solved using dynamic programming on TDs. It utilizes relational databases, and currently provided reference implementations for the problem types SAT, \#SAT and MinVC, one which is not implemented in \textit{gpusat}.
 The integration of the API with dpdb is only minimally invasive when implemented after the solving process instead of running parallel to the solver. 
 The only interference to the solving process is, that all necessary information has to be persisted in the database.
 The integration is included in our \textit{tdvisu} project as a separate Python file.
