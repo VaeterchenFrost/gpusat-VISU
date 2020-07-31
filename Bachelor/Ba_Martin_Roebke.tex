@@ -355,6 +355,10 @@ Additional some references on algorithm visualization and visual debugging can b
 
 
 Current advancements in dynamic programming on tree-decompositions itself can be found in \cite{dpdbpadl2020} and \cite{taminghightw}. One of the latest papers for \textit{gpusat2} discussed a series of experiments using several benchmark sets for model counting \#SAT and weighted model counting. It compared the then latest versions of publicly available \#SAT solvers, where \textit{gpusat2} could solve the vast majority of the instances and ranked second place \cite[Ch. 5]{fichtegpusat2}. 
+
+The authors of \cite{MetatheoremsforRestrictionsofTreewidth} have investigated \textit{whether the results of Courcelle's Theorem can be improved by focusing on two proper subclasses of the class of bounded treewidth graphs: graphs of bounded vertex cover and graphs of bounded max-leaf number}. They were also able to prove stronger algorithmic meta-theorems for these more restricted classes of graphs. 
+
+Courcelle and Durand recommended in their Article in \cite{FiniteAutomata10} two possibilities of circumventing implementation problems of Courcelle's Theorem. \textit{One possibility is to forget the idea of implementing the general theorem, and to work directly on particular problems $[$...$]$. Another one, explored here $[$...$]$ consists in finding fragments of MSO logic having an interesting expressive power, and for which automata constructions (or other constructions) are tractable.}
 %\cite{ELVIZ}
 %
 %This paper presents methods to visualize the structure of trees that occur in genetic programming. These methods allow for the inspection of structure of entire trees even though several thousands of nodes may be involved. The methods also scale to allow for the inspection of structure for entire populations and for complete trials even though millions of nodes may be involved. Examples are given that demonstrate how this new way of “seeing” can afford a potentially rich way of understanding dynamics that underpin genetic programming. The examples indicate further studies that might be enabled by visualizing structure at these scales. \cite{VisuTDinGP}
@@ -682,7 +686,7 @@ MSO graph properties are ``fixed-parameter-tractable" with respect to tree-width
 %============== Courcelle ====================================================
 \paragraph{Courcelle's Theorem}
  Courcelle's theorem is a constructive meta-theorem and thus does provide algorithms for evaluating MSO formulas over graphs of bounded treewidth.
-Courcelle's theorem \cite[p. 54]{Courcelle2012}:
+Courcelle's theorem:
 
 \smallskip\noindent
 \textit{
@@ -690,9 +694,8 @@ Courcelle's theorem \cite[p. 54]{Courcelle2012}:
 
 \leftskip=0cm\smallskip
 
-
 \noindent
-To be more specific: It holds that for all $k \in \mathbb{N}$ and MSO-formulas F is the decision problem for a given graph G, whether $G \models F$ is true, in time $2^{p(tw(G))} \cdot |G|$ with a polynomial p decidable.\smallskip 
+To be more specific: It holds that for all $k \in \mathbb{N}$ and MSO-formulas F is the decision problem for a given graph G, whether $G \models F$ is true, in time $2^{p(tw(G))} \cdot |G|$ with a polynomial p decidable \cite[p. 54--56]{Courcelle2012}.\smallskip 
 
 \noindent
 %A generic workflow implementing Courcelle's theorem looks like we see in Figure~\ref{fig:UsageCourcelle}.
@@ -702,9 +705,8 @@ To be more specific: It holds that for all $k \in \mathbb{N}$ and MSO-formulas F
 %	\label{fig:UsageCourcelle}
 %\end{figure}
 
-Even if linear in the size of the input, naive implementations are still expensive and 
-%($2^{p(tw G)}$, $2^{2^{(\#Q)}}$,  
-the constant factor can be very significant \cite{10.1007/978-3-642-15775-2_47}. An efficient implementation will require several tricks to make this approach practical. Developing and debugging these ``tricks" is not always that easy, so a visualization can help at this point.\smallskip 
+The task now is: even if linear in the size of the input, naive implementations are still expensive and the constant factor can be very significant \cite{Courcelle2012,KNEIS200965,MetatheoremsforRestrictionsofTreewidth}. 
+A recommendation in \cite{FiniteAutomata10} is to \textit{forget the idea of implementing the general theorem, and to work directly on particular problems}. An efficient implementation will require several tricks to make this approach practical\cite{DiplomarbeitZisser,fichtegpusat2}. Developing and debugging these ``tricks" is not always that easy, so a visualization can help at this point.\smallskip 
 
 
 %==============================================================================
