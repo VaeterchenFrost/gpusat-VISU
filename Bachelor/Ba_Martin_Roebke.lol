@@ -3,34 +3,34 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {lstlisting}{\numberline {2}Structure provided for bags of example \ref {fig:g41Digraph}}{25}{lstlisting.2}%
 \defcounter {refsection}{0}\relax 
-\contentsline {lstlisting}{\numberline {3}The JSON format as an used to describe MSOL visualization on tree decompositions}{64}{lstlisting.3}%
+\contentsline {lstlisting}{\numberline {3}The JSON format as an used to describe MSOL visualization on tree decompositions}{63}{lstlisting.3}%
 \defcounter {refsection}{0}\relax 
-\contentsline {lstlisting}{\numberline {4}Tree decomposition in DIMACS format for Figure \ref {fig:tdweelgraph7}}{66}{lstlisting.4}%
+\contentsline {lstlisting}{\numberline {4}Tree decomposition in DIMACS format for Figure \ref {fig:tdweelgraph7}}{65}{lstlisting.4}%
 \defcounter {refsection}{0}\relax 
-\contentsline {lstlisting}{\numberline {5}Initializing a Visualization object}{66}{lstlisting.5}%
+\contentsline {lstlisting}{\numberline {5}Initializing a Visualization object}{65}{lstlisting.5}%
 \defcounter {refsection}{0}\relax 
-\contentsline {lstlisting}{\numberline {6}SvgJoinData}{67}{lstlisting.6}%
+\contentsline {lstlisting}{\numberline {6}SvgJoinData}{66}{lstlisting.6}%
 \defcounter {refsection}{0}\relax 
-\contentsline {lstlisting}{\numberline {7}IncidenceGraphData}{68}{lstlisting.7}%
+\contentsline {lstlisting}{\numberline {7}IncidenceGraphData}{67}{lstlisting.7}%
 \defcounter {refsection}{0}\relax 
-\contentsline {lstlisting}{\numberline {8}GeneralGraphData}{68}{lstlisting.8}%
+\contentsline {lstlisting}{\numberline {8}GeneralGraphData}{67}{lstlisting.8}%
 \defcounter {refsection}{0}\relax 
-\contentsline {lstlisting}{\numberline {9}Construct\_dpdb\_visu.py}{69}{lstlisting.9}%
+\contentsline {lstlisting}{\numberline {9}Construct\_dpdb\_visu.py}{68}{lstlisting.9}%
 \defcounter {refsection}{0}\relax 
-\contentsline {lstlisting}{\numberline {10}forward\_iterate\_tdg}{69}{lstlisting.10}%
+\contentsline {lstlisting}{\numberline {10}forward\_iterate\_tdg}{68}{lstlisting.10}%
 \defcounter {refsection}{0}\relax 
-\contentsline {lstlisting}{\numberline {11}backwards\_iterate\_tdg}{70}{lstlisting.11}%
+\contentsline {lstlisting}{\numberline {11}backwards\_iterate\_tdg}{69}{lstlisting.11}%
 \defcounter {refsection}{0}\relax 
-\contentsline {lstlisting}{\numberline {12}SvgJoinData}{71}{lstlisting.12}%
+\contentsline {lstlisting}{\numberline {12}SvgJoinData}{70}{lstlisting.12}%
 \defcounter {refsection}{0}\relax 
-\contentsline {lstlisting}{\numberline {13}CNF clauses from example 4.1 in \cite {DiplomarbeitZisser} page 27}{73}{lstlisting.13}%
+\contentsline {lstlisting}{\numberline {13}CNF clauses from example 4.1 in \cite {DiplomarbeitZisser} page 27}{72}{lstlisting.13}%
 \defcounter {refsection}{0}\relax 
-\contentsline {lstlisting}{\numberline {14}CNF clauses from random example with 12 units}{74}{lstlisting.14}%
+\contentsline {lstlisting}{\numberline {14}CNF clauses from random example with 12 units}{73}{lstlisting.14}%
 \defcounter {refsection}{0}\relax 
-\contentsline {lstlisting}{\numberline {15}Edges for example \ref {fig:wheelgraph}}{74}{lstlisting.15}%
+\contentsline {lstlisting}{\numberline {15}Edges for example \ref {fig:wheelgraph}}{73}{lstlisting.15}%
 \defcounter {refsection}{0}\relax 
-\contentsline {lstlisting}{\numberline {16}DOT source for visualization of example 4.1}{74}{lstlisting.16}%
+\contentsline {lstlisting}{\numberline {16}DOT source for visualization of example 4.1}{73}{lstlisting.16}%
 \defcounter {refsection}{0}\relax 
-\contentsline {lstlisting}{\numberline {17}Small GML output from class \textit {Graphoutput}, Section \ref {sec:chagraphoutput}}{75}{lstlisting.17}%
+\contentsline {lstlisting}{\numberline {17}Small GML output from class \textit {Graphoutput}, Section \ref {sec:chagraphoutput}}{74}{lstlisting.17}%
 \defcounter {refsection}{0}\relax 
-\contentsline {lstlisting}{\numberline {18}Console output by modified \textit {gpusat} with full debugging enabled.}{76}{lstlisting.18}%
+\contentsline {lstlisting}{\numberline {18}Console output by modified \textit {gpusat} with full debugging enabled.}{75}{lstlisting.18}%

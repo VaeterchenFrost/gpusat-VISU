@@ -82,9 +82,9 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {section}{\numberline {6}Integration in dpdb}{33}{section.6}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {7}Application and Images}{34}{section.7}%
+\contentsline {section}{\numberline {7}Application and Images}{35}{section.7}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {7.1}SAT Example}{34}{subsection.7.1}%
+\contentsline {subsection}{\numberline {7.1}SAT Example}{35}{subsection.7.1}%
 \defcounter {refsection}{0}\relax 
 \contentsline {subsection}{\numberline {7.2}\#SAT Example}{38}{subsection.7.2}%
 \defcounter {refsection}{0}\relax 
@@ -94,16 +94,16 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {subsection}{\numberline {7.5}Visualization of Defects}{52}{subsection.7.5}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {8}Conclusion}{54}{section.8}%
+\contentsline {section}{\numberline {8}Conclusion}{53}{section.8}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {8.1}Summary}{54}{subsection.8.1}%
+\contentsline {subsection}{\numberline {8.1}Summary}{53}{subsection.8.1}%
 \defcounter {refsection}{0}\relax 
 \contentsline {subsection}{\numberline {8.2}Future Work}{54}{subsection.8.2}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {A}Images}{57}{appendix.A}%
+\contentsline {section}{\numberline {A}Images}{56}{appendix.A}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {B}Code Snippets}{64}{appendix.B}%
+\contentsline {section}{\numberline {B}Code Snippets}{63}{appendix.B}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {C}More Examples}{73}{appendix.C}%
+\contentsline {section}{\numberline {C}More Examples}{72}{appendix.C}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\nonumberline References}{81}{section*.66}%
+\contentsline {section}{\nonumberline References}{80}{section*.66}%
