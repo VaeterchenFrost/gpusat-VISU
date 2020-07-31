@@ -94,9 +94,9 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {subsection}{\numberline {7.5}Visualization of Defects}{52}{subsection.7.5}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {8}Conclusion}{53}{section.8}%
+\contentsline {section}{\numberline {8}Conclusion}{52}{section.8}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {8.1}Summary}{53}{subsection.8.1}%
+\contentsline {subsection}{\numberline {8.1}Summary}{52}{subsection.8.1}%
 \defcounter {refsection}{0}\relax 
 \contentsline {subsection}{\numberline {8.2}Future Work}{54}{subsection.8.2}%
 \defcounter {refsection}{0}\relax 

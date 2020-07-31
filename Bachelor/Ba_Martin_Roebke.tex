@@ -1613,10 +1613,10 @@ Given the right testing frameworks it is possible to produce a report for struct
 
  One specific program invocation did not give the expected result solving a \textit{vertex cover} with one hundred nodes. The problem was first found when inspecting the immediate output of the program \textit{dpdb.py}, which did report the wrong result size. The problem could be localized in the tree decomposition, leading to the whole result table being pruned - see the visualization in Figure \ref{fig:starsbag59}. It is obvious that ``bag 59" is disconnected from its parent ``bag 57", even if its nodes occurred in other bags in the tree. This violates our rule $3$ of the TD (``the set of bags that contain the variable v induce a connected sub-graph of T.").  This particular bug only occurred  with a specific seed (zero) and on the Windows operating system (not on the tested Linux systems). 
 
-\begin{figure}[H]
+\begin{figure}
 	\centering
 	\vspace{1em}
-	\includegraphics[width=0.9\linewidth,height=0.9\textheight,keepaspectratio
+	\includegraphics[width=0.8\linewidth,height=0.9\textheight,keepaspectratio
 					]{images/starsbag59.png}
 		\vspace{1em}
 	\caption{Part of interest to find a problem with bag 59 in visualization. }
@@ -1664,28 +1664,24 @@ We have defined a data exchange API to give the visualization the information it
 	\item The merging of several visualizations of a time step into one image
 \end{itemize}
 
-
 \subsection{Future Work}
 % Graphs could provide more options to the user
 % Generate multiple bipartite and general graphs
 % Operate on hypergraphs
 % Bring all timesteps into one file, e.g Animations
 In the future our graphs could provide even more parameters to the user. \\
-
 Different colors visualizing attributes of each node are a consideration.\\
-
 Show path of various solutions from leaf to bag. \\
-
 The next step would be to expand the API to multiple bipartite or simple graphs, which right now is limited to one each with the option to create primal- and dual-graphs too.\\
-
 One addition would be the inclusion of hypergraphs (graphs where one edge does connect multiple nodes) which could be of great interest for future solvers.\\
+Right now even with the \textit{svg-join} tool we need multiple files to represent all time steps. SVG however would be able to only create one file where the time steps will be animated. Animations might get toggled by the user or change over a specified time span.\\
 
-Right now even with the \textit{svg-join} tool we need multiple files to represent all time steps. SVG however would be able to only create one file where the time steps will be animated. Animations might get toggled by the user or change over a specified time span.
 %==============================================================================
 %============== APPENDIX ======================================================
 %==============================================================================
-\singlespacing
+
 \appendix
+\singlespacing
 %============== Images ======================================================
 \section{Images}
 %\begin{figure}[H]
