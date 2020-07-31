@@ -18,66 +18,66 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {figure}{\numberline {9}{\ignorespaces Graph with 16 nodes on a circle}}{29}{figure.caption.26}%
 \defcounter {refsection}{0}\relax 
-\contentsline {figure}{\numberline {10}{\ignorespaces GML example plotted with yEd}}{33}{figure.caption.29}%
+\contentsline {figure}{\numberline {10}{\ignorespaces GML example plotted with yEd}}{32}{figure.caption.29}%
 \defcounter {refsection}{0}\relax 
-\contentsline {figure}{\numberline {11}{\ignorespaces Tree decomposition for SAT step 1}}{36}{figure.caption.30}%
+\contentsline {figure}{\numberline {11}{\ignorespaces Tree decomposition for SAT step 1}}{35}{figure.caption.30}%
 \defcounter {refsection}{0}\relax 
-\contentsline {figure}{\numberline {12}{\ignorespaces Tree decomposition for SAT final result}}{38}{figure.caption.32}%
+\contentsline {figure}{\numberline {12}{\ignorespaces Tree decomposition for SAT final result}}{37}{figure.caption.32}%
 \defcounter {refsection}{0}\relax 
-\contentsline {figure}{\numberline {13}{\ignorespaces Incidence graph (left) and primal graph of Example\nobreakspace {}\ref {ex:example41}.\relax }}{39}{figure.caption.33}%
+\contentsline {figure}{\numberline {13}{\ignorespaces Incidence graph (left) and primal graph of Example\nobreakspace {}\ref {ex:example41}.\relax }}{38}{figure.caption.33}%
 \defcounter {refsection}{0}\relax 
-\contentsline {figure}{\numberline {14}{\ignorespaces Highlighting of some parts of incidence graph (left) and primal graph of Example\nobreakspace {}\ref {ex:example41}.\relax }}{40}{figure.caption.34}%
+\contentsline {figure}{\numberline {14}{\ignorespaces Highlighting of some parts of incidence graph (left) and primal graph of Example\nobreakspace {}\ref {ex:example41}.\relax }}{39}{figure.caption.34}%
 \defcounter {refsection}{0}\relax 
-\contentsline {figure}{\numberline {15}{\ignorespaces TD for \#Sat with highlighting}}{41}{figure.caption.35}%
+\contentsline {figure}{\numberline {15}{\ignorespaces TD for \#Sat with highlighting}}{40}{figure.caption.35}%
 \defcounter {refsection}{0}\relax 
-\contentsline {figure}{\numberline {16}{\ignorespaces Result on TD for \#Sat}}{42}{figure.caption.36}%
+\contentsline {figure}{\numberline {16}{\ignorespaces Result on TD for \#Sat}}{41}{figure.caption.36}%
 \defcounter {refsection}{0}\relax 
-\contentsline {figure}{\numberline {17}{\ignorespaces Wheel graph with 7 vertices.\relax }}{43}{figure.caption.37}%
+\contentsline {figure}{\numberline {17}{\ignorespaces Wheel graph with 7 vertices.\relax }}{42}{figure.caption.37}%
 \defcounter {refsection}{0}\relax 
-\contentsline {figure}{\numberline {18}{\ignorespaces First steps to solve \textit {minimal vertex cover} for example graph \ref {fig:wheelgraph} on its TD.\relax }}{44}{figure.caption.38}%
+\contentsline {figure}{\numberline {18}{\ignorespaces First steps to solve \textit {minimal vertex cover} for example graph \ref {fig:wheelgraph} on its TD.\relax }}{43}{figure.caption.38}%
 \defcounter {refsection}{0}\relax 
-\contentsline {figure}{\numberline {19}{\ignorespaces Last steps to solve \textit {minimal vertex cover} for example graph \ref {fig:wheelgraph} on its TD.\relax }}{45}{figure.caption.39}%
+\contentsline {figure}{\numberline {19}{\ignorespaces Last steps to solve \textit {minimal vertex cover} for example graph \ref {fig:wheelgraph} on its TD.\relax }}{44}{figure.caption.39}%
 \defcounter {refsection}{0}\relax 
-\contentsline {figure}{\numberline {20}{\ignorespaces Example for joining with no \textit {padding}.\relax }}{46}{figure.caption.40}%
+\contentsline {figure}{\numberline {20}{\ignorespaces Example for joining with no \textit {padding}.\relax }}{45}{figure.caption.40}%
 \defcounter {refsection}{0}\relax 
-\contentsline {figure}{\numberline {21}{\ignorespaces Joining with padding}}{47}{figure.caption.41}%
+\contentsline {figure}{\numberline {21}{\ignorespaces Joining with padding}}{46}{figure.caption.41}%
 \defcounter {refsection}{0}\relax 
-\contentsline {figure}{\numberline {22}{\ignorespaces Joining with same size}}{47}{figure.caption.42}%
+\contentsline {figure}{\numberline {22}{\ignorespaces Joining with same size}}{46}{figure.caption.42}%
 \defcounter {refsection}{0}\relax 
-\contentsline {figure}{\numberline {23}{\ignorespaces Align both images for vertical centering}}{48}{figure.caption.43}%
+\contentsline {figure}{\numberline {23}{\ignorespaces Align both images for vertical centering}}{47}{figure.caption.43}%
 \defcounter {refsection}{0}\relax 
-\contentsline {figure}{\numberline {24}{\ignorespaces Joining with scaling of $1.3$}}{48}{figure.caption.44}%
+\contentsline {figure}{\numberline {24}{\ignorespaces Joining with scaling of $1.3$}}{47}{figure.caption.44}%
 \defcounter {refsection}{0}\relax 
-\contentsline {figure}{\numberline {25}{\ignorespaces Joining a scaled image aligned at the bottom edge}}{49}{figure.caption.45}%
+\contentsline {figure}{\numberline {25}{\ignorespaces Joining a scaled image aligned at the bottom edge}}{48}{figure.caption.45}%
 \defcounter {refsection}{0}\relax 
-\contentsline {figure}{\numberline {26}{\ignorespaces Joining results from Section \ref {sec:minvc} with default parameters at step 2.\relax }}{50}{figure.caption.46}%
+\contentsline {figure}{\numberline {26}{\ignorespaces Joining results from Section \ref {sec:minvc} with default parameters at step 2.\relax }}{49}{figure.caption.46}%
 \defcounter {refsection}{0}\relax 
-\contentsline {figure}{\numberline {27}{\ignorespaces Joining results and shifting vertically to bottom and center}}{51}{figure.caption.47}%
+\contentsline {figure}{\numberline {27}{\ignorespaces Joining results and shifting vertically to bottom and center}}{50}{figure.caption.47}%
 \defcounter {refsection}{0}\relax 
-\contentsline {figure}{\numberline {28}{\ignorespaces Joining results and shifting vertically to 60\%}}{52}{figure.caption.48}%
+\contentsline {figure}{\numberline {28}{\ignorespaces Joining results and shifting vertically to 60\%}}{51}{figure.caption.48}%
 \defcounter {refsection}{0}\relax 
-\contentsline {figure}{\numberline {30}{\ignorespaces Bag 59 can be seen on the far right of the graphic.\relax }}{54}{figure.caption.50}%
+\contentsline {figure}{\numberline {30}{\ignorespaces Bag 59 can be seen on the far right of the graphic.\relax }}{53}{figure.caption.50}%
 \defcounter {refsection}{0}\relax 
-\contentsline {figure}{\numberline {29}{\ignorespaces Part of interest to find a problem with bag 59 in visualization. \relax }}{54}{figure.caption.49}%
+\contentsline {figure}{\numberline {29}{\ignorespaces Part of interest to find a problem with bag 59 in visualization. \relax }}{53}{figure.caption.49}%
 \defcounter {refsection}{0}\relax 
-\contentsline {figure}{\numberline {31}{\ignorespaces Created scalable-vector-graphic directly from \ref {lst:g41digraphdot}\relax }}{58}{figure.caption.51}%
+\contentsline {figure}{\numberline {31}{\ignorespaces Created scalable-vector-graphic directly from \ref {lst:g41digraphdot}\relax }}{57}{figure.caption.51}%
 \defcounter {refsection}{0}\relax 
-\contentsline {figure}{\numberline {32}{\ignorespaces Joining results from Section \ref {sec:minvc} at step 1/5}}{59}{figure.caption.52}%
+\contentsline {figure}{\numberline {32}{\ignorespaces Joining results from Section \ref {sec:minvc} at step 1/5}}{58}{figure.caption.52}%
 \defcounter {refsection}{0}\relax 
-\contentsline {figure}{\numberline {33}{\ignorespaces Joining results from Section \ref {sec:minvc} at step 2/5}}{59}{figure.caption.53}%
+\contentsline {figure}{\numberline {33}{\ignorespaces Joining results from Section \ref {sec:minvc} at step 2/5}}{58}{figure.caption.53}%
 \defcounter {refsection}{0}\relax 
-\contentsline {figure}{\numberline {34}{\ignorespaces Joining results from Section \ref {sec:minvc} at step 3/5}}{60}{figure.caption.54}%
+\contentsline {figure}{\numberline {34}{\ignorespaces Joining results from Section \ref {sec:minvc} at step 3/5}}{59}{figure.caption.54}%
 \defcounter {refsection}{0}\relax 
-\contentsline {figure}{\numberline {35}{\ignorespaces Joining results from Section \ref {sec:minvc} at step 4/5}}{60}{figure.caption.55}%
+\contentsline {figure}{\numberline {35}{\ignorespaces Joining results from Section \ref {sec:minvc} at step 4/5}}{59}{figure.caption.55}%
 \defcounter {refsection}{0}\relax 
-\contentsline {figure}{\numberline {36}{\ignorespaces Joining results from Section \ref {sec:minvc} at step 5}}{61}{figure.caption.56}%
+\contentsline {figure}{\numberline {36}{\ignorespaces Joining results from Section \ref {sec:minvc} at step 5}}{60}{figure.caption.56}%
 \defcounter {refsection}{0}\relax 
-\contentsline {figure}{\numberline {37}{\ignorespaces Comprehensive example joining results together step 1/5}}{61}{figure.caption.57}%
+\contentsline {figure}{\numberline {37}{\ignorespaces Comprehensive example joining results together step 1/5}}{60}{figure.caption.57}%
 \defcounter {refsection}{0}\relax 
-\contentsline {figure}{\numberline {38}{\ignorespaces Comprehensive example joining results together step 2/5}}{62}{figure.caption.58}%
+\contentsline {figure}{\numberline {38}{\ignorespaces Comprehensive example joining results together step 2/5}}{61}{figure.caption.58}%
 \defcounter {refsection}{0}\relax 
-\contentsline {figure}{\numberline {39}{\ignorespaces Comprehensive example joining results together step 3/5}}{62}{figure.caption.59}%
+\contentsline {figure}{\numberline {39}{\ignorespaces Comprehensive example joining results together step 3/5}}{61}{figure.caption.59}%
 \defcounter {refsection}{0}\relax 
-\contentsline {figure}{\numberline {40}{\ignorespaces Comprehensive example joining results together step 4/5}}{63}{figure.caption.60}%
+\contentsline {figure}{\numberline {40}{\ignorespaces Comprehensive example joining results together step 4/5}}{62}{figure.caption.60}%
 \defcounter {refsection}{0}\relax 
-\contentsline {figure}{\numberline {41}{\ignorespaces Comprehensive example joining results together final image}}{64}{figure.caption.61}%
+\contentsline {figure}{\numberline {41}{\ignorespaces Comprehensive example joining results together final image}}{63}{figure.caption.61}%

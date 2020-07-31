@@ -1247,33 +1247,33 @@ The changes made when developing this integration can be seen here\footnote{\url
 %Manual configuration with the include options from \href{cmake.org/}{cmake} in \href{github.com/VaeterchenFrost/GPUSAT/blob/master/CMakeLists.txt}{CMakeLists.txt}
 %or with help from \url{marketplace.visualstudio.com/items?itemName=ms-vscode.cmake-tools}
 %to set up for the (potentially remote) environment.
-\begin{longtable}{|r|p{10cm}|}
-	\hline
-	Option & Description\\
-	\hline\hline
-
-	\endhead
-	
--s, -{}-seed INT&  number used to initialize the pseudorandom number generator\\\hline
-	-f, -{}-formula TEXT &  path to the file containing the sat formula\\\hline
-	-d, -{}-decomposition TEXT  &   path to the file containing the tree decomposition\\\hline
-	-{}-CPU                   &    run the solver on a cpu\\\hline
-	-{}-NVIDIA                &    run the solver on an NVIDIA device\\\hline
-	-{}-AMD                   &    run the solver on an AMD device\\\hline
-	-{}-weighted              &   use weighted model count\\\hline
-	-{}-noExp                 &    don't use extended exponents\\\hline
-	-v, -{}-verbose            &    print additional program information\\\hline
-	-p, -{}-nopreprocess       &    skips the pre-processing step for debugging and visualization purposes\\\hline
-	-w, -{}-combineWidth (20) &    maximum width to combine bags of the decomposition\\\hline
-	-g, -{}-graph TEXT        &    filename for saving the decomposition graph\\\hline
-	-{}-visufile TEXT         &    filename for saving the visualization file\\\hline
-	\hline
-	\caption{Usage: ./gpusat [OPTIONS]
-		\label{tab:optionsgpusat}}
-\end{longtable}      
+%\begin{longtable}{|r|p{10cm}|}
+%	\hline
+%	Option & Description\\
+%	\hline\hline
+%
+%	\endhead
+%	
+%-s, -{}-seed INT&  number used to initialize the pseudorandom number generator\\\hline
+%	-f, -{}-formula TEXT &  path to the file containing the sat formula\\\hline
+%	-d, -{}-decomposition TEXT  &   path to the file containing the tree decomposition\\\hline
+%	-{}-CPU                   &    run the solver on a cpu\\\hline
+%	-{}-NVIDIA                &    run the solver on an NVIDIA device\\\hline
+%	-{}-AMD                   &    run the solver on an AMD device\\\hline
+%	-{}-weighted              &   use weighted model count\\\hline
+%	-{}-noExp                 &    don't use extended exponents\\\hline
+%	-v, -{}-verbose            &    print additional program information\\\hline
+%	-p, -{}-nopreprocess       &    skips the pre-processing step for debugging and visualization purposes\\\hline
+%	-w, -{}-combineWidth (20) &    maximum width to combine bags of the decomposition\\\hline
+%	-g, -{}-graph TEXT        &    filename for saving the decomposition graph\\\hline
+%	-{}-visufile TEXT         &    filename for saving the visualization file\\\hline
+%	\hline
+%	\caption{Usage: ./gpusat [OPTIONS]
+%		\label{tab:optionsgpusat}}
+%\end{longtable}      
         
 An example call with \textit{./gpusat -f ../examples/test\_da4\_1.cnf -v -p -d ../examples/td4p1.txt  -g ../examples/graphfileda41.txt -{}-visufile ../examples/visufileda41.json} enabled verbose output, disabled pre-processing to prevent the creation of bags with too many variables at once to be visualized, and creates full visualization output. 
-The example console output produced by this call is included in \ref{lst:outputgpusat} on page \pageref{lst:outputgpusat}.
+The example console output produced by this call is included in Listing \ref{lst:outputgpusat} on page \pageref{lst:outputgpusat}.
 
 %============== Graphoutput ====================================================
 \subsection{Class Graphoutput}\label{sec:chagraphoutput}
