@@ -20,13 +20,11 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {subsection}{\numberline {2.1}Graphs}{8}{subsection.2.1}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {2.2}(Monadic Second-Order) Logic}{9}{subsection.2.2}%
+\contentsline {subsection}{\numberline {2.2}Propositional Logic}{9}{subsection.2.2}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {2.3}Propositional Logic}{9}{subsection.2.3}%
+\contentsline {subsection}{\numberline {2.3}Boolean Algebra}{9}{subsection.2.3}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {2.4}Boolean Algebra}{9}{subsection.2.4}%
-\defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {2.5}From Propositional Logic to MSO Logic}{11}{subsection.2.5}%
+\contentsline {subsection}{\numberline {2.4}From Propositional Logic to MSO Logic}{11}{subsection.2.4}%
 \defcounter {refsection}{0}\relax 
 \contentsline {paragraph}{\nonumberline First-order logic}{11}{section*.11}%
 \defcounter {refsection}{0}\relax 
@@ -34,13 +32,13 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {paragraph}{\nonumberline Monadic second-order logic (MSO)}{12}{section*.13}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {2.6}MSO (Graph) Properties}{12}{subsection.2.6}%
+\contentsline {subsection}{\numberline {2.5}MSO (Graph) Properties}{12}{subsection.2.5}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {2.7}Tree Decomposition}{12}{subsection.2.7}%
+\contentsline {subsection}{\numberline {2.6}Tree Decomposition}{12}{subsection.2.6}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {2.8}Dynamic Programming on Tree Decompositions}{15}{subsection.2.8}%
+\contentsline {subsection}{\numberline {2.7}Dynamic Programming on Tree Decompositions}{15}{subsection.2.7}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {2.9}Parametrized Complexity}{16}{subsection.2.9}%
+\contentsline {subsection}{\numberline {2.8}Parametrized Complexity}{16}{subsection.2.8}%
 \defcounter {refsection}{0}\relax 
 \contentsline {paragraph}{\nonumberline FPT for model checking}{16}{section*.16}%
 \defcounter {refsection}{0}\relax 
