@@ -1,7 +1,7 @@
 % !TeX spellcheck = en_US
 % Paperformat
 % tex.stackexchange.com/questions/428553/add-bibliography-as-part-instead-of-chapter-in-toc
-\documentclass[a4paper, 12pt, bibliography=totoc, times]{scrartcl}
+\documentclass[a4paper, 12pt, bibliography=totoc]{scrartcl}
 \usepackage{setspace}
 \renewcommand{\baselinestretch}{1.5} 
 %\usepackage{cite}
@@ -111,9 +111,8 @@ mdframed={
 \usepackage[style=alphabetic,backend=biber]{biblatex}
 \addbibresource{bibtex.bib}
 
-\definecolor{light-gray}{gray}{0.9}
-\lstset{tabsize=2, linewidth=1.05\textwidth, framextopmargin=1em, basicstyle=\small\ttfamily}
-\lstset{numbers=left,backgroundcolor=\color{white!95!black}, captionpos=b, breaklines=true, framexleftmargin=5pt}
+\definecolor{light-gray}{gray}{0.95}
+\lstset{tabsize=2, linewidth=1.05\textwidth, framextopmargin=1em, basicstyle=\small\ttfamily,numbers=left,backgroundcolor=\color{light-gray}, captionpos=b, breaklines=true, framexleftmargin=5pt, stepnumber=5, firstnumber=1}
 \newtheorem{theorem}{Theorem}[section]
 \setlength{\textheight}{1.05\textheight}
 \newcolumntype{Y}{>{\centering\arraybackslash}X}
@@ -1406,7 +1405,7 @@ As a first complete visualization output we show the full output of checking the
 In the Figures~\ref{fig:DA4SATadditional}~and~\ref{fig:DA4SATadditional2} we see the first two visualizations for incidence and primal graph with highlights corresponding to the same run as before. The first step has no highlighting. One could compare the processed Boolean formula indicated with the clauses as nodes sorted on the left-hand side. The edges either are solid lines or starting with a little circle that indicates the negation of the connected variable at the right-hand side in this clause. The nodes in the variables have three ``states". As this run operated on the primal graph, there are only variables collected in the bags. When calculating the solutions we do however need whole clauses to be processed together, so additional variables are emphasized. The three states are 1)\textit{ not included} in any clause needed, 2)\textit{ indirectly included} emphasized with a dotted border and yellow highlighting in the incidence graph, and 3) \textit{ directly included} in the bag emphasized in yellow and solid border. \\
 The primal graph is also calculated directly from the Boolean formula and shows one of the same three states for each variable in its own layout.
 \begin{figure}[h]
-	\setkeys{Gin}{width=\linewidth,height=0.45\textheight,keepaspectratio}
+	\setkeys{Gin}{width=\linewidth,height=0.55\textheight,keepaspectratio}
 	\begin{tabularx}{\textwidth}{X X }
 		\includegraphics[valign=c]{images/DA4SAT/results/IncidenceGraphStep1.pdf} & \includegraphics[valign=c]{images/DA4SAT/results/PrimalGraphStep1.pdf}
 	\end{tabularx}
@@ -1414,14 +1413,14 @@ The primal graph is also calculated directly from the Boolean formula and shows 
 	\label{fig:DA4SATadditional}
 \end{figure}
 \begin{figure}[h]
-	\setkeys{Gin}{width=\linewidth,height=0.45\textheight,keepaspectratio}
+	\setkeys{Gin}{width=\linewidth,height=0.55\textheight,keepaspectratio}
 	\begin{tabularx}{\textwidth}{X X }
 		\includegraphics[valign=c]{images/DA4SAT/results/IncidenceGraphStep2.pdf} & \includegraphics[valign=c]{images/DA4SAT/results/PrimalGraphStep2.pdf} 
 	\end{tabularx}
 	\caption{ Highlighting of some parts of incidence graph (left) and primal graph of Example~\ref{ex:example41}.}
 	\label{fig:DA4SATadditional2}
 \end{figure}
-
+\newpage
 % Appl. SharpSat
 \subsection{\#SAT Example}\label{sec:applssat}
 Like the previous example section we are interested in solutions to example \ref{ex:example41}. This time we want to solve \#SAT and count the number of solutions, that is the number of satisfying assignments. While the tree decomposition and SAT formula stay the same, the solver added one column to our solution-tables and label this column \textit{mc} for "\textit{model-count}", compared to pure SAT solving. It also included a footer with the API to display the sum of all models considered up to this bag. We see two time steps, beginning and end of the run, in Figures~\ref{fig:DA4TDStep2}, \ref{fig:DA4TDStep6}. Again, the empty top of the reserved space is cut out of the images compared to the direct output.
@@ -1562,7 +1561,7 @@ As we can see the solutions for bags other than 2 are hidden in the output but a
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=\linewidth,height=0.6\textheight,keepaspectratio]{images/SVGJOIN/default2.pdf}
-	\caption{Joining results from Section \ref{sec:minvc} with default parameters at step 2.}
+	\caption{Joining results from Section \ref{sec:minvc} with default parameters at step two.}
 	\label{fig:joindefault}
 \end{figure}
 %svg_join(['TDStep', 'graph'],
@@ -1581,13 +1580,13 @@ As we can see the solutions for bags other than 2 are hidden in the output but a
 	
 	\vspace{0.6em}
 	\includegraphics[width=0.9\linewidth]{images/SVGJOIN/default_center2.pdf}
-	\caption[Joining results and shifting vertically to bottom and center]{Joining results from Section \ref{sec:minvc} at step 2 and setting v\_bottom. The invisible (empty) parts of the graphics is cropped from the top of each.}
+	\caption[Joining results and shifting vertically to bottom and center]{Joining results from Section \ref{sec:minvc} at step two and setting \textit{v\_bottom} to either ``bottom" or ``center". The invisible (empty) parts of the graphics is cropped from the top of each.}
 	\label{fig:joinbotcenter}
 \end{figure}
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=0.9\linewidth,height=0.9\textheight,keepaspectratio]{images/SVGJOIN/default_062.pdf}
-	\caption[Joining results and shifting vertically to 60\%]{Joining results from Section \ref{sec:minvc} at step 2 and shifting bottom edge of second image to $60\%$ height of the first image.}
+	\caption[Joining results and shifting vertically to 60\%]{Joining results from Section \ref{sec:minvc} at step two and shifting bottom edge of second image to $60\%$ height of the first image.}
 	\label{fig:join60}
 \end{figure}
 
@@ -1595,12 +1594,12 @@ In Figure \ref{fig:joinbotcenter} the parameter v\_bottom is set to ``bottom" to
 
 If we want the right graph a bit larger compared to the default size, we can add additional scaling by providing the argument \textbf{scale2}. In figures \ref{fig:joinscaled1} to \ref{fig:joinscaled5} the complete time series for solving \textit{minimal vertex cover} for example \ref{lst:wheelgraph} with join-parameters
 \begin{itemize}
-	\item[] padding = [0, 0, 0, 40],\quad v\_bottom = 0.6,\quad scale2 = 1.5
+	\item[] padding = [ 0, 0, 0, 40 ],\quad v\_bottom = 0.6,\quad scale2 = 1.5
 \end{itemize}
 can be seen. \\
 To further visualize the progress of the algorithm in the results one could use the option to specify multiple values for all the transformation parameters and for example elevate the second image with the values for
 \begin{itemize}
-\item[] v\_bottom = [1, 0.85, 0.7, 0.55, 0.4]
+\item[] v\_bottom = [ 1, 0.85, 0.7, 0.55, 0.4 ]
 \end{itemize}
  This is done in figures \ref{fig:joinscaledrise1} to \ref{fig:joinscaledrise5} on page~\pageref{fig:joinscaledrise1}.
 
@@ -1619,7 +1618,7 @@ Given the right testing frameworks it is possible to produce a report for struct
 	\includegraphics[width=0.8\linewidth,height=0.9\textheight,keepaspectratio
 					]{images/starsbag59.png}
 		\vspace{1em}
-	\caption{Part of interest to find a problem with bag 59 in visualization. }
+	\caption{Section of interest to find the problem with bag 59 visualized.}
 	\label{fig:starsbag59}
 \end{figure}
 
@@ -1715,7 +1714,7 @@ Right now even with the \textit{svg-join} tool we need multiple files to represe
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=0.9\linewidth,height=0.9\textheight,keepaspectratio]{images/SVGJOIN/default_06sc152.pdf}
-	\caption[Joining results from Section \ref{sec:minvc} at step 2/5]{Joining results from Section \ref{sec:minvc} at step 2. Also shifting the second graphic to $40\%$ height of the first image and scaling with scale2 = 1.5 .}
+	\caption[Joining results from Section \ref{sec:minvc} at step two/5]{Joining results from Section \ref{sec:minvc} at step two. Also shifting the second graphic to $40\%$ height of the first image and scaling with scale2 = 1.5 .}
 	\label{fig:joinscaled2}
 \end{figure}
 \begin{figure}[H]
@@ -1834,7 +1833,7 @@ def inspect_json(self, infile) -> VisualizationData:
 			svg_join=svg_join_data,
 			**visudata)
 
-\end{lstlisting}
+\end{lstlisting}\pagebreak
 
 \begin{lstlisting}[style=custompy, caption={SvgJoinData}, label={lst:svgjoindataclass}]
 @dataclass
@@ -1872,7 +1871,7 @@ class IncidenceGraphData:
 	penwidth: float = 2.2
 	second_shape: str = 'diamond'
 	column_distance: float = 0.5
-\end{lstlisting}
+\end{lstlisting}\pagebreak
 
 \begin{lstlisting}[style=custompy, caption={GeneralGraphData}, label={lst:gengraphdata}]
 @dataclass
@@ -1913,7 +1912,6 @@ def create_json(problem: int, tw_file=None, intermed_nodes=False):
 		elif ptype == 'VertexCover':
 			constructor = DpdbMinVcVisu(
 				connection, problem, intermed_nodes, tw_file)
-		
 		return constructor.construct()
 	return {} 
 \end{lstlisting}
@@ -2024,7 +2022,6 @@ class SvgJoinData:
 %============== Input Examples ======================================================
 \section{More Examples}\label{app:input}
 
-\lstset{numbers=none}
 
 \begin{table}[H]
 	\centering
@@ -2103,7 +2100,7 @@ p cnf 18 24
 15 16 17 -18 0
 \end{lstlisting}
 \lstinputlisting[caption={Edges for example \ref{fig:wheelgraph}}, label={lst:wheelgraph}]{images/WheelGraph7/wheelgraph7.tw}
-\lstinputlisting[caption={DOT source for visualization of example 4.1}, label={lst:g41digraphdot}]{includes/g41digraphdot}
+\lstinputlisting[caption={DOT source for visualization of example 4.1}, label={lst:g41digraphdot}]{includes/g41digraphdot}\pagebreak
 \lstinputlisting[caption={Small GML output from class \textit{Graphoutput}, Section \ref{sec:chagraphoutput}}, label={lst:g41digraphgml}]{includes/graphml.gml}
 \lstinputlisting[caption={Console output by modified \textit{gpusat} with full debugging enabled.}, label={lst:outputgpusat}]{includes/outputGpusatshort.txt}
 %==============================================================================
@@ -2113,7 +2110,7 @@ p cnf 18 24
 \listoffigures
 \newpage
 \listoftables
-\renewcommand{\lstlistlistingname}{List of Listings}
+\renewcommand{\lstlistlistingname}{Listings}
 \lstlistoflistings
 \newpage
 \printbibliography

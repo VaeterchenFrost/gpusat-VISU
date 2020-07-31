@@ -86,7 +86,7 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {subsection}{\numberline {7.1}SAT Example}{35}{subsection.7.1}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {7.2}\#SAT Example}{38}{subsection.7.2}%
+\contentsline {subsection}{\numberline {7.2}\#SAT Example}{39}{subsection.7.2}%
 \defcounter {refsection}{0}\relax 
 \contentsline {subsection}{\numberline {7.3}Vertex Cover Example}{42}{subsection.7.3}%
 \defcounter {refsection}{0}\relax 
