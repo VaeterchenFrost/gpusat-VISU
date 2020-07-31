@@ -479,7 +479,6 @@ In this thesis we use the word {graph} for a pair $G=(V_{G},~E_{G})$, where $V_{
 \end{itemize}
 %============== SAT ====================================================
 \subsection{Boolean Algebra}\label{sec:BSP}
-\mbox{}\\
 % en.wikipedia.org/wiki/Boolean_satisfiability_problem
 
 %SAT was the first known NP-complete problem, shown by Stephen Cook at the University of Toronto in 1971 \cite{SAT1971}
@@ -495,7 +494,6 @@ In this thesis we use the word {graph} for a pair $G=(V_{G},~E_{G})$, where $V_{
 %\text{satisfiedform}&\equiv \text{each clause in the formula is satisfied by assignment} \\
 %\end{align*}
 
-
 In this thesis we use the following symbols for expressions of Boolean algebra:\\
 
 ${ \Omega _{0}=\{0 ,1 \}.}$ 
@@ -503,7 +501,6 @@ ${ \Omega _{0}=\{0 ,1 \}.}$
 ${\Omega _{1}=\{\lnot \},}$
 
 ${ \Omega _{2}= \{\land ,\lor \}.}$\\
-
 
 A propositional logic formula, or Boolean expression, is then built from variables, the logical values $\Omega _{0}$, the operators $\Omega _{1}$ and $\Omega _{2}$ as well as parentheses.
 
@@ -619,7 +616,7 @@ While \textbf{first-order logic} only quantifies variables that range over indiv
 
 %============== MSOL ====================================================
 \subsection{MSO (Graph) Properties}
-MSO logic can express graph properties and mappings from (labeled) graphs to (labeled) graphs \cite{CourcelleGROW}.
+MSO logic can express \textbf{graph properties} and \textbf{mappings} from (labeled) graphs to (labeled) graphs \cite{CourcelleGROW}.
 Typical MSO properties include:
 
 \begin{itemize}
@@ -637,7 +634,7 @@ Typical MSO properties include:
 	$\exists Z~(\exists x \in Z \land \exists y \notin Z \land (\forall u,v~[u\in Z \land edg(u,v) \implies v \in Z]))$
 
 \end{itemize}
-
+More examples of MSO properties can be found for example in \cite[Theorem 3.5]{ARNBORG1991308}.
 %\url{youtu.be/Wyn3djrYg7c?t=1385} Bruno Courcelle: Recognizable sets of graphs: algebraic and logical aspects 
 %\url{library.cirm-math.fr/Record.htm?idlist=2&record=19276851124910940339}
 %Recording during the thematic meeting: ``Frontiers of reconnaissability" the April 29, 2014 at the Centre International de Rencontres Mathématiques (Marseille, France)
@@ -648,7 +645,7 @@ Typical MSO properties include:
 %Used in RNA Folding: Novel prediction techniques are developed based on graph tree decomposition. \cite{BioInfoTD1970}
 %See also chapter 2.2 of \cite{DiplomarbeitZisser}.
 %Tree decompositions were originally introduced by Robertson and Seymour \cite{ROBERTSON198449} in 1984.
-A \textit{tree decomposition} (TD) of a graph G is a pair $(T, \chi)$. $T$ is a tree and $\chi$ is a mapping which assigns each node $n~\in~V(T)$ 
+A \textit{tree decomposition} (TD) of a graph $G$ is a pair $(T, \chi)$. $T$ is a tree and $\chi$ is a mapping which assigns each node $n~\in~V(T)$ 
 a set $\chi(n) \subseteq V(G)$ called a \textit{bag}. Then $(T, \chi)$. $T$ is a TD if the following three conditions hold:
 
 \begin{itemize}
@@ -660,8 +657,6 @@ The width $width(T)$ of a tree decomposition $T$ is $max_{n\in V(T)}(|\chi(n)|)-
 The tree width of a graph is the \textit{minimal width} over all tree decompositions of the graph. 
 
 %Wiki: In this definition, the size of the largest set is diminished by one in order to make the treewidth of a tree equal to one. 
-
-MSO queries on tree decomposable structures are computable with linear delay \cite{MSOQueriesGuillaume}. There exist many ``easy" problems on tree decomposable graphs \cite{ARNBORG1991308}.
 
 % Examples
 We use tree decompositions throughout our visualizations in this thesis. One detailed explanation is also introduced in \cite{pcgp2019} at page 169.
@@ -676,11 +671,11 @@ The tree decomposition for our ``wheelgraph" example \ref{fig:wheelgraph} can be
 \medskip\noindent
 Some projects might use so called \textit{nice} tree decompositions in order to simplify the cases in the used algorithm \cite[Ch.~2.2]{DiplomarbeitZisser}.
 For every tree decomposition a nice tree decomposition can be computed within linear time without increasing the width \cite{klokstw}.
-Non-nice tree decomposition, however, have advantages in terms of solving time. In the application \textit{gpusat} for example they combined three single operations into one introduce forget (IF) operation. Thereby, reducing the overhead for memory operations on the device and the overhead for copying and retrieving tables between devices. Another advantage is that this reduces the size of the tables they need to store by forgetting the variables which do not occur in the next bag after each introduce operation \cite[Ch.~4.2.1]{DiplomarbeitZisser}. 
+Non-nice tree decomposition, however, have advantages in terms of solving time. In the application \textit{gpusat} for example they combined three single operations into one introduce forget (IF) operation. This reduces the overhead for memory operations on the device and the overhead for copying and retrieving tables between devices. Another advantage is that this reduces the size of the tables they need to store by forgetting the variables which do not occur in the next bag after each introduce operation \cite[Ch.~4.2.1]{DiplomarbeitZisser}. 
 We see the results of this combined IF operation throughout our visualizations, where for the most part only the results needed for the next bag are included.\\
 Similar techniques regarding non-nice TD are also used in the solver dpdb, see \cite[Ch.~4.1]{dpdbpadl2020}.\\
 
-As stated in \cite[Ch.~2.2]{DiplomarbeitZisser}, Arnborg et. al. \cite{arnborgtd} have shown that finding a tree decompositions of minimal width is only feasible for small graphs.  There are exact methods for obtaining minimal width tree decompositions,  e.g. \cite{gogatetw, bachoore06}. The solvers for which we implemented the visualization use heuristics  for  generating tree decompositions, therefore  the width of larger examples than shown in this thesis might not be minimal. 
+As stated in \cite[Ch.~2.2]{DiplomarbeitZisser}, Arnborg et. al. \cite{arnborgtd} have shown that finding a tree decompositions of minimal width is only feasible for ``small graphs".  There are exact methods for obtaining minimal width tree decompositions,  e.g. \cite{gogatetw, bachoore06}. The solvers for which we implemented the visualization use heuristics  for  generating tree decompositions, therefore  the width of larger examples than shown in this thesis might not be minimal. 
 
 
 %============== Reference on Algo and Param Complexity ====================================================
@@ -718,7 +713,7 @@ In the following two section we want to introduce the reader with some computati
 
 % en.wikipedia.org/wiki/Parameterized_complexity
 \paragraph{FPT for model checking}
-Some problems can be solved by algorithms that are exponential only in the size of a fixed parameter while polynomial in the size of the input. Such an algorithm is called a fixed-parameter tractable (FTP-)algorithm, and the problem can be solved efficiently for small values of the fixed parameter. \cite{ParamCompGrohe}
+Some problems can be solved by algorithms that are exponential only in the size of a fixed parameter while polynomial in the size of the input. Such an algorithm is called a fixed-parameter tractable (FTP-)algorithm, and the problem can be solved efficiently for small values of the fixed parameter \cite{ParamCompGrohe}.
 %\begin{thm}
 %	An algorithm is FPT if it takes time $f(k)\cdot n^{c}$ for some constant $c$ and a fixed function f depending only on $k \in \mathbb{N}$. The size of the input is n. 
 %	The value k is a parameter of the input, in our case usually tree-width. 
@@ -727,21 +722,21 @@ Some problems can be solved by algorithms that are exponential only in the size 
 
 % Implications
 There are efficient algorithms for enumerating and for counting the number of solutions of a MSO formula, if it is ensured that the input data is preprocessed in linear time, and that each solution is then produced in a delay linear in the size of each solution \cite{MSOQueriesGuillaume, ARNBORG1991308}.
-MSO graph properties are ``fixed-parameter-tractable" with respect to tree-width. So are MSO counting and optimizing functions. \cite{CourcelleGROW}
+MSO graph properties are ``fixed-parameter-tractable" with respect to tree-width. So are MSO counting and optimizing functions \cite{CourcelleGROW}.
 
 %DETAILS MinVC: 
 %en.wikipedia.org/wiki/Vertex_cover#Fixed-parameter_tractability
 
 %============== Courcelle ====================================================
 \paragraph{Courcelle's Theorem}
- Courcelle's theorem is a constructive meta-theorem and thus does provide algorithms for evaluating MSO formulas over graphs of bounded treewidth.
+ Courcelle's theorem is a constructive meta-theorem that provides algorithms for evaluating MSO formulas over graphs of bounded treewidth.
 Courcelle's theorem:
 
 \smallskip\noindent
 \textit{
-	Every graph property definable in monadic second-order logic (MSO) is decidable in linear time on graphs of bounded tree-width. }\leftskip=1cm
+	Every graph property definable in monadic second-order logic (MSO) is decidable in linear time on graphs of bounded tree-width. }\leftskip=1.5cm\rightskip=2cm
 
-\leftskip=0cm\smallskip
+\leftskip=0cm\rightskip=0cm\smallskip
 
 \noindent
 To be more specific: It holds that for all $k \in \mathbb{N}$ and MSO-formulas F is the decision problem for a given graph G, whether $G \models F$ is true, in time $2^{p(tw(G))} \cdot |G|$ with a polynomial p decidable \cite[p. 54--56]{Courcelle2012}.\smallskip 
@@ -754,8 +749,8 @@ To be more specific: It holds that for all $k \in \mathbb{N}$ and MSO-formulas F
 %	\label{fig:UsageCourcelle}
 %\end{figure}
 
-The task now is: even if linear in the size of the input, naive implementations are still expensive and the constant factor can be very significant \cite{Courcelle2012,KNEIS200965,MetatheoremsforRestrictionsofTreewidth}. 
-A recommendation in \cite{FiniteAutomata10} is to \textit{forget the idea of implementing the general theorem, and to work directly on particular problems}. An efficient implementation will require several tricks to make this approach practical\cite{DiplomarbeitZisser,fichtegpusat2}. Developing and debugging these ``tricks" is not always that easy, so a visualization can help at this point.\smallskip 
+The challenge now is that naive implementations, even if they are linear in the size of the input, are still expensive and the constant factor can be very significant \cite{Courcelle2012,KNEIS200965,MetatheoremsforRestrictionsofTreewidth}. 
+A recommendation in~\cite{FiniteAutomata10} is to \textit{forget the idea of implementing the general theorem, and to work directly on particular problems}. An efficient implementation will require several tricks to make this approach practical~\cite{DiplomarbeitZisser,fichtegpusat2}. Developing and debugging these ``tricks" is not always that easy, so a visualization can help at this point.\smallskip 
 
 
 %==============================================================================
