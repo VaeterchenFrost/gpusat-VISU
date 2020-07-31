@@ -505,18 +505,16 @@ ${\Omega _{1}=\{\lnot \},}$
 ${ \Omega _{2}= \{\land ,\lor \}.}$\\
 
 
-A propositional logic formula, or Boolean expression, is then built from variables, the logical values $\Omega _{0}$, the operators $\Omega _{1}$ and $\Omega _{2}$ as well as parentheses.\\
+A propositional logic formula, or Boolean expression, is then built from variables, the logical values $\Omega _{0}$, the operators $\Omega _{1}$ and $\Omega _{2}$ as well as parentheses.
 
 \begin{example}\label{ex:booleanform}
-	$B$ is a Boolean expression with\\
-	
+	$B$ is a Boolean expression with\\	
 	$B = (\text{v1}\lor \text{v4}\lor \text{v6})\land (\neg \text{v5}\lor \text{v1})\land (\neg \text{v1}\lor \text{v7})\land (\text{v2}\lor \text{v3})\land (\text{v2}\lor \neg \text{v5})
 	\land (\neg \text{v6}\lor \text{v2})\land \\
 	(\text{v3}\lor \neg \text{v8})\land (\text{v4}\lor \neg \text{v8})\land (\neg \text{v4}\lor \text{v6})\land (\neg \text{v4}\lor \text{v7})$
-
 \end{example}
 
-To describe the usual notation used in solvers for Boolean satisfiability we also use the following definitions to describe the problem instances denoted in conjunctive normal form (CNF).
+To describe the usual notation used in solvers for Boolean satisfiability, we also use the following definitions to describe the problem instances denoted in conjunctive normal form (CNF).
 
 A literal is a Boolean variable $v$ or its negation $\neg v$. A $clause$ is a finite set of literals interpreted as their disjunction. A clause $c$ is called $unit$ if $|c|=1$. A CNF $formula$ is a set of clauses and is interpreted as the conjunction of its clauses. We define $var(C)$ as the set of variables contained in the clause or clause set C. As $assignment \alpha$ maps variables in a formula to 0 or 1, $\alpha : var(C)\rightarrow 0,1$. A clause is satisfied by an assignment if for some variable $v \in var(c)$ we have $v \in c \land \alpha (v)=1$ {or} $\neg v \in c \land \alpha(v)=0$. Otherwise the assignment falsifies the clause. An assignment satisfies a formula if each clause in the formula is satisfied by the assignment. \\
 %A set C of clauses is 
@@ -541,9 +539,20 @@ A literal is a Boolean variable $v$ or its negation $\neg v$. A $clause$ is a fi
 \end{example}
 \vskip 12pt
 The formula $C$ is for example satisfied by the assignment that maps all variables $var(C)\rightarrow 1$ to $1$. 
-All 22 satisfying assignments can be seen in Table~\ref{tab:ex41tabx} on page~\pageref{tab:ex41tabx}.\\
+All 22 satisfying assignments can be seen in Table~\ref{tab:ex41tabx} on page~\pageref{tab:ex41tabx}.
 
-The Boolean satisfiability problem \textbf{SAT} then consists of the question: Given a propositional formula $\phi$, is there an assignment of the variables in $\phi$ for which $\phi$ is satisfied, and \textbf{\#SAT} consists of the question: Given a propositional formula $\pi$, for how many assignments of the variables in $\pi$ is $\pi$ satisfied?\\
+\paragraph{SAT}The Boolean satisfiability problem {SAT} then consists of the question: 
+\begin{mdframed}[leftmargin=3em,rightmargin=3em]
+ \textit{Given a propositional formula $\phi$, is there an assignment of the variables in $\phi$ for which $\phi$ is satisfied?} 
+\end{mdframed}
+\textbf{Example}~\ref{ex:example41} has a satisfying assignment, see Chapter \ref{sec:applsat} for a discussion.
+
+\paragraph{\#SAT}The ``counting problem" of SAT asks the question:
+\begin{mdframed}[leftmargin=3em,rightmargin=3em]
+\textit{Given a propositional formula $\phi$, for how many assignments of the variables in $\phi$ is $\phi$ satisfied?}
+\end{mdframed}
+\textbf{Example}~\ref{ex:example41} has 22 satisfying assignments, see Chapter \ref{sec:applssat} for its discussion.\\
+\noindent
 
 %SAT Handbook:
 %Even finding a single solution can be a challenge
@@ -565,7 +574,7 @@ The \textit{dual graph} of a SAT formula contains a node for each clause in the 
 
 Those three graphs for our Example \ref{ex:example41} are shown in Fig.~\ref{fig:primalgraph41} .
 
-\begin{figure}
+\begin{figure}[H]
 	\includegraphics[width=0.33\linewidth]{images/primalgraph41.png}
 	\includegraphics[width=0.32\linewidth]{images/incgraph41.png}
 	\includegraphics[width=0.33\linewidth]{images/dualgraph41.png}
@@ -614,6 +623,11 @@ MSO logic can express graph properties and mappings from (labeled) graphs to (la
 Typical MSO properties include:
 
 \begin{itemize}
+		\item \textbf{Vertex Cover} \cite[Ch. 4.2]{dpdbpadl2020}\\
+	Given a graph $G=(V,E)$ a vertex cover is a set\\
+	$C \subseteq V:edg(u,v)\implies \{u,v\}\cap C \neq \emptyset)$\\
+	Then minimal vertex cover (MinVC) asks to find the minimum cardinality $|C|$ among all vertex covers of $G$. 
+	
 	\item \textbf{K-colorability}\\
 	Example graph is 3-colorable:\\	
 	$\exists X,Y~(X \cap Y = \emptyset \land \forall u,v~(edg(u,v) \implies [(u\in X \implies v\notin X)\land (u\in Y \implies v\notin Y)\land (u\notin X \cup Y \implies c \in X \cup Y)]))$
@@ -621,11 +635,7 @@ Typical MSO properties include:
 	\item \textbf{Connectivity}\\
 	Example graph is \textbf{not} connected:\\	
 	$\exists Z~(\exists x \in Z \land \exists y \notin Z \land (\forall u,v~[u\in Z \land edg(u,v) \implies v \in Z]))$
-	
-	\item \textbf{Vertex Cover} \cite[Ch. 4.2]{dpdbpadl2020}\\
-	Given a graph $G=(V,E)$ a vertex cover is a set\\
-	$C \subseteq V:edg(u,v)\implies \{u,v\}\cap C \neq \emptyset)$\\
-	Then minimal vertex cover (MinVC) asks to find the minimum cardinality $|C|$ among all vertex covers of $G$. 
+
 \end{itemize}
 
 %\url{youtu.be/Wyn3djrYg7c?t=1385} Bruno Courcelle: Recognizable sets of graphs: algebraic and logical aspects 
@@ -655,16 +665,13 @@ MSO queries on tree decomposable structures are computable with linear delay \ci
 
 % Examples
 We use tree decompositions throughout our visualizations in this thesis. One detailed explanation is also introduced in \cite{pcgp2019} at page 169.
-The tree decomposition for our ``wheelgraph" example \ref{fig:wheelgraph} can be viewed in listing~\ref{lst:wheelgraphtd}. The conditions for tree decompositions outlined above are easy to verify for this small example, and we get a tree width $width(T)=3$ for this graph.
-
+The tree decomposition for our ``wheelgraph" example \ref{fig:wheelgraph} can be viewed in Listing~\ref{lst:wheelgraphtd} on page \pageref{lst:wheelgraphtd}. The conditions for tree decompositions outlined above are easy to verify for this small example, and we get  $width(T)=3$ for this decomposition.
 \begin{figure}[h]
 	\centering
 	\includegraphics[height=6cm]{images/TDWheelgraph7.png}
 		\caption[Tree decomposition of the wheel graph]{Tree decomposition of a wheel graph (Fig. \ref{fig:wheelgraph})	with seven vertices.}
 	\label{fig:tdweelgraph7}
 \end{figure}
-\mbox{
-\lstinputlisting[caption={Tree decomposition in DIMACS format for Figure \ref{fig:tdweelgraph7}}, label={lst:wheelgraphtd},backgroundcolor=\color{white},numbers=none,linewidth=0.3\textwidth,xleftmargin=200pt]{images/WheelGraph7/wheelgraph7.td}}
 
 \medskip\noindent
 Some projects might use so called \textit{nice} tree decompositions in order to simplify the cases in the used algorithm \cite[Ch.~2.2]{DiplomarbeitZisser}.
@@ -699,7 +706,7 @@ The basic algorithmic procedure is presented in Fig.~\ref{fig:dpalgo}. It does i
 \begin{figure}[h]
 	\centering
 	\includegraphics{images/DPAlgo31.png}
-	\caption{ Basic procedure for dynamic programming on TD. Source: \cite[Figure~3.1]{DiplomarbeitZisser} }
+	\caption[Basic procedure for dynamic programming on TD]{ Basic procedure for dynamic programming on TD. Source: \cite[Figure~3.1]{DiplomarbeitZisser} }
 	\label{fig:dpalgo}
 \end{figure}
 
@@ -1418,7 +1425,7 @@ The primal graph is also calculated directly from the Boolean formula and shows 
 \end{figure}
 
 % Appl. SharpSat
-\subsection{\#SAT Example}
+\subsection{\#SAT Example}\label{sec:applssat}
 Like the previous example section we are interested in solutions to example \ref{ex:example41}. This time we want to solve \#SAT and count the number of solutions, that is the number of satisfying assignments. While the tree decomposition and SAT formula stay the same, the solver added one column to our solution-tables and label this column \textit{mc} for "\textit{model-count}", compared to pure SAT solving. It also included a footer with the API to display the sum of all models considered up to this bag. We see two time steps, beginning and end of the run, in Figures~\ref{fig:DA4TDStep2}, \ref{fig:DA4TDStep6}. Again, the empty top of the reserved space is cut out of the images compared to the direct output.
 \begin{figure}[H]
 	\centering
@@ -1778,6 +1785,7 @@ Right now even with the \textit{svg-join} tool we need multiple files to represe
 
 \lstinputlisting[caption={The JSON format as an used to describe MSOL visualization on tree decompositions}, label={lst:jsonapi}]{includes/JsonAPI.txt}
 
+{\lstinputlisting[caption={Tree decomposition in DIMACS format for Figure \ref{fig:tdweelgraph7}},frame=ltrb,framexleftmargin=7pt,xleftmargin=0.7\linewidth,linewidth=0.8\linewidth,label={lst:wheelgraphtd},backgroundcolor=\color{white},numbers=none]{images/WheelGraph7/wheelgraph7.td}}
 
 \begin{lstlisting}[style=custompy, caption={Initializing a Visualization object}, label={lst:visuinit}]
 def __init__(self, infile, outfolder) -> None:
@@ -2111,6 +2119,8 @@ p cnf 18 24
 \listoffigures
 \newpage
 \listoftables
+\renewcommand{\lstlistlistingname}{List of Listings}
+\lstlistoflistings
 \newpage
 \printbibliography
 %\bibliography{bibtex}{}
