@@ -1608,10 +1608,10 @@ To further visualize the progress of the algorithm in the results one could use 
 \subsection{Visualization of Defects}
  
 As stated in the introduction, most of the data we visualize is already present in the solvers.
-Given the right testing frameworks it is possible to produce a report for structural or even randomly occurring defects in the solver. As the software we used for our experimental visualizations shown in this work does not itself contain a test environment, we were able to reproduce some undiscovered ``bugs" using and developing our visualization tool.
+Given the right testing frameworks it is possible to produce a report for structural or even randomly occurring defects in the solver. As the software we used for our experimental visualizations shown in this work does not itself contain a test environment, we were able to produce some undiscovered ``bugs" while using and developing our visualization tool.
 
 
- One specific program invocation did not give the expected result solving a \textit{vertex cover} with one hundred nodes. The problem was first found when inspecting the immediate output of the program \textit{dpdb.py}, which did report the wrong result size. The problem could be localized in the tree decomposition, leading to the whole result table being pruned - see the visualization in Figure \ref{fig:starsbag59}. It is obvious that ``bag 59" is disconnected from its parent ``bag 57", even if its nodes occurred in other bags in the tree. This violates our rule $3$ of the TD (``the set of bags that contain the variable v induce a connected sub-graph of T.").  This particular bug occurred only with a specific seed and on the windows operating system. 
+ One specific program invocation did not give the expected result solving a \textit{vertex cover} with one hundred nodes. The problem was first found when inspecting the immediate output of the program \textit{dpdb.py}, which did report the wrong result size. The problem could be localized in the tree decomposition, leading to the whole result table being pruned - see the visualization in Figure \ref{fig:starsbag59}. It is obvious that ``bag 59" is disconnected from its parent ``bag 57", even if its nodes occurred in other bags in the tree. This violates our rule $3$ of the TD (``the set of bags that contain the variable v induce a connected sub-graph of T.").  This particular bug only occurred  with a specific seed (zero) and on the Windows operating system (not on the tested Linux systems). 
 
 \begin{figure}[H]
 	\centering
@@ -1630,12 +1630,12 @@ Given the right testing frameworks it is possible to produce a report for struct
 %	\label{fig:bag59visu}
 %\end{figure}
 
-The problem was located in the version of \url{github.com/TU-Wien-DBAI/htd} used to create the tree decomposition, which in this instance and for the seed $0$ did not place bag 59 in the right place in the tree-decomposition on our Windows 10 machine. We can see the bags of the tree decomposition in Figure \ref{fig:bag59td}, where the bags containing variable 100 are indicated in red. 
+The problem was located in the version of \url{github.com/TU-Wien-DBAI/htd} used to create the tree decomposition, which in this instance did not place bag 59 in the right place in the tree-decomposition on our Windows 10 machine. We can see the bags of the tree decomposition in Figure \ref{fig:bag59td}, where the bags containing variable $v_{100}$ are indicated in red. 
 
 \begin{figure}
 	\centering
 	\includegraphics[width=0.9\linewidth,height=0.9\textheight,keepaspectratio]{images/stars100var100.png}
-	\caption{Bag 59 can be seen on the far right of the graphic.}
+	\caption{Simplified graphic of the TD with bags in red that contain the variable $v_{100}$. Bag 59 can be seen separated on the far right of the figure.}
 	\label{fig:bag59td}
 \end{figure}
 %==============================================================================
