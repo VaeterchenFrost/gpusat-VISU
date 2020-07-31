@@ -3,7 +3,7 @@
 % tex.stackexchange.com/questions/428553/add-bibliography-as-part-instead-of-chapter-in-toc
 \documentclass[a4paper, 12pt, bibliography=totoc, times]{scrartcl}
 \usepackage{setspace}
-\renewcommand{\baselinestretch}{1.3} 
+\renewcommand{\baselinestretch}{1.5} 
 %\usepackage{cite}
 %\usepackage{ragged2e}
 
@@ -195,7 +195,7 @@ Since the design of dynamic programming can be quite error-prone, a fast and unc
 To help further refine and visualize the dynamic programming,
 we specified a JSON template for data transfer between solvers and the newly created visualization tool \textit{tdvisu}\footnote{tdvisu is available under GPLv3 license at \url{github.com/VaeterchenFrost/tdvisu}}.\\
 
-For two reference implementations of dynamic programming of tree decompositions we chose \textit{gpusat}\footnote{gpusat is available under GPLv3 license at \url{github.com/Budddy/GPUSAT}} and \textit{dpdb}\footnote{dpdb is available under GPLv3 license at \url{github.com/hmarkus/dpondbs}} as modern solvers on two very different architectures.\\
+For two reference implementations of dynamic programming of tree decompositions we chose \textit{gpusat}\footnote{gpusat is available under GPLv3 license at \url{github.com/Budddy/GPUSAT}} and \textit{dpdb}\footnote{dpdb is available under GPLv3 license at \url{github.com/hmarkus/dp\_on\_dbs}} as modern solvers on two very different architectures.\\
 
 
 \paragraph{Keywords:}
@@ -662,7 +662,7 @@ The basic algorithmic procedure is presented in Fig.~\ref{fig:dpalgo}. It does i
 \subsection{Parametrized Complexity}
 In the following two section we want to introduce the reader with some computational bounds for the underlying concept and problems of solving MSO-problems with the current approaches.
 
-\subsubsection{Fixed-Parameter Tractable (FTP-)Algorithm}
+%\subsubsection{Fixed-Parameter Tractable (FTP-)Algorithm}
 
 % en.wikipedia.org/wiki/Parameterized_complexity
 \paragraph{FPT for model checking}
@@ -677,7 +677,7 @@ Some problems can be solved by algorithms that are exponential only in the size 
 There are efficient algorithms for enumerating and for counting the number of solutions of a MSO formula, if it is ensured that the input data is preprocessed in linear time, and that each solution is then produced in a delay linear in the size of each solution \cite{MSOQueriesGuillaume, ARNBORG1991308}.
 MSO graph properties are ``fixed-parameter-tractable" with respect to tree-width. So are MSO counting and optimizing functions. \cite{CourcelleGROW}
 
-DETAILS MinVC: 
+%DETAILS MinVC: 
 %en.wikipedia.org/wiki/Vertex_cover#Fixed-parameter_tractability
 
 %============== Courcelle ====================================================
