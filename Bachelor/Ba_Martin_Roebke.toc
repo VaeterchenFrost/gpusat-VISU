@@ -20,7 +20,7 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {subsection}{\numberline {2.1}Graphs}{8}{subsection.2.1}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {2.2}(Monadic Second-Order) Logic}{8}{subsection.2.2}%
+\contentsline {subsection}{\numberline {2.2}(Monadic Second-Order) Logic}{9}{subsection.2.2}%
 \defcounter {refsection}{0}\relax 
 \contentsline {subsection}{\numberline {2.3}Propositional Logic}{9}{subsection.2.3}%
 \defcounter {refsection}{0}\relax 
@@ -34,13 +34,13 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {paragraph}{\nonumberline Monadic second-order logic (MSO)}{12}{section*.13}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{\numberline {2.5.1}MSO (Graph) Properties}{12}{subsubsection.2.5.1}%
+\contentsline {subsection}{\numberline {2.6}MSO (Graph) Properties}{12}{subsection.2.6}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {2.6}Tree Decomposition}{13}{subsection.2.6}%
+\contentsline {subsection}{\numberline {2.7}Tree Decomposition}{12}{subsection.2.7}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {2.7}Dynamic Programming on Tree Decompositions}{15}{subsection.2.7}%
+\contentsline {subsection}{\numberline {2.8}Dynamic Programming on Tree Decompositions}{15}{subsection.2.8}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {2.8}Parametrized Complexity}{16}{subsection.2.8}%
+\contentsline {subsection}{\numberline {2.9}Parametrized Complexity}{16}{subsection.2.9}%
 \defcounter {refsection}{0}\relax 
 \contentsline {paragraph}{\nonumberline FPT for model checking}{16}{section*.16}%
 \defcounter {refsection}{0}\relax 
@@ -102,6 +102,6 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {section}{\numberline {B}Code Snippets}{66}{appendix.B}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {C}More Examples}{73}{appendix.C}%
+\contentsline {section}{\numberline {C}More Examples}{74}{appendix.C}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\nonumberline References}{81}{section*.62}%
+\contentsline {section}{\nonumberline References}{82}{section*.62}%

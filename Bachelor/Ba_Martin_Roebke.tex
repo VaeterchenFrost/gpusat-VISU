@@ -53,6 +53,56 @@ mdframed={
 	skipbelow=\parsep } 
 ]{thmstyle}
 
+\definecolor{eclipseStrings}{RGB}{42,0.0,255}
+\definecolor{eclipseKeywords}{RGB}{127,0,85}
+\definecolor{deepgreen}{rgb}{0,0.5,0}
+\colorlet{numb}{magenta!60!black}
+\DeclareFixedFont{\ttm}{T1}{txtt}{m}{n}{12}  % for normal
+
+\lstdefinestyle{custompy}{
+	language=Python,
+	backgroundcolor=\color{white},
+	basicstyle=\ttm,
+	belowcaptionskip=1\baselineskip,
+	breaklines=true,
+	frame=LtRb,
+	xleftmargin=\parindent,
+	showstringspaces=false,
+	keywordstyle=\bfseries\color{orange!80!black},
+	commentstyle=\itshape\color{purple!40!black},
+	identifierstyle=\color{blue},
+	stringstyle=\color{deepgreen},
+	emph={self},
+}
+
+\lstdefinelanguage{json}{
+	basicstyle=\normalfont\ttfamily,
+	numbers=none,
+	backgroundcolor=\color{white},
+	commentstyle=\color{eclipseStrings}, % style of comment
+	stringstyle=\color{eclipseKeywords}, % style of strings
+	numberstyle=\scriptsize,
+	stepnumber=1,
+	numbersep=8pt,
+	showstringspaces=false,
+	breaklines=true,
+	frame=L,
+	string=[s]{"}{"},
+	comment=[l]{:\ "},
+	morecomment=[l]{:"},
+	literate=
+	*{0}{{{\color{numb}0}}}{1}
+	{1}{{{\color{numb}1}}}{1}
+	{2}{{{\color{numb}2}}}{1}
+	{3}{{{\color{numb}3}}}{1}
+	{4}{{{\color{numb}4}}}{1}
+	{5}{{{\color{numb}5}}}{1}
+	{6}{{{\color{numb}6}}}{1}
+	{7}{{{\color{numb}7}}}{1}
+	{8}{{{\color{numb}8}}}{1}
+	{9}{{{\color{numb}9}}}{1}
+}
+
 \declaretheorem[style=thmstyle, name=Theorem]{thm}
 \declaretheorem[style=custom, name=Example]{example}
 \declaretheorem[name=Method call]{mycall}
@@ -381,7 +431,8 @@ Chapter \ref{sec:appl} shows, limited by the page size, small examples for the t
 \newpage
 \section{Background}\label{sec:bg}
 In this chapter we provide a brief background for this work.\\
-We will start with a short introduction to logic and MSO in \ref{sec:MSO}. Then we describe the Boolean satisfiability problem which in its variants is a popular application for solvers.
+
+We will start with a short introduction to logic and MSO in \ref{sec:MSO}. Monadic second-order logic (MSO) is a logical language that is suitable for expressing numerous graph properties \cite[p.~41]{Courcelle2012}. In the following summary we would like to introduce MSO as an extension  of first order logic and propositional logic. The concepts and notations from propositional logic are needed for the example applications around Boolean Logic and conjunctive normal forms (CNF); MSO will later be used as the language that describes the use cases of the dynamic programming on tree decompositions.
 Then we introduce Courcelle's theorem, which describes important properties of the problems and related bounds for the solvers.
 Eventually, tree decompositions are described as a basis for dynamic programming in the next section.
 %We begin with a description on SAT and \#SAT as examples for a very general problem that can be described with monadic second order logic (MSOL).
@@ -406,7 +457,7 @@ In this thesis we use the word \textbf{graph} for a pair $G=(V_{G},E_{G})$, wher
 %============== MSOL ====================================================
 \subsection{(Monadic Second-Order) Logic}\label{sec:MSO}
 
-Monadic second-order logic (MSO) is a logical language that is suitable for expressing numerous graph properties \cite[p.~41]{Courcelle2012}. In the following summary we would like to introduce MSO as an extension  of first order logic and propositional logic. The concepts and notations from propositional logic are needed for the example applications around Boolean Logic and conjunctive normal forms (CNF); MSO will later be used as the language that describes the use cases of the dynamic programming on tree decompositions.
+
 % Theory
 
 \subsection{Propositional Logic}
@@ -564,7 +615,7 @@ While \textbf{first-order logic} only quantifies variables that range over indiv
 
 % Applications
 
-\subsubsection{MSO (Graph) Properties}
+\subsection{MSO (Graph) Properties}
 MSO logic can express graph properties and mappings from (labeled) graphs to (labeled) graphs \cite{CourcelleGROW}.
 Typical MSO properties include:
 
@@ -905,7 +956,7 @@ Next, we want to extract information into the following places:
 \end{itemize}
 
 
-\begin{lstlisting}[language={Python}, caption={Overview of data initialization}, label={lst:visuinitsmall}]
+\begin{lstlisting}[style=custompy, caption={Overview of data initialization}, label={lst:visuinitsmall}]
 def __init__(self, infile, outfolder) -> None:
 	self.data: VisualizationData = self.inspect_json(infile)
 	self.outfolder = outfolder
@@ -914,13 +965,12 @@ def __init__(self, infile, outfolder) -> None:
 def inspect_json(self, infile) -> VisualizationData:
 	visudata = read_json(infile)
 	
-	[...]
-	_incid = visudata['incidenceGraph']
+	# [...] some details skipped
+ 	_incid = visudata['incidenceGraph']
 	_general_graph = visudata['generalGraph']
 	_svg_join = visudata.get('svg_join', None)
 	
-	[...]
-		
+	# [...] some details skipped		
 	return VisualizationData(incidence_graph=incid_data,
 													 general_graph=general_graph_data,
 													 svg_join=svg_join_data,
@@ -946,9 +996,8 @@ In this case, we remove all old edges between the children and the parent node, 
 An automatically inserted join node is shown in Figure~\ref{fig:g41Digraph} on page~\pageref{fig:g41Digraph}.
 The provided data for this example to layout the bags can be seen in Listing\ref{lst:edgearray41}. There we see that bags 2 and 3 have an edge to bag 1 and therefore a join-operation will occur between the results of bags 2 and 3:
 
-\begin{lstlisting}[caption={Structure provided for bags of example \ref{fig:g41Digraph} },label={lst:edgearray41},numbers=none,backgroundcolor=\color{white}]
-"edgearray" : 
-[
+\begin{lstlisting}[language=json,caption={Structure provided for bags of example \ref{fig:g41Digraph} },label={lst:edgearray41}]
+"edgearray" : [
 	[ 1, 0 ],
 	[ 2, 1 ],
 	[ 3, 1 ],
@@ -1734,65 +1783,65 @@ Right now even with the \textit{svg-join} tool we need multiple files to represe
 \newpage
 \section{Code Snippets}
 
-\lstinputlisting[caption={The JSON format used to describe MSOL visualization on tree decompositions}, label={lst:jsonapi}]{includes/JsonAPI.txt}
+\lstinputlisting[caption={The JSON format as an used to describe MSOL visualization on tree decompositions}, label={lst:jsonapi}]{includes/JsonAPI.txt}
 
 
-\begin{lstlisting}[language={Python}, caption={Initializing a Visualization object}, label={lst:visuinit}]
+\begin{lstlisting}[style=custompy, caption={Initializing a Visualization object}, label={lst:visuinit}]
 def __init__(self, infile, outfolder) -> None:
-"""Copy needed fields from arguments and create VisualizationData.
-"""
-self.data: VisualizationData = self.inspect_json(infile)
-self.outfolder = outfolder
+	"""Copy needed fields from arguments and create VisualizationData.
+	"""
+	self.data: VisualizationData = self.inspect_json(infile)
+	self.outfolder = outfolder
 
-self.tree_dec_digraph = None
+	self.tree_dec_digraph = None
 
 def inspect_json(self, infile) -> VisualizationData:
-"""Read and preprocess the needed data from the infile into 
-VisualizationData.
-"""
-LOGGER.debug("Reading from: %s", infile)
-visudata = read_json(infile)
-LOGGER.debug("Found keys: %s", visudata.keys())
-
-try:
-_incid = visudata['incidenceGraph']
-_general_graph = visudata['generalGraph']
-_svg_join = visudata.get('svg_join', None)
-
-incid_data: IncidenceGraphData = None
-if _incid:
-_incid['edges'] = [[x['id'], x['list']]
-for x in _incid['edges']]
-incid_data = IncidenceGraphData(**_incid)
-visudata.pop('incidenceGraph')
-general_graph_data: GeneralGraphData = None
-if _general_graph:
-general_graph_data = GeneralGraphData(**_general_graph)
-visudata.pop('generalGraph')
-svg_join_data: SvgJoinData = None
-if _svg_join:
-svg_join_data = SvgJoinData(**_svg_join)
-if 'svg_join' in visudata:
-visudata.pop('svg_join')
-
-self.timeline = visudata['tdTimeline']
-visudata.pop('tdTimeline')
-self.tree_dec = visudata['treeDecJson']
-self.bagpre = self.tree_dec['bagpre']
-self.joinpre = self.tree_dec.get('joinpre', 'Join %d~%d')
-self.solpre = self.tree_dec.get('solpre', 'sol%d')
-self.soljoinpre = self.tree_dec.get('soljoinpre', 'solJoin%d~%d')
-visudata.pop('treeDecJson')
-except KeyError as err:
-raise KeyError(f"Key {err} not found in the input Json.")
-return VisualizationData(incidence_graph=incid_data,
-general_graph=general_graph_data,
-svg_join=svg_join_data,
-**visudata)
+	"""Read and preprocess the needed data from the infile into 
+	VisualizationData.
+	"""
+	LOGGER.debug("Reading from: %s", infile)
+	visudata = read_json(infile)
+	LOGGER.debug("Found keys: %s", visudata.keys())
+	
+	try:
+		_incid = visudata['incidenceGraph']
+		_general_graph = visudata['generalGraph']
+		_svg_join = visudata.get('svg_join', None)
+		
+		incid_data: IncidenceGraphData = None
+		if _incid:
+		_incid['edges'] = [[x['id'], x['list']]
+		for x in _incid['edges']]
+		incid_data = IncidenceGraphData(**_incid)
+		visudata.pop('incidenceGraph')
+		general_graph_data: GeneralGraphData = None
+		if _general_graph:
+		general_graph_data = GeneralGraphData(**_general_graph)
+		visudata.pop('generalGraph')
+		svg_join_data: SvgJoinData = None
+		if _svg_join:
+		svg_join_data = SvgJoinData(**_svg_join)
+		if 'svg_join' in visudata:
+		visudata.pop('svg_join')
+		
+		self.timeline = visudata['tdTimeline']
+		visudata.pop('tdTimeline')
+		self.tree_dec = visudata['treeDecJson']
+		self.bagpre = self.tree_dec['bagpre']
+		self.joinpre = self.tree_dec.get('joinpre', 'Join %d~%d')
+		self.solpre = self.tree_dec.get('solpre', 'sol%d')
+		self.soljoinpre = self.tree_dec.get('soljoinpre', 'solJoin%d~%d')
+		visudata.pop('treeDecJson')
+	except KeyError as err:
+		raise KeyError(f"Key {err} not found in the input Json.")
+	return VisualizationData(incidence_graph=incid_data,
+			general_graph=general_graph_data,
+			svg_join=svg_join_data,
+			**visudata)
 
 \end{lstlisting}
 
-\begin{lstlisting}[language={Python}, caption={SvgJoinData}, label={lst:svgjoindataclass}]
+\begin{lstlisting}[style=custompy, caption={SvgJoinData}, label={lst:svgjoindataclass}]
 @dataclass
 class SvgJoinData:
 """Class holding different parameters to join the results."""
@@ -1810,7 +1859,7 @@ v_bottom: Union[None, float, str,
 Iterable[Union[None, float, str]]] = None	
 \end{lstlisting}
 
-\begin{lstlisting}[language={Python}, caption={IncidenceGraphData}, label={lst:incidencedata}]
+\begin{lstlisting}[style=custompy, caption={IncidenceGraphData}, label={lst:incidencedata}]
 @dataclass
 class IncidenceGraphData:
 """Class holding different parameters for the incidence graph."""
@@ -1830,7 +1879,7 @@ class IncidenceGraphData:
 	column_distance: float = 0.5
 \end{lstlisting}
 
-\begin{lstlisting}[language={Python}, caption={GeneralGraphData}, label={lst:gengraphdata}]
+\begin{lstlisting}[style=custompy, caption={GeneralGraphData}, label={lst:gengraphdata}]
 @dataclass
 class GeneralGraphData:
 """Class holding different parameters for the general graph."""
@@ -1848,7 +1897,7 @@ second_color: str = 'green'
 second_style: str = 'dotted,filled'
 \end{lstlisting}
 
-\begin{lstlisting}[language={Python}, caption={Construct\_dpdb\_visu.py}, label={lst:create-json}]
+\begin{lstlisting}[style=custompy, caption={Construct\_dpdb\_visu.py}, label={lst:create-json}]
 def create_json(problem: int, tw_file=None, intermed_nodes=False):
 	"""Create the JSON for the specified problem instance."""
 	with connect() as connection:
@@ -1874,7 +1923,7 @@ def create_json(problem: int, tw_file=None, intermed_nodes=False):
 	return {} 
 \end{lstlisting}
 
-\begin{lstlisting}[language={Python}, caption={forward\_iterate\_tdg}, label={lst:forward-iterate}]
+\begin{lstlisting}[style=custompy, caption={forward\_iterate\_tdg}, label={lst:forward-iterate}]
 def forward_iterate_tdg(self, joinpre, solpre, soljoinpre) -> None:
 """Create the final positions of all nodes with solutions."""
 	tdg = self.tree_dec_digraph                 # shorten name
@@ -1916,7 +1965,7 @@ def forward_iterate_tdg(self, joinpre, solpre, soljoinpre) -> None:
 					if isinstance(suc, int) else joinpre % suc)
 \end{lstlisting}
 
-\begin{lstlisting}[language={Python}, caption={backwards\_iterate\_tdg}, label={lst:backward-iterate}]
+\begin{lstlisting}[style=custompy, caption={backwards\_iterate\_tdg}, label={lst:backward-iterate}]
 def backwards_iterate_tdg(self, joinpre, solpre, soljoinpre,
                           view=False) -> None:
 	"""Cut the single steps back and update emphasis acordingly."""
@@ -1959,7 +2008,7 @@ def backwards_iterate_tdg(self, joinpre, solpre, soljoinpre,
 
 \end{lstlisting}
 
-\begin{lstlisting}[language={Python}, caption={SvgJoinData}, label={lst:svgjoindata}]
+\begin{lstlisting}[style=custompy, caption={SvgJoinData}, label={lst:svgjoindata}]
 @dataclass
 class SvgJoinData:
 	"""Class for holding different parameters to join the results."""
