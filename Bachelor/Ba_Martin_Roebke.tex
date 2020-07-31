@@ -329,11 +329,11 @@ To the best of our knowledge no comparable tool exists that is capable of out-of
 In this chapter, however, we would like to mention works that deal with the surroundings of our problem.
 
 First two papers dealing with additional solvers exploiting small tree-width and Courcelle's Theorem:
-\begin{itemize}
-	\item ``Implementing Courcelle's Theorem in a declarative framework for dynamic programming" in \cite{ImplCourcelleDP16} \\
+	``Implementing Courcelle's Theorem in a declarative framework for dynamic programming" in \cite{ImplCourcelleDP16};
 	and
-	\item ``Evaluation of an MSO-solver" from \cite{evaluationMSO}
-\end{itemize}
+	``Evaluation of an MSO-Solver" from \cite{evaluationMSO}, indicating that \textit{for some natural optimization problems MSO based approaches might be a suitable alternative to ILP solvers.
+	}
+
 %Many computationally hard problems become tractable if the graph structure underlying the problem instance exhibits small treewidth. A recent approach to put this idea into practice is based on a declarative interface to Answer Set Programming that allows us to specify dynamic programming over tree decompositions in this language, delegating the computation to dedicated solvers. In this article, we prove that this method can be applied to any problem whose fixed-parameter tractability follows from Courcelle's Theorem. \cite{ImplCourcelleDP16}
 %% Journal of Logic and Computation, Volume 27, Issue 4, June 2017, Pages 1067–1094, doi.org/10.1093/logcom/exv089
 %%Published:
@@ -345,15 +345,14 @@ First two papers dealing with additional solvers exploiting small tree-width and
 %--------- Other Visualization ----------
 
 Additional some references on algorithm visualization and visual debugging can be found in
-\begin{itemize}
-	\item ``ELVIZ: A query-based approach to model visualization" about an approach to visualization, generic regarding both the source model, and the kind and content of the visualization \cite{ELVIZ},
+
+	 ``ELVIZ: A query-based approach to model visualization" about an approach to visualization, generic regarding both the source model, and the kind and content of the visualization \cite{ELVIZ},
 	
-	\item ``Visualizing Tree Structures in Genetic Programming" about methods to visualize the structure of trees that occur in genetic programming \cite{VisuTDinGP},
+	 ``Visualizing Tree Structures in Genetic Programming" about methods to visualize the structure of trees that occur in genetic programming \cite{VisuTDinGP},
 	
-	\item The book ``Software Visualization: Visualizing the Structure, Behaviour, and Evolution of Software" - the first textbook on software visualization, Stephan Diehl, Springer 2007 \cite{SoftwareVisualization}
-	
-	\item the overview on 
-\end{itemize}
+	 The book ``Software Visualization: Visualizing the Structure, Behaviour, and Evolution of Software" - the first textbook on software visualization, Stephan Diehl, Springer 2007 \cite{SoftwareVisualization}.
+
+
 
 Current advancements in dynamic programming on tree-decompositions itself can be found in \cite{dpdbpadl2020} and \cite{taminghightw}. One of the latest papers for \textit{gpusat2} discussed a series of experiments using several benchmark sets for model counting \#SAT and weighted model counting. It compared the then latest versions of publicly available \#SAT solvers, where \textit{gpusat2} could solve the vast majority of the instances and ranked second place \cite[Ch. 5]{fichtegpusat2}. 
 %\cite{ELVIZ}
@@ -696,16 +695,16 @@ Courcelle's theorem \cite[p. 54]{Courcelle2012}:
 To be more specific: It holds that for all $k \in \mathbb{N}$ and MSO-formulas F is the decision problem for a given graph G, whether $G \models F$ is true, in time $2^{p(tw(G))} \cdot |G|$ with a polynomial p decidable.\smallskip 
 
 \noindent
-A generic workflow implementing Courcelle's theorem looks like we see in Figure~\ref{fig:UsageCourcelle}.
-\begin{figure}[H]
-	\includegraphics[height=0.2\textheight]{images/UsageCourcelle.gv.png}
-	\caption{Implementation sketch of Courcelle's Theorem}
-	\label{fig:UsageCourcelle}
-\end{figure}
+%A generic workflow implementing Courcelle's theorem looks like we see in Figure~\ref{fig:UsageCourcelle}.
+%\begin{figure}[H]
+%	\includegraphics[height=0.2\textheight]{images/UsageCourcelle.gv.png}
+%	\caption{Implementation sketch of Courcelle's Theorem}
+%	\label{fig:UsageCourcelle}
+%\end{figure}
 
 Even if linear in the size of the input, naive implementations are still expensive and 
 %($2^{p(tw G)}$, $2^{2^{(\#Q)}}$,  
-the constant factor can be very significant. An efficient implementation will require several tricks to make this approach practical. Developing and debugging these ``tricks" is not always that easy, so a visualization can help at this point.\smallskip 
+the constant factor can be very significant \cite{10.1007/978-3-642-15775-2_47}. An efficient implementation will require several tricks to make this approach practical. Developing and debugging these ``tricks" is not always that easy, so a visualization can help at this point.\smallskip 
 
 
 %==============================================================================

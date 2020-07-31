@@ -52,13 +52,13 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {section}{\numberline {3}Practical Requirements}{16}{section.3}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {3.1}DIMACS format}{17}{subsection.3.1}%
+\contentsline {subsection}{\numberline {3.1}DIMACS format}{16}{subsection.3.1}%
 \defcounter {refsection}{0}\relax 
-\contentsline {paragraph}{\nonumberline DIMACS CNF}{17}{section*.23}%
+\contentsline {paragraph}{\nonumberline DIMACS CNF}{17}{section*.22}%
 \defcounter {refsection}{0}\relax 
-\contentsline {paragraph}{\nonumberline DIMACS tw}{17}{section*.24}%
+\contentsline {paragraph}{\nonumberline DIMACS tw}{17}{section*.23}%
 \defcounter {refsection}{0}\relax 
-\contentsline {paragraph}{\nonumberline DIMACS td}{17}{section*.25}%
+\contentsline {paragraph}{\nonumberline DIMACS td}{17}{section*.24}%
 \defcounter {refsection}{0}\relax 
 \contentsline {subsection}{\numberline {3.2}DOT format}{18}{subsection.3.2}%
 \defcounter {refsection}{0}\relax 
@@ -108,4 +108,4 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {section}{\numberline {C}More Examples}{72}{appendix.C}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\nonumberline References}{80}{section*.67}%
+\contentsline {section}{\nonumberline References}{80}{section*.66}%
