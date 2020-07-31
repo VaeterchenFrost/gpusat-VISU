@@ -23,14 +23,14 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {lstlisting}{\numberline {12}SvgJoinData}{72}{lstlisting.12}%
 \defcounter {refsection}{0}\relax 
-\contentsline {lstlisting}{\numberline {13}CNF clauses from example 4.1 in \cite {DiplomarbeitZisser} page 27}{73}{lstlisting.13}%
+\contentsline {lstlisting}{\numberline {13}CNF clauses from example 4.1 in \cite {DiplomarbeitZisser} page 27}{74}{lstlisting.13}%
 \defcounter {refsection}{0}\relax 
-\contentsline {lstlisting}{\numberline {14}CNF clauses from random example with 12 units}{73}{lstlisting.14}%
+\contentsline {lstlisting}{\numberline {14}CNF clauses from random example with 12 units}{75}{lstlisting.14}%
 \defcounter {refsection}{0}\relax 
-\contentsline {lstlisting}{\numberline {15}Edges for example \ref {fig:wheelgraph}}{74}{lstlisting.15}%
+\contentsline {lstlisting}{\numberline {15}Edges for example \ref {fig:wheelgraph}}{75}{lstlisting.15}%
 \defcounter {refsection}{0}\relax 
 \contentsline {lstlisting}{\numberline {16}DOT source for visualization of example 4.1}{75}{lstlisting.16}%
 \defcounter {refsection}{0}\relax 
 \contentsline {lstlisting}{\numberline {17}Small GML output from class \textit {Graphoutput}, Section \ref {sec:chagraphoutput}}{76}{lstlisting.17}%
 \defcounter {refsection}{0}\relax 
-\contentsline {lstlisting}{\numberline {18}Console output by modified \textit {gpusat} with full debugging enabled.}{76}{lstlisting.18}%
+\contentsline {lstlisting}{\numberline {18}Console output by modified \textit {gpusat} with full debugging enabled.}{77}{lstlisting.18}%
