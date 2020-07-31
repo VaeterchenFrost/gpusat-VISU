@@ -22,43 +22,39 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {subsection}{\numberline {2.2}(Monadic Second-Order) Logic}{8}{subsection.2.2}%
 \defcounter {refsection}{0}\relax 
-\contentsline {paragraph}{\nonumberline Propositional Logic}{9}{section*.10}%
+\contentsline {subsection}{\numberline {2.3}Propositional Logic}{9}{subsection.2.3}%
 \defcounter {refsection}{0}\relax 
-\contentsline {paragraph}{\nonumberline Boolean Algebra}{9}{section*.11}%
+\contentsline {subsection}{\numberline {2.4}Boolean Algebra}{9}{subsection.2.4}%
 \defcounter {refsection}{0}\relax 
-\contentsline {paragraph}{\nonumberline SAT}{10}{section*.12}%
+\contentsline {subsection}{\numberline {2.5}From Propositional Logic to MSO Logic}{11}{subsection.2.5}%
 \defcounter {refsection}{0}\relax 
-\contentsline {paragraph}{\nonumberline \#SAT}{10}{section*.13}%
+\contentsline {paragraph}{\nonumberline First-order logic}{11}{section*.11}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{\numberline {2.2.1}From Propositional Logic to MSO Logic}{11}{subsubsection.2.2.1}%
+\contentsline {paragraph}{\nonumberline Second-order logic}{12}{section*.12}%
 \defcounter {refsection}{0}\relax 
-\contentsline {paragraph}{\nonumberline First-order logic}{11}{section*.15}%
+\contentsline {paragraph}{\nonumberline Monadic second-order logic (MSO)}{12}{section*.13}%
 \defcounter {refsection}{0}\relax 
-\contentsline {paragraph}{\nonumberline Second-order logic}{12}{section*.16}%
+\contentsline {subsubsection}{\numberline {2.5.1}MSO (Graph) Properties}{12}{subsubsection.2.5.1}%
 \defcounter {refsection}{0}\relax 
-\contentsline {paragraph}{\nonumberline Monadic second-order logic (MSO)}{12}{section*.17}%
+\contentsline {subsection}{\numberline {2.6}Tree Decomposition}{13}{subsection.2.6}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{\numberline {2.2.2}MSO (Graph) Properties}{12}{subsubsection.2.2.2}%
+\contentsline {subsection}{\numberline {2.7}Dynamic Programming on Tree Decompositions}{15}{subsection.2.7}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {2.3}Tree Decomposition}{12}{subsection.2.3}%
+\contentsline {subsection}{\numberline {2.8}Parametrized Complexity}{16}{subsection.2.8}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {2.4}Dynamic Programming on Tree Decompositions}{15}{subsection.2.4}%
+\contentsline {paragraph}{\nonumberline FPT for model checking}{16}{section*.16}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {2.5}Parametrized Complexity}{16}{subsection.2.5}%
-\defcounter {refsection}{0}\relax 
-\contentsline {paragraph}{\nonumberline FPT for model checking}{16}{section*.20}%
-\defcounter {refsection}{0}\relax 
-\contentsline {paragraph}{\nonumberline Courcelle's Theorem}{17}{section*.21}%
+\contentsline {paragraph}{\nonumberline Courcelle's Theorem}{17}{section*.17}%
 \defcounter {refsection}{0}\relax 
 \contentsline {section}{\numberline {3}Practical Requirements}{17}{section.3}%
 \defcounter {refsection}{0}\relax 
 \contentsline {subsection}{\numberline {3.1}DIMACS format}{17}{subsection.3.1}%
 \defcounter {refsection}{0}\relax 
-\contentsline {paragraph}{\nonumberline DIMACS CNF}{18}{section*.22}%
+\contentsline {paragraph}{\nonumberline DIMACS CNF}{18}{section*.18}%
 \defcounter {refsection}{0}\relax 
-\contentsline {paragraph}{\nonumberline DIMACS tw}{18}{section*.23}%
+\contentsline {paragraph}{\nonumberline DIMACS tw}{18}{section*.19}%
 \defcounter {refsection}{0}\relax 
-\contentsline {paragraph}{\nonumberline DIMACS td}{18}{section*.24}%
+\contentsline {paragraph}{\nonumberline DIMACS td}{18}{section*.20}%
 \defcounter {refsection}{0}\relax 
 \contentsline {subsection}{\numberline {3.2}DOT format}{19}{subsection.3.2}%
 \defcounter {refsection}{0}\relax 
@@ -108,4 +104,4 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {section}{\numberline {C}More Examples}{73}{appendix.C}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\nonumberline References}{81}{section*.66}%
+\contentsline {section}{\nonumberline References}{81}{section*.62}%
