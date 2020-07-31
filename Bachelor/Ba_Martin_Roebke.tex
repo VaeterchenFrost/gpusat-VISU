@@ -1145,13 +1145,13 @@ The four parameters, each with its expected type and default value in Table~\ref
 		\hline
 	   parameter& type & default & unit\\
 		\hline\hline
-		 padding& int & 0&  [image coordinates]\\
+		 padding& int & 0&  image coordinates\\
 		 
-		  v\_bottom& float & None & [size of the \textit{first} image]\\
+		  v\_bottom& float & None & size of the \textit{first} image\\
 		  
-		  v\_top& float & None & [size of the \textit{first} image]\\
+		  v\_top& float & None & size of the \textit{first} image\\
 		  
-		 scale2& float & 1 & [size of the \textit{second} image]\\
+		 scale2& float & 1 & size of the \textit{second} image\\
 		 
 		 \hline\hline
 	\end{tabular}
@@ -1186,11 +1186,11 @@ The integration into the existing classes from \textit{gpusat} is listed in Tab.
 	\begin{tabularx}{0.4\textwidth}{|Y|c|c|}
 		\hline
 		{\centering gpusat} & main & Solver \\
-		\hline
+		\hline\hline
 		Graphoutput & 6 & 10 \\
 		\hline
 		Visualization & 5 & 7 \\
-		\hline
+		\hline\hline
 		
 	\end{tabularx}
 		\caption[LOC needed for implementation of visualization in \textit{gpusat}]{Lines of code referencing the classes Graphoutput and Visualization \\
@@ -1405,18 +1405,23 @@ As a first complete visualization output we show the full output of checking the
 	\label{fig:DA4SAT_TDStep6}
 \end{figure}
 \medskip\noindent
-In the following Figure~\ref{fig:DA4SATadditional} we see the first two visualizations for incidence and primal graph with highlights corresponding to the same run as before. The first step has no highlighting, but we can compare the processed Boolean formula indicated with the clauses as nodes sorted on the left-hand side. The edges either are solid lines or starting with a little circle that indicates the negation of the connected variable at the right-hand side in this clause. The nodes in the variables have three states. As this run operated on the primal graph, there are only variables collected in the bags. When calculating the solutions we do however need whole clauses to be processed together, so additional variables are emphasized. The three states are \textit{1) not included} in any clause needed, \textit{2) indirectly included} emphasized with a dotted border and yellow highlighting in the incidence graph, and \textit{3) directly included} in the bag emphasized in yellow and solid border. \\
+In the Figures~\ref{fig:DA4SATadditional}~and~\ref{fig:DA4SATadditional2} we see the first two visualizations for incidence and primal graph with highlights corresponding to the same run as before. The first step has no highlighting. One could compare the processed Boolean formula indicated with the clauses as nodes sorted on the left-hand side. The edges either are solid lines or starting with a little circle that indicates the negation of the connected variable at the right-hand side in this clause. The nodes in the variables have three ``states". As this run operated on the primal graph, there are only variables collected in the bags. When calculating the solutions we do however need whole clauses to be processed together, so additional variables are emphasized. The three states are 1)\textit{ not included} in any clause needed, 2)\textit{ indirectly included} emphasized with a dotted border and yellow highlighting in the incidence graph, and 3) \textit{ directly included} in the bag emphasized in yellow and solid border. \\
 The primal graph is also calculated directly from the Boolean formula and shows one of the same three states for each variable in its own layout.
-\begin{figure}[H]
+\begin{figure}[h]
 	\setkeys{Gin}{width=\linewidth,height=0.45\textheight,keepaspectratio}
-	\begin{tabularx}{\textwidth}{ l X X }
-		step 1: &\includegraphics[valign=c]{images/DA4SAT/results/IncidenceGraphStep1.pdf} & \includegraphics[valign=c]{images/DA4SAT/results/PrimalGraphStep1.pdf} \\ 
-		step 2: &\includegraphics[valign=c]{images/DA4SAT/results/IncidenceGraphStep2.pdf} & \includegraphics[valign=c]{images/DA4SAT/results/PrimalGraphStep2.pdf} \\ 
-		&Visualization of the incidence graph including information from the sat formula & 
-		\centering Visualization of the primal graph \\
+	\begin{tabularx}{\textwidth}{X X }
+		\includegraphics[valign=c]{images/DA4SAT/results/IncidenceGraphStep1.pdf} & \includegraphics[valign=c]{images/DA4SAT/results/PrimalGraphStep1.pdf}
 	\end{tabularx}
-	\caption{Incidence graph and primal graph of Example~\ref{ex:example41}.}
+	\caption{Incidence graph (left) and primal graph of Example~\ref{ex:example41}.}
 	\label{fig:DA4SATadditional}
+\end{figure}
+\begin{figure}[h]
+	\setkeys{Gin}{width=\linewidth,height=0.45\textheight,keepaspectratio}
+	\begin{tabularx}{\textwidth}{X X }
+		\includegraphics[valign=c]{images/DA4SAT/results/IncidenceGraphStep2.pdf} & \includegraphics[valign=c]{images/DA4SAT/results/PrimalGraphStep2.pdf} 
+	\end{tabularx}
+	\caption{ Highlighting of some parts of incidence graph (left) and primal graph of Example~\ref{ex:example41}.}
+	\label{fig:DA4SATadditional2}
 \end{figure}
 
 % Appl. SharpSat
@@ -1511,28 +1516,28 @@ Possibilities for joining images with these four parameters include joining with
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=0.6\linewidth]{images/svgjoinpad0.png}
+	\includegraphics[width=0.6\linewidth]{images/svgjoinpad0nn.png}
 	\caption{Example for joining with no \textit{padding}.}
 	\label{fig:svgjoinpad0}
 \end{figure}
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=0.8\linewidth]{images/svgjoinpad200.png}
+	\includegraphics[width=0.8\linewidth]{images/svgjoinpad200nn.png}
 	\caption[Joining with padding]{Joining the blue (right side) image to the left gray image with only one parameter \textit{padding} set to 200. We see the default vertical position v\_top=0, and the implied coordinate system with an origin in the top left corner.}
 	\label{fig:svgjoinpad200}
 \end{figure}
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=0.8\linewidth]{images/svgjoinscale1.png}
-	\caption[Joining with same size]{The second image is scaled to the same size as the first image. This can be conveniently achieved by setting \textit{v\_top} to 0 and \textit{v\_bottom} to 1. Parameter \textit{padding} is 200 as hinted.}
+	\includegraphics[width=0.8\linewidth]{images/svgjoinscale1nn.png}
+	\caption[Joining with same size]{The second image is scaled to the same height as the first image. This can be conveniently achieved by setting \textit{v\_top} to 0 and \textit{v\_bottom} to 1. Parameter \textit{padding} is 200 as hinted.}
 	\label{fig:svgjoinscale1}
 \end{figure}
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=0.8\linewidth]{images/svgjoinpad0centered.png}
+	\includegraphics[width=0.8\linewidth]{images/svgjoinpad0centeredn.png}
 	\caption[Align both images for vertical centering]{Align both images for vertical centering. \\
 		This can be achieved by setting $v\_bottom=v\_top=0.5$.}
 	\label{fig:svgjoinpad0centered}
@@ -1540,14 +1545,14 @@ Possibilities for joining images with these four parameters include joining with
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=0.8\linewidth]{images/svgjoinscaled.png}
+	\includegraphics[width=0.8\linewidth]{images/svgjoinscalednn.png}
 	\caption[Joining with scaling of $1.3$]{Setting \textit{scale2} to $1.3$ to scale the blue (right) image uniformly. Parameter \textit{padding} is 200 as hinted.}
 	\label{fig:svgjoinscaled}
 \end{figure}
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=0.8\linewidth]{images/svgjoinscaledbottom.png}
+	\includegraphics[width=0.8\linewidth]{images/svgjoinscaledbottomnn.png}
 	\caption[Joining a scaled image aligned at the bottom edge]{As in figure \ref{fig:svgjoinscaled} we use \textit{scale2} to scale the blue rectangle. To align both images at the bottom edge, we use the value $v\_bottom=1$.}
 	\label{fig:svgjoinscaledbottom}
 \end{figure}
