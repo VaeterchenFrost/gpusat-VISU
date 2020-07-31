@@ -24,7 +24,7 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {paragraph}{\nonumberline Propositional Logic}{9}{section*.10}%
 \defcounter {refsection}{0}\relax 
-\contentsline {paragraph}{\nonumberline Boolean Satisfiability Problem}{9}{section*.11}%
+\contentsline {paragraph}{\nonumberline Boolean Algebra}{9}{section*.11}%
 \defcounter {refsection}{0}\relax 
 \contentsline {paragraph}{\nonumberline SAT}{10}{section*.12}%
 \defcounter {refsection}{0}\relax 
