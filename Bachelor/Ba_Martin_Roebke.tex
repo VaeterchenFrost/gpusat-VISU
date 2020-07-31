@@ -78,6 +78,7 @@ mdframed={
 \lstdefinelanguage{json}{
 	basicstyle=\normalfont\ttfamily,
 	numbers=none,
+	framexleftmargin=12pt,
 	backgroundcolor=\color{white},
 	commentstyle=\color{eclipseStrings}, % style of comment
 	stringstyle=\color{eclipseKeywords}, % style of strings
@@ -86,7 +87,7 @@ mdframed={
 	numbersep=8pt,
 	showstringspaces=false,
 	breaklines=true,
-	frame=L,
+	frame=LtRb,
 	string=[s]{"}{"},
 	comment=[l]{:\ "},
 	morecomment=[l]{:"},
@@ -542,7 +543,7 @@ All 22 satisfying assignments can be seen in Table~\ref{tab:ex41tabx} on page~\p
 \begin{mdframed}[leftmargin=3em,rightmargin=3em]
  \textit{Given a propositional formula $\phi$, is there an assignment of the variables in $\phi$ for which $\phi$ is satisfied?} 
 \end{mdframed}
-\textbf{Example}~\ref{ex:example41} has a satisfying assignment, see Chapter \ref{sec:applsat} for a discussion.
+\textbf{Example}~\ref{ex:example41} has a satisfying assignment, see Chapter \ref{sec:applsat} for a discussion.\pagebreak
 
 \paragraph{\#SAT}The ``counting problem" of SAT asks the question:
 \begin{mdframed}[leftmargin=3em,rightmargin=3em]
@@ -705,7 +706,7 @@ The basic algorithmic procedure is presented in Fig.~\ref{fig:dpalgo}. It does i
 	\label{fig:dpalgo}
 \end{figure}
 
-
+\pagebreak
 \subsection{Parametrized Complexity}
 In the following two section we want to introduce the reader with some computational bounds for the underlying concept and problems of solving MSO-problems with the current approaches.
 
@@ -774,7 +775,7 @@ The formats used for this work are:
 
 \paragraph{DIMACS tw}: This format is used to describe a single undirected graph. The problem line specifies the type, \textbf{number of nodes} and \textbf{number of edges}. The following lines specify the edges with two nodes separated by a space.
 
-\paragraph{DIMACS td}: This format is used to describe a tree decomposition. The problem line specifies the type, \textbf{number of bags}, \textbf{maximum size of the bags} and \textbf{number of nodes}. The following lines describe the bags starting for each with ``b", the \textbf{bag number} and \textbf{nodes in this bag}. Following these bags are lines not prefixed with a ``b". Now each line describes one \textbf{edge between the bags} as two bag numbers separated by a space.\\
+\paragraph{DIMACS td}: This format is used to describe a tree decomposition. The problem line specifies the type, \textbf{number of bags}, \textbf{maximum size of the bags} and \textbf{number of nodes}. The following lines describe the bags starting for each with ``b", the \textbf{bag number} and \textbf{nodes in this bag}. Following these bags are lines not prefixed with a ``b". Now each line describes one \textbf{edge between the bags} as two bag numbers separated by a space.
 
 %Supported also in Maple \url{www.maplesoft.com/support/help/maple/view.aspx?path=Formats/CNF}
 \noindent
@@ -809,7 +810,7 @@ DOT has different components (see \url{www.graphviz.org/doc/info/attrs.html}) wh
 We want to introduce the reader with the attributes that are modifiable in several places of the visualization:
 
 \begin{itemize}
-	\item \textbf{rankdir -} ``TB", ``LR", ``BT", ``RL", corresponding to directed graphs drawn from top to bottom, from left to right, from bottom to top, and from right to left, respectively.
+	\item \textbf{rankdir -} one of (``TB", ``LR", ``BT", ``RL"), corresponding to directed graphs drawn from top to bottom, from left to right, from bottom to top, and from right to left, respectively.
 	
 	\item \textbf{fillcolor -} The color used as a node-background in different situations, for different values see \url{graphviz.org/doc/info/attrs.html#k:color}. \url{graphviz.org/doc/info/colors.html} 
 	By default this is a linear fill; If the value is a colorList, a gradient fill is used. 
@@ -858,7 +859,7 @@ In this section we want to give a thorough insight into the functionalities of \
 \noindent As a rough overview our software \textit{tdvisu} works as follows:
 
 \begin{enumerate}
-	\item We generate data using a special solver extension or extra programs and extract arguments for the visualization into one file following our JSON schema.
+	\item We generate data using a special solver extension or extra programs and extract arguments for the visualization into one file following our JSON schema\footnote{\url{github.com/VaeterchenFrost/tdvisu/blob/master/TDVisu.schema.json}}.
 	\item We read the data and parameters into the visualization.
 	\item The program creates a graph-layout for the bags of the tree decomposition and calculates which parts are to be shown at each step of the provided solving process.
 	\item It creates a graph-layout for each additional graph to visualize alongside the steps in the tree decomposition.
@@ -950,29 +951,6 @@ Next, we want to extract information into the following places:
 	\end{itemize}
 \end{itemize}
 
-
-\begin{lstlisting}[style=custompy, caption={Overview of data initialization}, label={lst:visuinitsmall}]
-def __init__(self, infile, outfolder) -> None:
-	self.data: VisualizationData = self.inspect_json(infile)
-	self.outfolder = outfolder
-	self.tree_dec_digraph = None
-	
-def inspect_json(self, infile) -> VisualizationData:
-	visudata = read_json(infile)
-	
-	# [...] some details skipped
- 	_incid = visudata['incidenceGraph']
-	_general_graph = visudata['generalGraph']
-	_svg_join = visudata.get('svg_join', None)
-	
-	# [...] some details skipped		
-	return VisualizationData(incidence_graph=incid_data,
-													 general_graph=general_graph_data,
-													 svg_join=svg_join_data,
-													 **visudata)
-\end{lstlisting}
-
-
 Our next step is to begin visualizing the time-steps on the tree decomposition. Direct results of this task can be seen in Chapter~\ref{sec:applsat}, Fig. \ref{fig:DA4SAT_TDStep1}, Tab. \ref{tab:DA4SAT_TDStep2345} and Figure \ref{fig:DA4SAT_TDStep6}.\\
 
 First, a quick setup is performed for the tree decomposition as a directed graph that 
@@ -983,6 +961,27 @@ First, a quick setup is performed for the tree decomposition as a directed graph
 	\item has a margin around its bounding box.
 \end{itemize}
 
+\begin{lstlisting}[style=custompy, caption={Overview of data initialization}, label={lst:visuinitsmall}]
+def __init__(self, infile, outfolder) -> None:
+self.data: VisualizationData = self.inspect_json(infile)
+self.outfolder = outfolder
+self.tree_dec_digraph = None
+
+def inspect_json(self, infile) -> VisualizationData:
+visudata = read_json(infile)
+
+# [...] some details skipped
+_incid = visudata['incidenceGraph']
+_general_graph = visudata['generalGraph']
+_svg_join = visudata.get('svg_join', None)
+
+# [...] some details skipped		
+return VisualizationData(incidence_graph=incid_data,
+general_graph=general_graph_data,
+svg_join=svg_join_data,
+**visudata)
+\end{lstlisting}
+
 Second, it creates the basic bag structure by adding nodes and edges for all bags of the provided tree decomposition.
 
 Next comes the iteration over the requested time steps, adding the provided solutions and the edges connecting them to the existing bags. We do this in two passes.  A first one in which we move all nodes to their final position. A special case occurs when two bags are joined together.
@@ -991,7 +990,7 @@ In this case, we remove all old edges between the children and the parent node, 
 An automatically inserted join node is shown in Figure~\ref{fig:g41Digraph} on page~\pageref{fig:g41Digraph}.
 The provided data for this example to layout the bags can be seen in Listing\ref{lst:edgearray41}. There we see that bags 2 and 3 have an edge to bag 1 and therefore a join-operation will occur between the results of bags 2 and 3:
 
-\begin{lstlisting}[language=json,caption={Structure provided for bags of example \ref{fig:g41Digraph} },label={lst:edgearray41}]
+\begin{lstlisting}[language=json,caption={Structure provided for bags of example \ref{fig:g41Digraph} },xleftmargin=5.5cm,xrightmargin=5.8cm,label={lst:edgearray41}]
 "edgearray" : [
 	[ 1, 0 ],
 	[ 2, 1 ],
@@ -999,7 +998,7 @@ The provided data for this example to layout the bags can be seen in Listing\ref
 	[ 4, 3 ]
 ]
 \end{lstlisting}
-
+\noindent
 For rendering the tree decomposition we have added a convenience option to \textit{view} the result files automatically, which is disabled by default.
 
 %============== Timesteps ====================================================
@@ -1008,6 +1007,7 @@ To gain a more comprehensive insight into the solution process, we want to see t
 
 Because the data in the API does not directly include details about highlights corresponding to time steps in additional graphs, we will construct this information on the fly by referencing with the tree decomposition.
 
+\pagebreak
 With additional data from the \textit{IncidenceGraphData} class we are further able to reconstruct the
 \begin{itemize}
 	\item incidence graph,
@@ -1017,20 +1017,20 @@ With additional data from the \textit{IncidenceGraphData} class we are further a
 for Boolean formulas.
 
 For general problems and with the data from the \textit{GeneralGraphData} class we can construct a simple graph that logically should include the nodes which are in the bags of the TD.\\
-
-
 % ----- Example for isolated nodes -------
 Because graph representations of Boolean formulas are not necessarily connected, we make sure to include potentially isolated nodes into our graphs as well and not only draw some components of it.
-For example the formula \\
-$(\neg a\lor \neg b\lor \neg c\lor \neg d)\land (b\lor c\lor d)\land g$\\
+For example the formula 
+\begin{gather*}
+(\neg a\lor \neg b\lor \neg c\lor \neg d)\land (b\lor c\lor d)\land g
+\end{gather*}
 
-with its set of clauses \\
-$\{c_{1}=\{-a,-b,-c,-d\},c_{2}=\{b,c,d\},c_{3}=\{g\}\}$ \\
+with its set of clauses 
+\begin{gather*}\{c_{1}=\{-a,-b,-c,-d\},c_{2}=\{b,c,d\},c_{3}=\{g\}\}\end{gather*}
 will create the dual graph in Fig. \ref{fig:disconnected123}. This happens with no pre-processing and if the variable g is only included in the unit $c_{3}$.
 
 \begin{figure}[H]
 	\centering
-	\includegraphics{images/disconnected123.png}
+	\includegraphics[width=0.3\linewidth]{images/disconnected123.png}
 	\caption{Disconnected (dual) graph}
 	\label{fig:disconnected123}
 \end{figure}
@@ -1119,7 +1119,7 @@ Figure \ref{fig:minvc16graph9sorted} shows the same graph and emphasis visualize
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=0.6\linewidth]{images/minvc16graph9sorted.png}
-	\caption[Graph with 16 nodes on a circle]{A graph with 16 nodes and highlights for the subgraph $\{11,12,14\}$ in yellow and red edges. The nodes are arranged in a circular layout and sorted by their labels.}
+	\caption[Graph with 16 nodes on a circle]{A graph with 16 nodes and highlights for the subgraph $\{11,12,14\}$ in yellow and red edges. The nodes are arranged in a circular layout and sorted by their labels from 1 to 16.}
 	\label{fig:minvc16graph9sorted}
 \end{figure}
 
