@@ -865,31 +865,22 @@ In this section we want to give a thorough insight into the functionalities of \
 \end{enumerate}
 
 As a programming language we chose Python because of its rich dependency environment, fast prototyping, simple tooling for debugging with pdb, optional static analysis with mypy, easy to follow code-style using pylint and autopep8, and modern packaging with pip and PyPI.
-
-Python 3.8 was the newest Python version at the beginning of the project. 
+Python 3.8 was the latest Python release at the beginning of the project and was used to support ``f-strings". 
 %The innovation most frequently applied in this project was the f-string support for shorter and easier to read string-building. %\href{docs.python.org/3/whatsnew/3.8.html}{summary of release highlights}.
 
-The development process was for most parts of the final software driven by evolutionary prototyping with the help of small and well understood examples such as \ref{fig:g41Digraph}. It helped to understand the possibilities of visualization in this domain and gather user input and requirements early \cite{rapidPrototypingOvermyer}. Some artifacts of the early prototypes with different graph-description languages can be still seen in the class \textit{Graphoutput} in \ref{sec:chagraphoutput}.
+The development process for most parts of the final software was driven by evolutionary prototyping using small and well understood examples such as Example~\ref{ex:example41}. It helped to understand the possibilities of visualization in this domain and gather user input and requirements early \cite{rapidPrototypingOvermyer}. Some artifacts of the early prototypes with different graph-description languages can still be seen in the class \textit{Graphoutput} in Section~\ref{sec:chagraphoutput}.
 
-The first versions were developed in the repository \url{github.com/VaeterchenFrost/gpusat-VISU} and the first releases and later development of the source code was outsourced to the \url{github.com/VaeterchenFrost/tdvisu} repository.
-
-% License
-
-% Files / Classes / Methods
 %============== CMD Config ====================================================
 \subsection{Commandline and Configuration}
 
-The \textit{tdvisu.visualization} expects the command line parameters in a format described by Table~\ref{tab:optionstdvisu}.
-
-\def\arraystretch{1.2}%  1 is the default
-
+The \textit{tdvisu.visualization} main method expects the command line parameters in a format described by Table~\ref{tab:optionstdvisu}.\\*
 \begin{longtable}{|r|p{10cm}|}
 	\hline
 	Option & Description\\
 	\hline\hline
 	\endhead
 
-	infile=stdin &  Input file for the visualization must conform with the JsonAPI.md\\
+	infile=stdin &  \looseness=-1 Input for the visualization must conform with the TDVisu.schema.json\\
 	outfolder &  Foldername to output the visualization results to\\
 	-{}-loglevel  &   set the minimal loglevel for the root logger\\
 	-{}-version & show program's version number and exit\\
@@ -897,9 +888,9 @@ The \textit{tdvisu.visualization} expects the command line parameters in a forma
 	\hline\hline
 	\caption{Usage of \textit{visualization.py}
 		\label{tab:optionstdvisu}}
-\end{longtable}
+\end{longtable}\nopagebreak
 
-We see that this input is very simple, while the heavy lifting is done with the input file given in \textit{infile}.
+We see that this command line input is very simple, while the heavy lifting is done with the input given in \textit{infile}.
 
 One extra possibility for configuration comes with the method \textbf{logging\_cfg} from {tdvisu.utilities}. There are two example configurations provided with our project, one in the .yml, one in the .ini format. The implementation is very flexible in detecting which parser has to be applied - either via a dictionary-like or a configuration-like function. Both possibilities are documented in Python's {logging configuration}\footnote{\url{docs.python.org/3/library/logging.config.html\#logging-config-api}}.
 
