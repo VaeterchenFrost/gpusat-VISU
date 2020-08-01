@@ -76,7 +76,7 @@ mdframed={
 }
 
 \lstdefinelanguage{json}{
-	basicstyle=\normalfont\ttfamily,
+	basicstyle=\small\ttfamily,
 	numbers=none,
 	framexleftmargin=12pt,
 	backgroundcolor=\color{white},
@@ -112,7 +112,7 @@ mdframed={
 \addbibresource{bibtex.bib}
 
 \definecolor{light-gray}{gray}{0.95}
-\lstset{tabsize=2, linewidth=1.05\textwidth, framextopmargin=1em, basicstyle=\small\ttfamily,numbers=left,backgroundcolor=\color{light-gray}, captionpos=b, breaklines=true, framexleftmargin=5pt, stepnumber=5, firstnumber=1}
+\lstset{tabsize=2, linewidth=1.05\textwidth, framextopmargin=5pt, basicstyle=\small\ttfamily,numbers=left,backgroundcolor=\color{light-gray}, captionpos=b, breaklines=true, framexleftmargin=5pt, stepnumber=5, firstnumber=1}
 \newtheorem{theorem}{Theorem}[section]
 \setlength{\textheight}{1.05\textheight}
 \newcolumntype{Y}{>{\centering\arraybackslash}X}
@@ -301,7 +301,7 @@ The target audience for this work includes:
 %These projects are very competitive ????REF????? for solving even large instances of those problems.
 \vspace{2cm}
 {\small{Side remark:}
-	Of course the information we visualize could be extracted as text from the respective solver and . But as the saying goes, ``one picture is worth 100 spreadsheets". }
+	Of course, the information we visualize could be extracted as text from the respective solver and then analyzed. But as the saying goes, ``one picture is worth 100 spreadsheets". }
 \newpage
 %============== Concept ====================================================
 \subsection{Research Question}
@@ -330,7 +330,7 @@ Our proposed solution is inspired by previous manual visualizations like the two
 	\label{fig:prevvisus}
 \end{figure}
 
-The Figure \ref{fig:overviewprog} shows a draft of the process for creating the visualization with \textit{tdvisu}.
+Figure \ref{fig:overviewprog} shows a draft of the process for creating the visualization with \textit{tdvisu}.
 
 \begin{figure}
 	\centering
@@ -1467,12 +1467,13 @@ To the right of each time step is the currently used subgraph marked with yellow
 
 \begin{figure}[H]
 	\centering
-		First step solving \textbf{bag 2}
-	\includegraphics[width=0.9\linewidth]{images/WheelGraph7/combined2.pdf} \vspace{1em}\\
-	Second step solving \textbf{bag 4}\\
+		
+	\includegraphics[width=0.99\linewidth]{images/WheelGraph7/combined2.pdf} \\[1ex]
 	
-		\includegraphics[width=0.9\linewidth]{images/WheelGraph7/combined3.pdf}
-	\caption{First steps to solve \textit{minimal vertex cover} for example graph \ref{fig:wheelgraph} on its TD.}
+	\hline \\
+	
+		\includegraphics[width=0.99\linewidth]{images/WheelGraph7/combined3.pdf}
+	\caption{First steps to solve \textit{minimal vertex cover} for example graph \ref{fig:wheelgraph} on its TD. On the top we see the first step solving \textbf{bag 2}. The lower image shows the second step solving \textbf{bag 4}.}
 	\label{fig:wheelgraphc23}
 \end{figure}
 \begin{figure}[H]
@@ -1778,7 +1779,7 @@ Right now even with the \textit{svg-join} tool we need multiple files to represe
 
 \lstinputlisting[caption={The JSON format as an used to describe MSOL visualization on tree decompositions}, label={lst:jsonapi}]{includes/JsonAPI.txt}
 
-{\lstinputlisting[caption={Tree decomposition in DIMACS format for Figure \ref{fig:tdweelgraph7}},frame=ltrb,framexleftmargin=7pt,xleftmargin=0.7\linewidth,linewidth=0.8\linewidth,label={lst:wheelgraphtd},backgroundcolor=\color{white},numbers=none]{images/WheelGraph7/wheelgraph7.td}}
+{\lstinputlisting[caption={Tree decomposition in DIMACS format for Figure \ref{fig:tdweelgraph7}},language=json,xleftmargin=5.5cm,xrightmargin=5.8cm,label={lst:wheelgraphtd},numbers=none]{images/WheelGraph7/wheelgraph7.td}}
 
 \begin{lstlisting}[style=custompy, caption={Initializing a Visualization object}, label={lst:visuinit}]
 def __init__(self, infile, outfolder) -> None:
@@ -2059,7 +2060,7 @@ class SvgJoinData:
 \label{tab:ex41tabx}
 \end{table}
 
-\begin{lstlisting}[caption={CNF clauses from example 4.1 in \cite{DiplomarbeitZisser} page 27}, label={lst:clausesDA41}]
+\begin{lstlisting}[caption={CNF clauses from example 4.1 in \cite{DiplomarbeitZisser} page 27}, label={lst:clausesDA41},language=json,xleftmargin=5.5cm,xrightmargin=5.8cm]
 p cnf 8 10
 1 4 6 0
 1 -5 0
