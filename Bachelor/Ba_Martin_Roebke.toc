@@ -66,7 +66,7 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {subsection}{\numberline {4.3}Visualizing Additional Graphs}{25}{subsection.4.3}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {4.4}Incidence Graph}{27}{subsection.4.4}%
+\contentsline {subsection}{\numberline {4.4}Incidence Graph}{26}{subsection.4.4}%
 \defcounter {refsection}{0}\relax 
 \contentsline {subsection}{\numberline {4.5}General Graph}{28}{subsection.4.5}%
 \defcounter {refsection}{0}\relax 
