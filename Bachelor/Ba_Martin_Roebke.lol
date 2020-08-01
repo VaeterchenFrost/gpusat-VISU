@@ -3,7 +3,7 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {lstlisting}{\numberline {2}Structure provided for bags of example \ref {fig:g41Digraph}}{25}{lstlisting.2}%
 \defcounter {refsection}{0}\relax 
-\contentsline {lstlisting}{\numberline {3}The JSON format as an used to describe MSOL visualization on tree decompositions}{63}{lstlisting.3}%
+\contentsline {lstlisting}{\numberline {3}A description of the JSON format used to describe MSO visualization on tree decompositions. See also the formal \textit {TDVisu.schema.json} in \textit {tdvisu}.}{63}{lstlisting.3}%
 \defcounter {refsection}{0}\relax 
 \contentsline {lstlisting}{\numberline {4}Tree decomposition in DIMACS format for Figure \ref {fig:tdweelgraph7}}{65}{lstlisting.4}%
 \defcounter {refsection}{0}\relax 
