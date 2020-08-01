@@ -213,14 +213,14 @@ I would like to thank my advisor Johannes Klaus Fichte for his professional help
 
 \vspace{4ex}
 
-Die Beantwortung von Fragestellungen, die sich mit Hilfe von Graphentheorie ausdrücken lassen, ist in vielen Arbeitsgebieten zunehmend interessant und hilfreich.
-Viele Probleme, wie die boolesche Erfüllbarkeit oder Probleme im Zusammenhang mit  Verkehrsfluss, können in Fragestellungen zu Verbindungen und Knoten übersetzt werden.
+Die Beantwortung von Fragestellungen, die sich mit Hilfe von Graphentheorie ausdrücken lassen, ist in vielen Arbeits- und Forschungsgebieten zunehmend interessant und hilfreich.
+Probleme wie die boolesche Erfüllbarkeit, oder im Zusammenhang mit Verkehrsströmen, können in Fragestellungen zu Verbindungen und Knoten übersetzt werden.
 Wir denken, dass die Verwendung von Graph-Strukturen helfen kann, Algorithmen in diesen und anderen Bereichen weiterzuentwickeln.
 
 In den letzten Jahren hat die dynamische Programmierung auf Baumzerlegungen dazu geführt, dass neue Algorithmen auf Grundlage von Graphstrukturen entwickelt wurden. Dieser Ansatz erwies sich als sehr erfolgreich, wie in \cite{fichtegpusat2} diskutiert wird. Die Problemstellungen werden hier mittels Techniken aus der "parametrisierten Komplexitätstheorie" \cite[S. 2]{dpdbpadl2020} effizient gelöst.
-Da der Entwurf dynamischer Programmierung recht fehleranfällig sein kann, ist eine schnelle und unkomplizierte Visualisierung hilfreich, um weitere Verbesserungen und umfassendere Anwendung der Methodik zu erreichen.\\
+Da die Entwicklung maßgeschneiderter Algorithmen mittels dynamischer Programmierung recht fehleranfällig sein kann, ist eine schnelle und unkomplizierte Visualisierung hilfreich, um weitere Verbesserungen und umfassendere Anwendung der Methodik zu erreichen.\\
 
-Zur Kommunikation der Daten aus der dynamischen Programmierung
+Zur Kommunikation der Daten aus den Implementationen
 haben wir ein JSON-Schema als API zwischen Löse-Programmen und dem neu geschaffenen Visualisierungswerkzeug \textit{tdvisu}\footnote{tdvisu ist mit GPLv3 Lizenz veröffentlicht: \url{github.com/VaeterchenFrost/tdvisu}} erstellt.
 
 Als zwei Löser und Referenzimplementierungen unserer Visualisierung haben wir \textit{gpusat}\footnote{gpusat ist mit GPLv3 Lizenz veröffentlicht: \url{github.com/Budddy/GPUSAT}} und \textit{dpdb}\footnote{dpdb ist mit GPLv3 Lizenz veröffentlicht: \url{github.com/hmarkus/dpondbs}} ausgewählt. Zwei moderne Programme auf sehr verschiedenen Plattformen - Grafikkarten und relationalen Datenbanken.\\
@@ -232,16 +232,16 @@ Als zwei Löser und Referenzimplementierungen unserer Visualisierung haben wir \
 \vspace{4ex}
 
 Answering questions that can be expressed using graph theory is increasingly interesting in scientific work.
-Many problems like Boolean satisfiability or traffic related problems can be translated into connections and nodes.
+Problems such as Boolean satisfiability, or in connection with traffic flows, can be translated into questions about connections and nodes.
 We think that the use of graph structures can help to further develop algorithms in those and other areas.
 
-In recent years, dynamic programming on tree decompositions has resulted in the development of new algorithms and architectures than those developed in the decades before. This approach proved to be very successful as discussed in \cite{fichtegpusat2}, tackling the problems with techniques from parameterized complexity \cite[page 2]{dpdbpadl2020}.
-Since the design of dynamic programming can be quite error-prone, a fast and uncomplicated visualization is helpful for further improvements and wider adoption.\\
+In recent years, dynamic programming on tree decompositions has resulted in the development of new algorithms than those developed in the decades before. This approach proved to be very successful as discussed in \cite{fichtegpusat2}, tackling the problems with techniques from parameterized complexity \cite[page 2]{dpdbpadl2020}.
+Since the development of tailor-made algorithms using dynamic programming can be quite error-prone, a fast and uncomplicated visualization is helpful to achieve further improvements and wider application of the methodology.\\
 
 For further refinement and visualization of the applied dynamic programming,
 we specified a JSON template for data transfer between solvers and the newly created visualization tool \textit{tdvisu}\footnote{tdvisu is available under GPLv3 license at \url{github.com/VaeterchenFrost/tdvisu}}.\\
 
-As two reference implementations of dynamic programming on tree decompositions we chose \textit{gpusat}\footnote{gpusat is available under GPLv3 license at \url{github.com/Budddy/GPUSAT}} and \textit{dpdb}\footnote{dpdb is available under GPLv3 license at \url{github.com/hmarkus/dp\_on\_dbs}} as modern solvers on two very different architectures - GPUs and relational databases.\\
+As two solvers and reference implementations of dynamic programming on tree decompositions we chose \textit{gpusat}\footnote{gpusat is available under GPLv3 license at \url{github.com/Budddy/GPUSAT}} and \textit{dpdb}\footnote{dpdb is available under GPLv3 license at \url{github.com/hmarkus/dp\_on\_dbs}} as modern solvers on two very different architectures - GPUs and relational databases.\\
 
 
 \paragraph{Keywords:}
