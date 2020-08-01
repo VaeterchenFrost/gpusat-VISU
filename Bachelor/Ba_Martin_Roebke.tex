@@ -1010,7 +1010,7 @@ for Boolean formulas.
 
 For general problems and with the data from the \textit{GeneralGraphData} class we can construct a simple graph that logically should include the nodes which are in the bags of the TD.\\
 % ----- Example for isolated nodes -------
-Because graph representations of Boolean formulas are not necessarily connected, we make sure to include potentially isolated nodes into our graphs as well and not only draw some components of it.
+Because graph representations of Boolean formulas are not necessarily connected without preprocessing, we make sure to include potentially isolated nodes into our graphs as well and not only draw some components of it.
 For example the formula 
 \begin{gather*}
 (\neg a\lor \neg b\lor \neg c\lor \neg d)\land (b\lor c\lor d)\land g
