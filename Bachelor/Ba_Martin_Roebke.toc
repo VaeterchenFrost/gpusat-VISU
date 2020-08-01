@@ -1,8 +1,6 @@
 \boolfalse {citerequest}\boolfalse {citetracker}\boolfalse {pagetracker}\boolfalse {backtracker}\relax 
 \defcounter {refsection}{0}\relax 
-\contentsline {paragraph}{\nonumberline Stichworte:}{iv}{section*.4}%
-\defcounter {refsection}{0}\relax 
-\contentsline {paragraph}{\nonumberline Keywords:}{v}{section*.6}%
+\contentsline {paragraph}{\nonumberline Keywords:}{v}{section*.5}%
 \defcounter {refsection}{0}\relax 
 \contentsline {section}{\numberline {1}Introduction}{1}{section.1}%
 \defcounter {refsection}{0}\relax 
@@ -24,17 +22,17 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {subsection}{\numberline {2.3}Boolean Algebra}{9}{subsection.2.3}%
 \defcounter {refsection}{0}\relax 
-\contentsline {paragraph}{\nonumberline SAT}{10}{section*.10}%
+\contentsline {paragraph}{\nonumberline SAT}{10}{section*.9}%
 \defcounter {refsection}{0}\relax 
-\contentsline {paragraph}{\nonumberline \#SAT}{11}{section*.11}%
+\contentsline {paragraph}{\nonumberline \#SAT}{11}{section*.10}%
 \defcounter {refsection}{0}\relax 
 \contentsline {subsection}{\numberline {2.4}From Propositional Logic to MSO Logic}{12}{subsection.2.4}%
 \defcounter {refsection}{0}\relax 
-\contentsline {paragraph}{\nonumberline First-order logic}{12}{section*.13}%
+\contentsline {paragraph}{\nonumberline First-order logic}{12}{section*.12}%
 \defcounter {refsection}{0}\relax 
-\contentsline {paragraph}{\nonumberline Second-order logic}{12}{section*.14}%
+\contentsline {paragraph}{\nonumberline Second-order logic}{12}{section*.13}%
 \defcounter {refsection}{0}\relax 
-\contentsline {paragraph}{\nonumberline Monadic second-order logic (MSO)}{12}{section*.15}%
+\contentsline {paragraph}{\nonumberline Monadic second-order logic (MSO)}{12}{section*.14}%
 \defcounter {refsection}{0}\relax 
 \contentsline {subsection}{\numberline {2.5}MSO (Graph) Properties}{12}{subsection.2.5}%
 \defcounter {refsection}{0}\relax 
@@ -44,19 +42,19 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {subsection}{\numberline {2.8}Parametrized Complexity}{16}{subsection.2.8}%
 \defcounter {refsection}{0}\relax 
-\contentsline {paragraph}{\nonumberline FPT for model checking}{16}{section*.18}%
+\contentsline {paragraph}{\nonumberline FPT for model checking}{16}{section*.17}%
 \defcounter {refsection}{0}\relax 
-\contentsline {paragraph}{\nonumberline Courcelle's Theorem}{16}{section*.19}%
+\contentsline {paragraph}{\nonumberline Courcelle's Theorem}{16}{section*.18}%
 \defcounter {refsection}{0}\relax 
 \contentsline {section}{\numberline {3}Practical Requirements}{17}{section.3}%
 \defcounter {refsection}{0}\relax 
 \contentsline {subsection}{\numberline {3.1}DIMACS format}{17}{subsection.3.1}%
 \defcounter {refsection}{0}\relax 
-\contentsline {paragraph}{\nonumberline DIMACS CNF}{17}{section*.20}%
+\contentsline {paragraph}{\nonumberline DIMACS CNF}{17}{section*.19}%
 \defcounter {refsection}{0}\relax 
-\contentsline {paragraph}{\nonumberline DIMACS tw}{17}{section*.21}%
+\contentsline {paragraph}{\nonumberline DIMACS tw}{17}{section*.20}%
 \defcounter {refsection}{0}\relax 
-\contentsline {paragraph}{\nonumberline DIMACS td}{18}{section*.22}%
+\contentsline {paragraph}{\nonumberline DIMACS td}{18}{section*.21}%
 \defcounter {refsection}{0}\relax 
 \contentsline {subsection}{\numberline {3.2}DOT format}{18}{subsection.3.2}%
 \defcounter {refsection}{0}\relax 
@@ -106,4 +104,4 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {section}{\numberline {C}More Examples}{72}{appendix.C}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\nonumberline References}{80}{section*.66}%
+\contentsline {section}{\nonumberline References}{80}{section*.65}%

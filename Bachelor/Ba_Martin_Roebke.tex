@@ -175,7 +175,7 @@ mdframed={
 \begin{center}
 	\textit{\mytitle}
 \end{center}
-
+\noindent
 vollkommen selbstst\"{a}ndig verfasst und keine anderen als die angegebenen Quellen und Hilfsmittel benutzt sowie Zitate kenntlich gemacht habe. Ebenso versichere ich, dass diese Arbeit
 oder Teile daraus weder von mir selbst noch von anderen als Leistungsnachweis oder als Leistung, die als Prüfungsvoraussetzung
 zu erbringen war, andernorts bereits eingereicht wurden. Wörtliche oder sinngemäße Übernahmen aus anderen Schriften
@@ -213,24 +213,18 @@ I would like to thank my advisor Johannes Klaus Fichte for his professional help
 
 \vspace{4ex}
 
-Die Beantwortung von Fragestellungen, die sich mit Hilfe von Graphentheorie ausdrücken lassen, ist in vielen Arbeitsgebieten zunehmend interessant.
-Viele Probleme wie die boolesche Erfüllbarkeit oder Probleme im Zusammenhang mit  Verkehrsfluss können in Verbindungen und Knoten übersetzt werden.
+Die Beantwortung von Fragestellungen, die sich mit Hilfe von Graphentheorie ausdrücken lassen, ist in vielen Arbeitsgebieten zunehmend interessant und hilfreich.
+Viele Probleme, wie die boolesche Erfüllbarkeit oder Probleme im Zusammenhang mit  Verkehrsfluss, können in Fragestellungen zu Verbindungen und Knoten übersetzt werden.
 Wir denken, dass die Verwendung von Graph-Strukturen helfen kann, Algorithmen in diesen und anderen Bereichen weiterzuentwickeln.
 
-In den letzten Jahren hat die dynamische Programmierung auf Baumzerlegungen dazu geführt, dass neue Algorithmen und Architekturen entwickelt wurden. Dieser Ansatz erwies sich als sehr erfolgreich, wie in \cite{fichtegpusat2} diskutiert wird. Die Problemstellungen werden hier mittels Techniken aus der "parametrisierten Komplexitätstheorie" \cite[S. 2]{dpdbpadl2020} effizient gelöst.
-Da der Entwurf dynamischer Programmierung recht fehleranfällig sein kann, ist eine schnelle und unkomplizierte Visualisierung hilfreich für weitere Verbesserungen und eine Verbreitung der Methodik.\\
+In den letzten Jahren hat die dynamische Programmierung auf Baumzerlegungen dazu geführt, dass neue Algorithmen auf Grundlage von Graphstrukturen entwickelt wurden. Dieser Ansatz erwies sich als sehr erfolgreich, wie in \cite{fichtegpusat2} diskutiert wird. Die Problemstellungen werden hier mittels Techniken aus der "parametrisierten Komplexitätstheorie" \cite[S. 2]{dpdbpadl2020} effizient gelöst.
+Da der Entwurf dynamischer Programmierung recht fehleranfällig sein kann, ist eine schnelle und unkomplizierte Visualisierung hilfreich, um weitere Verbesserungen und umfassendere Anwendung der Methodik zu erreichen.\\
 
 Zur Kommunikation der Daten aus der dynamischen Programmierung
-haben wir ein JSON-Schema als API zwischen Solvern und dem neu geschaffenen Visualisierungswerkzeug \textit{tdvisu}\footnote{tdvisu ist mit GPLv3 Lizenz veröffentlicht: \url{github.com/VaeterchenFrost/tdvisu}} erstellt.
+haben wir ein JSON-Schema als API zwischen Löse-Programmen und dem neu geschaffenen Visualisierungswerkzeug \textit{tdvisu}\footnote{tdvisu ist mit GPLv3 Lizenz veröffentlicht: \url{github.com/VaeterchenFrost/tdvisu}} erstellt.
 
-Als zwei Löser für Referenzimplementierungen unserer Visualisierung haben wir \textit{gpusat}\footnote{gpusat ist mit GPLv3 Lizenz veröffentlicht: \url{github.com/Budddy/GPUSAT}} und \textit{dpdb}\footnote{dpdb ist mit GPLv3 Lizenz veröffentlicht: \url{github.com/hmarkus/dpondbs}} ausgewählt. Zwei moderne Programme auf sehr verschiedenen Plattformen - Grafikkarten und relationalen Datenbanken.\\
+Als zwei Löser und Referenzimplementierungen unserer Visualisierung haben wir \textit{gpusat}\footnote{gpusat ist mit GPLv3 Lizenz veröffentlicht: \url{github.com/Budddy/GPUSAT}} und \textit{dpdb}\footnote{dpdb ist mit GPLv3 Lizenz veröffentlicht: \url{github.com/hmarkus/dpondbs}} ausgewählt. Zwei moderne Programme auf sehr verschiedenen Plattformen - Grafikkarten und relationalen Datenbanken.\\
 
-\paragraph{Stichworte:}
-\textit{Dynamic Programming, Visualization, Graphs, \\
-	Tree Decomposition, JSON-Schema, Parameterized Algorithmics 
-}\leftskip=1.6cm \rightskip=1cm
-
-\leftskip=0pt\rightskip=0pt
 
 \newpage
 \section*{Abstract}
@@ -244,10 +238,10 @@ We think that the use of graph structures can help to further develop algorithms
 In recent years, dynamic programming on tree decompositions has resulted in the development of new algorithms and architectures than those developed in the decades before. This approach proved to be very successful as discussed in \cite{fichtegpusat2}, tackling the problems with techniques from parameterized complexity \cite[page 2]{dpdbpadl2020}.
 Since the design of dynamic programming can be quite error-prone, a fast and uncomplicated visualization is helpful for further improvements and wider adoption.\\
 
-To help further refine and visualize the dynamic programming,
+For further refinement and visualization of the applied dynamic programming,
 we specified a JSON template for data transfer between solvers and the newly created visualization tool \textit{tdvisu}\footnote{tdvisu is available under GPLv3 license at \url{github.com/VaeterchenFrost/tdvisu}}.\\
 
-For two reference implementations of dynamic programming of tree decompositions we chose \textit{gpusat}\footnote{gpusat is available under GPLv3 license at \url{github.com/Budddy/GPUSAT}} and \textit{dpdb}\footnote{dpdb is available under GPLv3 license at \url{github.com/hmarkus/dp\_on\_dbs}} as modern solvers on two very different architectures.\\
+As two reference implementations of dynamic programming on tree decompositions we chose \textit{gpusat}\footnote{gpusat is available under GPLv3 license at \url{github.com/Budddy/GPUSAT}} and \textit{dpdb}\footnote{dpdb is available under GPLv3 license at \url{github.com/hmarkus/dp\_on\_dbs}} as modern solvers on two very different architectures - GPUs and relational databases.\\
 
 
 \paragraph{Keywords:}
