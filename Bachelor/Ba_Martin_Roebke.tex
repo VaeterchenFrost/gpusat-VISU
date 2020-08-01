@@ -77,14 +77,14 @@ mdframed={
 
 \lstdefinelanguage{json}{
 	basicstyle=\small\ttfamily,
-	numbers=none,
-	framexleftmargin=12pt,
+	numbers=left,
+	framexleftmargin=5pt,
 	backgroundcolor=\color{white},
 	commentstyle=\color{eclipseStrings}, % style of comment
 	stringstyle=\color{eclipseKeywords}, % style of strings
-	numberstyle=\scriptsize,
-	stepnumber=1,
-	numbersep=8pt,
+%	numberstyle=\scriptsize,
+	stepnumber=5, firstnumber=1,
+	numbersep=15pt,
 	showstringspaces=false,
 	breaklines=true,
 	frame=LtRb,
@@ -2064,7 +2064,7 @@ p cnf 8 10
 -4 6 0
 -4 7 0
 \end{lstlisting}
-\begin{lstlisting}[caption={CNF clauses from random example with 12 units},label={lst:example18-24}]
+\begin{lstlisting}[caption={CNF clauses from random example with 12 units},label={lst:example18-24},language=json,xleftmargin=5.5cm,xrightmargin=5.8cm]
 p cnf 18 24
 -1 0
 -2 0
@@ -2091,9 +2091,9 @@ p cnf 18 24
 15 -16 -17 -18 0
 15 16 17 -18 0
 \end{lstlisting}
-\lstinputlisting[caption={Edges for example \ref{fig:wheelgraph}}, label={lst:wheelgraph}]{images/WheelGraph7/wheelgraph7.tw}
+\lstinputlisting[caption={Edges for example \ref{fig:wheelgraph}}, label={lst:wheelgraph},language=json,xleftmargin=5.5cm,xrightmargin=5.8cm]{images/WheelGraph7/wheelgraph7.tw}
 \lstinputlisting[caption={DOT source for visualization of example 4.1}, label={lst:g41digraphdot}]{includes/g41digraphdot}\pagebreak
-\lstinputlisting[caption={Small GML output from class \textit{Graphoutput}, Section \ref{sec:chagraphoutput}}, label={lst:g41digraphgml}]{includes/graphml.gml}
+\lstinputlisting[caption={Small GML output from class \textit{Graphoutput}, Section \ref{sec:chagraphoutput}}, label={lst:g41digraphgml},,language=json,xleftmargin=4.cm,xrightmargin=4cm]{includes/graphml.gml}
 \lstinputlisting[caption={Console output by modified \textit{gpusat} with full debugging enabled.}, label={lst:outputgpusat}]{includes/outputGpusatshort.txt}
 %==============================================================================
 %============== BIBLIOGRAPHY ==================================================
