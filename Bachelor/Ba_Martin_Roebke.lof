@@ -34,9 +34,9 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {figure}{\numberline {17}{\ignorespaces Wheel graph with 7 vertices.\relax }}{42}{figure.caption.37}%
 \defcounter {refsection}{0}\relax 
-\contentsline {figure}{\numberline {18}{\ignorespaces First steps to solve \textit {minimal vertex cover} for example graph \ref {fig:wheelgraph} on its TD.\relax }}{43}{figure.caption.38}%
+\contentsline {figure}{\numberline {18}{\ignorespaces First steps to solve \textit {minimal vertex cover} for example graph \ref {fig:wheelgraph} on its TD. On the top we see the first step solving \textbf {bag 2}. The lower image shows the second step solving \textbf {bag 4}.\relax }}{43}{figure.caption.38}%
 \defcounter {refsection}{0}\relax 
-\contentsline {figure}{\numberline {19}{\ignorespaces Last steps to solve \textit {minimal vertex cover} for example graph \ref {fig:wheelgraph} on its TD.\relax }}{44}{figure.caption.39}%
+\contentsline {figure}{\numberline {19}{\ignorespaces Last steps from bottom, solving \textbf {bag 3} , to top, solving \textbf {bag 1}, to solve \textit {minimal vertex cover} for example graph \ref {fig:wheelgraph} on its TD.\relax }}{44}{figure.caption.39}%
 \defcounter {refsection}{0}\relax 
 \contentsline {figure}{\numberline {20}{\ignorespaces Example for joining with no \textit {padding}.\relax }}{45}{figure.caption.40}%
 \defcounter {refsection}{0}\relax 
