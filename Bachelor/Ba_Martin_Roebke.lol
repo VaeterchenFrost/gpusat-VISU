@@ -1,5 +1,5 @@
 \defcounter {refsection}{0}\relax 
-\contentsline {lstlisting}{\numberline {1}Overview of data initialization}{24}{lstlisting.1}%
+\contentsline {lstlisting}{\numberline {1}Overview of data initialization}{23}{lstlisting.1}%
 \defcounter {refsection}{0}\relax 
 \contentsline {lstlisting}{\numberline {2}Structure provided for bags of example \ref {fig:g41Digraph}}{25}{lstlisting.2}%
 \defcounter {refsection}{0}\relax 

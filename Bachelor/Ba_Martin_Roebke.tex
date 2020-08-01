@@ -881,8 +881,8 @@ The \textit{tdvisu.visualization} main method expects the command line parameter
 	\endhead
 
 	infile=stdin &  \looseness=-1 Input for the visualization must conform with the TDVisu.schema.json\\
-	outfolder &  Foldername to output the visualization results to\\
-	-{}-loglevel  &   set the minimal loglevel for the root logger\\
+	outfolder &  Folder name to output the visualization results to\\
+	-{}-loglevel  & set the minimal loglevel for the root logger\\
 	-{}-version & show program's version number and exit\\
 	-h, -{}-help & show the help message and exit\\
 	\hline\hline
@@ -892,14 +892,7 @@ The \textit{tdvisu.visualization} main method expects the command line parameter
 
 We see that this command line input is very simple, while the heavy lifting is done with the input given in \textit{infile}.
 
-One extra possibility for configuration comes with the method \textbf{logging\_cfg} from {tdvisu.utilities}. There are two example configurations provided with our project, one in the .yml, one in the .ini format. The implementation is very flexible in detecting which parser has to be applied - either via a dictionary-like or a configuration-like function. Both possibilities are documented in Python's {logging configuration}\footnote{\url{docs.python.org/3/library/logging.config.html\#logging-config-api}}.
-
-%Our default configuration in \textit{tdvisu/logging.yml} and \textit{tdvisu/logging.ini} provides one handler, two formatters and six loggers.
-%
-%The \textbf{handler} is a stream handler to sys.stdout with level \textit{WARNING} and the the 'full'-formatter to format messages.
-
-The \textbf{full-formatter} includes the full date and time up to milliseconds. After that we can expect the logging-level, filename and line where it was generated, and the message itself.
-
+One extra possibility for configuration is the fine tuning of the logger.
 The \textbf{loggers} we use in our project 
 %are located in 
 %\begin{itemize}
@@ -911,6 +904,17 @@ The \textbf{loggers} we use in our project
 %	\item utilities.py, NOTSET
 %\end{itemize} and
 can be individually customized using a configuration file.
+%comes with the method \textbf{logging\_cfg} from {tdvisu.utilities}. 
+There are two example configurations provided with our project, one in the .yml, one in the .ini format. 
+%The implementation is very flexible in detecting which parser has to be applied - either via a dictionary-like or a configuration-like function. Both possibilities are documented in Python's {logging configuration}\footnote{\url{docs.python.org/3/library/logging.config.html\#logging-config-api}}.
+
+%Our default configuration in \textit{tdvisu/logging.yml} and \textit{tdvisu/logging.ini} provides one handler, two formatters and six loggers.
+%
+%The \textbf{handler} is a stream handler to sys.stdout with level \textit{WARNING} and the the 'full'-formatter to format messages.
+
+%The \textbf{full-formatter} includes the full date and time up to milliseconds. After that we can expect the logging-level, filename and line where it was generated, and the message itself.
+
+
 %With the command line parameter \textit{-{}-loglevel} we can modify the level of \textit{root} and its associated handlers.
 
 %============== Init ====================================================
@@ -918,7 +922,7 @@ can be individually customized using a configuration file.
 
 The main purpose of the initialization is parsing the input file containing visualization information.
 
-To get a small overview of the type and structure of the data processed in the software, let us take a quick look at the initialization with the API. We instantiate a \textit{Visualization} object as shown in Listing~\ref{lst:visuinitsmall} , which parses the \textit{VisualizationData} with the help from our \textit{inspect\_json} method. 
+To get a small overview of the type and structure of the data processed in the software, let us take a quick look at the initialization with the API. We instantiate a \textit{Visualization} object as shown in Listing~\ref{lst:visuinitsmall} , which parses the \textit{VisualizationData} with the help from our \textit{inspect\_json} method. \pagebreak
 
 %This is encapsulated in \textit{read\_json}.
 
