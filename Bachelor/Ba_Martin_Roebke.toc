@@ -28,12 +28,6 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {subsection}{\numberline {2.4}From Propositional Logic to MSO Logic}{12}{subsection.2.4}%
 \defcounter {refsection}{0}\relax 
-\contentsline {paragraph}{\nonumberline First-order logic}{12}{section*.12}%
-\defcounter {refsection}{0}\relax 
-\contentsline {paragraph}{\nonumberline Second-order logic}{12}{section*.13}%
-\defcounter {refsection}{0}\relax 
-\contentsline {paragraph}{\nonumberline Monadic second-order logic (MSO)}{12}{section*.14}%
-\defcounter {refsection}{0}\relax 
 \contentsline {subsection}{\numberline {2.5}MSO (Graph) Properties}{12}{subsection.2.5}%
 \defcounter {refsection}{0}\relax 
 \contentsline {subsection}{\numberline {2.6}Tree Decomposition}{13}{subsection.2.6}%
@@ -42,19 +36,19 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {subsection}{\numberline {2.8}Parametrized Complexity}{16}{subsection.2.8}%
 \defcounter {refsection}{0}\relax 
-\contentsline {paragraph}{\nonumberline FPT for model checking}{16}{section*.17}%
+\contentsline {paragraph}{\nonumberline FPT for model checking}{16}{section*.14}%
 \defcounter {refsection}{0}\relax 
-\contentsline {paragraph}{\nonumberline Courcelle's Theorem}{16}{section*.18}%
+\contentsline {paragraph}{\nonumberline Courcelle's Theorem}{16}{section*.15}%
 \defcounter {refsection}{0}\relax 
 \contentsline {section}{\numberline {3}Practical Requirements}{17}{section.3}%
 \defcounter {refsection}{0}\relax 
 \contentsline {subsection}{\numberline {3.1}DIMACS format}{17}{subsection.3.1}%
 \defcounter {refsection}{0}\relax 
-\contentsline {paragraph}{\nonumberline DIMACS CNF}{17}{section*.19}%
+\contentsline {paragraph}{\nonumberline DIMACS CNF}{17}{section*.16}%
 \defcounter {refsection}{0}\relax 
-\contentsline {paragraph}{\nonumberline DIMACS tw}{17}{section*.20}%
+\contentsline {paragraph}{\nonumberline DIMACS tw}{17}{section*.17}%
 \defcounter {refsection}{0}\relax 
-\contentsline {paragraph}{\nonumberline DIMACS td}{18}{section*.21}%
+\contentsline {paragraph}{\nonumberline DIMACS td}{18}{section*.18}%
 \defcounter {refsection}{0}\relax 
 \contentsline {subsection}{\numberline {3.2}DOT format}{18}{subsection.3.2}%
 \defcounter {refsection}{0}\relax 
@@ -66,11 +60,11 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {subsection}{\numberline {4.3}Visualizing Additional Graphs}{25}{subsection.4.3}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {4.4}Incidence Graph}{26}{subsection.4.4}%
+\contentsline {subsection}{\numberline {4.4}Incidence Graph}{27}{subsection.4.4}%
 \defcounter {refsection}{0}\relax 
 \contentsline {subsection}{\numberline {4.5}General Graph}{28}{subsection.4.5}%
 \defcounter {refsection}{0}\relax 
-\contentsline {paragraph}{\nonumberline Examples}{28}{section*.24}%
+\contentsline {paragraph}{\nonumberline Examples}{28}{section*.21}%
 \defcounter {refsection}{0}\relax 
 \contentsline {subsection}{\numberline {4.6}Joining SVG Results}{29}{subsection.4.6}%
 \defcounter {refsection}{0}\relax 
@@ -106,4 +100,4 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {section}{\numberline {C}More Examples}{72}{appendix.C}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\nonumberline References}{80}{section*.66}%
+\contentsline {section}{\nonumberline References}{80}{section*.63}%

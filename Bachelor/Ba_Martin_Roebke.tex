@@ -427,18 +427,21 @@ Chapter \ref{sec:appl} shows, limited by the page size, small examples for the t
 \section{Background}\label{sec:bg}
 In this chapter we provide a brief background for this work.
 
-We will start with a short introduction to logic and MSO in \ref{sec:MSO}. Monadic second-order logic (MSO) is a logical language that is suitable for expressing numerous graph properties \cite[p.~41]{Courcelle2012}. In the following summary we would like to introduce MSO as an extension  of first order logic and propositional logic. The concepts and notations from propositional logic are needed for the example applications around Boolean Logic and conjunctive normal forms (CNF); MSO will later be used as the language that describes the use cases of the dynamic programming on tree decompositions.
-Then we introduce Courcelle's theorem, which describes important properties of the problems and related bounds for the solvers.
-Eventually, tree decompositions are described as a basis for dynamic programming in the next section.
+We will start with a short introduction to notations around graphs in Section~\ref{sec:graphs}. In the Section~\ref{sec:proplogic} we describe propositional logic and then Boolean Algebra in~\ref{sec:BSP} as a basis for the problems SAT and \#SAT. After that we build upon the propositional logic to better understand monadic second-order logic as an extension of first order logic in Section~\ref{sec:MSO}.
+We use the Section~\ref{sec:MSOPROP} to give some example problem specifications as MSO formulas that could be solved using existing frameworks.
+Eventually, tree decompositions are described as a basis for dynamic programming on tree decompositions in the next two Sections~\ref{sec:td}~and~\ref{sec:dp}.
+We finish the chapter with a brief look at parameterized complexity and results such as Courcelle's theorem as an important theoretical basis for some of today's solvers in Section~\ref{sec:paramcom}.
+
 %We begin with a description on SAT and \#SAT as examples for a very general problem that can be described with monadic second order logic (MSOL).
 %Furthermore the general case of MSOL will be described, as well as the \textit{DIMACS}-file-format used in the projects.
 %The following section describes Tree Decompositions (TDs) which are the basis for our visualization. 
 %Finally we shortly discuss Courcelle's Theorem~\cite{Courcelle2012} as a related method of solving these problems.
 
 %====================================================================
-\subsection{Graphs}
+\subsection{Graphs}\label{sec:graphs}
 
-In this thesis we use the word {graph} for a pair $G=(V_{G},~E_{G})$, where $V_{G}$ is a nonempty set of vertices also called {nodes} and $E_{G}=edg_{G} $ is the binary relation $E_{G} \subseteq V_{G} \times V_{G}$, such that $(x,y)\in E_{G}$ if and only if there exists an edge from $x$ to $y$ if $G$ is directed, and an edge between $x$ and $y$ if $G$ is undirected. For further information on graphs we refer to the common literature, for example \cite[p. {401--412}]{HandbookMathGraph} or more casually in \cite{britannicagraphs}. 
+In this thesis we use the word {graph} for a pair $G=(V_{G},~E_{G})$, where $V_{G}$ is a nonempty set of vertices also called {nodes} and $E_{G}=edg_{G} $ is the binary relation $E_{G} \subseteq V_{G} \times V_{G}$, such that $(x,y)\in E_{G}$ if and only if there exists an edge from $x$ to $y$ if $G$ is directed, and an edge between $x$ and $y$ if $G$ is undirected. For further information on graphs we refer to the common literature, for example \cite[p. {401--412}]{HandbookMathGraph} or more casually in \cite{britannicagraphs}. \\
+
 
 \begin{example}\label{ex:wheelgraph}
 	$G$ is an undirected graph with
@@ -450,8 +453,8 @@ In this thesis we use the word {graph} for a pair $G=(V_{G},~E_{G})$, where $V_{
 \end{example}
 
 
-\subsection{Propositional Logic}
- is a formal system $\mathcal{L} = \mathcal{L}(\mathrm {A},\Omega, \mathrm{Z}, \mathrm{I})$ with
+\subsection{Propositional Logic}\label{sec:proplogic}
+ Propositional logic is a formal system $\mathcal{L} = \mathcal{L}(\mathrm {A},\Omega, \mathrm{Z}, \mathrm{I})$ with
 \begin{itemize}
 	\item the set $\mathrm {A}$ as a countably infinite set of elements called proposition symbols or propositional variables. These are also called terminal elements.
 	\item The set $\Omega$ is a finite set of elements called operator symbols or logical connectives. It is partitioned into disjoint subsets as follows:
@@ -505,6 +508,7 @@ A propositional logic formula, or Boolean expression, is then built from variabl
 	\land (\neg \text{v6}\lor \text{v2})\land \\
 	(\text{v3}\lor \neg \text{v8})\land (\text{v4}\lor \neg \text{v8})\land (\neg \text{v4}\lor \text{v6})\land (\neg \text{v4}\lor \text{v7})$
 \end{example}
+\vspace{1em}
 
 To describe the usual notation used in solvers for Boolean satisfiability, we also use the following definitions to describe the problem instances denoted in conjunctive normal form (CNF).
 
@@ -529,7 +533,7 @@ A literal is a Boolean variable $v$ or its negation $\neg v$. A $clause$ is a fi
 	c_{9}=\{\neg v_{4},v_{6}\},
 	c_{10}=\{\neg v_{4},v_{7}\}\}$
 \end{example}
-\vskip 12pt
+\vspace{1em}
 The formula $C$ is for example satisfied by the assignment that maps all variables $var(C)\rightarrow 1$ to $1$. 
 All 22 satisfying assignments can be seen in Table~\ref{tab:ex41tabx} on page~\pageref{tab:ex41tabx}.
 
@@ -574,19 +578,18 @@ Those three graphs for our Example \ref{ex:example41} are shown in Fig.~\ref{fig
 	\label{fig:primalgraph41}
 \end{figure}
 
-\subsection{From Propositional Logic to MSO Logic}
+\subsection{From Propositional Logic to MSO Logic}\label{sec:MSO}
 
-\paragraph{First-order logic} adds relations and quantifiers to propositional logic.
+\textbf{{First-order logic}} adds relations and quantifiers to propositional logic.
 For further information on logic see for example \cite[Chapter~5]{HandbookMathGraph}. \\
 The quantifier symbols are
 \begin{itemize}
 	\item $\exists$ for the existential quantification and
 	\item $\forall$ which expresses that a propositional function can be fulfilled by any member of a domain.
 \end{itemize}
-
-While \textbf{first-order logic} only quantifies variables that range over individuals (elements of the domain of discourse), \paragraph{Second-order logic}in addition also quantifies over relations.
-
-\paragraph{Monadic second-order logic (MSO)} is a restriction of second-order logic in which only quantification over unary relations (i.e. sets) is allowed. 
+While \textbf{first-order logic} only quantifies variables that range over individuals (elements of the domain of discourse), \\
+\textbf{Second-order logic} in addition also quantifies over relations.\\[1em]
+\textbf{Monadic second-order logic (MSO)} is a restriction of second-order logic in which only quantification over unary relations (i.e. sets) is allowed. 
 %A quantification over functions is therefore also not allowed due to the equivalence to relations.
 
 %Interested in MSO logic over graphs.
@@ -610,7 +613,7 @@ While \textbf{first-order logic} only quantifies variables that range over indiv
 %This can also be done for directed graphs!
 
 %============== MSOL ====================================================
-\subsection{MSO (Graph) Properties}
+\subsection{MSO (Graph) Properties}\label{sec:MSOPROP}
 MSO logic can express \textbf{graph properties} and \textbf{mappings} from (labeled) graphs to (labeled) graphs \cite{CourcelleGROW}.
 Typical MSO properties include:
 
@@ -636,7 +639,7 @@ More examples of MSO properties can be found for example in \cite[Theorem 3.5]{A
 
 
 %============== TD ====================================================
-\subsection{Tree Decomposition}
+\subsection{Tree Decomposition}\label{sec:td}
 %Used in RNA Folding: Novel prediction techniques are developed based on graph tree decomposition. \cite{BioInfoTD1970}
 %See also chapter 2.2 of \cite{DiplomarbeitZisser}.
 %Tree decompositions were originally introduced by Robertson and Seymour \cite{ROBERTSON198449} in 1984.
@@ -674,7 +677,7 @@ As stated in \cite[Ch.~2.2]{DiplomarbeitZisser}, Arnborg et. al. \cite{arnborgtd
 
 
 %============== Reference on Algo and Param Complexity ====================================================
-\subsection{Dynamic Programming on Tree Decompositions}
+\subsection{Dynamic Programming on Tree Decompositions}\label{sec:dp}
 In this chapter we want to give a short overview over the basics of dynamic programming. For specific information on the visualized algorithms we refer to \cite{DiplomarbeitZisser, samermodelcounting, dpdbpadl2020}. \\
 
 With dynamic programming, a problem is broken down into parts and the parts are then solved individually. The solving algorithm evaluates the formula along the path of the tree decomposition in a bottom up order starting in one of the leafs. The solution for each assignment in the bag is then stored in a table. The size of the table is exponential to the size of the bag. The tables of the child nodes can be deleted as soon as the table of the current node is generated. \cite[Ch. 3.1]{DiplomarbeitZisser}.\\
@@ -692,7 +695,8 @@ The dynamic programming approach for a given graph works as follows:
 	\item Output the result based on the table of the root node of the tree decomposition.
 \end{enumerate}
 
-The basic algorithmic procedure is presented in Fig.~\ref{fig:dpalgo}. It does include a step one to build a graph in case the type of problem (like SAT) requires it.
+The basic algorithmic procedure is presented in Fig.~\ref{fig:dpalgo}. 
+%It does include a step one to build a graph in case the type of problem (like SAT) requires it.
 \begin{figure}[h]
 	\centering
 	\includegraphics{images/DPAlgo31.png}
@@ -701,7 +705,7 @@ The basic algorithmic procedure is presented in Fig.~\ref{fig:dpalgo}. It does i
 \end{figure}
 
 \pagebreak
-\subsection{Parametrized Complexity}
+\subsection{Parametrized Complexity}\label{sec:paramcom}
 In the following two section we want to introduce the reader with some computational bounds for the underlying concept and problems of solving MSO-problems with the current approaches.
 
 %\subsubsection{Fixed-Parameter Tractable (FTP-)Algorithm}
@@ -725,7 +729,7 @@ MSO graph properties are ``fixed-parameter-tractable" with respect to tree-width
 %============== Courcelle ====================================================
 \paragraph{Courcelle's Theorem}
  Courcelle's theorem is a constructive meta-theorem that provides algorithms for evaluating MSO formulas over graphs of bounded treewidth.
-Courcelle's theorem:
+Courcelle's theorem states that:
 
 \smallskip\noindent
 \textit{
@@ -753,7 +757,7 @@ A recommendation in~\cite{FiniteAutomata10} is to \textit{forget the idea of imp
 %==============================================================================
 
 \section{Practical Requirements}\label{sec:practicalreq}
-The exchange of intermediate results from solvers and parts of the visualization utilizes two defined file formats. In the following two chapters we want to introduce the reader with the concepts of the DIMACS and DOT format. These formats are either produced or required as input at various stages of the application.
+The exchange of intermediate results of solvers and parts of the visualization mainly uses two file formats. In the following two chapters we want to introduce the reader with the concepts of the DIMACS and the DOT format. These formats are either produced or required as input at various stages of the application.
   
 %============== DIMACS ====================================================
 \subsection{DIMACS format}
@@ -762,7 +766,7 @@ Inputs for solvers and in some cases for preparing the visualization of dpdb are
 Several file formats for these purposes were developed at ``DIMACS" (the Center for Discrete Mathematics and Theoretical Computer Science) \cite{dimacsimplcha} beginning in 1993 at Rutgers University.
 They are also partly supported in several math-related software like \textit{MATLAB}~\cite{matlabcnf}, \textit{Maple}\footnote{\url{www.maplesoft.com/support/help/maple/view.aspx?path=Formats/CNF}} or \textit{Mathematica}\footnote{\url{reference.wolfram.com/language/ref/format/DIMACS.html}}.
 
-The underlying concept is a line-based ASCII file. For all different formats we read comments as lines starting with the character ``c", a problem line starting with ``p" (rarely with ``s"). Following then the problem line and usually multiple lines specifying the data in a format depending on the problem type.
+The underlying concept is a line-based ASCII file. For all different formats we read comments as lines starting with the character ``c" and the problem line starting with ``p" (rarely with ``s"). This is followed by the problem line and usually several lines that specify the data in a format that depends on the problem type.
 The formats used for this work are:
 
 \paragraph{DIMACS CNF}: This format is used to define a Boolean expression, written in conjunctive normal form. The problem line specifies the type, \textbf{number of variables} and \textbf{number of clauses}. The following lines specify the clauses a positive literal is denoted by the corresponding number, and a negative literal is denoted by the corresponding negative number. Each clause is followed by the character zero, so 0 should not occur as a variable. Instead variables are expected to start at one.
@@ -1028,7 +1032,7 @@ will create the dual graph in Fig. \ref{fig:disconnected123}. This happens with 
 	\caption{Disconnected (dual) graph}
 	\label{fig:disconnected123}
 \end{figure}
-
+\pagebreak
 %============== Incid ====================================================
 \subsection{Incidence Graph}\label{sec:incid}
 
@@ -1361,7 +1365,7 @@ For further details on the implementation of \textit{construct\_dpdb\_visu.py} w
 
 % Appl. Sat
 \subsection{SAT Example}\label{sec:applsat}
-As a first complete visualization output we show the output from checking the Boolean formula (Example \ref{ex:example41} in Chapter \ref{sec:BSP}) for solvability. We have six time steps included in this run. First we will look at the bags in the tree-decomposition, where, as simple debugging information, we entered the time to solve each bag individually into the labels. See Fig. \ref{fig:DA4SAT_TDStep1}, Tab. \ref{tab:DA4SAT_TDStep2345} and Figure \ref{fig:DA4SAT_TDStep6}.  We see the nodes gathered in each bag as an array indicated in the TD. The solver traverses the bags from bottom to top. The active bag in each step is indicated by its changing color. When a solution was found, it gets connected as a new node by an edge to its bag. The order the bags got solved is $5\rightarrow 4\rightarrow 3\rightarrow 2 \rightarrow 1$. The last solution added, containing more than zero (partial) assignments in Fig. \ref{fig:DA4SAT_TDStep6}, provides the answer ``yes" to the question of SAT.
+As a first complete visualization output we show the output from checking the Boolean formula (Example \ref{ex:example41} in Chapter \ref{sec:BSP}) for solvability. We have six time steps included in this run. First we will look at the bags in the tree-decomposition, where, as simple debugging information, we entered the time to solve each bag individually into the labels. See Fig. \ref{fig:DA4SAT_TDStep1}, Tab. \ref{tab:DA4SAT_TDStep2345} and Figure \ref{fig:DA4SAT_TDStep6}.  We see the nodes gathered in each bag as an array indicated in the TD. The solver traverses the bags from bottom to top. The active bag in each step is indicated by its changing color. When a solution was found, it gets connected as a new node by an edge to its bag. The bags got solved in the order $5\rightarrow 4\rightarrow 3\rightarrow 2 \rightarrow 1$. The last solution added, containing more than zero (partial) assignments in Fig. \ref{fig:DA4SAT_TDStep6}, provides the answer ``yes" to the question of SAT.
 
 \begin{figure}[H]
 	\centering
@@ -1572,7 +1576,7 @@ As we can see the solutions for bags other than 2 are hidden in the output but a
 	\label{fig:join60}
 \end{figure}
 
-In Figure \ref{fig:joinbotcenter} the parameter v\_bottom is set to ``bottom" to align both graphics on the bottom edge; set to ``center" elevates the right image to 50\% of the height of the first. It is also possible to provide arbitraty floating-point values for vertical adjustment as presented in Figure \ref{fig:join60} with \textit{v\_bottom = 0.6}.
+In Figure \ref{fig:joinbotcenter} the parameter \textit{v\_bottom} is set to ``bottom" to align both graphics on the bottom edge; set to ``center" elevates the right image to 50\% of the height of the first. It is also possible to provide arbitraty floating-point values for vertical adjustment as presented in Figure \ref{fig:join60} with \textit{v\_bottom = 0.6}.
 
 If we want the right graph a bit larger compared to the default size, we can add additional scaling by providing the argument \textbf{scale2}. In figures \ref{fig:joinscaled1} to \ref{fig:joinscaled5} the complete time series for solving \textit{minimal vertex cover} for example \ref{lst:wheelgraph} with join-parameters
 \begin{itemize}
