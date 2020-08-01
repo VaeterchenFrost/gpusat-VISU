@@ -1120,15 +1120,15 @@ Figure \ref{fig:minvc16graph9sorted} shows the same graph and emphasis visualize
 Once all user defined SVG-images for one timeline are created, it would be nice to have all graphs combined in one file for each step. All created graphs for each time step together create a overall impression of the work done during solving this step. It proved inconvenient to manually open and display the tree decomposition along the primal, dual, incidence, or any other graph for each time step and problem instance, so we automated this task.
  To provide some basic additional scaling and adjusting, we prepared a section in the API for joining the resulting SVG.
 Its parameters can be viewed in \textit{SvgJoinData} in Listing \ref{lst:svgjoindata} on page~\pageref{lst:svgjoindata}. \\
-We have prepared some examples in the Section~\ref{sec:joinexamples}.
-The currently implemented functionality could be further extended upon using SVG animations\footnote{\url{www.w3.org/TR/SVG11/animate.html}}.\\
+Some examples are presented in the Section~\ref{sec:joinexamples}.
+The currently implemented functionality could be extended by using SVG animations\footnote{\url{www.w3.org/TR/SVG11/animate.html}}.\\
 
 %The functionality is placed in the file \textit{svgjoin.py} and will be called with the specifications given in the optional dictionary \textbf{svgjoin} within the JsonAPI.
 
 
 % Show example with description of parameters 
 %The internally used method \textit{svgjoin.append\_svg} joins two images horizontally in each step.
-With the default settings, it aligns the top edge of both images and applies no scaling to either image.
+With the default settings we align the top edge of both images and apply no scaling to either image.
 The four parameters, each with its expected type and default value in Table~\ref{tab:svgjoin} allow flexible \textbf{vertical}, \textbf{horizontal} and \textbf{scaling} transformations.
 \begin{table}[h]
 	\centering
@@ -1153,7 +1153,7 @@ The four parameters, each with its expected type and default value in Table~\ref
 Note that the images are placed in a Cartesian coordinate system and their origin is the upper left corner of their bounding box. All images fill a rectangle in this coordinate system with height and width respectively.
 Since the order of the parameters \textit{v\_bottom} and \textit{v\_top} could be confused due to the inverted y-axis, we make sure that \textit{v\_top} is correctly set to the smaller and \textit{v\_bottom} to the larger value whenever possible.
 
-A special case is obtained by setting both parameters \textit{v\_bottom} and \textit{v\_top} to the same number. Then they are interpreted as the position of the vertical centerline for the second image in units of the first. So setting both parameters to $\frac{1}{2}$ would result in both images being vertically centered.\\
+A special case is obtained by setting both parameters \textit{v\_bottom} and \textit{v\_top} to the same number. Then they are interpreted as the position of the vertical centerline for the second image in units of the first. Setting both parameters to $\frac{1}{2}$ would therefore result in both images being vertically centered in the resulting image.\\
 
 If we want to position more than two images, it is possible to specify the parameters in a list.
 The list can be of different length for each parameter - if it is exhausted, the last parameter in the list will be repeatedly used until all images are joined together.
