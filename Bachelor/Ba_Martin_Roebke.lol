@@ -25,7 +25,7 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {lstlisting}{\numberline {13}CNF clauses from example 4.1 in \cite {DiplomarbeitZisser} page 27}{72}{lstlisting.13}%
 \defcounter {refsection}{0}\relax 
-\contentsline {lstlisting}{\numberline {14}CNF clauses from random example with 12 units}{72}{lstlisting.14}%
+\contentsline {lstlisting}{\numberline {14}CNF clauses from random example with 12 units}{73}{lstlisting.14}%
 \defcounter {refsection}{0}\relax 
 \contentsline {lstlisting}{\numberline {15}Edges for example \ref {fig:wheelgraph}}{73}{lstlisting.15}%
 \defcounter {refsection}{0}\relax 
