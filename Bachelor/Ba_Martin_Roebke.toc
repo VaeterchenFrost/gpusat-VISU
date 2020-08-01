@@ -14,7 +14,7 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {subsection}{\numberline {1.4}Related Work}{5}{subsection.1.4}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {1.5}Thesis Outline}{6}{subsection.1.5}%
+\contentsline {subsection}{\numberline {1.5}Thesis Outline}{7}{subsection.1.5}%
 \defcounter {refsection}{0}\relax 
 \contentsline {section}{\numberline {2}Background}{8}{section.2}%
 \defcounter {refsection}{0}\relax 
@@ -106,4 +106,4 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {section}{\numberline {C}More Examples}{72}{appendix.C}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\nonumberline References}{81}{section*.66}%
+\contentsline {section}{\nonumberline References}{80}{section*.66}%
