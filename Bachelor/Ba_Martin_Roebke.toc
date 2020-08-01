@@ -72,7 +72,7 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {paragraph}{\nonumberline Examples}{28}{section*.24}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {4.6}Joining SVG}{29}{subsection.4.6}%
+\contentsline {subsection}{\numberline {4.6}Joining SVG Results}{29}{subsection.4.6}%
 \defcounter {refsection}{0}\relax 
 \contentsline {section}{\numberline {5}Integration in gpusat}{31}{section.5}%
 \defcounter {refsection}{0}\relax 
@@ -90,7 +90,7 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {subsection}{\numberline {7.3}Vertex Cover Example}{42}{subsection.7.3}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {7.4}SVG Join Example}{45}{subsection.7.4}%
+\contentsline {subsection}{\numberline {7.4}Join SVG Examples}{45}{subsection.7.4}%
 \defcounter {refsection}{0}\relax 
 \contentsline {subsection}{\numberline {7.5}Visualization of Defects}{52}{subsection.7.5}%
 \defcounter {refsection}{0}\relax 

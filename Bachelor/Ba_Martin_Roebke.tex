@@ -1116,11 +1116,11 @@ Figure \ref{fig:minvc16graph9sorted} shows the same graph and emphasis visualize
 \end{figure}
 
 %============== Joining SVG ====================================================
-\subsection{Joining SVG}\label{sec:svgjoin}
-Once all user defined images for one timeline are created, it would be nice to have all graphs combined in one file for each step. All created graphs for each time step together create a overall impression of the work done during solving this step. It showed to be inconvenient to manually open and view the tree decomposition along the primal, dual, incidence or fundamental graph for each time step and problem instance, so we automated this task.
- To provide some basic scaling and adjusting, we prepared a section in the API for joining the resulting SVG graphics.
+\subsection{Joining SVG Results}\label{sec:svgjoin}
+Once all user defined SVG-images for one timeline are created, it would be nice to have all graphs combined in one file for each step. All created graphs for each time step together create a overall impression of the work done during solving this step. It proved inconvenient to manually open and display the tree decomposition along the primal, dual, incidence, or any other graph for each time step and problem instance, so we automated this task.
+ To provide some basic additional scaling and adjusting, we prepared a section in the API for joining the resulting SVG.
 Its parameters can be viewed in \textit{SvgJoinData} in Listing \ref{lst:svgjoindata} on page~\pageref{lst:svgjoindata}. \\
-We have prepared some examples at the end of this section.
+We have prepared some examples in the Section~\ref{sec:joinexamples}.
 The currently implemented functionality could be further extended upon using SVG animations\footnote{\url{www.w3.org/TR/SVG11/animate.html}}.\\
 
 %The functionality is placed in the file \textit{svgjoin.py} and will be called with the specifications given in the optional dictionary \textbf{svgjoin} within the JsonAPI.
@@ -1483,11 +1483,11 @@ To the right of each time step is the currently used subgraph marked with yellow
 
 
 % Appl. svgjoin with different options
-\subsection{SVG Join Example}
+\subsection{Join SVG Examples}\label{sec:joinexamples}
 
-After creating several images at each visualization step all images from this step can be automatically combined into one SVG. In this chapter we expand on Section \ref{sec:svgjoin} with some practical applications of this concept.
+After creating several images at each visualization step all images from this step can be automatically combined into one SVG. In this chapter we expand on Section \ref{sec:svgjoin} with some practical applications of this concept, reusing the results of the previous chapters.
 
-With the four parameters \textit{padding}, \textit{v\_bottom}, \textit{v\_top} and \textit{scale2} we can specify the order in which images will be placed next to each other. To explain some configurations we will take the generated images from the previous chapter.\\
+With the four parameters \textit{padding}, \textit{v\_bottom}, \textit{v\_top} and \textit{scale2} we can define the way the images are placed next to each other. 
 \noindent
 We will first look at some constructed examples using rectangles in the Figures \ref{fig:svgjoinpad0}-\ref{fig:svgjoinscaledbottom}. Then we see some actual applications in Figures~\ref{fig:joindefault}-\ref{fig:join60} at page~\pageref{fig:joindefault}.\noindent\\
 
