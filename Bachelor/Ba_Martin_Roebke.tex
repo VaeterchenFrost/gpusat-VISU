@@ -868,8 +868,10 @@ In this section we want to give a thorough insight into the functionalities of \
 As a programming language we chose Python because of its rich dependency environment, fast prototyping, simple tooling for debugging with pdb, optional static analysis with mypy, easy to follow code-style using pylint and autopep8, and modern packaging with pip and PyPI.
 Python 3.8 was the latest Python release at the beginning of the project and was used to support ``f-strings". 
 %The innovation most frequently applied in this project was the f-string support for shorter and easier to read string-building. %\href{docs.python.org/3/whatsnew/3.8.html}{summary of release highlights}.
+%https://prototypeinfo.com/evolutionary-prototyping-and-throw-away-prototyping/
 
 The development process for most parts of the final software was driven by evolutionary prototyping using small and well understood examples such as Example~\ref{ex:example41}. It helped to understand the possibilities of visualization in this domain and gather user input and requirements early \cite{rapidPrototypingOvermyer}. Some artifacts of the early prototypes with different graph-description languages can still be seen in the class \textit{Graphoutput} in Section~\ref{sec:chagraphoutput}.
+The implementation uses 
 
 %============== CMD Config ====================================================
 \subsection{Commandline and Configuration}
@@ -1311,8 +1313,9 @@ From the main method of \textit{gpusat} we call its constructor, as well as its 
 %==============================================================================
 
 \section{Integration in dpdb}\label{sec:dpdb}
-{Dpdb} as a project provides a framework that allows many different problems to be solved using dynamic programming on TDs. It utilizes relational databases, and currently provided reference implementations for the problem types SAT, \#SAT and MinVC, one which is not implemented in \textit{gpusat}.
+{Dpdb} as a project provides a framework that allows many different problems to be solved using dynamic programming on TDs. It utilizes relational databases, and currently provided reference implementations for the problem types SAT, \#SAT and MinVC.
 The integration of the API with dpdb is only minimally invasive when implemented after the solving process instead of running parallel to the solver. 
+We used 376 lines of code for the main implementation in \textit{construct\_dpdb\_visu.py}, and reuse about 200 LOC from project imports. We provide six test cases in additional 119 LOC.
 The only interference to the solving process is, that all necessary information has to be persisted in the database.
 The integration is included in our \textit{tdvisu} project as a separate Python file.
 A complete workflow was accomplished using the arguments
