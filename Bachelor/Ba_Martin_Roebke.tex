@@ -350,7 +350,7 @@ For our visualizations we chose {Graphviz}\footnote{\url{graphviz.org/}} as an o
 The graphs that were used in solving the problem are assembled using the object-oriented style of the Python interface\footnote{\url{pypi.org/project/graphviz/}} to Graphviz.
 The tree decompositions in each tested application were provided by the utility {htd} (small but efficient C++ library for computing (customized) tree and hypertree decompositions) \cite{htd}.
 The source code for \textit{tdvisu} is available under the GPLv3 license \\on
-\mbox{ \url{github.com/VaeterchenFrost/tdvisu}}. Our tool is written in Python and published on pypi.
+\mbox{ \url{github.com/VaeterchenFrost/tdvisu}}. Our tool is written in Python and published on PyPI.
 
 We defined a {JSON}-format specification for portability and customization of the visualization in one file and two reference implementations in practical solvers.\\
 It is explained in more detail in the implementation chapter, or directly in the \textit{tdvisu/TDVisu.schema.json} file, a JSON-schema\footnote{\url{json-schema.org/draft-07/schema}} with examples and an almost complete validation of the format.
@@ -654,7 +654,7 @@ The tree width of a graph is the \textit{minimal width} over all tree decomposit
 
 % Examples
 We use tree decompositions throughout our visualizations in this thesis. One detailed explanation is also introduced in \cite{pcgp2019} at page 169.
-The tree decomposition for our ``wheelgraph" example \ref{fig:wheelgraph} can be viewed in Listing~\ref{lst:wheelgraphtd} on page \pageref{lst:wheelgraphtd}. The conditions for tree decompositions outlined above are easy to verify for this small example, and we get  $width(T)=3$ for this decomposition.
+The tree decomposition for our ``wheel graph" example \ref{fig:wheelgraph} can be viewed in Listing~\ref{lst:wheelgraphtd} on page \pageref{lst:wheelgraphtd}. The conditions for tree decompositions outlined above are easy to verify for this small example, and we get  $width(T)=3$ for this decomposition.
 \begin{figure}[h]
 	\centering
 	\includegraphics[height=6cm]{images/TDWheelgraph7.png}
@@ -797,16 +797,14 @@ To get a well structured (bipartite) incidence graph, each partition is placed i
 
 
 %Attributes (new site): www.graphviz.org/doc/info/attrs.html
-DOT has different components (see \url{www.graphviz.org/doc/info/attrs.html}) which can be modified with attributes: edges, nodes, the root graph, subgraphs and cluster subgraphs, respectively.\\
-
-
-We want to introduce the reader with the attributes that are modifiable in several places of the visualization:
+DOT has different components which can be modified with attributes: edges, nodes, the root graph, subgraphs and cluster subgraphs, respectively.\\
+We want to introduce the reader with the attributes that are modifiable in several places of the visualization - for a more comprehensive breakdown of all possible attributes see \url{www.graphviz.org/doc/info/attrs.html}.
 
 \begin{itemize}
 	\item \textbf{rankdir -} one of (``TB", ``LR", ``BT", ``RL"), corresponding to directed graphs drawn from top to bottom, from left to right, from bottom to top, and from right to left, respectively.
 	
-	\item \textbf{fillcolor -} The color used as a node-background in different situations, for different values see \url{graphviz.org/doc/info/attrs.html#k:color}. \url{graphviz.org/doc/info/colors.html} 
-	By default this is a linear fill; If the value is a colorList, a gradient fill is used. 
+	\item \textbf{fillcolor -} The color used as a node-background in different situations, for different values see footer\footnote{\url{graphviz.org/doc/info/attrs.html\#k:color}}.  
+	In our default values this is always a linear fill; If the value is a ``colorList", a gradient fill is used. 
 	
 	\item \textbf{fontcolor -} Color for text in nodes or graphs. 
 	
@@ -822,23 +820,26 @@ We want to introduce the reader with the attributes that are modifiable in sever
 	
 	\item \textbf{nodesep -} In dot, this specifies the minimum space between two adjacent nodes in the same rank in inches. 
 	
-	\item \textbf{shape -} Controls how nodes are drawn. For a full list of shapes see \url{graphviz.org/doc/info/shapes.html}. There are three main ways of specifying shapes, and all are applied in our visualization: 
-	\begin{enumerate}[label=(\arabic*)]
-		\item \textbf{polygon-based}; for example as a box, ellipse or diamond.\vspace{10pt}\\		
-		\textbf{Example}: shape~=~diamond label~=~v\_1
-		
-		\item \textbf{record-based} nodes that are basically boxes stacked vertically and horizontally and each filled with text.\vspace{10pt}\\
-		\textbf{Example}: shape~=~record label~=~$\{\text{sol bag 2}|\{\{v1|1|1|1|1|0\}|\{v3|1|0|0|1|1\}$ \\
-		\hspace*{0pt}\hfill $|\{v5|0|1|0|1|1\}|
-		\{\text{size}|3|3|2|3|3\}\}|\text{min-size: 2}\}$
-		
-		\item \textbf{HTML-like} labels are specified in a own grammar and can contain tables, text-styles like italic, sub- and superscript, vertical and horizontal rules.\vspace{10pt}\\		
-		\textbf{Example}: shape~=~box label~=\vspace{5pt}\\
-		$<<$TABLE BORDER="0" CELLBORDER="0" CELLSPACING="0"$>$\\
-		$<$TR$><$TD BGCOLOR="white"$>$bag 1$<$/TD$><$/TR$>$\\
-		$<$TR$><$TD PORT="anchor"$>$$<$/TD$><$/TR$><$TR$><$TD$>$[1, 3, 5, 6]$<$/TD$>$\\ $<$/TR$><$TR$><$TD$>$dtime=0.0009s$<$/TD$><$/TR$><$/TABLE$>>$
-	\end{enumerate}
-\end{itemize}
+	\item \textbf{shape -} Controls how nodes are drawn. For a full list of shapes see footer\footnote{\url{graphviz.org/doc/info/shapes.html}}. 
+\end{itemize} 
+\pagebreak
+There are three main ways of specifying shapes, and all are applied in our visualization: 
+\begin{enumerate}[label=(\arabic*)]
+	\item \textbf{polygon-based}; for example as a box, ellipse or diamond.\vspace{10pt}\\		
+	\textbf{Example}: shape~=~\textit{diamond};\quad label~=~v\_1
+	
+	\item \textbf{record-based} nodes that are basically boxes stacked vertically and horizontally and each filled with text.\vspace{10pt}\\
+	\textbf{Example}: shape~=~\textit{record};\quad label~=~$\{\text{sol bag 2}|\{\{v1|1|1|1|1|0\}|\{v3|1|0|0|1|1\}$ \\
+	\hspace*{0pt}\hfill $|\{v5|0|1|0|1|1\}|
+	\{\text{size}|3|3|2|3|3\}\}|\text{min-size: 2}\}$
+	
+	\item \textbf{HTML-like} labels are specified in a own grammar and can contain tables, text-styles like italic, sub- and superscript, vertical and horizontal rules.\vspace{10pt}\\		
+	\textbf{Example}: shape~=~\textit{box};\quad label~=\vspace{5pt}\\
+	$<<$TABLE BORDER="0" CELLBORDER="0" CELLSPACING="0"$>$\\
+	$<$TR$><$TD BGCOLOR="white"$>$bag 1$<$/TD$><$/TR$>$\\
+	$<$TR$><$TD PORT="anchor"$>$$<$/TD$><$/TR$><$TR$><$TD$>$[1, 3, 5, 6]$<$/TD$>$\\ $<$/TR$><$TR$><$TD$>$dtime=0.0009s$<$/TD$><$/TR$><$/TABLE$>>$
+\end{enumerate}
+
 
 
 %==============================================================================
