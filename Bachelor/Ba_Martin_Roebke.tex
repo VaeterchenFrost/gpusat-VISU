@@ -1316,49 +1316,41 @@ From the main method of \textit{gpusat} we call its constructor, as well as its 
 {Dpdb} as a project provides a framework that allows many different problems to be solved using dynamic programming on TDs. It utilizes relational databases, and currently provided reference implementations for the problem types SAT, \#SAT and MinVC.
 The integration of the API with dpdb is only minimally invasive when implemented after the solving process instead of running parallel to the solver. 
 We used 376 lines of code for the main implementation in \textit{construct\_dpdb\_visu.py}, and reuse about 200 LOC from project imports. We provide six test cases in additional 119 LOC.
-The only interference to the solving process is, that all necessary information has to be persisted in the database.
+The only interference to the solving process is that all necessary information has to be persisted in the database.
 The integration is included in our \textit{tdvisu} project as a separate Python file.
+\pagebreak
+
 A complete workflow was accomplished using the arguments
 \begin{itemize}
 	\item -{}-store-formula as a problem specific option for Sat and SharpSat
 	\item -{}-gr-file GR\_FILE for problems like VertexCover with graph input 
 \end{itemize}
 when calling \textit{dpdb.py}.\\
-Our program consists of the file \textit{construct\_dpdb\_visu.py} with the PostgreSQL database adapter Psycopg\footnote{\url{www.psycopg.org}} and few additional internal dependencies.
+Our program consists of the file  with the PostgreSQL database adapter Psycopg\footnote{\url{www.psycopg.org}} and few additional internal dependencies.
 
-Its command to collect the needed data for visualization after a \textit{dpdb} run accepts the following flags:
-\begin{itemize}
-	\item
-	\textbf{problemnumber},
-	 the problem-id to select in the database
-	 
-	\item
-	\textbf{-{}-twfile }\textit{TWFILE},
-	tw-file containing the edges of the graph 
+Its command to collect the needed data for visualization after a \textit{dpdb} run accepts the following flags, with only ``\textit{problem number}" required:
+\begin{longtable}{|r|p{10cm}|}
+	\hline
+	Option & Description\\
+	\hline\hline
+	\endhead
 	
-	\item
-	\textbf{-{}-outfile }\textit{OUTFILE},
-	 file to write the output to, default 'dbjson\%d.json'
-	 
-	\item
-	\textbf{-{}-loglevel }\textit{LOGLEVEL},
-	 set the minimal loglevel for the root logger
-	 
-	\item
-	\textbf{-{}-pretty},
-	 pretty-print the JSON
-	 
-	\item
-	\textbf{-{}-inter-nodes}
-	Calculate and animate the shortest path between successive bags in the order of evaluation. 
-%	To accomplish this task, an efficient implementation of the bidirectional Dijkstra's algorithm \cite{shortestPathAlgo} based on the implementation by NetworkX \cite{SciPyProceedings_11} in {bidirectional\_dijkstra}\footnote{\url{networkx.github.io/documentation/networkx-2.1/\_modules/networkx/algorithms/shortest\_paths/weighted.html\#bidirectional\_dijkstra}} was adapted.
-%	In our use case the weight function is always one, as the edges have no weight associated with them.
-\end{itemize}
+	problemnumber &  problem-id to select in the database\\\hline
+	-{}-twfile \textit{TWFILE}&  tw-file containing the edges of the graph \\
+	-{}-outfile  \textit{OUTFILE} & file to write the output to, default 'dbjson\%d.json'\\
+	-{}-loglevel \textit{LOGLEVEL}&  set the minimal loglevel for the root logger\\
+	-{}-pretty & pretty-print the JSON\\
+	-{}-inter-nodes & calculate and animate the shortest path between successive bags in the order of evaluation.\\
+	\hline\hline
+	\caption{Usage of \textit{construct\_dpdb\_visu.py}
+		\label{tab:optionsdpdb}}
+\end{longtable}\nopagebreak
+
 %After the arguments are parsed by \href{docs.python.org/3/library/argparse.html}{Pythons argparse} it is possible to adjust logging output by either providing a configuration file (\href{github.com/VaeterchenFrost/tdvisu/blob/master/tdvisu/logging.yml}{template} provided) or giving a minimal logging level per program argument.
 
 %Next the \textit{create\_json}~\ref{lst:create-json} function connects to the database driver with the number of the stored problem. 
-While we only input the number of the run stored in the database, the value ``problem type" is available as a string in its table \emph{public.problem}, and the appropriate class to prepare the data will be instantiated. Currently the solver handles the problems of \textit{satisfiability} (Sat), \textit{count solutions to a Boolean formula} (SharpSat) as well as \textit{minimum vertex cover} (VertexCover).
-For further details on the implementation we refer the reader to the source code in \textit{tdvisu}\footnote{\url{github.com/VaeterchenFrost/tdvisu/blob/master/tdvisu/construct_dpdb_visu.py}}.
+While we only input the number of the run stored in the database, the value ``problem type" is available as a string in its table \emph{public.problem}, and the appropriate class to prepare the data will be instantiated. Currently the dpdb-solver and our visualization can handle the problems of \textit{satisfiability} (Sat), \textit{count solutions to a Boolean formula} (SharpSat) as well as \textit{minimum vertex cover} (VertexCover).
+For further details on the implementation of \textit{construct\_dpdb\_visu.py} we refer the reader to the source code in \textit{tdvisu}\footnote{\url{github.com/VaeterchenFrost/tdvisu/blob/master/tdvisu/construct_dpdb_visu.py}}.
 
 %==============================================================================
 %============== APPLICATION ===================================================
