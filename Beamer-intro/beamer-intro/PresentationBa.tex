@@ -42,26 +42,26 @@
      captionpos=t 
 } 
 
-\begin{document} 
+\begin{document}
 \begin{frame}
-\customtitle
-\begin{list2}
-	\item {\sc What} was the motivation 
-\item {\sc What} could be used previously?
-\item {\sc Who} benefits from visualization?
-\item {\sc Challenges} and solutions
-\item {\sc What} could be developed next?
-\end{list2}
+	\customtitle
+	\begin{list2}
+		\item {\sc What} was the motivation
+		\item {\sc What} could be used previously?
+		\item {\sc Who} benefits from visualization?
+		\item {\sc Challenges} and solutions
+		\item {\sc What} could be developed next?
+	\end{list2}
 \end{frame}
 
 %%%%%%%%%%%%%%%%%
- \section{About me} % taken from Marek Seliger, Matthias Gerdts
+\section{About me} % taken from Marek Seliger, Matthias Gerdts
 
- \begin{frame}
-  \frametitle{About me}
+\begin{frame}
+	\frametitle{About me}
 
-Johannes Fichte
-Stefan Gumhold	
+	Johannes Fichte
+	Stefan Gumhold
 
 \end{frame}
 
@@ -82,14 +82,14 @@ Stefan Gumhold
 
 \subsection{Example Vertex cover}
 \begin{frame}
-\frametitle[Vertex Cover]{Example: Vertex-Cover problem}
+	\frametitle[Vertex Cover]{Example: Vertex-Cover problem}
 
 \end{frame}
 %%
 \subsection[Courcelle]{Courcelle's theorem}
 \begin{frame}
 	\frametitle{Courcelle's theorem}
-	
+
 	\begin{quotation}
 		Every graph property definable in monadic second-order logic (MSO) is decidable in linear time on graphs of bounded treewidth. \\
 		\hfill {\small Courcelle, Bruno (1990)}\footnote{Courcelle, Bruno "The monadic second-order logic of graphs. I. Recognizable sets of finite graphs",\\ Information and Computation, 85 (1990) no. 1: 12-75}
@@ -99,15 +99,15 @@ Stefan Gumhold
 	For all $k \in \mathbb{N}$ and MSO-sentences F is the decision problem for a given graph G, whether $G \models F$ is true, in time $2^{p(tw(G))} \cdot |G|$ with a polynom p decidable.
 	\medskip \pause
 	\begin{itemize}
-		
+
 		\item \emph{drawback:} still expensive ($2^{p(tw G)}$, $2^{2^{(\#Q)}}$, large constants) \smallskip \pause
 		\item usage:
-		
-\end{itemize}
-\begin{figure}
-	\includegraphics[height=0.2\textheight]{images/UsageCourcelle.gv.png}
-	\caption{Implementation of the theorem}
-\end{figure}
+
+	\end{itemize}
+	\begin{figure}
+		\includegraphics[height=0.2\textheight]{images/UsageCourcelle.gv.png}
+		\caption{Implementation of the theorem}
+	\end{figure}
 \end{frame}
 %%
 \subsection{\#SAT and WMC}
@@ -119,34 +119,34 @@ Stefan Gumhold
 	\frametitle{Graphs for Boolean Formulas}
 	\smallskip
 	\begin{itemize}
-	 \item {\color{blue} Example set of CNF-clauses:}\smallskip\\
-	 {\tiny $\{\text{c1}=\{\text{v1},\text{v3},\neg \text{v4}\},\text{c2}=\{\neg \text{v1},\text{v6}\},\text{c3}=\{\neg \text{v2},\neg \text{v3},\neg \text{v4}\},\text{c4}=\{\neg \text{v2},\text{v6}\},\text{c5}=\{\neg \text{v3},\neg \text{v4}\},\text{c6}=\{\neg \text{v3},\text{v5}\},\text{c7}=\{\neg \text{v5},\neg \text{v6}\},\text{c8}=\{\text{v5},\text{v7}\}\}
-	 	$
-	}
+		\item {\color{blue} Example set of CNF-clauses:}\smallskip\\
+		      {\tiny $\{\text{c1}=\{\text{v1},\text{v3},\neg \text{v4}\},\text{c2}=\{\neg \text{v1},\text{v6}\},\text{c3}=\{\neg \text{v2},\neg \text{v3},\neg \text{v4}\},\text{c4}=\{\neg \text{v2},\text{v6}\},\text{c5}=\{\neg \text{v3},\neg \text{v4}\},\text{c6}=\{\neg \text{v3},\text{v5}\},\text{c7}=\{\neg \text{v5},\neg \text{v6}\},\text{c8}=\{\text{v5},\text{v7}\}\}
+		      $
+		      }
 	\end{itemize}
 	\begin{figure}
 		\includegraphics[height=0.5\textheight]{images/DAGraphs.png}
 		\caption{The primal (left), incidence (middle) and dual (right) graph}
 	\end{figure}
-%\footnotesize{Equivalent CNF}
-%{\tiny $(\neg \text{v1}\lor \neg \text{v3})\land (\neg \text{v1}\lor \text{v6})\land (\text{v1}\lor \neg \text{v4})\land (\neg \text{v2}\lor \neg \text{v5})\land (\neg \text{v2}\lor \text{v6})\land (\neg \text{v3}\lor \neg \text{v4})\land (\neg \text{v3}\lor \text{v5})\land (\neg \text{v5}\lor \neg \text{v6})\land (\text{v5}\lor \text{v7})$}
+	%\footnotesize{Equivalent CNF}
+	%{\tiny $(\neg \text{v1}\lor \neg \text{v3})\land (\neg \text{v1}\lor \text{v6})\land (\text{v1}\lor \neg \text{v4})\land (\neg \text{v2}\lor \neg \text{v5})\land (\neg \text{v2}\lor \text{v6})\land (\neg \text{v3}\lor \neg \text{v4})\land (\neg \text{v3}\lor \text{v5})\land (\neg \text{v5}\lor \neg \text{v6})\land (\text{v5}\lor \text{v7})$}
 
 \end{frame}
 
 %%
 \subsection[TD]{Tree decomposition}
 \begin{frame}
-\frametitle{Tree Decompositions}
-{\color{blue}\emph{Parameterized Complexity and its Applications in Practice} \\
-From Foundations to Implementations \\
-Johannes K. Fichte \\
-TU Dresden, Germany \\
-Jakarta, Indonesia \\
-{Summer 2019 (May 6th - May 16th)}
-}
-pages 162-174\\
-\bigskip
-\emph{Backup}: VC tree vs graph - example p69, 128 
+	\frametitle{Tree Decompositions}
+	{\color{blue}\emph{Parameterized Complexity and its Applications in Practice} \\
+	From Foundations to Implementations \\
+	Johannes K. Fichte \\
+	TU Dresden, Germany \\
+	Jakarta, Indonesia \\
+	{Summer 2019 (May 6th - May 16th)}
+	}
+	pages 162-174\\
+	\bigskip
+	\emph{Backup}: VC tree vs graph - example p69, 128
 \end{frame}
 %{
 %	\setbeamercolor{background canvas}{bg=}
@@ -161,10 +161,10 @@ pages 162-174\\
 	\begin{figure}
 		\centering
 		\includegraphics[width=0.6\linewidth]{images/DualDA43.png}
-		\caption{Handcrafted \#SAT example-run from Markus Zisser\footnote{"Solving \#SAT on the GPU with Dynamic Programming and OpenCL",\\ Diploma Markus Zisser 2018 Technische Universität Wien, p.33}}
+		\caption{Handcrafted \#SAT example-run from Markus Zisser\footnote{"Solving \#SAT on the GPU with Dynamic Programming and OpenCL",\\ Diploma Markus Zisser 2018 Technische Universitï¿½t Wien, p.33}}
 		\label{fig:dualda43}
 	\end{figure}
-	
+
 \end{frame}
 \begin{frame}
 	\frametitle{Existing Visualization}
@@ -174,8 +174,8 @@ pages 162-174\\
 		\caption{Handcrafted \#SAT example-run from dpdb\footnote{"Exploiting Database Management Systems and Treewidth for Counting",\\ Fichte, Hecher, Thier, Woltran} }
 		\label{fig:dpdbVisuSat}
 	\end{figure}
-	
-	
+
+
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%
 \section{Implementations}
@@ -191,24 +191,24 @@ pages 162-174\\
 	\begin{figure}
 		\includegraphics[height=0.3\textheight]{images/gpusat2DP.png}
 	\end{figure}
-\begin{minipage}{0.49\textwidth}
-	\begin{itemize}
+	\begin{minipage}{0.49\textwidth}
+		\begin{itemize}
 
-		\item only primal graph { \small (simpler solving DP)}
-		\item customized tree decompositions
-		\item adapted memory-management
-		\item improved precision handling
+			\item only primal graph { \small (simpler solving DP)}
+			\item customized tree decompositions
+			\item adapted memory-management
+			\item improved precision handling
 
-	\end{itemize}
-\end{minipage}
-\begin{minipage}{0.49\textwidth}
-	%Runtime for the top 5 sequential and all parallel solvers over all the #Sat
-	%instances with pmc preprocessor. The x-axis refers to the number of instances and the
-	%y-axis depicts the runtime sorted in ascending order for each solver individually.
-	\begin{figure}
-		\includegraphics[width=\linewidth]{images/gpusat2Runtime.png}
-	\end{figure}
-\end{minipage}
+		\end{itemize}
+	\end{minipage}
+	\begin{minipage}{0.49\textwidth}
+		%Runtime for the top 5 sequential and all parallel solvers over all the #Sat
+		%instances with pmc preprocessor. The x-axis refers to the number of instances and the
+		%y-axis depicts the runtime sorted in ascending order for each solver individually.
+		\begin{figure}
+			\includegraphics[width=\linewidth]{images/gpusat2Runtime.png}
+		\end{figure}
+	\end{minipage}
 
 \end{frame}
 %%
@@ -231,36 +231,36 @@ pages 162-174\\
 		\hfill
 	\end{minipage}
 	\begin{minipage}{0.35\textwidth}
-	\begin{itemize}
-		\item SAT
-		\item \#SAT
-		\item Vertex cover
-	\end{itemize}
-\end{minipage}\hfill
-\begin{minipage}{0.54\textwidth}
-	
-	\begin{figure}
-		\centering\hfill
-		\begin{subfigure}[b]{\textwidth}
-			\includegraphics[width=\linewidth]{images/dpdbSSat.png}
-			\caption{Problem \#SAT}
+		\begin{itemize}
+			\item SAT
+			\item \#SAT
+			\item Vertex cover
+		\end{itemize}
+	\end{minipage}\hfill
+	\begin{minipage}{0.54\textwidth}
 
-		\end{subfigure}\hfill\\
-	\begin{subfigure}[b]{\textwidth}
-		\includegraphics[width=0.8\linewidth]{images/dpdbOCol.png}
-		\caption{Problem \#o-Col}
+		\begin{figure}
+			\centering\hfill
+			\begin{subfigure}[b]{\textwidth}
+				\includegraphics[width=\linewidth]{images/dpdbSSat.png}
+				\caption{Problem \#SAT}
 
-	\end{subfigure}\hfill\\
-\begin{subfigure}[b]{\textwidth}
-	\includegraphics[width=0.8\linewidth]{images/dpdbMinVC.png}
-	\caption{Problem MinVC}
+			\end{subfigure}\hfill\\
+			\begin{subfigure}[b]{\textwidth}
+				\includegraphics[width=0.8\linewidth]{images/dpdbOCol.png}
+				\caption{Problem \#o-Col}
 
-\end{subfigure}
-	\end{figure}
+			\end{subfigure}\hfill\\
+			\begin{subfigure}[b]{\textwidth}
+				\includegraphics[width=0.8\linewidth]{images/dpdbMinVC.png}
+				\caption{Problem MinVC}
 
-\end{minipage}
-\medskip \\
-github: \url{https://github.com/hmarkus/dp_on_dbs}
+			\end{subfigure}
+		\end{figure}
+
+	\end{minipage}
+	\medskip \\
+	github: \url{https://github.com/hmarkus/dp_on_dbs}
 \end{frame}
 \begin{frame}
 	\medskip
@@ -275,21 +275,21 @@ github: \url{https://github.com/hmarkus/dp_on_dbs}
 %%%%%%%%%%%%%%%%%%%%%%%
 \section{Further Visualization}
 \begin{frame}
-\frametitle{Creating Visualization for:}
-\begin{minipage}{0.44\textwidth}
-	\emph{Improving}
-	\begin{itemize}
-		\item examples for students 
-		\item debugging and improving interaction of complex data-structures
-		\item hotspots
-	\end{itemize}\medskip
+	\frametitle{Creating Visualization for:}
+	\begin{minipage}{0.44\textwidth}
+		\emph{Improving}
+		\begin{itemize}
+			\item examples for students
+			\item debugging and improving interaction of complex data-structures
+			\item hotspots
+		\end{itemize}\medskip
 
-\end{minipage}
-\begin{minipage}{0.55\textwidth}
-	\begin{figure}
-		\includegraphics[width=\linewidth]{images/combined8.png}
-	\end{figure}
-\end{minipage}
+	\end{minipage}
+	\begin{minipage}{0.55\textwidth}
+		\begin{figure}
+			\includegraphics[width=\linewidth]{images/combined8.png}
+		\end{figure}
+	\end{minipage}
 
 \end{frame}
 
