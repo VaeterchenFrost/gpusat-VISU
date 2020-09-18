@@ -152,31 +152,34 @@ pages 162-174\\
 %	\setbeamercolor{background canvas}{bg=}
 %	\includepdf[pages=162-174]{"images/Lecture_pcgp_Summer_2019.pdf"}
 %}
-%%%%%%%%%%%%%%%%%%%%%%%
-\section{implementations}
-\subsection{gpusat1}
-\begin{frame}
-	\frametitle{gpuSAT1}
-	\begin{figure}
-		\includegraphics[width=0.8\linewidth]{images/DADPonGPU.png}
-		\caption{DP algorithm on the GPU}
-	\end{figure}
 
-	\begin{minipage}{0.49\textwidth}
-		\begin{itemize}
-			\item OpenCL
-			\item Two operations between bags
-		\end{itemize}
-	\end{minipage}
-\begin{minipage}{0.49\textwidth}
-		\begin{figure}
-		\includegraphics[width=\linewidth]{images/Hermann gpusat test50 running.png}
-		\caption{Example output format from gpuSAT}
+%%%%%%%%%%%%%%%%%%%%%%%
+\section{Visualization}
+\subsection{Handcrafted}
+\begin{frame}
+	\frametitle{Existing Visualization}
+	\begin{figure}
+		\centering
+		\includegraphics[width=0.6\linewidth]{images/DualDA43.png}
+		\caption{Handcrafted \#SAT example-run from Markus Zisser\footnote{"Solving \#SAT on the GPU with Dynamic Programming and OpenCL",\\ Diploma Markus Zisser 2018 Technische Universität Wien, p.33}}
+		\label{fig:dualda43}
 	\end{figure}
-\end{minipage}
-	github: \url{https://github.com/daajoe/GPUSAT}
+	
 \end{frame}
-%%
+\begin{frame}
+	\frametitle{Existing Visualization}
+	\begin{figure}
+		\centering
+		\includegraphics[width=\linewidth]{images/dpdbVisuSat.png}
+		\caption{Handcrafted \#SAT example-run from dpdb\footnote{"Exploiting Database Management Systems and Treewidth for Counting",\\ Fichte, Hecher, Thier, Woltran} }
+		\label{fig:dpdbVisuSat}
+	\end{figure}
+	
+	
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%
+\section{Implementations}
+
 \subsection{gpusat2}
 \begin{frame}
 	\frametitle{gpuSAT2 - Improving Upon Previous Ideas }
@@ -231,7 +234,6 @@ pages 162-174\\
 	\begin{itemize}
 		\item SAT
 		\item \#SAT
-		\item \#o-Coloring
 		\item Vertex cover
 	\end{itemize}
 \end{minipage}\hfill
@@ -262,37 +264,13 @@ github: \url{https://github.com/hmarkus/dp_on_dbs}
 \end{frame}
 \begin{frame}
 	\medskip
-	\frametitle{dpdb - Benchmark}
+	\frametitle{Benchmark}
 	{\color{blue}Performance of all three programs on \#SAT instances:} \medskip\\
 	\begin{figure}
 		\includegraphics[width=0.8\linewidth]{images/dpdbRuntime.png}
 	\end{figure}
 \end{frame}
 
-%%%%%%%%%%%%%%%%%%%%%%%
-\section{Visualization}
-\subsection{Handcrafted}
-\begin{frame}
-	\frametitle{Existing Visualization}
-	\begin{figure}
-		\centering
-		\includegraphics[width=0.6\linewidth]{images/DualDA43.png}
-		\caption{Handcrafted \#SAT example-run from Markus Zisser\footnote{"Solving \#SAT on the GPU with Dynamic Programming and OpenCL",\\ Diploma Markus Zisser 2018 Technische Universität Wien, p.33}}
-		\label{fig:dualda43}
-	\end{figure}
-
-\end{frame}
-\begin{frame}
-	\frametitle{Existing Visualization}
-	\begin{figure}
-		\centering
-		\includegraphics[width=\linewidth]{images/dpdbVisuSat.png}
-		\caption{Handcrafted \#SAT example-run from dpdb\footnote{"Exploiting Database Management Systems and Treewidth for Counting",\\ Fichte, Hecher, Thier, Woltran} }
-		\label{fig:dpdbVisuSat}
-	\end{figure}
-	
-	
-\end{frame}
 
 %%%%%%%%%%%%%%%%%%%%%%%
 \section{Further Visualization}
