@@ -57,34 +57,12 @@
 %%%%%%%%%%%%%%%%%
  \section{About me} % taken from Marek Seliger, Matthias Gerdts
 
-
  \begin{frame}
   \frametitle{About me}
-	
- {\color{blue}Martin R\"obke}
- \medskip
 
-\begin{minipage}{0.6\textwidth}
-    \begin{itemize}
-    % \item[$\bullet$] born in Dresden
-    \item[$\bullet$] studying Bachelor CS
-    \begin{itemize} \smallskip
-    \item[$\bullet$] started studying physics at the TU Dresden
-    \item[$\bullet$] did like logic and visualization more, so switched the faculty ~ {\color{orange}\Winkey}
-    \item[$\bullet$] following computer chess as a hobby
-	\end{itemize}
-    \end{itemize}
-\end{minipage}\hfill
-\begin{minipage}{0.35\textwidth}
-	\begin{figure}[H]
-			\includegraphics[height=0.33\textheight]{images/Martincrop.jpg}
-	\end{figure}
-\end{minipage} 
-\medskip
- {\color{blue}How did I get to work with my supervisor Johannes Fichte?}
-\begin{center}
-	\quad \includegraphics[width=.3\linewidth]{images/3DLabelsgrossGrun.png}\qquad \scalebox{-1}[1]{\includegraphics[width=.17\linewidth, angle=90]{images/BigChristmas.pdf}}\quad \includegraphics[width=.3\linewidth]{images/IsingModell.pdf}
-\end{center}
+Johannes Fichte
+Stefan Gumhold	
+
 \end{frame}
 
 %%%%%%%%%%%%%%%%%%%%%%
@@ -92,92 +70,20 @@
 
 \begin{frame}
 	\frametitle{Motivation}
-	\begin{minipage}{0.7\textwidth}% \textbf{\color{blue}Previous work:} 
-	\medskip
-	\begin{itemize}
-		%Chapter 1IntroductionModeling and solving real-world problems are two cornerstones ofArtificial Intelligence(AI).  In  particular,  the  sub-area  ofAutomated  Reasoningtackles  these  challenges  bydeveloping modeling languages to encode real-world problems as well as algorithms tosolve them.  Here we focus on approaches that are mainly based on mathematical logicthat have already proven successful on a wide range of real-world applications such asplanning, verification, and robotics (see e.g., [50]). 
-		%http://www.cs.toronto.edu/~horst/cogrobo/papers/phdthesis-horst.pdf
-		\item<2-> SAT-Problem is NP-complete \quad \#SAT is \#P-complete
-
-		\begin{itemize}
-				\item<3-> Problem with huge instances
-		\end{itemize}
-
-		%Using customized algorithms and datastructures and highly parallel hardware
-		\item<4-> Customized algorithms, data-structures, hardware
-	\end{itemize}
-
-	\medskip
-	\onslide<5->
-	\textbf{\color{blue}Why visualization?}\medskip
-	\begin{center}
-		{\color{blue}$\rightarrow$ trace and document the customization}
-	\end{center}
-	\onslide<6->
-	\textbf{\color{blue}Outlook:} \medskip
-	\begin{itemize}
-		\item<7-> Improve and streamline the visualization process % API, diff. programs etc. 
-		\item<8-> Implement debug-output in existing solvers
-		%Enable
-		\item<9-> Even more dynamic possibilities 
-	\end{itemize}
-	\end{minipage}\hfill
-	\begin{minipage}{0.28\textwidth}
-		\begin{figure}[H]
-			\includegraphics[width=\linewidth]{images/g41DigraphProgress6.png}
-			\caption{\label{fig:g416} Example of a \#SAT run with DP}
-		\end{figure}
-	\end{minipage} 
 
 \end{frame}
 
 %%%%%%%%%%%%%%%%%%%%%
 \section{Background}
-\subsection{Different extensions of logic}
 \begin{frame}
 	\frametitle{Background}
-	\begin{figure}
-		\includegraphics[height=0.9\textheight]{images/DifferentLogicgraph3.pdf}
-	\end{figure}
+
 \end{frame}
-%%
+
 \subsection{Example Vertex cover}
 \begin{frame}
 \frametitle[Vertex Cover]{Example: Vertex-Cover problem}
 
-%We take an undirected graph 
-%\begin{center}
-%	We take an undirected graph	\textbf{G} = (\textbf{V}, \textbf{E})
-%\end{center}
-%where \textbf{V} is the set of nodes and \textbf{E} the set of edges, each between two elements of \textbf{V}. 
-For the graph \textbf{G~=~(V,~E)} we want to compute a set C $\subseteq V(G)$ such that \emph{from every edge} $\{u, v\}$ there is \emph{at least one} of $u$ or $v$ in C. \smallskip 
-
-\begin{figure}
-	\centering
-	\begin{minipage}{0.45\textwidth}
-		\centering
-		\includegraphics[width=0.6\textwidth]{"images/threeGraph1.png"}
-		\caption{Example undirected graph \textbf{G}} 
-	\end{minipage}
-	\begin{minipage}{0.45\textwidth}
-		\centering
-		\includegraphics[width=0.6\textwidth]{images/threeGraphOptimal.png} 
-		\caption{Minimal VC of \textbf{G}} 
-	\end{minipage}
-\end{figure}
-
-%The size of the vertex cover is the number of vertices in it.
-\hspace*{0.1\textwidth}
-\begin{minipage}{0.8\textwidth}
-	\begin{center}
-		$\exists S: ~\forall \{u,v\} \in E: (u\in S \vee  v\in S)$
-	\end{center} \medskip
-	{\color{blue}for a given $k {\small \in} \mathbb{N}$: \\Deciding whether the graph has a vertex cover of size k is NP-complete.
-	%{\color{blue}Finding the \emph{smallest} of these sets is the optimization version % (how large is the smallest set?) 
-	%	of a NP-complete decision problem. %(is there a vertex cover of size \textit{k}).
-	}
-
-\end{minipage}
 \end{frame}
 %%
 \subsection[Courcelle]{Courcelle's theorem}
@@ -207,62 +113,8 @@ For the graph \textbf{G~=~(V,~E)} we want to compute a set C $\subseteq V(G)$ su
 \subsection{\#SAT and WMC}
 \begin{frame}
 	\frametitle{(Weighted) Model-Counting}
-	\begin{minipage}{0.75\textwidth}
-% https://en.wikipedia.org/wiki/Sharp-SAT#Intractable_special_cases
-	\vspace{.2\textheight}
-	{\color{blue} The \#SAT Problem} \\
-	Input: boolean formula \textbf{F} \\
-	Output: the number of satisfying assignments for \textbf{F}
-	
-	\bigskip
-	{\color{blue} The Weighted Model Counting Problem}
-	\begin{itemize}
-		%\item $w(lit=\top ) \in [0,1], \quad w(lit=\perp) = 1-w(lit=\top)$
-		\item $w(lit) \in [0,1], \quad w(¬ lit) = 1-w(lit)$
-		\item $w(assignment) = \prod_{lit} w(lit)$
-		\item $WMC(formula) = \sum_{\small satisfying~~ assignments} w(assignment)$
-	\end{itemize}
-	\end{minipage}\hfill
-	{\raisebox{-0.7\height}{\includegraphics[width=0.23\textwidth]{images/ExampleCNFw.png}}}
 \end{frame}
-\begin{frame}
-	\frametitle{Example for WMC}
-	\smallskip\pause
-	\begin{itemize}
-		\item {\color{blue} Example set of CNF-clauses:}\smallskip\\
-		{\tiny $\{\text{c1}=\{\text{v1},\text{v3},\neg \text{v4}\},\text{c2}=\{\neg \text{v1},\text{v6}\},\text{c3}=\{\neg \text{v2},\neg \text{v3},\neg \text{v4}\},\text{c4}=\{\neg \text{v2},\text{v6}\},\text{c5}=\{\neg \text{v3},\neg \text{v4}\},\text{c6}=\{\neg \text{v3},\text{v5}\},\text{c7}=\{\neg \text{v5},\neg \text{v6}\},\text{c8}=\{\text{v5},\text{v7}\}\}
-			$
-			\item {\normalsize\color{blue} Example weights:}\smallskip \\
-			$w(\text{v1})=0.8,~w(\text{v2})=0.2,~w(\text{v3})=0.1,~w(\text{v4})=0.7,~w(\text{v5})=0.4,~w(\text{v6})=0.5,~w(\text{v7})=0.5$
-			\pause
-			\item {\normalsize \color{blue} Corresponding CNF}
-			$(\text{v1}\lor \text{v3}\lor \neg \text{v4})\land (\neg \text{v1}\lor \text{v6})\land (\neg \text{v2}\lor \neg \text{v3}\lor \neg \text{v4})\land (\neg \text{v2}\lor \text{v6})\land (\neg \text{v3}\lor \neg \text{v4})\land (\neg \text{v3}\lor \text{v5})\land (\neg \text{v5}\lor \neg \text{v6})\land (\text{v5}\lor \text{v7})
-			$
-			\pause
-		\item {\normalsize \color{blue} Satisfying assignments:}\\
-	$\begin{array}{ccccccc}
-		\text{v1} & \text{v2} & \text{v3} & \text{v4} & \text{v5} & \text{v6} & \text{v7} \\
-		1 & 1 & 0 & 1 & 0 & 1 & 1 \\
-		1 & 1 & 0 & 0 & 0 & 1 & 1 \\
-		1 & 0 & 0 & 1 & 0 & 1 & 1 \\
-		1 & 0 & 0 & 0 & 0 & 1 & 1 \\
-		0 & 1 & 0 & 0 & 0 & 1 & 1 \\
-		0 & 0 & 1 & 0 & 1 & 0 & 1 \\
-		0 & 0 & 1 & 0 & 1 & 0 & 0 \\
-		0 & 0 & 0 & 0 & 1 & 0 & 1 \\
-		0 & 0 & 0 & 0 & 1 & 0 & 0 \\
-		0 & 0 & 0 & 0 & 0 & 1 & 1 \\
-		0 & 0 & 0 & 0 & 0 & 0 & 1 \\
-	\end{array}$}
-	\medskip \pause
-	\item {\normalsize \color{blue} Resulting weighted model count:}\\
-	$\large 0.13218$
-	\end{itemize}
 
-	%\footnotesize{Equivalent CNF}
-	%{\tiny $(\neg \text{v1}\lor \neg \text{v3})\land (\neg \text{v1}\lor \text{v6})\land (\text{v1}\lor \neg \text{v4})\land (\neg \text{v2}\lor \neg \text{v5})\land (\neg \text{v2}\lor \text{v6})\land (\neg \text{v3}\lor \neg \text{v4})\land (\neg \text{v3}\lor \text{v5})\land (\neg \text{v5}\lor \neg \text{v6})\land (\text{v5}\lor \text{v7})$}
-	
-\end{frame}
 \begin{frame}
 	\frametitle{Graphs for Boolean Formulas}
 	\smallskip
