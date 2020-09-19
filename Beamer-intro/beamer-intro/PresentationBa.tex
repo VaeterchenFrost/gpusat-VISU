@@ -87,6 +87,9 @@
 Dynamic programming algorithms can be used to solve combinatorial problems such as SAT, Model Counting, and various graph problems. \\
 Recent research showed that implementations of dynamic programming algorithms can also compete with modern solvers. \\
 Unfortunately, those algorithms are fairly hard to implement as they involve bit fiddling to make them run efficiently.
+
+=> Debug output wird schnell unübersichtlich/groß
+Ursprung von Problemen auffinden => (MinVC) Beispiel
 \end{frame}
 
 %%%%%%%%%%%%%%%%%%%%%%%
@@ -165,6 +168,7 @@ Unfortunately, those algorithms are fairly hard to implement as they involve bit
 %%(LNI), Proceedings - Series of the Gesellschaft fur Informatik (GI) (Jan.
 %%2014), pp. 105--120.
 
+=> Related Work Schluss / Wiss Arbeiten -> Nicht speziell Angeschaut / Format aus Solvern extrahiert - kann trotzdem sehr generisch sein (dpdb speziell)
 \end{frame}
 
 \subsection{Handcrafted}
@@ -174,24 +178,25 @@ Unfortunately, those algorithms are fairly hard to implement as they involve bit
 	\begin{figure}
 		\centering
 		\includegraphics[width=0.6\linewidth]{images/DualDA43.png}
-		\caption{Handcrafted \#SAT example-run from Markus Zisser\footnote{"Solving \#SAT on the GPU with Dynamic Programming and OpenCL",\\ Diploma Markus Zisser 2018 Technische Universitï¿½t Wien, p.33}}
+		\caption{Handcrafted \#SAT example-run from Markus Zisser\footnote{"Solving \#SAT on the GPU with Dynamic Programming and OpenCL",\\ Diploma Markus Zisser 2018 Technische Universit\"at Wien, p.33}}
 		\label{fig:dualda43}
 	\end{figure}
-	
+
+ => Dynamic programming Grafiken / Verlaufsschema Kurz erklären -> Beweise dazu sind aufwändig und recht speziell / 
 \end{frame}
 
 %%%%%%%%%%%%%%%%%%%%%
 \section{Background}
 \begin{frame}
 	\frametitle{Background}
-
+=> Kombinatorische Prob. (lösbare \#P Klasse schwerer(teilweise deutlich komplexer => Referenz Projected Model Counting Markus (hybride Erw dpdb) )) - Algos
 \end{frame}
 
 %%
 \subsection{\#SAT and WMC}
-\begin{frame}
-	\frametitle{(Weighted) Model-Counting}
-\end{frame}
+%\begin{frame}
+%	\frametitle{(Weighted) Model-Counting}
+%\end{frame}
 
 \begin{frame}
 	\frametitle{Graphs for Boolean Formulas}
@@ -214,7 +219,11 @@ Unfortunately, those algorithms are fairly hard to implement as they involve bit
 %%
 \subsection[TD]{Tree decomposition}
 \begin{frame}
+	 
 	\frametitle{Tree Decompositions}
+	
+	Slides => Idee 
+	
 	{\color{blue}\emph{Parameterized Complexity and its Applications in Practice} \\
 		From Foundations to Implementations \\
 		Johannes K. Fichte \\
@@ -237,29 +246,29 @@ Unfortunately, those algorithms are fairly hard to implement as they involve bit
 
 \end{frame}
 %%
-\subsection[Courcelle]{Courcelle's theorem}
-\begin{frame}
-	\frametitle{Courcelle's theorem}
-
-%	\begin{quotation}
-%		Every graph property definable in monadic second-order logic (MSO) is decidable in linear time on graphs of bounded treewidth. \\
-%		\hfill {\small Courcelle, Bruno (1990)}\footnote{Courcelle, Bruno "The monadic second-order logic of graphs. I. Recognizable sets of finite graphs",\\ Information and Computation, 85 (1990) no. 1: 12-75}
-%	\end{quotation}
-
-	\medskip
-	For all $k \in \mathbb{N}$ and MSO-sentences F is the decision problem for a given graph G, whether $G \models F$ is true, in time $2^{p(tw(G))} \cdot |G|$ with a polynom p decidable.
-	\medskip
-	\begin{itemize}
-
-		\item \emph{drawback:} still expensive ($2^{p(tw G)}$, $2^{2^{(\#Q)}}$, large constants) \smallskip 
-		\item usage:
-
-	\end{itemize}
-	\begin{figure}
-		\includegraphics[height=0.2\textheight]{images/UsageCourcelle.gv.png}
-		\caption{Implementation of the theorem}
-	\end{figure}
-\end{frame}
+%\subsection[Courcelle]{Courcelle's theorem}
+%\begin{frame}
+%	\frametitle{Courcelle's theorem}
+%
+%%	\begin{quotation}
+%%		Every graph property definable in monadic second-order logic (MSO) is decidable in linear time on graphs of bounded treewidth. \\
+%%		\hfill {\small Courcelle, Bruno (1990)}\footnote{Courcelle, Bruno "The monadic second-order logic of graphs. I. Recognizable sets of finite graphs",\\ Information and Computation, 85 (1990) no. 1: 12-75}
+%%	\end{quotation}
+%
+%	\medskip
+%	For all $k \in \mathbb{N}$ and MSO-sentences F is the decision problem for a given graph G, whether $G \models F$ is true, in time $2^{p(tw(G))} \cdot |G|$ with a polynom p decidable.
+%	\medskip
+%	\begin{itemize}
+%
+%		\item \emph{drawback:} still expensive ($2^{p(tw G)}$, $2^{2^{(\#Q)}}$, large constants) \smallskip 
+%		\item usage:
+%
+%	\end{itemize}
+%	\begin{figure}
+%		\includegraphics[height=0.2\textheight]{images/UsageCourcelle.gv.png}
+%		\caption{Implementation of the theorem}
+%	\end{figure}
+%\end{frame}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%
@@ -286,14 +295,14 @@ Unfortunately, those algorithms are fairly hard to implement as they involve bit
 
 		\end{itemize}
 	\end{minipage}
-	\begin{minipage}{0.49\textwidth}
-		%Runtime for the top 5 sequential and all parallel solvers over all the #Sat
-		%instances with pmc preprocessor. The x-axis refers to the number of instances and the
-		%y-axis depicts the runtime sorted in ascending order for each solver individually.
-		\begin{figure}
-			\includegraphics[width=\linewidth]{images/gpusat2Runtime.png}
-		\end{figure}
-	\end{minipage}
+%	\begin{minipage}{0.49\textwidth}
+%		%Runtime for the top 5 sequential and all parallel solvers over all the #Sat
+%		%instances with pmc preprocessor. The x-axis refers to the number of instances and the
+%		%y-axis depicts the runtime sorted in ascending order for each solver individually.
+%		\begin{figure}
+%			\includegraphics[width=\linewidth]{images/gpusat2Runtime.png}
+%		\end{figure}
+%	\end{minipage}
 
 \end{frame}
 %%
@@ -301,6 +310,7 @@ Unfortunately, those algorithms are fairly hard to implement as they involve bit
 \begin{frame}
 	\frametitle{dpdb}
 	{\color{blue}Using databases for intermediate results} \medskip\\
+	Generator SQL Qs => Datenbank Templating in Python
 	%The idea of dpdb is to use database
 	%management systems (DBMS) for table manipulation, which makes it (1) easy
 	%and elegant to perform rapid prototyping for problems, and (2) allows to leverage
@@ -355,11 +365,22 @@ Unfortunately, those algorithms are fairly hard to implement as they involve bit
 	\frametitle{Challenge1}
 	\medskip
 	
+	Generisches Datenformat /Strings
+	Visu
+	
+	Arbeits Space groß
+	
+	=> Anwendungen 
+	
+	
 \end{frame}
 
 \begin{frame}
 	\frametitle{Challenge2}
 	\medskip
+	
+	=> Wie robust ist die Datenverarbeitung in der Visu
+	=> Was Gedanken bei der Visu waren
 	
 \end{frame}
 
@@ -379,6 +400,11 @@ Unfortunately, those algorithms are fairly hard to implement as they involve bit
 	https://data-science-blog.com/blog/2015/07/20/3d-visualisierung-von-graphen/
 	%Bei besonders umfangreichen und zugleich vielfältigen Graphen ist eine Visualisierung in drei bzw. vier Dimensionen (x-, y-, z-Dimensionen + Zeit t) nicht nur schöner anzusehen, sondern kann auch sehr dabei helfen, ein Verständnis (z. B. über Graphen-Cluster) zu erhalten.
 
+	=> Automatische Methoden werden häufig schwerer als gedacht. 
+	
+	Für tiefere Debugging Tasks müsste evtl auch der Ansatz erneuert werden
+	
+	=> Was wären weitere Fragestellungen was man ansehen möchte
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%
 
