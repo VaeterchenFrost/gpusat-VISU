@@ -1,17 +1,19 @@
 \babel@toc {british}{}
 \beamer@sectionintoc {1}{About me}{2}{0}{1}
 \beamer@sectionintoc {2}{Motivation}{3}{0}{2}
-\beamer@sectionintoc {3}{Background}{12}{0}{3}
-\beamer@subsectionintoc {3}{1}{Different extensions of logic}{12}{0}{3}
-\beamer@subsectionintoc {3}{2}{Example Vertex cover}{13}{0}{3}
-\beamer@subsectionintoc {3}{3}{Courcelle's theorem}{14}{0}{3}
-\beamer@subsectionintoc {3}{4}{\#SAT and WMC}{18}{0}{3}
-\beamer@subsectionintoc {3}{5}{Tree decomposition}{25}{0}{3}
-\beamer@sectionintoc {4}{implementations}{26}{0}{4}
-\beamer@subsectionintoc {4}{1}{gpusat1}{26}{0}{4}
-\beamer@subsectionintoc {4}{2}{gpusat2}{27}{0}{4}
-\beamer@subsectionintoc {4}{3}{dpdb}{28}{0}{4}
-\beamer@sectionintoc {5}{Visualization}{30}{0}{5}
-\beamer@subsectionintoc {5}{1}{Handcrafted}{30}{0}{5}
-\beamer@sectionintoc {6}{Further Visualization}{32}{0}{6}
-\beamer@sectionintoc {7}{Outlook}{33}{0}{7}
+\beamer@sectionintoc {3}{Other Visualization}{4}{0}{3}
+\beamer@sectionintoc {4}{Visualization1}{5}{0}{4}
+\beamer@subsectionintoc {4}{1}{Handcrafted}{5}{0}{4}
+\beamer@sectionintoc {5}{Background}{7}{0}{5}
+\beamer@subsectionintoc {5}{1}{\#SAT and WMC}{8}{0}{5}
+\beamer@subsectionintoc {5}{2}{Tree decomposition}{10}{0}{5}
+\beamer@subsectionintoc {5}{3}{Example Vertex cover}{11}{0}{5}
+\beamer@subsectionintoc {5}{4}{Courcelle's theorem}{12}{0}{5}
+\beamer@sectionintoc {6}{VisualizationRepeat}{13}{0}{6}
+\beamer@subsectionintoc {6}{1}{Handcrafted}{13}{0}{6}
+\beamer@sectionintoc {7}{Implementations}{15}{0}{7}
+\beamer@subsectionintoc {7}{1}{gpusat2}{15}{0}{7}
+\beamer@subsectionintoc {7}{2}{dpdb}{16}{0}{7}
+\beamer@sectionintoc {8}{Challenge}{17}{0}{8}
+\beamer@sectionintoc {9}{Outlook}{20}{0}{9}
+\beamer@sectionintoc {10}{BIBLIOGRAPHY}{22}{0}{10}
