@@ -1,18 +1,17 @@
-\BOOKMARK [2][]{Outline0.1}{About me}{}% 1
+\BOOKMARK [2][]{Outline0.1}{The task}{}% 1
 \BOOKMARK [2][]{Outline0.2}{Motivation}{}% 2
-\BOOKMARK [2][]{Outline0.3}{Other Visualization}{}% 3
-\BOOKMARK [2][]{Outline0.4}{Visualization1}{}% 4
-\BOOKMARK [3][]{Outline0.4.1.5}{Handcrafted}{Outline0.4}% 5
-\BOOKMARK [2][]{Outline0.5}{Background}{}% 6
-\BOOKMARK [3][]{Outline0.5.1.8}{\043SAT and WMC}{Outline0.5}% 7
-\BOOKMARK [3][]{Outline0.5.2.10}{Tree decomposition}{Outline0.5}% 8
-\BOOKMARK [3][]{Outline0.5.3.11}{Example Vertex cover}{Outline0.5}% 9
-\BOOKMARK [3][]{Outline0.5.4.12}{Courcelle's theorem}{Outline0.5}% 10
-\BOOKMARK [2][]{Outline0.6}{VisualizationRepeat}{}% 11
-\BOOKMARK [3][]{Outline0.6.1.13}{Handcrafted}{Outline0.6}% 12
-\BOOKMARK [2][]{Outline0.7}{Implementations}{}% 13
-\BOOKMARK [3][]{Outline0.7.1.15}{gpusat2}{Outline0.7}% 14
-\BOOKMARK [3][]{Outline0.7.2.16}{dpdb}{Outline0.7}% 15
-\BOOKMARK [2][]{Outline0.8}{Challenge}{}% 16
-\BOOKMARK [2][]{Outline0.9}{Outlook}{}% 17
-\BOOKMARK [2][]{Outline0.10}{BIBLIOGRAPHY}{}% 18
+\BOOKMARK [2][]{Outline0.3}{Who should use this}{}% 3
+\BOOKMARK [2][]{Outline0.4}{Other Visualization}{}% 4
+\BOOKMARK [3][]{Outline0.4.1.5}{Software}{Outline0.4}% 5
+\BOOKMARK [3][]{Outline0.4.2.6}{Handcrafted}{Outline0.4}% 6
+\BOOKMARK [2][]{Outline0.5}{Background}{}% 7
+\BOOKMARK [3][]{Outline0.5.1.9}{\043SAT and WMC}{Outline0.5}% 8
+\BOOKMARK [3][]{Outline0.5.2.11}{Tree decomposition}{Outline0.5}% 9
+\BOOKMARK [3][]{Outline0.5.3.12}{Example Vertex cover}{Outline0.5}% 10
+\BOOKMARK [3][]{Outline0.5.4.13}{Courcelle's theorem}{Outline0.5}% 11
+\BOOKMARK [2][]{Outline0.6}{Implementations}{}% 12
+\BOOKMARK [3][]{Outline0.6.1.14}{gpusat2}{Outline0.6}% 13
+\BOOKMARK [3][]{Outline0.6.2.15}{dpdb}{Outline0.6}% 14
+\BOOKMARK [2][]{Outline0.7}{Challenge}{}% 15
+\BOOKMARK [2][]{Outline0.8}{Outlook}{}% 16
+\BOOKMARK [2][]{Outline0.9}{BIBLIOGRAPHY}{}% 17
