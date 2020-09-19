@@ -156,7 +156,7 @@
 %}
 
 %%
-\subsection{\#SAT and WMC}
+\subsection{Instances}
 %\begin{frame}
 %	\frametitle{(Weighted) Model-Counting}
 %\end{frame}
@@ -252,6 +252,14 @@
 \begin{frame}
 	\frametitle{dpdb}
 	{\color{blue}Using databases for intermediate results} \medskip\\
+	
+	\begin{enumerate}
+		\item Create graph representation
+		\item Decompose graph
+		\item Solve sub-problems
+		\item Combine rows
+	\end{enumerate}
+
 	Generator SQL Qs => Datenbank Templating in Python
 	%The idea of dpdb is to use database
 	%management systems (DBMS) for table manipulation, which makes it (1) easy
