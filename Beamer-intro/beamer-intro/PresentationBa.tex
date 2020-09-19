@@ -65,16 +65,16 @@
 \section{The task} 
 
 
-\begin{frame}
-	\frametitle{Task definition}
-\textit{Investigate how to automatically visualize dynamic programming algorithms based on existing implementations. Integrate your tool into at least one existing implementation, explain details on your implementation, how the visualization works, and show how this can be used for debugging algorithms.}
-
-%The algorithms exploit structural properties in the given problem instance and solve the problem faster if for example the treewidth of a graph representation is small, since they usually run exponentially in the treewidth and polynomially in the size of the input instance. In fact, recent research showed that implementations of dynamic programming algorithms can also compete with modern solvers and even outperform them in projected model counting.
-%Unfortunately, those algorithms are fairly hard to implement. While recent approaches have also investigated on allowing for easier implementations of dynamic programming algorithms on tree decompositions, implementations are still incredibly error prone, in particular, since they often involve bit fiddling and low level operations to make them run efficiently. Investigate how to automatically visualize dynamic programming algorithms based on existing implementations. Integrate your tool into at least one existing implementation, explain details on your implementation, how the visualization works, and show how this can be used for debugging algorithms.
-\medskip
-
-
-\end{frame}
+%\begin{frame}
+%	\frametitle{Task definition}
+%\textit{Investigate how to automatically visualize dynamic programming algorithms based on existing implementations. Integrate your tool into at least one existing implementation, explain details on your implementation, how the visualization works, and show how this can be used for debugging algorithms.}
+%
+%%The algorithms exploit structural properties in the given problem instance and solve the problem faster if for example the treewidth of a graph representation is small, since they usually run exponentially in the treewidth and polynomially in the size of the input instance. In fact, recent research showed that implementations of dynamic programming algorithms can also compete with modern solvers and even outperform them in projected model counting.
+%%Unfortunately, those algorithms are fairly hard to implement. While recent approaches have also investigated on allowing for easier implementations of dynamic programming algorithms on tree decompositions, implementations are still incredibly error prone, in particular, since they often involve bit fiddling and low level operations to make them run efficiently. Investigate how to automatically visualize dynamic programming algorithms based on existing implementations. Integrate your tool into at least one existing implementation, explain details on your implementation, how the visualization works, and show how this can be used for debugging algorithms.
+%\medskip
+%
+%
+%\end{frame}
 
 %%%%%%%%%%%%%%%%%%%%%%
 \section{Motivation}
@@ -82,14 +82,22 @@
 \begin{frame}
 	\frametitle{Motivation}
 	
-	Example Usages for the algorithms: -> Competitions for examples
-	
-Dynamic programming algorithms can be used to solve combinatorial problems such as SAT, Model Counting, and various graph problems. \\
-Recent research showed that implementations of dynamic programming algorithms can also compete with modern solvers. \\
-Unfortunately, those algorithms are fairly hard to implement as they involve bit fiddling to make them run efficiently.
+	\begin{itemize}
+		\item DP-on-TD-algorithms can solve Model Counting and various combinatorial problems
+		\item Implementations of those are competing with modern solvers
+		\medskip
+		\item {\Large But:} those are fairly hard to implement efficiently
+%		as they involve bit fiddling
+		\medskip
+		\item Practical debug output soon gets very large
+		\item Finding the cause of the problem is a time consuming challenge
+	\end{itemize}
 
-=> Debug output wird schnell unübersichtlich/groß
-Ursprung von Problemen auffinden => (MinVC) Beispiel
+%Recent research showed that implementations of dynamic programming algorithms can also compete with modern solvers. \\
+%Unfortunately, those algorithms are fairly hard to implement  to make them run efficiently.
+%
+%=> Debug output wird schnell unübersichtlich/groß
+%Ursprung von Problemen auffinden => (MinVC) Beispiel
 \end{frame}
 
 %%%%%%%%%%%%%%%%%%%%%%%
