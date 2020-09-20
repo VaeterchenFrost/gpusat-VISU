@@ -93,7 +93,7 @@
 		\item Practical debug output quickly becomes very large (GB)
 		\item Finding the cause of the problem is a time consuming challenge
 	\end{itemize}
-
+\medskip
 		The B.T. probably focused too much on the convenience features, and not on the urgent need for better debugging and visualization needs for those algorithms.
 
 %Recent research showed that implementations of dynamic programming algorithms can also compete with modern solvers. \\
@@ -149,21 +149,31 @@ Recent promising results for Projected Model Counting by Markus Hecher\footnote{
 \subsection[TD]{Tree decomposition}
 \begin{frame}
 	
-	\frametitle{Tree Decompositions}
+	\frametitle{Tree Decomposition}
 	
-	A tree decomposition is a tree obtained from an arbitrary graph
-	s.t. \medskip 
+	Gives the DP algorithm a partial ordering for sub-problems.
+	
+%	A tree decomposition is a tree obtained from an arbitrary graph
+%	s.t. 
+\medskip 
 	\begin{enumerate}
 		\item {Each vertex} must occur in some
 		\emph{bag}
+		\pause
 		\item For {each edge}, there is a bag
 		containing both endpoints
+		\pause
 		\item %\emph{Connectedness condition}:\\
 		{\emph{Connected}}: Subgraph ``restricted'' to any vertex must be connected
 	\end{enumerate}
-
-	Graphic
-
+\pause
+	\begin{figure}
+		\centering
+		\label{fig:tdwheelgraph7}
+		\includegraphics[width=0.38\linewidth]{images/wheelgraph}\quad
+		\includegraphics[width=0.38\linewidth]{images/TDWheelgraph7}	
+	\end{figure}
+	
 \end{frame}
 %{
 %	\setbeamercolor{background canvas}{bg=}
