@@ -3,16 +3,16 @@
 \beamer@sectionintoc {2}{Motivation}{2}{0}{2}
 \beamer@sectionintoc {3}{Contribution}{3}{0}{3}
 \beamer@sectionintoc {4}{Background}{4}{0}{4}
-\beamer@subsectionintoc {4}{1}{Tree decomposition}{7}{0}{4}
-\beamer@subsectionintoc {4}{2}{Instances}{11}{0}{4}
-\beamer@sectionintoc {5}{Implementations}{12}{0}{5}
-\beamer@subsectionintoc {5}{1}{gpusat2}{12}{0}{5}
-\beamer@subsectionintoc {5}{2}{dpdb}{13}{0}{5}
-\beamer@sectionintoc {6}{Implementation}{14}{0}{6}
-\beamer@sectionintoc {7}{Visualizing defects}{19}{0}{7}
-\beamer@sectionintoc {8}{Related Work}{26}{0}{8}
-\beamer@sectionintoc {9}{Other Visualization}{28}{0}{9}
-\beamer@subsectionintoc {9}{1}{Software}{28}{0}{9}
-\beamer@sectionintoc {10}{Outlook}{29}{0}{10}
-\beamer@sectionintoc {11}{Final slide}{30}{0}{11}
-\beamer@sectionintoc {12}{BIBLIOGRAPHY}{31}{0}{12}
+\beamer@subsectionintoc {4}{1}{Tree decomposition}{5}{0}{4}
+\beamer@subsectionintoc {4}{2}{Instances}{6}{0}{4}
+\beamer@sectionintoc {5}{Implementations}{7}{0}{5}
+\beamer@subsectionintoc {5}{1}{gpusat2}{7}{0}{5}
+\beamer@subsectionintoc {5}{2}{dpdb}{8}{0}{5}
+\beamer@sectionintoc {6}{Implementation}{9}{0}{6}
+\beamer@sectionintoc {7}{Visualizing defects}{11}{0}{7}
+\beamer@sectionintoc {8}{Related Work}{13}{0}{8}
+\beamer@sectionintoc {9}{Other Visualization}{15}{0}{9}
+\beamer@subsectionintoc {9}{1}{Software}{15}{0}{9}
+\beamer@sectionintoc {10}{Outlook}{16}{0}{10}
+\beamer@sectionintoc {11}{Final slide}{17}{0}{11}
+\beamer@sectionintoc {12}{BIBLIOGRAPHY}{18}{0}{12}

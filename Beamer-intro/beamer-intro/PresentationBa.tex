@@ -1,5 +1,5 @@
 % !TeX spellcheck = en_US
-\documentclass[c,8pt,xcolor...,x11names]{beamer} % ,handout
+\documentclass[c,8pt,xcolor...,x11names,handout]{beamer} % ,handout
 \usepackage{icclslides}
 \usepackage[latin1]{inputenc}
 \usepackage[british]{babel}
@@ -88,18 +88,20 @@
 	\frametitle{Motivation}
 	
 	\begin{itemize}
-		\item DP-on-TD-algorithms can solve Model Counting and various combinatorial problems and are provable efficient at it
-		\item Implementations of those are competing with modern solvers
+		\item DP-on-TD-algorithms can solve various combinatorial problems like model counting
+		\item Efficient (if the treewidth is small)
+%		They are provable efficient (if the treewidth is small)
+		\item Competitive with other modern solvers
 		\bigskip
-		\item {\Large But: those are fairly tedious to implement efficiently}
+		\item {\Large But tedious and hard to implement if done efficiently}
+%		tedious and hard to implement esp. if done efficiently
 %		as they involve bit fiddling
 % it is extremely space intensive (and much more than SAT solving or similar; and you don't really work with compact representations)
 		\bigskip
-		\item Model counting is extremely space intensive (much more than SAT)
-		%		Practical program information quickly becomes very large (GB)
 		\item Often bugs in the implementation
-		
-		
+		\item DP for Model Counting is extremely space demanding (much more than SAT)
+%		hard to debug as DP for Model Counting is extremely space demanding
+		%		Practical program information quickly becomes very large (GB)
 	\end{itemize}
 \medskip
 %		The B.T. probably focused too much on the convenience features, and not on the urgent need for better debugging and visualization needs for those algorithms.
@@ -168,9 +170,9 @@ For further research it provides
 	The algorithms of interest solve problems of:
 	\medskip
 	\begin{itemize}
-		\item combinatorics (NP-problems)
+		\item NP-complete
 %		https://de.wikipedia.org/wiki/Karps_21_NP-vollst%C3%A4ndige_Probleme#Liste_der_Probleme
-		\item model-counting (\#P-problems) - {\normalfont\small Instead of \textbf{one} solution we want to count \textbf{all} solutions}
+		\item \#P-complete problems - {\normalfont\small instead of \textbf{one} solution we want to \textbf{count all} solutions}
 	\end{itemize}
 %	The developed algorithms exist to solve problems of combinatorics (NP-problems) and even the much more work-intensive model-counting (\#P-problems)
 %	One consequence of Toda's theorem is that a polynomial-time machine with a #P oracle (P#P) can solve all problems in PH, the entire polynomial hierarchy. In fact, the polynomial-time machine only needs to make one #P query to solve any problem in PH. This is an indication of the extreme difficulty of solving #P-complete problems exactly. 
@@ -210,7 +212,7 @@ For further research it provides
 		containing both endpoints
 		\pause
 		\item %\emph{Connectedness condition}:\\
-		Subgraph ``restricted'' to any vertex must be \emph{connected}
+		Subgraph of bags containing a given vertex must be \emph{connected}
 	\end{enumerate}
 \pause
 	\begin{figure}
@@ -451,6 +453,7 @@ Width of a TD is: size of largest bag -1\\
 	\item Can not further animate for example the origin of solutions
 %	Possibility of svg animate
 	\item Maneuvering in very large graphs is not very ergonomic with static content
+	\item In the optimal case, a comprehensive test suite should be run prior to this.
 \end{itemize}
 
 	
