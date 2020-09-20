@@ -1,5 +1,5 @@
 % !TeX spellcheck = en_US
-\documentclass[c,8pt,xcolor...,x11names,handout ]{beamer} % ,handout
+\documentclass[c,8pt,xcolor...,x11names]{beamer} % ,handout
 \usepackage{icclslides}
 \usepackage[latin1]{inputenc}
 \usepackage[british]{babel}
@@ -170,7 +170,7 @@ For further research it provides
 	\begin{itemize}
 		\item combinatorics (NP-problems)
 %		https://de.wikipedia.org/wiki/Karps_21_NP-vollst%C3%A4ndige_Probleme#Liste_der_Probleme
-		\item model-counting (\#P-problems)
+		\item model-counting (\#P-problems) - {\normalfont\small Instead of \textbf{one} solution we want to count \textbf{all} solutions}
 	\end{itemize}
 %	The developed algorithms exist to solve problems of combinatorics (NP-problems) and even the much more work-intensive model-counting (\#P-problems)
 %	One consequence of Toda's theorem is that a polynomial-time machine with a #P oracle (P#P) can solve all problems in PH, the entire polynomial hierarchy. In fact, the polynomial-time machine only needs to make one #P query to solve any problem in PH. This is an indication of the extreme difficulty of solving #P-complete problems exactly. 
@@ -181,7 +181,7 @@ For further research it provides
 
 %We present nested DP, where different levels of abstractions are used to (recursively) compute TDs of a given instance. Further, we integrate the concept of hybrid solving, where subproblems hidden by the abstraction are solved by classical search-based solvers, which leads to an interleaving of parameterized and classical solving. 
 
-Modelcounting: Instead of \textbf{one} solution we want to count \textbf{all} solutions.
+\uncover<2->{Example of two snapshots of getting a minimal vertex cover via DP:}
 \medskip
 \begin{figure}
 	\centering
