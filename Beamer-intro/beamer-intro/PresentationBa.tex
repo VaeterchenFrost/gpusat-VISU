@@ -144,6 +144,7 @@
 Recent promising results for Projected Model Counting by Markus Hecher\footnote{Hecher M., Thier P., Woltran S. (2020) Taming High Treewidth with Abstraction, Nested Dynamic Programming, and Database Technology. In: Pulina L., Seidl M. (eds) Theory and Applications of Satisfiability Testing - SAT 2020. SAT 2020. Lecture Notes in Computer Science, vol 12178. Springer, Cham. https://doi.org/10.1007/978-3-030-51825-7\_25}.
 %We present nested DP, where different levels of abstractions are used to (recursively) compute TDs of a given instance. Further, we integrate the concept of hybrid solving, where subproblems hidden by the abstraction are solved by classical search-based solvers, which leads to an interleaving of parameterized and classical solving. 
 
+-> Show model counting in a tree example
 \end{frame}
 
 \subsection[TD]{Tree decomposition}
@@ -173,6 +174,8 @@ Recent promising results for Projected Model Counting by Markus Hecher\footnote{
 		\includegraphics[width=0.38\linewidth]{images/wheelgraph}\quad
 		\includegraphics[width=0.38\linewidth]{images/TDWheelgraph7}	
 	\end{figure}
+
+Width of TD = largest bag -1
 	
 \end{frame}
 %{
@@ -243,7 +246,7 @@ Recent promising results for Projected Model Counting by Markus Hecher\footnote{
 
 \subsection{gpusat2}
 \begin{frame}
-	\frametitle{gpusat2 - Solving on GPU}
+	\frametitle{gpusat2 - Solving \#SAT on GPU}
 %	=> Dynamic programming Grafiken / Verlaufsschema Kurz erklären -> Beweise dazu sind aufwändig und recht spezialisiert / 
 	
 	%Architecture of our DP-based solver for parallel execution. Yellow colored
@@ -344,6 +347,8 @@ Recent promising results for Projected Model Counting by Markus Hecher\footnote{
 	\item Vertex cover
 	\item[] \quad . . .
 \end{itemize}
+	\footnotetext{``Exploiting Database Management Systems and Treewidth for Counting",\\
+		Johannes Fichte et al. doi:	10.1007/978-3-030-39197-3\_10.}
 	
 \end{frame}
 
