@@ -63,37 +63,33 @@
 \headcommand {\beamer@subsectionentry {0}{9}{1}{14}{Software}}
 \headcommand {\slideentry {9}{1}{1}{14/14}{Software}{0}}
 \headcommand {\beamer@framepages {14}{14}}
+\headcommand {\beamer@sectionpages {14}{14}}
 \headcommand {\beamer@subsectionpages {14}{14}}
-\headcommand {\beamer@subsectionentry {0}{9}{2}{15}{Handcrafted}}
-\headcommand {\slideentry {9}{2}{1}{15/15}{Handcrafted}{0}}
+\headcommand {\sectionentry {10}{Outlook}{15}{Outlook}{0}}
+\headcommand {\slideentry {10}{0}{1}{15/15}{}{0}}
 \headcommand {\beamer@framepages {15}{15}}
-\headcommand {\beamer@sectionpages {14}{15}}
+\headcommand {\beamer@sectionpages {15}{15}}
 \headcommand {\beamer@subsectionpages {15}{15}}
-\headcommand {\sectionentry {10}{Outlook}{16}{Outlook}{0}}
-\headcommand {\slideentry {10}{0}{1}{16/16}{}{0}}
+\headcommand {\sectionentry {11}{Final slide}{16}{Final slide}{0}}
+\headcommand {\slideentry {11}{0}{1}{16/16}{}{0}}
 \headcommand {\beamer@framepages {16}{16}}
 \headcommand {\beamer@sectionpages {16}{16}}
 \headcommand {\beamer@subsectionpages {16}{16}}
-\headcommand {\sectionentry {11}{Final slide}{17}{Final slide}{0}}
-\headcommand {\slideentry {11}{0}{1}{17/17}{}{0}}
+\headcommand {\sectionentry {12}{BIBLIOGRAPHY}{17}{BIBLIOGRAPHY}{0}}
+\headcommand {\slideentry {12}{0}{1}{17/17}{}{0}}
 \headcommand {\beamer@framepages {17}{17}}
-\headcommand {\beamer@sectionpages {17}{17}}
-\headcommand {\beamer@subsectionpages {17}{17}}
-\headcommand {\sectionentry {12}{BIBLIOGRAPHY}{18}{BIBLIOGRAPHY}{0}}
-\headcommand {\slideentry {12}{0}{1}{18/18}{}{0}}
+\headcommand {\slideentry {12}{0}{2}{18/18}{}{0}}
 \headcommand {\beamer@framepages {18}{18}}
-\headcommand {\slideentry {12}{0}{2}{19/19}{}{0}}
+\headcommand {\slideentry {12}{0}{3}{19/19}{}{0}}
 \headcommand {\beamer@framepages {19}{19}}
-\headcommand {\slideentry {12}{0}{3}{20/20}{}{0}}
+\headcommand {\slideentry {12}{0}{4}{20/20}{}{0}}
 \headcommand {\beamer@framepages {20}{20}}
-\headcommand {\slideentry {12}{0}{4}{21/21}{}{0}}
+\headcommand {\slideentry {12}{0}{5}{21/21}{}{0}}
 \headcommand {\beamer@framepages {21}{21}}
-\headcommand {\slideentry {12}{0}{5}{22/22}{}{0}}
+\headcommand {\slideentry {12}{0}{6}{22/22}{}{0}}
 \headcommand {\beamer@framepages {22}{22}}
-\headcommand {\slideentry {12}{0}{6}{23/23}{}{0}}
-\headcommand {\beamer@framepages {23}{23}}
-\headcommand {\beamer@partpages {1}{23}}
-\headcommand {\beamer@subsectionpages {18}{23}}
-\headcommand {\beamer@sectionpages {18}{23}}
-\headcommand {\beamer@documentpages {23}}
-\headcommand {\gdef \inserttotalframenumber {23}}
+\headcommand {\beamer@partpages {1}{22}}
+\headcommand {\beamer@subsectionpages {17}{22}}
+\headcommand {\beamer@sectionpages {17}{22}}
+\headcommand {\beamer@documentpages {22}}
+\headcommand {\gdef \inserttotalframenumber {22}}
