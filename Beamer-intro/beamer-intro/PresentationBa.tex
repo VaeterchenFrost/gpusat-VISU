@@ -1,5 +1,5 @@
 % !TeX spellcheck = en_US
-\documentclass[c,8pt,xcolor...,x11names,handout]{beamer} % ,handout
+\documentclass[c,8pt,xcolor...,x11names]{beamer} % ,handout
 \usepackage{icclslides}
 \usepackage[latin1]{inputenc}
 \usepackage[british]{babel}
@@ -106,7 +106,7 @@
 % it is extremely space intensive (and much more than SAT solving or similar; and you don't really work with compact representations)
 		\bigskip
 		\item Often bugs in the implementation
-		\item DP for Model Counting is extremely space demanding (much more than SAT)
+		\item DP for model counting is extremely space demanding (much more than SAT)
 %		hard to debug as DP for Model Counting is extremely space demanding
 		%		Practical program information quickly becomes very large (GB)
 	\end{itemize}
@@ -218,13 +218,122 @@ For further research it provides
 \medskip
 \begin{figure}
 	\centering
-	\includegraphics<2>[width=0.7\linewidth]{images/minvcgraph13}
-	\includegraphics<3>[width=0.7\linewidth]{images/minvcgraph7.png}
+	\includegraphics<2->[width=0.33\linewidth]{images/wgraph2.png}
+	\includegraphics<3>[width=0.33\linewidth]{images/wgraph3.png}
 	\label{fig:minvcgraph13}
 \end{figure}
 
 \end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%
 
+\subsection{gpusat2}
+\begin{frame}
+	\frametitle{gpusat2 - Solving \#SAT on GPU}
+	%	=> Dynamic programming Grafiken / Verlaufsschema Kurz erklären -> Beweise dazu sind aufwändig und recht spezialisiert / 
+	
+	%Architecture of our DP-based solver for parallel execution. Yellow colored
+	%boxes indicate tasks that are required as initial step for the DP-run or to nally read the
+	%model count from the computed results. The parts framed by a dashed box illustrate the
+	%DP-part. Boxes colored in red indicate computations that run on the CPU. Boxes colored
+	%in blue indicate computations that are executed on the GPU (with waiting CPU).
+	\begin{figure}
+		\includegraphics[height=0.3\textheight]{images/DPAlgo31.png}
+	\end{figure}
+	\medskip
+	\begin{minipage}{0.49\textwidth}
+		\begin{itemize}
+			
+			\item Customized tree decompositions
+			%			\item Adapted memory-management
+			%			\item Improved precision handling 
+		\end{itemize}
+	\end{minipage}
+	
+	\footnotetext{Images: Markus Zisser. \textit{Solving the \#SAT problem on the GPU with dynamic programming and OpenCL}. Technische Universit\"at Wien, 2018.}
+	
+	%	\begin{minipage}{0.49\textwidth}
+	%		%Runtime for the top 5 sequential and all parallel solvers over all the #Sat
+	%		%instances with pmc preprocessor. The x-axis refers to the number of instances and the
+	%		%y-axis depicts the runtime sorted in ascending order for each solver individually.
+	%		\begin{figure}
+	%			\includegraphics[width=\linewidth]{images/gpusat2Runtime.png}
+	%		\end{figure}
+	%	\end{minipage}
+	
+	
+\end{frame}
+%%
+\subsection{dpdb}
+\begin{frame}
+	\frametitle{dpdb}
+	%	{\color{blue}Using databases for intermediate results} \medskip\\
+	
+	Database templates in Python\\
+	
+	Generating SQL queries	
+	
+	
+	
+	
+	%The idea of dpdb is to use database
+	%management systems (DBMS) for table manipulation, which makes it (1) easy
+	%and elegant to perform rapid prototyping for problems, and (2) allows to leverage
+	%from decades of database theory and database system tuning. It turned out that
+	%all the cases that occur in dynamic programming can be handled quite elegantly
+	%with plain SQL queries. Our system dpdb can be used for both decision and
+	%counting problems, thereby also considering optimization. We see our system
+	%particularly well-suited for counting problems, especially, since it was shown
+	%that for model counting (#Sat) instances of practical relevance typically have
+	%small treewidth [23]. In consequence, we carried out preliminary experiments
+	%on publicly available instances for
+	\begin{minipage}{0.1\textwidth}
+		\hfill
+	\end{minipage}
+	\begin{minipage}{0.35\textwidth}
+		\begin{enumerate}
+			\item Create graph representation
+			\item Decompose graph
+			\item Solve sub-problems
+			\item Combine rows
+		\end{enumerate}
+		
+		
+	\end{minipage}\hfill
+	\begin{minipage}{0.54\textwidth}
+		
+		\begin{figure}
+			\centering\hfill
+			\begin{subfigure}[b]{\textwidth}
+				\includegraphics[width=\linewidth]{images/dpdbSSat.png}
+				\caption{Problem \#SAT}
+				
+			\end{subfigure}\hfill\\
+			%			\begin{subfigure}[b]{\textwidth}
+			%				\includegraphics[width=0.8\linewidth]{images/dpdbOCol.png}
+			%				\caption{Problem }
+			%			\end{subfigure}\hfill\\
+			
+			\begin{subfigure}[b]{\textwidth}
+				\includegraphics[width=0.8\linewidth]{images/dpdbMinVC.png}
+				\caption{Problem MinVC}
+				
+			\end{subfigure}
+		\end{figure}
+		
+	\end{minipage}
+	\begin{itemize}
+		\item SAT and \#SAT
+		\item \#o-Coloring
+		\item Vertex cover
+		\item[] \quad . . .
+	\end{itemize}
+	\footnotetext{``Exploiting Database Management Systems and Treewidth for Counting",\\
+		Johannes Fichte et al. doi:	10.1007/978-3-030-39197-3\_10.}
+	
+\end{frame}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%
 \subsection[TD]{Tree decomposition}
 \begin{frame}
 	
@@ -321,148 +430,54 @@ Width of a TD is: size of largest bag -1\\
 %\end{frame}
 
 
-%%%%%%%%%%%%%%%%%%%%%%%
-\section{Implementations}
 
-\subsection{gpusat2}
-\begin{frame}
-	\frametitle{gpusat2 - Solving \#SAT on GPU}
-%	=> Dynamic programming Grafiken / Verlaufsschema Kurz erklären -> Beweise dazu sind aufwändig und recht spezialisiert / 
-	
-	%Architecture of our DP-based solver for parallel execution. Yellow colored
-	%boxes indicate tasks that are required as initial step for the DP-run or to nally read the
-	%model count from the computed results. The parts framed by a dashed box illustrate the
-	%DP-part. Boxes colored in red indicate computations that run on the CPU. Boxes colored
-	%in blue indicate computations that are executed on the GPU (with waiting CPU).
-	\begin{figure}
-		\includegraphics[height=0.3\textheight]{images/DPAlgo31.png}
-	\end{figure}
-	\medskip
-	\begin{minipage}{0.49\textwidth}
-		\begin{itemize}
-			
-			\item Customized tree decompositions
-%			\item Adapted memory-management
-%			\item Improved precision handling 
-		\end{itemize}
-	\end{minipage}
-	
-\footnotetext{Images: Markus Zisser. \textit{Solving the \#SAT problem on the GPU with dynamic programming and OpenCL}. Technische Universit\"at Wien, 2018.}
-
-%	\begin{minipage}{0.49\textwidth}
-%		%Runtime for the top 5 sequential and all parallel solvers over all the #Sat
-%		%instances with pmc preprocessor. The x-axis refers to the number of instances and the
-%		%y-axis depicts the runtime sorted in ascending order for each solver individually.
-%		\begin{figure}
-%			\includegraphics[width=\linewidth]{images/gpusat2Runtime.png}
-%		\end{figure}
-%	\end{minipage}
-
-
-\end{frame}
-%%
-\subsection{dpdb}
-\begin{frame}
-	\frametitle{dpdb}
-%	{\color{blue}Using databases for intermediate results} \medskip\\
-	
-	Database templates in Python\\
-	
-	Generating SQL queries	
-	
-
-
-	
-	%The idea of dpdb is to use database
-	%management systems (DBMS) for table manipulation, which makes it (1) easy
-	%and elegant to perform rapid prototyping for problems, and (2) allows to leverage
-	%from decades of database theory and database system tuning. It turned out that
-	%all the cases that occur in dynamic programming can be handled quite elegantly
-	%with plain SQL queries. Our system dpdb can be used for both decision and
-	%counting problems, thereby also considering optimization. We see our system
-	%particularly well-suited for counting problems, especially, since it was shown
-	%that for model counting (#Sat) instances of practical relevance typically have
-	%small treewidth [23]. In consequence, we carried out preliminary experiments
-	%on publicly available instances for
-	\begin{minipage}{0.1\textwidth}
-		\hfill
-	\end{minipage}
-	\begin{minipage}{0.35\textwidth}
-			\begin{enumerate}
-			\item Create graph representation
-			\item Decompose graph
-			\item Solve sub-problems
-			\item Combine rows
-		\end{enumerate}
-	
-		
-	\end{minipage}\hfill
-	\begin{minipage}{0.54\textwidth}
-
-		\begin{figure}
-			\centering\hfill
-			\begin{subfigure}[b]{\textwidth}
-				\includegraphics[width=\linewidth]{images/dpdbSSat.png}
-				\caption{Problem \#SAT}
-
-			\end{subfigure}\hfill\\
-%			\begin{subfigure}[b]{\textwidth}
-%				\includegraphics[width=0.8\linewidth]{images/dpdbOCol.png}
-%				\caption{Problem }
-%			\end{subfigure}\hfill\\
-		
-			\begin{subfigure}[b]{\textwidth}
-				\includegraphics[width=0.8\linewidth]{images/dpdbMinVC.png}
-				\caption{Problem MinVC}
-
-			\end{subfigure}
-		\end{figure}
-
-	\end{minipage}
-\begin{itemize}
-	\item SAT and \#SAT
-	\item \#o-Coloring
-	\item Vertex cover
-	\item[] \quad . . .
-\end{itemize}
-	\footnotetext{``Exploiting Database Management Systems and Treewidth for Counting",\\
-		Johannes Fichte et al. doi:	10.1007/978-3-030-39197-3\_10.}
-	
-\end{frame}
-
-
-%%%%%%%%%%%%%%%%%%%%%%%
 \section{Implementation}
 \begin{frame}
-	\frametitle{Running tdvisu}
+	\frametitle{TDVisu}
 	\medskip
 
 \begin{figure}
 	\centering
 	
 	\includegraphics[width=0.95\linewidth]{images/OverviewProgram}
-	
+	\caption{TDVisu producing flexible and further processable formats}
 	\label{fig:overviewprogram}
 \end{figure}
 \pause
 %	Generisches Datenformat /Strings
 %	Visu
 %	=> Anwendungen 
-\centering
-	{TDVisu producing flexible and further processable formats}
-	\pause
-\begin{figure}
-	\centering
 	
-	\includegraphics[height=0.25\textheight]{images/Bag4}
-	\pause
-	\includegraphics[height=0.45\textheight]{images/SolutionBag4.png}
-	\label{fig:bag4}
-\end{figure}
+	\hfill
+	\pause\\
+	
+	{\color{blue}\large JSON-Schema specifying:}\\\medskip
+	
+	timeline, tree decomposition\\\smallskip
+	
+	incidence graph, general graph \\\smallskip
+	orientation, maximum lines, maximum columns, emphasis, svgjoin info
 
+	
+\end{frame}
 
+\begin{frame}
+	\frametitle{Graphics for TD}
+	\begin{itemize}
+	 \item	Most cells are interpreted as strings.
 		
+	\item	Extendable header and footer.
+	\end{itemize}
 	
+	\begin{figure}
+		\centering
+		
+		\includegraphics[height=0.25\textheight]{images/Bag4}
+		\pause
+		\includegraphics[height=0.45\textheight]{images/SolutionBag4.png}
+		\caption{Bag node and solution node}
+		\label{fig:bag4}
+	\end{figure}	
 \end{frame}
 
 \begin{frame}
@@ -568,13 +583,117 @@ Width of a TD is: size of largest bag -1\\
 	
 \end{frame}
 
-%%%%%%%%%%%%%%%%%%%%%%%
-\section{Other Visualization}
 
-\subsection{Software}
+%%%%%%%%%%%%%%%%%%%%%%%
+\section{Outlook}
 \begin{frame}
+	\frametitle{Outlook}
+
+%$\rightarrow$ Automatic methods are often more complex than expected. 
+	\begin{center}
+		\Large Static $\rightarrow$ Dynamic
+	\end{center}
+	
+	\bigskip
+	
+		Interesting Questions :
+		\medskip
+	\begin{itemize}
+%		for relevant problems the static graph visualization will become to complicated.
+%		https://data-science-blog.com/blog/2015/07/20/3d-visualisierung-von-graphen/
+		%With particularly extensive and at the same time diverse graphs, a visualization in three or four dimensions (x-, y-, z-dimensions + time t) is not only nicer to look at, but can also be very helpful in gaining an understanding (e.g. via graph clusters).
+		\item Cross reference the creation of rows in parent nodes
+		\item Enriching the visualization with more data for each node
+		\item For more advanced debugging tasks you may also need to revise the approach
+		\item Utilizing graph databases for debugging
+	\end{itemize}
+	
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%
+\section{Appendix}
+\begin{frame}
+	\frametitle{Final slide}
+%		This thesis created tdvisu as a tool that 
+%		\begin{itemize}
+%			\item integrates into existing implementations
+%			\item statically exports data from runs
+%			\item compiles simple DOT files and SVG graphics
+%		\end{itemize}
+%	\bigskip		
+%
+%	For further research it provides
+%	\begin{itemize}
+%		\item starting point for more complex investigations of 
+%		\begin{itemize}
+%			\item bug spotting
+%			\item and fixing by using visualizations
+%		\end{itemize} 
+%		
+%	\end{itemize}
+	
+%	 into implementations of dynamic programming on tree decompositions 
+
+%	I would like to thank you for your attention.
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+	\frametitle{SVG-Join}
+	\begin{itemize}
+		\item Joining single graphs for each time step
+	\end{itemize}
+	
+	\begin{figure}
+			\includegraphics<1>[width=0.55\linewidth]{images/svgjoinpad200nn.png}
+			\includegraphics<2>[width=0.55\linewidth]{images/svgjoinscaledbottomnn.png}
+	\end{figure}
+\end{frame}
+
+\begin{frame}
+	\frametitle{MinVC for example graph}
+	\begin{figure}
+		\begin{tabular}{c|c}
+			\includegraphics[width=0.45\linewidth]{images/threeGraph1.png} &
+		\includegraphics[width=0.45\linewidth]{images/threeGraphOptimal.png}\\
+		
+		\end{tabular}
+	
+	\end{figure}
+\end{frame}
+\begin{frame}
+	\frametitle{Visualization}
+	\framesubtitle{Manually for one run}
+	\begin{figure}
+		\centering
+		
+		\includegraphics[width=0.55\linewidth]{images/DualDA43.png}		
+		\includegraphics[width=0.44\linewidth]{images/dpdbVisuSat.png}
+		
+		\caption*{\footnotetext{``Exploiting Database Management Systems and Treewidth for Counting",\\
+				Johannes Fichte et al. doi:	10.1007/978-3-030-39197-3\_10.}
+			\footnotetext{``Solving \#SAT on the GPU with Dynamic Programming and OpenCL",\\
+				Diploma Markus Zisser 2018 Technische Universit\"at Wien, p.33}
+			{}}
+		\label{fig:dualda43}
+	\end{figure}
 	
 	
+\end{frame}
+%\begin{frame}
+%	\frametitle{Visualization}
+%	\framesubtitle{Manually for dpdb}
+%	\begin{figure}
+%		\centering
+%		\includegraphics[width=\linewidth]{images/dpdbVisuSat.png}
+%		\caption{Handcrafted \#SAT example-run from dpdb\footnote{"Exploiting Database Management Systems and Treewidth for Counting",\\ Fichte, Hecher, Thier, Woltran} }
+%		\label{fig:dpdbVisuSat}
+%	\end{figure}
+%	
+%	
+%\end{frame}
+
+\begin{frame}	
 	%	Gephi is a tool for data analysts and scientists keen to explore and understand graphs. Like Photoshop? but for graph data, the user interacts with the representation, manipulate the structures, shapes and colors to reveal hidden patterns.
 	
 	\begin{figure}
@@ -620,127 +739,26 @@ Width of a TD is: size of largest bag -1\\
 	%%(LNI), Proceedings - Series of the Gesellschaft fur Informatik (GI) (Jan.
 	%%2014), pp. 105--120.
 	
-%	Briefly looked up different formats and graph software. 
+	%	Briefly looked up different formats and graph software. 
 	With the diverse / large node labels and special layout \\
 	the creation of a lightweight and customizable exchange format \\
 	took precedence over the integration into special layout software.
 \end{frame}
 
-%\subsection{Handcrafted}
-
-
-%%%%%%%%%%%%%%%%%%%%%%%
-\section{Outlook}
-\begin{frame}
-	\frametitle{Outlook}
-
-%$\rightarrow$ Automatic methods are often more complex than expected. 
-	\begin{center}
-		\Large Static $\rightarrow$ Dynamic
-	\end{center}
-	
-	\bigskip
-	
-		Interesting Questions :
-		\medskip
-	\begin{itemize}
-%		for relevant problems the static graph visualization will become to complicated.
-%		https://data-science-blog.com/blog/2015/07/20/3d-visualisierung-von-graphen/
-		%With particularly extensive and at the same time diverse graphs, a visualization in three or four dimensions (x-, y-, z-dimensions + time t) is not only nicer to look at, but can also be very helpful in gaining an understanding (e.g. via graph clusters).
-		\item Cross reference the creation of rows in parent nodes
-		\item Enriching the visualization with more data for each node
-		\item For more advanced debugging tasks you may also need to revise the approach
-		\item Utilizing graph databases for debugging
-	\end{itemize}
-	
-\end{frame}
-
-%%%%%%%%%%%%%%%%%%%%%%%
-\section{Final slide}
-\begin{frame}
-	\frametitle{Final slide}
-%		This thesis created tdvisu as a tool that 
-%		\begin{itemize}
-%			\item integrates into existing implementations
-%			\item statically exports data from runs
-%			\item compiles simple DOT files and SVG graphics
-%		\end{itemize}
-%	\bigskip		
-%
-%	For further research it provides
-%	\begin{itemize}
-%		\item starting point for more complex investigations of 
-%		\begin{itemize}
-%			\item bug spotting
-%			\item and fixing by using visualizations
-%		\end{itemize} 
-%		
-%	\end{itemize}
-	
-%	 into implementations of dynamic programming on tree decompositions 
-
-%	I would like to thank you for your attention.
-\end{frame}
-
-%%%%%%%%%%%%%%%%%%%%%%%
-
-\begin{frame}
-	\frametitle{MinVC for example graph}
-	\begin{figure}
-		\begin{tabular}{c|c}
-			\includegraphics[width=0.45\linewidth]{images/threeGraph1.png} &
-		\includegraphics[width=0.45\linewidth]{images/threeGraphOptimal.png}\\
-		
-		\end{tabular}
-	
-	\end{figure}
-\end{frame}
-\begin{frame}
-	\frametitle{Visualization}
-	\framesubtitle{Manually for one run}
-	\begin{figure}
-		\centering
-		
-		\includegraphics[width=0.55\linewidth]{images/DualDA43.png}		
-		\includegraphics[width=0.44\linewidth]{images/dpdbVisuSat.png}
-		
-		\caption*{\footnotetext{``Exploiting Database Management Systems and Treewidth for Counting",\\
-				Johannes Fichte et al. doi:	10.1007/978-3-030-39197-3\_10.}
-			\footnotetext{``Solving \#SAT on the GPU with Dynamic Programming and OpenCL",\\
-				Diploma Markus Zisser 2018 Technische Universit\"at Wien, p.33}
-			{}}
-		\label{fig:dualda43}
-	\end{figure}
-	
-	
-\end{frame}
 %\begin{frame}
-%	\frametitle{Visualization}
-%	\framesubtitle{Manually for dpdb}
-%	\begin{figure}
-%		\centering
-%		\includegraphics[width=\linewidth]{images/dpdbVisuSat.png}
-%		\caption{Handcrafted \#SAT example-run from dpdb\footnote{"Exploiting Database Management Systems and Treewidth for Counting",\\ Fichte, Hecher, Thier, Woltran} }
-%		\label{fig:dpdbVisuSat}
-%	\end{figure}
-%	
-%	
+%\begin{figure}
+%	\includegraphics[width=\linewidth]{images/DADPonGPU.png}
+%\end{figure}
 %\end{frame}
-
-\begin{frame}
-\begin{figure}
-	\includegraphics[width=\linewidth]{images/DADPonGPU.png}
-\end{figure}
-\end{frame}
-
-\begin{frame}
-	\medskip
-	\frametitle{Benchmark}
-	{\color{blue}Performance of all three programs on \#SAT instances:} \medskip\\
-	\begin{figure}
-		\includegraphics[width=0.8\linewidth]{images/dpdbRuntime.png}
-	\end{figure}
-\end{frame}
+%
+%\begin{frame}
+%	\medskip
+%	\frametitle{Benchmark}
+%	{\color{blue}Performance of all three programs on \#SAT instances:} \medskip\\
+%	\begin{figure}
+%		\includegraphics[width=0.8\linewidth]{images/dpdbRuntime.png}
+%	\end{figure}
+%\end{frame}
 \begin{frame}
 	\medskip
 	\frametitle{ELVIZ - Query based approach to software visualization}

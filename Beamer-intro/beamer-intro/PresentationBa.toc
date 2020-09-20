@@ -2,17 +2,14 @@
 \beamer@sectionintoc {1}{The task}{2}{0}{1}
 \beamer@sectionintoc {2}{Motivation}{2}{0}{2}
 \beamer@sectionintoc {3}{Contribution}{3}{0}{3}
-\beamer@sectionintoc {4}{Background}{5}{0}{4}
-\beamer@subsectionintoc {4}{1}{Tree decomposition}{6}{0}{4}
-\beamer@subsectionintoc {4}{2}{Instances}{7}{0}{4}
-\beamer@sectionintoc {5}{Implementations}{8}{0}{5}
-\beamer@subsectionintoc {5}{1}{gpusat2}{8}{0}{5}
-\beamer@subsectionintoc {5}{2}{dpdb}{9}{0}{5}
-\beamer@sectionintoc {6}{Implementation}{10}{0}{6}
-\beamer@sectionintoc {7}{Visualizing defects}{12}{0}{7}
-\beamer@sectionintoc {8}{Related Work}{14}{0}{8}
-\beamer@sectionintoc {9}{Other Visualization}{16}{0}{9}
-\beamer@subsectionintoc {9}{1}{Software}{16}{0}{9}
-\beamer@sectionintoc {10}{Outlook}{17}{0}{10}
-\beamer@sectionintoc {11}{Final slide}{18}{0}{11}
-\beamer@sectionintoc {12}{BIBLIOGRAPHY}{19}{0}{12}
+\beamer@sectionintoc {4}{Background}{6}{0}{4}
+\beamer@subsectionintoc {4}{1}{gpusat2}{9}{0}{4}
+\beamer@subsectionintoc {4}{2}{dpdb}{10}{0}{4}
+\beamer@subsectionintoc {4}{3}{Tree decomposition}{11}{0}{4}
+\beamer@subsectionintoc {4}{4}{Instances}{15}{0}{4}
+\beamer@sectionintoc {5}{Implementation}{16}{0}{5}
+\beamer@sectionintoc {6}{Visualizing defects}{22}{0}{6}
+\beamer@sectionintoc {7}{Related Work}{29}{0}{7}
+\beamer@sectionintoc {8}{Outlook}{31}{0}{8}
+\beamer@sectionintoc {9}{Appendix}{32}{0}{9}
+\beamer@sectionintoc {10}{BIBLIOGRAPHY}{39}{0}{10}
