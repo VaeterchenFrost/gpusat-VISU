@@ -452,26 +452,7 @@ Recent promising results for Projected Model Counting by Markus Hecher\footnote{
 
 %%%%%%%%%%%%%%%%%%%%%%%
 \section{Other Visualization}
-\subsection{Handcrafted}
-\begin{frame}
-	\frametitle{Visualization}
-	\framesubtitle{Manually for one run}
-	\begin{figure}
-		\centering
-		
-		\includegraphics[width=0.55\linewidth]{images/DualDA43.png}		
-		\includegraphics[width=0.44\linewidth]{images/dpdbVisuSat.png}
-		
-		\caption*{\footnotetext{``Exploiting Database Management Systems and Treewidth for Counting",\\
-				Johannes Fichte et al. doi:	10.1007/978-3-030-39197-3\_10.}
-			\footnotetext{``Solving \#SAT on the GPU with Dynamic Programming and OpenCL",\\
-				Diploma Markus Zisser 2018 Technische Universit\"at Wien, p.33}
-			{}}
-		\label{fig:dualda43}
-	\end{figure}
-	
-	
-\end{frame}
+
 \subsection{Software}
 \begin{frame}
 	
@@ -525,7 +506,26 @@ Recent promising results for Projected Model Counting by Markus Hecher\footnote{
 	With the diverse / large node labels and special layout the creation of a lightweight and customizable exchange format took precedence over the integration into special layout software.
 \end{frame}
 
-
+\subsection{Handcrafted}
+\begin{frame}
+	\frametitle{Visualization}
+	\framesubtitle{Manually for one run}
+	\begin{figure}
+		\centering
+		
+		\includegraphics[width=0.55\linewidth]{images/DualDA43.png}		
+		\includegraphics[width=0.44\linewidth]{images/dpdbVisuSat.png}
+		
+		\caption*{\footnotetext{``Exploiting Database Management Systems and Treewidth for Counting",\\
+				Johannes Fichte et al. doi:	10.1007/978-3-030-39197-3\_10.}
+			\footnotetext{``Solving \#SAT on the GPU with Dynamic Programming and OpenCL",\\
+				Diploma Markus Zisser 2018 Technische Universit\"at Wien, p.33}
+			{}}
+		\label{fig:dualda43}
+	\end{figure}
+	
+	
+\end{frame}
 
 %%%%%%%%%%%%%%%%%%%%%%%
 \section{Outlook}
@@ -533,30 +533,25 @@ Recent promising results for Projected Model Counting by Markus Hecher\footnote{
 	\frametitle{Outlook}
 
 %$\rightarrow$ Automatic methods are often more complex than expected. 
-{	\centering
-	\Large Static $\rightarrow$ Dynamic
-}
+	\begin{center}
+		\Large Static $\rightarrow$ Dynamic
+	\end{center}
 	
-	\medskip
+	\bigskip
 	
+		Interesting Questions :
+		\medskip
 	\begin{itemize}
 %		for relevant problems the static graph visualization will become to complicated.
 %		https://data-science-blog.com/blog/2015/07/20/3d-visualisierung-von-graphen/
 		%With particularly extensive and at the same time diverse graphs, a visualization in three or four dimensions (x-, y-, z-dimensions + time t) is not only nicer to look at, but can also be very helpful in gaining an understanding (e.g. via graph clusters).
+		\item Utilizing graph databases for visualization and queries for debugging
 		\item Enrich the visualization with debugging info for each node
 		\item Cross reference the creation of rows in parent nodes
 		\item For more advanced debugging tasks you may also need to revise the approach
 	\end{itemize}
-	\bigskip
 	
-	Interesting Questions 
-	\medskip
-	\begin{itemize}
-		\item Bottlenecks of different architectures
-		\item Preselection of interesting areas/data to visualize
-		\item Utilizing graph databases for visualization and queries for debugging
-	\end{itemize}
-	
+		
 		
 \end{frame}
 

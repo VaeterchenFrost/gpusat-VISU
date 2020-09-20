@@ -11,8 +11,8 @@
 \beamer@sectionintoc {6}{Visualizing defects}{10}{0}{6}
 \beamer@sectionintoc {7}{Related Work}{12}{0}{7}
 \beamer@sectionintoc {8}{Other Visualization}{13}{0}{8}
-\beamer@subsectionintoc {8}{1}{Handcrafted}{13}{0}{8}
-\beamer@subsectionintoc {8}{2}{Software}{14}{0}{8}
+\beamer@subsectionintoc {8}{1}{Software}{13}{0}{8}
+\beamer@subsectionintoc {8}{2}{Handcrafted}{14}{0}{8}
 \beamer@sectionintoc {9}{Outlook}{15}{0}{9}
 \beamer@sectionintoc {10}{Final slide}{16}{0}{10}
 \beamer@sectionintoc {11}{BIBLIOGRAPHY}{17}{0}{11}
