@@ -23,6 +23,13 @@
 
 \tikzstyle{ele} = [circle, text centered, minimum width=1em, minimum height=3ex]
 
+% unnumbered footnote
+\setbeamertemplate{footnote}{%
+	\parindent 1em\noindent%
+	\raggedright
+	\insertfootnotetext\par%
+}
+
 %% Uncomment to activate navigation symbols in the lower right of the pages:
 \setbeamertemplate{navigation symbols}{}
 %\setbeamercovered{transparent}
@@ -115,7 +122,29 @@
 
 %%%%%%%%%%%%%%%%%%%%%%
 \section{Contribution}
-
+\begin{frame}
+	\frametitle{Ideas}
+	
+	\medskip
+	\begin{itemize}
+		\item Provide means
+		\item statically exports data from runs
+		\item compiles simple DOT files and SVG graphics
+	\end{itemize}
+	\bigskip		
+	
+	For further research it provides
+	\medskip
+	\begin{itemize}
+		\item starting point for more complex investigations of 
+		\begin{itemize}
+			\item bug spotting
+			\item and fixing by using visualizations
+		\end{itemize} 
+		
+	\end{itemize}
+	
+\end{frame}
 \begin{frame}
 	\frametitle{Contribution}
 This thesis created tdvisu as a tool that 
@@ -550,7 +579,7 @@ Width of a TD is: size of largest bag -1\\
 		\includegraphics[width=0.25\linewidth]{images/gephi.png} \qquad
 		\includegraphics[width=0.25\linewidth]{images/tulip.png} \qquad
 		\includegraphics[width=0.15\linewidth]{images/tulip_sample.jpeg}
-		\caption*{Gephi.org\footnote{https://gephi.org/ - Tool for data analysts and scientists keen to explore and understand graphs.}
+		\caption*{Gephi.org\footnote[1]{https://gephi.org/ - Tool for data analysts and scientists keen to explore and understand graphs.}
 			Tulip  \footnote{tulip.labri.fr/TulipDrupal/ - Better Visualization Through Research.}}
 		\label{fig:tulip}
 	\end{figure}
