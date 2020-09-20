@@ -90,11 +90,11 @@
 	\begin{itemize}
 		\item DP-on-TD-algorithms can solve Model Counting and various combinatorial problems and are provable efficient at it
 		\item Implementations of those are competing with modern solvers
-		\big
-		\item {\Large But:} those are fairly tedious to implement efficiently
+		\bigskip
+		\item {\Large But: those are fairly tedious to implement efficiently}
 %		as they involve bit fiddling
 % it is extremely space intensive (and much more than SAT solving or similar; and you don't really work with compact representations)
-		\big
+		\bigskip
 		\item Often bugs in the implementation
 		\item Model counting is extremely space intensive (much more than SAT)
 %		Practical program information quickly becomes very large (GB)
@@ -115,7 +115,25 @@
 
 \begin{frame}
 	\frametitle{Contribution}
+This thesis created tdvisu as a tool that 
+\medskip
+\begin{itemize}
+	\item integrates into existing implementations
+	\item statically exports data from runs
+	\item compiles simple DOT files and SVG graphics
+\end{itemize}
+\bigskip		
 
+For further research it provides
+\medskip
+\begin{itemize}
+	\item starting point for more complex investigations of 
+	\begin{itemize}
+		\item bug spotting
+		\item and fixing by using visualizations
+	\end{itemize} 
+	
+\end{itemize}
 	
 \end{frame}
 
@@ -593,24 +611,24 @@ Width of a TD is: size of largest bag -1\\
 %%%%%%%%%%%%%%%%%%%%%%%
 \section{Final slide}
 \begin{frame}
-	\frametitle{Summary}
-		This thesis created tdvisu as a tool that 
-		\begin{itemize}
-			\item integrates into existing implementations
-			\item statically exports data from runs
-			\item compiles simple DOT files and SVG graphics
-		\end{itemize}
-	\bigskip		
-
-	For further research it provides
-	\begin{itemize}
-		\item starting point for more complex investigations of 
-		\begin{itemize}
-			\item bug spotting
-			\item and fixing by using visualizations
-		\end{itemize} 
-		
-	\end{itemize}
+	\frametitle{Final slide}
+%		This thesis created tdvisu as a tool that 
+%		\begin{itemize}
+%			\item integrates into existing implementations
+%			\item statically exports data from runs
+%			\item compiles simple DOT files and SVG graphics
+%		\end{itemize}
+%	\bigskip		
+%
+%	For further research it provides
+%	\begin{itemize}
+%		\item starting point for more complex investigations of 
+%		\begin{itemize}
+%			\item bug spotting
+%			\item and fixing by using visualizations
+%		\end{itemize} 
+%		
+%	\end{itemize}
 	
 %	 into implementations of dynamic programming on tree decompositions 
 
