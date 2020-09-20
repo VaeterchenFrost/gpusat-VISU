@@ -419,6 +419,7 @@ Width of a TD is: size of largest bag -1\\
 	\pause
 \begin{figure}
 	\centering
+	
 	\includegraphics[height=0.25\textheight]{images/Bag4}
 	\pause
 	\includegraphics[height=0.45\textheight]{images/SolutionBag4.png}
@@ -433,10 +434,21 @@ Width of a TD is: size of largest bag -1\\
 \begin{frame}
 	\frametitle{Capabilities and Limitations}
 	\medskip
-	
-	 - Wie robust ist die Datenverarbeitung in der Visu
-		Restrictions in strings for ids
-	 - Was Gedanken bei der Visu waren
+	\textbf{Capabilities:}
+	\begin{itemize}
+		\item Extracting basic (extendable) information (TD, solution nodes, order+time of processing...) from gpusat + dpdb
+		\item Constructing and enriching the tree decomposition with solver information
+		\item Adding the incidence graph for problems on Boolean formulas, from which primal and dual graphs can be derived
+		\item Providing a discrete timeline over the solving process
+		\item Parameters to control the quantity, coloring and, to a limited extent, the layout of the data
+	\end{itemize}
+\medskip
+\textbf{Limitations:}
+\begin{itemize}
+	\item Can not animate for example the origin of solutions
+	\item 
+\end{itemize}
+	 
 	
 	
 	
