@@ -11,8 +11,8 @@
 \beamer@sectionintoc {6}{Implementation}{9}{0}{6}
 \beamer@sectionintoc {7}{Visualizing defects}{11}{0}{7}
 \beamer@sectionintoc {8}{Related Work}{13}{0}{8}
-\beamer@sectionintoc {9}{Other Visualization}{14}{0}{9}
-\beamer@subsectionintoc {9}{1}{Software}{14}{0}{9}
-\beamer@sectionintoc {10}{Outlook}{15}{0}{10}
-\beamer@sectionintoc {11}{Final slide}{16}{0}{11}
-\beamer@sectionintoc {12}{BIBLIOGRAPHY}{17}{0}{12}
+\beamer@sectionintoc {9}{Other Visualization}{15}{0}{9}
+\beamer@subsectionintoc {9}{1}{Software}{15}{0}{9}
+\beamer@sectionintoc {10}{Outlook}{16}{0}{10}
+\beamer@sectionintoc {11}{Final slide}{17}{0}{11}
+\beamer@sectionintoc {12}{BIBLIOGRAPHY}{18}{0}{12}
