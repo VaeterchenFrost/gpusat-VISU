@@ -172,14 +172,14 @@ Recent promising results for Projected Model Counting by Markus Hecher\footnote{
 %	s.t. 
 \medskip 
 	\begin{enumerate}
-		\item {Each vertex} must occur in some
-		\emph{bag}
+		\item \emph{Each vertex} must occur in some
+		bag
 		\pause
-		\item For {each edge}, there is a bag
+		\item For \emph{each edge}, there is a bag
 		containing both endpoints
 		\pause
 		\item %\emph{Connectedness condition}:\\
-		{\emph{Connected}}: Subgraph ``restricted'' to any vertex must be connected
+		Subgraph ``restricted'' to any vertex must be \emph{connected}
 	\end{enumerate}
 \pause
 	\begin{figure}
@@ -189,7 +189,9 @@ Recent promising results for Projected Model Counting by Markus Hecher\footnote{
 		\includegraphics[width=0.38\linewidth]{images/TDWheelgraph7}	
 	\end{figure}
 
-Width of TD = largest bag -1
+\hfill
+Width of a TD is: size of largest bag -1\\
+\hfill $width = 3$
 	
 \end{frame}
 %{
@@ -280,9 +282,7 @@ Width of TD = largest bag -1
 			\item Improved precision handling 
 		\end{itemize}
 	\end{minipage}
-	\begin{figure}
-		\includegraphics[height=0.3\textheight]{images/DADPonGPU.png}
-	\end{figure}
+	
 \footnotetext{Images: Markus Zisser. \textit{Solving the \#SAT problem on the GPU with dynamic programming and OpenCL}. Technische Universit\"at Wien, 2018.}
 
 %	\begin{minipage}{0.49\textwidth}
@@ -633,6 +633,12 @@ Width of TD = largest bag -1
 	\end{figure}
 	
 	
+\end{frame}
+
+\begin{frame}
+\begin{figure}
+	\includegraphics[height=0.3\textheight]{images/DADPonGPU.png}
+\end{figure}
 \end{frame}
 
 
