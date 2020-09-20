@@ -246,7 +246,6 @@ Recent promising results for Projected Model Counting by Markus Hecher\footnote{
 			\item Customized tree decompositions
 			\item Adapted memory-management
 			\item Improved precision handling 
-
 		\end{itemize}
 	\end{minipage}
 	\begin{figure}
@@ -262,13 +261,16 @@ Recent promising results for Projected Model Counting by Markus Hecher\footnote{
 %			\includegraphics[width=\linewidth]{images/gpusat2Runtime.png}
 %		\end{figure}
 %	\end{minipage}
-
 \end{frame}
 %%
 \subsection{dpdb}
 \begin{frame}
 	\frametitle{dpdb}
-	{\color{blue}Using databases for intermediate results} \medskip\\
+%	{\color{blue}Using databases for intermediate results} \medskip\\
+	
+	Database templates in Python\\
+	
+	Generating SQL queries	
 	
 	\begin{enumerate}
 		\item Create graph representation
@@ -277,7 +279,7 @@ Recent promising results for Projected Model Counting by Markus Hecher\footnote{
 		\item Combine rows
 	\end{enumerate}
 
-	Generator SQL Qs => Datenbank Templating in Python
+	
 	%The idea of dpdb is to use database
 	%management systems (DBMS) for table manipulation, which makes it (1) easy
 	%and elegant to perform rapid prototyping for problems, and (2) allows to leverage
@@ -294,9 +296,10 @@ Recent promising results for Projected Model Counting by Markus Hecher\footnote{
 	\end{minipage}
 	\begin{minipage}{0.35\textwidth}
 		\begin{itemize}
-			\item SAT
-			\item \#SAT
+			\item SAT and \#SAT
+			\item \#o-Coloring
 			\item Vertex cover
+			\item[] \quad . . .
 		\end{itemize}
 	\end{minipage}\hfill
 	\begin{minipage}{0.54\textwidth}
@@ -308,11 +311,11 @@ Recent promising results for Projected Model Counting by Markus Hecher\footnote{
 				\caption{Problem \#SAT}
 
 			\end{subfigure}\hfill\\
-			\begin{subfigure}[b]{\textwidth}
-				\includegraphics[width=0.8\linewidth]{images/dpdbOCol.png}
-				\caption{Problem \#o-Col}
-
-			\end{subfigure}\hfill\\
+%			\begin{subfigure}[b]{\textwidth}
+%				\includegraphics[width=0.8\linewidth]{images/dpdbOCol.png}
+%				\caption{Problem }
+%			\end{subfigure}\hfill\\
+		
 			\begin{subfigure}[b]{\textwidth}
 				\includegraphics[width=0.8\linewidth]{images/dpdbMinVC.png}
 				\caption{Problem MinVC}
@@ -321,8 +324,7 @@ Recent promising results for Projected Model Counting by Markus Hecher\footnote{
 		\end{figure}
 
 	\end{minipage}
-	\medskip \\
-	github: \url{https://github.com/hmarkus/dp_on_dbs}
+	
 \end{frame}
 
 
