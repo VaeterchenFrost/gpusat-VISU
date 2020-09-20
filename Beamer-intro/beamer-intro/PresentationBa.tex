@@ -1,5 +1,5 @@
 % !TeX spellcheck = en_US
-\documentclass[c,8pt,xcolor...,x11names, handout]{beamer}
+\documentclass[c,8pt,xcolor...,x11names ]{beamer} % handout
 \usepackage{icclslides}
 \usepackage[latin1]{inputenc}
 \usepackage[british]{babel}
@@ -52,14 +52,18 @@
 %What added value has your research delivered?
 %To what extent is your research relevant?
 	\customtitle
-	\begin{list2}
-
-		\item {\sc What} is the motivation
+	\begin{center}
+		\begin{minipage}{0.5\textwidth}
+			\begin{itemize}
+				\item {\sc What} is the motivation
 				\item {\sc Who} benefits from visualization?
-		\item {\sc Challenges}  and solutions
-		\item {\sc What} could be used otherwise?
-		\item {\sc Outlook} and ideas
-	\end{list2}
+				\item {\sc Challenges}  and solutions
+				\item {\sc What} could be used otherwise?
+				\item {\sc Outlook} and ideas
+			\end{itemize}
+		\end{minipage}
+	\end{center}
+
 \end{frame}
 
 %%%%%%%%%%%%%%%%%
@@ -361,18 +365,22 @@ Width of TD = largest bag -1
 
 \begin{figure}
 	\centering
-	\caption{TDVisu producing flexible and further processable formats.}
+	
 	\includegraphics[width=0.95\linewidth]{images/OverviewProgram}
 	
 	\label{fig:overviewprogram}
 \end{figure}
+\pause
 %	Generisches Datenformat /Strings
 %	Visu
 %	=> Anwendungen 
-	
+\centering
+	{TDVisu producing flexible and further processable formats}
+	\pause
 \begin{figure}
 	\centering
 	\includegraphics[height=0.25\textheight]{images/Bag4}
+	\pause
 	\includegraphics[height=0.45\textheight]{images/SolutionBag4.png}
 	\label{fig:bag4}
 \end{figure}
