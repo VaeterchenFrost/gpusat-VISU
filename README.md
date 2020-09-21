@@ -1,7 +1,9 @@
 # Bachelor Thesis
 Visualization for [dynamic programming](https://en.wikipedia.org/wiki/Dynamic_programming) on [tree decompositions](https://en.wikipedia.org/wiki/Tree_decomposition).
 
-Main work in this repo will be done in [Bachelor here](https://github.com/VaeterchenFrost/gpusat-VISU/tree/master/Bachelor) .
+Main work in this repo will be done in [Bachelor](https://github.com/VaeterchenFrost/gpusat-VISU/tree/master/Bachelor) .
+
+The Kolloquium talk can be found [here](https://github.com/VaeterchenFrost/gpusat-VISU/blob/e88aa38986548c59924b097b447dad6d9371eba4/Beamer-intro/beamer-intro/PresentationBa.pdf) .
 
 The discussed sourcecode can be found via [GitHub TDVisu](https://github.com/VaeterchenFrost/tdvisu/).
 
