@@ -3,10 +3,10 @@
 \beamer@sectionintoc {2}{Motivation}{2}{0}{2}
 \beamer@sectionintoc {3}{Contribution}{3}{0}{3}
 \beamer@sectionintoc {4}{Background}{6}{0}{4}
-\beamer@subsectionintoc {4}{1}{gpusat2}{9}{0}{4}
-\beamer@subsectionintoc {4}{2}{dpdb}{10}{0}{4}
-\beamer@subsectionintoc {4}{3}{Tree decomposition}{11}{0}{4}
-\beamer@subsectionintoc {4}{4}{Instances}{15}{0}{4}
+\beamer@subsectionintoc {4}{1}{Tree decomposition}{9}{0}{4}
+\beamer@subsectionintoc {4}{2}{Instances}{13}{0}{4}
+\beamer@subsectionintoc {4}{3}{gpusat2}{14}{0}{4}
+\beamer@subsectionintoc {4}{4}{dpdb}{15}{0}{4}
 \beamer@sectionintoc {5}{Implementation}{16}{0}{5}
 \beamer@sectionintoc {6}{Visualizing defects}{22}{0}{6}
 \beamer@sectionintoc {7}{Related Work}{29}{0}{7}
